@@ -5,9 +5,15 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>Suwasewana</title>
+        <link rel="stylesheet" href="public/css/main.css" />
     </head>
     <body>
-    <c:import url="user-form.jsp"/>
+<%--    <%=--%>
+<%--        request.getServletPath()--%>
+<%--    %>--%>
+<%--    <c:if test="${request.getServletPath()}">--%>
+<%--        <c:import url="view/Login.jsp"/>--%>
+<%--    </c:if>--%>
     </body>
 </html>
