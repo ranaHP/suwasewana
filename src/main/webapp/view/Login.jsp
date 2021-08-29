@@ -9,6 +9,9 @@
 <html>
 <head>
     <title>Title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../public/css/partials/_login.css"/>
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -26,32 +29,44 @@
             <%--logo container--%>
             <div class="features">
                 <div class="feature">
-                    <i data-feather="check-circle"></i>
+                    <div class="feature-icon">
+                        <i data-feather="check-circle"></i>
+                    </div>
                     <span> Government Announcement </span>
                 </div>
 
                 <div class="feature">
-                    <i data-feather="check-circle"></i>
+                    <div class="feature-icon">
+                        <i data-feather="check-circle"></i>
+                    </div>
                     <span> Clinic Schedule </span>
                 </div>
 
                 <div class="feature">
-                    <i data-feather="check-circle"></i>
+                    <div class="feature-icon">
+                        <i data-feather="check-circle"></i>
+                    </div>
                     <span> PHI's  Announcement </span>
                 </div>
 
                 <div class="feature">
-                    <i data-feather="check-circle"></i>
+                    <div class="feature-icon">
+                        <i data-feather="check-circle"></i>
+                    </div>
                     <span> Diseases Information </span>
                 </div>
 
                 <div class="feature">
-                    <i data-feather="check-circle"></i>
+                    <div class="feature-icon">
+                        <i data-feather="check-circle"></i>
+                    </div>
                     <span> Medicine Reminders </span>
                 </div>
 
                 <div class="feature">
-                    <i data-feather="check-circle"></i>
+                    <div class="feature-icon">
+                        <i data-feather="check-circle"></i>
+                    </div>
                     <span> Emergency Ambulance </span>
                 </div>
             </div>
@@ -66,6 +81,10 @@
             <div class="having-trouble">
                 Having troubles: <span > Get Help </span>
             </div>
+<%--                logo for sm size--%>
+                <div class="sm-logo">
+                    <img src="../public/images/logo/logo.png" width="30px"  />
+                </div>
             <%--                login from--%>
             <div class="login-form">
                 <%--                    flofin form title--%>
@@ -87,14 +106,17 @@
                         <label> Password</label>
                         <input type="number" required autocomplete="false" name="user-mobile"/>
                     </div>
-                    <input type="submit" class="login-btn" value="Login" />
+                    <div class="form-group">
+                        <input type="submit" class="login-btn" value="Login" />
+                    </div>
+
                 </form>
             </div>
             <%--    sign-with-option --%>
             <div class="sign-with-option">
                 <%--                    sign with google --%>
                 <div class="sign-option">
-                    <img src="../public/images/signwithIcon/google.png" width="30vw" /> Sign with Google
+                    <img src="../public/images/signwithIcon/google.png" width="30px" /> Sign with Google
                 </div>
                 <%--                    or-text--%>
                 <div class="or-text">
@@ -102,7 +124,7 @@
                 </div>
                 <%--                    sign with facebook--%>
                 <div class="sign-option">
-                    <img src="../public/images/signwithIcon/facebook.png" width="30vw"/> Sign with facebook
+                    <img src="../public/images/signwithIcon/facebook.png" width="30px"/> Sign with facebook
                 </div>
             </div>
             <%--    footer-text--%>

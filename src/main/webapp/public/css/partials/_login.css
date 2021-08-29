@@ -18,12 +18,14 @@
     display: flex;
     border-radius: 40px;
     box-shadow: 5px 5px 14px rgba( 0 , 0 ,0 , 0.16) ;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .left{
     background-color: white;
     width: 30%;
-    height: 80vh;
+    min-height: 80vh;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -38,7 +40,7 @@
 .left .features {
     padding-top: 50px;
     width: 80%;
-    margin: auto;
+    margin:0 auto;
 }
 .features .feature{
     color: var(--primary-color);
@@ -54,8 +56,7 @@
 .features .feature span{
     letter-spacing: 1px;
     font-family: Raleway;
-    font-size: 1em;
-
+    font-size: .9em;
 }
 .left .login-image{
     width: 100%;
@@ -63,12 +64,9 @@
     justify-content: center;
 }
 
-
 .left .login-image img{
     width: 80%;
 }
-
-
 
 .right{
     width: 60%;
@@ -85,38 +83,46 @@
     font-weight: 500;
     margin-left: auto;
 }
+
 .having-trouble span{
     color: rgba(0, 32, 42, 0.73);
     font-weight: 600;
     cursor: pointer;
 }
+
 .having-trouble span:hover{
     text-decoration: underline;
 }
+
 .right .login-form {
     max-width: 500px;
     margin: 0 auto ;
 }
+
 .right .login-form .login-title {
     font-size: 1.55em;
     font-weight: 700;
     font-family: Microsoft JhengHei UI ;
     color: rgba(0, 0, 0, 0.64);
 }
+
 .right .login-form .login-description {
     font-size: .8em;
     font-weight: 300;
     font-family: Ebrima ;
     color: rgba(0, 0, 0, 0.45);
 }
+
 .right form {
     padding-top: 50px;
     max-width: 500px;
 }
+
 .right form .form-group{
     display: flex;
     flex-direction: column;
 }
+
 .right form .form-group label{
     padding: 10px 0 20px 0 ;
     font-family: Arial;
@@ -125,6 +131,7 @@
     color: rgba(0, 0, 0, 0.57);
     letter-spacing: 1px;
 }
+
 .right form .form-group input{
     max-width: 500px;
     border: 0;
@@ -132,6 +139,7 @@
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
 }
+
 .right form .form-group input:hover{
     border: 1.5px solid rgba(0, 0, 0, 0.65);
 }
@@ -154,16 +162,18 @@ input::-webkit-inner-spin-button {
     margin-top: 30px;
     cursor: pointer;
 }
+
 .sign-with-option{
-    width: 500px;
     margin-top: -20px;
-    margin:0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
+    width: 100%;
+    max-width: 500px;
+    margin:0 auto;
 
 }
+
 .sign-with-option .sign-option {
     display: flex;
     align-items: center;
@@ -173,13 +183,18 @@ input::-webkit-inner-spin-button {
     font-weight: 400;
     color: #585858;
     cursor: pointer;
+    width:fit-content;
 }
+
 .sign-with-option .sign-option img {
     padding-right: 10px;
+
 }
+
 .sign-with-option .sign-option:hover {
     text-decoration: underline;
 }
+
 .footer-text{
     font-size: .92em;
     font-family: Montserrat;
@@ -190,3 +205,85 @@ input::-webkit-inner-spin-button {
     padding: 0 10px;
 }
 
+.sm-logo {
+    display: none;
+}
+
+@media only screen and (max-width: 576px) {
+    .login .container{
+        width: 90%;
+    }
+    .left{
+        display: none;
+        padding: 10px;
+    }
+    .having-trouble{
+        display: none;
+    }
+    .right {
+        width: 100%;
+        justify-content: space-evenly;
+        font-size: .9em;
+    }
+    .right .login-form .login-title {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .login-description{
+        text-align: center;
+        margin-top: 10px;
+        font-size: .9em;
+    }
+    .sign-option{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .footer-text{
+        font-size: .8em;
+        width: 100%;
+        padding: 5px;
+        margin-top: 10px;
+    }
+    .sign-with-option {
+        margin-top: 10px;
+        flex-direction: column;
+    }
+
+    .sign-with-option .sign-option img {
+        width: 20px;
+    }
+    .sm-logo{
+        display: block;
+        width: 50px;
+        margin:0 auto;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .login .container{
+        width: 98%;
+    }
+    .or-text{
+        display: none;
+    }
+    .right {
+        font-size: .9em;
+    }
+    .login-form {
+        font-size: .9em;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+
+    .login .container{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 1400px) {
+}
