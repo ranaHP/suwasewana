@@ -1,0 +1,289 @@
+@import "../fonts.css";
+@import "../variables.css";
+*{
+    padding: 0;
+    margin: 0;
+}
+.login{
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh ;
+}
+.login .container{
+    background-color: #EFF5F0;
+    width: 70vw;
+    min-height: 80vh ;
+    display: flex;
+    border-radius: 40px;
+    box-shadow: 5px 5px 14px rgba( 0 , 0 ,0 , 0.16) ;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.left{
+    background-color: white;
+    width: 30%;
+    min-height: 80vh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 40px;
+    box-shadow: 10px 8px 26px rgba( 0 , 0 ,0 , 0.06) ;
+}
+.left .logo img{
+    width: 50px;
+}
+
+.left .features {
+    padding-top: 50px;
+    width: 80%;
+    margin:0 auto;
+}
+.features .feature{
+    color: var(--primary-color);
+    vertical-align: middle;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+.features .feature svg{
+    padding-right: 20px;
+    color: rgba(1, 150, 134, 0.74);
+}
+.features .feature span{
+    letter-spacing: 1px;
+    font-family: Raleway;
+    font-size: .9em;
+}
+.left .login-image{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.left .login-image img{
+    width: 80%;
+}
+
+.right{
+    width: 60%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.having-trouble{
+    font-family:"Zilla Slab";
+    color: rgba(112, 112, 112, 0.75);
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-left: auto;
+}
+
+.having-trouble span{
+    color: rgba(0, 32, 42, 0.73);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.having-trouble span:hover{
+    text-decoration: underline;
+}
+
+.right .login-form {
+    max-width: 500px;
+    margin: 0 auto ;
+}
+
+.right .login-form .login-title {
+    font-size: 1.55em;
+    font-weight: 700;
+    font-family: Microsoft JhengHei UI ;
+    color: rgba(0, 0, 0, 0.64);
+}
+
+.right .login-form .login-description {
+    font-size: .8em;
+    font-weight: 300;
+    font-family: Ebrima ;
+    color: rgba(0, 0, 0, 0.45);
+}
+
+.right form {
+    padding-top: 50px;
+    max-width: 500px;
+}
+
+.right form .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.right form .form-group label{
+    padding: 10px 0 20px 0 ;
+    font-family: Arial;
+    font-size: .9em;
+    text-shadow: 0 3px 28px rgba(0, 0, 0, 0.15);
+    color: rgba(0, 0, 0, 0.57);
+    letter-spacing: 1px;
+}
+
+.right form .form-group input{
+    max-width: 500px;
+    border: 0;
+    height: 40px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.right form .form-group input:hover{
+    border: 1.5px solid rgba(0, 0, 0, 0.65);
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.right form .login-btn {
+    height: 40px;
+    border: 0;
+    border-radius: 3px;
+    background-color: var(--primary-color);
+    color: white;
+    max-width: 200px;
+    width: 100%;
+    text-align: center;
+    float: right;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.sign-with-option{
+    margin-top: -20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px;
+    margin:0 auto;
+
+}
+
+.sign-with-option .sign-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .95em;
+    font-family: Montserrat;
+    font-weight: 400;
+    color: #585858;
+    cursor: pointer;
+    width:fit-content;
+}
+
+.sign-with-option .sign-option img {
+    padding-right: 10px;
+
+}
+
+.sign-with-option .sign-option:hover {
+    text-decoration: underline;
+}
+
+.footer-text{
+    font-size: .92em;
+    font-family: Montserrat;
+    font-weight: 400;
+    color: #585858;
+    text-align: center;
+    margin:0 auto;
+    padding: 0 10px;
+}
+
+.sm-logo {
+    display: none;
+}
+
+@media only screen and (max-width: 576px) {
+    .login .container{
+        width: 90%;
+    }
+    .left{
+        display: none;
+        padding: 10px;
+    }
+    .having-trouble{
+        display: none;
+    }
+    .right {
+        width: 100%;
+        justify-content: space-evenly;
+        font-size: .9em;
+    }
+    .right .login-form .login-title {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .login-description{
+        text-align: center;
+        margin-top: 10px;
+        font-size: .9em;
+    }
+    .sign-option{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .footer-text{
+        font-size: .8em;
+        width: 100%;
+        padding: 5px;
+        margin-top: 10px;
+    }
+    .sign-with-option {
+        margin-top: 10px;
+        flex-direction: column;
+    }
+
+    .sign-with-option .sign-option img {
+        width: 20px;
+    }
+    .sm-logo{
+        display: block;
+        width: 50px;
+        margin:0 auto;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .login .container{
+        width: 98%;
+    }
+    .or-text{
+        display: none;
+    }
+    .right {
+        font-size: .9em;
+    }
+    .login-form {
+        font-size: .9em;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+
+    .login .container{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+}
+
+@media only screen and (max-width: 1400px) {
+}
