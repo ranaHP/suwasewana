@@ -122,7 +122,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.right form .form-group input:focus {
+    border: none;
+}
 .right form .form-group label{
     padding: 10px 0 20px 0 ;
     font-family: Arial;
@@ -208,7 +210,15 @@ input::-webkit-inner-spin-button {
 .sm-logo {
     display: none;
 }
-
+.alert-danger1{
+    text-align: center;
+    font-size: .9em;
+    font-family: Arial, serif;
+    color: #ffffff;
+    background-color: rgba(255, 0, 0, 0.43);
+    margin-top: 10px;
+    padding: 10px;
+}
 @media only screen and (max-width: 576px) {
     .login .container{
         width: 90%;
