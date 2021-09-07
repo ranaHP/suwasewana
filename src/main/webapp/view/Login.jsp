@@ -36,7 +36,7 @@
                     <div class="feature-icon">
                         <i data-feather="check-circle"></i>
                     </div>
-                    <span> Government Announcement </span>
+                    <a href="http://localhost:8092/test_war_exploded/dashboard"><span> Government Announcement </span></a>
                 </div>
 
                 <div class="feature">
