@@ -1,4 +1,4 @@
-package com.suwasewana.controller;
+package com.suwasewana.core;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/")
-public class RouteController extends HttpServlet {
+@WebServlet("/asd")
+public class Router extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -28,7 +28,7 @@ public class RouteController extends HttpServlet {
                     rd.forward(request,response);
                     break;
                 case "/dashboard":
-                	response.getWriter().println("Dashboard Page");
+                	response.getWriter().println("Dashboard Page akila + lula");
                     break;
                 default:
                     response.getWriter().println("404 Page not Found");

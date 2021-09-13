@@ -1,4 +1,4 @@
-package com.suwasewana.controller;
+package com.suwasewana.controller.user;
 
 import com.suwasewana.dao.UserLoginDAO;
 import com.suwasewana.model.UserLoginModel;
@@ -30,15 +30,18 @@ public class LoginController extends HttpServlet {
     private void checkUserLogin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String mobile = req.getParameter("user-mobile");
         String password = req.getParameter("user-password");
+
         UserLoginModel userLoginDetails = new UserLoginModel(mobile, password);
         UserLoginModel userLoginDetailsResponse = userLoginDAO.CheckLoginValidation(userLoginDetails);
         if (userLoginDetailsResponse.getMobile().equals("") || userLoginDetailsResponse.getPassword().equals("")){
-            RequestDispatcher rd = req.getRequestDispatcher("/view/Login.jsp");
-            req.setAttribute("status" , "Invalid login details! Please try again.");
-            rd.forward(req,res);
+//            RequestDispatcher rd = req.getRequestDispatcher("/view/Login.jsp");
+//            req.setAttribute("status" , "Invalid login details! Please try again.");
+//            rd.forward(req,res);
+            res.getWriter().println("invalid");
         }else {
-            RequestDispatcher rd = req.getRequestDispatcher("user-form.jsp");
-            rd.forward(req,res);
+//            RequestDispatcher rd = req.getRequestDispatcher("user-form.jsp");
+//            rd.forward(req,res);
+            res.getWriter().println("success");
         }
 
     }

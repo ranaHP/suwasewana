@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="<c:url value="/public/css/alert.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/public/css/validation.css"/>"/>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%-- input field validation--%>
+    <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
 
 </head>
 <body>
@@ -100,32 +103,36 @@
                     Feather is a collection of simply beautiful open source icons. Each icon is
                     designed on a 24x24 grid with an emphasis on simplicity/
                 </div>
-                <form action="/test_war_exploded/user-login-controller" method="post">
+                <form onsubmit="return checkLoginValidation()">
 
                     <div class="form-group">
                         <label> Mobile Number</label>
-                        <input type="number"
-                               autocomplete="false" name="user-mobile"
+                        <input type="text"
+                               autocomplete="false" name="user-mobile" id="user-mobile" onkeyup="validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error');"
+                               maxlength="10"
                         />
+                        <p id="user-mobile-error"></p>
                     </div>
                     <div class="form-group">
                         <label> Password</label>
-                        <input type="number" autocomplete="false" name="user-password"/>
+                        <input type="password" autocomplete="false" name="user-password" id="user-password"/>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="login-btn" value="Login"/>
+
                     </div>
 
                     <c:if test="${status != null}">
 
                         <div class="alert-danger1">
-                            ${status}
+                                ${status}
                         </div>
-<%--                        <%--%>
-<%--                            request.removeAttribute("status");--%>
-<%--                        %>--%>
+                        <%--                        <%--%>
+                        <%--                            request.removeAttribute("status");--%>
+                        <%--                        %>--%>
                     </c:if>
                 </form>
+                <button onclick="makeRequest()"> On asd</button>
             </div>
             <%--    sign-with-option --%>
             <div class="sign-with-option">
@@ -145,6 +152,8 @@
             </div>
             <%--    footer-text--%>
             <div class="footer-text">
+                <button>Send an HTTP POST request to a page and get the result back</button>
+
                 Feather is a collection of simply beautiful open source icons. Each icon is
                 designed on a 24x24 grid with an emphasis on simplicity/
             </div>
@@ -153,6 +162,24 @@
     </div>
 
 </div>
+<script defer>
+    function checkLoginValidation() {
+        let url = "/test_war_exploded/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            console.log(this.response);
+            if (this.response === "success") {
+                alert("success");
+            }
+        }
+        xhttp.open("POST", url, true);
+        xhttp.send();
+        return false;
+    }
+
+    let validation = new FormInputValidation();
+
+</script>
 <script>
     feather.replace()
 </script>
