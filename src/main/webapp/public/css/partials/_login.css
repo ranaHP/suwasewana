@@ -5,11 +5,12 @@
     margin: 0;
 }
 .login{
-    background-color: var(--primary-color);
+    /*background-color: var(--primary-color);*/
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh ;
+    background-image: url("../../images/bgPattern/p1.jpg");
 }
 .login .container{
     background-color: #EFF5F0;
@@ -32,6 +33,7 @@
     justify-content: space-between;
     border-radius: 40px;
     box-shadow: 10px 8px 26px rgba( 0 , 0 ,0 , 0.06) ;
+
 }
 .left .logo img{
     width: 50px;

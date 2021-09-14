@@ -1,5 +1,7 @@
 package com.suwasewana.controller.user;
 
+import com.google.gson.Gson;
+import com.suwasewana.core.ResponseType;
 import com.suwasewana.dao.UserLoginDAO;
 import com.suwasewana.model.UserLoginModel;
 
@@ -10,10 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/user-login-controller")
 public class LoginController extends HttpServlet {
     UserLoginDAO userLoginDAO;
+    private Gson gson = new Gson();
 
     public void init() {
         userLoginDAO = new UserLoginDAO();
@@ -33,16 +37,22 @@ public class LoginController extends HttpServlet {
 
         UserLoginModel userLoginDetails = new UserLoginModel(mobile, password);
         UserLoginModel userLoginDetailsResponse = userLoginDAO.CheckLoginValidation(userLoginDetails);
-        if (userLoginDetailsResponse.getMobile().equals("") || userLoginDetailsResponse.getPassword().equals("")){
-//            RequestDispatcher rd = req.getRequestDispatcher("/view/Login.jsp");
-//            req.setAttribute("status" , "Invalid login details! Please try again.");
-//            rd.forward(req,res);
-            res.getWriter().println("invalid");
-        }else {
-//            RequestDispatcher rd = req.getRequestDispatcher("user-form.jsp");
-//            rd.forward(req,res);
-            res.getWriter().println("success");
+
+        PrintWriter out = res.getWriter();
+        res.setContentType("application/json");
+        res.setCharacterEncoding("UTF-8");
+
+        String responseJsonString = "";
+        if (userLoginDetailsResponse.getMobile().equals("") || userLoginDetailsResponse.getPassword().equals("")) {
+            ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
+            responseJsonString = this.gson.toJson(suwasewanaRespose);
+
+        } else {
+            ResponseType suwasewanaRespose = new ResponseType("success", "success");
+            responseJsonString = this.gson.toJson(suwasewanaRespose);
         }
+        out.print(responseJsonString);
+        out.flush();
 
     }
 }
