@@ -1,0 +1,51 @@
+
+@import "fonts.css";
+
+.p-relative{
+    position: relative;
+}
+.d-none{
+    display: none;
+}
+.d-block{
+    display: block;
+}
+.password-visibility{
+    position: absolute;
+    right:10px;
+    top: 10px;
+}
+.w-100{
+    width: 100%;
+}
+.c-gray{
+    color: rgba(128, 128, 128, 0.68);
+}
+.form-response-error{
+    color: var(--warning);
+    font-size: .9em;
+    font-family: 'Montserrat', sans-serif;
+    transition: .5s;
+}
+.form-field-error{
+    font-family: 'Montserrat', sans-serif;
+    color: var(--warning);
+    font-size: .8em;
+    transition: .5s;
+}
+.form-field-success{
+    font-family: 'Montserrat', sans-serif;
+    color: var(--sucess);
+    font-size: .8em;
+    transition: .5s;
+}
+.t-center{
+ text-align: center;
+}
+
+.pt-10{
+    padding-top: 10px;
+}
+.pt-5{
+    padding-top: 5px;
+}
