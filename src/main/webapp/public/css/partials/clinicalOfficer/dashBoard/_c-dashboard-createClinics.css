@@ -1,0 +1,194 @@
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: visible;
+    font-family: Segoe UI;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+    min-height: 100vh;
+}
+
+.content{
+    color: #0606068e;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    background-color: var(--primary-color);
+}
+.create-clinics-title{
+    margin: 20px 20px 20px 35px;
+    padding: 5px;
+    font-size: 1.2em;
+}
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.form{
+    width: 850px;
+}
+.left{
+    flex: 2;
+}
+.right{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    background-color: transparent;
+}
+.form-inputs{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0px;
+}
+.inputs{
+    font-size: .7em;
+    display: block;
+    width: 95%;
+}
+label{
+    display: inline-block;
+}
+input{
+
+    width: 100%;
+    border: 0;
+    height: 30px;
+    padding-left: 3px;
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+#description{
+    height: 208px;
+    margin: 0px;
+}
+
+/* input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
+input[type=datetime-local]:required:invalid{
+    color: transparent;
+}
+input[type=datetime-local]:focus{
+    color: black !important;
+}
+input[type=time]:required:invalid{
+    color: transparent;
+}
+input[type=time]:focus{
+    color: black !important;
+}
+
+.create-button{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+button{
+    border: none;
+    padding: 8.5px;
+    width: 93%;
+    background-color: #0D47A1;
+    color: white;
+    border-radius: 5px;
+    font-family: Segoe UI;
+    font-size: .9em;
+    letter-spacing: .1em;
+    cursor: pointer;
+}
+.right-inputs , .left-inputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+    padding: 1px;
+}
+.right .live-card-title{
+    margin: 14px 32px 15px 0px;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 1em;
+
+}
+.right .live-card-border{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 450px;
+    margin: 2px 0px;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='6%2c 8' stroke-dashoffset='2' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+/* responsive */
+@media screen and (max-width: 1315px) {
+    .content{
+        flex-direction: column;
+    }
+    .create-clinics-title {
+        display: flex;
+        justify-content: center;
+    }
+    .right{
+        flex-direction: column;
+    }
+    @media screen and (max-width: 890px) {
+        .form{
+            width: 750px;
+        }
+    }
+    @media screen and (max-width: 795px) {
+        .form{
+            width: 700px;
+        }
+    }
+    @media screen and (max-width: 745px) {
+        .form{
+            width: 600px;
+        }
+    }
+    @media screen and (max-width: 655px) {
+        .form{
+            width: 450px;
+        }
+        .form-inputs{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-width: 95%;
+            padding: 0px;
+        }
+        .right-inputs{
+            margin-top: 0px;
+        }
+        .left-inputs{
+            margin-bottom: 0px;
+        }
+        .inputs{
+            display:flex;
+            flex-direction: column;
+            width: 95%;
+        }
+    }
+    @media screen and (max-width: 455px) {
+        .form{
+            width: 300px;
+        }
+    }
+    @media screen and (max-width: 300px) {
+        .form{
+            width: 275px;
+        }
+    }}
