@@ -1,0 +1,216 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.maincontainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.body-content{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    height: 80vh;
+    /* background-color: aqua; */
+    margin-top: 30px;
+}
+
+.image{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.body-left{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.body-right{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.login-form{
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    width: 320px ;
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 100px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.login-title-img{
+    background-color: #058071;
+    height: 10%;
+    /* width: 10%; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-title{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 450;
+    font-size: 1.1em;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.login-description{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.5em;
+    color: rgb(160, 159, 159);
+    /* margin-bottom: 20px; */
+    /* margin-top: 10px; */
+    padding: 2px 26px;
+    text-align:center;
+}
+.form-group{
+    /* background-color: #058071; */
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+.form-group input{
+    padding-left: 7px;
+    width: 285px;
+    height: 5vh;
+    border: none;
+    box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.1);
+    margin-top: 8px;
+}
+.password-visibility-officer{
+    position: absolute;
+    /* color: rgba(128, 128, 128, 0.68); */
+    right: 14px;
+    top:28px
+}
+.form-field-error{
+    width: 285px;
+    color: #e84118;
+}
+.formlable{
+    width: 95%;
+    color: rgb(165, 168, 172);
+    font-size: 0.8em;
+}
+.loginbtn{
+    width: 293px;
+    display: flex;
+    justify-content: flex-end;
+}
+.login-btn{
+    border: none;
+    background-color: #058071;
+    padding-bottom: 1.1px;
+    width: 70px;
+    border-radius: 2px;
+    height: 20px;
+    color: aliceblue;
+    font-weight: 500;
+    font-size: 0.7em;
+    cursor: pointer;
+}
+
+.loginfooter-discription{
+    width: 83%;
+    text-align: center;
+    font-size: 0.5em;
+    color: rgb(146, 147, 148);
+}
+.footer{
+    text-align: center;
+    font-size:0.5em;
+    color: rgb(146, 147, 148);
+    margin-top: 10px;
+}
+
+
+.form-field-success{
+    width: 289px;
+    color: var(--sucess);
+    font-size: .8em;
+    padding-top: 2px;
+}
+
+@media only screen and (max-width: 963px ){
+    .login-title{
+        font-size: 1.05em;
+    }
+}
+@media only screen and (max-width: 895px ){
+
+    .body-left{
+        display: none;
+    }
+    .login-description{
+        padding: 0 60px;
+    }
+    .body-right{
+        width: 100%;
+        background-color: #019686;
+        border-radius: 40px;
+    }
+    .login-form{
+        width: 300px;
+        margin: 0;
+        background-color: #16a19370;
+        border-radius: 20px;
+    }
+
+    .login-title{
+        font-size:1.05em;
+        color: aliceblue;
+        font-weight: 350;
+    }
+    .login-description{
+        color:aliceblue;
+        padding: 0 10px;
+    }
+    .form-group{
+        color:aliceblue;
+    }
+    .formlable{
+        color:aliceblue;
+    }
+
+    .loginfooter-discription{
+        color:aliceblue;
+    }
+}
+
+@media only screen and (max-width: 388px ){
+    .body-right{
+        background-color: unset;
+    }
+    .login-form{
+        background-color: #019686;
+    }
+}
+@media only screen and (max-width: 336px ){
+    .login-form{
+        width: 275px;
+    }
+    .footer{
+        padding: 0 10px;
+    }
+    .br{
+        display: none;
+    }
+}
+

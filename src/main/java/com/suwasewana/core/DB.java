@@ -1,11 +1,10 @@
 package com.suwasewana.core;
 
 import java.sql.*;
-
 public class DB {
-    private final String jdbcURL = "jdbc:mysql://localhost:3306/phpmvc";
+    private final String jdbcURL = "jdbc:mysql://localhost:3306/javadb";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "cybertcc123";
+    private String jdbcPassword = "1234@Akila";
 
     public Connection getConnection() {
         Connection connection = null;
@@ -19,6 +18,4 @@ public class DB {
         }
         return connection;
     }
-
-
 }

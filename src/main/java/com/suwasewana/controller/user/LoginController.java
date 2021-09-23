@@ -28,7 +28,8 @@ public class LoginController extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        checkUserLogin(req, res);
+        res.getWriter().println("Login controller work");
+//        checkUserLogin(req, res);
     }
 
     private void checkUserLogin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

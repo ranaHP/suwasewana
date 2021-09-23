@@ -24,8 +24,12 @@ public class Router extends HttpServlet {
                     response.getWriter().println("Home Page");
                     break;
                 case "/login":
-                    RequestDispatcher rd = request.getRequestDispatcher("view/Login.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("view/Login.jsp ");
                     rd.forward(request,response);
+                    break;
+                case "/login_officer":
+                    RequestDispatcher rdOL = request.getRequestDispatcher("view/OfficerLogin/OfficerLogin.jsp ");
+                    rdOL.forward(request,response);
                     break;
                 case "/dashboard":
                 	response.getWriter().println("Dashboard Page akila + lula");
