@@ -109,22 +109,30 @@
                 validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
                 validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
             ) {
-                let url = "/suwasewana_war/officer-login-controller?user-mobile=" + document.getElementById("user-mobile").value.substring(1) + "&user-password=" + document.getElementById("user-password").value;
+                let url = "/suwasewana_war/officer-login-controller?user-mobile=" + document.getElementById("user-mobile").value+ "&user-password=" + document.getElementById("user-password").value;
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function () {
-                    // let result = JSON.parse(this.response);
-                    // if (result.status === "success") {
+                    let result = JSON.parse(this.response);
+                    // result=this.response;
+                    console.log(url)
+                    console.log(result);
+                    if (result.status === "success") {
                     //     location.replace("https://www.w3schools.com");
-                    // } else if (result.status === "error") {
+                        console.log("---------------success");
+                    } else if (result.status === "error") {
+                        console.log("---------------unsucess");
                     //     document.getElementById('user-form-error').style.display = "block";
                     //     document.getElementById("user-password").value = "";
                     //     document.getElementById("user-mobile").value = "";
                     //     setTimeout(() => {
                     //         document.getElementById('user-form-error').style.display = "none";
                     //     }, 8000)
-                    // }
-                    console.log(this.response)
-
+                    }
+                    else{
+                        console.log("somthing going wrong");
+                    }
+                //     console.log(this.response)
+                //
                 }
                 xhttp.open("GET", url, true);
                 xhttp.send();

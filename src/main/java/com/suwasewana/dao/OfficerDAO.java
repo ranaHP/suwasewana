@@ -28,12 +28,13 @@ public class OfficerDAO {
             ResultSet rs = preparedStatement.executeQuery();
 
 
-//            System.out.println("rs "+rs);
+            System.out.println("rs -DAO "+rs+"/");
             while (rs.next()) {
                 String mobile = rs.getString("mobile");
                 String password = rs.getString("password");
                 String mac=rs.getString("mac");
-
+                System.out.println("mobile "+mobile+"/");
+                System.out.println("pass "+password+"/");
                 if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac==null ) {
                     System.out.println("null mach");
                     String updateMAC=officerLogin.getMAC();
@@ -61,7 +62,7 @@ public class OfficerDAO {
             printSQLException(throwables);
         }
 
-        return new OfficerLoginModel("000000000","1111111","aaaaa");
+        return new OfficerLoginModel("","","");
 //        why is that
     }
 

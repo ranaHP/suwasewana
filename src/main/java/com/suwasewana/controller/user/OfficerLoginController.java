@@ -22,10 +22,13 @@ import java.net.UnknownHostException;
 
 @WebServlet("/officer-login-controller")
 public class OfficerLoginController extends HttpServlet {
+
     OfficerDAO officerDAO;
+    private Gson gson = new Gson();
     public void init() {
         officerDAO = new OfficerDAO();
     }
+
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         doGet(req, res);
     }
@@ -39,8 +42,8 @@ public class OfficerLoginController extends HttpServlet {
         String mobile = req.getParameter("user-mobile");
         String password = req.getParameter("user-password");
         String mac="";
-//        res.getWriter().println("Mobile "+mobile);
-//        res.getWriter().println("Pass "+password);
+//        System.out.println("Mobile "+mobile);
+//        System.out.println("Pass "+password);
         mac=GetMaC();
         OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac);
 
@@ -48,10 +51,27 @@ public class OfficerLoginController extends HttpServlet {
 //        res.getWriter().println("Pass "+officerLoginModel.getPassword());
 //        res.getWriter().println("mac "+officerLoginModel.getMAC());
         OfficerLoginModel officerLoginresponse = officerDAO.CheckLoginValidation(officerLoginModel);
-        res.getWriter().println("ControllerMobile "+officerLoginresponse.getMobile());
-        res.getWriter().println("ControllerMobilePass "+officerLoginresponse.getPassword());
-        res.getWriter().println("ControllerMobilemac "+officerLoginresponse.getMAC());
+//        System.out.println("ControllerMobile "+officerLoginresponse.getMobile());
+//        System.out.println("ControllerMobilePass "+officerLoginresponse.getPassword());
+//        System.out.println("ControllerMobilemac "+officerLoginresponse.getMAC());
 
+        PrintWriter out = res.getWriter();
+        res.setContentType("application/json");
+        res.setCharacterEncoding("UTF-8");
+
+        String responseJsonString = "";
+        if (officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("") ) {
+            ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
+            responseJsonString = this.gson.toJson(suwasewanaRespose);
+//            res.getWriter().println("Response unsuecc");
+        } else {
+            ResponseType suwasewanaRespose = new ResponseType("success", "success");
+            responseJsonString = this.gson.toJson(suwasewanaRespose);
+//            res.getWriter().println("Response suecc");
+        }
+
+        out.print(responseJsonString);
+        out.flush();
     }
 
     private String GetMaC() throws IOException {
