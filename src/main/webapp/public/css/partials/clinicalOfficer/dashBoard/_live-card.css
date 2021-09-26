@@ -25,6 +25,9 @@
     flex-direction: column;
     font-size: .9em;
 }
+.live-card .clinic-details .item{
+    padding: 10px;
+}
 .clinic-details #item{
     padding: 2px;
 }
