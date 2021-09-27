@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/Officer_login/Officer_Login.css "/> "/>
-    <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css "/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/commonStyles.css "/> "/>
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
     <title>Officer_Login</title>
 </head>

@@ -1,0 +1,243 @@
+*{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    /*margin-left: 50px;*/
+}
+.appointments-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.search-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 70px;
+    align-content: center;
+}
+.search-section input{
+    margin-left: 85px;
+    padding-left: 5px;
+    border: 0;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);
+    height: 25px;
+    width: 20%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.appointment{
+    width: 75%;
+    height: 110px;
+    display: flex;
+    justify-content: space-around;
+    border: 2px dashed rgba(185, 185, 187, 0.9);
+    background-color: white;
+    padding: 10px;
+    margin-top: 25px;
+}
+.sender-information{
+    font-family: corbel;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.reject-button button{
+    background-color:#D9534F;
+    color: white;
+    border: none;
+    padding: 5px;
+    float: right;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.sender-details{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.first-time-slots{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.first-time-slots div{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .5em;
+    width: 100px;
+    padding: 3px;
+}
+.first-time-slots label{
+    background-color: #7382EF;
+    width: 80px;
+    margin-left: 2px;
+    text-align: center;
+    padding: 3px;
+    border-radius: 2px;
+}
+.first-time-slots input{
+    cursor: pointer;
+    width: 13.5px;
+    height: 13.5px;
+}
+.second-time-slots{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.second-time-slots div{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .5em;
+    width: 100px;
+    padding: 3px;
+}
+.second-time-slots label{
+    padding: 3.8px;
+    border-radius: 2px;
+    margin-left: 2px;
+    background-color: #7382EF;
+    width: 80px;
+    text-align: center;
+}
+.second-time-slots input{
+    cursor: pointer;
+    width: 13.5px;
+    height: 13.5px;
+}
+
+.first-date{
+    padding: 5px 0;
+}
+.first-date input, .second-date input{
+    padding-left: 5px;
+    height: 15px;
+    font-size: .6em;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.second-date{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+.second-date button{
+    background-color:#0275D8;
+    color: white;
+    border: none;
+    padding: 2px;
+    width: 100%;
+    border-radius: 3px;
+    cursor: pointer;
+}
+input{
+    font-family: corbel;
+}
+
+.date-details{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+}
+.sender{
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+.first{
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-around;
+    width: 50%;
+}
+.second{
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-around;
+    width: 50%;
+}
+
+
+/* responsive */
+@media screen and (max-width: 1030px) {
+    .appointment{
+        flex-direction: column;
+        align-items: center;
+        height: 200px;
+    }
+    .sender{
+        width: 100%;
+        justify-content: space-around;
+    }
+    .sender-information{
+        flex-direction: row;
+
+    }
+    .sender-details{
+        flex-direction: row;
+        justify-content: space-around;
+        width: 50%;
+    }
+    .date-details{
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .sender{
+        flex-direction: column;
+    }
+    .sender-details{
+        margin-left: 35px;
+    }
+}
+@media screen and (max-width: 620px) {
+    .date-details{
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .appointment{
+        height: 300px;
+    }
+    input{
+        height: 15px;
+    }
+    .first,.second{
+        justify-content: space-around;
+        width: 100%;
+        margin-top: 6px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .sender-details{
+        margin-top: 3px;
+    }
+    .sender-details div{
+        font-size:.45em;
+    }
+    .information .f-2{
+        font-size: .65em;
+    }
+    .information .f-1{
+        font-size: 1em;
+    }
+    .appointment{
+        height: 320px;
+    }
+}
+
