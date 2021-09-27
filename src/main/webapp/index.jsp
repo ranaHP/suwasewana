@@ -15,5 +15,7 @@
 <%--    <c:if test="${request.getServletPath()}">--%>
 <%--        <c:import url="view/Login.jsp"/>--%>
 <%--    </c:if>--%>
+    <a href="view/Login.jsp" > <h1> login </h1></a>
+    <a href="view/admin/clinicalOfficer/dashboard_crateClinics.jsp" > <h1> create clinic</h1></a>
     </body>
 </html>
