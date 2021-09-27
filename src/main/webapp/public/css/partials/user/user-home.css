@@ -1,0 +1,18 @@
+@import "partials/user-header.css";
+@import "partials/user-hero-banner.css";
+@import "partials/user-section-title.css";
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.container{
+    background-image: url("../../../images/backgroundImages/userHomeBackgroundImage.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 100vh;
+}
+section{
+
+}
