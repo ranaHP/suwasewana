@@ -5,7 +5,7 @@
     <title>Create clinics</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-createClinics.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_db-header.css"/> "/>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_sideNavbar.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_live-card.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
 
