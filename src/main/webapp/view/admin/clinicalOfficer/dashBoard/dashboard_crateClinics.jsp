@@ -4,11 +4,10 @@
 <head>
     <title>Create clinics</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-createClinics.css"/> "/>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_db-header.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/common/_db-header.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/common/side-navbar.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_live-card.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
-
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/common/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -21,7 +20,7 @@
 <div id="mainContent" class="container ">
     <div class="main-content">
         <!-- suwasewana title -->
-        <div class="title">
+        <div class="header">
             <div class="upper-title">SUWASEWANA </div>
             <div class="dashboard-name">Clinic/Dashboard/ClinicList</div>
         </div>

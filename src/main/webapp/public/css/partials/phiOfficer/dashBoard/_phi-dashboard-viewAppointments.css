@@ -1,18 +1,29 @@
-*{
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
+
 .container{
+    padding: 0;
     display: flex;
     flex-direction: column;
-    /*margin-left: 50px;*/
+    max-width: calc(100vw - 78px);
+    margin-left: 78px;
+    min-height: 100vh;
+    transition: 0.2s ease;
+    background-color: #FCFCFC;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
 }
 .appointments-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 .search-section{
     display: flex;
@@ -22,7 +33,7 @@
     align-content: center;
 }
 .search-section input{
-    margin-left: 85px;
+    margin-left:8%;
     padding-left: 5px;
     border: 0;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);
@@ -30,10 +41,9 @@
     width: 20%;
     font-family: Arial, Helvetica, sans-serif;
 }
-
 .appointment{
-    width: 75%;
-    height: 110px;
+    width: 85%;
+    height: 150px;
     display: flex;
     justify-content: space-around;
     border: 2px dashed rgba(185, 185, 187, 0.9);
@@ -74,7 +84,7 @@
     align-items: center;
     font-size: .5em;
     width: 100px;
-    padding: 3px;
+    padding: 1px;
 }
 .first-time-slots label{
     background-color: #7382EF;
@@ -116,7 +126,6 @@
     width: 13.5px;
     height: 13.5px;
 }
-
 .first-date{
     padding: 5px 0;
 }
@@ -158,24 +167,20 @@ input{
 }
 .first{
     display: flex;
-    /* flex-direction: row; */
     justify-content: space-around;
     width: 50%;
 }
 .second{
     display: flex;
-    /* flex-direction: row; */
     justify-content: space-around;
     width: 50%;
 }
-
-
-/* responsive */
+/*!* responsive *!*/
 @media screen and (max-width: 1030px) {
     .appointment{
         flex-direction: column;
         align-items: center;
-        height: 200px;
+        height: 320px;
     }
     .sender{
         width: 100%;
@@ -183,7 +188,7 @@ input{
     }
     .sender-information{
         flex-direction: row;
-
+        text-align: center;
     }
     .sender-details{
         flex-direction: row;
@@ -195,49 +200,66 @@ input{
         width: 100%;
     }
 }
-
-@media screen and (max-width: 690px) {
+@media screen and (max-width: 770px) {
+    .appointment{
+        height: 400px;
+        width: 80%;
+    }
     .sender{
         flex-direction: column;
     }
-    .sender-details{
-        margin-left: 35px;
-    }
-}
-@media screen and (max-width: 620px) {
     .date-details{
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
     }
+    .sender-details{
+        padding: 15px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 620px) {
     .appointment{
-        height: 300px;
+        height: 510px;
+        padding: 5px 0;
     }
     input{
         height: 15px;
     }
     .first,.second{
+        flex-direction: column;
         justify-content: space-around;
         width: 100%;
-        margin-top: 6px;
+        margin-top: 10px;
+    }
+    .first-time-slots,.second-time-slots,.first-date,.second-date{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .first-time-slots div{
+        margin-top: 3.5px;
+    }
+    .send-button button{
+        margin-top: 3px;
+        width: 100px;
     }
 }
-
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 585px) {
+    .reject-button{
+        padding: 15px;
+    }
+    .sender-information{
+        flex-direction: column;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+        transition: 0.2s ease;
+    }
     .sender-details{
-        margin-top: 3px;
-    }
-    .sender-details div{
-        font-size:.45em;
-    }
-    .information .f-2{
-        font-size: .65em;
-    }
-    .information .f-1{
-        font-size: 1em;
-    }
-    .appointment{
-        height: 320px;
+        flex-direction: column;
     }
 }
 

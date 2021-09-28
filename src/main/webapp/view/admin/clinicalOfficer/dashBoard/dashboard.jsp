@@ -18,7 +18,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <%--    for side navbar style--%>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/common/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
