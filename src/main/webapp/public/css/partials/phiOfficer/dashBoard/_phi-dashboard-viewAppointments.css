@@ -61,7 +61,7 @@
     background-color:#D9534F;
     color: white;
     border: none;
-    padding: 5px;
+    padding: 4px 4.5px;
     float: right;
     border-radius: 3px;
     cursor: pointer;
@@ -160,6 +160,9 @@ input{
     justify-content: space-between;
     width: 60%;
 }
+.icon{
+    margin-right: 2.5px;
+}
 .sender{
     display: flex;
     justify-content: space-around;
@@ -218,6 +221,9 @@ input{
         justify-content: center;
         align-items: center;
     }
+    .sender-details div{
+        margin-left:4px ;
+    }
 }
 @media screen and (max-width: 620px) {
     .appointment{
@@ -249,6 +255,7 @@ input{
 @media screen and (max-width: 585px) {
     .reject-button{
         padding: 15px;
+        align-items: center;
     }
     .sender-information{
         flex-direction: column;
@@ -260,6 +267,7 @@ input{
     }
     .sender-details{
         flex-direction: column;
+        justify-content: space-around;
     }
 }
 

@@ -39,17 +39,17 @@
                     <div class="sender-information">
                         <div class="information">
                             <p class="f-2">Akila Anjana Dissanayaka</p>
-                            <p class="f-3">Type - Scholarship </p>
-                            <p class="f-3">Talk About People's Bank staff vaccination </p>
+                            <p class="f-4">Type - Scholarship </p>
+                            <p class="f-4">Talk About People's Bank staff vaccination </p>
                         </div>
                         <div class="reject-button">
                             <button class="f-4">Reject Appointment </button>
                         </div>
                     </div>
                     <div class="sender-details">
-                        <div class="sender-location f-4"><i data-feather="map-pin"></i>Galgamuwa</div>
-                        <div class="sender-mobile f-4"><i data-feather="phone"></i>0713805000</div>
-                        <div class="send-date f-4"><i data-feather="calendar"></i>9/18/2021</div>
+                        <div class="sender-location f-4"><i class="icon" data-feather="map-pin"></i>Galgamuwa</div>
+                        <div class="sender-mobile f-4"><i class="icon" data-feather="phone"></i>0713805000</div>
+                        <div class="send-date f-4"><i class="icon" data-feather="calendar"></i>9/18/2021</div>
                     </div>
                 </div>
                 <!-- the date selection section by phi -->
@@ -115,17 +115,17 @@
                     <div class="sender-information">
                         <div class="information">
                             <p class="f-2">Akila Anjana Dissanayaka</p>
-                            <p class="f-3">Type - Scholarship </p>
-                            <p class="f-3">Talk About People's Bank staff vaccination </p>
+                            <p class="f-4">Type - Scholarship </p>
+                            <p class="f-4">Talk About People's Bank staff vaccination </p>
                         </div>
                         <div class="reject-button">
                             <button class="f-4">Reject Appointment </button>
                         </div>
                     </div>
                     <div class="sender-details">
-                        <div class="sender-location f-4"><i data-feather="map-pin"></i>Galgamuwa</div>
-                        <div class="sender-mobile f-4"><i data-feather="phone"></i>0713805000</div>
-                        <div class="send-date f-4"><i data-feather="calendar"></i>9/18/2021</div>
+                        <div class="sender-location f-4"><i class="icon" data-feather="map-pin"></i>Galgamuwa</div>
+                        <div class="sender-mobile f-4"><i class="icon" data-feather="phone"></i>0713805000</div>
+                        <div class="send-date f-4"><i class="icon" data-feather="calendar"></i>9/18/2021</div>
                     </div>
                 </div>
                 <!-- the date selection section by phi -->

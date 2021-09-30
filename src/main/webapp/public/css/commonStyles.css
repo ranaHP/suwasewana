@@ -53,27 +53,50 @@
 /*phi officer*/
 
 .f-1{
-    font-size: 1.2em;
-    color: rgba(19, 18, 18, 0.527);
+    font-size: 1em;
+    color: rgba(19, 18, 18, 0.808);
 }
 .f-2{
-    font-size: .9em;
+    font-size: .8em;
+    color: rgba(0, 0, 0, 0.589);
+}
+.f1-green{
+    font-size: 1.2em;
+    color:#4BC0C0;
 }
 .f-3{
+    font-size: .7em;
+    color: #1e1f20cb;
+}
+.f3-gray{
+    font-size: .7em;
+    color:rgba(128, 128, 128, 0.74);
+}
+.f3-bold{
     font-size: .8em;
     color: #1e1f20cb;
+    font-weight: bold;
 }
 .f-4{
     font-size: .7em;
     color: #1e1f20be;
+}
+.f4-gray{
+    font-size: .7em;
+    color: rgba(128, 128, 128, 0.678);
 }
 .f-white{
     color: white;
 }
 .f-black{
     font-size: 1.2em;
-    color: black;
+    color: rgba(0, 0, 0, 0.589);
 }
 .f-i{
     font-size: .5em;
+}
+.icon1{
+    width: 25px;
+    height: 25px;
+    color: rgba(0, 0, 0, 0.678);
 }
