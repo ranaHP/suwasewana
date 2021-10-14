@@ -66,8 +66,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
+}
+.hero-banner:hover {
+    margin-left: 500px;
+    background-color: #0D47A1;
+
+}
 .hero-banner .left-col{
     width: 40%;
 }
