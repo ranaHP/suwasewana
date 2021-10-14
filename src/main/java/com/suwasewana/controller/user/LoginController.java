@@ -2,10 +2,9 @@ package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
 import com.suwasewana.core.ResponseType;
-import com.suwasewana.dao.UserLoginDAO;
+import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.UserLoginModel;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,11 +15,11 @@ import java.io.PrintWriter;
 
 @WebServlet("/user-login-controller")
 public class LoginController extends HttpServlet {
-    UserLoginDAO userLoginDAO;
+    UserDAO userDAO;
     private Gson gson = new Gson();
 
     public void init() {
-        userLoginDAO = new UserLoginDAO();
+        userDAO = new UserDAO();
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -37,7 +36,7 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("user-password");
 
         UserLoginModel userLoginDetails = new UserLoginModel(mobile, password);
-        UserLoginModel userLoginDetailsResponse = userLoginDAO.CheckLoginValidation(userLoginDetails);
+        UserLoginModel userLoginDetailsResponse = userDAO.CheckLoginValidation(userLoginDetails);
 
         PrintWriter out = res.getWriter();
         res.setContentType("application/json");
