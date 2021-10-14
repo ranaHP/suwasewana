@@ -71,7 +71,7 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="../../../index.jsp"> Diseases Reports </a></li>
+                <li><a href="../../../aindex.jsp"> Diseases Reports </a></li>
                 <li><a href="#"> Clinics Reports</a></li>
                 <li><a href="#"> Prediction Reports</a></li>
             </ul>
