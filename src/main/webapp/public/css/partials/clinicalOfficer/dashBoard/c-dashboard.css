@@ -8,13 +8,27 @@ h4{
     font-weight: 450;
 }
 body{
-    margin-left: 4vw;
-    margin-top: 8vh;
+    /*margin-left: 4vw;*/
+    /*margin-top: 8vh;*/
 }
 .c-db-container{
     display: flex;
-    height: 91.95vh;
+    min-height: 100vh;
+    max-width: calc(100vw - 78px);
+    margin-left: 78px;
+    transition: 0.2s ease;
+    padding: 50px;
 }
+
+
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+
+
 .c-container-left{
     width: 70%;
     /* background-color: aqua; */
@@ -363,6 +377,13 @@ body{
     .growth-calander{
         height: 90%;
     }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
+    }
 }
 @media only screen and (max-width: 576px ){
     #chart2{
@@ -428,6 +449,7 @@ body{
     .amount{
         font-size: 1em;
     }
+
 }
 @media only screen and (max-width: 374px ){
     .pendingclinc{
@@ -439,3 +461,4 @@ body{
     }
 
 }
+
