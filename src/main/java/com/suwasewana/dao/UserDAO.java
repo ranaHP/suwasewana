@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
-    private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `users` WHERE `mobile` = ? and `password` = ?";
+    private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
     private static  final  String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
     Connection connection;
 
