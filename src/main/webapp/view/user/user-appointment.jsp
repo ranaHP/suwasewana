@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: hansana
-  Date: 10/15/2021
-  Time: 3:39 PM
+  Date: 10/14/2021
+  Time: 7:12 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,12 +13,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
-
+    <title> User Home Suwasewana </title>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/>"/>
 
     <!-- for style sheet link  -->
-    <link href="<c:url value="/public/css/user/_dashboard_complain.css"/>" rel="stylesheet"/>
-
+    <link href="<c:url value="/public/css/user/_dashboard-appointment.css"/>" rel="stylesheet"/>
     <!-- for commen style  sheet link  -->
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
 
@@ -31,11 +30,21 @@
     <!-- moh list  -->
     <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
 
+    <!-- map  -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+    <script
+            src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
+          type="text/css">
+
     <%--    for popup style--%>
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
     <%--    for popup script--%>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
-    <title>Complain</title>
+
+    <title>Registration - Suwasewana</title>
 </head>
 <body>
 <!-- main container -->
@@ -48,7 +57,6 @@
             <div class="main-header">
                 <div class="logo">
                     <img src="<c:url value="/public/images/logo.png "/>" alt="logo" width="100%"/>
-
                 </div>
                 <div class="navbar-container">
                     <ul class="navbar">
@@ -64,6 +72,7 @@
                     <div class="language">
                         <span> සිංහල </span>
                         <img src="<c:url value="/public/images/sri-lanka.png "/>" alt="sri lanakan flag" width="100%">
+
                     </div>
                     <div class="register-btn">
                         Register
@@ -174,58 +183,58 @@
             </div>
             <div class="right-dashboard">
                 <div class="dashboard-page-title">
-                    Complaints
+                    Appointments
                     <div class="dashboard-sub-title">
-                        SUWASEWANA/COMPLAINT
+                        SUWASEWANA/appointmentS
                     </div>
                 </div>
 
                 <div class="dashboard-container">
                     <div class="dashboard-page-sub-title">
-                        Complaints History
+                        Appointments Status
                     </div>
                     <form class="previous-form">
                         <div class="form-group">
-                            <label for="cTitleSearch">
-                                Complaint Title
+                            <label for="aTitleSearch">
+                                Appointment Title
                             </label>
-                            <input type="text" name="name" id="cTitleSearch" autocomplete="off" />
+                            <input type="text" name="aTitleSearch" id="aTitleSearch" autocomplete="off" />
 
                         </div>
 
                         <div class="form-group">
-                            <label for="allComplaintsTypeSearch">
-                                Complaints Type
+                            <label for="appointmentTypeSearch">
+                                Appointment Type
                             </label>
-                            <input id="ComplaintsTypeSearch" type="text" list="allComplaintsTypeSearch"
-                                   name="ComplaintsTypeSearch" autocomplete="off">
-                            <datalist id="allComplaintsTypeSearch">
+                            <input id="appointmentTypeSearch" type="text" list="allappointmentTypeSearch"
+                                   name="appointmentTypeSearch" autocomplete="off">
+                            <datalist id="allappointmentTypeSearch">
                                 <option value="Mahapola" option=" Mahapola"></option>
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label for="phiSearch">
+                                Your Area's PHI Name
+                            </label>
+                            <input id="phiSearch" type="text" list="allphiSearch" name="phiSearch" autocomplete="off">
+                            <datalist id="allphiSearch">
+                                <option value="Hansana" option="Hansana"></option>
                             </datalist>
                         </div>
 
                         <div class="form-group d-flex-a-i-end">
-                            <label>
+                            <label >
                                 &nbsp;
                             </label>
-                            <button class="submitBtn " > Search Complaint</button>
+                            <button class="submitBtn " > Search Appointment</button>
                         </div>
                     </form>
-                    <div class="row previous-complaint-list">
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
+                    <div class="row previous-appointment-list">
+                        <div class="appointment-card-container">
+                            <div class="appointment-card">
                                 <div class="title">
-                                    Complaints about health services
+                                    Mahapola Scholarship
                                     <p> 2021/01/10</p>
-                                </div>
-
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
                                 </div>
                                 <div class="desc">
                                     he process of writing a job description requires
@@ -237,26 +246,31 @@
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
+                                            <img src="images/icons/map-pin.svg" width="22px" />
+                                            Location : pending ...
                                         </li>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
+                                            <img src="images/icons/list.svg" width="22px" />
+                                            Time Slot 1 : pending ...
                                         </li>
+                                        <li>
+                                            <img src="images/icons/list.svg" width="22px" />
+                                            Time Slot 2 : pending ...
+                                        </li>
+                                        <li>
+                                            <img src="images/icons/list.svg" width="22px" />
+                                            Special Notice: No
+                                        </li>
+
                                     </ul>
-                                </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
                                 </div>
                                 <div class="footer">
                                     <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
+                                        <img src="images/icons/user.svg" width="25px" />
                                         Mr Akila Disanayake
+                                    </div>
+                                    <div class="pending-btn">
+                                        status : <span>Pending...</span>
                                     </div>
                                 </div>
                                 <div class="footer d-flex-j-c-flex-end">
@@ -267,20 +281,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
+                        <div class="appointment-card-container">
+                            <div class="appointment-card">
                                 <div class="title">
-                                    Complaints about health services
+                                    Grade 5 Scholarship
                                     <p> 2021/01/10</p>
-                                </div>
-
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
                                 </div>
                                 <div class="desc">
                                     he process of writing a job description requires
@@ -292,50 +297,58 @@
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
+                                            <img src="images/icons/map-pin.svg" width="22px" />
+                                            Location : Akuressa MOH ...
                                         </li>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
+                                            <img src="images/icons/list.svg" width="22px" />
+                                            Time Slot 1 : 2021/03/01 10:30pm - 11:30px
                                         </li>
+                                        <li>
+                                            <img src="images/icons/list.svg" width="22px" />
+                                            Time Slot 2 :2021/03/03 8:30pm - 9:30px
+                                        </li>
+                                        <li>
+                                            <img src="images/icons/list.svg" width="22px" />
+                                            Special Notice: <span class="special-notices">
+                                                    please call me before you come
+                                                </span>
+                                        </li>
+
                                     </ul>
                                 </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
-                                </div>
+
                                 <div class="footer">
+
                                     <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
+                                        <img src="images/icons/user.svg" width="25px" />
                                         Mr Akila Disanayake
                                     </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
+                                    <!-- <div class="pending-btn ">
+                                        status : <span>select time slot...</span>
+                                    </div> -->
 
+
+                                </div>
+                                <div class="footer" >
+                                    <div class="accept-btn bg-success">
+                                        Accept
+                                    </div>
+                                    <div class="accept-btn bg-primary">
+                                        Request new Time
+                                    </div>
                                     <div class="accept-btn bg-danger">
                                         Cancel
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
-                                <div class="title">
-                                    Complaints about health services
-                                    <p> 2021/01/10</p>
-                                </div>
 
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
+                        <div class="appointment-card-container">
+                            <div class="appointment-card">
+                                <div class="title">
+                                    Grade 5 Scholarship
+                                    <p> 2021/01/10</p>
                                 </div>
                                 <div class="desc">
                                     he process of writing a job description requires
@@ -347,34 +360,49 @@
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
+                                            <img src="images/icons/map-pin.svg" width="22px" />
+                                            Location : Akuressa MOH ...
                                         </li>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
+                                            <img src="images/icons/list.svg" width="22px" />
+                                            Time Slot : 2021/03/01 10:30pm - 11:30px
                                         </li>
+
+                                        <li>
+                                            <img src="images/icons/list.svg" width="22px" />
+                                            Special Notice: <span class="special-notices">
+                                                    please call me before you come
+                                                </span>
+                                        </li>
+
                                     </ul>
                                 </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
-                                </div>
+
                                 <div class="footer">
+
                                     <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
+                                        <img src="images/icons/user.svg" width="25px" />
                                         Mr Akila Disanayake
                                     </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
 
+
+                                </div>
+                                <div class="footer " >
+
+                                    <div class="accept-btn bg-primary">
+                                        Request new Time
+                                    </div>
                                     <div class="accept-btn bg-danger">
                                         Cancel
                                     </div>
                                 </div>
+                                <!-- <div class="row">
+                                    <div class="form-group d-flex-j-c-cnter">
+                                        <div class="accept-btn">
+                                            Accept Time Solt
+                                        </div>
+                                    </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -382,42 +410,31 @@
 
                 <div class="dashboard-container">
                     <div class="dashboard-page-sub-title">
-                        Make a Complaints
+                        Make a appointments
                     </div>
-                    <div class="make-complaint-form">
+                    <div class="make-appointment-form">
                         <form>
                             <div class="row">
                                 <div class="form-group">
-                                    <label for="cTitle">
-                                        complaint Title
+                                    <label for="aTitle">
+                                        Appointment Title
                                     </label>
-                                    <input type="text" name="name" id="cTitle" autocomplete="off" />
+                                    <input type="text" name="name" id="aTitle" autocomplete="off" />
 
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="form-group">
-                                    <label for="complaintType">
-                                        complaint Type
+                                    <label for="appointmentType">
+                                        Appointment Type
                                     </label>
-                                    <input id="complaintType" type="text" list="allcomplaintType"
-                                           name="complaintType" autocomplete="off">
-                                    <datalist id="allcomplaintType">
+                                    <input id="appointmentType" type="text" list="allappointmentType"
+                                           name="appointmentType" autocomplete="off">
+                                    <datalist id="allappointmentType">
                                         <option value="Mahapola" option=" Mahapola"></option>
                                     </datalist>
                                 </div>
-                                <div class="form-group">
-                                    <label for="uDetailsType">
-                                        User Details Type
-                                    </label>
-                                    <input id="uDetailsType" type="text" list="alluDetailsType" name="alluDetailsType" autocomplete="off">
-                                    <datalist id="alluDetailsType">
-                                        <option value="With Details" option="With Details"></option>
-                                        <option value="Anonymous" option="Anonymous"></option>
-                                    </datalist>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="form-group">
                                     <label for="phi">
                                         Your Area's PHI Name
@@ -427,52 +444,20 @@
                                         <option value="Hansana" option="Hansana"></option>
                                     </datalist>
                                 </div>
-                                <div class="form-group">
-
-                                </div>
-
                             </div>
                             <div class="row">
                                 <div class="form-group">
                                     <label for="reason">
-                                        Description
+                                        Reason of Appointment
                                     </label>
-                                    <textarea rows="4" cols="50" type="text" placeholder="deascription"
-                                              name="reason" id="reason"></textarea>
+                                    <textarea rows="4" cols="50" type="text" placeholder="reason" name="reason"
+                                              id="reason"></textarea>
                                 </div>
 
                             </div>
-                            <div class="row ">
-                                <div class="image-upload-card-list-container">
-                                    <div class="image-upload-card-container">
-                                        <div class="image-upload-card">
-                                            <img id="proof1" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof1input"
-                                                   onchange="loadFile(event , 'proof1')" style="display: none;">
-                                            <label for="proof1input" style="cursor: pointer;">Upload Image</label>
-                                        </div>
-                                    </div>
-                                    <div class="image-upload-card-container">
-                                        <div class="image-upload-card">
-                                            <img id="proof2" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof2input"
-                                                   onchange="loadFile(event, 'proof2')" style="display: none;">
-                                            <label for="proof2input" style="cursor: pointer;">Upload Image</label>
-                                        </div>
-                                    </div>
-                                    <div class="image-upload-card-container">
-                                        <div class="image-upload-card">
-                                            <img id="proof3" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof3input"
-                                                   onchange="loadFile(event, 'proof3')" style="display: none;">
-                                            <label for="proof3input" style="cursor: pointer;">Upload Image</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="row">
                                 <div class="form-group d-flex-a-i-end">
-                                    <button class="submitBtn "> Make Complaint</button>
+                                    <button class="submitBtn " > Make Appointment</button>
                                 </div>
 
                             </div>
@@ -485,7 +470,6 @@
     <div class="main-footer">
         <div class="first-row">
             <img src="<c:url value="/public/images/logo.png "/>" alt="logo" width="45px"/>
-
             <div class="navbar-container">
                 <ul class="navbar">
                     <li class="nav-item"> Home </li>
@@ -503,13 +487,7 @@
     </div>
 </div>
 <script defer>
-    var loadFile = function (event, imgContainerId) {
-        var image = document.getElementById(imgContainerId);
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
-<script>
-    feather.replace({ width: "20px" })
+
 </script>
 </body>
 </html>
