@@ -202,7 +202,7 @@
             validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
             validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
         ) {
-            let url = "/test_war_exploded/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value.substring(1) + "&user-password=" + document.getElementById("user-password").value;
+            let url = "/test_war_exploded/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function () {
                 console.log(this.response);
