@@ -41,7 +41,7 @@ public class UserDAO {
         return userLogin;
     }
 
-    public Integer UserRegistration(UserRegistrationModel userRegister) {
+    public String UserRegistration(UserRegistrationModel userRegister) {
         System.out.println("data come to dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_REGISTRATION)) {
@@ -59,10 +59,14 @@ public class UserDAO {
             int  rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
 
-            return  rs;
+            return  "success";
         } catch (SQLException throwables) {
             printSQLException(throwables);
-            return 0;
+//            System.out.println(throwables.getErrorCode());
+//            System.out.println(throwables.getSQLState());
+//            System.out.println(throwables.getMessage());
+//            System.out.println(throwables);
+            return throwables.getMessage();
         }
 
 

@@ -289,7 +289,7 @@
         </div>
     </section>
     <!-- this for latest announcements -->
-    <button onclick="test()"> popclick </button>
+<%--    <button onclick="test()"> popclick </button>--%>
     <div class="main-footer">
         <div class="first-row">
             <img src="images/logo.png" width="45px"/>
@@ -383,13 +383,6 @@
         document.getElementById('user-form-error').style.display = "none";
     }
 
-    test()
-
-    function test() {
-        popup.showRegistrationSuccessMessage({ status : 'hansana' , message: 'Successfuly Citizen Registered'});
-
-    }
-
     function checkLoginValidation(data) {
 
         if (
@@ -429,21 +422,20 @@
                 $.post("/test_war_exploded/user-register-controller",
                     reqData,
                     function (data, status) {
-                        console.log(data === 1);
-                        console.log(data === 0);
-                        console.log(data === "1");
-                        console.log(data === "0");
-                        console.log(data);
-                        console.log(data.trim());
-                        console.log(data.toString());
-                        console.log(data.toString() == "1");
-                        console.log(typeof data);
-
-                        if (data === "1") {
-                            location.replace("user-home.jsp");
-                            popup.showRegistrationSuccessMessage({ name : 'hansana' , age: 23});
+                        // console.log(data === 1);
+                        // console.log(data === 0);
+                        // console.log(data === "1");
+                        // console.log(data === "0");
+                        // console.log(data);
+                        // console.log(data.trim());
+                        // console.log(data.toString());
+                        // console.log(data.toString() == "1");
+                        // console.log(typeof data);
+                        console.log(data.includes("success"))
+                        if (data.includes("success") ) {
+                            popup.showRegistrationSuccessMessage({ status : 'success' , message: 'Successfully Citizen Registered'});
                         } else {
-                            popup.showRegistrationSuccessMessage({ name : 'duplicate' , age: 23});
+                            popup.showRegistrationSuccessMessage({ status : 'fail' , message: 'Citizen Registration Fails !' , data: data});
 
                         }
 
