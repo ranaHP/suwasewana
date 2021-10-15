@@ -45,10 +45,14 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("view/OfficerLogin/OfficerLogin.jsp ");
                     rd.forward(request,response);
                     break;
-                case "dashboard":
-                	response.getWriter().println("Dashboard Page akila + lula");
+                case "appointment":
+                    rd = request.getRequestDispatcher("/view/user/user-appointment.jsp");
+                    rd.forward(request,response);
                     break;
-
+                case "complain":
+                    rd = request.getRequestDispatcher("/view/user/user-complain.jsp");
+                    rd.forward(request,response);
+                    break;
                 default:
                     response.getWriter().println("404 Page not Found");
                     break;
