@@ -501,6 +501,7 @@
             © 2021 SUWASEWANA.LK | All Right Reserved
         </div>
     </div>
+
 </div>
 <script defer>
     var loadFile = function (event, imgContainerId) {

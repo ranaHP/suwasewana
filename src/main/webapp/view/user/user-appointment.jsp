@@ -246,19 +246,19 @@
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="images/icons/map-pin.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
                                             Location : pending ...
                                         </li>
                                         <li>
-                                            <img src="images/icons/list.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />
                                             Time Slot 1 : pending ...
                                         </li>
                                         <li>
-                                            <img src="images/icons/list.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />
                                             Time Slot 2 : pending ...
                                         </li>
                                         <li>
-                                            <img src="images/icons/list.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />
                                             Special Notice: No
                                         </li>
 
@@ -266,7 +266,7 @@
                                 </div>
                                 <div class="footer">
                                     <div class="current-registered-count">
-                                        <img src="images/icons/user.svg" width="25px" />
+                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
                                         Mr Akila Disanayake
                                     </div>
                                     <div class="pending-btn">
@@ -297,19 +297,19 @@
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="images/icons/map-pin.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
                                             Location : Akuressa MOH ...
                                         </li>
                                         <li>
-                                            <img src="images/icons/list.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />
                                             Time Slot 1 : 2021/03/01 10:30pm - 11:30px
                                         </li>
                                         <li>
-                                            <img src="images/icons/list.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />
                                             Time Slot 2 :2021/03/03 8:30pm - 9:30px
                                         </li>
                                         <li>
-                                            <img src="images/icons/list.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />
                                             Special Notice: <span class="special-notices">
                                                     please call me before you come
                                                 </span>
@@ -321,7 +321,7 @@
                                 <div class="footer">
 
                                     <div class="current-registered-count">
-                                        <img src="images/icons/user.svg" width="25px" />
+                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
                                         Mr Akila Disanayake
                                     </div>
                                     <!-- <div class="pending-btn ">
@@ -360,16 +360,16 @@
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="images/icons/map-pin.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
                                             Location : Akuressa MOH ...
                                         </li>
                                         <li>
-                                            <img src="images/icons/list.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />
                                             Time Slot : 2021/03/01 10:30pm - 11:30px
                                         </li>
 
                                         <li>
-                                            <img src="images/icons/list.svg" width="22px" />
+                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />
                                             Special Notice: <span class="special-notices">
                                                     please call me before you come
                                                 </span>
@@ -381,7 +381,7 @@
                                 <div class="footer">
 
                                     <div class="current-registered-count">
-                                        <img src="images/icons/user.svg" width="25px" />
+                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
                                         Mr Akila Disanayake
                                     </div>
 
