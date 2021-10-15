@@ -21,14 +21,6 @@
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
 }
-.content{
-    color: #0606068e;
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-    background-color: var(--primary-color);
-    padding-top: 50px;
-}
 .create-clinics-title{
     margin: 20px 20px 20px 35px;
     padding: 5px;

@@ -1,0 +1,235 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    transition: 0.2s ease;
+    margin-left: 78px;
+    background-color:#dfe4ea59;
+    max-width: calc(100vw - 78px);
+    /*background-color: red;*/
+    min-height: 100vh;
+}
+.containor{
+    /*width: 100%;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+body{
+    max-height: 100vh;
+    padding: 0;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 180px);
+    margin-left: 180px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.content{
+    color: #0606068e;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    background-color: var(--primary-color);
+    padding-top: 50px;
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    /*width: 100%;*/
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.cardselect{
+    padding: 30px 30px 30px 35px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+}
+.searchbar{
+    display: flex;
+}
+.results{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    color: #0606069d;
+    font-size: .9em;
+    max-width: 100px;
+}
+input{
+    width: 100%;
+    /* width: 250px; */
+    border: 0;
+    border-radius: 3px;
+    height: 26px;
+    padding-left: 3px;
+    box-shadow: 1px 1px 6px rgba(131, 128, 128, 0.315);
+    outline: none;
+}
+button{
+    border: none;
+    width: 100px;
+    height:26px;
+    margin-left: 5px;
+    background-color: #0D47A1;
+    color: white;
+    border-radius: 3px;
+    font-family: Segoe UI;
+    font-size: .9em;
+    letter-spacing: .1em;
+    cursor: pointer;
+}
+.card-containor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    /*overflow-x: hidden;*/
+    /*overflow-y: visible;*/
+    padding-top: 10px;
+    margin: 0px;
+}
+.right .live-card-title{
+    margin: 14px 32px 15px 0px;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 1em;
+}
+.live-card{
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    font-size: .8em;
+    width: 250px;
+    height: 350px;
+    color: #06060660;
+    font-family: Segoe UI;
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.16);
+    margin:15px;
+    cursor: pointer;
+    transition: 0.9s;
+    background-color: white;
+}
+/* .live-card:hover{
+    transform: scale(1.03);
+    z-index: 5;
+} */
+.live-card .clinic-title{
+    padding: 10px 0px 0px 0px;
+    text-align: center;
+    font-size: 1.4em;
+    color:rgba(33, 33, 77, 0.808);
+    /* background-color: rgba(0, 0, 139, 0.137); */
+}
+.live-card .clinic-date{
+    padding: 1px 10px 10px 10px;
+}
+.live-card .clinic-description{
+    padding: 10px;
+    font-size: .9em;
+}
+.live-card .clinic-details{
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: .9em;
+}
+.clinic-details #item{
+    padding: 2px;
+}
+span{
+    color: #0606069d;
+}
+
+.down-box{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Segoe UI;
+}
+.delete-button{
+    padding: 2px 18px;
+    margin: 2px 2px 7px 2px;
+    background-color: #EB3B5A;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    font-size: .9em;
+}
+.edit-button{
+    padding: 2px 18px;
+    margin: 2px 2px 7px 2px;
+    background-color: #F0AD4E;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-size: .9em;
+}
+.current-participant-count{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 2px;
+}
+.current-participant-count .current-participant-img{
+    padding: 1px;
+    height: 25px;
+    width: 25px;
+    color: rgba(0, 0, 0, 0.521);
+    align-content: center;
+    border-radius: 100px;
+    text-align: center;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.151);
+    overflow: hidden;
+}
+.current-participant-count .count-participants{
+    margin-top: 6px;
+    margin-left: 5px;
+    font-size: .8em;
+    color: black;
+}
+/* responsive */
+@media screen and (max-width: 412px) {
+    .cardselect{
+        flex-direction: column;
+    }
+    .results{
+        display: flex;
+        justify-content: space-around;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
+    }
+}
+@media screen and (max-width: 320px) {
+    .live-card{
+        height: 400px;
+    }
+}
