@@ -43,8 +43,7 @@ public class UserDAO {
 
     public User selectUser(int id) {
         User user = null;
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
@@ -62,8 +61,7 @@ public class UserDAO {
     public List<User> selectAllUsers() {
 
         List<User> users = new ArrayList<>();
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {

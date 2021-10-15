@@ -44,7 +44,10 @@ public class Router extends HttpServlet {
                 case "dashboard":
                 	response.getWriter().println("Dashboard Page akila + lula");
                     break;
-
+                case "create_clinic":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashboard_crateClinics.jsp");
+                    rd.forward(request,response);
+                    break;
                 default:
                     response.getWriter().println("404 Page not Found");
                     break;
