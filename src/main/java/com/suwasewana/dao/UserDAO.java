@@ -42,6 +42,8 @@ public class UserDAO {
     }
 
     public Integer UserRegistration(UserRegistrationModel userRegister) {
+        System.out.println("data come to dao");
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_REGISTRATION)) {
             preparedStatement.setString(1, userRegister.getuNic());
             preparedStatement.setString(2, userRegister.getuMobile());
@@ -55,6 +57,8 @@ public class UserDAO {
             preparedStatement.setString(10, userRegister.getUaddress());
             preparedStatement.setString(11, "");
             int  rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+
             return  rs;
         } catch (SQLException throwables) {
             printSQLException(throwables);

@@ -28,6 +28,7 @@ public class UserRegisterController extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        System.out.println("data come to servtelet");
         uerRegistration(req, res);
     }
 
@@ -48,7 +49,6 @@ public class UserRegisterController extends HttpServlet {
         );
         Integer result = userDAO.UserRegistration(userRegisterDetails);
         res.getWriter().println(result);
-        res.getWriter().println("result");
     }
 
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {

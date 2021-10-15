@@ -39,7 +39,11 @@
           href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
           type="text/css">
 
-<%--    for --%>
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
+
     <title>Registration - Suwasewana</title>
 </head>
 <body>
@@ -47,6 +51,8 @@
 <div class="container"
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
     <!-- hero banner -->
+    <div class="mypopup" id="popup" style="display: none;"></div>
+
     <section class="hero-banner-main-header-container">
         <!-- for header -->
         <div class="user-main-header-container">
@@ -163,7 +169,8 @@
                             <label for="province">
                                 Province
                             </label>
-                            <input id="province" type="text" list="allprovince" name="province" required autocomplete="off">
+                            <input id="province" type="text" list="allprovince" name="province" required
+                                   autocomplete="off">
                             <datalist id="allprovince">
 
                             </datalist>
@@ -172,7 +179,8 @@
                             <label for="district">
                                 District
                             </label>
-                            <input id="district" type="text" list="alldistrict" name="district" required autocomplete="off">
+                            <input id="district" type="text" list="alldistrict" name="district" required
+                                   autocomplete="off">
                             <datalist id="alldistrict">
 
                             </datalist>
@@ -281,7 +289,7 @@
         </div>
     </section>
     <!-- this for latest announcements -->
-
+    <button onclick="test()"> popclick </button>
     <div class="main-footer">
         <div class="first-row">
             <img src="images/logo.png" width="45px"/>
@@ -342,6 +350,7 @@
 
 
     let validation = new FormInputValidation();
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 
     function passwordVisibility(value) {
 
@@ -373,11 +382,14 @@
     function hideFormError() {
         document.getElementById('user-form-error').style.display = "none";
     }
-    test()
-    function  test(){
 
+    test()
+
+    function test() {
+        popup.showRegistrationSuccessMessage({ status : 'hansana' , message: 'Successfuly Citizen Registered'});
 
     }
+
     function checkLoginValidation(data) {
 
         if (
@@ -385,51 +397,63 @@
             validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error') &&
             validation.passwordValidation(document.getElementById('cpassword').value, 'user-cpassword-error') &&
             validation.nicValidation(document.getElementById('nic'), 'user-nic-error')) {
-            if(document.getElementById("user-password").value !== document.getElementById('cpassword').value){
+            if (document.getElementById("user-password").value !== document.getElementById('cpassword').value) {
                 document.getElementById("user-cpassword-error").innerText = " password is not match";
-            }else{
+            } else {
                 document.getElementById("user-cpassword-error").innerText = " passwords matched";
-                // console.log(
-                //     data.target.elements.user_name.value  + " -- " +
-                //     data.target.elements.nic.value  + " -- " +
-                //     document.getElementById("user-mobile").value  + " -- " +
-                //     data.target.elements.province.value  + " -- " +
-                //     data.target.elements.district.value  + " -- " +
-                //     data.target.elements.city.value  + " -- " +
-                //     data.target.elements.moh.value  + " -- " +
-                //     document.getElementById("user-password").value  + " -- " +
-                //     data.target.elements.cpassword.value  + " -- "
-                // )
+                console.log(
+                    data.target.elements.user_name.value  + " -- " +
+                    data.target.elements.nic.value  + " -- " +
+                    document.getElementById("user-mobile").value  + " -- " +
+                    data.target.elements.province.value  + " -- " +
+                    data.target.elements.district.value  + " -- " +
+                    data.target.elements.city.value  + " -- " +
+                    data.target.elements.moh.value  + " -- " +
+                    document.getElementById("user-password").value  + " -- " +
+                    data.target.elements.cpassword.value  + " -- "
+                )
                 let reqData =
                     {
-                        uname:data.target.elements.user_name.value,
-                        nic : data.target.elements.nic.value,
-                        umobiel:document.getElementById("user-mobile").value,
-                        province:data.target.elements.province.value,
+                        uname: data.target.elements.user_name.value,
+                        nic: data.target.elements.nic.value,
+                        umobiel: document.getElementById("user-mobile").value,
+                        province: data.target.elements.province.value,
                         district: data.target.elements.district.value,
-                        city:data.target.elements.city.value,
-                        moh:data.target.elements.moh.value,
+                        city: data.target.elements.city.value,
+                        moh: data.target.elements.moh.value,
                         pass: document.getElementById("user-password").value,
                         address: data.target.elements.address.value,
                         location: ""
                     };
-                // console.log(reqData)
-                    $.post("/test_war_exploded/user-register-controller",
-                        reqData,
-                        function(data,status){
-                            console.log(data);
-                            if(data === "1"){
-                                location.replace("user-home.jsp");
-                            }else{
-                                // document.getElementById("registerForm").style.display = "none";
-                            }
+                console.log(reqData)
+                $.post("/test_war_exploded/user-register-controller",
+                    reqData,
+                    function (data, status) {
+                        console.log(data === 1);
+                        console.log(data === 0);
+                        console.log(data === "1");
+                        console.log(data === "0");
+                        console.log(data);
+                        console.log(data.trim());
+                        console.log(data.toString());
+                        console.log(data.toString() == "1");
+                        console.log(typeof data);
+
+                        if (data === "1") {
+                            location.replace("user-home.jsp");
+                            popup.showRegistrationSuccessMessage({ name : 'hansana' , age: 23});
+                        } else {
+                            popup.showRegistrationSuccessMessage({ name : 'duplicate' , age: 23});
 
                         }
-                    );
+
+                    }
+                );
             }
         }
         return false;
     }
+
 </script>
 <script>
     feather.replace({width: "20px"})
