@@ -37,6 +37,10 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/user/Login.jsp");
                     rd.forward(request,response);
                     break;
+                case "register":
+                    rd = request.getRequestDispatcher("/view/user/user-registration.jsp");
+                    rd.forward(request,response);
+                    break;
                 case "login_officer":
                     rd = request.getRequestDispatcher("view/OfficerLogin/OfficerLogin.jsp ");
                     rd.forward(request,response);

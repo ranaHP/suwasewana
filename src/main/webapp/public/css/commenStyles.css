@@ -13,7 +13,7 @@
 .password-visibility{
     position: absolute;
     right:10px;
-    top: 10px;
+    top: 5px;
 }
 .w-100{
     width: 100%;
@@ -48,4 +48,10 @@
 }
 .pt-5{
     padding-top: 5px;
+}
+#user-form-error{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color:  #d9534f;
+    font-size: 1.3em;
 }
