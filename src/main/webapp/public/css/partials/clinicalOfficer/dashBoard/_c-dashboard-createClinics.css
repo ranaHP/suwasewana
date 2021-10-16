@@ -34,6 +34,9 @@ body{
     align-items: center;
     justify-content: center;
 }
+.content{
+    display: flex;
+}
 .form{
     width: 100%;
 }
@@ -62,7 +65,7 @@ label{
     padding-bottom: 10px;
     font-size: 1.2em;
 }
-input{
+input,textarea{
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.32);
     border-radius: 3px;
@@ -70,6 +73,7 @@ input{
     padding-left: 3px;
     box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.05);
     margin-bottom: 10px;
+    outline: none;
 }
 #description{
     height: 208px;

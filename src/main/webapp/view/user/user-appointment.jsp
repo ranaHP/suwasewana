@@ -232,7 +232,7 @@
                     <div class="row previous-appointment-list">
                         <div class="appointment-card-container">
                             <div class="appointment-card">
-                                <div class="title">
+                                <div class="header">
                                     Mahapola Scholarship
                                     <p> 2021/01/10</p>
                                 </div>
@@ -283,7 +283,7 @@
                         </div>
                         <div class="appointment-card-container">
                             <div class="appointment-card">
-                                <div class="title">
+                                <div class="header">
                                     Grade 5 Scholarship
                                     <p> 2021/01/10</p>
                                 </div>
@@ -346,7 +346,7 @@
 
                         <div class="appointment-card-container">
                             <div class="appointment-card">
-                                <div class="title">
+                                <div class="header">
                                     Grade 5 Scholarship
                                     <p> 2021/01/10</p>
                                 </div>

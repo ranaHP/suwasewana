@@ -2,6 +2,7 @@
 *{
     padding: 0;
     margin: 0;
+    font-size: 14px;
 }
 body{
     display: flex;
@@ -49,7 +50,6 @@ body{
     box-shadow: 0 3px 3px #0a0a0a1c;
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
-    /*width: 100%;*/
 }
 .header .upper-title{
     font-weight: bold;
@@ -58,7 +58,7 @@ body{
     letter-spacing: .15em;
 }
 .header .dashboard-name{
-    font-size: .6em;
+    font-size: .7em;
     letter-spacing: .1em;
     color: rgba(0, 0, 0, 0.527);
     margin-top: 3px;
@@ -150,6 +150,7 @@ button{
 .live-card .clinic-description{
     padding: 10px;
     font-size: .9em;
+    /*color: rgba(0, 0, 0, 0.7);*/
 }
 .live-card .clinic-details{
     padding: 10px 10px 10px 10px;

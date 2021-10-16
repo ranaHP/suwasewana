@@ -13,17 +13,15 @@
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-<%--    <script defer src="/public/js/ClinicalOfficer/CreateClinic.js"></script>--%>
-
 </head>
 <body>
-<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>" />
+<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
 
-<!-- container without side nav bar -->
+<%--<!-- container without side nav bar -->--%>
 <div id="mainContent" class="container ">
 <%--    <div class="main-content">--%>
         <!-- suwasewana title -->
-        <div class="title">
+        <div class="header">
             <div class="upper-title">SUWASEWANA </div>
             <div class="dashboard-name">Clinic/Dashboard/ClinicList</div>
         </div>
@@ -120,7 +118,7 @@
                     };
                 console.log(reqData)
 
-                $.post("/test_war_exploded/create-clinic-controller",
+                $.post("/test_war_exploded/create-clinic-controller/create",
                     reqData,
                     function(data,status){
                         alert(data)
@@ -133,8 +131,8 @@
                 );
         return false;
     }
-<%--    function card()--%>
-<%--    {--%>
+    function card()
+    {
 <%--        var name=document.getElementById("disease").value;--%>
 <%--        var date=document.getElementById("date-time").value;--%>
 <%--        var des=document.getElementById("description").value;--%>
@@ -170,7 +168,8 @@
 
 <%--    <h>{%=name%} kk<h>--%>
 <%--`--%>
-<%--    }--%>
+    console.log("live card");
+    }
 
 </script>
 
