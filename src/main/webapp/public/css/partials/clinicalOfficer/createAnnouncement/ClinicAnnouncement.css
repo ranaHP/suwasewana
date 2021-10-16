@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+label {
+    font-size: 0.7em;
+}
+
+.mt5 {
+    margin-top: 40px;
+}
+
+.header {
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    /* background-color: white; */
+    background-color: #0275d8;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header .upper-title {
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+
+.header .dashboard-name {
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+
+.AC_main_Container {
+    /* background-color: aqua; */
+    margin-left: 78px;
+
+}
+
+.AC_container {
+    width: 80%;
+    margin: 50px auto;
+    /* background-color: brown; */
+}
+
+.AC_Body_container {
+    display: flex;
+}
+
+.Container_left {
+    width: 60%;
+}
+
+.Container_right {
+    width: 40%;
+    margin-top: 55px;
+}
+
+.LRow, .RRow {
+    /* background-color: blue; */
+    margin-bottom: 20px;
+}
+
+
+/* title  */
+#Title {
+    border: none;
+    border-bottom: solid 1px #ccc;
+    width: 300px;
+    /* background-color: #556677; */
+}
+
+
+/* description */
+.RRow {
+    position: relative;
+}
+
+#Des {
+    position: absolute;
+    top: -6.5px;
+    left: 5px;
+    /* width: 100px; */
+    padding: 0 10px;
+    background: rgb(255, 255, 255);
+}
+
+
+/* target participant */
+#target {
+    position: absolute;
+    padding: 0 10px;
+    background: rgb(255, 255, 255);
+    top: -6.5px;
+    left: 5px;
+}
+
+#TargetP {
+    width: 100%;
+}
+
+/* imafe add  */
+.image-upload-card-list-container {
+    padding: 20px 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.image-upload-card-container {
+    height: fit-content;
+    width: 70%;
+}
+
+.image-upload-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.image-upload-card img {
+    border-radius: 2px;
+}
+
+.image-upload-card label {
+    background-color: #0275d8;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 10px;
+    font-family: 'Segoe UI';
+
+}
+
+#upload-btn {
+    border-radius: 2px;
+    padding: 5px;
+}
+
+#sybmit {
+    border: none;
+    color: aliceblue;
+    font-size: 0.7em;
+    background-color: #0275d8;
+    padding: 6px 10px;
+    border-radius: 2px;
+}
+
+/* input box */
+.form-item {
+    position: relative;
+    /* margin-bottom: 15px */
+}
+
+.form-item input {
+    display: block;
+    width: 200px;
+    height: 30px;
+    font-size: 0.8em;
+    background: transparent;
+    /* border: solid 1px #ccc; */
+    border: none;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.397);
+    font-size: 0.7em;
+    transition: all .3s ease;
+    border-radius: 1px;
+    padding: 0 6px;
+    outline: none;
+}
+
+.form-item input:focus {
+    border-color: blue
+}
+
+.form-item label {
+    position: absolute;
+    cursor: text;
+    z-index: 2;
+    top: 10px;
+    left: -10px;
+    font-size: 12px;
+    /* background: #fff; */
+    padding: 0 10px;
+    /* color: #999; */
+    transition: all .3s ease
+}
+
+.form-item input:focus + label,
+.form-item input:valid + label {
+    font-size: 11px;
+    top: -12px
+}
+
+.form-item input:focus + label {
+    color: blue
+}
+
+.LRow {
+    position: relative;
+
+}
+
+
+/* lars row  */
+.DRow {
+    /* background-color: #556677; */
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    margin-bottom: 7px;
+}
+
+.row_text label {
+    font-size: 0.6em;
+}
+
+.DRow, .DRow_Left {
+    display: flex;
+    align-items: flex-end;
+}
+
+.icon {
+    display: flex !important;
+    align-items: flex-end !important;
+    vertical-align: bottom !important;
+}
+
+.icon svg {
+    height: 11px;
+    margin-bottom: 4px;
+}
+
+.row_text {
+    /* background-color: aqua; */
+    height: fit;
+}
+
+.DRow_Right input {
+    border: none;
+    border-bottom: solid 1px #ccc;
+    margin-bottom: 4px;
+}
+
+.row_text {
+    margin-left: 15px;
+}
+
+
+/* text area  */
+textarea {
+    overflow: hidden;
+    padding: 10px;
+    width: 70%;
+    font-size: 0.7em;
+    padding-top: 15px;
+    display: block;
+    border-radius: 2px;
+    border: 1px solid #556677;
+    outline: none;
+}
+
+
+@media only screen and (max-width: 800px ) {
+    .AC_Body_container {
+        flex-direction: column;
+    }
+
+    textarea {
+        width: 330px;
+    }
+
+    #TargetP {
+        width: 330px;
+    }
+}
+
+@media only screen and (max-width: 473px) {
+    .DRow {
+        flex-direction: column;
+    }
+
+    .DRow {
+        align-items: unset;
+        width: 210px;
+    }
+
+    .DRow_Right input {
+        width: 100%;
+    }
+
+    textarea {
+        width: 190px;
+    }
+
+    #TargetP {
+        width: 190px;
+    }
+
+    #Title {
+        width: 210px;
+    }
+
+    #target {
+        width: 117px;
+    }
+}
