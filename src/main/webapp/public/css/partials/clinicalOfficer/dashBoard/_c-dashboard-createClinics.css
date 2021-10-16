@@ -1,11 +1,13 @@
-
+body{
+    background-color: #dfe4ea59;
+}
 .container{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     max-width: calc(100vw - 78px);
     margin-left: 78px;
-    min-height: 100vh;
-
+    /*min-height: 100vh;*/
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
 }

@@ -15,9 +15,9 @@
     <title> User Home Suwasewana </title>
 
     <!-- for style sheet link  -->
-    <link href="<c:url value="/public/css/user/_user-home.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/partials/user/user-home.css"/>" rel="stylesheet"/>
     <!-- for commen style  sheet link  -->
-    <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/partials/commen"/>" rel="stylesheet"/>
 
     <!-- for feather icon -->
     <script src="https://unpkg.com/feather-icons"></script>
