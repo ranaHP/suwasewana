@@ -1,0 +1,333 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+
+label {
+    font-size: 0.7em;
+    margin-bottom: 5px;
+    font-weight: 540;
+}
+
+.MR_main_Container {
+    /* background-color: aqua; */
+    margin-left: 78px;
+}
+
+.header {
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header .upper-title {
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+
+.header .dashboard-name {
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+form {
+    margin-top: 70px;
+}
+
+.MR_container {
+    /* background-color: brown; */
+    width: 90%;
+    margin: 30px auto 0 auto;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+}
+
+.multirow {
+    /* background-color: aquamarine; */
+    display: flex;
+    min-height: 35px;
+    margin-top: 10px;
+}
+
+#row2 {
+    margin-top: 40px;
+}
+
+#Moh_headdiv {
+    width: 100%;
+}
+
+.milturow_left, .multirow_right {
+    width: 50%;
+}
+
+.singal_row {
+    /* background-color: aqua; */
+    margin-top: 10px;
+    min-height: 50px;
+}
+
+.singal_row input {
+    width: 90% !important;
+}
+
+#Moh_head {
+    width: 100%;
+}
+
+#PHIState {
+    display: flex;
+    align-items: flex-end;
+}
+
+.map_container {
+    /* background-color: blue; */
+    margin-top: 40px;
+}
+
+.map {
+    background-color: rgb(17, 85, 85);
+    margin-top: 10px;
+    height: 160px;
+    width: 500px
+}
+
+.submit_btn {
+    margin-top: 10px;
+}
+
+.submit {
+    background-color: #008CBA;
+    color: white;
+    transition-duration: 0.4s;
+    cursor: pointer;
+
+    border: none;
+    color: white;
+    padding: 5px 25px;
+    border-radius: 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.6em;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+}
+
+.submit:hover {
+    background-color: #146783;
+}
+
+.status {
+    display: flex;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+.status input {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+/* input box */
+.form-item {
+    position: relative;
+    /* margin-bottom: 15px */
+}
+
+.form-item input {
+    display: block;
+    width: 80%;
+    height: 30px;
+    font-size: 0.8em;
+    background: transparent;
+    /* border: solid 1px #ccc; */
+    border: none;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.397);
+    font-size: 0.7em;
+    transition: all .3s ease;
+    border-radius: 1px;
+    padding: 0 6px;
+    outline: none;
+}
+
+.form-item input:focus {
+    border-color: blue
+}
+
+.form-item label {
+    position: absolute;
+    cursor: text;
+    z-index: 2;
+    top: 10px;
+    left: -10px;
+    font-size: 12px;
+    background: #fff;
+    padding: 0 10px;
+    /* color: #999; */
+    transition: all .3s ease
+}
+
+.form-item input:focus + label,
+.form-item input:valid + label {
+    font-size: 11px;
+    top: -12px
+}
+
+.form-item input:focus + label {
+    color: blue
+}
+
+
+/* search select */
+datalist {
+    outline: none;
+}
+
+.selected-options-container {
+    max-width: 600px;
+    padding: 10px 0;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.SelectColordiv {
+    width: 80%;
+    border: none;
+    height: 30px;
+    font-size: 0.6em;
+    margin-left: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.336);
+    color: rgba(0, 0, 0, 0.397);
+}
+
+#addcityDiv {
+    position: relative;
+}
+
+#addSelect {
+    font-size: 0.6em;
+    padding: 5px 12px;
+    position: absolute;
+    margin-left: 10px;
+    border: none;
+    background-color: #0275d8;
+    color: white;
+    border-radius: 3px;
+    bottom: 0;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#addSelect:hover {
+    background-color: #17456d;
+}
+
+.selected-options {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: fit-content;
+    background-color: rgb(58, 55, 233);
+    border-radius: 5px;
+    padding: 2px 5px;
+    font-size: 0.6em;
+    box-sizing: border-box;
+    color: white;
+    flex-wrap: wrap;
+    margin: 2px 3px;
+}
+
+.selected-options .close-btn {
+    cursor: pointer;
+    font-size: .6em;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 10px;
+}
+
+.error {
+    font-size: 0.5em;
+    color: red;
+    /* display: none; */
+}
+
+@media only screen and (max-width: 619px ) {
+    .multirow {
+        flex-direction: column;
+    }
+
+    .milturow_left, .multirow_right, .singal_row {
+        width: 90%;
+    }
+
+    .milturow_left {
+        margin-bottom: 20px;
+    }
+
+    #row2 {
+        margin-top: 20px;
+    }
+
+    .map {
+        width: 100%;
+    }
+
+    #PHIState {
+        margin-top: 10px;
+    }
+
+    .singal_row input {
+        width: 80% !important;
+    }
+    .title{
+        justify-content: unset;
+    }
+    form{
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 409px ) {
+    .milturow_left, .multirow_right, .singal_row {
+        width: 100%;
+    }
+
+    .form-item input {
+        width: 95%;
+    }
+
+    .SelectColordiv {
+        width: 96%;
+    }
+
+    #SelectCity {
+        width: 75%;
+    }
+
+    #addSelect {
+        right: 0;
+    }
+
+    .singal_row input {
+        width: 95% !important;
+    }
+}
