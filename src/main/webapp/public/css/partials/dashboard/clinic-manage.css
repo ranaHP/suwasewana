@@ -1,0 +1,103 @@
+.clinic-card-list{
+    width: 100%;
+    /* background-color: #fff; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    }
+.clinic-card-container{
+    /* padding: 10px; */
+    width: 30%;
+    margin:  10px ;
+    background-color: aquamarine;
+}
+.clinic-card{
+    min-height: 420px;
+    width: 100%;
+    min-width: 250px;
+    background-color: #fff;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.158);
+    border:  1px solid rgba(128, 128, 128, 0.329);
+    padding: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.clinic-card .title{
+    font-family: 'Segoe UI' ;
+    text-align: center;
+    font-size: 1.7em;
+    padding: 10px 0; 
+    color: rgb(61, 61, 61);
+}
+.title p {
+    font-size: .8em;
+}
+.clinic-card .desc{
+    padding-top: 10px;
+    font-size: 1.1em;
+    color: rgba(61, 61, 61, 0.87);
+    text-align: justify;
+    font-family: 'Segoe UI' ;
+
+}
+.clinic-card .properties{
+    padding-top: 15px;
+}
+.clinic-card .properties ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+.properties ul li{
+    padding: 5px 0;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    font-size: 1.1em;
+    font-family: 'Segoe UI' ;
+    color: rgba(2, 22, 82, 0.74);
+
+}
+.properties ul li img {
+    padding-right: 10px;
+}
+
+.clinic-card .footer{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.clinic-card .footer .current-registered-count{
+    display: flex;
+    align-items: center;
+}
+.current-registered-count img {
+    padding-right: 10px;
+}
+.clinic-card .footer .register-btn{
+    background-color: green;
+    width: 100px;
+    color: white;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    height: 30px;
+    cursor: pointer;
+    box-shadow:  1px 3px 6px rgba(0, 0, 0, 0.253);
+}
+.clinic-card .footer .register-btn:hover{
+    box-shadow:  1px 2px 4px rgba(0, 0, 0, 0.178);
+}
+.clinic-card:hover  {
+    box-shadow:  1px 2px 4px rgba(0, 0, 0, 0.178);
+
+}

@@ -1,0 +1,35 @@
+.map-container{
+    display: flex;flex-direction: column;
+    box-sizing: border-box;
+    width: 80%  ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+#map {
+    height: 300px;
+    width: 100%;
+    box-sizing: border-box;
+ }
+ .coordinates {
+     background: rgba(0, 0, 0, 0.5);
+     color: #fff;
+     position: absolute;
+     bottom: 40px;
+     left: 10px;
+     padding: 5px 10px;
+     margin: 0;
+     font-size: 11px;
+     line-height: 18px;
+     border-radius: 3px;
+     display: none;
+     }
+
+     .get-current-location{
+         background-color: #fff;
+         border: 0;
+         outline: 0;
+         padding-top: 10px;
+         text-decoration: underline;
+     }
