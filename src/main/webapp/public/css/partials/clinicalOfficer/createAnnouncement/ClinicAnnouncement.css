@@ -19,8 +19,8 @@ label {
     min-height: 40px;
     margin-bottom: 2px;
     box-shadow: 0 3px 3px #0a0a0a1c;
-    /* background-color: white; */
-    background-color: #0275d8;
+     background-color: white;
+    /*background-color: #0275d8;*/
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -30,6 +30,10 @@ label {
     font-size: 1.2em;
     letter-spacing: .15em;
 }
+body{
+    background-color: #dfe4ea59;
+    height: 100vh;
+}
 
 .header .dashboard-name {
     font-size: .6em;
@@ -37,25 +41,47 @@ label {
     color: rgba(0, 0, 0, 0.527);
     margin-top: 3px;
 }
-
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    /*margin-left: 260px;*/
+    /* background-color: red;*/
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
 .AC_main_Container {
     /* background-color: aqua; */
     margin-left: 78px;
-
+    max-width: calc(100vw - 78px);
 }
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
 
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
 .AC_container {
     width: 80%;
     margin: 50px auto;
     /* background-color: brown; */
 }
-
 .AC_Body_container {
     display: flex;
 }
 
 .Container_left {
     width: 60%;
+    /*height: 400px;*/
 }
 
 .Container_right {
@@ -152,6 +178,8 @@ label {
     background-color: #0275d8;
     padding: 6px 10px;
     border-radius: 2px;
+    width: 100%;
+    cursor: pointer;
 }
 
 /* input box */
@@ -241,7 +269,7 @@ label {
 
 .row_text {
     /* background-color: aqua; */
-    height: fit;
+    height: fit-content;
 }
 
 .DRow_Right input {
@@ -253,7 +281,6 @@ label {
 .row_text {
     margin-left: 15px;
 }
-
 
 /* text area  */
 textarea {
@@ -273,13 +300,23 @@ textarea {
     .AC_Body_container {
         flex-direction: column;
     }
-
+   AC_body_container{
+       background-color: red;
+       align-items: center;
+   }
     textarea {
         width: 330px;
     }
 
     #TargetP {
         width: 330px;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
     }
 }
 

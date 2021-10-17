@@ -1,5 +1,7 @@
 package com.suwasewana.model;
 
+import java.sql.Blob;
+
 public class CreateClinicModel {
     public String disease;
     public String title;
@@ -106,4 +108,5 @@ public class CreateClinicModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }

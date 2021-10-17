@@ -1,19 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Akila
-  Date: 10/17/2021
-  Time: 2:20 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/createAnnouncement/ClinicAnnouncement.css"/>">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Title</title>
 
   <%--    for side navbar style--%>
@@ -21,9 +16,9 @@
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
-<body>
-<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp "/>" />
-<div class="AC_main_Container">
+<body onload="view()">
+<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"></c:import>
+<div id="mainContent" class="AC_main_Container">
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
     <div class="dashboard-name">Admin/Register/ClinicalOfficer</div>
@@ -42,12 +37,12 @@
             </div>
           </div>
           <div class="LRow">
-            <label for="">Title</label><br>
+            <label>Title</label><br>
             <input type="text" name="" id="Title">
           </div>
           <div class="LRow mt5">
             <textarea rows='1' placeholder='Type Description here...'></textarea>
-            <label for="" id="Des">Description</label>
+            <label id="Des">Description</label>
 
           </div>
           <div class="LRow">
@@ -58,7 +53,7 @@
                   <i data-feather="circle"></i>
                 </div>
                 <div class="row_text">
-                  <label for="">Location</label>
+                  <label>Location</label>
                 </div>
               </div>
               <div class="DRow_Right">
@@ -72,7 +67,7 @@
                   <i data-feather="calendar"></i>
                 </div>
                 <div class="row_text">
-                  <label for="">Date & Time</label>
+                  <label>Date & Time</label>
                 </div>
               </div>
               <div class="DRow_Right">
@@ -85,7 +80,7 @@
                   <i data-feather="clock"></i>
                 </div>
                 <div class="row_text">
-                  <label for="">Duration</label>
+                  <label>Duration</label>
                 </div>
               </div>
               <div class="DRow_Right">
@@ -98,7 +93,7 @@
                   <i data-feather="user"></i>
                 </div>
                 <div class="row_text">
-                  <label for="">Conduct By</label>
+                  <label>Conduct By</label>
                 </div>
               </div>
               <div class="DRow_Right">
@@ -111,7 +106,7 @@
                   <i data-feather="triangle"></i>
                 </div>
                 <div class="row_text">
-                  <label for="">Max limit</label>
+                  <label >Max limit</label>
                 </div>
               </div>
               <div class="DRow_Right">
@@ -124,7 +119,7 @@
         <div class="Container_right">
           <div class="RRow">
             <textarea rows='1' id="TargetP" placeholder='Type target patients here...'></textarea>
-            <label for="" id="target">Target Participant</label>
+            <label id="target">Target Participant</label>
           </div>
           <div class="RRow">
             <div class="row ">
@@ -169,10 +164,31 @@
       el.style.cssText = 'height:' + el.scrollHeight + 'px';
     }, 0);
   }
+
+  function view(){
+    // alert("view")
+    let clinicList=[]
+    $.post("/test_war_exploded/create-clinic-controller/select",
+            // reqData,
+            function(data,status){
+              clinicList=JSON.parse(data)
+              alert(data)
+              // let option = document.createElement("div")
+              // option.classList.add("live-card")
+              // option.classList.add("live-card")
+              // option.innerHTML+=`
+              //          <h>view clinics</h>
+              //   `
+              // // console.log(option)
+              // document.getElementById('card-containor').appendChild(option)
+            }
+    );
+    // alert("i")
+  }
 </script>
 <script>
   feather.replace({width: "10px"})
 </script>
-  <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+  <script defer src="<c:url value="/public/js/common/side-navbar.js"></c:url> " ></script>
 </body>
 </html>
