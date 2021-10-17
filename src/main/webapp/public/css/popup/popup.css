@@ -35,6 +35,8 @@
     justify-content: center;
     cursor: pointer;
     align-items: center;
+    font-family: 'Nunito', sans-serif;
+    color: rgba(160, 2, 2, 0.596);
 }
 
 .popup .close-btn svg{
@@ -53,11 +55,16 @@
 
 }
 .popup-icon{
-    width: 100%;
-    height: 40%;
+    width:  45px ;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url("../../images/logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: auto;
+    margin-top: 40px;
 }
 .popup-icon svg{
     color: rgba(0, 128, 0, 0.541);

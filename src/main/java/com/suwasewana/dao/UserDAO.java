@@ -1,6 +1,7 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
+import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.UserLoginModel;
 import com.suwasewana.model.UserRegistrationModel;
 
@@ -8,11 +9,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
     private static  final  String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    private static  final  String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?);";
+    private static  final  String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` WHERE user = ?";
     Connection connection;
 
     public UserDAO() {
@@ -26,14 +30,15 @@ public class UserDAO {
             preparedStatement.setString(2, userLogin.getPassword());
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String mobile = rs.getString("mobile");
-                String password = rs.getString("password");
+                String mobile = rs.getString("uMobile");
+                String password = rs.getString("uPassword");
+                String nic= rs.getString("uNic");
                 if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
-                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password);
+                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password , nic);
                     return userLoginDetails;
                 }
             }
-            return new UserLoginModel("", "");
+            return new UserLoginModel("", "" , "");
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
@@ -72,6 +77,76 @@ public class UserDAO {
 
     }
 
+    public String UserMakeAppointment(AppointmentModel appointment) {
+        System.out.println("data come to dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_CREATE_APPOINTMENT)) {
+            preparedStatement.setString(1, appointment.getaTitle());
+            preparedStatement.setString(2, appointment.getAppointmentType());
+            preparedStatement.setString(3, appointment.getPhi());
+            preparedStatement.setString(4, appointment.getReason());
+            preparedStatement.setString(5, String.valueOf(1));
+            preparedStatement.setString(6, "");
+            preparedStatement.setString(7, "");
+            preparedStatement.setString(8, "");
+            preparedStatement.setString(9, "");
+            preparedStatement.setString(10, "");
+            preparedStatement.setString(11, appointment.getUser());
+            int  rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
+        }
+
+
+    }
+
+    public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {
+            preparedStatement.setString(1, appointmentDetails.getUser());
+            System.out.println("awoooooooo");
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
+            while (rs.next()) {
+                String aTitle = rs.getString("aTitle");
+                String AType = rs.getString("appointmentType");
+                String phi = rs.getString("phi");
+                String reason = rs.getString("reason");
+                String aId = rs.getString("appointmentId");
+                String p_date = rs.getString("posted_data");
+                String round = rs.getString("round");
+                String location = rs.getString("location");
+                String ts1 = rs.getString("time_slot2");
+                String ts2 = rs.getString("time_slot1");
+                String spNote = rs.getString("special_notice");
+                String status = rs.getString("status");
+                String user = rs.getString("user");
+                AppointmentModel temp = new AppointmentModel(
+                        aTitle,
+                        AType,
+                        phi,
+                        reason,
+                        aId,
+                        p_date,
+                        round,
+                        location,
+                        ts1,
+                        ts2,
+                        spNote,
+                        status,
+                        user
+                );
+                appointmentList.add(temp);
+            }
+            return appointmentList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
