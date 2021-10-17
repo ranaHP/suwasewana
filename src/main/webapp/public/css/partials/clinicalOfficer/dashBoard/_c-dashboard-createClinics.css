@@ -1,11 +1,13 @@
-
+body{
+    background-color: #dfe4ea59;
+}
 .container{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     max-width: calc(100vw - 78px);
     margin-left: 78px;
-    min-height: 100vh;
-
+    /*min-height: 100vh;*/
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
 }
@@ -21,14 +23,6 @@
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
 }
-.content{
-    color: #0606068e;
-    display: flex;
-    justify-content: center;
-    background-color: transparent;
-    background-color: var(--primary-color);
-    padding-top: 50px;
-}
 .create-clinics-title{
     margin: 20px 20px 20px 35px;
     padding: 5px;
@@ -39,6 +33,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.content{
+    display: flex;
 }
 .form{
     width: 100%;
@@ -68,7 +65,7 @@ label{
     padding-bottom: 10px;
     font-size: 1.2em;
 }
-input{
+input,textarea{
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.32);
     border-radius: 3px;
@@ -76,6 +73,7 @@ input{
     padding-left: 3px;
     box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.05);
     margin-bottom: 10px;
+    outline: none;
 }
 #description{
     height: 208px;

@@ -214,7 +214,7 @@
                     <div class="row previous-complaint-list">
                         <div class="complaint-card-container">
                             <div class="complaint-card">
-                                <div class="title">
+                                <div class="header">
                                     Complaints about health services
                                     <p> 2021/01/10</p>
                                 </div>
@@ -269,7 +269,7 @@
                         </div>
                         <div class="complaint-card-container">
                             <div class="complaint-card">
-                                <div class="title">
+                                <div class="header">
                                     Complaints about health services
                                     <p> 2021/01/10</p>
                                 </div>
@@ -324,7 +324,7 @@
                         </div>
                         <div class="complaint-card-container">
                             <div class="complaint-card">
-                                <div class="title">
+                                <div class="header">
                                     Complaints about health services
                                     <p> 2021/01/10</p>
                                 </div>

@@ -45,14 +45,14 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.complaint-card .title{
+.complaint-card .header{
     font-family: 'Segoe UI' ;
     text-align: center;
     font-size: 1.7em;
     padding: 10px 0; 
     color: rgb(61, 61, 61);
 }
-.title p {
+.header p {
     font-size: .8em;
 }
 .complaint-card .desc{

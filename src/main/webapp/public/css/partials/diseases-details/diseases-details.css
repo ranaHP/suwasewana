@@ -79,7 +79,7 @@
     padding: 10px;
     background-color: white;
 }
-.count-card .title{
+.count-card .header{
     font-weight: 600;
     font-size: 1.8em;
     color: rgba(0, 0, 0, 0.774);
