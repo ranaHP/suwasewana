@@ -24,7 +24,6 @@ public class PHIDAO {
 
     public ArrayList<PHIModel> GetPHIDetails() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_phi)) {
-            System.out.println("awoooooooo");
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<PHIModel>phiList = new ArrayList<PHIModel>();
             while (rs.next()) {

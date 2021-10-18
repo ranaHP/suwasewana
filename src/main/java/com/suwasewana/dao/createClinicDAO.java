@@ -21,7 +21,6 @@ public class createClinicDAO {
     }
     public String createClinic(CreateClinicModel createClinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLINIC)) {
-//            preparedStatement.setString(1,"");
             preparedStatement.setString(1,createClinic.getDisease());
             preparedStatement.setString(2,createClinic.getTitle());
             preparedStatement.setString(3,createClinic.getLocation());
@@ -42,9 +41,7 @@ public class createClinicDAO {
     }
     public ArrayList<CreateClinicModel> ViewClinics(CreateClinicModel viewClinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(VIEW_CLINICS)){
-//            System.out.println("came to dao");
             ResultSet rs = preparedStatement.executeQuery();
-//            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> viewClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
                 String disease =rs.getString("Disease");
@@ -69,7 +66,6 @@ public class createClinicDAO {
 
                 );
                  viewClinicList.add(temp);
-//                System.out.println(title+"--"+disease+"--"+Location);
         };
         return viewClinicList;
         } catch (SQLException throwables) {
@@ -81,9 +77,7 @@ public class createClinicDAO {
 
     public ArrayList<CreateClinicModel> selectClinics(CreateClinicModel viewClinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
-//            System.out.println("came to dao");
             ResultSet rs = preparedStatement.executeQuery();
-//            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> selectClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
                 String disease =rs.getString("Disease");
@@ -108,7 +102,6 @@ public class createClinicDAO {
 
                 );
                 selectClinicList.add(temp);
-//                System.out.println(title+"--"+disease+"--"+Location);
             };
             return selectClinicList;
         } catch (SQLException throwables) {

@@ -29,7 +29,6 @@ public class UserDAO {
     }
 
     public String UserMakeComplain(ComplainModel complainModel) {
-        System.out.println("data come to dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
             preparedStatement.setString(1, complainModel.getCType());
             preparedStatement.setString(2, complainModel.getUType());
@@ -40,7 +39,6 @@ public class UserDAO {
             preparedStatement.setString(7, complainModel.getStatus());
 
             int  rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
 
             return  "success";
         } catch (SQLException throwables) {
@@ -73,7 +71,6 @@ public class UserDAO {
     }
 
     public String UserRegistration(UserRegistrationModel userRegister) {
-        System.out.println("data come to dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_REGISTRATION)) {
             preparedStatement.setString(1, userRegister.getuNic());
@@ -88,15 +85,10 @@ public class UserDAO {
             preparedStatement.setString(10, userRegister.getUaddress());
             preparedStatement.setString(11, "");
             int  rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
 
             return  "success";
         } catch (SQLException throwables) {
             printSQLException(throwables);
-//            System.out.println(throwables.getErrorCode());
-//            System.out.println(throwables.getSQLState());
-//            System.out.println(throwables.getMessage());
-//            System.out.println(throwables);
             return throwables.getMessage();
         }
 
@@ -104,7 +96,6 @@ public class UserDAO {
     }
 
     public String UserMakeAppointment(AppointmentModel appointment) {
-        System.out.println("data come to dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_CREATE_APPOINTMENT)) {
             preparedStatement.setString(1, appointment.getaTitle());
             preparedStatement.setString(2, appointment.getAppointmentType());
@@ -118,7 +109,6 @@ public class UserDAO {
             preparedStatement.setString(10, "");
             preparedStatement.setString(11, appointment.getUser());
             int  rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
 
             return  "success";
         } catch (SQLException throwables) {
@@ -133,7 +123,6 @@ public class UserDAO {
     public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {
             preparedStatement.setString(1, appointmentDetails.getUser());
-            System.out.println("awoooooooo");
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
             while (rs.next()) {
