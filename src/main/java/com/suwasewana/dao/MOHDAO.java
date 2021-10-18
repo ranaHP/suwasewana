@@ -42,7 +42,9 @@ public class MOHDAO {
 //
                 mohList.add(temp);
             }
+            System.out.println("moh list "+mohList);
             return mohList;
+
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }

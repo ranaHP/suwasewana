@@ -2,6 +2,7 @@ package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
 import com.suwasewana.model.AppointmentModel;
+import com.suwasewana.model.ComplainModel;
 import com.suwasewana.model.UserLoginModel;
 import com.suwasewana.model.UserRegistrationModel;
 
@@ -17,6 +18,9 @@ public class UserDAO {
     private static  final  String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
     private static  final  String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?);";
     private static  final  String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` WHERE user = ?";
+    private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
+            "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?);";
     Connection connection;
 
     public UserDAO() {
@@ -24,6 +28,28 @@ public class UserDAO {
         connection = db.getConnection();
     }
 
+    public String UserMakeComplain(ComplainModel complainModel) {
+        System.out.println("data come to dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
+            preparedStatement.setString(1, complainModel.getCType());
+            preparedStatement.setString(2, complainModel.getUType());
+            preparedStatement.setString(3, complainModel.getUser());
+            preparedStatement.setString(4, complainModel.getCTitle());
+            preparedStatement.setString(5, complainModel.getCMessage());
+            preparedStatement.setString(6, complainModel.getPHIId());
+            preparedStatement.setString(7, complainModel.getStatus());
+
+            int  rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
+        }
+
+
+    }
     public UserLoginModel CheckLoginValidation(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN_VALIDATION)) {
             preparedStatement.setString(1, userLogin.getMobile());
@@ -102,6 +128,7 @@ public class UserDAO {
 
 
     }
+
 
     public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {

@@ -7,12 +7,12 @@ public class MOHModel {
     protected String MName;
     protected String TpNo;
     protected String MOHHead;
-    protected ArrayList<String> Cities;
-    protected String Province;
-    protected String District;
-    protected String city;
-    protected Double x;
-    protected Double y;
+//    protected ArrayList<String> Cities;
+//    protected String Province;
+//    protected String District;
+//    protected String city;
+//    protected Double x;
+//    protected Double y;
 
     public MOHModel(
             String MId,

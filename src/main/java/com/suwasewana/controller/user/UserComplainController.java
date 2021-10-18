@@ -25,12 +25,14 @@ public class UserComplainController extends HttpServlet {
     ComplainDAO complainDAO;
     MOHDAO mohdao;
     PHIDAO phidao;
+    UserDAO userDAO;
     private Gson gson = new Gson();
 
     public void init() {
         complainDAO = new ComplainDAO();
         mohdao=new MOHDAO();
         phidao=new PHIDAO();
+        userDAO = new UserDAO();
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -51,6 +53,7 @@ public class UserComplainController extends HttpServlet {
                 case "moh":
 //                    res.getWriter().println("moh view");
                     ViewMOH(req,res);
+                    break;
                 case "create":
                     uerMakeComplain(req, res);
                     break;
@@ -97,15 +100,13 @@ public class UserComplainController extends HttpServlet {
                 req.getParameter("uType"),
                 req.getParameter("cPhi"),
                 req.getParameter("cReason"),
+                "12345",
                 "",
-                "",
-                ""
+                "pending"
         );
-        System.out.println("test title"+req.getParameter("cTitle"));
-        System.out.println("test title"+req.getParameter("uType"));
-        System.out.println("test title"+req.getParameter("cType"));
-//        String result = userDAO.UserMakeAppointment(userAppointmentDetails);
-//        res.getWriter().println(result);
+        String result = userDAO.UserMakeComplain(usercomplainDetails);
+        System.out.println("complain add or not "+ result);
+        res.getWriter().println(result);
     }
 
     private void userViewComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
