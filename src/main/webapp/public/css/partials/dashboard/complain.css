@@ -20,13 +20,15 @@
 }
 .previous-complaint-list{
     background-color: #fff;
-    height: 500px;
+    width: 90%;
+    flex-wrap: wrap;
+    min-height: 500px;
     padding: 20px;
 }
 
 .complaint-card-container{
     /* padding: 10px; */
-    width: 30%;
+    width: 300px;
     /* margin:0  10px; */
    
 }
@@ -43,14 +45,14 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.complaint-card .title{
+.complaint-card .header{
     font-family: 'Segoe UI' ;
     text-align: center;
     font-size: 1.7em;
     padding: 10px 0; 
     color: rgb(61, 61, 61);
 }
-.title p {
+.header p {
     font-size: .8em;
 }
 .complaint-card .desc{

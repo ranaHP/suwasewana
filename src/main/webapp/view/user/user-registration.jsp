@@ -88,7 +88,7 @@
 
         <div class="register-form-container">
             <div class="section-title" style="background-color: transparent;margin: 30px 0  ;">
-                <div class="title">
+                <div class="header">
                     සුවසෙවන සඳහා ලියාපදිංචිය
                 </div>
                 <div class="title-sub">
