@@ -3,6 +3,7 @@ package com.suwasewana.controller.user;
 import com.google.gson.Gson;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.AppointmentModel;
+import com.suwasewana.model.AppointmentTypeModel;
 import com.suwasewana.model.UserRegistrationModel;
 
 import javax.servlet.RequestDispatcher;
@@ -48,6 +49,9 @@ public class UserAppointmentController extends HttpServlet {
                     break;
                 case "delete":
                     userDeleteAppointment(req, res);
+                    break;
+                case "type":
+                    userViewAppointmentType(req, res);
                     break;
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -123,6 +127,20 @@ public class UserAppointmentController extends HttpServlet {
                 uNic
         );
         ArrayList<AppointmentModel> result = userDAO.userGetAppointmentDetails(userAppointmentDetails);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void userViewAppointmentType(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("unic")) {
+                    uNic = cookie.getValue();
+                }
+            }
+        }
+        ArrayList<AppointmentTypeModel> result = userDAO.userGetAppointmentTypes();
         res.getWriter().println(gson.toJson(result));
     }
 

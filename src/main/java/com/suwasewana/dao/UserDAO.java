@@ -2,6 +2,7 @@ package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
 import com.suwasewana.model.AppointmentModel;
+import com.suwasewana.model.AppointmentTypeModel;
 import com.suwasewana.model.UserLoginModel;
 import com.suwasewana.model.UserRegistrationModel;
 
@@ -17,7 +18,8 @@ public class UserDAO {
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
     private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
     private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
-    private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` WHERE user = ?";
+    private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
+    private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` LEFT JOIN `appointment_type` ON appointment.appointmentType = appointment_type.appointment_type_no WHERE user = ?";
     private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
     Connection connection;
 
@@ -110,12 +112,12 @@ public class UserDAO {
     public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {
             preparedStatement.setString(1, appointmentDetails.getUser());
-            System.out.println("awoooooooo");
+            System.out.println(appointmentDetails.getUser());
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
             while (rs.next()) {
                 String aTitle = rs.getString("aTitle");
-                String AType = rs.getString("appointmentType");
+                String AType = rs.getString("name");
                 String phi = rs.getString("phi");
                 String reason = rs.getString("reason");
                 String aId = rs.getString("appointmentId");
@@ -145,6 +147,25 @@ public class UserDAO {
                 appointmentList.add(temp);
             }
             return appointmentList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
+    public ArrayList<AppointmentTypeModel> userGetAppointmentTypes() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT_TYPE_NAME)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<AppointmentTypeModel> appointmentTypeList = new ArrayList<AppointmentTypeModel>();
+            while (rs.next()) {
+                String typeName = rs.getString("name");
+                String typeNumber = rs.getString("appointment_type_no");
+
+                AppointmentTypeModel temp = new AppointmentTypeModel(typeNumber, typeName);
+                appointmentTypeList.add(temp);
+            }
+            return appointmentTypeList;
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }

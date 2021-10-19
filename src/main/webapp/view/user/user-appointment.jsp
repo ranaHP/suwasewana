@@ -186,23 +186,23 @@
                     <div class="dashboard-page-sub-title">
                         Appointments Status
                     </div>
-                    <form class="previous-form">
-                        <div class="form-group">
-                            <label for="aTitleSearch">
-                                Appointment Title
-                            </label>
-                            <input type="text" name="aTitleSearch" id="aTitleSearch" autocomplete="off"/>
+                    <divs class="previous-form">
+<%--                        <div class="form-group">--%>
+<%--                            <label for="aTitleSearch">--%>
+<%--                                Appointment Title--%>
+<%--                            </label>--%>
+<%--                            <input type="text" name="aTitleSearch" id="aTitleSearch" autocomplete="off"/>--%>
 
-                        </div>
+<%--                        </div>--%>
 
                         <div class="form-group">
                             <label for="appointmentTypeSearch">
                                 Appointment Type
                             </label>
                             <input id="appointmentTypeSearch" type="text" list="allappointmentTypeSearch"
-                                   name="appointmentTypeSearch" autocomplete="off">
+                                   name="appointmentTypeSearch" autocomplete="off" onclick="document.getElementById('appointmentTypeSearch').value = '' ">
                             <datalist id="allappointmentTypeSearch">
-                                <option value="Mahapola" option=" Mahapola"></option>
+
                             </datalist>
                         </div>
                         <div class="form-group">
@@ -219,9 +219,15 @@
                             <label>
                                 &nbsp;
                             </label>
-                            <button class="submitBtn "> Search Appointment</button>
+                            <button class="submitBtn" onclick="searchAppointment()" > Search Appointment</button>
                         </div>
-                    </form>
+                        <div class="form-group d-flex-a-i-end">
+                            <label>
+                                &nbsp;
+                            </label>
+                            <button class="submitBtn" onclick="getAllAppointment()" > Search Appointment</button>
+                        </div>
+                    </divs>
                     <div class="row previous-appointment-list" id="previous-appointment-list">
 
                     </div>
@@ -311,7 +317,7 @@
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let appointment = new Appointment("previous-appointment-list");
     getAllAppointment()
-
+    getAllAppointmentType()
     function getAllAppointment() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
@@ -322,13 +328,30 @@
             },
             function (data, status) {
                 appointmentCardList = JSON.parse(data);
+                console.log(appointmentCardList)
                 document.getElementById("previous-appointment-list").innerHTML = " ";
                 appointment.setData(appointmentCardList);
 
             }
         );
     }
+    function getAllAppointmentType() {
+        // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
+        let appointmentCardList = [];
+        $.post("/test_war_exploded/user-appointment-controller/type",
+            {},
+            function (data, status) {
+                appointmentTypeList = JSON.parse(data);
+                appointmentTypeList.map( aType => {
+                    console.log(aType)
+                    document.getElementById("allappointmentTypeSearch").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
+                })
+                // document.getElementById("previous-appointment-list").innerHTML = " ";
+                // appointment.setData(appointmentCardList);
 
+            }
+        );
+    }
     function makeAppointment() {
         let reqData =
             {
@@ -392,6 +415,14 @@
             }
         );
     }
+    function searchAppointment(){
+        let searchItem = {
+            appointmentTypeSearch : document.getElementById("appointmentTypeSearch").value,
+            phiSearch: document.getElementById("phiSearch").value
+        }
+        appointment.setSearch(searchItem);
+    }
+
 </script>
 </body>
 </html>
