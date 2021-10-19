@@ -5,6 +5,7 @@ import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.UserLoginModel;
 import com.suwasewana.model.UserRegistrationModel;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,9 +15,10 @@ import java.util.ArrayList;
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
-    private static  final  String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-    private static  final  String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?);";
-    private static  final  String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` WHERE user = ?";
+    private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
+    private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` WHERE user = ?";
+    private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
     Connection connection;
 
     public UserDAO() {
@@ -32,13 +34,13 @@ public class UserDAO {
             while (rs.next()) {
                 String mobile = rs.getString("uMobile");
                 String password = rs.getString("uPassword");
-                String nic= rs.getString("uNic");
+                String nic = rs.getString("uNic");
                 if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
-                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password , nic);
+                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, nic);
                     return userLoginDetails;
                 }
             }
-            return new UserLoginModel("", "" , "");
+            return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
@@ -61,10 +63,10 @@ public class UserDAO {
             preparedStatement.setString(9, userRegister.getUlocation());
             preparedStatement.setString(10, userRegister.getUaddress());
             preparedStatement.setString(11, "");
-            int  rs = preparedStatement.executeUpdate();
+            int rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
 
-            return  "success";
+            return "success";
         } catch (SQLException throwables) {
             printSQLException(throwables);
 //            System.out.println(throwables.getErrorCode());
@@ -89,14 +91,16 @@ public class UserDAO {
             preparedStatement.setString(7, "");
             preparedStatement.setString(8, "");
             preparedStatement.setString(9, "");
-            preparedStatement.setString(10, "");
+            preparedStatement.setString(10, "pending");
             preparedStatement.setString(11, appointment.getUser());
-            int  rs = preparedStatement.executeUpdate();
+            preparedStatement.setString(12, null);
+            int rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
 
-            return  "success";
+            return "success";
         } catch (SQLException throwables) {
-            printSQLException(throwables);;
+            printSQLException(throwables);
+            ;
             return throwables.getMessage();
         }
 
@@ -147,6 +151,20 @@ public class UserDAO {
 
         return null;
     }
+
+    public String UserDeleteAppointment(String appointmentId) throws SQLException {
+        boolean rowDeleted;
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement(USER_DELETE_APPOINTMENT)) {
+            preparedStatement.setString(1, appointmentId);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+            System.out.println(preparedStatement);
+            return "success";
+        } catch (SQLException throwables) {
+            return throwables.getMessage();
+        }
+    }
+
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

@@ -14,16 +14,17 @@
 }
 .popup{
     width: 50vw;
-    height: 50vh;
+    height: fit-content;
     max-width: 400px;
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 0 10px  rgba(2, 92, 104, 0.192);
     position: relative;
+    padding-bottom: 20px;
 }
 .popup .close-btn{
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     right: -7px;    
     top: -7px;
@@ -37,6 +38,8 @@
     align-items: center;
     font-family: 'Nunito', sans-serif;
     color: rgba(160, 2, 2, 0.596);
+    font-weight: 800;
+    font-size: 1.4em;
 }
 
 .popup .close-btn svg{
@@ -56,7 +59,7 @@
 }
 .popup-icon{
     width:  45px ;
-    height: 100px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -65,6 +68,7 @@
     background-size: contain;
     margin: auto;
     margin-top: 40px;
+
 }
 .popup-icon svg{
     color: rgba(0, 128, 0, 0.541);
@@ -94,6 +98,16 @@
     color: rgba(0, 0, 0, 0.815);
     padding: 8px;
 }
+.error-message{
+    width: 100%;
+    display: inline;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    font-size: .8em;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.815);
+    padding: 8px;
+}
 .pop-show{
     display: block;
 }
@@ -112,7 +126,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
+    padding: 20px;
 }
+
+
+
 .submitBtn {
     width: 150px;
     height: 30px;
@@ -124,6 +143,9 @@
     border: 0;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.164);
     cursor: pointer;
+}
+.submitBtn:hover{
+    box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.39);
 }
 .zoomIn {
     -webkit-animation-name: zoomIn;

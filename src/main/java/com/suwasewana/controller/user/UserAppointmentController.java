@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -42,7 +43,11 @@ public class UserAppointmentController extends HttpServlet {
                     uerMakeAppointment(req, res);
                     break;
                 case "view":
+                    System.out.println("View asd");
                     userViewAppointment(req, res);
+                    break;
+                case "delete":
+                    userDeleteAppointment(req, res);
                     break;
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -118,6 +123,37 @@ public class UserAppointmentController extends HttpServlet {
                 uNic
         );
         ArrayList<AppointmentModel> result = userDAO.userGetAppointmentDetails(userAppointmentDetails);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void userDeleteAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+//        String uNic = "";
+//        Cookie[] cookies = req.getCookies();
+//        if(cookies !=null){
+//            for(Cookie cookie : cookies){
+//                if(cookie.getName().equals("unic")) {
+//                    uNic = cookie.getValue();
+//                }
+//            }
+//        }
+//        AppointmentModel userAppointmentDetails = new AppointmentModel(
+//                "",
+//                "",
+//                " ",
+//                "",
+//                req.getParameter("appointmentId"),
+//                "",
+//                "",
+//                "",
+//                "",
+//                "",
+//                "",
+//                "",
+//                uNic
+//        );
+        String result = userDAO.UserDeleteAppointment(req.getParameter("appointmentId"));
+        System.out.println(req.getParameter("appointmentId"));
+        System.out.println(gson.toJson(result));
         res.getWriter().println(gson.toJson(result));
     }
 

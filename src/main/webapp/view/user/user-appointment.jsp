@@ -313,6 +313,7 @@
     getAllAppointment()
 
     function getAllAppointment() {
+        // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
         $.post("/test_war_exploded/user-appointment-controller/view",
             {
@@ -321,81 +322,9 @@
             },
             function (data, status) {
                 appointmentCardList = JSON.parse(data);
+                document.getElementById("previous-appointment-list").innerHTML = " ";
                 appointment.setData(appointmentCardList);
 
-                // if (appointmentCardList.length === 0) {
-                //     document.getElementById("previous-appointment-list").innerHTML = " no data found";
-                //     return;
-                // }
-                <%--document.getElementById("previous-appointment-list").innerHTML = appointmentCardList.map((data) => {--%>
-                <%--    return `<h1> ${appointmentCardList[i].aTitle} </h1>`--%>
-                <%--}).join(' ')--%>
-
-                // for (let i = 0; i < appointmentCardList.length; i++) {
-                //     console.log(appointmentCardList[i])
-                //     let myAppointment = document.getElementById("previous-appointment-list");
-                //     myAppointment.innerHTML += `<h1> appointmentCardList[i].aTitle </h1>`
-                // }
-
-                <%--appointmentCardList.map((item) => {--%>
-                <%--    &lt;%&ndash;let title = item.aTitle&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;console.log(item.aTitle)&ndash;%&gt;--%>
-
-                <%--    &lt;%&ndash;document.getElementById("previous-appointment-list").innerText =  "<h1> ${item.aTitle} </h1>"&ndash;%&gt;--%>
-
-                <%--    &lt;%&ndash;    <div class="appointment-card-container">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;        <div class="appointment-card">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="title">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                ${item.aTitle}&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                <p> 2021/01/10</p>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="desc">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                he process of writing a job description requires&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                having a clear understanding of the job’s duties&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                and responsibilities. The job posting should also&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                include a concise picture of the skills required&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                Organize the job&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="properties">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                <ul>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        Location : pending ...&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        Time Slot 1 : pending ...&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        Time Slot 2 : pending ...&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        Special Notice: No&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
-
-                <%--    &lt;%&ndash;                </ul>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="footer">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                <div class="current-registered-count">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    Mr ${item.phi}&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                <div class="pending-btn">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    status : <span>Pending...</span>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="footer d-flex-j-c-flex-end">&ndash;%&gt;--%>
-
-                <%--    &lt;%&ndash;                <div class="accept-btn bg-danger">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    Cancel&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;        </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;    </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;`&ndash;%&gt;--%>
-                <%--})--%>
             }
         );
     }
@@ -419,6 +348,7 @@
                         status: 'success',
                         message: 'Appointment Successfully Requested!'
                     });
+                    getAllAppointment();
                 } else {
                     popup.showAppointmentSuccessMessage({
                         status: 'fail',
@@ -429,6 +359,38 @@
             }
         );
         return false;
+    }
+    function deleteCheckInputVsUserInput(appointmentId){
+        let userInput = document.getElementById("delete_input").value;
+        if(userInput === "Delete"){
+            document.getElementById("deleteAuthErrorMessage").style.display = "none";
+            deleteAppointment(appointmentId);
+        }else{
+            document.getElementById("deleteAuthErrorMessage").style.display = "block";
+        }
+    }
+    function deleteAppointment(appointmentId){
+        $.post("/test_war_exploded/user-appointment-controller/delete",
+            {
+                appointmentId: appointmentId
+            },
+            function (data, status) {
+                console.log(data.includes("success"))
+                if (data.includes("success")) {
+                    popup.showAppointmentSuccessMessage({
+                        status: 'success',
+                        message: 'Appointment Successfully Deleted!'
+                    });
+                    getAllAppointment();
+                } else {
+                    popup.showAppointmentSuccessMessage({
+                        status: 'fail',
+                        message: 'Appointment Request Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
     }
 </script>
 </body>
