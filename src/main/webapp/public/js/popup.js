@@ -1,9 +1,10 @@
-class SuwasewanaPopup{
-    title= '';
+class SuwasewanaPopup {
+    title = '';
     desc = '';
     message = '';
-    type= "0";
-    constructor(popupContaienr, title, desc, message, type ){
+    type = "0";
+
+    constructor(popupContaienr, title, desc, message, type) {
         this.title = title;
         this.desc = desc;
         this.message = message;
@@ -12,12 +13,12 @@ class SuwasewanaPopup{
         this.init();
     }
 
-    init(){
-        
+    init() {
+
         // popup contaienr
         let popupContaienr = document.createElement('div');
         popupContaienr.classList.add('popup-container');
-        
+
         // popup
         let popup = document.createElement('div');
         popup.classList.add('popup', 'zoomIn');
@@ -26,7 +27,7 @@ class SuwasewanaPopup{
         let closeBTN = document.createElement('div');
         closeBTN.classList.add('close-btn');
         closeBTN.innerHTML = 'X';
-        closeBTN.setAttribute("onclick", "popup.hidePopup()" );
+        closeBTN.setAttribute("onclick", "popup.hidePopup()");
         popup.appendChild(closeBTN);
 
         // icon
@@ -54,16 +55,17 @@ class SuwasewanaPopup{
         let popupMessage = document.createElement('div');
         popupMessage.classList.add('popup-message');
         popupMessage.id = "popupMessageContainer";
-        
+
         popup.appendChild(popupMessage);
-        
+
         popupContaienr.appendChild(popup);
         this.container.appendChild(popupContaienr);
 
-    }      
-    createCalenderEvent(event){
+    }
+
+    createCalenderEvent(event) {
         let eventsContaier = document.createElement('div');
-        event[0].events.map( eventitem => {
+        event[0].events.map(eventitem => {
             let eventDiv = document.createElement('div');
             eventDiv.innerHTML = "<br> <br> Event Title : <h2> " + eventitem.title + "</h2>";
             eventDiv.innerHTML = "Event Desc : <h3> " + eventitem.desc + "</h3>";
@@ -74,12 +76,12 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
     }
 
-    showCalenderEnvetPopup(event){
+    showCalenderEnvetPopup(event) {
         this.createCalenderEvent(event);
         this.container.style.display = "block";
     }
 
-    showPatientDetails(data){
+    showPatientDetails(data) {
         let eventsContaier = document.createElement('div');
         console.log(data.name);
         let eventDiv = document.createElement('div');
@@ -88,17 +90,17 @@ class SuwasewanaPopup{
         eventDiv.innerHTML += "<h5> Age - " + data.age + " </h5>";
         eventDiv.classList.add('popup-title');
         eventsContaier.appendChild(eventDiv);
-        
+
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
 
-    showRegistrationSuccessMessage(data){
+    showRegistrationSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
         console.log(data.name);
         let eventDiv = document.createElement('div');
-        if(data.status === "success"){
+        if (data.status === "success") {
             eventDiv.innerHTML = `
             <div class="popup-title"> Citizen Registration Portal </div>
            
@@ -107,7 +109,7 @@ class SuwasewanaPopup{
                 ${data.message}!
                 <button class="submitBtn" onclick="popup.gotoLogin('login')"> Go to Login  </button>
             </div>`;
-        }else if(data.status === "fail"){
+        } else if (data.status === "fail") {
             eventDiv.innerHTML = `
             <div class="popup-title"> Citizen Registration Portal </div>
            
@@ -126,20 +128,25 @@ class SuwasewanaPopup{
     }
 
 
-
-    showAppointmentSuccessMessage(data){
+    showAppointmentSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
         console.log(data.name);
         let eventDiv = document.createElement('div');
-        if(data.status === "success"){
+        if (data.status === "success") {
             eventDiv.innerHTML = `
             <div class="popup-title"> User Appointment Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container"> 
                 ${data.message}!
-            </div>`;
-        }else if(data.status === "fail"){
+            </div>
+            <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        } else if (data.status === "fail") {
             eventDiv.innerHTML = `
             <div class="popup-title">User Appointment Portal </div>
            
@@ -147,6 +154,12 @@ class SuwasewanaPopup{
             <div class="popup-message-container"> 
                 ${data.message}!
                 <div class="error-message"> Reason :  ${data.data}</div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
             </div>`;
         }
         eventsContaier.appendChild(eventDiv);
@@ -155,15 +168,50 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
-    showPopup(){
-        this.container.style.display = "block";
-    }
-    hidePopup(){
-        this.container.style.display = "none"; 
+
+    showDeleteAlertMessage(data) {
+        let appointmentId = data;
+        data = {data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."}
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">User Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;"> 
+                ${data.data}!
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+                    <div class="form-group">
+                        <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                   
+                </div>  
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="deleteCheckInputVsUserInput('${appointmentId}')"> Delete Appointment</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
     }
 
-    gotoLogin(route){
-        switch (route){
+
+    showPopup() {
+        this.container.style.display = "block";
+    }
+
+    hidePopup() {
+        this.container.style.display = "none";
+    }
+
+    gotoLogin(route) {
+        switch (route) {
             case "login" :
                 location.replace("/test_war_exploded/s/login");
                 break;

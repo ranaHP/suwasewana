@@ -53,7 +53,7 @@ public class LoginController extends HttpServlet {
 
             Cookie loginCookie = new Cookie("unic",userLoginDetailsResponse.getUnic());
             //setting cookie to expiry in 30 mins
-            loginCookie.setMaxAge(30*60);
+            loginCookie.setMaxAge(300*60);
             res.addCookie(loginCookie);
             System.out.println(loginCookie.getValue());
         }

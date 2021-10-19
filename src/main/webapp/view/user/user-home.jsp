@@ -64,7 +64,10 @@
             </div>
         </div>
         <!-- hero banner -->
-
+<%--        <form method="post" action="http://localhost:8093/test_war_exploded/fileuploadservlet" enctype="multipart/form-data">--%>
+<%--            <input type="file" name="file" />--%>
+<%--            <input type="submit" value="Upload" />--%>
+<%--        </form>--%>
         <div class="hero-banner">
             <div class="left-col">
                 <div class="first-row">
