@@ -54,6 +54,7 @@ import java.util.ArrayList;
 
     private void createClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
        CreateClinicModel createClinic = new CreateClinicModel(
+               req.getParameter(""),
                req.getParameter("disease"),
                req.getParameter("title"),
                req.getParameter("location"),
@@ -77,6 +78,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
+                "",
                 ""
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
@@ -84,9 +86,11 @@ import java.util.ArrayList;
     }
 
     private void selectClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+            System.out.println("selettttttttttttttttt");
         CreateClinicModel selectClinic = new CreateClinicModel(
-                "",
+                req.getParameter("clinicID"),
                 req.getParameter("title"),
+                "",
                 "",
                 "",
                 "",
