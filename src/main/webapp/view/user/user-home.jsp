@@ -64,10 +64,13 @@
             </div>
         </div>
         <!-- hero banner -->
-<%--        <form method="post" action="http://localhost:8093/test_war_exploded/fileuploadservlet" enctype="multipart/form-data">--%>
-<%--            <input type="file" name="file" />--%>
-<%--            <input type="submit" value="Upload" />--%>
-<%--        </form>--%>
+        <form method="post" onsubmit="return imageUpload();"  enctype="multipart/form-data">
+            <input type="file" name="file" id="imageasd" />
+            <input type="file" name="file" id="imageasd1" />
+            <input type="file" name="file" id="imageasd2" />
+            <input type="submit" value="Upload" />
+        </form>
+
         <div class="hero-banner">
             <div class="left-col">
                 <div class="first-row">
@@ -771,6 +774,33 @@
 
 <script defer>
 
+    function imageUpload(){
+        var fd = new FormData();
+
+        var files = $('#imageasd')[0].files[0];
+        var files1 = $('#imageasd1')[0].files[0];
+        var files2 = $('#imageasd2')[0].files[0];
+        alert()
+        fd.append('file',files);
+        fd.append('file1',files1);
+        fd.append('file2',files2);
+        alert()
+        $.ajax({
+            url: '/test_war_exploded/fileuploadservlet',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function(response){
+                if(response != 0){
+                   alert("successfully image uploadedss")
+                }else{
+                    alert('file not uploaded');
+                }
+            },
+        });
+        return false;
+    }
 </script>
 <script>
     feather.replace({width: "16px"})
