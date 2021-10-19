@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%--<html>--%>
 <%--<head>--%>
@@ -20,7 +20,7 @@
         x
     </div>
     <div class="logo-details">
-        <!-- <i class='bx bxl-c-plus-plus'></i> -->
+<%--        <!-- <i class='bx bxl-c-plus-plus'></i> -->--%>
         <img src="<c:url value="/public/images/logo/logo.png"/>"   class="logoImage" alt="logo"/>
         <span class="logo_name">Suwasewana</span>
     </div>
@@ -71,7 +71,7 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="../../../index.jsp"> Diseases Reports </a></li>
+                <li><a href="../../../aindex.jsp"> Diseases Reports </a></li>
                 <li><a href="#"> Clinics Reports</a></li>
                 <li><a href="#"> Prediction Reports</a></li>
             </ul>
@@ -79,7 +79,7 @@
         <li>
             <div class="profile-details">
                 <div class="profile-content">
-                    <img src="<c:url value="/public/images/avatar/avatar.png"/>" src="image/profile.jpg" alt="profileImg">
+                    <img src="<c:url value="/public/images/avatar.png"/>" src="image/profile.jpg" alt="profileImg">
                 </div>
                 <div class="name-job">
                     <div class="profile_name">Hansana</div>

@@ -4,9 +4,7 @@ package com.suwasewana.controller.user;
 import com.google.gson.Gson;
 import com.suwasewana.core.ResponseType;
 import com.suwasewana.dao.OfficerDAO;
-import com.suwasewana.dao.UserLoginDAO;
 import com.suwasewana.model.OfficerLoginModel;
-import com.suwasewana.model.UserLoginModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +15,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 
 @WebServlet("/officer-login-controller")
 public class OfficerLoginController extends HttpServlet {

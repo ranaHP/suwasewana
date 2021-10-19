@@ -15,9 +15,9 @@
 <%--    <c:if test="${request.getServletPath()}">--%>
 <%--        <c:import url="view/Login.jsp"/>--%>
 <%--    </c:if>--%>
-<a href="view/Login.jsp" > <h1> login </h1></a>
-<a href="view/admin/clinicalOfficer/dashBoard/dashboard.jsp" > <h1> clinical officer home </h1></a>
+<a href="view/user/Login.jsp" > <h1> login </h1></a>
+<a href="view/admin/clinicalOfficer/dashBoard/Dashboard.jsp" > <h1> clinical officer home </h1></a>
     <a href="view/admin/clinicalOfficer/dashBoard/dashboard_crateClinics.jsp" > <h1> create clinic</h1></a>
-<a href="view/admin/phiOfficer/dashBoard/dashboard_viewAppointments.jsp" > <h1> view appointments</h1></a>
+    <a href="view/admin/OfficerLogin/OfficerLogin.jsp" > <h1> officer login</h1></a>
     </body>
 </html>
