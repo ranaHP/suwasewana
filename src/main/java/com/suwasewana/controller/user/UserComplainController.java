@@ -58,7 +58,7 @@ public class UserComplainController extends HttpServlet {
                     uerMakeComplain(req, res);
                     break;
                 case "view":
-//                    userViewComplainview(req, res);
+                    userViewComplain(req, res);
                     break;
                 case "phi":
                     userViewPHI(req, res);
@@ -103,7 +103,10 @@ public class UserComplainController extends HttpServlet {
                 "1234fr5",
                 "199910920064",
                 "",
-                "pending"
+                "pending",
+                req.getParameter("img1"),
+                req.getParameter("img2"),
+                req.getParameter("img3")
         );
         System.out.println("Title "+usercomplainDetails.getCTitle());
         System.out.println("cType "+usercomplainDetails.getCType() );
@@ -115,32 +118,35 @@ public class UserComplainController extends HttpServlet {
         res.getWriter().println(result);
     }
 
-//    private void userViewComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-//        String uNic = "";
-//        Cookie[] cookies = req.getCookies();
-//        if(cookies !=null){
-//            for(Cookie cookie : cookies){
-//                if(cookie.getName().equals("unic")) {
-//                    uNic = cookie.getValue();
-//                }
-//            }
-//        }
-//        ComplainModel complainModel = new ComplainModel(
-//
-//                req.getParameter("CTitle");
-//                req.getParameter("CType");
-//                req.getParameter("UType");
-//                req.getParameter("CTitle");
-//                req.getParameter("PHIId");
-//                req.getParameter("CMessage");
-//                req.getParameter("Status");
-//                req.getParameter("Posted_Date");
-//
-//        );
-//
-//        ArrayList<ComplainTypeModel> result = complainDAO.GetComplainTypeDetails();
-//        res.getWriter().println(gson.toJson(result));
-//    }
+    private void userViewComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("unic")) {
+                    uNic = cookie.getValue();
+                }
+            }
+        }
+        ComplainModel complainModeldetail = new ComplainModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "pending",
+                "",
+                "",
+                ""
+
+        );
+
+        ArrayList<ComplainModel> result = userDAO.userGetComplainDetails(complainModeldetail);
+        res.getWriter().println(gson.toJson(result));
+    }
 
 
 

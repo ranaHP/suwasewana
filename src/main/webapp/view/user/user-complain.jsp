@@ -411,7 +411,7 @@
                         Make a Complaints
                     </div>
                     <div class="make-complaint-form">
-                        <form onsubmit="return makeComplain();">
+                        <form onsubmit="return checkValidation();" method="post">
                             <div class="row">
                                 <div class="form-group">
                                     <label for="cTitle">
@@ -419,6 +419,9 @@
                                     </label>
                                     <input type="text" name="name" id="cTitle" autocomplete="off"
                                            onkeydown="validation.checklength(
+                                           document.getElementById('cTitle').value,
+                                           'ecTitle',10);"
+                                           onblur="validation.checklength(
                                            document.getElementById('cTitle').value,
                                            'ecTitle',10);"
                                            onfocus="validation.removeerror('ecTitle');"
@@ -472,6 +475,7 @@
                                            validation.selectCheck('MOHArea','eMOHArea');"
                                            onclick="document.getElementById('MOHArea').value='';
                                                     fillMOH('MOHArea');"
+                                           onblur="validation.selectCheck('MOHArea','eMOHArea');"
                                      >
                                     <datalist id="allMOHArea">
                                     </datalist>
@@ -487,7 +491,7 @@
                                            onclick="document.getElementById('phi').value=''";
                                     >
                                     <datalist id="allphi">
-                                        <option value="Hansana" option="Hansana"></option>
+                                        <option value="Plz select Your MOH Area" option="Plz select Your MOH Area" readonly></option>
                                     </datalist>
                                     <label id="ephi"></label>
                                 </div>
@@ -504,6 +508,9 @@
                                               onkeydown="validation.checklength(
                                            document.getElementById('reason').value,
                                            'ereason',10);"
+                                              onblur="validation.checklength(
+                                           document.getElementById('reason').value,
+                                           'ereason',10);"
                                               onfocus="validation.removeerror('ereason');"
                                     ></textarea>
                                     <label id="ereason"></label>
@@ -515,15 +522,16 @@
                                     <div class="image-upload-card-container">
                                         <div class="image-upload-card">
                                             <img id="proof1" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof1input"
+                                            <input type="file" accept="image/*" name="file" id="proof1input"
                                                    onchange="loadFile(event , 'proof1')" style="display: none;">
+
                                             <label for="proof1input" style="cursor: pointer;">Upload Image</label>
                                         </div>
                                     </div>
                                     <div class="image-upload-card-container">
                                         <div class="image-upload-card">
                                             <img id="proof2" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof2input"
+                                            <input type="file" accept="image/*" name="file" id="proof2input"
                                                    onchange="loadFile(event, 'proof2')" style="display: none;">
                                             <label for="proof2input" style="cursor: pointer;">Upload Image</label>
                                         </div>
@@ -531,7 +539,7 @@
                                     <div class="image-upload-card-container">
                                         <div class="image-upload-card">
                                             <img id="proof3" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof3input"
+                                            <input type="file" accept="image/*" name="file" id="proof3input"
                                                    onchange="loadFile(event, 'proof3')" style="display: none;">
                                             <label for="proof3input" style="cursor: pointer;">Upload Image</label>
                                         </div>
@@ -540,7 +548,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group d-flex-a-i-end">
-                                    <button class="submitBtn "> Make Complaint</button>
+                                    <button type="submit" class="submitBtn "> Make Complaint</button>
                                 </div>
 
                             </div>
@@ -572,7 +580,7 @@
 
 </div>
 <script>
-
+    // console.log("time "+String(new Date()).split(" ").join())
     let validation = new FormInputValidation();
 </script>
 <script defer>
@@ -590,20 +598,96 @@
             validation.selectCheck('complaintType','eallcomplaintType') &&
             validation.selectCheck('uDetailsType','euDetailsType') &&
             validation.selectCheck('MOHArea','eMOHArea') &&
-            validation.selectCheck('phi','ephi')
+            validation.selectCheck('phi','ephi')&&
+            validation.checklength(document.getElementById('reason').value,'ereason',10)
         ){
+            console.log("correct");
+
+
+
+
             makeComplain();
         }
         else {
-            validation.checklength(document.getElementById('cTitle').value,'ecTitle',10)
-            validation.selectCheck('complaintType','eallcomplaintType')
-            validation.selectCheck('uDetailsType','euDetailsType')
-            validation.selectCheck('MOHArea','eMOHArea')
-            validation.selectCheck('phi','ephi')
-            console.log("incorrect")
+            validation.checklength(document.getElementById('cTitle').value,'ecTitle',10);
+            validation.selectCheck('complaintType','eallcomplaintType');
+            validation.selectCheck('uDetailsType','euDetailsType');
+            validation.selectCheck('MOHArea','eMOHArea');
+            validation.selectCheck('phi','ephi');
+            validation.checklength(document.getElementById('reason').value,'ereason',10);
+            console.log("incorrect");
         }
+
+
+        // image adding
+        // var fd = new FormData();
+        // var files = $('#proof1input')[0].files[0];
+        // var files1 = $('#proof2input')[0].files[0];
+        // var files2 = $('#proof3input')[0].files[0];
+        // fd.append('file',files);
+        // fd.append('file1',files1);
+        // fd.append('file2',files2);
+        // var time=String(new Date()).split(" ").join();
+        // var id="123242";
+        // var img1=String(time+id+1)
+        // var img2=String(time+id+2)
+        // var img3=String(time+id+3)
+        // console.log(img1);
+        // console.log(img2);
+        // console.log(img3);
+        // fd.append('img1',img1)
+        // fd.append('img2',img2)
+        // fd.append('img3',img3)
+        //
+        // $.ajax({
+        //     url: '/suwasewana_war/fileuploadservlet',
+        //     type: 'post',
+        //     data: fd,
+        //     contentType: false,
+        //     processData: false,
+        //     success: function(response){
+        //         if(response != 0){
+        //             alert("successfully image uploadedss")
+        //         }else{
+        //             alert('file not uploaded');
+        //         }
+        //     },
+        // });
+
+
+        return false;
     }
     function makeComplain() {
+
+
+        // image adding
+        // var fd = new FormData();
+        // var files = $('#proof1input')[0].files[0];
+        // var files1 = $('#proof2input')[0].files[0];
+        // var files2 = $('#proof3input')[0].files[0];
+        // fd.append('file',files);
+        // fd.append('file1',files1);
+        // fd.append('file2',files2);
+        // var time=String(new Date()).split(" ").join();
+        // var id="123242";
+        // fd.append('img1',time+id+"1")
+        // fd.append('img2',time+id+"2")
+        // fd.append('img3',time+id+"3")
+        //
+        // $.ajax({
+        //     url: '/suwasewana_war/fileuploadservlet',
+        //     type: 'post',
+        //     data: fd,
+        //     contentType: false,
+        //     processData: false,
+        //     success: function(response){
+        //         if(response != 0){
+        //             alert("successfully image uploadedss")
+        //         }else{
+        //             alert('file not uploaded');
+        //         }
+        //     },
+        // });
 
 
         // take complaintype
@@ -640,9 +724,9 @@
                 uType: UserType,
                 cPhi: PId,
                 cReason: document.getElementById("reason").value,
-                img1:document.getElementById("proof1input").value,
-                img2:document.getElementById("proof2input").value,
-                img3:document.getElementById("proof3input").value
+                img1:"document.getElementById(proof1input).value",
+                img2:"document.getElementById(proof2input).value",
+                img3:"document.getElementById(proof3input).value"
             };
         console.log(reqData);
 

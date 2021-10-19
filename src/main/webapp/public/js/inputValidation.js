@@ -107,6 +107,7 @@ class FormInputValidation {
     }
 
     selectCheck(name,fieldName){
+        // console.log("select check "+ name+" "+fieldName)
         let isValida = true;
         if(!name){
             isValida = false;
@@ -114,16 +115,16 @@ class FormInputValidation {
         else {
             var CTypeObj = document.getElementById(name);
             var datalist = document.getElementById(CTypeObj.getAttribute("list"));
-            console.log(datalist);
+            // console.log(datalist);
             let ComplainType=(datalist.options.namedItem(CTypeObj.value));
             // console.log("id"+datalist.options.namedItem(CTypeObj.value).id);
             if(!ComplainType && ComplainType!=""){
-                console.log("empty comp type" +ComplainType)
+                // console.log("empty comp type" +ComplainType)
                 this.setErrorMessageForField("Required*", fieldName, 0)
                 isValida = false;
             }
             else {
-                console.log(" not empty comp type" +ComplainType)
+                // console.log(" not empty comp type" +ComplainType)
                 this.setErrorMessageForField("", fieldName, 0)
                 isValida = true;
             }
@@ -132,7 +133,7 @@ class FormInputValidation {
 
     }
     checklength(name, fieldName,length) {
-
+        // console.log("check length "+ name+" "+fieldName+" "+length)
         let isValida = true;
         if (name === "") {
             this.setErrorMessageForField("required*", fieldName, 0)
