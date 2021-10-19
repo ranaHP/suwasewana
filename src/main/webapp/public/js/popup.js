@@ -1,3 +1,4 @@
+// alert("popup")
 class SuwasewanaPopup{
     title= '';
     desc = '';
@@ -25,7 +26,8 @@ class SuwasewanaPopup{
         // close btn
         let closeBTN = document.createElement('div');
         closeBTN.classList.add('close-btn');
-        closeBTN.innerHTML = '<i data-feather="x"></i>';
+        // closeBTN.innerHTML = '<i data-feather="x"></i>';
+        closeBTN.innerHTML = 'X';
         closeBTN.setAttribute("onclick", "popup.hidePopup()" );
         popup.appendChild(closeBTN);
 
@@ -124,6 +126,34 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    showCreateClinicSuccessMessage(data){
+        let eventsContaier = document.createElement('div');
+        console.log(data.name);
+        let eventDiv = document.createElement('div');
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> Create clinic portral </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>`;
+        }else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">User Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
     showPopup(){
         this.container.style.display = "block";
     }
@@ -144,6 +174,5 @@ class SuwasewanaPopup{
 
         }
     }
-
-
 }
+module.exports.SuwasewanaPopup = SuwasewanaPopup;
