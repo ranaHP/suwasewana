@@ -52,6 +52,14 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
+}
+.active{
+    color: #006633;
+}
+
+.active .dash-title{
+    font-weight: 600;
 }
 .dash-tab .dash-icon{
     
@@ -64,6 +72,8 @@
     align-items: center;
     justify-content: center;
     box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.158);
+    cursor: pointer;
+
 }
 .dash-icon svg{
     color: rgba(0, 0, 0, 0.788);
@@ -72,6 +82,7 @@
     padding-top: 10px;
     font-family: 'Nunito', sans-serif;
     text-align: center;
+    cursor: pointer;
 }
 .right-dashboard{
     width: 80%;
