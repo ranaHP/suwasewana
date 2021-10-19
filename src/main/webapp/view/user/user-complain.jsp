@@ -43,6 +43,7 @@
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
     <!-- hero banner -->
     <section class="hero-banner-main-header-container">
+        <div class="mypopup" id="popup" style="display: none;"></div>
         <!-- for header -->
         <div class="user-main-header-container">
             <div class="main-header">
@@ -416,8 +417,13 @@
                                     <label for="cTitle">
                                         complaint Title
                                     </label>
-                                    <input type="text" name="name" id="cTitle" autocomplete="off" />
-
+                                    <input type="text" name="name" id="cTitle" autocomplete="off"
+                                           onkeydown="validation.checklength(
+                                           document.getElementById('cTitle').value,
+                                           'ecTitle',10);"
+                                           onfocus="validation.removeerror('ecTitle');"
+                                    />
+                                    <label id="ecTitle"></label>
                                 </div>
                             </div>
                             <div class="row">
@@ -426,21 +432,32 @@
                                         complaint Type
                                     </label>
                                     <input id="complaintType" type="text" list="allcomplaintType"
-                                           name="complaintType" autocomplete="off" >
+                                           name="complaintType" autocomplete="off"
+                                        onblur="validation.selectCheck('complaintType','eallcomplaintType')";
+                                           onchange="validation.selectCheck('complaintType','eallcomplaintType')"
+                                           onclick="document.getElementById('complaintType').value=''";
+                                    >
                                     <datalist id="allcomplaintType">
                                         <option value="Mahapola" option=" Mahapola"></option>
                                         <option value="Mahapola" option=" Mahapola"></option>
                                     </datalist>
+                                    <label id="eallcomplaintType"></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="uDetailsType">
                                         User Details Type
                                     </label>
-                                    <input id="uDetailsType" type="text" list="alluDetailsType" name="alluDetailsType" autocomplete="off" >
+                                    <input id="uDetailsType" type="text" list="alluDetailsType" name="alluDetailsType" autocomplete="off"
+                                           onblur="validation.selectCheck('uDetailsType','euDetailsType')";
+                                           onchange="validation.selectCheck('uDetailsType','euDetailsType')";
+                                           onclick="document.getElementById('uDetailsType').value=''";
+
+                                    >
                                     <datalist id="alluDetailsType">
                                         <option id="0" name="With Details" value="With Details" option="With Details"></option>
                                         <option id="1" name="Anonymous" value="Anonymous" option="Anonymous"></option>
                                     </datalist>
+                                    <label id="euDetailsType"></label>
                                 </div>
                             </div>
                             <div class="row">
@@ -448,46 +465,48 @@
                                     <label for="uDetailsType">
                                         MOH Area
                                     </label>
-                                    <input id="MOHArea" type="text" list="allMOHArea" name="allMOHArea" autocomplete="off"
-                                           onblur="fillMOH('MOHArea');"
-                                            onchange="fillMOH('MOHArea');"
+                                    <input id="MOHArea" type="text" list="allMOHArea" name="allMOHArea"  value="wwwwwww" autocomplete="off"
+<%--                                           onblur="fillMOH('MOHArea');--%>
+<%--                                            validation.selectCheck('MOHArea','eMOHArea');"--%>
+                                           onchange="fillMOH('MOHArea');
+                                           validation.selectCheck('MOHArea','eMOHArea');"
+                                           onclick="document.getElementById('MOHArea').value='';
+                                                    fillMOH('MOHArea');"
                                      >
                                     <datalist id="allMOHArea">
                                     </datalist>
+                                    <label id="eMOHArea"></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="phi">
                                         Your Area's PHI Name
                                     </label>
-                                    <input id="phi" type="text" list="allphi" name="allphi" autocomplete="off" >
+                                    <input id="phi" type="text" list="allphi" name="allphi" autocomplete="off"
+                                           onblur="validation.selectCheck('phi','ephi')";
+                                           onchange="validation.selectCheck('phi','ephi')"
+                                           onclick="document.getElementById('phi').value=''";
+                                    >
                                     <datalist id="allphi">
                                         <option value="Hansana" option="Hansana"></option>
                                     </datalist>
+                                    <label id="ephi"></label>
                                 </div>
 
                             </div>
-<%--                            <div class="row">--%>
-<%--                                <div class="form-group">--%>
-<%--                                    <label for="phi">--%>
-<%--                                        Your Area's PHI Name--%>
-<%--                                    </label>--%>
-<%--                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off">--%>
-<%--                                    <datalist id="allphi">--%>
-<%--                                        <option value="Hansana" option="Hansana"></option>--%>
-<%--                                    </datalist>--%>
-<%--                                </div>--%>
-<%--                                <div class="form-group">--%>
 
-<%--                                </div>--%>
-
-<%--                            </div>--%>
                             <div class="row">
                                 <div class="form-group">
                                     <label for="reason">
                                         Description
                                     </label>
                                     <textarea rows="4" cols="50" type="text" placeholder="deascription"
-                                              name="reason" id="reason"></textarea>
+                                              name="reason" id="reason"
+                                              onkeydown="validation.checklength(
+                                           document.getElementById('reason').value,
+                                           'ereason',10);"
+                                              onfocus="validation.removeerror('ereason');"
+                                    ></textarea>
+                                    <label id="ereason"></label>
                                 </div>
 
                             </div>
@@ -552,33 +571,65 @@
     </div>
 
 </div>
+<script>
+
+    let validation = new FormInputValidation();
+</script>
 <script defer>
-    var loadFile = function (event, imgContainerId) {
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+        var loadFile = function (event, imgContainerId) {
         var image = document.getElementById(imgContainerId);
         image.src = URL.createObjectURL(event.target.files[0]);
+        console.log("url "+event.target.files[0].name)
     };
 </script>
 
 <script>
+    function checkValidation(){
+        if( validation.checklength(document.getElementById('cTitle').value,'ecTitle',10) &&
+            validation.selectCheck('complaintType','eallcomplaintType') &&
+            validation.selectCheck('uDetailsType','euDetailsType') &&
+            validation.selectCheck('MOHArea','eMOHArea') &&
+            validation.selectCheck('phi','ephi')
+        ){
+            makeComplain();
+        }
+        else {
+            validation.checklength(document.getElementById('cTitle').value,'ecTitle',10)
+            validation.selectCheck('complaintType','eallcomplaintType')
+            validation.selectCheck('uDetailsType','euDetailsType')
+            validation.selectCheck('MOHArea','eMOHArea')
+            validation.selectCheck('phi','ephi')
+            console.log("incorrect")
+        }
+    }
     function makeComplain() {
+
 
         // take complaintype
         var CTypeObj = document.getElementById("complaintType");
         var datalist = document.getElementById(CTypeObj.getAttribute("list"));
-        let ComplainType=(datalist.options.namedItem(CTypeObj.value).id);
-        console.log(ComplainType);
+        let ComplainType;
+        let UserType;
+        let PId;
+        let MOHId;
+        if(datalist.options.namedItem(CTypeObj.value)){
+             ComplainType=(datalist.options.namedItem(CTypeObj.value).id);
+        }
+
         // take usertype
         var UTypeObj = document.getElementById("uDetailsType");
         var datalist = document.getElementById(UTypeObj.getAttribute("list"));
-        let UserType=(datalist.options.namedItem(UTypeObj.value).id);
-
-        console.log(UserType);
+        if(datalist.options.namedItem(UTypeObj.value)){
+            UserType=(datalist.options.namedItem(UTypeObj.value).id);
+        }
 
         // take phiID
-        var phiObj = document.getElementById("uDetailsType");
+        var phiObj = document.getElementById("phi");
         var datalist = document.getElementById(phiObj.getAttribute("list"));
-        let PId=(datalist.options.namedItem(phiObj.value).id);
-        console.log(PId);
+        if(datalist.options.namedItem(phiObj.value)){
+            PId=(datalist.options.namedItem(phiObj.value).id);
+        }
 
 
 
@@ -589,6 +640,9 @@
                 uType: UserType,
                 cPhi: PId,
                 cReason: document.getElementById("reason").value,
+                img1:document.getElementById("proof1input").value,
+                img2:document.getElementById("proof2input").value,
+                img3:document.getElementById("proof3input").value
             };
         console.log(reqData);
 
@@ -597,14 +651,16 @@
             function (data, status) {
                 console.log(data.includes("success"))
                 if (data.includes("success")) {
+                    console.log("successsss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'success',
-                        message: 'Appointment Successfully Requested!'
+                        message: 'Complain Successfully Added!'
                     });
                 } else {
+                    console.log("unsuccesssss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'fail',
-                        message: 'Appointment Request Fails !',
+                        message: 'Complain Send Fail !',
                         data: data
                     });
                 }
@@ -634,32 +690,35 @@
     let mohDetails=[];
     $.post("/suwasewana_war/user-complain-controller/moh",
         function (data, status) {
-            console.log(data);
             let rs= JSON.parse(data);
             this.mohDetails=rs;
-            console.log(data);
 
             let MNames=document.getElementById("allMOHArea");
             MNames.innerHTML="";
             rs.map((element,index) => {
-                console.log("moh"+element.MName)
                 MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
             })
         }
     );
-    console.log(mohDetails);
 
     function fillMOH(listid){
+
         var listObj = document.getElementById(listid);
          var datalist = document.getElementById(listObj.getAttribute("list"));
-        let mohid=(datalist.options.namedItem(listObj.value).id);
-        ViewPHI(mohid);
+         if(datalist.options.namedItem(listObj.value)){
+             let mohid=(datalist.options.namedItem(listObj.value).id);
+             ViewPHI(mohid);
+         }
+
     }
 
 
 <%--script for take PHI list--%>
 //     let mid=0;
 //     ViewPHI(mid);
+
+
+
     function ViewPHI(mid){
         $.post("/suwasewana_war/user-complain-controller/phi",
             function (data, status) {
@@ -667,8 +726,8 @@
                 let PNames=document.getElementById("allphi");
                 PNames.innerHTML="";
                 rs.map((element) => {
-                    if(element.mohId==mid){PNames.innerHTML+= '<option id="'+element.mohId+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'}
-                    // console.log("moh"+element.MName)
+                    if(element.mohId==mid){PNames.innerHTML+= '<option id="'+element.phi_Id+'" name="'+element.full_name+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'}
+
 
                 })
             }

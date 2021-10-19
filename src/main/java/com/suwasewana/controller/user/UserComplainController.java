@@ -100,33 +100,47 @@ public class UserComplainController extends HttpServlet {
                 req.getParameter("uType"),
                 req.getParameter("cPhi"),
                 req.getParameter("cReason"),
-                "12345",
+                "1234fr5",
+                "199910920064",
                 "",
                 "pending"
         );
+        System.out.println("Title "+usercomplainDetails.getCTitle());
+        System.out.println("cType "+usercomplainDetails.getCType() );
+        System.out.println("uType "+usercomplainDetails.getUType());
+        System.out.println("phiid "+usercomplainDetails.getPHIId());
+        System.out.println("reason "+usercomplainDetails.getCMessage());
+
         String result = userDAO.UserMakeComplain(usercomplainDetails);
-        System.out.println("complain add or not "+ result);
         res.getWriter().println(result);
     }
 
-    private void userViewComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
-        Cookie[] cookies = req.getCookies();
-        if(cookies !=null){
-            for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
-                }
-            }
-        }
-        ComplainTypeModel ComplainTypedetails= new ComplainTypeModel(
-                "",
-                ""
-        );
-
-        ArrayList<ComplainTypeModel> result = complainDAO.GetComplainTypeDetails();
-        res.getWriter().println(gson.toJson(result));
-    }
+//    private void userViewComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+//        String uNic = "";
+//        Cookie[] cookies = req.getCookies();
+//        if(cookies !=null){
+//            for(Cookie cookie : cookies){
+//                if(cookie.getName().equals("unic")) {
+//                    uNic = cookie.getValue();
+//                }
+//            }
+//        }
+//        ComplainModel complainModel = new ComplainModel(
+//
+//                req.getParameter("CTitle");
+//                req.getParameter("CType");
+//                req.getParameter("UType");
+//                req.getParameter("CTitle");
+//                req.getParameter("PHIId");
+//                req.getParameter("CMessage");
+//                req.getParameter("Status");
+//                req.getParameter("Posted_Date");
+//
+//        );
+//
+//        ArrayList<ComplainTypeModel> result = complainDAO.GetComplainTypeDetails();
+//        res.getWriter().println(gson.toJson(result));
+//    }
 
 
 

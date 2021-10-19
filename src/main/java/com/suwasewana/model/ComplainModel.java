@@ -10,18 +10,20 @@ public class ComplainModel {
     protected String CTitle;
     protected String CMessage;
     protected String PHIId;
+    protected String PHIName;
     protected String Status;
 
     public ComplainModel
-    (String CTitle,String CType, String UType,  String PHIId,String CMessage,String User, String Posted_Date, String Status){
+    (String CTitle,String CType,String UType,String PHIId,String CMessage,String PName ,  String User, String Posted_Date, String Status){
         super();
+        this.CTitle=CTitle;
         this.CType=CType;
         this.UType=UType;
+        this.PHIId=PHIId;
+        this.PHIName=PName;
         this.User=User;
         this.Posted_Date=Posted_Date;
-        this.CTitle=CTitle;
         this.CMessage=CMessage;
-        this.PHIId=PHIId;
         this.Status=Status;
     }
 
