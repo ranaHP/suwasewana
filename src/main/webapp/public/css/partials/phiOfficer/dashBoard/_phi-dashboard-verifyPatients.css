@@ -1,11 +1,12 @@
 body{
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     height: 100vh;
+    background-color: #dfe4ea59;
 }
 .header{
-    padding: 15px 15px 15px 34px;
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
     margin-bottom: 2px;
     box-shadow: 0 3px 3px #0a0a0a1c;
     background-color: white;
@@ -20,9 +21,10 @@ body{
 .header .dashboard-name{
     font-size: .6em;
     letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
 }
 .container{
-    background-color: #FCFCFC;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -58,8 +60,9 @@ body{
     border: 0;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);
     height: 25px;
-    width: 20%;
+    width: 100px;
     font-family: Arial, Helvetica, sans-serif;
+    outline: none;
 }
 .details{
     display: flex;
@@ -146,6 +149,14 @@ button{
     color: #D9534F;
     border: none;
     border: 1px solid #d9534f
+}
+.accept-b:hover{
+    background-color: #5cb85ce8;
+    color: white;
+}
+.reject-b:hover{
+    background-color: #d9544fe7;
+    color: white;
 }
 @media screen and (max-width: 1010px) {
     .request-card{

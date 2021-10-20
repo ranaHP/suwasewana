@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
 
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/common/_db-header.css"/> "/>
-    <link rel="stylesheet" href="<c:url value="/public/css/commonStyles.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/_db-header.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
 
 <%--    side nav bar styles--%>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/common/side-navbar.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>suwasewana</title>
 </head>
