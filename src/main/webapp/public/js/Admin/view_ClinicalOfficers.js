@@ -58,36 +58,36 @@ data=[{
     },
 ]
 // var body = document.getElementsByTagName("body")[0];
-    var body=document.getElementById("mainContent")
-    var tbl = document.createElement("table");
-    tbl.classList.add("table")
-    var tblBody = document.createElement("tbody");
-    headers=["name","ID","District","Area","Mobile","update","ReNew","Block"]
-    var row = document.createElement("tr");
-    headers.map((item=>{
-        row.classList.add("thead")
-        var cell = document.createElement("th");
-        var cellText = document.createTextNode(item);
-        cell.appendChild(cellText);
-        row.appendChild(cell);
-        tblBody.appendChild(row);
-    }))
-    data.map((item)=>{
-        tblBody.innerHTML+=`
-            <tr>
-                        <td data-label="Name">${item.name}</td>
-                        <td data-label="Id">${item.ID}</td>
-                        <td data-label="Didtrict">${item.District}</td>
-                        <td data-label="Area">${item.Area}</td>
-                        <td data-label="Mobile">${item.Mobile}</td>
-                        <td class="update" data-label="update"><button>Update</button></td>
-                        <td class="Block"  data-label="ReNew"><button>Re New MAC</button></td>
-                        <td class="Block"  data-label="Block"><button>Block</button></td>
-            </tr>
-            `
-        tbl.appendChild(tblBody);
-        body.appendChild(tbl);
-    })
+var body = document.getElementById("mainContent")
+var tbl = document.createElement("table");
+tbl.classList.add("table")
+var tblBody = document.createElement("tbody");
+headers=["name","ID","District","Area","Mobile","update","ReNew","Block"]
+var row = document.createElement("tr");
+headers.map((item=>{
+    row.classList.add("thead")
+    var cell = document.createElement("th");
+    var cellText = document.createTextNode(item);
+    cell.appendChild(cellText);
+    row.appendChild(cell);
+    tblBody.appendChild(row);
+}))
+data.map((item)=>{
+    tblBody.innerHTML+=`
+        <tr>
+                    <td data-label="Name">${item.name}</td>
+                    <td data-label="Id">${item.ID}</td>
+                    <td data-label="Didtrict">${item.District}</td>
+                    <td data-label="Area">${item.Area}</td>
+                    <td data-label="Mobile">${item.Mobile}</td>
+                    <td class="update" data-label="update"><button>Update</button></td>
+                    <td class="Block"  data-label="ReNew"><button>Re New MAC</button></td>
+                    <td class="Block"  data-label="Block"><button>Block</button></td>
+        </tr>
+        `
+    tbl.appendChild(tblBody);
+    body.appendChild(tbl);
+})
 function check(){
     tblBody.innerHTML=''
     headers=["name","ID","District","Area","Mobile","update","ReNew","Block"]
