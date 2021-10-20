@@ -13,7 +13,7 @@ public class createClinicDAO {
   private  static final String CREATE_CLINIC ="INSERT INTO `clinics`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,NULL );";
   private static final String VIEW_CLINICS = "SELECT * FROM `clinics`";
   private static final String SELECT_CLINICS = "SELECT * FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
-  
+  private static final String DELETE_CLINICS ="DELETE FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
     Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -123,6 +123,17 @@ public class createClinicDAO {
         return null;
     }
 
+    public String deleteClinic(CreateClinicModel deleteClinic) {
+        boolean rowDeleted;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLINICS)) {
+                 preparedStatement.setString(1,deleteClinic.getClinicID());
+                rowDeleted = preparedStatement.executeUpdate() > 0;
+                return "success";
+        } catch (SQLException throwables) {
+            return throwables.getMessage();
+        }
+    }
+
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
@@ -138,6 +149,7 @@ public class createClinicDAO {
             }
         }
     }
+
 
 }
 

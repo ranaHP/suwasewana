@@ -43,6 +43,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select");
                       selectClinic(req,res);
                     break;
+                case "delete":
+                    res.getWriter().println("delete");
+                      deleteClinic(req,res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -102,5 +106,24 @@ import java.util.ArrayList;
         System.out.println("select");
         ArrayList<CreateClinicModel> result= createClinicDAO.selectClinics(selectClinic);
         res.getWriter().println(gson.toJson(result));
+    }
+    private void deleteClinic(HttpServletRequest req,HttpServletResponse res) throws IOException {
+          System.out.println("Deleteeeeeeeeee");
+          CreateClinicModel deleteClinic = new CreateClinicModel(
+                  req.getParameter("clinicID"),
+                  req.getParameter("title"),
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+          );
+          System.out.println("delete");
+          String result = createClinicDAO.deleteClinic(deleteClinic);
+         res.getWriter().println(result);
+          System.out.println(result);
     }
 }
