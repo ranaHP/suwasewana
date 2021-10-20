@@ -65,6 +65,10 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/ClinicAnnouncement.jsp");
                     rd.forward(request,response);
                     break;
+                case "view_PHI":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/View-PHI.jsp");
+                    rd.forward(request,response);
+                    break;
                 default:
                     response.getWriter().println("404 Page not Found");
                     break;
