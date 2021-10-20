@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
-
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/_db-header.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -59,25 +57,25 @@
                        <p style="text-align: center" class="f-2">Available Time Slots</p>
                        <div class="first">
                            <div class="first-date">
-                               <div class="dateF"><input type="text" placeholder="Date"></input></div>
+                               <div class="dateF"><input type="text" placeholder="Date" style="text-align: center"></input></div>
                            </div>
                            <div class="first-time-slots">
-                               <input placeholder="Time">
+                               <input placeholder="Time" style="text-align: center">
                            </div>
                        </div>
                        <!-- second date select-->
                        <div class="second">
                            <div class="second-date">
                                <%--                            <span>Second time</span>--%>
-                               <div class="dateS"><input type="text" placeholder="Date"></input></div>
+                               <div class="dateS"><input type="text" placeholder="Date" style="text-align: center"></input></div>
                            </div>
                            <div class="second-time-slots">
-                               <input placeholder="Time">
+                               <input placeholder="Time" style="text-align: center">
                            </div>
                        </div>
                    </div>
                     <div class="send-button-note">
-                        <textarea></textarea>
+                        <textarea placeholder="Special note" style="text-align: center"></textarea>
                         <button class="f-3">Send</button>
 
                     </div>
