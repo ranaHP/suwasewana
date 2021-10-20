@@ -30,19 +30,11 @@
     <!-- moh list  -->
     <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
 
-    <!-- map  -->
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
-    <script
-            src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.min.js"></script>
-    <link rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
-          type="text/css">
-
     <%--    for popup style--%>
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
     <%--    for popup script--%>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <script src="<c:url value="/public/js/appointment.js"/>"></script>
 
     <title>Registration - Suwasewana</title>
 </head>
@@ -52,6 +44,7 @@
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
     <!-- hero banner -->
     <section class="hero-banner-main-header-container">
+        <div class="mypopup" id="popup" style="display: none;"></div>
         <!-- for header -->
         <div class="user-main-header-container">
             <div class="main-header">
@@ -60,12 +53,12 @@
                 </div>
                 <div class="navbar-container">
                     <ul class="navbar">
-                        <li class="nav-item"> Home </li>
-                        <li class="nav-item"> Diseases </li>
-                        <li class="nav-item"> Announcement </li>
-                        <li class="nav-item"> Clinik </li>
-                        <li class="nav-item"> Appointment </li>
-                        <li class="nav-item special-nav"> Request Ambulance </li>
+                        <li class="nav-item"> Home</li>
+                        <li class="nav-item"> Diseases</li>
+                        <li class="nav-item"> Announcement</li>
+                        <li class="nav-item"> Clinik</li>
+                        <li class="nav-item"> Appointment</li>
+                        <li class="nav-item special-nav"> Request Ambulance</li>
                     </ul>
                 </div>
                 <div class="login-register-container">
@@ -91,7 +84,7 @@
         <div class="dashboard-container">
             <div class="left-dashboard">
                 <div class="dashboard-profile-details">
-                    <img src="<c:url value="/public/images/avatar.png"/>" width="90px" />
+                    <img src="<c:url value="/public/images/avatar.png"/>" width="90px"/>
                     <div class="profile-name">
                         Hansana Ranaweera
                     </div>
@@ -106,7 +99,7 @@
 
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/grid.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/grid.svg"/>" width="20px"/>
                             <!-- <object data="images/icons/grid.svg" width="20px" height="20px" style="color: brown;"> </object> -->
                         </div>
                         <div class="dash-title">
@@ -115,7 +108,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Diseases
@@ -123,7 +116,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/volume-2.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/volume-2.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Announcement
@@ -131,7 +124,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/layers.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/layers.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Clinic
@@ -139,7 +132,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Complain
@@ -147,7 +140,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Appoiment
@@ -155,7 +148,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/edit.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/edit.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Edite Profile
@@ -163,7 +156,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
 
                         <div class="dash-title">
@@ -172,7 +165,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Support
@@ -198,7 +191,7 @@
                             <label for="aTitleSearch">
                                 Appointment Title
                             </label>
-                            <input type="text" name="aTitleSearch" id="aTitleSearch" autocomplete="off" />
+                            <input type="text" name="aTitleSearch" id="aTitleSearch" autocomplete="off"/>
 
                         </div>
 
@@ -223,188 +216,14 @@
                         </div>
 
                         <div class="form-group d-flex-a-i-end">
-                            <label >
+                            <label>
                                 &nbsp;
                             </label>
-                            <button class="submitBtn " > Search Appointment</button>
+                            <button class="submitBtn "> Search Appointment</button>
                         </div>
                     </form>
-                    <div class="row previous-appointment-list">
-                        <div class="appointment-card-container">
-                            <div class="appointment-card">
-                                <div class="header">
-                                    Mahapola Scholarship
-                                    <p> 2021/01/10</p>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="images/icons/map-pin.svg" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="images/icons/list.svg" width="22px" />
-                                            Time Slot 1 : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="images/icons/list.svg" width="22px" />
-                                            Time Slot 2 : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="images/icons/list.svg" width="22px" />
-                                            Special Notice: No
-                                        </li>
+                    <div class="row previous-appointment-list" id="previous-appointment-list">
 
-                                    </ul>
-                                </div>
-                                <div class="footer">
-                                    <div class="current-registered-count">
-                                        <img src="images/icons/user.svg" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-                                    <div class="pending-btn">
-                                        status : <span>Pending...</span>
-                                    </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
-
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="appointment-card-container">
-                            <div class="appointment-card">
-                                <div class="header">
-                                    Grade 5 Scholarship
-                                    <p> 2021/01/10</p>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="images/icons/map-pin.svg" width="22px" />
-                                            Location : Akuressa MOH ...
-                                        </li>
-                                        <li>
-                                            <img src="images/icons/list.svg" width="22px" />
-                                            Time Slot 1 : 2021/03/01 10:30pm - 11:30px
-                                        </li>
-                                        <li>
-                                            <img src="images/icons/list.svg" width="22px" />
-                                            Time Slot 2 :2021/03/03 8:30pm - 9:30px
-                                        </li>
-                                        <li>
-                                            <img src="images/icons/list.svg" width="22px" />
-                                            Special Notice: <span class="special-notices">
-                                                    please call me before you come
-                                                </span>
-                                        </li>
-
-                                    </ul>
-                                </div>
-
-                                <div class="footer">
-
-                                    <div class="current-registered-count">
-                                        <img src="images/icons/user.svg" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-                                    <!-- <div class="pending-btn ">
-                                        status : <span>select time slot...</span>
-                                    </div> -->
-
-
-                                </div>
-                                <div class="footer" >
-                                    <div class="accept-btn bg-success">
-                                        Accept
-                                    </div>
-                                    <div class="accept-btn bg-primary">
-                                        Request new Time
-                                    </div>
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="appointment-card-container">
-                            <div class="appointment-card">
-                                <div class="header">
-                                    Grade 5 Scholarship
-                                    <p> 2021/01/10</p>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="images/icons/map-pin.svg" width="22px" />
-                                            Location : Akuressa MOH ...
-                                        </li>
-                                        <li>
-                                            <img src="images/icons/list.svg" width="22px" />
-                                            Time Slot : 2021/03/01 10:30pm - 11:30px
-                                        </li>
-
-                                        <li>
-                                            <img src="images/icons/list.svg" width="22px" />
-                                            Special Notice: <span class="special-notices">
-                                                    please call me before you come
-                                                </span>
-                                        </li>
-
-                                    </ul>
-                                </div>
-
-                                <div class="footer">
-
-                                    <div class="current-registered-count">
-                                        <img src="images/icons/user.svg" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-
-
-                                </div>
-                                <div class="footer " >
-
-                                    <div class="accept-btn bg-primary">
-                                        Request new Time
-                                    </div>
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                                <!-- <div class="row">
-                                    <div class="form-group d-flex-j-c-cnter">
-                                        <div class="accept-btn">
-                                            Accept Time Solt
-                                        </div>
-                                    </div>
-                                </div> -->
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -413,13 +232,14 @@
                         Make a appointments
                     </div>
                     <div class="make-appointment-form">
-                        <form>
+                        <form onsubmit="return makeAppointment();">
                             <div class="row">
                                 <div class="form-group">
                                     <label for="aTitle">
                                         Appointment Title
                                     </label>
-                                    <input type="text" name="name" id="aTitle" autocomplete="off" />
+                                    <input type="text" name="name" id="aTitle" autocomplete="off"
+                                           value="Maduni baba hanbaernna"/>
 
                                 </div>
                             </div>
@@ -430,7 +250,7 @@
                                         Appointment Type
                                     </label>
                                     <input id="appointmentType" type="text" list="allappointmentType"
-                                           name="appointmentType" autocomplete="off">
+                                           name="appointmentType" autocomplete="off" value="lamaya">
                                     <datalist id="allappointmentType">
                                         <option value="Mahapola" option=" Mahapola"></option>
                                     </datalist>
@@ -439,7 +259,8 @@
                                     <label for="phi">
                                         Your Area's PHI Name
                                     </label>
-                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off">
+                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off"
+                                           value="akila">
                                     <datalist id="allphi">
                                         <option value="Hansana" option="Hansana"></option>
                                     </datalist>
@@ -451,13 +272,13 @@
                                         Reason of Appointment
                                     </label>
                                     <textarea rows="4" cols="50" type="text" placeholder="reason" name="reason"
-                                              id="reason"></textarea>
+                                              id="reason"> Manduni lanaya </textarea>
                                 </div>
 
                             </div>
                             <div class="row">
                                 <div class="form-group d-flex-a-i-end">
-                                    <button class="submitBtn " > Make Appointment</button>
+                                    <button class="submitBtn "> Make Appointment</button>
                                 </div>
 
                             </div>
@@ -472,12 +293,12 @@
             <img src="<c:url value="/public/images/logo.png "/>" alt="logo" width="45px"/>
             <div class="navbar-container">
                 <ul class="navbar">
-                    <li class="nav-item"> Home </li>
-                    <li class="nav-item"> Diseases </li>
-                    <li class="nav-item"> Announcement </li>
-                    <li class="nav-item"> Clinik </li>
-                    <li class="nav-item"> Appointment </li>
-                    <li class="nav-item special-nav"> Request Ambulance </li>
+                    <li class="nav-item"> Home</li>
+                    <li class="nav-item"> Diseases</li>
+                    <li class="nav-item"> Announcement</li>
+                    <li class="nav-item"> Clinik</li>
+                    <li class="nav-item"> Appointment</li>
+                    <li class="nav-item special-nav"> Request Ambulance</li>
                 </ul>
             </div>
         </div>
@@ -487,7 +308,128 @@
     </div>
 </div>
 <script defer>
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let appointment = new Appointment("previous-appointment-list");
+    getAllAppointment()
 
+    function getAllAppointment() {
+        let appointmentCardList = [];
+        $.post("/test_war_exploded/user-appointment-controller/view",
+            {
+                aType: "",
+                aTitle: "",
+            },
+            function (data, status) {
+                appointmentCardList = JSON.parse(data);
+                appointment.setData(appointmentCardList);
+
+                // if (appointmentCardList.length === 0) {
+                //     document.getElementById("previous-appointment-list").innerHTML = " no data found";
+                //     return;
+                // }
+                <%--document.getElementById("previous-appointment-list").innerHTML = appointmentCardList.map((data) => {--%>
+                <%--    return `<h1> ${appointmentCardList[i].aTitle} </h1>`--%>
+                <%--}).join(' ')--%>
+
+                // for (let i = 0; i < appointmentCardList.length; i++) {
+                //     console.log(appointmentCardList[i])
+                //     let myAppointment = document.getElementById("previous-appointment-list");
+                //     myAppointment.innerHTML += `<h1> appointmentCardList[i].aTitle </h1>`
+                // }
+
+                <%--appointmentCardList.map((item) => {--%>
+                <%--    &lt;%&ndash;let title = item.aTitle&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;console.log(item.aTitle)&ndash;%&gt;--%>
+
+                <%--    &lt;%&ndash;document.getElementById("previous-appointment-list").innerText =  "<h1> ${item.aTitle} </h1>"&ndash;%&gt;--%>
+
+                <%--    &lt;%&ndash;    <div class="appointment-card-container">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;        <div class="appointment-card">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            <div class="title">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                ${item.aTitle}&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                <p> 2021/01/10</p>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            <div class="desc">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                he process of writing a job description requires&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                having a clear understanding of the job’s duties&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                and responsibilities. The job posting should also&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                include a concise picture of the skills required&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                Organize the job&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            <div class="properties">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                <ul>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                        Location : pending ...&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                        Time Slot 1 : pending ...&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                        Time Slot 2 : pending ...&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                        Special Notice: No&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
+
+                <%--    &lt;%&ndash;                </ul>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            <div class="footer">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                <div class="current-registered-count">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    Mr ${item.phi}&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                <div class="pending-btn">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    status : <span>Pending...</span>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            <div class="footer d-flex-j-c-flex-end">&ndash;%&gt;--%>
+
+                <%--    &lt;%&ndash;                <div class="accept-btn bg-danger">&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                    Cancel&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;        </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;    </div>&ndash;%&gt;--%>
+                <%--    &lt;%&ndash;`&ndash;%&gt;--%>
+                <%--})--%>
+            }
+        );
+    }
+
+    function makeAppointment() {
+        let reqData =
+            {
+                aTitle: document.getElementById("aTitle").value,
+                aType: document.getElementById("appointmentType").value,
+                aPhi: document.getElementById("phi").value,
+                aReason: document.getElementById("reason").value,
+            };
+        console.log(reqData);
+
+        $.post("/test_war_exploded/user-appointment-controller/create",
+            reqData,
+            function (data, status) {
+                console.log(data.includes("success"))
+                if (data.includes("success")) {
+                    popup.showAppointmentSuccessMessage({
+                        status: 'success',
+                        message: 'Appointment Successfully Requested!'
+                    });
+                } else {
+                    popup.showAppointmentSuccessMessage({
+                        status: 'fail',
+                        message: 'Appointment Request Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
+        return false;
+    }
 </script>
 </body>
 </html>

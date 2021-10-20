@@ -1,6 +1,9 @@
 package com.suwasewana.model;
 
+import java.sql.Blob;
+
 public class CreateClinicModel {
+    public String clinicID;
     public String disease;
     public String title;
     public String location;
@@ -12,6 +15,7 @@ public class CreateClinicModel {
     public String description;
 
     public CreateClinicModel(
+            String clinicID,
            String disease,
            String title,
            String location,
@@ -32,6 +36,7 @@ public class CreateClinicModel {
         this.maxpatient= maxpatient;
         this.conduct= conduct;
         this.description= description;
+        this.clinicID=clinicID;
 
     }
 
@@ -105,5 +110,13 @@ public class CreateClinicModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getClinicID() {
+        return clinicID;
+    }
+
+    public void setClinicID(String clinicID) {
+        this.clinicID = clinicID;
     }
 }

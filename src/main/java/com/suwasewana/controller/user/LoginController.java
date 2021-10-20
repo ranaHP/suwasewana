@@ -7,6 +7,7 @@ import com.suwasewana.model.UserLoginModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,7 +35,7 @@ public class LoginController extends HttpServlet {
         String mobile = req.getParameter("user-mobile");
         String password = req.getParameter("user-password");
 
-        UserLoginModel userLoginDetails = new UserLoginModel(mobile, password);
+        UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, "");
         UserLoginModel userLoginDetailsResponse = userDAO.CheckLoginValidation(userLoginDetails);
 
         PrintWriter out = res.getWriter();
@@ -49,6 +50,12 @@ public class LoginController extends HttpServlet {
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
+
+            Cookie loginCookie = new Cookie("unic",userLoginDetailsResponse.getUnic());
+            //setting cookie to expiry in 30 mins
+            loginCookie.setMaxAge(30*60);
+            res.addCookie(loginCookie);
+            System.out.println(loginCookie.getValue());
         }
         out.print(responseJsonString);
         out.flush();

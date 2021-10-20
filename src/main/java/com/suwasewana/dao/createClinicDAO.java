@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class createClinicDAO {
   private  static final String CREATE_CLINIC ="INSERT INTO `clinics`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,NULL );";
   private static final String VIEW_CLINICS = "SELECT * FROM `clinics`";
+  private static final String SELECT_CLINICS = "SELECT * FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
   
     Connection connection;
     public createClinicDAO(){
@@ -46,6 +47,7 @@ public class createClinicDAO {
 //            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> viewClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
+                String clinicID =rs.getString("clinic-no");
                 String disease =rs.getString("Disease");
                 String title = rs.getString("ClinicTitle");
                 String Location = rs.getString("Location");
@@ -56,6 +58,7 @@ public class createClinicDAO {
                 String Conduct = rs.getString("Conduct");
                 String Description = rs.getString("Description");
                 CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
                         disease,
                         title,
                         Location,
@@ -65,6 +68,7 @@ public class createClinicDAO {
                         MaxPatient,
                         Conduct,
                         Description
+
                 );
                  viewClinicList.add(temp);
 //                System.out.println(title+"--"+disease+"--"+Location);
@@ -76,6 +80,48 @@ public class createClinicDAO {
         }
         return null;
 }
+
+    public ArrayList<CreateClinicModel> selectClinics(CreateClinicModel viewClinic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
+            System.out.println("jjj");
+            preparedStatement.setString(1, viewClinic.getClinicID());
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> selectClinicList = new ArrayList<CreateClinicModel>();
+            while (rs.next()){
+                String clinicID =rs.getString("clinic-no");
+                String disease =rs.getString("Disease");
+                String title = rs.getString("ClinicTitle");
+                String Location = rs.getString("Location");
+                String TargetMOH = rs.getString("Target MOH");
+                String DataTime = rs.getString("Data&Time");
+                String Duration = rs.getString("Duration");
+                String MaxPatient = rs.getString("MaxPatient");
+                String Conduct = rs.getString("Conduct");
+                String Description = rs.getString("Description");
+                CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
+                        disease,
+                        title,
+                        Location,
+                        TargetMOH,
+                        DataTime,
+                        Duration,
+                        MaxPatient,
+                        Conduct,
+                        Description
+
+                );
+                selectClinicList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return selectClinicList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {

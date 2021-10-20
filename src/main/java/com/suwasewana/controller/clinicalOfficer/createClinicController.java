@@ -39,6 +39,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("view");
                     viewClinic(req,res);
                     break;
+                case "select":
+//                    res.getWriter().println("select");
+                      selectClinic(req,res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -50,6 +54,7 @@ import java.util.ArrayList;
 
     private void createClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
        CreateClinicModel createClinic = new CreateClinicModel(
+               req.getParameter(""),
                req.getParameter("disease"),
                req.getParameter("title"),
                req.getParameter("location"),
@@ -73,9 +78,29 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
+                "",
                 ""
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void selectClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+            System.out.println("selettttttttttttttttt");
+        CreateClinicModel selectClinic = new CreateClinicModel(
+                req.getParameter("clinicID"),
+                req.getParameter("title"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        System.out.println("select");
+        ArrayList<CreateClinicModel> result= createClinicDAO.selectClinics(selectClinic);
         res.getWriter().println(gson.toJson(result));
     }
 }

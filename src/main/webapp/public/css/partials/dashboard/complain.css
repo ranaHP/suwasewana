@@ -20,13 +20,15 @@
 }
 .previous-complaint-list{
     background-color: #fff;
-    height: 500px;
+    width: 90%;
+    flex-wrap: wrap;
+    min-height: 500px;
     padding: 20px;
 }
 
 .complaint-card-container{
     /* padding: 10px; */
-    width: 30%;
+    width: 300px;
     /* margin:0  10px; */
    
 }
