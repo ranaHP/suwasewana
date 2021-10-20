@@ -7,7 +7,8 @@
     margin-left: 78px;
     min-height: 100vh;
     transition: 0.2s ease;
-    background-color: #FCFCFC;
+    font-size: 18px;
+    /*background-color: #FCFCFC;*/
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
@@ -19,6 +20,9 @@
     background-color:  white;
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
+}
+body{
+    background-color: #dfe4ea59;
 }
 .appointments-container{
     display: flex;
@@ -42,8 +46,8 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 .appointment{
-    width: 85%;
-    height: 150px;
+    width: 78%;
+    min-height: 170px;
     display: flex;
     justify-content: space-around;
     border: 2px dashed rgba(185, 185, 187, 0.9);
@@ -61,7 +65,7 @@
     background-color:#D9534F;
     color: white;
     border: none;
-    padding: 4px 4.5px;
+    padding: 5px;
     float: right;
     border-radius: 3px;
     cursor: pointer;
@@ -71,78 +75,33 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-}
-.first-time-slots{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.first-time-slots div{
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: .5em;
-    width: 100px;
-    padding: 1px;
-}
-.first-time-slots label{
-    background-color: #7382EF;
-    width: 80px;
-    margin-left: 2px;
-    text-align: center;
-    padding: 3px;
-    border-radius: 2px;
-}
-.first-time-slots input{
-    cursor: pointer;
-    width: 13.5px;
-    height: 13.5px;
-}
-.second-time-slots{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.second-time-slots div{
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: .5em;
-    width: 100px;
-    padding: 3px;
-}
-.second-time-slots label{
-    padding: 3.8px;
-    border-radius: 2px;
-    margin-left: 2px;
-    background-color: #7382EF;
-    width: 80px;
-    text-align: center;
-}
-.second-time-slots input{
-    cursor: pointer;
-    width: 13.5px;
-    height: 13.5px;
-}
-.first-date{
-    padding: 5px 0;
-}
-.first-date input, .second-date input{
+    /*width: 50%;*/
     padding-left: 5px;
-    height: 15px;
-    font-size: .6em;
-    font-family: Arial, Helvetica, sans-serif;
-
 }
-.second-date{
+.sender-details div{
+    margin: 0 2px;
+}
+.send-button-note{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 5px 0;
+    justify-content: space-around;
+    height: 80%;
+    width: 100%;
 }
-.second-date button{
+.second div{
+    margin: 0 5px;
+}
+.first div{
+    margin: 0 5px;
+}
+.first,.second{
+    display: flex;
+    justify-content: space-around;
+    /*background-color: #0D47A1;*/
+    width: 100%;
+    margin:10px;
+}
+.send-button-note button{
     background-color:#0275D8;
     color: white;
     border: none;
@@ -150,6 +109,13 @@
     width: 100%;
     border-radius: 3px;
     cursor: pointer;
+    margin-top: 2px;
+}
+.up{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 3px;
 }
 input{
     font-family: corbel;
@@ -157,56 +123,47 @@ input{
 
 .date-details{
     display: flex;
+    /*flex-direction: column;*/
     justify-content: space-between;
-    width: 60%;
-}
-.icon{
-    margin-right: 2.5px;
+    align-items: center;
+    width: 80%;
+    /*background-color: red;*/
 }
 .sender{
     display: flex;
     justify-content: space-around;
-    width: 40%;
+    width: 90%;
 }
 .first{
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    width: 90%;
 }
 .second{
     display: flex;
     justify-content: space-around;
-    width: 50%;
+    width: 90%;
 }
 /*!* responsive *!*/
-@media screen and (max-width: 1030px) {
+@media screen and (max-width: 1050px) {
     .appointment{
         flex-direction: column;
         align-items: center;
-        height: 320px;
-    }
-    .sender{
-        width: 100%;
-        justify-content: space-around;
-    }
-    .sender-information{
-        flex-direction: row;
-        text-align: center;
+        height: 250px;
+        width: 90%;
     }
     .sender-details{
         flex-direction: row;
-        justify-content: space-around;
-        width: 50%;
     }
-    .date-details{
-        justify-content: space-between;
+    .sender-information{
         width: 100%;
+        flex-direction: row;
+        text-align: center;
     }
 }
 @media screen and (max-width: 770px) {
     .appointment{
-        height: 400px;
-        width: 80%;
+        height: 340px;
     }
     .sender{
         flex-direction: column;
@@ -221,38 +178,11 @@ input{
         justify-content: center;
         align-items: center;
     }
-    .sender-details div{
-        margin-left:4px ;
-    }
 }
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 475px) {
     .appointment{
-        height: 510px;
-        padding: 5px 0;
+        height: 480px;
     }
-    input{
-        height: 15px;
-    }
-    .first,.second{
-        flex-direction: column;
-        justify-content: space-around;
-        width: 100%;
-        margin-top: 10px;
-    }
-    .first-time-slots,.second-time-slots,.first-date,.second-date{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .first-time-slots div{
-        margin-top: 3.5px;
-    }
-    .send-button button{
-        margin-top: 3px;
-        width: 100px;
-    }
-}
-@media screen and (max-width: 585px) {
     .reject-button{
         padding: 15px;
         align-items: center;
@@ -267,7 +197,14 @@ input{
     }
     .sender-details{
         flex-direction: column;
-        justify-content: space-around;
+
+    }
+    .first,.second{
+        flex-direction: column;
+        align-items: center;
+    }
+    .first div, .second div{
+        margin: 0;
     }
 }
 
