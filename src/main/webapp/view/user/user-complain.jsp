@@ -35,6 +35,7 @@
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
     <%--    for popup script--%>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <script src="<c:url value="/public/js/complain.js"/>"></script>
     <title>Complain</title>
 </head>
 <body>
@@ -212,7 +213,7 @@
                             <button class="submitBtn " > Search Complaint</button>
                         </div>
                     </form>
-                    <div class="row previous-complaint-list">
+                    <div class="row previous-complaint-list" id="previous-complaint-list" style="justify-content: unset">
                         <div class="complaint-card-container">
                             <div class="complaint-card">
                                 <div class="header">
@@ -580,8 +581,8 @@
 
 </div>
 <script>
-    // console.log("time "+String(new Date()).split(" ").join())
     let validation = new FormInputValidation();
+    let complain= new Complain('previous-complaint-list');
 </script>
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
@@ -593,6 +594,29 @@
 </script>
 
 <script>
+
+    getAllAppointment();
+    function getAllAppointment() {
+        // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
+        let complainCardList = [];
+        $.post("/suwasewana_war/user-complain-controller/view",
+            {},
+            function (data, status) {
+                // console.log("get data "+data)
+                complainCardList = JSON.parse(data);
+                console.log("get alllll value "+complainCardList[0].CType)
+                document.getElementById("previous-complaint-list").innerHTML = " ";
+                console.log("send to js")
+                complain.setData(complainCardList);
+
+            }
+        );
+    }
+
+
+
+
+
     function checkValidation(){
         if( validation.checklength(document.getElementById('cTitle').value,'ecTitle',10) &&
             validation.selectCheck('complaintType','eallcomplaintType') &&
@@ -606,7 +630,7 @@
 
 
 
-            makeComplain();
+            // makeComplain();
         }
         else {
             validation.checklength(document.getElementById('cTitle').value,'ecTitle',10);
@@ -629,9 +653,9 @@
         // fd.append('file2',files2);
         // var time=String(new Date()).split(" ").join();
         // var id="123242";
-        // var img1=String(time+id+1)
-        // var img2=String(time+id+2)
-        // var img3=String(time+id+3)
+        // let img1=String(id+1)
+        // let img2=String(id+2)
+        // let img3=String(id+3)
         // console.log(img1);
         // console.log(img2);
         // console.log(img3);
