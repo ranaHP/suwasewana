@@ -86,4 +86,23 @@ class FormInputValidation {
         return isValida;
     }
 
+    nameValidation(name, fieldName) {
+
+        let isValida = true;
+        if (name === "") {
+            this.setErrorMessageForField("required*", fieldName, 0)
+            isValida = false;
+        }
+        if(name.length>0){
+            this.setErrorMessageForField(" ", fieldName, 0)
+            isValida = true;
+        }
+
+        if (!name) {
+            this.setErrorMessageForField("required*", fieldName, 0)
+            isValida = false;
+        }
+        return isValida;
+
+    }
 }

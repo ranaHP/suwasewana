@@ -1,16 +1,20 @@
-
+body{
+    background-color: #dfe4ea59;
+}
 .container{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     max-width: calc(100vw - 78px);
     margin-left: 78px;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
     margin-left: 260px;
+
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
 }
@@ -18,13 +22,6 @@
     background-color:  white;
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
-}
-.content{
-    color: #0606068e;
-    display: flex;
-    justify-content: center;
-    background-color: var(--primary-color);
-    padding-top: 50px;
 }
 .create-clinics-title{
     margin: 20px 20px 20px 35px;
@@ -36,6 +33,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.content{
+    display: flex;
 }
 .form{
     width: 100%;
@@ -53,7 +53,7 @@
 .form-inputs{
     display: flex;
     justify-content: space-between;
-    margin-top: 0;
+    margin-top: 0px;
 }
 .inputs{
     font-size: .7em;
@@ -65,7 +65,7 @@ label{
     padding-bottom: 10px;
     font-size: 1.2em;
 }
-input{
+input,textarea{
     width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.32);
     border-radius: 3px;
@@ -73,12 +73,17 @@ input{
     padding-left: 3px;
     box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.05);
     margin-bottom: 10px;
+    outline: none;
 }
 #description{
     height: 208px;
-    margin: 0;
+    margin: 0px;
 }
 
+/* input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
 input[type=datetime-local]:required:invalid{
     color: transparent;
 }
@@ -134,8 +139,11 @@ button{
     max-width: 500px;
     height: 450px;
     margin: 2px auto;
+
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='6%2c 8' stroke-dashoffset='2' stroke-linecap='square'/%3e%3c/svg%3e");
 }
+
+
 @media screen and (max-width: 1230px) {
 
 }
@@ -151,7 +159,7 @@ button{
         flex-direction: column;
     }
     .right-inputs , .left-inputs{
-        margin: 0;
+        margin: 0px;
     }
 }
 

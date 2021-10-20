@@ -1,44 +1,60 @@
 package com.suwasewana.dao;
 
+
 import com.suwasewana.core.DB;
-import com.suwasewana.model.UserLoginModel;
+import com.suwasewana.model.ComplainModel;
+import com.suwasewana.model.ComplainTypeModel;
+import com.suwasewana.model.MOHModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class UserLoginDAO {
+public class MOHDAO {
     @SuppressWarnings("SqlResolve")
-    private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `users` WHERE `mobile` = ? and `password` = ?";
 
+    private static final String MOH_Detail="SELECT * FROM suwaserwana_db.moh;";
     Connection connection;
 
-    public UserLoginDAO() {
+    public MOHDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
 
-    public UserLoginModel CheckLoginValidation(UserLoginModel userLogin) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN_VALIDATION)) {
-            preparedStatement.setString(1, userLogin.getMobile());
-            preparedStatement.setString(2, userLogin.getPassword());
+    public ArrayList<MOHModel> GetMOHDetails() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_Detail)) {
+            System.out.println("awoooooooo");
             ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<MOHModel> mohList = new ArrayList<MOHModel>();
             while (rs.next()) {
-                String mobile = rs.getString("mobile");
-                String password = rs.getString("password");
-                if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
-                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password);
-                    return userLoginDetails;
-                }
+                String id = rs.getString("idMOH");
+                String name = rs.getString("MName");
+                MOHModel temp = new MOHModel(
+                        id,
+                        name,
+                        "",
+                        ""
+
+
+                );
+//
+                mohList.add(temp);
             }
-            return new UserLoginModel("", "");
+            System.out.println("moh list "+mohList);
+            return mohList;
+
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
 
-        return userLogin;
+        return null;
     }
+
+
+
+
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
@@ -55,4 +71,9 @@ public class UserLoginDAO {
             }
         }
     }
+
+
+
+
+
 }
