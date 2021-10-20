@@ -199,8 +199,14 @@
                             <label for="allComplaintsTypeSearch">
                                 Complaints Type
                             </label>
+
+<%--                            //#################################################################################################3#################3--%>
                             <input id="ComplaintsTypeSearch" type="text" list="allComplaintsTypeSearch"
-                                   name="ComplaintsTypeSearch" autocomplete="off">
+                                   name="ComplaintsTypeSearch" autocomplete="off"
+                                    onchange="searchComplain();";
+                                   onkeydown="searchComplain();"
+                                   onclick="document.getElementById('ComplaintsTypeSearch').value=''";
+                            >
                             <datalist id="allComplaintsTypeSearch">
                                 <option value="Mahapola" option=" Mahapola"></option>
                             </datalist>
@@ -470,8 +476,7 @@
                                         MOH Area
                                     </label>
                                     <input id="MOHArea" type="text" list="allMOHArea" name="allMOHArea"  value="wwwwwww" autocomplete="off"
-<%--                                           onblur="fillMOH('MOHArea');--%>
-<%--                                            validation.selectCheck('MOHArea','eMOHArea');"--%>
+
                                            onchange="fillMOH('MOHArea');
                                            validation.selectCheck('MOHArea','eMOHArea');"
                                            onclick="document.getElementById('MOHArea').value='';
@@ -589,28 +594,40 @@
         var loadFile = function (event, imgContainerId) {
         var image = document.getElementById(imgContainerId);
         image.src = URL.createObjectURL(event.target.files[0]);
-        console.log("url "+event.target.files[0].name)
     };
 </script>
 
 <script>
 
     getAllAppointment();
+    let typedatalist={};
     function getAllAppointment() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let complainCardList = [];
         $.post("/suwasewana_war/user-complain-controller/view",
             {},
             function (data, status) {
-                // console.log("get data "+data)
                 complainCardList = JSON.parse(data);
-                console.log("get alllll value "+complainCardList[0].CType)
+                typedatalist=complainCardList;
                 document.getElementById("previous-complaint-list").innerHTML = " ";
-                console.log("send to js")
                 complain.setData(complainCardList);
 
             }
         );
+    }
+
+    function searchComplain(){
+        console.log("whyyyyyyyyyyyyyyyyyyy")
+        var ComplainTypeObj = document.getElementById("ComplaintsTypeSearch");
+        var complaindatalist = document.getElementById(ComplainTypeObj.getAttribute("list"));
+        let CType;
+        if(complaindatalist.options.namedItem(ComplainTypeObj.value)){
+            CType=(complaindatalist.options.namedItem(ComplainTypeObj.value).id);
+        }
+
+
+        console.log("complain type = "+CType)
+        complain.searchCardDatabyType(typedatalist,CType);
     }
 
 
@@ -785,9 +802,12 @@
         function (data, status) {
             let rs= JSON.parse(data);
             let complainType=document.getElementById("allcomplaintType");
+            let searchcomplintype=document.getElementById("allComplaintsTypeSearch");
             complainType.innerHTML="";
+            searchcomplintype.innerHTML="";
             rs.map((element) => {
                 complainType.innerHTML+= '<option  id="'+element.CType+'" name="'+element.Type+'" value="' + element.Type +  '" option="' + element.Type +  '"></option>'
+                searchcomplintype.innerHTML+='<option  id="'+element.CType+'" name="'+element.Type+'" value="' + element.Type +  '" option="' + element.Type +  '"></option>'
             })
         }
     );
