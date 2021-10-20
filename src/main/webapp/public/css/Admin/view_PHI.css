@@ -31,7 +31,7 @@ body{
     /* margin: 25px 0; */
     margin: auto;
     font-size: 0.9em;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .table th{
     background-color: #009879;
@@ -173,20 +173,20 @@ input:focus + label{
     cursor: pointer;
 }
 /*responsive*/
-@media(max-width: 800px){
-    .table{
-        width: 70% !important;
-        background-color: red;
-    }
-}
-@media(max-width: 600px){
+/*@media(max-width: 800px){*/
+/*    .table{*/
+/*        width: 70% !important;*/
+/*        background-color: red;*/
+/*    }*/
+/*}*/
+@media(max-width: 875px){
     .table .thead{
         display: none;
     }
 
     .table, .table tbody, .table tr, .table td{
         display: block;
-        width: 100%;
+        /*width: 90%;*/
     }
     .table tr{
         margin-bottom:15px;
