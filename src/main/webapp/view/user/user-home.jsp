@@ -15,7 +15,7 @@
     <title> User Home Suwasewana </title>
 
     <!-- for style sheet link  -->
-    <link href="<c:url value="/public/css/partials/user/user-home.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/user/_user-home.css"/>" rel="stylesheet"/>
     <!-- for commen style  sheet link  -->
     <link href="<c:url value="/public/css/partials/commen"/>" rel="stylesheet"/>
 
@@ -64,12 +64,12 @@
             </div>
         </div>
         <!-- hero banner -->
-        <form method="post" onsubmit="return imageUpload();" enctype="multipart/form-data">
-            <input type="file" name="file" id="imageasd"/>
-            <input type="file" name="file" id="imageasd1"/>
-            <input type="file" name="file" id="imageasd2"/>
-            <input type="submit" value="Upload"/>
-        </form>
+<%--        <form method="post" onsubmit="return imageUpload();" enctype="multipart/form-data">--%>
+<%--            <input type="file" name="file" id="imageasd"/>--%>
+<%--            <input type="file" name="file" id="imageasd1"/>--%>
+<%--            <input type="file" name="file" id="imageasd2"/>--%>
+<%--            <input type="submit" value="Upload"/>--%>
+<%--        </form>--%>
 
         <div class="hero-banner">
             <div class="left-col">
@@ -770,10 +770,6 @@
         </div>
     </div>
 </div>
-<script>
-    feather.replace({width: "20px"})
-</script>
-
 <script defer>
     function imageUpload() {
 

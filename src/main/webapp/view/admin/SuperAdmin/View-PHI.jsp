@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_PHI.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/Admin/view_PHI.js"></c:url> "></script>
+    <script defer src="<c:url value="/public/js/admin/view_PHI.js"></c:url> "></script>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
