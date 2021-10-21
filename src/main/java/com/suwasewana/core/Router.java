@@ -65,8 +65,21 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/ClinicAnnouncement.jsp");
                     rd.forward(request,response);
                     break;
+
                 case "verify-patients":
                     rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_verifyPatients.jsp");
+
+                case "view_PHI":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/View-PHI.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view_MOH":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/View-MOH.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "public_announcements":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Public-Announcements.jsp");
+
                     rd.forward(request,response);
                     break;
                 default:
