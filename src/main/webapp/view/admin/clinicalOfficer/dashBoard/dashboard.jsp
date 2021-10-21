@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Akila
-  Date: 9/23/2021
-  Time: 12:51 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -18,7 +12,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <%--    for side navbar style--%>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/common/side-navbar.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
 </head>

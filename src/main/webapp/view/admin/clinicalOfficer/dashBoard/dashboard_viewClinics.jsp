@@ -5,7 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_PHI.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-viewClinics.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="<c:url value="/public/js/ClinicalOfficer/viewClinics.js"></c:url> "></script>
