@@ -44,8 +44,8 @@
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">List Clinic</a></li>--%>
-                <li><a href="#">List Clinic </a></li>
-                <li><a href="#">Create Clinic </a></li>
+                <li><a href="/test_war_exploded/s/view-clinics">List Clinic </a></li>
+                <li><a href="/test_war_exploded/s/create-clinic">Create Clinic </a></li>
             </ul>
         </li>
         <li>

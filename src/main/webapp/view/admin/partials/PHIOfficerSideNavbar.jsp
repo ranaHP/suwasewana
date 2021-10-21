@@ -1,20 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hansana
-  Date: 9/26/2021
-  Time: 9:46 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%--<html>--%>
-<%--<head>--%>
-<%--    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>--%>
-<%--    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%--</head>--%>
-<%--<body>--%>
+
 <div class="sidebar close">
     <div class="close-btn">
         x
