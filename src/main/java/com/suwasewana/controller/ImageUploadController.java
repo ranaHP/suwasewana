@@ -33,15 +33,22 @@ public class ImageUploadController extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         Part filePart = req.getPart("file");
         String fileName = filePart.getSubmittedFileName();
-        int i = 0;
+        int i = 1;
         for (Part part : req.getParts()) {
-            if(part.getSize() > 100){
-                part.write("G:/javaee/Smaple Project user/src/main/webapp/public/images/uploadedImages/"+ i + "akila09123123.png");
+            System.out.println(part.toString());
+            System.out.println("ImageName"+ (i +3));
+            System.out.println(req.getParameter("ImageName"+(i)));
+            if( i <=3){
+                String imageName = req.getParameter("ImageName"+ (i));
+                System.out.println(imageName);
+                if(imageName != null  ){
+                    part.write("G:/javaee/Smaple Project user/src/main/webapp/public/images/uploadedImages/"+imageName);
+                    System.out.println("G:/javaee/Smaple Project user/src/main/webapp/public/images/uploadedImages/"+imageName);
+                }
+
             }
             i++;
         }
-
-
 
         res.getWriter().print("The file uploaded sucessfully.");
     }

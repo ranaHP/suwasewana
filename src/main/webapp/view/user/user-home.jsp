@@ -64,11 +64,11 @@
             </div>
         </div>
         <!-- hero banner -->
-        <form method="post" onsubmit="return imageUpload();"  enctype="multipart/form-data">
-            <input type="file" name="file" id="imageasd" />
-            <input type="file" name="file" id="imageasd1" />
-            <input type="file" name="file" id="imageasd2" />
-            <input type="submit" value="Upload" />
+        <form method="post" onsubmit="return imageUpload();" enctype="multipart/form-data">
+            <input type="file" name="file" id="imageasd"/>
+            <input type="file" name="file" id="imageasd1"/>
+            <input type="file" name="file" id="imageasd2"/>
+            <input type="submit" value="Upload"/>
         </form>
 
         <div class="hero-banner">
@@ -119,7 +119,8 @@
             </div>
         </div>
         <div class="latest-announstment-container">
-            <img src="<c:url value="/public/images/icons/arrow-left-circle.svg "/>" class="latest-announstment-arrow" width="25px"/>
+            <img src="<c:url value="/public/images/icons/arrow-left-circle.svg "/>" class="latest-announstment-arrow"
+                 width="25px"/>
             <div class="announcetment-list-card-container" id="announcetment-list-card-container">
                 <div class="latest-announstment-cards-container">
                     <div class="latest-announstment-card">
@@ -322,7 +323,8 @@
                     </div>
                 </div>
             </div>
-            <img src="<c:url value="/public/images/icons/arrow-right-circle.svg"/>" width="25px" class="latest-announstment-arrow"/>
+            <img src="<c:url value="/public/images/icons/arrow-right-circle.svg"/>" width="25px"
+                 class="latest-announstment-arrow"/>
         </div>
     </section>
 
@@ -773,29 +775,58 @@
 </script>
 
 <script defer>
+    function imageUpload() {
 
-    function imageUpload(){
         var fd = new FormData();
 
-        var files = $('#imageasd')[0].files[0];
-        var files1 = $('#imageasd1')[0].files[0];
-        var files2 = $('#imageasd2')[0].files[0];
-        alert()
-        fd.append('file',files);
-        fd.append('file1',files1);
-        fd.append('file2',files2);
-        alert()
+        let imageNames = [];
+        if ($('#imageasd')[0].files[0]) {
+            fd.append('file', $('#imageasd')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let uniqName = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#imageasd')[0].files[0].name.split(".")[$('#imageasd')[0].files[0].name.split(".").length - 1];
+            imageNames.push(uniqName);
+
+        }
+        if ($('#imageasd1')[0].files[0]) {
+            console.log($('#imageasd1')[0].files[0].size)
+            fd.append('file1', $('#imageasd1')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let uniqName = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(20000 + Math.random() * 10000) + "." +
+                $('#imageasd')[0].files[0].name.split(".")[$('#imageasd')[0].files[0].name.split(".").length - 1];
+            imageNames.push(uniqName);
+
+        }
+        if ($('#imageasd2')[0].files[0]) {
+            console.log($('#imageasd2')[0].files[0].size)
+            fd.append('file2', $('#imageasd2')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let uniqName = (name[2] + name[3] + name[4] +
+                name[5]).replaceAll(":", "").replaceAll("+", "") + Math.floor(15000 + Math.random() * 10000) + "." +
+                $('#imageasd')[0].files[0].name.split(".")[$('#imageasd')[0].files[0].name.split(".").length - 1];
+            imageNames.push(uniqName);
+
+        }
+        imageNames.map((item, index) => {
+            fd.append('ImageName' + (index + 1), item);
+        })
+
+
+        console.log(imageNames)
+
         $.ajax({
             url: '/test_war_exploded/fileuploadservlet',
             type: 'post',
             data: fd,
             contentType: false,
             processData: false,
-            success: function(response){
-                if(response != 0){
-                   alert("successfully image uploadedss")
-                }else{
-                    alert('file not uploaded');
+            success: function (response) {
+                if (response != 0) {
+                    console.log("successfully image uploadedss")
+                } else {
+                    console.log('file not uploaded');
                 }
             },
         });
