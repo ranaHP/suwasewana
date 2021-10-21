@@ -1,0 +1,118 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+body{
+    margin-left: 78px;
+    height: 100vh;
+    background-color: #dfe4ea59;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.announcements-container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    /* margin: auto; */
+}
+.announcement{
+    width: 70%;
+    height: 170px;
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.096);
+    border-radius: 3px;
+    margin-top: 15px;
+}
+.left{
+    display: flex;
+    flex: 1;
+    align-items: center;
+
+}
+.right{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.down{
+    margin-top: 6px;
+}
+.view-buttion button{
+    float: right;
+    margin-right: 15px;
+    border: none;
+    padding: 6px;
+    width: 80px;
+    cursor: pointer;
+    background-color: #009685;
+    border-radius: 2px;
+    color: white;
+    font-size: .7em;
+}
+.announe-title{
+    font-size: 1.2em;
+    color: rgba(0, 0, 0, 0.801);
+}
+.post-date{
+    font-size: .8em;
+    color: rgba(0, 0, 0, 0.74);
+}
+.description{
+    font-size: .75em;
+    color: rgba(0, 0, 0, 0.575);
+
+    font-family:Arial, Helvetica, sans-serif;
+    letter-spacing: .012em;
+}
+#more{
+    font-size: .9em;
+    font-family:Arial, Helvetica, sans-serif;
+    letter-spacing: .012em;
+}
+.image-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.main-title{
+    height: 80px;
+    display: flex;
+    padding-left: 10%;
+    align-items: center;
+}
+
+/* responsive */
+
+@media screen and (max-width: 1200px){
+    .announcement{
+        height: 350px;
+        flex-direction: column;
+        margin-top: 20px;
+    }
+    .right{
+        justify-content: center;
+        height: 100%;
+    }
+    .image-container{
+        width: 100%;
+    }
+    .image-container img{
+        width: 90%;
+    }
+}
+@media screen and (max-width: 600px){
+    .announcement{
+        height: 420px;
+    }
+}

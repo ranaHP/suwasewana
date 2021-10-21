@@ -43,6 +43,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select");
                       selectClinic(req,res);
                     break;
+                case "delete":
+                    res.getWriter().println("delete");
+                      deleteClinic(req,res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -54,6 +58,7 @@ import java.util.ArrayList;
 
     private void createClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
        CreateClinicModel createClinic = new CreateClinicModel(
+               req.getParameter(""),
                req.getParameter("disease"),
                req.getParameter("title"),
                req.getParameter("location"),
@@ -77,6 +82,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
+                "",
                 ""
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
@@ -84,9 +90,11 @@ import java.util.ArrayList;
     }
 
     private void selectClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+            System.out.println("selettttttttttttttttt");
         CreateClinicModel selectClinic = new CreateClinicModel(
-                "",
+                req.getParameter("clinicID"),
                 req.getParameter("title"),
+                "",
                 "",
                 "",
                 "",
@@ -98,5 +106,24 @@ import java.util.ArrayList;
         System.out.println("select");
         ArrayList<CreateClinicModel> result= createClinicDAO.selectClinics(selectClinic);
         res.getWriter().println(gson.toJson(result));
+    }
+    private void deleteClinic(HttpServletRequest req,HttpServletResponse res) throws IOException {
+          System.out.println("Deleteeeeeeeeee");
+          CreateClinicModel deleteClinic = new CreateClinicModel(
+                  req.getParameter("clinicID"),
+                  req.getParameter("title"),
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  ""
+          );
+          System.out.println("delete");
+          String result = createClinicDAO.deleteClinic(deleteClinic);
+         res.getWriter().println(result);
+          System.out.println(result);
     }
 }
