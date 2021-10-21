@@ -2,10 +2,12 @@ package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
 import com.suwasewana.model.AppointmentModel;
+import com.suwasewana.model.AppointmentTypeModel;
 import com.suwasewana.model.ComplainModel;
 import com.suwasewana.model.UserLoginModel;
 import com.suwasewana.model.UserRegistrationModel;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,9 +17,11 @@ import java.util.ArrayList;
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
-    private static  final  String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-    private static  final  String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?);";
-    private static  final  String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` WHERE user = ?";
+    private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
+    private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
+    private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` LEFT JOIN `appointment_type` ON appointment.appointmentType = appointment_type.appointment_type_no WHERE user = ?";
+    private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
     private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?);";
@@ -28,28 +32,6 @@ public class UserDAO {
         connection = db.getConnection();
     }
 
-    public String UserMakeComplain(ComplainModel complainModel) {
-        System.out.println("data come to dao");
-        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
-            preparedStatement.setString(1, complainModel.getCType());
-            preparedStatement.setString(2, complainModel.getUType());
-            preparedStatement.setString(3, complainModel.getUser());
-            preparedStatement.setString(4, complainModel.getCTitle());
-            preparedStatement.setString(5, complainModel.getCMessage());
-            preparedStatement.setString(6, complainModel.getPHIId());
-            preparedStatement.setString(7, complainModel.getStatus());
-
-            int  rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
-
-            return  "success";
-        } catch (SQLException throwables) {
-            printSQLException(throwables);;
-            return throwables.getMessage();
-        }
-
-
-    }
     public UserLoginModel CheckLoginValidation(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN_VALIDATION)) {
             preparedStatement.setString(1, userLogin.getMobile());
@@ -58,13 +40,13 @@ public class UserDAO {
             while (rs.next()) {
                 String mobile = rs.getString("uMobile");
                 String password = rs.getString("uPassword");
-                String nic= rs.getString("uNic");
+                String nic = rs.getString("uNic");
                 if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
-                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password , nic);
+                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, nic);
                     return userLoginDetails;
                 }
             }
-            return new UserLoginModel("", "" , "");
+            return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
@@ -87,10 +69,10 @@ public class UserDAO {
             preparedStatement.setString(9, userRegister.getUlocation());
             preparedStatement.setString(10, userRegister.getUaddress());
             preparedStatement.setString(11, "");
-            int  rs = preparedStatement.executeUpdate();
+            int rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
 
-            return  "success";
+            return "success";
         } catch (SQLException throwables) {
             printSQLException(throwables);
 //            System.out.println(throwables.getErrorCode());
@@ -115,30 +97,31 @@ public class UserDAO {
             preparedStatement.setString(7, "");
             preparedStatement.setString(8, "");
             preparedStatement.setString(9, "");
-            preparedStatement.setString(10, "");
+            preparedStatement.setString(10, "pending");
             preparedStatement.setString(11, appointment.getUser());
-            int  rs = preparedStatement.executeUpdate();
+            preparedStatement.setString(12, null);
+            int rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
 
-            return  "success";
+            return "success";
         } catch (SQLException throwables) {
-            printSQLException(throwables);;
+            printSQLException(throwables);
+            ;
             return throwables.getMessage();
         }
 
 
     }
 
-
     public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {
             preparedStatement.setString(1, appointmentDetails.getUser());
-            System.out.println("awoooooooo");
+            System.out.println(appointmentDetails.getUser());
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
             while (rs.next()) {
                 String aTitle = rs.getString("aTitle");
-                String AType = rs.getString("appointmentType");
+                String AType = rs.getString("name");
                 String phi = rs.getString("phi");
                 String reason = rs.getString("reason");
                 String aId = rs.getString("appointmentId");
@@ -173,6 +156,60 @@ public class UserDAO {
         }
 
         return null;
+    }
+
+    public ArrayList<AppointmentTypeModel> userGetAppointmentTypes() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT_TYPE_NAME)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<AppointmentTypeModel> appointmentTypeList = new ArrayList<AppointmentTypeModel>();
+            while (rs.next()) {
+                String typeName = rs.getString("name");
+                String typeNumber = rs.getString("appointment_type_no");
+
+                AppointmentTypeModel temp = new AppointmentTypeModel(typeNumber, typeName);
+                appointmentTypeList.add(temp);
+            }
+            return appointmentTypeList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
+    public String UserDeleteAppointment(String appointmentId) throws SQLException {
+        boolean rowDeleted;
+        try (
+                PreparedStatement preparedStatement = connection.prepareStatement(USER_DELETE_APPOINTMENT)) {
+            preparedStatement.setString(1, appointmentId);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+            System.out.println(preparedStatement);
+            return "success";
+        } catch (SQLException throwables) {
+            return throwables.getMessage();
+        }
+    }
+    public String UserMakeComplain(ComplainModel complainModel) {
+        System.out.println("data come to dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
+            preparedStatement.setString(1, complainModel.getCType());
+            preparedStatement.setString(2, complainModel.getUType());
+            preparedStatement.setString(3, complainModel.getUser());
+            preparedStatement.setString(4, complainModel.getCTitle());
+            preparedStatement.setString(5, complainModel.getCMessage());
+            preparedStatement.setString(6, complainModel.getPHIId());
+            preparedStatement.setString(7, complainModel.getStatus());
+
+            int  rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
+        }
+
+
     }
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {

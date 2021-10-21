@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.dao.ComplainDAO;
 import com.suwasewana.model.AppointmentModel;
+import com.suwasewana.model.AppointmentTypeModel;
 import com.suwasewana.model.UserRegistrationModel;
 
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -43,7 +45,14 @@ public class UserAppointmentController extends HttpServlet {
                     uerMakeAppointment(req, res);
                     break;
                 case "view":
+                    System.out.println("View asd");
                     userViewAppointment(req, res);
+                    break;
+                case "delete":
+                    userDeleteAppointment(req, res);
+                    break;
+                case "type":
+                    userViewAppointmentType(req, res);
                     break;
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -119,6 +128,28 @@ public class UserAppointmentController extends HttpServlet {
                 uNic
         );
         ArrayList<AppointmentModel> result = userDAO.userGetAppointmentDetails(userAppointmentDetails);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void userViewAppointmentType(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("unic")) {
+                    uNic = cookie.getValue();
+                }
+            }
+        }
+        ArrayList<AppointmentTypeModel> result = userDAO.userGetAppointmentTypes();
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void userDeleteAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+
+        String result = userDAO.UserDeleteAppointment(req.getParameter("appointmentId"));
+        System.out.println(req.getParameter("appointmentId"));
+        System.out.println(gson.toJson(result));
         res.getWriter().println(gson.toJson(result));
     }
 

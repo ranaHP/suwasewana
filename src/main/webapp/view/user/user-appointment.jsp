@@ -97,16 +97,16 @@
                 </div>
                 <div class="dashboard-icon-set">
 
-                    <div class="dash-tab">
+                    <div class="dash-tab active" onclick="window.location='http://localhost:8093/test_war_exploded/s/dashboard';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/grid.svg"/>" width="20px"/>
-                            <!-- <object data="images/icons/grid.svg" width="20px" height="20px" style="color: brown;"> </object> -->
+<%--                             <object data="images/icons/grid.svg" width="20px" height="20px" style="color: brown;"> </object>--%>
                         </div>
                         <div class="dash-title">
                             Dashboard
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/diseases';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -114,7 +114,7 @@
                             Diseases
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/announcetment';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/volume-2.svg"/>" width="20px"/>
                         </div>
@@ -122,7 +122,7 @@
                             Announcement
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/clinic';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/layers.svg"/>" width="20px"/>
                         </div>
@@ -130,7 +130,7 @@
                             Clinic
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/complain';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -138,7 +138,7 @@
                             Complain
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/appointment';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px"/>
                         </div>
@@ -146,7 +146,7 @@
                             Appoiment
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/profile';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/edit.svg"/>" width="20px"/>
                         </div>
@@ -154,7 +154,7 @@
                             Edite Profile
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/patient';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -163,7 +163,7 @@
                             Patient
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/support';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -186,30 +186,30 @@
                     <div class="dashboard-page-sub-title">
                         Appointments Status
                     </div>
-                    <form class="previous-form">
-                        <div class="form-group">
-                            <label for="aTitleSearch">
-                                Appointment Title
-                            </label>
-                            <input type="text" name="aTitleSearch" id="aTitleSearch" autocomplete="off"/>
+                    <divs class="previous-form">
+<%--                        <div class="form-group">--%>
+<%--                            <label for="aTitleSearch">--%>
+<%--                                Appointment Title--%>
+<%--                            </label>--%>
+<%--                            <input type="text" name="aTitleSearch" id="aTitleSearch" autocomplete="off"/>--%>
 
-                        </div>
+<%--                        </div>--%>
 
                         <div class="form-group">
                             <label for="appointmentTypeSearch">
                                 Appointment Type
                             </label>
                             <input id="appointmentTypeSearch" type="text" list="allappointmentTypeSearch"
-                                   name="appointmentTypeSearch" autocomplete="off">
+                                   name="appointmentTypeSearch" autocomplete="off" onclick="document.getElementById('appointmentTypeSearch').value = '' ">
                             <datalist id="allappointmentTypeSearch">
-                                <option value="Mahapola" option=" Mahapola"></option>
+
                             </datalist>
                         </div>
                         <div class="form-group">
                             <label for="phiSearch">
                                 Your Area's PHI Name
                             </label>
-                            <input id="phiSearch" type="text" list="allphiSearch" name="phiSearch" autocomplete="off">
+                            <input id="phiSearch" type="text" list="allphiSearch" name="phiSearch" autocomplete="off" onclick="document.getElementById('phiSearch').value = '' ">
                             <datalist id="allphiSearch">
                                 <option value="Hansana" option="Hansana"></option>
                             </datalist>
@@ -219,9 +219,15 @@
                             <label>
                                 &nbsp;
                             </label>
-                            <button class="submitBtn "> Search Appointment</button>
+                            <button class="submitBtn" onclick="searchAppointment()" > Search Appointment</button>
                         </div>
-                    </form>
+                        <div class="form-group d-flex-a-i-end">
+                            <label>
+                                &nbsp;
+                            </label>
+                            <button class="submitBtn" onclick="getAllAppointment()" > Search Appointment</button>
+                        </div>
+                    </divs>
                     <div class="row previous-appointment-list" id="previous-appointment-list">
 
                     </div>
@@ -232,14 +238,14 @@
                         Make a appointments
                     </div>
                     <div class="make-appointment-form">
-                        <form onsubmit="return makeAppointment();">
+                        <form onsubmit="return makeAppointment(event);">
                             <div class="row">
                                 <div class="form-group">
                                     <label for="aTitle">
                                         Appointment Title
                                     </label>
                                     <input type="text" name="name" id="aTitle" autocomplete="off"
-                                           value="Maduni baba hanbaernna"/>
+                                           value="Maduni baba hanbaernna" required/>
 
                                 </div>
                             </div>
@@ -249,18 +255,18 @@
                                     <label for="appointmentType">
                                         Appointment Type
                                     </label>
-                                    <input id="appointmentType" type="text" list="allappointmentType"
-                                           name="appointmentType" autocomplete="off" value="lamaya">
+                                    <input id="appointmentType" type="text" list="allappointmentType" required
+                                           name="appointmentType" autocomplete="off" onclick="document.getElementById('appointmentType').value = '' ">
                                     <datalist id="allappointmentType">
-                                        <option value="Mahapola" option=" Mahapola"></option>
+
                                     </datalist>
                                 </div>
                                 <div class="form-group">
                                     <label for="phi">
                                         Your Area's PHI Name
                                     </label>
-                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off"
-                                           value="akila">
+                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off" required
+                                           value="akila" onclick="document.getElementById('phi').value = '' ">
                                     <datalist id="allphi">
                                         <option value="Hansana" option="Hansana"></option>
                                     </datalist>
@@ -278,7 +284,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group d-flex-a-i-end">
-                                    <button class="submitBtn "> Make Appointment</button>
+                                    <button class="submitBtn " type="submit" > Make Appointment</button>
                                 </div>
 
                             </div>
@@ -311,8 +317,9 @@
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let appointment = new Appointment("previous-appointment-list");
     getAllAppointment()
-
+    getAllAppointmentType()
     function getAllAppointment() {
+        // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
         $.post("/test_war_exploded/user-appointment-controller/view",
             {
@@ -321,95 +328,40 @@
             },
             function (data, status) {
                 appointmentCardList = JSON.parse(data);
+                console.log(appointmentCardList)
+                document.getElementById("previous-appointment-list").innerHTML = " ";
                 appointment.setData(appointmentCardList);
 
-                // if (appointmentCardList.length === 0) {
-                //     document.getElementById("previous-appointment-list").innerHTML = " no data found";
-                //     return;
-                // }
-                <%--document.getElementById("previous-appointment-list").innerHTML = appointmentCardList.map((data) => {--%>
-                <%--    return `<h1> ${appointmentCardList[i].aTitle} </h1>`--%>
-                <%--}).join(' ')--%>
-
-                // for (let i = 0; i < appointmentCardList.length; i++) {
-                //     console.log(appointmentCardList[i])
-                //     let myAppointment = document.getElementById("previous-appointment-list");
-                //     myAppointment.innerHTML += `<h1> appointmentCardList[i].aTitle </h1>`
-                // }
-
-                <%--appointmentCardList.map((item) => {--%>
-                <%--    &lt;%&ndash;let title = item.aTitle&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;console.log(item.aTitle)&ndash;%&gt;--%>
-
-                <%--    &lt;%&ndash;document.getElementById("previous-appointment-list").innerText =  "<h1> ${item.aTitle} </h1>"&ndash;%&gt;--%>
-
-                <%--    &lt;%&ndash;    <div class="appointment-card-container">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;        <div class="appointment-card">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="title">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                ${item.aTitle}&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                <p> 2021/01/10</p>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="desc">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                he process of writing a job description requires&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                having a clear understanding of the job’s duties&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                and responsibilities. The job posting should also&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                include a concise picture of the skills required&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                Organize the job&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="properties">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                <ul>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        Location : pending ...&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        Time Slot 1 : pending ...&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        Time Slot 2 : pending ...&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <li>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        <img src="<c:url value="/public/images/icons/list.svg"/>" width="22px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                        Special Notice: No&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    </li>&ndash;%&gt;--%>
-
-                <%--    &lt;%&ndash;                </ul>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="footer">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                <div class="current-registered-count">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    Mr ${item.phi}&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                <div class="pending-btn">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    status : <span>Pending...</span>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            <div class="footer d-flex-j-c-flex-end">&ndash;%&gt;--%>
-
-                <%--    &lt;%&ndash;                <div class="accept-btn bg-danger">&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                    Cancel&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;                </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;            </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;        </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;    </div>&ndash;%&gt;--%>
-                <%--    &lt;%&ndash;`&ndash;%&gt;--%>
-                <%--})--%>
             }
         );
     }
+    function getAllAppointmentType() {
+        // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
+        let appointmentCardList = [];
+        $.post("/test_war_exploded/user-appointment-controller/type",
+            {},
+            function (data, status) {
+                appointmentTypeList = JSON.parse(data);
+                appointmentTypeList.map( aType => {
+                    console.log(aType)
+                    document.getElementById("allappointmentTypeSearch").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
+                    document.getElementById("allappointmentType").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + " | " + aType.typeNumber + "' name='"  + aType.typeName +"'>";
+                })
+                // document.getElementById("previous-appointment-list").innerHTML = " ";
+                // appointment.setData(appointmentCardList);
 
-    function makeAppointment() {
+            }
+        );
+    }
+    function makeAppointment(makeAnnouncementData) {
         let reqData =
             {
                 aTitle: document.getElementById("aTitle").value,
-                aType: document.getElementById("appointmentType").value,
+                aType: Number(document.getElementById("appointmentType").value.split("| ")[1]),
                 aPhi: document.getElementById("phi").value,
                 aReason: document.getElementById("reason").value,
             };
         console.log(reqData);
-
         $.post("/test_war_exploded/user-appointment-controller/create",
             reqData,
             function (data, status) {
@@ -419,6 +371,7 @@
                         status: 'success',
                         message: 'Appointment Successfully Requested!'
                     });
+                    getAllAppointment();
                 } else {
                     popup.showAppointmentSuccessMessage({
                         status: 'fail',
@@ -430,6 +383,46 @@
         );
         return false;
     }
+    function deleteCheckInputVsUserInput(appointmentId){
+        let userInput = document.getElementById("delete_input").value;
+        if(userInput === "Delete"){
+            document.getElementById("deleteAuthErrorMessage").style.display = "none";
+            deleteAppointment(appointmentId);
+        }else{
+            document.getElementById("deleteAuthErrorMessage").style.display = "block";
+        }
+    }
+    function deleteAppointment(appointmentId){
+        $.post("/test_war_exploded/user-appointment-controller/delete",
+            {
+                appointmentId: appointmentId
+            },
+            function (data, status) {
+                console.log(data.includes("success"))
+                if (data.includes("success")) {
+                    popup.showAppointmentSuccessMessage({
+                        status: 'success',
+                        message: 'Appointment Successfully Deleted!'
+                    });
+                    getAllAppointment();
+                } else {
+                    popup.showAppointmentSuccessMessage({
+                        status: 'fail',
+                        message: 'Appointment Request Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
+    }
+    function searchAppointment(){
+        let searchItem = {
+            appointmentTypeSearch : document.getElementById("appointmentTypeSearch").value,
+            phiSearch: document.getElementById("phiSearch").value
+        }
+        appointment.setSearch(searchItem);
+    }
+
 </script>
 </body>
 </html>
