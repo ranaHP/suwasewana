@@ -26,64 +26,57 @@
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-collection'></i>
-                    <span class="link_name">PHI</span>
+                    <i class='bx bx-plug'></i>
+                    <span class="link_name">verify-patients</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">List</a></li>
-                <li><a href="#">List PHI</a></li>
-                <li><a href="#">Make Announcement</a></li>
-                <li><a href="#">PHP & MySQL</a></li>
+<%--                <li><a class="link_name" href="#">verify-patients</a></li>--%>
+                <li><a href="/test_war_exploded/s/verify-patients">verify-patients</a></li>
             </ul>
         </li>
         <li>
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bx-book-alt'></i>
-                    <span class="link_name">Posts</span>
+                    <span class="link_name">View appointments</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">Posts</a></li>
-                <li><a href="#">Web Design</a></li>
-                <li><a href="#">Login Form</a></li>
-                <li><a href="#">Card Design</a></li>
+<%--                <li><a class="link_name" href="#">View appointments</a></li>--%>
+                <li><a href="/test_war_exploded/s/view-appointments">View appointments</a></li>
             </ul>
         </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-pie-chart-alt-2'></i>
-                <span class="link_name">Analytics</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Analytics</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-line-chart'></i>
-                <span class="link_name">Chart</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Chart</a></li>
-            </ul>
-        </li>
+<%--        <li>--%>
+<%--            <a href="#">--%>
+<%--                <i class='bx bx-pie-chart-alt-2'></i>--%>
+<%--                <span class="link_name">Analytics</span>--%>
+<%--            </a>--%>
+<%--            <ul class="sub-menu blank">--%>
+<%--                <li><a class="link_name" href="#">Analytics</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
+<%--        <li>--%>
+<%--            <a href="#">--%>
+<%--                <i class='bx bx-line-chart'></i>--%>
+<%--                <span class="link_name">Chart</span>--%>
+<%--            </a>--%>
+<%--            <ul class="sub-menu blank">--%>
+<%--                <li><a href="/test_war_exploded/s/viewClinic-announcements">Chart</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
         <li>
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bx-plug'></i>
-                    <span class="link_name">Plugins</span>
+                    <span class="link_name">view-complaints</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">Plugins</a></li>
-                <li><a href="#">UI Face</a></li>
-                <li><a href="#">Pigments</a></li>
-                <li><a href="#">Box Icons</a></li>
+                <li><a href="/test_war_exploded/s/view-complaints">view-complaints</a></li>
             </ul>
         </li>
         <li>
@@ -116,7 +109,7 @@
         <li>
             <div class="profile-details">
                 <div class="profile-content">
-                    <img src="<c:url value="/public/images/avatar/avatar.png"/>" src="image/profile.jpg" alt="profileImg">
+                    <img src="<c:url value="/public/images/avatar.png"/>" src="image/profile.jpg" alt="profileImg">
                 </div>
                 <div class="name-job">
                     <div class="profile_name">Hansana</div>
