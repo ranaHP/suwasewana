@@ -1,0 +1,16 @@
+.header{
+    padding: 15px 15px 15px 34px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .6em;
+    letter-spacing: .1em;
+}

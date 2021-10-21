@@ -2,6 +2,7 @@ package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.UserDAO;
+import com.suwasewana.dao.ComplainDAO;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
 import com.suwasewana.model.UserRegistrationModel;

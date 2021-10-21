@@ -15,9 +15,9 @@
     <title> User Home Suwasewana </title>
 
     <!-- for style sheet link  -->
-    <link href="<c:url value="/public/css/user/_user-home.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/partials/user/user-home.css"/>" rel="stylesheet"/>
     <!-- for commen style  sheet link  -->
-    <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/partials/commen"/>" rel="stylesheet"/>
 
     <!-- for feather icon -->
     <script src="https://unpkg.com/feather-icons"></script>
@@ -111,7 +111,7 @@
     <!-- this for latest announcements -->
     <section>
         <div class="section-title">
-            <div class="title">
+            <div class="header">
                 සෞඛ්‍ය නිවේදනය
             </div>
             <div class="title-sub">
@@ -130,7 +130,7 @@
                                 Read More
                             </div>
                         </div>
-                        <div class="title">
+                        <div class="header">
                             ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට
                         </div>
                         <div class="suwasaewana">
@@ -155,7 +155,7 @@
                                 Read More
                             </div>
                         </div>
-                        <div class="title">
+                        <div class="header">
                             ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට
                         </div>
                         <div class="suwasaewana">
@@ -180,7 +180,7 @@
                                 Read More
                             </div>
                         </div>
-                        <div class="title">
+                        <div class="header">
                             ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට
                         </div>
                         <div class="suwasaewana">
@@ -205,7 +205,7 @@
                                 Read More
                             </div>
                         </div>
-                        <div class="title">
+                        <div class="header">
                             ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට
                         </div>
                         <div class="suwasaewana">
@@ -230,7 +230,7 @@
                                 Read More
                             </div>
                         </div>
-                        <div class="title">
+                        <div class="header">
                             ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට
                         </div>
                         <div class="suwasaewana">
@@ -255,7 +255,7 @@
                                 Read More
                             </div>
                         </div>
-                        <div class="title">
+                        <div class="header">
                             ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට
                         </div>
                         <div class="suwasaewana">
@@ -280,7 +280,7 @@
                                 Read More
                             </div>
                         </div>
-                        <div class="title">
+                        <div class="header">
                             ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට
                         </div>
                         <div class="suwasaewana">
@@ -305,7 +305,7 @@
                                 Read More
                             </div>
                         </div>
-                        <div class="title">
+                        <div class="header">
                             ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට
                         </div>
                         <div class="suwasaewana">
@@ -330,7 +330,7 @@
 
     <section>
         <div class="section-title">
-            <div class="title">
+            <div class="header">
                 රෝග පිළිබඳ තොරතුරු
             </div>
             <div class="title-sub">
@@ -347,7 +347,7 @@
                         <div class="right-container">
                             <div class="count-container">
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -355,7 +355,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -363,7 +363,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -405,7 +405,7 @@
                         <div class="right-container">
                             <div class="count-container">
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -413,7 +413,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -421,7 +421,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -463,7 +463,7 @@
                         <div class="right-container">
                             <div class="count-container">
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -471,7 +471,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -479,7 +479,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -521,7 +521,7 @@
                         <div class="right-container">
                             <div class="count-container">
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -529,7 +529,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -537,7 +537,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -579,7 +579,7 @@
                         <div class="right-container">
                             <div class="count-container">
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -587,7 +587,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -595,7 +595,7 @@
                                     </div>
                                 </div>
                                 <div class="count-card">
-                                    <div class="title">
+                                    <div class="header">
                                         102,250
                                     </div>
                                     <div class="desc">
@@ -635,7 +635,7 @@
 
     <section>
         <div class="section-title">
-            <div class="title">
+            <div class="header">
                 ඉදිරියට එන සායනික වැඩසටහන්
             </div>
             <div class="title-sub">
@@ -647,7 +647,7 @@
                 <img src="images/icons/arrow-left-circle.svg" class="clinic-arrow" width="25px"/>
                 <div class="clinic-card-container">
                     <div class="clinic-card">
-                        <div class="title">
+                        <div class="header">
                             Covid19 Awareness Session
                             <p> 2021/01/10</p>
                         </div>
@@ -697,7 +697,7 @@
 
                 <div class="clinic-card-container">
                     <div class="clinic-card">
-                        <div class="title">
+                        <div class="header">
                             Covid19 Awareness Session
                             <p> 2021/01/10</p>
                         </div>

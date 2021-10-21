@@ -4,7 +4,7 @@ import java.sql.*;
 public class DB {
     private final String jdbcURL = "jdbc:mysql://localhost:3306/suwaserwana_db";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "cybertcc123";
+    private String jdbcPassword = "";
 
     public Connection getConnection() {
         Connection connection = null;

@@ -17,7 +17,7 @@
 <%--    </c:if>--%>
 <a href="view/user/Login.jsp" > <h1> login </h1></a>
 <a href="view/admin/clinicalOfficer/dashBoard/Dashboard.jsp" > <h1> clinical officer home </h1></a>
-    <a href="view/admin/clinicalOfficer/dashboard_crateClinics.jsp" > <h1> create clinic</h1></a>
+    <a href="view/admin/clinicalOfficer/dashBoard/dashboard_crateClinics.jsp" > <h1> create clinic</h1></a>
     <a href="view/admin/OfficerLogin/OfficerLogin.jsp" > <h1> officer login</h1></a>
     </body>
 </html>

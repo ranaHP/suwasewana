@@ -3,6 +3,7 @@ package com.suwasewana.dao;
 import com.suwasewana.core.DB;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
+import com.suwasewana.model.ComplainModel;
 import com.suwasewana.model.UserLoginModel;
 import com.suwasewana.model.UserRegistrationModel;
 
@@ -21,6 +22,9 @@ public class UserDAO {
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` LEFT JOIN `appointment_type` ON appointment.appointmentType = appointment_type.appointment_type_no WHERE user = ?";
     private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
+    private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
+            "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?);";
     Connection connection;
 
     public UserDAO() {
@@ -185,7 +189,28 @@ public class UserDAO {
             return throwables.getMessage();
         }
     }
+    public String UserMakeComplain(ComplainModel complainModel) {
+        System.out.println("data come to dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
+            preparedStatement.setString(1, complainModel.getCType());
+            preparedStatement.setString(2, complainModel.getUType());
+            preparedStatement.setString(3, complainModel.getUser());
+            preparedStatement.setString(4, complainModel.getCTitle());
+            preparedStatement.setString(5, complainModel.getCMessage());
+            preparedStatement.setString(6, complainModel.getPHIId());
+            preparedStatement.setString(7, complainModel.getStatus());
 
+            int  rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
+        }
+
+
+    }
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {

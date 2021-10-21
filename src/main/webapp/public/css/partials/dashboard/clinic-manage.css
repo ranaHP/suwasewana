@@ -26,14 +26,14 @@
     flex-direction: column;
     justify-content: space-between;
 }
-.clinic-card .title{
+.clinic-card .header{
     font-family: 'Segoe UI' ;
     text-align: center;
     font-size: 1.7em;
     padding: 10px 0; 
     color: rgb(61, 61, 61);
 }
-.title p {
+.header p {
     font-size: .8em;
 }
 .clinic-card .desc{

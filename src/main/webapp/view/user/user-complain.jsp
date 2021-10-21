@@ -214,7 +214,7 @@
                     <div class="row previous-complaint-list">
                         <div class="complaint-card-container">
                             <div class="complaint-card">
-                                <div class="title">
+                                <div class="header">
                                     Complaints about health services
                                     <p> 2021/01/10</p>
                                 </div>
@@ -269,7 +269,7 @@
                         </div>
                         <div class="complaint-card-container">
                             <div class="complaint-card">
-                                <div class="title">
+                                <div class="header">
                                     Complaints about health services
                                     <p> 2021/01/10</p>
                                 </div>
@@ -324,7 +324,7 @@
                         </div>
                         <div class="complaint-card-container">
                             <div class="complaint-card">
-                                <div class="title">
+                                <div class="header">
                                     Complaints about health services
                                     <p> 2021/01/10</p>
                                 </div>
@@ -380,12 +380,37 @@
                     </div>
                 </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="dashboard-container">
                     <div class="dashboard-page-sub-title">
                         Make a Complaints
                     </div>
                     <div class="make-complaint-form">
-                        <form>
+                        <form onsubmit="return makeComplain();">
                             <div class="row">
                                 <div class="form-group">
                                     <label for="cTitle">
@@ -401,8 +426,9 @@
                                         complaint Type
                                     </label>
                                     <input id="complaintType" type="text" list="allcomplaintType"
-                                           name="complaintType" autocomplete="off">
+                                           name="complaintType" autocomplete="off" >
                                     <datalist id="allcomplaintType">
+                                        <option value="Mahapola" option=" Mahapola"></option>
                                         <option value="Mahapola" option=" Mahapola"></option>
                                     </datalist>
                                 </div>
@@ -410,28 +436,51 @@
                                     <label for="uDetailsType">
                                         User Details Type
                                     </label>
-                                    <input id="uDetailsType" type="text" list="alluDetailsType" name="alluDetailsType" autocomplete="off">
+                                    <input id="uDetailsType" type="text" list="alluDetailsType" name="alluDetailsType" autocomplete="off" >
                                     <datalist id="alluDetailsType">
-                                        <option value="With Details" option="With Details"></option>
-                                        <option value="Anonymous" option="Anonymous"></option>
+                                        <option id="0" name="With Details" value="With Details" option="With Details"></option>
+                                        <option id="1" name="Anonymous" value="Anonymous" option="Anonymous"></option>
                                     </datalist>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group">
+                                    <label for="uDetailsType">
+                                        MOH Area
+                                    </label>
+                                    <input id="MOHArea" type="text" list="allMOHArea" name="allMOHArea" autocomplete="off"
+                                           onblur="fillMOH('MOHArea');"
+                                            onchange="fillMOH('MOHArea');"
+                                     >
+                                    <datalist id="allMOHArea">
+                                    </datalist>
+                                </div>
+                                <div class="form-group">
                                     <label for="phi">
                                         Your Area's PHI Name
                                     </label>
-                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off">
+                                    <input id="phi" type="text" list="allphi" name="allphi" autocomplete="off" >
                                     <datalist id="allphi">
                                         <option value="Hansana" option="Hansana"></option>
                                     </datalist>
                                 </div>
-                                <div class="form-group">
-
-                                </div>
 
                             </div>
+<%--                            <div class="row">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <label for="phi">--%>
+<%--                                        Your Area's PHI Name--%>
+<%--                                    </label>--%>
+<%--                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off">--%>
+<%--                                    <datalist id="allphi">--%>
+<%--                                        <option value="Hansana" option="Hansana"></option>--%>
+<%--                                    </datalist>--%>
+<%--                                </div>--%>
+<%--                                <div class="form-group">--%>
+
+<%--                                </div>--%>
+
+<%--                            </div>--%>
                             <div class="row">
                                 <div class="form-group">
                                     <label for="reason">
@@ -509,6 +558,124 @@
         image.src = URL.createObjectURL(event.target.files[0]);
     };
 </script>
+
+<script>
+    function makeComplain() {
+
+        // take complaintype
+        var CTypeObj = document.getElementById("complaintType");
+        var datalist = document.getElementById(CTypeObj.getAttribute("list"));
+        let ComplainType=(datalist.options.namedItem(CTypeObj.value).id);
+        console.log(ComplainType);
+        // take usertype
+        var UTypeObj = document.getElementById("uDetailsType");
+        var datalist = document.getElementById(UTypeObj.getAttribute("list"));
+        let UserType=(datalist.options.namedItem(UTypeObj.value).id);
+
+        console.log(UserType);
+
+        // take phiID
+        var phiObj = document.getElementById("uDetailsType");
+        var datalist = document.getElementById(phiObj.getAttribute("list"));
+        let PId=(datalist.options.namedItem(phiObj.value).id);
+        console.log(PId);
+
+
+
+        let reqData =
+            {
+                cTitle: document.getElementById("cTitle").value,
+                cType: ComplainType,
+                uType: UserType,
+                cPhi: PId,
+                cReason: document.getElementById("reason").value,
+            };
+        console.log(reqData);
+
+        $.post("/suwasewana_war/user-complain-controller/create",
+            reqData,
+            function (data, status) {
+                console.log(data.includes("success"))
+                if (data.includes("success")) {
+                    popup.showAppointmentSuccessMessage({
+                        status: 'success',
+                        message: 'Appointment Successfully Requested!'
+                    });
+                } else {
+                    popup.showAppointmentSuccessMessage({
+                        status: 'fail',
+                        message: 'Appointment Request Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
+        return false;
+    }
+</script>
+
+
+<%--script for take complain types--%>
+<script defer>
+    $.post("/suwasewana_war/user-complain-controller/",
+        function (data, status) {
+            let rs= JSON.parse(data);
+            let complainType=document.getElementById("allcomplaintType");
+            complainType.innerHTML="";
+            rs.map((element) => {
+                complainType.innerHTML+= '<option  id="'+element.CType+'" name="'+element.Type+'" value="' + element.Type +  '" option="' + element.Type +  '"></option>'
+            })
+        }
+    );
+</script>
+
+<%--script for take MOH list--%>
+<script defer>
+    let mohDetails=[];
+    $.post("/suwasewana_war/user-complain-controller/moh",
+        function (data, status) {
+            console.log(data);
+            let rs= JSON.parse(data);
+            this.mohDetails=rs;
+            console.log(data);
+
+            let MNames=document.getElementById("allMOHArea");
+            MNames.innerHTML="";
+            rs.map((element,index) => {
+                console.log("moh"+element.MName)
+                MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
+            })
+        }
+    );
+    console.log(mohDetails);
+
+    function fillMOH(listid){
+        var listObj = document.getElementById(listid);
+         var datalist = document.getElementById(listObj.getAttribute("list"));
+        let mohid=(datalist.options.namedItem(listObj.value).id);
+        ViewPHI(mohid);
+    }
+
+
+<%--script for take PHI list--%>
+//     let mid=0;
+//     ViewPHI(mid);
+    function ViewPHI(mid){
+        $.post("/suwasewana_war/user-complain-controller/phi",
+            function (data, status) {
+                let rs= JSON.parse(data);
+                let PNames=document.getElementById("allphi");
+                PNames.innerHTML="";
+                rs.map((element) => {
+                    if(element.mohId==mid){PNames.innerHTML+= '<option id="'+element.mohId+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'}
+                    // console.log("moh"+element.MName)
+
+                })
+            }
+        );
+    }
+</script>
+
 <script>
     feather.replace({ width: "20px" })
 </script>
