@@ -146,30 +146,7 @@ public class UserAppointmentController extends HttpServlet {
     }
 
     private void userDeleteAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
-//        String uNic = "";
-//        Cookie[] cookies = req.getCookies();
-//        if(cookies !=null){
-//            for(Cookie cookie : cookies){
-//                if(cookie.getName().equals("unic")) {
-//                    uNic = cookie.getValue();
-//                }
-//            }
-//        }
-//        AppointmentModel userAppointmentDetails = new AppointmentModel(
-//                "",
-//                "",
-//                " ",
-//                "",
-//                req.getParameter("appointmentId"),
-//                "",
-//                "",
-//                "",
-//                "",
-//                "",
-//                "",
-//                "",
-//                uNic
-//        );
+
         String result = userDAO.UserDeleteAppointment(req.getParameter("appointmentId"));
         System.out.println(req.getParameter("appointmentId"));
         System.out.println(gson.toJson(result));

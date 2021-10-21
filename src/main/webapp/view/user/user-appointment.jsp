@@ -97,16 +97,16 @@
                 </div>
                 <div class="dashboard-icon-set">
 
-                    <div class="dash-tab">
+                    <div class="dash-tab active" onclick="window.location='http://localhost:8093/test_war_exploded/s/dashboard';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/grid.svg"/>" width="20px"/>
-                            <!-- <object data="images/icons/grid.svg" width="20px" height="20px" style="color: brown;"> </object> -->
+<%--                             <object data="images/icons/grid.svg" width="20px" height="20px" style="color: brown;"> </object>--%>
                         </div>
                         <div class="dash-title">
                             Dashboard
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/diseases';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -114,7 +114,7 @@
                             Diseases
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/announcetment';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/volume-2.svg"/>" width="20px"/>
                         </div>
@@ -122,7 +122,7 @@
                             Announcement
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/clinic';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/layers.svg"/>" width="20px"/>
                         </div>
@@ -130,7 +130,7 @@
                             Clinic
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/complain';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -138,7 +138,7 @@
                             Complain
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/appointment';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px"/>
                         </div>
@@ -146,7 +146,7 @@
                             Appoiment
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/profile';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/edit.svg"/>" width="20px"/>
                         </div>
@@ -154,7 +154,7 @@
                             Edite Profile
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/patient';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -163,7 +163,7 @@
                             Patient
                         </div>
                     </div>
-                    <div class="dash-tab">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/support';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -210,7 +210,7 @@
                             <label for="phiSearch">
                                 Your Area's PHI Name
                             </label>
-                            <input id="phiSearch" type="text" list="allphiSearch" name="phiSearch" autocomplete="off">
+                            <input id="phiSearch" type="text" list="allphiSearch" name="phiSearch" autocomplete="off" onclick="document.getElementById('phiSearch').value = '' ">
                             <datalist id="allphiSearch">
                                 <option value="Hansana" option="Hansana"></option>
                             </datalist>
@@ -239,14 +239,14 @@
                         Make a appointments
                     </div>
                     <div class="make-appointment-form">
-                        <form onsubmit="return makeAppointment();">
+                        <form onsubmit="return makeAppointment(event);">
                             <div class="row">
                                 <div class="form-group">
                                     <label for="aTitle">
                                         Appointment Title
                                     </label>
                                     <input type="text" name="name" id="aTitle" autocomplete="off"
-                                           value="Maduni baba hanbaernna"/>
+                                           value="Maduni baba hanbaernna" required/>
 
                                 </div>
                             </div>
@@ -256,18 +256,18 @@
                                     <label for="appointmentType">
                                         Appointment Type
                                     </label>
-                                    <input id="appointmentType" type="text" list="allappointmentType"
-                                           name="appointmentType" autocomplete="off" value="lamaya">
+                                    <input id="appointmentType" type="text" list="allappointmentType" required
+                                           name="appointmentType" autocomplete="off" onclick="document.getElementById('appointmentType').value = '' ">
                                     <datalist id="allappointmentType">
-                                        <option value="Mahapola" option=" Mahapola"></option>
+
                                     </datalist>
                                 </div>
                                 <div class="form-group">
                                     <label for="phi">
                                         Your Area's PHI Name
                                     </label>
-                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off"
-                                           value="akila">
+                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off" required
+                                           value="akila" onclick="document.getElementById('phi').value = '' ">
                                     <datalist id="allphi">
                                         <option value="Hansana" option="Hansana"></option>
                                     </datalist>
@@ -285,7 +285,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group d-flex-a-i-end">
-                                    <button class="submitBtn "> Make Appointment</button>
+                                    <button class="submitBtn " type="submit" > Make Appointment</button>
                                 </div>
 
                             </div>
@@ -346,6 +346,7 @@
                 appointmentTypeList.map( aType => {
                     console.log(aType)
                     document.getElementById("allappointmentTypeSearch").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
+                    document.getElementById("allappointmentType").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + " | " + aType.typeNumber + "' name='"  + aType.typeName +"'>";
                 })
                 // document.getElementById("previous-appointment-list").innerHTML = " ";
                 // appointment.setData(appointmentCardList);
@@ -353,16 +354,15 @@
             }
         );
     }
-    function makeAppointment() {
+    function makeAppointment(makeAnnouncementData) {
         let reqData =
             {
                 aTitle: document.getElementById("aTitle").value,
-                aType: document.getElementById("appointmentType").value,
+                aType: Number(document.getElementById("appointmentType").value.split("| ")[1]),
                 aPhi: document.getElementById("phi").value,
                 aReason: document.getElementById("reason").value,
             };
         console.log(reqData);
-
         $.post("/test_war_exploded/user-appointment-controller/create",
             reqData,
             function (data, status) {
