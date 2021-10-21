@@ -98,6 +98,10 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Public-Announcements.jsp");
                     rd.forward(request,response);
                     break;
+                case "MakAnnouncementsForPHI":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPHI.jsp");
+                    rd.forward(request,response);
+                    break;
                 default:
                     response.getWriter().println("404 Page not Found");
                     break;
