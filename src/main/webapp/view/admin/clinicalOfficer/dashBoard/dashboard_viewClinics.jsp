@@ -5,17 +5,17 @@
     <title>Title</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-viewClinics.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_PHI.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="<c:url value="/public/js/ClinicalOfficer/viewClinics.js"></c:url> "></script>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+
 </head>
 <body>
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
 <div class="containor container" id="mainContent">
-
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Clinic/Dashboard/ClnicList</div>
@@ -41,15 +41,18 @@
 </script>
 <script defer>
     let clinicList1 = new clinicList("card-containor");
+
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     view();
     function view(){
+
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/view",
             // reqData,
             function(data,status){
                 clinicListArray=JSON.parse(data)
                 clinicList1.setData(clinicListArray);
+
             }
         );
     }
@@ -86,6 +89,7 @@
             }
         );
     }
+
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

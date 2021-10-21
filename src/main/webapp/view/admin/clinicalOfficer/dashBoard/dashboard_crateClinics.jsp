@@ -4,17 +4,19 @@
 <head>
     <title>Create clinics</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-createClinics.css"/> "/>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_db-header.css"/> "/>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/common/_db-header.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/common/side-navbar.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_live-card.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
     <%--    popup js--%>
     <script src="<c:url value="/public/js/popup.js"></c:url> "></script>
+
     <%--    for side navbar style--%>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/common/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
 </head>
 <body>
@@ -77,33 +79,65 @@
                                     <label>Description</label>
                                     <input type="text" value="on or before 4" id="description" required autocomplete="off" name="description" onkeyup="card()"/>
                                 </div>
+
+
+                                </div>
                             </div>
-                        </div>
-                        <!-- create clinic button -->
-                        <div class="create-button">
-                            <button>Create Clinic</button>
-                        </div>
-                    </form>
+                            <!-- create clinic button -->
+                            <div class="create-button">
+                                <button>Create Clinic</button>
+
+                            </div>
+                        </form>
+                    </div>
                 </div>
+
             </div>
 
-        </div>
+            <!-- live card section -->
+            <div class="right">
+                <div class="card-container">
+                    <div class="live-card-title">Live Clinic Card</div>
+                    <div class="live-card-border">
+                        <div class="live-card">
+                            <div class="clinic-title">Covid19 Awareness Session</div>
+                            <div class="clinic-date">2022/03/08</div>
+                            <div class="clinic-description">he process of writing a job description requires
+                                having a clear understanding of the job’s duties
+                                and responsibilities. The job posting should also
+                                include a concise picture of the skills required for
+                                the position to attract qualified job candidates.
+                                Organize the job</div>
+                            <div class="clinic-details">
+                                <div class="location item" id="item1"><span><span class="locationimg"><i data-feather="home" width="10px" height="10px"></i></span>Location :</span> home</div>
+                                <div class="conduct item"  id="item2"><span><span><i data-feather="user" width="10px" height="10px"></i></span>Conduct :</span> Akila Lulakshi</div>
+                                <div class="max-limit item"  id="item3"><span><span><i data-feather="user-check" width="10px" height="10px"></i></span>Max participant limit :</span>1900</div>
+                                <div class="moh-area item"  id="4"><span><span><i data-feather="map-pin" width="10px" height="10px"></i></span>MOH Area :</span></div>
+                                <div class="target-participants item"  id="item5"><span><span><i data-feather="users" width="10px" height="10px"></i></span>Target participant :</span> covid patients</div>
+                            </div>
 
-        <!-- live card section -->
-        <div class="right">
-            <div class="card-container" id="card-container">
-                <div class="live-card-title">Live Clinic Card</div>
-                <div class="live-card-border">
-                    <div class="live-card" id="live-card"></div>
+                            <div class="down-box">
+                                <div class="current-participant-count">
+                                    <div class="current-participant-img"><i data-feather="users" width="15px"></i></div>
+                                    <div class="count-participants">120, 221</div>
+                                </div>
+                                <div class="buttons">
+                                    <div class="delete-button">Delete</div>
+                                    <div class="edit-button">Edit</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-    <%--    </div>--%>
 </div>
 <script>
     feather.replace()
 </script>
+
 <script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
@@ -176,5 +210,6 @@
         console.log("live card");
     }
 </script>
+
 </body>
 </html>

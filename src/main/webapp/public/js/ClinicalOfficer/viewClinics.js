@@ -1,4 +1,5 @@
 
+
 class clinicList {
     clinicListArray = [
         {
@@ -14,6 +15,8 @@ class clinicList {
             maxpatient:" "
         }
     ];
+
+
     container;
     url = "http://localhost:8080/test_war_exploded/public/";
     constructor(container) {
@@ -42,8 +45,10 @@ class clinicList {
                             <div class="count-participants">120, 221</div>
                         </div>
                         <div class="buttons">
+
                             <div onclick="popup.showDeleteAlertMessage(${item.clinicID})" class="delete-button">Delete</div>
                             <div class="edit-button" onclick="window.location='http://localhost:8080/test_war_exploded/s/create-clinic';">Edit</div>
+
                         </div>
                     </div>
               </div>

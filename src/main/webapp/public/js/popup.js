@@ -1,3 +1,4 @@
+// alert("popup")
 class SuwasewanaPopup{
     title= '';
     desc = '';
@@ -25,6 +26,7 @@ class SuwasewanaPopup{
         // close btn
         let closeBTN = document.createElement('div');
         closeBTN.classList.add('close-btn');
+        // closeBTN.innerHTML = '<i data-feather="x"></i>';
         closeBTN.innerHTML = 'X';
         closeBTN.setAttribute("onclick", "popup.hidePopup()" );
         popup.appendChild(closeBTN);
@@ -125,13 +127,13 @@ class SuwasewanaPopup{
         this.showPopup()
     }
 
-    showAppointmentSuccessMessage(data){
+    showCreateClinicSuccessMessage(data){
         let eventsContaier = document.createElement('div');
         console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
-            <div class="popup-title"> User Appointment Portal </div>
+            <div class="popup-title"> Create clinic portral </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container"> 
@@ -268,6 +270,5 @@ class SuwasewanaPopup{
 
         }
     }
-
-
 }
+module.exports.SuwasewanaPopup = SuwasewanaPopup;
