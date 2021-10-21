@@ -75,8 +75,12 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_verifyPatients.jsp");
                     rd.forward(request,response);
                     break;
-                case "view-appointments":
+                case "view-complaints":
                     rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_viewComplaints.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view-appointments":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_viewAppointments.jsp");
                     rd.forward(request,response);
                     break;
 
@@ -88,9 +92,20 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/View-MOH.jsp");
                     rd.forward(request,response);
                     break;
-
                 case "view_ClinicalOfficers":
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/View-ClinicalOfficers.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "register_PHI":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Register-PHI.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "register_C-officer":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Register-ClinicalOfficer.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "register_MOH":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Register-MOH.jsp");
                     rd.forward(request,response);
                     break;
 

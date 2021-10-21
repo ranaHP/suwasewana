@@ -186,7 +186,7 @@ class SuwasewanaPopup{
     showDeleteAlertMessage(data) {
         alert(data)
         let clinicID = data;
-        data = {data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."}
+        data = {data: "if you want to delete this Clinic. Please type 'Delete' in the below input details."}
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `

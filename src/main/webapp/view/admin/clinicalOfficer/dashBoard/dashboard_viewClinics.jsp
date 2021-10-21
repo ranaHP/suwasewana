@@ -24,7 +24,7 @@
     <div class="mypopup" id="popup" style="display: none;"></div>
     <div class="cardselect">
         <div class="searchbar">
-            <input type="text" id ="filter" required autocomplete="false" name="clinic-title" onkeyup="search()" />
+            <input type="text" id ="filter" required autocomplete="off" name="clinic-title" onkeyup="search()" />
             <button>Search</button>
         </div>
         <div class="results">

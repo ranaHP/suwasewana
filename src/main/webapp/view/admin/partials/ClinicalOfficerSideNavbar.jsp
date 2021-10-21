@@ -57,8 +57,8 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="#">List Announcement </a></li>
-                <li><a href="#">Create Announcement </a></li>
+                <li><a href="/test_war_exploded/s/viewClinic-announcements">List Announcement </a></li>
+                <li><a href="/test_war_exploded/s/select-announcements">Create Announcement </a></li>
             </ul>
         </li>
 

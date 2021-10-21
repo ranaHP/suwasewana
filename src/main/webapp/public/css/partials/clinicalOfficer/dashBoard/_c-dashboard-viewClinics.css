@@ -213,6 +213,15 @@ span{
     color: black;
 }
 /* responsive */
+@media screen and (max-width: 540px){
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
+    }
+}
 @media screen and (max-width: 412px) {
     .cardselect{
         flex-direction: column;
@@ -221,13 +230,7 @@ span{
         display: flex;
         justify-content: space-around;
     }
-    .sidebar-main-show{
-        max-width: calc(100vw - 78px);
-        margin-left: 78px;
 
-        transition: 0.2s ease;
-        /*transition-delay: 0.1s;*/
-    }
 }
 @media screen and (max-width: 320px) {
     .live-card{

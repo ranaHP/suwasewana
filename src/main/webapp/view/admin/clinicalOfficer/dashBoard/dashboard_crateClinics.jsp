@@ -51,15 +51,15 @@
                                 </div>
                                 <div class="inputs">
                                     <label> Location</label>
-                                    <input type="text"  value="at moh" required autocomplete="off" name=" location" id="location" onkeyup="card()"/>
+                                    <input type="text"  value="At the MOH" required autocomplete="off" name=" location" id="location" onkeyup="card()"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Target MOH</label>
-                                    <input type="text" value="galle" required autocomplete="off" name="target-MOH" id="target-MOH" onkeyup="card()"/>
+                                    <input type="text" value="Galle" required autocomplete="off" name="target-MOH" id="target-MOH" onkeyup="card()"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Data & Time</label>
-                                    <input type="text"  value="4" required autocomplete="off" name="date-time" id="date-time" onkeyup="card()"/>
+                                    <input type="text"  value="04/05/2021" required autocomplete="off" name="date-time" id="date-time" onkeyup="card()"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Duration (hours)</label>
@@ -69,15 +69,15 @@
                             <div class="right-inputs">
                                 <div class="inputs">
                                     <label> Max Patient</label>
-                                    <input type="number" value="5" required autocomplete="off" name="max-patient" id="max-patient" onkeyup="card()"/>
+                                    <input type="number" value="59" required autocomplete="off" name="max-patient" id="max-patient" onkeyup="card()"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Conduct</label>
-                                    <input type="text" value="doctor" required autocomplete="off" name="conduct" id="conduct" onkeyup="card()"/>
+                                    <input type="text" value="Dr.Dias" required autocomplete="off" name="conduct" id="conduct" onkeyup="card()"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Description</label>
-                                    <input type="text" value="on or before 4" id="description" required autocomplete="off" name="description" onkeyup="card()"/>
+                                    <input type="text" value="A clinic is a medical facility that gives health care for patients in an area. It is different from a hospital, because people do not stay in a clinic for a long time. Some clinics can become as large as hospitals, but still have the name Clinic" id="description" required autocomplete="off" name="description" onkeyup="card()"/>
                                 </div>
 
 
