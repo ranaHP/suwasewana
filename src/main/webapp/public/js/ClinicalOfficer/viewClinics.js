@@ -1,8 +1,22 @@
-// <script type="text/javascript" src="../popup.js"></script>
-// var ss = required("../popup.js");
-// var tt =  new ss.SuwasewanaPopup("container")
+
+
 class clinicList {
-    clinicListArray = [];
+    clinicListArray = [
+        {
+            clinicID:" ",
+            disease:" ",
+            title:" ",
+            MOH:" ",
+            conduct:" ",
+            datetime:" ",
+            description:" ",
+            duration:" ",
+            location:" ",
+            maxpatient:" "
+        }
+    ];
+
+
     container;
     url = "http://localhost:8080/test_war_exploded/public/";
     constructor(container) {
@@ -31,8 +45,10 @@ class clinicList {
                             <div class="count-participants">120, 221</div>
                         </div>
                         <div class="buttons">
-                            <div class="delete-button">Delete</div>
-                            <div class="edit-button">Edit</div>
+
+                            <div onclick="popup.showDeleteAlertMessage(${item.clinicID})" class="delete-button">Delete</div>
+                            <div class="edit-button" onclick="window.location='http://localhost:8080/test_war_exploded/s/create-clinic';">Edit</div>
+
                         </div>
                     </div>
               </div>

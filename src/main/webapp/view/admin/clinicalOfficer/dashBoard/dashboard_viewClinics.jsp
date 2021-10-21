@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_PHI.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="<c:url value="/public/js/ClinicalOfficer/viewClinics.js"></c:url> "></script
-<%--    <script src="<c:url value="/public/js/appointment.js"/>"></script>--%>
+    <script src="<c:url value="/public/js/ClinicalOfficer/viewClinics.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+
 </head>
 <body>
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
@@ -19,6 +21,7 @@
         <div class="dashboard-name">Clinic/Dashboard/ClnicList</div>
     </div>
 <%--     filter section --%>
+    <div class="mypopup" id="popup" style="display: none;"></div>
     <div class="cardselect">
         <div class="searchbar">
             <input type="text" id ="filter" required autocomplete="false" name="clinic-title" onkeyup="search()" />
@@ -38,19 +41,55 @@
 </script>
 <script defer>
     let clinicList1 = new clinicList("card-containor");
+
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     view();
     function view(){
-        // alert("view")
+
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/view",
             // reqData,
             function(data,status){
                 clinicListArray=JSON.parse(data)
                 clinicList1.setData(clinicListArray);
-                // alert(data)
+
             }
         );
     }
+    function deleteCheckInputVsUserInput(appointmentId){
+        let userInput = document.getElementById("delete_input").value;
+        if(userInput === "Delete"){
+            document.getElementById("deleteAuthErrorMessage").style.display = "none";
+            deleteClinics(appointmentId);
+            alert("okay")
+        }else{
+            document.getElementById("deleteAuthErrorMessage").style.display = "block";
+        }
+    }
+
+    function deleteClinics(clinicID){
+        // console.log("deleteclinicfunction")
+        $.post("/test_war_exploded/create-clinic-controller/delete",
+            {
+                clinicID: clinicID
+            },
+            function (data, status) {
+                if (data.includes("success")) {
+                    popup. showClinicDeleteSuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully Deleted!'
+                    });
+                } else {
+                    popup. showClinicDeleteSuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic delete Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
+    }
+
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

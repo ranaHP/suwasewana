@@ -165,7 +165,15 @@ body{
     font-family: 'Segoe UI';
 
 }
-
+.name{
+    position: relative;
+}
+.error{
+    position: absolute;
+    top: 5px;
+    left: 130px;
+    /*background-color: #0D47A1;*/
+}
 #upload-btn {
     border-radius: 2px;
     padding: 5px;
@@ -192,13 +200,13 @@ body{
     display: block;
     width: 200px;
     height: 30px;
-    font-size: 0.8em;
+    font-size: 0.6em;
     background: transparent;
     /* border: solid 1px #ccc; */
     border: none;
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.397);
-    font-size: 0.7em;
+    /*font-size: 0.7em;*/
     transition: all .3s ease;
     border-radius: 1px;
     padding: 0 6px;
@@ -253,18 +261,19 @@ body{
 
 .DRow, .DRow_Left {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
 }
 
 .icon {
     display: flex !important;
-    align-items: flex-end !important;
+    /*flex-direction: column;*/
+    align-items: flex-end;
     vertical-align: bottom !important;
 }
 
 .icon svg {
     height: 11px;
-    margin-bottom: 4px;
+    margin-bottom: 1px;
 }
 
 .row_text {
@@ -276,6 +285,7 @@ body{
     border: none;
     border-bottom: solid 1px #ccc;
     margin-bottom: 4px;
+    font-size: .8em;
 }
 
 .row_text {
@@ -317,6 +327,9 @@ textarea {
 
         transition: 0.2s ease;
         /*transition-delay: 0.1s;*/
+    }
+    .DRow{
+        width: 150%;
     }
 }
 
