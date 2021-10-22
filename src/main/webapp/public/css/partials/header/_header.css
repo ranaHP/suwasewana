@@ -35,6 +35,9 @@
     text-align: center;
   }
 
+.main-header li a{
+    text-decoration: none;
+}
 .main-header li:hover {
     text-decoration: underline;
   }

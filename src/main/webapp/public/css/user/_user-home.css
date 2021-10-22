@@ -1,5 +1,4 @@
 @import url('../partials/header/_header.css');
-@import url('../partials/header/_header.css');
 @import url('../partials/hero-banner/hero-banner.css');
 @import url('../partials/title/sectionTile.css');
 @import url('../partials/upcomming-clinic/upcomming-clinic.css');
@@ -23,4 +22,7 @@ body{
 }
 section{
 
+}
+a{
+    text-decoration: none;
 }
