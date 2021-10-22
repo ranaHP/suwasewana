@@ -30,6 +30,7 @@ public class AppointmentModel {
             String status,
             String user ){
 
+         super();
          this.aTitle = aTitle;
          this.appointmentType = appointmentType;
          this.phi = phi;
@@ -44,6 +45,13 @@ public class AppointmentModel {
          this.status = status;
          this.user = user;
     }
+
+    public AppointmentModel(String aTitle, String aType, String phi, String reason, String appointmentId, String posted_data, String round, String location, String time_slot1, String time_slot2, String special_notice, String status) {
+    }
+
+
+//    public AppointmentModel(String aTitle, String appointmentType, String phi, String location, String s, String s1, String s2, String s3, String s4, String s5, String s6, String s7) {
+//    }
 
     public String getaTitle() {
         return aTitle;

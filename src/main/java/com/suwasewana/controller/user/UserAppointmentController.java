@@ -115,8 +115,8 @@ public class UserAppointmentController extends HttpServlet {
                 "",
                 "",
                 "",
-                "",
-                uNic
+                ""
+
         );
         ArrayList<AppointmentModel> result = userDAO.userGetAppointmentDetails(userAppointmentDetails);
         res.getWriter().println(gson.toJson(result));

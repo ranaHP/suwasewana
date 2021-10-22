@@ -318,6 +318,7 @@
             {
                 aType: "",
                 aTitle: "",
+
             },
             function (data, status) {
                 appointmentCardList = JSON.parse(data);
