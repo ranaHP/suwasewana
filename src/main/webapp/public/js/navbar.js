@@ -1,15 +1,15 @@
 class Navbar{
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     showHeaderNavItems(div){
-        console.log(this.myUrl);
-        document.querySelector(".navbar").innerHTML =
+        // console.log(this.myUrl);
+        document.querySelector("."+div).innerHTML =
             `<a href="${this.myUrl}/s/">
                             <li class="nav-item"> Home</li>
                         </a>
                         <a href="${this.myUrl}/s/">
                             <li class="nav-item"> Diseases</li>
                         </a>
-                        <a href="${this.myUrl}/s/dashboard">
+                        <a href="${this.myUrl}/s/announcement">
                             <li class="nav-item"> Announcement</li>
                         </a>
                         <a href="${this.myUrl}/s/clinic">

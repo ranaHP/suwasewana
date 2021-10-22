@@ -17,7 +17,7 @@
     <!-- for style sheet link  -->
     <link href="<c:url value="/public/css/user/_user-home.css"/>" rel="stylesheet"/>
     <!-- for commen style  sheet link  -->
-    <link href="<c:url value="/public/css/partials/commen"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
 
     <!-- for feather icon -->
     <script src="https://unpkg.com/feather-icons"></script>
@@ -146,7 +146,7 @@
                 <div class="latest-announstment-cards-container">
                     <div class="latest-announstment-card">
                         <div class="image-container">
-                            <img src="images//announcetment_banner.png" width="100%"/>
+                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>
                             <div class="read-more-btn">
                                 Read More
                             </div>
@@ -171,7 +171,7 @@
                 <div class="latest-announstment-cards-container">
                     <div class="latest-announstment-card">
                         <div class="image-container">
-                            <img src="images//announcetment_banner.png" width="100%"/>
+                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>
                             <div class="read-more-btn">
                                 Read More
                             </div>
@@ -196,7 +196,7 @@
                 <div class="latest-announstment-cards-container">
                     <div class="latest-announstment-card">
                         <div class="image-container">
-                            <img src="images//announcetment_banner.png" width="100%"/>
+                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>
                             <div class="read-more-btn">
                                 Read More
                             </div>
@@ -221,7 +221,7 @@
                 <div class="latest-announstment-cards-container">
                     <div class="latest-announstment-card">
                         <div class="image-container">
-                            <img src="images//announcetment_banner.png" width="100%"/>
+                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>
                             <div class="read-more-btn">
                                 Read More
                             </div>
@@ -246,7 +246,7 @@
                 <div class="latest-announstment-cards-container">
                     <div class="latest-announstment-card">
                         <div class="image-container">
-                            <img src="images//announcetment_banner.png" width="100%"/>
+                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>
                             <div class="read-more-btn">
                                 Read More
                             </div>
@@ -271,7 +271,7 @@
                 <div class="latest-announstment-cards-container">
                     <div class="latest-announstment-card">
                         <div class="image-container">
-                            <img src="images//announcetment_banner.png" width="100%"/>
+                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>
                             <div class="read-more-btn">
                                 Read More
                             </div>
@@ -296,7 +296,7 @@
                 <div class="latest-announstment-cards-container">
                     <div class="latest-announstment-card">
                         <div class="image-container">
-                            <img src="images//announcetment_banner.png" width="100%"/>
+                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>
                             <div class="read-more-btn">
                                 Read More
                             </div>
@@ -338,7 +338,7 @@
                 <div class="diseases-card-container">
                     <div class="diseases-card">
                         <div class="left-container">
-                            <img src="images/disease-banner.png" width="100%">
+                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
                         </div>
                         <div class="right-container">
                             <div class="count-container">
@@ -396,7 +396,7 @@
                 <div class="diseases-card-container">
                     <div class="diseases-card">
                         <div class="left-container">
-                            <img src="images/disease-banner.png" width="100%">
+                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
                         </div>
                         <div class="right-container">
                             <div class="count-container">
@@ -454,7 +454,7 @@
                 <div class="diseases-card-container">
                     <div class="diseases-card">
                         <div class="left-container">
-                            <img src="images/disease-banner.png" width="100%">
+                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
                         </div>
                         <div class="right-container">
                             <div class="count-container">
@@ -512,7 +512,7 @@
                 <div class="diseases-card-container">
                     <div class="diseases-card">
                         <div class="left-container">
-                            <img src="images/disease-banner.png" width="100%">
+                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
                         </div>
                         <div class="right-container">
                             <div class="count-container">
@@ -570,7 +570,7 @@
                 <div class="diseases-card-container">
                     <div class="diseases-card">
                         <div class="left-container">
-                            <img src="images/disease-banner.png" width="100%">
+                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
                         </div>
                         <div class="right-container">
                             <div class="count-container">
@@ -640,7 +640,7 @@
         </div>
         <div class="upcoming-clinic">
             <div class="left-col">
-                <img src="images/icons/arrow-left-circle.svg" class="clinic-arrow" width="25px"/>
+                <img src="<c:url value="/public/images/icons/arrow-left-circle.svg"/>" class="clinic-arrow" width="25px"/>
                 <div class="clinic-card-container">
                     <div class="clinic-card">
                         <div class="header">
@@ -739,11 +739,11 @@
                         </div>
                     </div>
                 </div>
-                <img src="images/icons/arrow-right-circle.svg" width="25px" class="clinic-arrow"/>
+                <img src="<c:url value="/public/images/icons/arrow-right-circle.svg"/>" width="25px" class="clinic-arrow"/>
 
             </div>
             <div class="right-col">
-                <img src="images/clinic-banner-home.png" alt=" clinic banner" width="100"/>
+                <img src="<c:url value="/public/images/clinic-banner-home.png"/>" alt=" clinic banner" width="100"/>
             </div>
         </div>
     </section>
