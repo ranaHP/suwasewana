@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet("/user-complain-controller/*")
@@ -57,6 +58,9 @@ public class UserComplainController extends HttpServlet {
                 case "create":
                     uerMakeComplain(req, res);
                     break;
+                case "search":
+                    searchComplain(req, res);
+                    break;
                 case "view":
                     userViewComplain(req, res);
                     break;
@@ -72,6 +76,17 @@ public class UserComplainController extends HttpServlet {
         }
 
     }
+//    search complain
+    private void searchComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+//        System.out.println("title"+req.getParameter("Title"));
+//        System.out.println("type"+req.getParameter("complaintype"));
+        String title=req.getParameter("Title");
+        String type=req.getParameter("complaintype");
+        ArrayList<ComplainModel> result = userDAO.SearchComplainDetails(title,type);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+
     private void userViewPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
         ArrayList<PHIModel> result = phidao.GetPHIDetails();
         res.getWriter().println(gson.toJson(result));

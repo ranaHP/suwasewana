@@ -186,7 +186,7 @@
                     <div class="dashboard-page-sub-title">
                         Complaints History
                     </div>
-                    <form class="previous-form">
+                    <form class="previous-form" id="search_cType_Title" onsubmit="return searchComplain();">
                         <div class="form-group">
                             <label for="cTitleSearch">
                                 Complaint Title
@@ -199,12 +199,8 @@
                             <label for="allComplaintsTypeSearch">
                                 Complaints Type
                             </label>
-
-<%--                            //#################################################################################################3#################3--%>
                             <input id="ComplaintsTypeSearch" type="text" list="allComplaintsTypeSearch"
                                    name="ComplaintsTypeSearch" autocomplete="off"
-                                    onchange="searchComplain();";
-                                   onkeydown="searchComplain();"
                                    onclick="document.getElementById('ComplaintsTypeSearch').value=''";
                             >
                             <datalist id="allComplaintsTypeSearch">
@@ -216,7 +212,7 @@
                             <label>
                                 &nbsp;
                             </label>
-                            <button class="submitBtn " > Search Complaint</button>
+                            <button type="submit" class="submitBtn "> Search Complaint</button>
                         </div>
                     </form>
                     <div class="row previous-complaint-list" id="previous-complaint-list" style="justify-content: unset">
@@ -550,6 +546,7 @@
                                             <label for="proof3input" style="cursor: pointer;">Upload Image</label>
                                         </div>
                                     </div>
+                                    <button onclick="imageUpload();">check image</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -585,10 +582,71 @@
     </div>
 
 </div>
+
+<%--image upload--%>
+<script>
+    function imageUpload() {
+
+        var fd = new FormData();
+        let imageNames = [];
+        if ($('#proof1input')[0].files[0]) {
+            fd.append('file', $('#proof1input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url1 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof1input')[0].files[0].name.split(".")[$('#proof1input')[0].files[0].name.split(".").length - 1];
+            imageNames.push(url1);
+        }
+        if ($('#proof2input')[0].files[0]) {
+            fd.append('file', $('#proof2input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url2 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof2input')[0].files[0].name.split(".")[$('#proof2input')[0].files[0].name.split(".").length - 1];
+            imageNames.push(url2);
+
+        }
+        if ($('#proof3input')[0].files[0]) {
+            fd.append('file', $('#proof3input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url3 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof3input')[0].files[0].name.split(".")[$('#proof3input')[0].files[0].name.split(".").length - 1];
+            imageNames.push(url3);
+        }
+
+        imageNames.map((item, index) => {
+            fd.append('ImageName' + (index + 1), item);
+        })
+
+
+        console.log(imageNames)
+
+        $.ajax({
+            url: '/suwasewana_war/fileuploadservlet',
+            type: 'post',
+            data: fd,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response != 0) {
+                    console.log("successfully image uploadedss")
+                    makeComplain(imageNames);
+                } else {
+                    console.log('file not uploaded');
+
+                }
+            },
+        });
+        return false;
+    }
+</script>
+<%--initialize--%>
 <script>
     let validation = new FormInputValidation();
     let complain= new Complain('previous-complaint-list');
 </script>
+<%--popup--%>
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
         var loadFile = function (event, imgContainerId) {
@@ -596,13 +654,42 @@
         image.src = URL.createObjectURL(event.target.files[0]);
     };
 </script>
+<%--for search--%>
+<script>
+    function searchComplain(){
+        var ComplainTypeObj = document.getElementById("ComplaintsTypeSearch");
+        var complaindatalist = document.getElementById(ComplainTypeObj.getAttribute("list"));
+        let CType,Title;
+        if(complaindatalist.options.namedItem(ComplainTypeObj.value)){
+            CType=(complaindatalist.options.namedItem(ComplainTypeObj.value).id);
+        }
+
+
+        let searchItem = {
+            Title : document.getElementById("cTitleSearch").value,
+            complaintype: CType
+        }
+        let complainCardList = [];
+        $.post("/suwasewana_war/user-complain-controller/search",
+            searchItem,
+            function (data, status) {
+                console.log("unsuccesssss brooo "+data)
+                complainCardList = JSON.parse(data);
+                typedatalist=complainCardList;
+                document.getElementById("previous-complaint-list").innerHTML = " ";
+                complain.setData(complainCardList);
+            }
+        );
+        return false;
+    }
+</script>
+
 
 <script>
 
-    getAllAppointment();
+    getAllComplain();
     let typedatalist={};
-    function getAllAppointment() {
-        // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
+    function getAllComplain() {
         let complainCardList = [];
         $.post("/suwasewana_war/user-complain-controller/view",
             {},
@@ -611,24 +698,10 @@
                 typedatalist=complainCardList;
                 document.getElementById("previous-complaint-list").innerHTML = " ";
                 complain.setData(complainCardList);
-
             }
         );
     }
 
-    function searchComplain(){
-        console.log("whyyyyyyyyyyyyyyyyyyy")
-        var ComplainTypeObj = document.getElementById("ComplaintsTypeSearch");
-        var complaindatalist = document.getElementById(ComplainTypeObj.getAttribute("list"));
-        let CType;
-        if(complaindatalist.options.namedItem(ComplainTypeObj.value)){
-            CType=(complaindatalist.options.namedItem(ComplainTypeObj.value).id);
-        }
-
-
-        console.log("complain type = "+CType)
-        complain.searchCardDatabyType(typedatalist,CType);
-    }
 
 
 
@@ -644,10 +717,10 @@
         ){
             console.log("correct");
 
+            imageUpload();
 
 
 
-            // makeComplain();
         }
         else {
             validation.checklength(document.getElementById('cTitle').value,'ecTitle',10);
@@ -657,79 +730,19 @@
             validation.selectCheck('phi','ephi');
             validation.checklength(document.getElementById('reason').value,'ereason',10);
             console.log("incorrect");
+
         }
-
-
-        // image adding
-        // var fd = new FormData();
-        // var files = $('#proof1input')[0].files[0];
-        // var files1 = $('#proof2input')[0].files[0];
-        // var files2 = $('#proof3input')[0].files[0];
-        // fd.append('file',files);
-        // fd.append('file1',files1);
-        // fd.append('file2',files2);
-        // var time=String(new Date()).split(" ").join();
-        // var id="123242";
-        // let img1=String(id+1)
-        // let img2=String(id+2)
-        // let img3=String(id+3)
-        // console.log(img1);
-        // console.log(img2);
-        // console.log(img3);
-        // fd.append('img1',img1)
-        // fd.append('img2',img2)
-        // fd.append('img3',img3)
-        //
-        // $.ajax({
-        //     url: '/suwasewana_war/fileuploadservlet',
-        //     type: 'post',
-        //     data: fd,
-        //     contentType: false,
-        //     processData: false,
-        //     success: function(response){
-        //         if(response != 0){
-        //             alert("successfully image uploadedss")
-        //         }else{
-        //             alert('file not uploaded');
-        //         }
-        //     },
-        // });
-
 
         return false;
     }
-    function makeComplain() {
-
-
-        // image adding
-        // var fd = new FormData();
-        // var files = $('#proof1input')[0].files[0];
-        // var files1 = $('#proof2input')[0].files[0];
-        // var files2 = $('#proof3input')[0].files[0];
-        // fd.append('file',files);
-        // fd.append('file1',files1);
-        // fd.append('file2',files2);
-        // var time=String(new Date()).split(" ").join();
-        // var id="123242";
-        // fd.append('img1',time+id+"1")
-        // fd.append('img2',time+id+"2")
-        // fd.append('img3',time+id+"3")
-        //
-        // $.ajax({
-        //     url: '/suwasewana_war/fileuploadservlet',
-        //     type: 'post',
-        //     data: fd,
-        //     contentType: false,
-        //     processData: false,
-        //     success: function(response){
-        //         if(response != 0){
-        //             alert("successfully image uploadedss")
-        //         }else{
-        //             alert('file not uploaded');
-        //         }
-        //     },
-        // });
-
+    function makeComplain(imageNames) {
+        console.log("imahe name array");
+        imageNames.map(
+            item=> console.log(item))
+        ;
+        let url1 = (imageNames[0]==null ? " ":imageNames[0] );
+        let url2 = (imageNames[1]==null ? " ":imageNames[1] );
+        let url3 = (imageNames[2]==null ? " ":imageNames[2] );
 
         // take complaintype
         var CTypeObj = document.getElementById("complaintType");
@@ -765,9 +778,9 @@
                 uType: UserType,
                 cPhi: PId,
                 cReason: document.getElementById("reason").value,
-                img1:"document.getElementById(proof1input).value",
-                img2:"document.getElementById(proof2input).value",
-                img3:"document.getElementById(proof3input).value"
+                img1:url1,
+                img2:url2,
+                img3:url3
             };
         console.log(reqData);
 
