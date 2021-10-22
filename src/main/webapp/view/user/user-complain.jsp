@@ -191,7 +191,7 @@
                             <label for="cTitleSearch">
                                 Complaint Title
                             </label>
-                            <input type="text" name="name" id="cTitleSearch" autocomplete="off" />
+                            <input type="text" name="name" id="cTitleSearch" autocomplete="off" autofocus />
 
                         </div>
 
@@ -216,171 +216,7 @@
                         </div>
                     </form>
                     <div class="row previous-complaint-list" id="previous-complaint-list" style="justify-content: unset">
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
-                                <div class="header">
-                                    Complaints about health services
-                                    <p> 2021/01/10</p>
-                                </div>
 
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
-
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
-                                <div class="header">
-                                    Complaints about health services
-                                    <p> 2021/01/10</p>
-                                </div>
-
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
-
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
-                                <div class="header">
-                                    Complaints about health services
-                                    <p> 2021/01/10</p>
-                                </div>
-
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
-
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -546,7 +382,8 @@
                                             <label for="proof3input" style="cursor: pointer;">Upload Image</label>
                                         </div>
                                     </div>
-                                    <button onclick="imageUpload();">check image</button>
+                                    <button onclick="imageUpload();"> add pic</button>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -582,6 +419,39 @@
     </div>
 
 </div>
+
+
+
+
+<script>
+    function checkValidation(){
+        if( validation.checklength(document.getElementById('cTitle').value,'ecTitle',10) &&
+            validation.selectCheck('complaintType','eallcomplaintType') &&
+            validation.selectCheck('uDetailsType','euDetailsType') &&
+            validation.selectCheck('MOHArea','eMOHArea') &&
+            validation.selectCheck('phi','ephi')&&
+            validation.checklength(document.getElementById('reason').value,'ereason',10)
+        ){
+            console.log("correct");
+            imageUpload();
+
+
+        }
+        else {
+            validation.checklength(document.getElementById('cTitle').value,'ecTitle',10);
+            validation.selectCheck('complaintType','eallcomplaintType');
+            validation.selectCheck('uDetailsType','euDetailsType');
+            validation.selectCheck('MOHArea','eMOHArea');
+            validation.selectCheck('phi','ephi');
+            validation.checklength(document.getElementById('reason').value,'ereason',10);
+            console.log("incorrect");
+
+        }
+
+        return false;
+    }
+</script>
+
 
 <%--image upload--%>
 <script>
@@ -620,129 +490,120 @@
         })
 
 
-        console.log(imageNames)
+        console.log("image neames array "+imageNames);
+        console.log("image neames length "+imageNames.length);
+        if(imageNames.length!=0){
+            $.ajax({
+                url: '/suwasewana_war/fileuploadservlet',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != 0) {
+                        console.log("successfully image uploadedss ---- " +imageNames )
+                        makeComplain(imageNames);
+                    } else {
+                        console.log('file not uploaded');
 
-        $.ajax({
-            url: '/suwasewana_war/fileuploadservlet',
-            type: 'post',
-            data: fd,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                if (response != 0) {
-                    console.log("successfully image uploadedss")
-                    makeComplain(imageNames);
-                } else {
-                    console.log('file not uploaded');
-
-                }
-            },
-        });
-        return false;
-    }
-</script>
-<%--initialize--%>
-<script>
-    let validation = new FormInputValidation();
-    let complain= new Complain('previous-complaint-list');
-</script>
-<%--popup--%>
-<script defer>
-    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
-        var loadFile = function (event, imgContainerId) {
-        var image = document.getElementById(imgContainerId);
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
-<%--for search--%>
-<script>
-    function searchComplain(){
-        var ComplainTypeObj = document.getElementById("ComplaintsTypeSearch");
-        var complaindatalist = document.getElementById(ComplainTypeObj.getAttribute("list"));
-        let CType,Title;
-        if(complaindatalist.options.namedItem(ComplainTypeObj.value)){
-            CType=(complaindatalist.options.namedItem(ComplainTypeObj.value).id);
-        }
-
-
-        let searchItem = {
-            Title : document.getElementById("cTitleSearch").value,
-            complaintype: CType
-        }
-        let complainCardList = [];
-        $.post("/suwasewana_war/user-complain-controller/search",
-            searchItem,
-            function (data, status) {
-                console.log("unsuccesssss brooo "+data)
-                complainCardList = JSON.parse(data);
-                typedatalist=complainCardList;
-                document.getElementById("previous-complaint-list").innerHTML = " ";
-                complain.setData(complainCardList);
-            }
-        );
-        return false;
-    }
-</script>
-
-
-<script>
-
-    getAllComplain();
-    let typedatalist={};
-    function getAllComplain() {
-        let complainCardList = [];
-        $.post("/suwasewana_war/user-complain-controller/view",
-            {},
-            function (data, status) {
-                complainCardList = JSON.parse(data);
-                typedatalist=complainCardList;
-                document.getElementById("previous-complaint-list").innerHTML = " ";
-                complain.setData(complainCardList);
-            }
-        );
-    }
-
-
-
-
-
-
-    function checkValidation(){
-        if( validation.checklength(document.getElementById('cTitle').value,'ecTitle',10) &&
-            validation.selectCheck('complaintType','eallcomplaintType') &&
-            validation.selectCheck('uDetailsType','euDetailsType') &&
-            validation.selectCheck('MOHArea','eMOHArea') &&
-            validation.selectCheck('phi','ephi')&&
-            validation.checklength(document.getElementById('reason').value,'ereason',10)
-        ){
-            console.log("correct");
-
-            imageUpload();
-
-
-
+                    }
+                },
+            });
         }
         else {
-            validation.checklength(document.getElementById('cTitle').value,'ecTitle',10);
-            validation.selectCheck('complaintType','eallcomplaintType');
-            validation.selectCheck('uDetailsType','euDetailsType');
-            validation.selectCheck('MOHArea','eMOHArea');
-            validation.selectCheck('phi','ephi');
-            validation.checklength(document.getElementById('reason').value,'ereason',10);
-            console.log("incorrect");
-
+            makeComplains();
         }
 
         return false;
     }
-    function makeComplain(imageNames) {
-        console.log("imahe name array");
-        imageNames.map(
-            item=> console.log(item))
-        ;
+
+
+<%--make complain--%>
+    function makeComplains(){
+        console.log("without images")
+        console.log("make complain call");
+
         let url1 = (imageNames[0]==null ? " ":imageNames[0] );
         let url2 = (imageNames[1]==null ? " ":imageNames[1] );
         let url3 = (imageNames[2]==null ? " ":imageNames[2] );
+
+        // let url1 = " ";
+        // let url2 = " ";
+        // let url3 = " ";
+
+        // take complaintype
+        var CTypeObj = document.getElementById("complaintType");
+        var datalist = document.getElementById(CTypeObj.getAttribute("list"));
+        let ComplainType;
+        let UserType;
+        let PId;
+        let MOHId;
+        if(datalist.options.namedItem(CTypeObj.value)){
+            ComplainType=(datalist.options.namedItem(CTypeObj.value).id);
+        }
+
+        // take usertype
+        var UTypeObj = document.getElementById("uDetailsType");
+        var datalist = document.getElementById(UTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(UTypeObj.value)){
+            UserType=(datalist.options.namedItem(UTypeObj.value).id);
+        }
+
+        // take phiID
+        var phiObj = document.getElementById("phi");
+        var datalist = document.getElementById(phiObj.getAttribute("list"));
+        if(datalist.options.namedItem(phiObj.value)){
+            PId=(datalist.options.namedItem(phiObj.value).id);
+        }
+
+
+
+        let reqData =
+            {
+                cTitle: document.getElementById("cTitle").value,
+                cType: ComplainType,
+                uType: UserType,
+                cPhi: PId,
+                cReason: document.getElementById("reason").value,
+                img1:url1,
+                img2:url2,
+                img3:url3
+            };
+        console.log(reqData);
+
+        $.post("/suwasewana_war/user-complain-controller/create",
+            reqData,
+            function (data, status) {
+                console.log(data.includes("success"))
+                if (data.includes("success")) {
+                    console.log("successsss brooo")
+                    popup.showAppointmentSuccessMessage({
+                        status: 'success',
+                        message: 'Complain Successfully Added!'
+                    });
+                    getAllComplain();
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.showAppointmentSuccessMessage({
+                        status: 'fail',
+                        message: 'Complain Send Fail !',
+                        data: data
+                    });
+                }
+            }
+        );
+        return false;
+    }
+    function makeComplain(imageNames) {
+        console.log("make complain call");
+
+        let url1 = (imageNames[0]==null ? " ":imageNames[0] );
+        let url2 = (imageNames[1]==null ? " ":imageNames[1] );
+        let url3 = (imageNames[2]==null ? " ":imageNames[2] );
+
+        // let url1 = " ";
+        // let url2 = " ";
+        // let url3 = " ";
 
         // take complaintype
         var CTypeObj = document.getElementById("complaintType");
@@ -794,6 +655,7 @@
                         status: 'success',
                         message: 'Complain Successfully Added!'
                     });
+                    getAllComplain();
                 } else {
                     console.log("unsuccesssss brooo")
                     popup.showAppointmentSuccessMessage({
@@ -806,6 +668,74 @@
         );
         return false;
     }
+</script>
+
+
+<%--initialize--%>
+<script>
+    let validation = new FormInputValidation();
+    let complain= new Complain('previous-complaint-list');
+</script>
+
+
+<%--popup--%>
+<script defer>
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+        var loadFile = function (event, imgContainerId) {
+        var image = document.getElementById(imgContainerId);
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+
+
+<%--for search--%>
+<script>
+    function searchComplain(){
+        var ComplainTypeObj = document.getElementById("ComplaintsTypeSearch");
+        var complaindatalist = document.getElementById(ComplainTypeObj.getAttribute("list"));
+        let CType,Title;
+        if(complaindatalist.options.namedItem(ComplainTypeObj.value)){
+            CType=(complaindatalist.options.namedItem(ComplainTypeObj.value).id);
+        }
+
+
+        let searchItem = {
+            Title : document.getElementById("cTitleSearch").value,
+            complaintype: CType
+        }
+        let complainCardList = [];
+        $.post("/suwasewana_war/user-complain-controller/search",
+            searchItem,
+            function (data, status) {
+                console.log("unsuccesssss brooo "+data)
+                complainCardList = JSON.parse(data);
+                typedatalist=complainCardList;
+                document.getElementById("previous-complaint-list").innerHTML = " ";
+                complain.setData(complainCardList);
+            }
+        );
+        return false;
+    }
+</script>
+
+
+<script>
+
+    getAllComplain();
+    let typedatalist={};
+    function getAllComplain() {
+        let complainCardList = [];
+        $.post("/suwasewana_war/user-complain-controller/view",
+            {},
+            function (data, status) {
+                complainCardList = JSON.parse(data);
+                typedatalist=complainCardList;
+                document.getElementById("previous-complaint-list").innerHTML = " ";
+                complain.setData(complainCardList);
+            }
+        );
+    }
+
 </script>
 
 

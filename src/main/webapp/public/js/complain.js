@@ -41,7 +41,7 @@ class Complain {
         this.container.innerHTML = " ";
        data.map((item) => {
             this.container.innerHTML += `
-            <div class="complaint-card-container" style="margin: 2px">
+            <div class="complaint-card-container" style="margin-top: 5px; margin-right: 4px">
                             <div class="complaint-card">
                                 <div class="header">
                                     ${item.CTitle}
@@ -56,7 +56,7 @@ class Complain {
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="desc">
+                                <div class="desc" style="padding:3px 20px; ">
                                     ${item.CMessage}
                                 </div>
                                 <div class="properties">
@@ -66,21 +66,29 @@ class Complain {
                                             Status : ${item.Status}
                                         </li>
                                         <li>
-                                            <img src="${this.url}/public/images/icons/proof.svg" width="22px" />
+                                            <img src="${this.url}images/icons/proof.svg" width="22px" />
                                             proofs :
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="${this.url}/public/images/animal-complaint.jpg" alt="" srcset="" width="30%">
-                                        <img src="${this.url}/public/images/animal-complaint.jpg" alt="" srcset="" width="30%">
-                                        <img src="${this.url}/public/images/animal-complaint.jpg" alt="" srcset="" width="30%">
+                                    <div class="proofs-images " style="justify-content: unset; margin-left: 3px">
+                                    ${item.img1!=" "?
+                                        `<img src=\"${this.url}images/uploadimage/${item.img1}\" width=\"80px\" height=\"80px\" />`:""
+                                        }
+                                    ${item.img2!=" "?
+                                        `<img src=\"${this.url}images/uploadimage/${item.img2}\" width=\"80px\" height=\"80px\"/>`:""
+                                        }
+                                    ${item.img3!=" "?
+                                        `<img src=\"${this.url}images/uploadimage/${item.img3}\" width=\"80px\" height=\"80px\"/>`:""
+                                    }
+                                    
+                                
                                     </div>
                                 </div>
                                 <div class="footer">
                                     <div class="current-registered-count">
-                                        <img src="${this.url}/public/images/icons/user.svg" width="25px" />z
+                                        <img src="${this.url}images/icons/user.svg" width="25px"  />
                                         ${item.PHIName}
                                     </div>
                                 </div>
