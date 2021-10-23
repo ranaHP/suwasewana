@@ -49,6 +49,7 @@ public class UserRegisterController extends HttpServlet {
         );
         String result = userDAO.UserRegistration(userRegisterDetails);
         res.getWriter().println(result);
+        System.out.println(result);
     }
 
     public void handleRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {

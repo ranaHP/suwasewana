@@ -1,5 +1,7 @@
 package com.suwasewana.model;
 
+import com.suwasewana.core.SuwasewanaHashing;
+
 public class UserLoginModel {
     protected String mobile;
     protected String password;
@@ -8,8 +10,9 @@ public class UserLoginModel {
 
     public UserLoginModel(String number, String pass , String nic) {
         super();
+        SuwasewanaHashing hashing = new SuwasewanaHashing(pass);
         this.mobile = number;
-        this.password = pass;
+        this.password = hashing.getHashValue();
         this.unic = nic;
     }
 
