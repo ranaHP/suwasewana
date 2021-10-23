@@ -20,7 +20,7 @@
         x
     </div>
     <div class="logo-details">
-<%--        <!-- <i class='bx bxl-c-plus-plus'></i> -->--%>
+        <!-- <i class='bx bxl-c-plus-plus'></i> -->
         <img src="<c:url value="/public/images/logo/logo.png"/>"   class="logoImage" alt="logo"/>
         <span class="logo_name">Suwasewana</span>
     </div>
