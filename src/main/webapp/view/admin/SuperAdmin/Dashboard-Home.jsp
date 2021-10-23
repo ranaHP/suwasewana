@@ -22,7 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
-<body onload="charts()">
+<body onload="charts()" id="mainContent">
+<c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"/>
 <div class="container">
     <!-- suwasewana header -->
     <div class="header">
@@ -33,7 +34,9 @@
         <!-- officer count -->
         <div class="officer-count">
             <div class="count-box">
-                <div class="l"><img src="image1.png" width="30px"></div>
+                <div class="l"><img src="<c:url value="/public/images/icons/circle.svg"/>" >
+
+                </div>
                 <div class="r">
                     <p class="registered">Registered PHI</p>
                     <p class="count">45</p>
@@ -41,7 +44,7 @@
             </div>
 
             <div class="count-box">
-                <div class="l"><img src="image1.png" width="30px"></div>
+                <div class="l"><img src="<c:url value="/public/images/icons/circle.svg"/>" ></div>
                 <div class="r">
                     <p class="registered">Registered RPHI</p>
                     <p class="count">65</p>
@@ -49,7 +52,7 @@
             </div>
 
             <div class="count-box">
-                <div class="l"><img src="doctor.svg" style="width: 35px;"></div>
+                <div class="l"><img src="<c:url value="/public/images/icons/circle.svg "/>" ></div>
                 <div class="r">
                     <p class="registered">Registered Clinical officers</p>
                     <p class="count">450</p>
@@ -200,5 +203,6 @@
     })
 
 </script>
+<script defer src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
 </body>
 </html>
