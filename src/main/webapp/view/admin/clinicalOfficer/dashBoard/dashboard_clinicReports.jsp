@@ -14,97 +14,90 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body id="mainContent">
-<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"></c:import>
-<div class="container">
+<body onload="charts()">
+
+<div class="containor">
     <!-- suwasewana header -->
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Clinic/Dashboard/Clinic reports</div>
     </div>
-    <!-- search the report category -->
-    <div class="content">
-        <div class="search-category">
-            <select name="" id="select">
-                <option value="1">select the report type</option>
-            </select>
-        </div>
-        <!--report containor  -->
-        <div class="report-containor">
-            <div class="month-select">
-                <div class="from-to-month-select">
-                    <span>From</span>
-                    <select name="" id="select1">
-                        <option value="1">select the month</option>
-                    </select>
-                    <span>To</span>
-                    <select name="" id="select2">
-                        <option value="1">select the month</option>
-                    </select>
-                </div>
+    <!--report containor  -->
+    <div class="report-containor">
+        <div class="month-select">
+            <div class="from-to-month-select">
+                <span>From</span>
+                <select name="" id="select1">
+                    <option value="1">select the month</option>
+                </select>
+                <span>To</span>
+                <select name="" id="select2">
+                    <option value="1">select the month</option>
+                </select>
             </div>
-            <div class="reports">
-                <!-- clinic expansion chart -->
-                <div class="report1">
-                    <div class="clinic-expansion-chart">
-                        <div class="chart-title">
-                            <p class="f-1">Clinic expansion on diseases</p>
-                        </div>
-                        <div class="chart">
-                            <canvas id="myChart" class="mychart" width="400" height="400"></canvas>
-                        </div>
+        </div>
+        <div class="reports">
+            <!-- clinic expansion chart -->
+            <div class="report1">
+                <div class="clinic-expansion-chart">
+                    <div class="chart-title">
+                        <p class="f-1">Clinic expansion on diseases</p>
                     </div>
-                    <div class="chart-summary">
-                        <div class="most">
-                            <p class="f-title">Most conducted clinic</p>
-                            <p class="f-sub">Corona</p>
-                            <p class="f-num">89</p>
-                        </div>
-                        <div class="least">
-                            <p class="f-title">Least conducted clinic</p>
-                            <p class="f-sub">Dengue</p>
-                            <p class="f-num">34</p>
-                        </div>
+                    <div class="chart">
+                        <canvas id="myChart" class="mychart" width="400" height="400"></canvas>
                     </div>
-
                 </div>
-                <!-- clinic registering expansion chart -->
-                <div class="report2">
-                    <div class="clinic-registering-expansion-chart">
-                        <div class="chart-title">
-                            <p class="f-1">Registering presentage for clinics</p>
-                        </div>
-                        <div class="chart">
-                            <canvas id="myChart1"class="mychart" width="400" height="400"></canvas>
-                        </div>
+                <div class="chart-summary">
+                    <div class="most">
+                        <p class="f-title">Most conducted clinic</p>
+                        <p class="f-sub">Corona</p>
+                        <p class="f-num">89</p>
                     </div>
-                    <div class="chart-summary">
-                        <div class="most">
-                            <p class="f-title">Most interacted clinic</p>
-                            <p class="f-sub">Corona</p>
-                            <p class="f-num">89</p>
-                        </div>
-                        <div class="least">
-                            <p class="f-title">Least interacted clinic</p>
-                            <p class="f-sub">Corona</p>
-                            <p class="f-num">8</p>
-                        </div>
+                    <div class="least">
+                        <p class="f-title">Least conducted clinic</p>
+                        <p class="f-sub">Dengue</p>
+                        <p class="f-num">34</p>
+                    </div>
+                </div>
+
+            </div>
+            <!-- clinic registering expansion chart -->
+            <div class="report2">
+                <div class="clinic-registering-expansion-chart">
+                    <div class="chart-title">
+                        <p class="f-1">Registering presentage for clinics</p>
+                    </div>
+                    <div class="chart">
+                        <canvas id="myChart1"class="mychart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+                <div class="chart-summary">
+                    <div class="most">
+                        <p class="f-title">Most interacted clinic</p>
+                        <p class="f-sub">Corona</p>
+                        <p class="f-num">89</p>
+                    </div>
+                    <div class="least">
+                        <p class="f-title">Least interacted clinic</p>
+                        <p class="f-sub">Corona</p>
+                        <p class="f-num">8</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- </div> -->
 </div>
 
 <script>
     // select report category
-    reports=["Clinic Reports","Disease Reports"];
-    reports.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select').appendChild(option)
-    })
+    // reports=["Clinic Reports","Disease Reports"];
+    // reports.map(name=>{
+    //     let option= document.createElement('option')
+    //     option.value=name
+    //     option.innerText=name
+    //     document.getElementById('select').appendChild(option)
+    // })
 
     // select month
     months=["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
@@ -200,6 +193,6 @@
     });
 
 </script>
-<script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+
 </body>
 </html>
