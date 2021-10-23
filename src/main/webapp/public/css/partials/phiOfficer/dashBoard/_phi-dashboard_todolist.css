@@ -11,6 +11,28 @@ body{
     background-color: #dfe4ea59;
     max-width: calc(100vw - 78px);
 }
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .7em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+
 
 svg {
     width: 15px;
@@ -216,6 +238,7 @@ button:hover {
         text-align: center;
         margin-top: 20px;
     }
+
 }
 @media only screen and (max-width: 420px) {
 
@@ -234,6 +257,14 @@ button:hover {
     button {
         width: 100%;
     }
+
+    .sidebar-main-show{
+    max-width: calc(100vw - 78px);
+    margin-left: 78px;
+
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
 
 }
 /* toast css */

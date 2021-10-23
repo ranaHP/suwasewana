@@ -24,6 +24,11 @@
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+<div class="header">
+    <div class="upper-title">SUWASEWANA </div>
+    <div class="dashboard-name">PHI/Dashboard/View announcements</div>
+</div>
+
 <div class="todo-container">
     <div class="left-container">
         <div class="on-progess-list-container">
