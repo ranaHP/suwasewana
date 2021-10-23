@@ -1,7 +1,6 @@
 *{
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     font-size: 14px;
 }
 body{
@@ -10,6 +9,7 @@ body{
     align-items: center;
     margin-left: 78px;
     background-color: #dfe4ea59;
+    max-width: calc(100vw - 78px);
 }
 .content{
     font-family: Arial, Helvetica, sans-serif;
@@ -19,6 +19,18 @@ body{
     min-height: 100vh;
     width: 85%;
     padding: 10px;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    /*margin-left: 260px;*/
+    /* background-color: red;*/
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
 }
 .header{
     padding: 10px 15px 10px 34px;
@@ -157,6 +169,13 @@ span{
 @media screen and (max-width: 624px) {
     .mychart1{
         width: 300px;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
     }
 }
 @media screen and (max-width: 492px) {

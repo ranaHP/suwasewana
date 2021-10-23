@@ -25,7 +25,8 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
-<body onload="charts()">
+<body onload="charts()" id="mainContent">
+<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
 <!-- <div class="containor"> -->
 <div class="header">
     <div class="upper-title">SUWASEWANA </div>
@@ -109,5 +110,6 @@
 <script>
     feather.replace(({width:"20px",height:"20px"}))
 </script>
+<script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
 </html>
