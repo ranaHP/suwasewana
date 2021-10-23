@@ -27,7 +27,7 @@ public class UserDAO {
             "VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final  String USER_LOGIN_ATTEMPT = "SELECT login_status FROM `citizen` WHERE uMobile = ?";
     private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT suspended_time FROM `citizen` WHERE uMobile = ?; ";
-    private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `citizen` SET `login_status` = ? WHERE `citizen`.`uMobile` = ?; ";
+    private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `citizen` SET `login_status` = ? , `suspended_time` = current_timestamp() WHERE `citizen`.`uMobile` = ?; ";
     Connection connection;
 
     public UserDAO() {
@@ -45,39 +45,36 @@ public class UserDAO {
         return "";
     }
 
-    public void GetLoginAttemptChange(UserLoginModel userLogin , String attempt) {
+    public UserLoginModel GetLoginAttemptChange(UserLoginModel userLogin , String attempt) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_ATTEMPT_CHANGE)) {
             preparedStatement.setString(1, attempt);
             preparedStatement.setString(2, userLogin.getMobile());
             System.out.println(preparedStatement);
-
             Integer rs = preparedStatement.executeUpdate();
+            return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
         System.out.println("in to chnage out");
-
+        return new UserLoginModel("", "", "");
     }
 
-    public void GetLoginAttemptChangeSupport(UserLoginModel userLogin) {
+    public UserLoginModel GetLoginAttemptChangeSupport(UserLoginModel userLogin) {
         String loginStatus = new String(CheckLoginAttempt(userLogin));
         System.out.println("in to support");
         switch(loginStatus){
             case "0":
-                GetLoginAttemptChange(userLogin, "1");
-                return;
+                return GetLoginAttemptChange(userLogin, "1");
             case "1":
-                GetLoginAttemptChange(userLogin, "2");
-                return;
+                return GetLoginAttemptChange(userLogin, "2");
             case "2":
-                GetLoginAttemptChange(userLogin, "3");
-                return;
+                return GetLoginAttemptChange(userLogin, "3");
             case "3":
-                GetLoginAttemptChange(userLogin,"-1");
-                return;
+                return GetLoginAttemptChange(userLogin,"-1");
             default:
-                return;
+                new UserLoginModel("", "", "");
         }
+        return new UserLoginModel("", "", "");
     }
     public String CheckLoginAttempt(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_ATTEMPT)) {
@@ -131,10 +128,10 @@ public class UserDAO {
                     UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, nic);
                     GetLoginAttemptChange(userLogin, "4");
                     return userLoginDetails;
-                }else{
-                    GetLoginAttemptChangeSupport(userLogin);
                 }
             }
+            System.out.println("in to support to 1");
+            GetLoginAttemptChangeSupport(userLogin);
             return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
             printSQLException(throwables);

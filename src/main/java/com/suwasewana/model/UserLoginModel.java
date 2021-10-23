@@ -6,7 +6,7 @@ public class UserLoginModel {
     protected String mobile;
     protected String password;
     protected String unic;
-    protected String message;
+    protected String message = "";
 
 
     public UserLoginModel(String number, String pass , String nic ) {
