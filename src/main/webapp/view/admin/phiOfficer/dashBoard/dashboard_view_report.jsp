@@ -18,9 +18,12 @@
     <script src="https://unpkg.com/feather-icons"></script>
     <script defer src="<c:url value="/public/js/PHIOfficer/view_report.js"/> "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <%--    side-nav-bar--%>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body onload="charts()">
+<body onload="charts()" id="mainContent">
+<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
 <!-- suwasewana header -->
 <div class="header">
     <div class="upper-title">SUWASEWANA </div>
@@ -181,14 +184,15 @@
 
 
     complaints=["Land Issues","Unhealthy Foods Related","Water Related Issues","Animal Issues","Environmental Issues","others"];
-    let i=1
+    let j=1
     complaints.map(name=>{
         let type= document.createElement('p')
         type.innerText=name
-        document.getElementById('com-type'+i).appendChild(type)
+        document.getElementById('com-type'+j).appendChild(type)
         // console.log('com-type'+i)
-        i++
+        j++
     })
 </script>
+<script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
 </html>

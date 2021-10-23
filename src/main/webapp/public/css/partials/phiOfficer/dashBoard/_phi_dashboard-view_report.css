@@ -1,7 +1,6 @@
 *{
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
     font-size: 16px;
 }
 body{
@@ -11,6 +10,7 @@ body{
     margin-left: 78px;
     align-items: center;
     background-color: #dfe4ea59;
+    max-width: calc(100vw - 78px);
 }
 .container{
     display: flex;
@@ -20,6 +20,17 @@ body{
     align-content: center;
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
 }
 .content{
     width: 80%;
