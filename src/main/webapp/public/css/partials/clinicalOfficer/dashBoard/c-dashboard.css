@@ -45,6 +45,7 @@ body{
 .upcomin-clinic{
     /* background-color: blueviolet; */
     height: 28%;
+    margin-bottom: 20px;
 
 }
 .growth-calander{
@@ -75,11 +76,14 @@ body{
     width: 100%;
 }
 .calander-body{
-    background-color: fuchsia;
+    /*background-color: fuchsia;*/
     margin-top: 10px;
     height: 59.3vh;
     width: 90%;
-    float:right
+    float:right;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.185);
 }
 .c-right-container{
     /* background-color: chartreuse; */
@@ -122,7 +126,7 @@ body{
     color: #019686;
     font-size: 0.9em;
 }
-.date,.nop{
+.card-date,.nop{
     font-size: 0.5em;
     color: rgb(160, 148, 148);
 }
@@ -273,7 +277,6 @@ body{
         margin: 0;
         padding: 0;
         width: 100%;
-        background-color: #019686;
     }
     .calander-body{
         width: 90%;
@@ -283,6 +286,17 @@ body{
     }
     .nc-amount{
         font-size: 0.7em;
+        width: 90%;
+    }
+    .c-db-container{
+        flex-direction: column;
+    }
+    .c-container-right{
+        margin-top: 20px;
+        width: 100%;
+    }
+    .c-container-left{
+        width: 100%;
     }
 }
 @media only screen and (max-width: 904px ){
@@ -315,11 +329,13 @@ body{
     .ncimg{
         display: none;
     }
+    .noclinic{
+        height: unset;
+    }
     .nc-amount{
         width: 100%;
         align-items: center;
         padding: 0;
-        font-size: 1.7em;
     }
 }
 @media only screen and (max-width: 688px ){
@@ -330,20 +346,13 @@ body{
         height: 22vh;
     }
 
-    .c-db-container{
-        flex-direction: column;
-    }
-    .c-container-left{
-        width: 100%;
-    }
+
     #chart2{
         margin-top: 30px;
         margin-bottom: 70px;
     }
 
-    .ncimg{
-        display: unset !important;
-    }
+
     .c-container-right{
         margin-top: 20px;
         width: 100%;
@@ -351,7 +360,7 @@ body{
     .c-right-container{
         display: flex;
         /* background-color: #4f5ee2; */
-        margin-right: 50px;
+        /*margin-right: 50px;*/
     }
     .c-container-right h4{
         font-size: 1em;
@@ -372,7 +381,7 @@ body{
         flex-direction: column;
     }
     .pendingclinc{
-        width:85%;
+        width:100%;
     }
     .growth-calander{
         height: 90%;
@@ -399,14 +408,17 @@ body{
     .calander{
         margin-top: 12px;
     }
+    .ncimg{
+        display: none !important;
+    }
+    .nc-amount{
+        font-size: 0.7em;
+    }
 
 }
 @media only screen and (max-width: 443px ){
     .c-right-container{
         flex-direction: column;
-    }
-    .pendingclinc{
-        width:82%;
     }
     .clinic-list{
         flex-direction: column;
@@ -452,9 +464,7 @@ body{
 
 }
 @media only screen and (max-width: 374px ){
-    .pendingclinc{
-        width:78%;
-    }
+
     .nc-amount{
         font-size: 1em;
         margin-top: 40px;
