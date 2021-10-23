@@ -27,11 +27,11 @@ news = [{
 
 
 let container=document.getElementById('announcements-container')
-let i=0;
+let j=0;
 news.map((item=>{
     let announcement = document.createElement("div")
     announcement.classList.add("announcement")
-    announcement.id=i
+    announcement.id=j
     announcement.innerHTML=`
 <div class="left">
                 <div class="image-container">
@@ -50,7 +50,7 @@ news.map((item=>{
             </div>
 `
     container.appendChild(announcement)
-    i++;
+    j++;
     console.log(announcement.id)
 }))
 

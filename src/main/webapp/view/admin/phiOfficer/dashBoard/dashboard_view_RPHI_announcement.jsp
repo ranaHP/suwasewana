@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body>
+<body id="mainContent">
+<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
 <div class="container">
     <!-- suwasewana header -->
     <div class="header">
@@ -37,5 +38,6 @@
     </div>
 </div>
 </div>
+<script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
 </html>

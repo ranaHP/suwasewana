@@ -7,11 +7,23 @@ body{
     margin-left: 78px;
     height: 100vh;
     background-color: #dfe4ea59;
+    max-width: calc(100vw - 78px);
 }
 .container{
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
 }
 .announcements-container{
     display: flex;
