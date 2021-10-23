@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
   <script src="<c:url value="/public/js/ClinicalOfficer/clinicAnnouncements.js"/>"></script>
 
 </head>

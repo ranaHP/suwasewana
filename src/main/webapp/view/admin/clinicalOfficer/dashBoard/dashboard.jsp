@@ -13,6 +13,8 @@
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
 
 </head>
 <body id="mainContent">
@@ -33,7 +35,7 @@
                 <div class="clinic-card">
                     <div class="card-left">
                         <h5>Covid 19 Awareness Session</h5>
-                        <div class="date">2020/08/28</div>
+                        <div class="card-date">2020/08/28</div>
                         <div class="amount">56</div>
                         <div class="nop">No of patients</div>
                         <button class="reschdulebtn">Reschdule</button>
@@ -46,7 +48,7 @@
                 <div class="clinic-card">
                     <div class="card-left">
                         <h5>Covid 19 Awareness Session</h5>
-                        <div class="date">2020/08/28</div>
+                        <div class="card-date">2020/08/28</div>
                         <div class="amount">56</div>
                         <div class="nop">No of patients</div>
                         <button class="reschdulebtn">Reschdule</button>
@@ -77,9 +79,10 @@
                 </div>
             </div>
             <div class="calander">
-                <h2>Calander</h2>
+                <h4>Calander</h4>
                 <div class="calander-body">
-                    body
+                    <div class="calender-container" id="calender" ></div>
+                    <div class="mypopup" id="popup" style="display: none;position: fixed; top: 0; left: 0;"></div>
                 </div>
             </div>
         </div>
@@ -135,7 +138,13 @@
         </div>
     </div>
 </div>
-<script src="<c:url value="/public/js/ClinicalOfficer/Dashboard.js"/>"></script>
+<script defer>
+    let calender = new Calender("calender");
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    // calender.reangeSelect(2021, 9, 10, 6, 8);
+
+</script>
+<script src="<c:url value="../../../../public/js/ClinicalOfficer/Dashboard.js"/>"></script>
 <script>
     let mycard = new card("")
 </script>
