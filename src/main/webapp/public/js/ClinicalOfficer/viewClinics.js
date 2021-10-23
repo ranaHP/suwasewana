@@ -1,5 +1,5 @@
 
-
+let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class clinicList {
     clinicListArray = [
         {
@@ -18,7 +18,7 @@ class clinicList {
 
 
     container;
-    url = "http://localhost:8080/test_war_exploded/public/";
+
     constructor(container) {
         this.container = document.getElementById(container);
     }
@@ -33,20 +33,20 @@ class clinicList {
                     <div class="clinic-date">${item.datetime}</div>
                     <div class="clinic-description">${item.description}</div>
                     <div class="clinic-details">
-                        <div class="location" id="item1"><span><span class="locationimg"><img src="${this.url}/images/icons/map-pin.svg" width="9px" /></span> Location :</span> ${item.location}</div>
-                        <div class="conduct"  id="item2"><span><span><img src="${this.url}/images/icons/user.svg" width="9px" /></span> Conduct :</span> ${item.conduct}</div>
-                        <div class="max-limit"  id="item3"><span><span><img src="${this.url}/images/icons/users.svg" width="9px" /></span> Max participant limit :</span>${item.maxpatient}</div>
-                        <div class="moh-area"  id="4"><span><span><img src="${this.url}/images/icons/map-pin.svg" width="9px" /></span> MOH Area :</span>${item.MOH}</div>
-                        <div class="target-participants"  id="item5"><span><span><img src="${this.url}/images/icons/book-open.svg" width="9px" /></span> Target participant :</span> ${item.title}</div>
+                        <div class="location" id="item1"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> Location :</span> ${item.location}</div>
+                        <div class="conduct"  id="item2"><span><span><object data="${Url}/public/images/icons/user.svg" width="8" height="8"> </object></span> Conduct :</span> ${item.conduct}</div>
+                        <div class="max-limit"  id="item3"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Max participant limit :</span>${item.maxpatient}</div>
+                        <div class="moh-area"  id="4"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> MOH Area :</span>${item.MOH}</div>
+                        <div class="target-participants"  id="item5"><span><span><object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object></span> Target participant :</span> ${item.title}</div>
                     </div>
                     <div class="down-box">
                         <div class="current-participant-count">
-                            <div class="current-participant-img"><img src="${this.url}/images/icons/users.svg" width="17px" /></div>
+                            <div class="current-participant-img"><object data="${Url}/public/images/icons/users.svg" width="15" height="15"> </object></div>
                             <div class="count-participants">120, 221</div>
                         </div>
                         <div class="buttons">
 
-                            <div onclick="popup.showDeleteAlertMessage(${item.clinicID})" class="delete-button">Delete</div>
+                            <div onclick="popup.showDeleteClinicAlertMessage(${item.clinicID})" class="delete-button">Delete</div>
                             <div class="edit-button" onclick="window.location='http://localhost:8080/test_war_exploded/s/create-clinic';">Edit</div>
 
                         </div>

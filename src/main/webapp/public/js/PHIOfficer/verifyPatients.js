@@ -40,7 +40,7 @@ requests=[{
     },
 ]
 
-
+let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 let container=document.getElementById("request-container")
 // let url=""
 requests.map((item=>{
@@ -58,12 +58,12 @@ requests.map((item=>{
 <div class="right">
      <div class="information">
        <div class="up">
-           <div class="location f-4"><object data="../icons/map-pin.svg" width="8" height="8"> </object> ${item.location}</div>
-           <div class="mobile f-4"><object data="../icons/phone.svg" width="8" height="8"> </object> ${item.mobile}</div>
+           <div class="location f-4"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> ${item.location}</div>
+           <div class="mobile f-4"><object data="${Url}/public/images/icons/phone.svg" width="8" height="8"> </object> ${item.mobile}</div>
        </div>
        <div class="down">
-           <div class="age f-4"><object data="../icons/bar-chart-2.svg" width="8" height="8"> </object> ${item.age}</div>
-           <div class="date f-4"><object data="../icons/calendar.svg" width="8" height="8"> </object> ${item.date}</div>
+           <div class="age f-4"><object data="${Url}/public/images/icons/bar-chart-2.svg" width="8" height="8"> </object> ${item.age}</div>
+           <div class="date f-4"><object data="${Url}/public/images/icons/calendar.svg" width="8" height="8"> </object> ${item.date}</div>
        </div>
 </div>
 <div class="buttons">

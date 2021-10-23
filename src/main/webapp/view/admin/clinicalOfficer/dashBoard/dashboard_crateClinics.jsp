@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_live-card.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
+    <script src="<c:url value="/public/js/ClinicalOfficer/createClinic.js"/>"></script>
     <%--    popup js--%>
     <script src="<c:url value="/public/js/popup.js"></c:url> "></script>
 
@@ -37,47 +37,51 @@
             <div class="create-clinics-title">Create Clinic Session</div>
             <div class="form-container">
                 <!-- form container -->
-                <div class="form">
-                    <form id="loginForm" onsubmit="return checkclinicregistration(event)">
+                <div class="form" onkeyup="card()">
+                    <form id="loginForm" onsubmit="return checkclinicregistration(event)" >
                         <div class="form-inputs">
                             <div class="left-inputs">
                                 <div class="inputs">
-                                    <label> Disease</label>
-                                    <input type="text" value="corona" required autocomplete="off" name=" disease" id="disease" onkeyup="card()"/>
+                                    <label> Clinic Title</label>
+                                    <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" />
                                 </div>
                                 <div class="inputs">
-                                    <label> Target participants</label>
-                                    <input type="text" value="For covid patients" required autocomplete="off" name="clinic-title" id="clinic-title" onkeyup="card()"/>
+                                    <label> Disease</label>
+                                    <input type="text" required autocomplete="off" name=" disease" id="disease" />
                                 </div>
                                 <div class="inputs">
                                     <label> Location</label>
-                                    <input type="text"  value="At the MOH" required autocomplete="off" name=" location" id="location" onkeyup="card()"/>
+                                    <input type="text"  required autocomplete="off" name=" location" id="location"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Target MOH</label>
-                                    <input type="text" value="Galle" required autocomplete="off" name="target-MOH" id="target-MOH" onkeyup="card()"/>
+                                    <input type="text" required autocomplete="off" name="target-MOH" id="target-MOH"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Data & Time</label>
-                                    <input type="text"  value="04/05/2021" required autocomplete="off" name="date-time" id="date-time" onkeyup="card()"/>
+                                    <input type="text"  required autocomplete="off" name="date-time" id="date-time"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Duration (hours)</label>
-                                    <input type="text"value="6" required autocomplete="off" name="duration" id="duration" onkeyup="card()"/>
+                                    <input type="text" required autocomplete="off" name="duration" id="duration"/>
                                 </div>
                             </div>
                             <div class="right-inputs">
                                 <div class="inputs">
                                     <label> Max Patient</label>
-                                    <input type="number" value="59" required autocomplete="off" name="max-patient" id="max-patient" onkeyup="card()"/>
+                                    <input type="number" required autocomplete="off" name="max-patient" id="max-patient"/>
+                                </div>
+                                <div class="inputs">
+                                    <label>Target participants </label>
+                                    <input type="text" required autocomplete="off" name="patient" id="patient"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Conduct</label>
-                                    <input type="text" value="Dr.Dias" required autocomplete="off" name="conduct" id="conduct" onkeyup="card()"/>
+                                    <input type="text" required autocomplete="off" name="conduct" id="conduct" />
                                 </div>
                                 <div class="inputs">
                                     <label>Description</label>
-                                    <input type="text" value="A clinic is a medical facility that gives health care for patients in an area. It is different from a hospital, because people do not stay in a clinic for a long time. Some clinics can become as large as hospitals, but still have the name Clinic" id="description" required autocomplete="off" name="description" onkeyup="card()"/>
+                                    <textarea type="text"  id="description" required autocomplete="off" name="description"></textarea>
                                 </div>
 
 
@@ -98,33 +102,10 @@
             <div class="right">
                 <div class="card-container">
                     <div class="live-card-title">Live Clinic Card</div>
-<%--                    <div class="live-card-border">--%>
-<%--                        <div class="live-card">--%>
-<%--                            <div class="clinic-title">Covid19 Awareness Session</div>--%>
-<%--                            <div class="clinic-date">2022/03/08</div>--%>
-<%--                            <div class="clinic-description">he process of writing a job description requires--%>
-<%--                                having a clear understanding of the job’s duties--%>
-<%--                                and responsibilities. The job posting should also--%>
-<%--                                include a concise picture of the skills required for--%>
-<%--                                the position to attract qualified job candidates.--%>
-<%--                                Organize the job</div>--%>
-<%--                            <div class="clinic-details">--%>
-<%--                                <div class="location item" id="item1"><span><span class="locationimg"><i data-feather="home" width="10px" height="10px"></i></span>Location :</span> home</div>--%>
-<%--                                <div class="conduct item"  id="item2"><span><span><i data-feather="user" width="10px" height="10px"></i></span>Conduct :</span> Akila Lulakshi</div>--%>
-<%--                                <div class="max-limit item"  id="item3"><span><span><i data-feather="user-check" width="10px" height="10px"></i></span>Max participant limit :</span>1900</div>--%>
-<%--                                <div class="moh-area item"  id="4"><span><span><i data-feather="map-pin" width="10px" height="10px"></i></span>MOH Area :</span></div>--%>
-<%--                                <div class="target-participants item"  id="item5"><span><span><i data-feather="users" width="10px" height="10px"></i></span>Target participant :</span> covid patients</div>--%>
-<%--                            </div>--%>
+                    <div class="live-card-border">
+                        <div class="live-card" id="live-card">
 
-<%--                            <div class="down-box">--%>
-<%--                                <div class="current-participant-count">--%>
-<%--                                    <div class="current-participant-img"><i data-feather="users" width="15px"></i></div>--%>
-<%--                                    <div class="count-participants">120, 221</div>--%>
-<%--                                </div>--%>
-<%--                                <div class="buttons">--%>
-<%--                                    <div class="delete-button">Delete</div>--%>
-<%--                                    <div class="edit-button">Edit</div>--%>
-                                </div>
+                        </div>
                             </div>
                         </div>
                     </div>
@@ -151,6 +132,7 @@
                 datetime: document.getElementById("date-time").value,
                 duration: data.target.elements.duration.value,
                 maxpatient:document.getElementById("max-patient").value,
+                Target: data.target.elements.patient.value,
                 conduct: data.target.elements.conduct.value,
                 description: data.target.elements.description.value,
             };
@@ -174,41 +156,7 @@
         );
         return false;
     }
-    function card()
-    {
-        <%--        var name=document.getElementById("disease").value;--%>
-        <%--        var date=document.getElementById("date-time").value;--%>
-        <%--        var des=document.getElementById("description").value;--%>
-        <%--        var location=document.getElementById("location").value;--%>
-        <%--        var conduct=document.getElementById("conduct").value;--%>
-        <%--        var max=document.getElementById("max-patient").value;--%>
-        <%--        var MOH=document.getElementById("target-MOH").value;--%>
-        <%--        console.log(name)--%>
-        <%--        let clinic = document.getElementById('live-card')--%>
-        <%--        clinic.innerHTML =`--%>
-        <%--                    <div class="clinic-title"  id="clinic-title">${name} Awareness Session</div>--%>
-        <%--                    <div class="clinic-date">${date}</div>--%>
-        <%--                    <div class="clinic-description">${des}</div>--%>
-        <%--                    <div class="clinic-details">--%>
-        <%--                        <div class="location" id="item1"><span><span class="locationimg"><object data="../icons/map-pin.svg" width="8" height="8"> </object></span>${location}</span> home</div>--%>
-        <%--                        <div class="conduct"  id="item2"><span><span><object data="../icons/user.svg" width="8" height="8"> </object></span>Conduct :</span> ${conduct}</div>--%>
-        <%--                        <div class="max-limit"  id="item3"><span><span><object data="../icons/user-check.svg" width="8" height="8"> </object></span>Max participant limit :</span>${max}</div>--%>
-        <%--                        <div class="moh-area"  id="4"><span><span><object data="../icons/map-pin.svg" width="8" height="8"> </object></span>MOH Area :</span>${MOH}</div>--%>
-        <%--                    </div>--%>
-        <%--                    <div class="down-box">--%>
-        <%--                        <div class="current-participant-count">--%>
-        <%--                            <div class="current-participant-img"><object data="../icons/users.svg" width="18" height="18"> </object></div>--%>
-        <%--                            <div class="count-participants">120, 221</div>--%>
-        <%--                        </div>--%>
-        <%--                        <div class="buttons">--%>
-        <%--                            <div class="delete-button">Delete</div>--%>
-        <%--                            <div class="edit-button">Edit</div>--%>
-        <%--                        </div>--%>
-        <%--                    </div>--%>
-        <%--    <h>{%=name%} kk<h>--%>
-        <%--`--%>
-        console.log("live card");
-    }
+
 </script>
 
 </body>

@@ -25,6 +25,8 @@
     </div>
     <div class="search-section">
         <input class="f-4" id="filter" onkeyup="search()" placeholder="Search by name"/>
+        <input class="f-4" id="filter1" onkeyup="search()" placeholder="Search by ID"/>
+        <input class="f-4" id="filter2" onkeyup="search()" placeholder="Search by Disease"/>
     </div>
     <div class="request-container" id="request-container">
 

@@ -8,6 +8,7 @@ import com.suwasewana.model.OfficerLoginModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,10 +61,16 @@ public class OfficerLoginController extends HttpServlet {
             ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 //            res.getWriter().println("Response unsuecc");
+
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 //            res.getWriter().println("Response suecc");
+//            Cookie loginCookie = new Cookie("cnic","12");
+//            //setting cookie to expiry in 30 mins
+//            loginCookie.setMaxAge(300*60);
+//            res.addCookie(loginCookie);
+//            System.out.println(loginCookie.getValue());
         }
 
         out.print(responseJsonString);

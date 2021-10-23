@@ -10,14 +10,37 @@ h4{
 body{
     /*margin-left: 4vw;*/
     /*margin-top: 8vh;*/
+    background-color: #dfe4ea59;
+    max-width: calc(100vw - 78px);
+    margin-left: 78px;
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    width: 100%;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .7em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
 }
 .c-db-container{
     display: flex;
     min-height: 100vh;
-    max-width: calc(100vw - 78px);
-    margin-left: 78px;
+
     transition: 0.2s ease;
-    padding: 50px;
+    /*padding: 50px;*/
 }
 
 
@@ -37,6 +60,7 @@ body{
     width: 30%;
     /* background-color: bisque; */
     padding:0 15px;
+
 }
 .growth-calander{
     display: flex;
@@ -45,6 +69,7 @@ body{
 .upcomin-clinic{
     /* background-color: blueviolet; */
     height: 28%;
+
 
 }
 .growth-calander{
@@ -65,12 +90,15 @@ body{
 }
 .chart{
     /* background-color: darkcyan; */
-    height: 31vh;
+    /*height: 31vh;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .g-chart{
     /* background-color: rgb(38, 104, 38); */
-    height: 24vh;
+    /*height: 24vh;*/
     margin-top: 10px;
     width: 100%;
 }
@@ -86,6 +114,7 @@ body{
     box-shadow:  0 3px 6px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
     height: 85vh;
+    background-color: white;
 }
 
 
@@ -105,6 +134,7 @@ body{
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-shadow:  0 3px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
 }
 .card-arraw{
     display: flex;
@@ -384,26 +414,31 @@ body{
         transition: 0.2s ease;
         /*transition-delay: 0.1s;*/
     }
+    g-chart{
+        width: 100px;
+    }
 }
 @media only screen and (max-width: 576px ){
     #chart2{
-        height: 25vh;
+        /*height: 25vh;*/
         margin-bottom: 0;
     }
     .c-container-right{
         margin-top:10px;
     }
     #chart1{
-        height: 25vh;
+        /*height: 25vh;*/
     }
     .calander{
-        margin-top: 12px;
+        margin-top: 75px;
     }
+
 
 }
 @media only screen and (max-width: 443px ){
     .c-right-container{
         flex-direction: column;
+        width: 100%;
     }
     .pendingclinc{
         width:82%;
@@ -431,11 +466,12 @@ body{
         margin-bottom: 0;
     }
     .chart{
-        height: 18vh !important;
+        /*height: 18vh !important;*/
         /* background-color: #019686; */
     }
     .c-container-right{
         margin-top:10px;
+
     }
     .c-container-right h4{
         font-weight: 400;

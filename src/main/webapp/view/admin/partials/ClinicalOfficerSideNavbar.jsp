@@ -31,7 +31,8 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Home</a></li>
+<%--                <li><a class="link_name" href="#">Home</a></li>--%>
+                <li><a href="/test_war_exploded/s/clinic-dashboard">Home</a></li>
             </ul>
         </li>
         <li>

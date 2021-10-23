@@ -1,3 +1,4 @@
+
 districts=["Galle","Matara","Colombo","Hambanthota","Nuwara","Kegalle","Nuwara Eliya","Jaffna"];
 districts.map(name=>{
     let option= document.createElement('option')

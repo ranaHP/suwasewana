@@ -28,9 +28,9 @@ select{
     width: 170px;
     height: 30px;
     border: none;
-    font-size: .8em;
+    font-size: .6em;
     padding-left: 4px;
-    color: rgba(0, 0, 0, 0.404) ;
+    color: rgba(0, 0, 0, 0.61);
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.13);
     outline: none;
 }
@@ -40,7 +40,7 @@ select{
     flex-direction: column;
     justify-content: center;
     /* padding-left: 25px; */
-    padding-left: 18.5%;
+    padding-left: 15%;
 }
 @keyframes opacity{
     from{
@@ -87,7 +87,7 @@ body{
 .complaint{
     display: flex;
     background-color: white;
-    width: 60%;
+    width: 70%;
     height: 170px;
     margin-top: 20px;
     padding: 15px;
@@ -112,7 +112,7 @@ body{
 .next-button , .pre-button{
     display: flex;
     align-items: center;
-    cursor: pointer;
+    cursor: pointer!important;
 }
 .img{
     display: flex!important;
@@ -153,7 +153,7 @@ body{
 }
 .done button{
     width: 75%;
-    padding: 3px;
+    padding: 2px;
     border: 0;
     cursor: pointer;
     border-radius: 1px;
@@ -163,7 +163,7 @@ body{
 .to-be-progress button{
     width: 75%;
     height: 60%;
-    padding: 3px;
+    padding: 2px;
     cursor: pointer;
     border: 0;
     border-radius: 1px;
@@ -185,8 +185,8 @@ body{
     .complaint{
         flex-direction: column;
         justify-content: center;
-        height: 280px;
-        margin: 3px;
+        height: 290px;
+        margin: 4px;
     }
     .description{
         width: 90%;
@@ -205,7 +205,7 @@ body{
         width: 55%;
     }
     .complaint{
-        margin: 3px;
+        margin: 5px;
     }
     .action{
         flex-direction: column;
