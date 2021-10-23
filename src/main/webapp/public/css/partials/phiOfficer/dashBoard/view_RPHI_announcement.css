@@ -148,4 +148,11 @@ body{
     .announcement{
         height: 420px;
     }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
+    }
 }
