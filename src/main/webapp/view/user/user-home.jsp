@@ -28,6 +28,7 @@
     <!-- for jquery -->
     <script src="<c:url value="/public/js/disease-details.js"/>"></script>
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
+    <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
 </head>
 <body>
 <!-- main container -->
@@ -50,12 +51,9 @@
                         <span> සිංහල </span>
                         <img src="<c:url value="/public/images/sri-lanka.png "/>" alt="sri lanakan flag" width="100%">
                     </div>
-                    <div class="register-btn">
-                        Register
-                    </div>
-                    <div class="login-btn">
-                        Login
-                    </div>
+                    <script>
+                        let loginRegsiter = new LoginLogout(); loginRegsiter.showLoginLogoutItems("login-register-container")
+                    </script>
                 </div>
             </div>
         </div>
@@ -749,7 +747,7 @@
     </section>
     <div class="main-footer">
         <div class="first-row">
-            <img src="images/logo.png" width="45px"/>
+            <img src="<c:url value="/public/images/logo.png "/>" width="45px"/>
             <div class="navbar-container">
                 <ul class="navbar">
                     <li class="nav-item"> Home</li>
@@ -806,7 +804,7 @@
         })
 
 
-        console.log(imageNames)
+        // console.log(imageNames)
 
         $.ajax({
             url: '/test_war_exploded/fileuploadservlet',

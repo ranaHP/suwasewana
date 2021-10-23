@@ -44,6 +44,8 @@
     <%--    for popup script--%>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
+    <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
+
     <title>Registration - Suwasewana</title>
 </head>
 <body>
@@ -70,12 +72,9 @@
                         <span> සිංහල </span>
                         <img src="<c:url value="/public/images/sri-lanka.png "/>" alt="sri lanakan flag" width="100%">
                     </div>
-                    <div class="register-btn">
-                        Register
-                    </div>
-                    <div class="login-btn">
-                        Login
-                    </div>
+                    <script>
+                        let loginRegsiter = new LoginLogout(); loginRegsiter.showLoginLogoutItemsRegister("login-register-container")
+                    </script>
                 </div>
             </div>
         </div>

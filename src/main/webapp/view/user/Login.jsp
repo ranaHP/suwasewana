@@ -25,6 +25,7 @@
     <!-- for commen style  sheet link  -->
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
+    <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
 
 </head>
 <body>
@@ -49,12 +50,9 @@
                         <span> සිංහල </span>
                         <img src="<c:url value="/public/images/sri-lanka.png "/>" alt="sri lanakan flag" width="100%">
                     </div>
-                    <div class="register-btn">
-                        Register
-                    </div>
-                    <div class="login-btn">
-                        Login
-                    </div>
+                    <script>
+                        let loginRegsiter = new LoginLogout(); loginRegsiter.showLoginLogoutItemsLogin("login-register-container")
+                    </script>
                 </div>
             </div>
         </div>
