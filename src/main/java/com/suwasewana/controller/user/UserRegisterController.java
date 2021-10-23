@@ -45,6 +45,7 @@ public class UserRegisterController extends HttpServlet {
                 req.getParameter("moh"),
                 req.getParameter("address"),
                 req.getParameter("location"),
+                "0",
                 ""
         );
         String result = userDAO.UserRegistration(userRegisterDetails);

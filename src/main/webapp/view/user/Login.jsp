@@ -87,6 +87,7 @@
                                        'user-mobile-error'
                                    ); hideFormError();"
                                    maxlength="10"
+                                   value="0412283111"
                             />
                             <div id="user-mobile-error" class="form-field-error"></div>
                         </div>
@@ -95,7 +96,7 @@
                     <div class="row">
                         <div class="form-group">
                             <label for="user-password">
-                                Mobile Number
+                                Password
                             </label>
                             <div class="w-100 p-relative">
                                 <input type="password" autocomplete="false" name="user-password" id="user-password"
@@ -104,6 +105,7 @@
                                    document.getElementById('user-password').value,
                                    'user-password-error'
                                ); hideFormError()"
+                                  value="asd123ASD123"
                                 />
                                 <div onclick="passwordVisibility()" class="password-visibility">
                                     <i data-feather="eye-off" id="eyeOff" style="display: none" class="c-gray"> </i>
@@ -185,12 +187,13 @@
     }
 
     function checkLoginValidation() {
+        let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
         if (
             validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
             validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
         ) {
-            let url = "/test_war_exploded/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
+            let url = myUrl+"/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function () {
                 console.log(this.response);
@@ -199,8 +202,9 @@
                 console.log(result);
 
                 if (result.status === "success") {
-                    location.replace("/test_war_exploded/s/");
+                    location.replace(myUrl + "/s/");
                 } else if (result.status === "error") {
+                    document.getElementById('user-form-error').innerText = result.data;
                     document.getElementById('user-form-error').style.display = "block";
                     document.getElementById("user-password").value = "";
                     document.getElementById("user-mobile").value = "";

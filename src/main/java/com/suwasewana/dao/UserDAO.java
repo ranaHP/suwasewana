@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
-    private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
     private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` LEFT JOIN `appointment_type` ON appointment.appointmentType = appointment_type.appointment_type_no WHERE user = ?";
@@ -25,12 +25,97 @@ public class UserDAO {
     private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?);";
+    private static final  String USER_LOGIN_ATTEMPT = "SELECT login_status FROM `citizen` WHERE uMobile = ?";
+    private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT suspended_time FROM `citizen` WHERE uMobile = ?; ";
+    private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `citizen` SET `login_status` = ? WHERE `citizen`.`uMobile` = ?; ";
     Connection connection;
 
     public UserDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
+    public String GetLoginSuspendedTime(UserLoginModel userLogin) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_SUSPENDED_TIME)) {
+            preparedStatement.setString(1, userLogin.getMobile());
+            Integer rs = preparedStatement.executeUpdate();
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        return "";
+    }
+
+    public void GetLoginAttemptChange(UserLoginModel userLogin , String attempt) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_ATTEMPT_CHANGE)) {
+            preparedStatement.setString(1, attempt);
+            preparedStatement.setString(2, userLogin.getMobile());
+            System.out.println(preparedStatement);
+
+            Integer rs = preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        System.out.println("in to chnage out");
+
+    }
+
+    public void GetLoginAttemptChangeSupport(UserLoginModel userLogin) {
+        String loginStatus = new String(CheckLoginAttempt(userLogin));
+        System.out.println("in to support");
+        switch(loginStatus){
+            case "0":
+                GetLoginAttemptChange(userLogin, "1");
+                return;
+            case "1":
+                GetLoginAttemptChange(userLogin, "2");
+                return;
+            case "2":
+                GetLoginAttemptChange(userLogin, "3");
+                return;
+            case "3":
+                GetLoginAttemptChange(userLogin,"-1");
+                return;
+            default:
+                return;
+        }
+    }
+    public String CheckLoginAttempt(UserLoginModel userLogin) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_ATTEMPT)) {
+            preparedStatement.setString(1, userLogin.getMobile());
+            ResultSet rs = preparedStatement.executeQuery();
+            String mobile = "";
+            while (rs.next()) {
+                mobile = rs.getString("login_status");
+            }
+            return mobile;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        return "";
+    }
+
+    public UserLoginModel CheckLoginValidationStatus(UserLoginModel userLogin) {
+        String loginStatus = new String(CheckLoginAttempt(userLogin));
+        switch(loginStatus){
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+                return  CheckLoginValidation(userLogin);
+            case "-1":
+                UserLoginModel loginModel = new UserLoginModel("", "", "");
+                loginModel.setMessage("User account temporarily suspended. Please try again after 5 minutes");
+                return  loginModel;
+            case "4":
+                UserLoginModel loginModel1 = new UserLoginModel("", "", "");
+                loginModel1.setMessage("User Already logged into the system. Please logout from another device and try again");
+                return  loginModel1;
+            default:
+                break;
+        }
+        return new UserLoginModel("", "", "");
+    }
+
 
     public UserLoginModel CheckLoginValidation(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN_VALIDATION)) {
@@ -41,9 +126,13 @@ public class UserDAO {
                 String mobile = rs.getString("uMobile");
                 String password = rs.getString("uPassword");
                 String nic = rs.getString("uNic");
+                System.out.println(mobile + " - " + password + " - " + nic );
                 if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
                     UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, nic);
+                    GetLoginAttemptChange(userLogin, "4");
                     return userLoginDetails;
+                }else{
+                    GetLoginAttemptChangeSupport(userLogin);
                 }
             }
             return new UserLoginModel("", "", "");
@@ -51,7 +140,7 @@ public class UserDAO {
             printSQLException(throwables);
         }
 
-        return userLogin;
+        return new UserLoginModel("", "", "");
     }
 
     public String UserRegistration(UserRegistrationModel userRegister) {

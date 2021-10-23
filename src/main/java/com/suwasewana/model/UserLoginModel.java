@@ -6,14 +6,23 @@ public class UserLoginModel {
     protected String mobile;
     protected String password;
     protected String unic;
+    protected String message;
 
 
-    public UserLoginModel(String number, String pass , String nic) {
+    public UserLoginModel(String number, String pass , String nic ) {
         super();
         SuwasewanaHashing hashing = new SuwasewanaHashing(pass);
         this.mobile = number;
         this.password = hashing.getHashValue();
         this.unic = nic;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getPassword() {

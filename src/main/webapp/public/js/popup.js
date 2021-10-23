@@ -3,6 +3,8 @@ class SuwasewanaPopup{
     desc = '';
     message = '';
     type= "0";
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+
     constructor(popupContaienr, title, desc, message, type ){
         this.title = title;
         this.desc = desc;
@@ -208,10 +210,10 @@ class SuwasewanaPopup{
     gotoLogin(route){
         switch (route){
             case "login" :
-                location.replace("/test_war_exploded/s/login");
+                location.replace(this.myUrl+"/s/login");
                 break;
             case "register" :
-                location.replace("/test_war_exploded/s/register");
+                location.replace(this.myUrl+"/s/register");
                 break;
             default:
                 break;

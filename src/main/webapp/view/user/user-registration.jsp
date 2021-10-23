@@ -12,7 +12,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
+    <script src="<c:url value="/public/js/admin/InputValidation.js"/>"></script>
     <title> User Home Suwasewana </title>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/>"/>
 
@@ -373,7 +373,8 @@
     }
 
     function checkLoginValidation(data) {
-
+        console.log(data);
+        alert("1")
         if (
             validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
             validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error') &&
@@ -432,6 +433,7 @@
                 );
             }
         }
+        alert("1")
         return false;
     }
 

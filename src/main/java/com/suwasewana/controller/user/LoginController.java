@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
         String password = req.getParameter("user-password");
 
         UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, "");
-        UserLoginModel userLoginDetailsResponse = userDAO.CheckLoginValidation(userLoginDetails);
+        UserLoginModel userLoginDetailsResponse = userDAO.CheckLoginValidationStatus(userLoginDetails);
 
         PrintWriter out = res.getWriter();
         res.setContentType("application/json");
@@ -44,18 +44,22 @@ public class LoginController extends HttpServlet {
 
         String responseJsonString = "";
         if (userLoginDetailsResponse.getMobile().equals("") || userLoginDetailsResponse.getPassword().equals("")) {
-            ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
-            responseJsonString = this.gson.toJson(suwasewanaRespose);
-
+            if(!userLoginDetailsResponse.getMessage().equals("")){
+                ResponseType suwasewanaRespose = new ResponseType("error", userLoginDetailsResponse.getMessage());
+                responseJsonString = this.gson.toJson(suwasewanaRespose);
+            }else{
+                ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
+                responseJsonString = this.gson.toJson(suwasewanaRespose);
+            }
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 
-            Cookie loginCookie = new Cookie("unic",userLoginDetailsResponse.getUnic());
+//            Cookie loginCookie = new Cookie("unic",userLoginDetailsResponse.getUnic());
             //setting cookie to expiry in 30 mins
-            loginCookie.setMaxAge(300*60);
-            res.addCookie(loginCookie);
-            System.out.println(loginCookie.getValue());
+//            loginCookie.setMaxAge(300*60);
+//            res.addCookie(loginCookie);
+//            System.out.println(loginCookie.getValue());
         }
         out.print(responseJsonString);
         out.flush();
