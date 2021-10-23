@@ -1,0 +1,230 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+}
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 78px;
+    align-items: center;
+    background-color: #dfe4ea59;
+    max-width: calc(100vw - 78px);
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* background-color: rgba(128, 128, 128, 0.445); */
+    align-content: center;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.content{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.container div{
+    margin: 10px 0;
+}
+.c-charts{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.line{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.complain-distribution{
+    display: flex;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.096);
+    padding: 15px;
+    justify-content: space-around;
+}
+.complain-distribution div{
+    display: flex;
+    justify-content: space-between;
+}
+.complain-distribution div p{
+    margin-left: 2px;
+}
+.complain-des{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2em;
+    color: rgba(0, 0, 0, 0.589);
+}
+.complain-des p{
+    display: flex;
+    align-items: center;
+}
+.progress-boxes{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.card{
+    min-height: 100px;
+    min-width: 220px;
+    margin: 20px auto 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.08);
+    background-color: white;
+}
+.card-content{
+    width: 40%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+.card label{
+    font-size: 0.9em;
+    height: 25%;
+    padding-bottom:7px;
+}
+.precentage{
+    display: flex;
+    color: #FA8231;
+}
+.count{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.add-com-type{
+    width: 100%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    height: 180px;
+    background-color: white;
+}
+input{
+    border: 0;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+}
+.types{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* font-size: 1.8em; */
+}
+.types p{
+    margin-top: 2px;
+}
+.complain-variations{
+    width: 90%;
+}
+.variations{
+    text-align: center;
+}
+button{
+    border: 0;
+    padding: 3px 12px;
+    border-radius: 2px;
+    background-color: #2E86DE;
+    color: white!important;
+    cursor: pointer;
+}
+.left,.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.right p{
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width: 1000px) {
+    .mychart{
+        width: 130px;
+    }
+    .progress-boxes{
+        flex-direction: column;
+        align-items: center;
+    }
+    .progress{
+        width: 40%;
+    }
+    .complain-distribution{
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 615px) {
+    .c-charts{
+        flex-direction: column;
+    }
+    .mychart{
+        width: 100px;
+    }
+    .line{
+        flex-direction: column;
+    }
+    .add-com-type{
+        flex-direction: column;
+        height: 270px;
+    }
+    .left{
+        display: flex;
+        flex-direction: column;
+    }
+    .left input{
+        width: 100px;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
+    }
+}
+@media  screen and (max-width: 500px) {
+    .progress{
+        width: 90%;
+    }
+}
