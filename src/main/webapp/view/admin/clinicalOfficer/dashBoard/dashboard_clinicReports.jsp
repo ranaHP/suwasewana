@@ -14,9 +14,9 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body onload="charts()">
-
-<div class="containor">
+<body onload="charts()" id="mainContent">
+<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
+<%--<div class="containor">--%>
     <!-- suwasewana header -->
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
@@ -87,7 +87,7 @@
         </div>
     </div>
     <!-- </div> -->
-</div>
+<%--</div>--%>
 
 <script>
     // select report category
@@ -193,6 +193,6 @@
     });
 
 </script>
-
+<script defer src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
 </body>
 </html>
