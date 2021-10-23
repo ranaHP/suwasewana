@@ -1,26 +1,30 @@
 package com.suwasewana.dao;
 
+import com.suwasewana.core.DB;
+import com.suwasewana.model.AppointmentModel;
+import com.suwasewana.model.AppointmentTypeModel;
+import com.suwasewana.model.ComplainModel;
+import com.suwasewana.model.UserLoginModel;
+import com.suwasewana.model.UserRegistrationModel;
+
+import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
-
-import com.suwasewana.core.DB;
-import com.suwasewana.model.User;
 
 public class UserDAO {
-    private final String jdbcURL = "jdbc:mysql://localhost:3306/javaeemvc";
-    private String jdbcUsername = "root";
-    private String jdbcPassword = "1234@Akila";
-    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " + " (?, ?, ?);";
-    private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
-    private static final String SELECT_ALL_USERS = "select * from users";
-    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
-    private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
-
+    @SuppressWarnings("SqlResolve")
+    private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
+    private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
+    private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
+    private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` LEFT JOIN `appointment_type` ON appointment.appointmentType = appointment_type.appointment_type_no WHERE user = ?";
+    private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
+    private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
+            "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?);";
     Connection connection;
 
     public UserDAO() {
@@ -28,81 +32,185 @@ public class UserDAO {
         connection = db.getConnection();
     }
 
-    public void insertUser(User user) throws SQLException {
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getCountry());
-            System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            printSQLException(e);
-        }
-    }
-
-    public User selectUser(int id) {
-        User user = null;
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USER_BY_ID);) {
-            preparedStatement.setInt(1, id);
+    public UserLoginModel CheckLoginValidation(UserLoginModel userLogin) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN_VALIDATION)) {
+            preparedStatement.setString(1, userLogin.getMobile());
+            preparedStatement.setString(2, userLogin.getPassword());
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                String country = rs.getString("country");
-                user = new User(id, name, email, country);
+                String mobile = rs.getString("uMobile");
+                String password = rs.getString("uPassword");
+                String nic = rs.getString("uNic");
+                if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
+                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, nic);
+                    return userLoginDetails;
+                }
             }
-        } catch (SQLException e) {
-            printSQLException(e);
+            return new UserLoginModel("", "", "");
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
         }
-        return user;
+
+        return userLogin;
     }
 
-    public List<User> selectAllUsers() {
+    public String UserRegistration(UserRegistrationModel userRegister) {
+        System.out.println("data come to dao");
 
-        List<User> users = new ArrayList<>();
-        try (
-                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS);) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_REGISTRATION)) {
+            preparedStatement.setString(1, userRegister.getuNic());
+            preparedStatement.setString(2, userRegister.getuMobile());
+            preparedStatement.setString(3, userRegister.getuMoh());
+            preparedStatement.setString(4, userRegister.getuPassword());
+            preparedStatement.setString(5, userRegister.getUname());
+            preparedStatement.setString(6, userRegister.getuDistrict());
+            preparedStatement.setString(7, userRegister.getuProvince());
+            preparedStatement.setString(8, userRegister.getuCity());
+            preparedStatement.setString(9, userRegister.getUlocation());
+            preparedStatement.setString(10, userRegister.getUaddress());
+            preparedStatement.setString(11, "");
+            int rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+
+            return "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            System.out.println(throwables.getErrorCode());
+//            System.out.println(throwables.getSQLState());
+//            System.out.println(throwables.getMessage());
+//            System.out.println(throwables);
+            return throwables.getMessage();
+        }
+
+
+    }
+
+    public String UserMakeAppointment(AppointmentModel appointment) {
+        System.out.println("data come to dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_CREATE_APPOINTMENT)) {
+            preparedStatement.setString(1, appointment.getaTitle());
+            preparedStatement.setString(2, appointment.getAppointmentType());
+            preparedStatement.setString(3, appointment.getPhi());
+            preparedStatement.setString(4, appointment.getReason());
+            preparedStatement.setString(5, String.valueOf(1));
+            preparedStatement.setString(6, "");
+            preparedStatement.setString(7, "");
+            preparedStatement.setString(8, "");
+            preparedStatement.setString(9, "");
+            preparedStatement.setString(10, "pending");
+            preparedStatement.setString(11, appointment.getUser());
+            preparedStatement.setString(12, null);
+            int rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+
+            return "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            ;
+            return throwables.getMessage();
+        }
+
+
+    }
+
+    public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {
+            preparedStatement.setString(1, appointmentDetails.getUser());
+            System.out.println(appointmentDetails.getUser());
             ResultSet rs = preparedStatement.executeQuery();
-
+            ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                String country = rs.getString("country");
-                users.add(new User(id, name, email, country));
+                String aTitle = rs.getString("aTitle");
+                String AType = rs.getString("name");
+                String phi = rs.getString("phi");
+                String reason = rs.getString("reason");
+                String aId = rs.getString("appointmentId");
+                String p_date = rs.getString("posted_data");
+                String round = rs.getString("round");
+                String location = rs.getString("location");
+                String ts1 = rs.getString("time_slot2");
+                String ts2 = rs.getString("time_slot1");
+                String spNote = rs.getString("special_notice");
+                String status = rs.getString("status");
+                String user = rs.getString("user");
+                AppointmentModel temp = new AppointmentModel(
+                        aTitle,
+                        AType,
+                        phi,
+                        reason,
+                        aId,
+                        p_date,
+                        round,
+                        location,
+                        ts1,
+                        ts2,
+                        spNote,
+                        status,
+                        user
+                );
+                appointmentList.add(temp);
             }
-        } catch (SQLException e) {
-            printSQLException(e);
+            return appointmentList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
         }
-        return users;
+
+        return null;
     }
 
-    public boolean deleteUser(int id) throws SQLException {
+    public ArrayList<AppointmentTypeModel> userGetAppointmentTypes() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT_TYPE_NAME)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<AppointmentTypeModel> appointmentTypeList = new ArrayList<AppointmentTypeModel>();
+            while (rs.next()) {
+                String typeName = rs.getString("name");
+                String typeNumber = rs.getString("appointment_type_no");
+
+                AppointmentTypeModel temp = new AppointmentTypeModel(typeNumber, typeName);
+                appointmentTypeList.add(temp);
+            }
+            return appointmentTypeList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
+    public String UserDeleteAppointment(String appointmentId) throws SQLException {
         boolean rowDeleted;
         try (
-                PreparedStatement statement = connection.prepareStatement(DELETE_USERS_SQL);) {
-            statement.setInt(1, id);
-            rowDeleted = statement.executeUpdate() > 0;
+                PreparedStatement preparedStatement = connection.prepareStatement(USER_DELETE_APPOINTMENT)) {
+            preparedStatement.setString(1, appointmentId);
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+            System.out.println(preparedStatement);
+            return "success";
+        } catch (SQLException throwables) {
+            return throwables.getMessage();
         }
-        return rowDeleted;
     }
+    public String UserMakeComplain(ComplainModel complainModel) {
+        System.out.println("data come to dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
+            preparedStatement.setString(1, complainModel.getCType());
+            preparedStatement.setString(2, complainModel.getUType());
+            preparedStatement.setString(3, complainModel.getUser());
+            preparedStatement.setString(4, complainModel.getCTitle());
+            preparedStatement.setString(5, complainModel.getCMessage());
+            preparedStatement.setString(6, complainModel.getPHIId());
+            preparedStatement.setString(7, complainModel.getStatus());
 
-    public boolean updateUser(User user) throws SQLException {
-        boolean rowUpdated;
-        try (
-                PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getEmail());
-            statement.setString(3, user.getCountry());
-            statement.setInt(4, user.getId());
+            int  rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
 
-            rowUpdated = statement.executeUpdate() > 0;
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
         }
-        return rowUpdated;
-    }
 
+
+    }
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
@@ -118,5 +226,4 @@ public class UserDAO {
             }
         }
     }
-
 }

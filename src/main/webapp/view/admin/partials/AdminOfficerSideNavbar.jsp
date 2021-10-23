@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%--<html>--%>
 <%--<head>--%>
@@ -38,39 +38,42 @@
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bx-collection'></i>
-                    <span class="link_name">PHI</span>
+                    <span class="link_name">PHI/RPHI</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
                 <li><a class="link_name" href="#">List</a></li>
-                <li><a href="#">List PHI</a></li>
-                <li><a href="#">Make Announcement</a></li>
-                <li><a href="#">PHP & MySQL</a></li>
+                <li><a href="/test_war_exploded/s/register_PHI">Register PHI/RPHI</a></li>
+                <li><a href="/test_war_exploded/s/view_PHI">List PHI/RPHI</a></li>
             </ul>
         </li>
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-book-alt'></i>
-                    <span class="link_name">Posts</span>
+                    <i class='bx bx-collection'></i>
+                    <span class="link_name">Clinical officers</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">Posts</a></li>
-                <li><a href="#">Web Design</a></li>
-                <li><a href="#">Login Form</a></li>
-                <li><a href="#">Card Design</a></li>
+                <li><a class="link_name" href="#">List</a></li>
+                <li><a href="/test_war_exploded/s/register_C-officer">Register Clinical officers</a></li>
+                <li><a href="/test_war_exploded/s/view_ClinicalOfficers">List Clinical officers</a></li>
             </ul>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bx-pie-chart-alt-2'></i>
-                <span class="link_name">Analytics</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Analytics</a></li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bx-collection'></i>
+                    <span class="link_name">MOH</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="#">List</a></li>
+                <li><a href="/test_war_exploded/s/register_MOH">Register MOH</a></li>
+                <li><a href="/test_war_exploded/s/view_MOH">List MOH Areas</a></li>
             </ul>
         </li>
         <li>
@@ -86,35 +89,33 @@
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bx-plug'></i>
-                    <span class="link_name">Plugins</span>
+                    <span class="link_name">Announcements</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">Plugins</a></li>
-                <li><a href="#">UI Face</a></li>
-                <li><a href="#">Pigments</a></li>
-                <li><a href="#">Box Icons</a></li>
+                <li><a class="link_name" href="#">Announcements</a></li>
+                <li><a href="/test_war_exploded/s/public_announcements">For public</a></li>
             </ul>
         </li>
         <li>
             <a href="#">
                 <i class='bx bx-compass'></i>
-                <span class="link_name">Explore</span>
+                <span class="link_name">Update cases</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Explore</a></li>
+                <li><a class="link_name" href="#">Update case details</a></li>
             </ul>
         </li>
         <li>
-            <a href="#">
-                <i class='bx bx-history'></i>
-                <span class="link_name">History</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">History</a></li>
-            </ul>
-        </li>
+<%--            <a href="#">--%>
+<%--                <i class='bx bx-history'></i>--%>
+<%--                <span class="link_name">History</span>--%>
+<%--            </a>--%>
+<%--            <ul class="sub-menu blank">--%>
+<%--                <li><a class="link_name" href="#">History</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
         <li>
             <a href="#">
                 <i class='bx bx-cog'></i>
@@ -127,7 +128,7 @@
         <li>
             <div class="profile-details">
                 <div class="profile-content">
-                    <img src="<c:url value="/public/images/avatar/avatar.png"/>" src="image/profile.jpg" alt="profileImg">
+                    <img src="<c:url value="/public/images/avatar.png"/>" src="image/profile.jpg" alt="profileImg">
                 </div>
                 <div class="name-job">
                     <div class="profile_name">Hansana</div>

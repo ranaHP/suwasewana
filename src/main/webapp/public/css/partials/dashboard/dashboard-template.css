@@ -1,0 +1,133 @@
+.dashboard-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.left-dashboard{
+    width: 20%;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+ 
+.left-dashboard .dashboard-profile-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+}
+.dashboard-profile-details .profile-name{
+    margin-top: 10px;
+    font-size: 1.3em;
+    color: black;
+}
+.dashboard-profile-details .profile-location{
+}
+
+.dashboard-profile-details .moh-area{
+}
+.dashboard-icon-set{
+    width: 70%;
+    height: 600px;
+    margin: auto;
+    /* background-color: blanchedalmond; */
+}
+.dashboard-icon-set{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.dashboard-icon-set .dash-tab{
+    padding: 20px;
+    width: 50%;
+    height: fit-content;
+    /* background-color: blueviolet; */
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+.active{
+    color: #006633;
+}
+
+.active .dash-title{
+    font-weight: 600;
+}
+.dash-tab .dash-icon{
+    
+    background-color: #fff;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.158);
+    cursor: pointer;
+
+}
+.dash-icon svg{
+    color: rgba(0, 0, 0, 0.788);
+}
+.dash-tab .dash-title{
+    padding-top: 10px;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    cursor: pointer;
+}
+.right-dashboard{
+    width: 80%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}  
+.right-dashboard .dashboard-page-title{
+    font-size: 1.8em;
+    font-family: 'Nunito', sans-serif;
+    margin-top: 50px;
+}
+.right-dashboard .dashboard-sub-title{
+    font-size: .5em;
+}
+.right-dashboard  .dashboard-container{
+    width: 95%;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.349);
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.164);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding: 20px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
+.dashboard-page-sub-title{
+    width: 100%;
+    padding-top: 10px;
+    font-size: 1.2em;
+    font-family: 'Nunito', sans-serif;
+}
+.search-container{
+    margin: 10px;
+    display: flex;
+}
+.search-btn{
+    width: 200px;
+    height: 30px;
+    margin: 30px 0 ;
+    
+    background-color: rgb(44, 13, 218);
+    color: white; 
+    outline: none;
+    border: 0;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.164); 
+}

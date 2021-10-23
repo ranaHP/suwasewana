@@ -13,7 +13,7 @@
 .password-visibility{
     position: absolute;
     right:10px;
-    top: 10px;
+    top: 5px;
 }
 .w-100{
     width: 100%;
@@ -48,4 +48,60 @@
 }
 .pt-5{
     padding-top: 5px;
+}
+#user-form-error{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    color:  #d9534f;
+    font-size: 1.3em;
+}
+
+/*phi */
+.f-1{
+    font-size: 1.2em;
+    color: rgba(19, 18, 18, 0.808);
+}
+.f-2{
+    font-size: .9em;
+    color: rgba(0, 0, 0, 0.589);
+}
+.f1-green{
+    font-size: 1.2em;
+    color:#4BC0C0;
+}
+.f-3{
+    font-size: .8em;
+    color: #1e1f20cb;
+}
+.gray{
+    color:rgba(128, 128, 128, 0.74);
+}
+.f3-bold{
+    font-size: .8em;
+    color: #1e1f20cb;
+    font-weight: bold;
+}
+.f-4{
+    font-size: .7em;
+    color: #1e1f20be;
+}
+.f4-gray{
+    font-size: .7em;
+    color: rgba(128, 128, 128, 0.678);
+}
+.f-white{
+    color: white;
+}
+.f-black{
+    font-size: 1.2em;
+    color: rgba(0, 0, 0, 0.589);
+    font-family: Arial, Helvetica, sans-serif;
+}
+.f-i{
+    font-size: .5em;
+}
+.icon1{
+    width: 26px;
+    height: 26px;
+    color: rgba(0, 0, 0, 0.486);
 }
