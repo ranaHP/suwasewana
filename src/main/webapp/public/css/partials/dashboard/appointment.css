@@ -42,6 +42,7 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
 .appointment-card .header{
     font-family: 'Segoe UI' ;
     text-align: center;

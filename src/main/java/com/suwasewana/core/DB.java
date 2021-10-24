@@ -2,9 +2,9 @@ package com.suwasewana.core;
 
 import java.sql.*;
 public class DB {
-    private final String jdbcURL = "jdbc:mysql://localhost:3306/suwasewana_db";
+    private final String jdbcURL = "jdbc:mysql://localhost:3306/suwaserwana_db";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "";
+    private String jdbcPassword = "cybertcc123";
 
     public Connection getConnection() {
         Connection connection = null;

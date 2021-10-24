@@ -1,6 +1,6 @@
 
 .latest-announstment-container{
-    min-height: 400px;
+    min-height: 300px;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
@@ -13,6 +13,7 @@
     justify-content: center;
     overflow-x: scroll;
     background-position-x: center;
+    overflow-y: hidden;
     margin:0 10px ;
     cursor: grab;
     scrollbar-width: thin;

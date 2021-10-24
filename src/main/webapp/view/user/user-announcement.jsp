@@ -35,6 +35,9 @@
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
     <%--    for popup script--%>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <script src="<c:url value="/public/js/navbar.js"/>"></script>
+    <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
+
     <title>Complain</title>
 </head>
 <body>
@@ -51,12 +54,7 @@
                 </div>
                 <div class="navbar-container">
                     <ul class="navbar">
-                        <li class="nav-item"> Home</li>
-                        <li class="nav-item"> Diseases</li>
-                        <li class="nav-item"> Announcement</li>
-                        <li class="nav-item"> Clinik</li>
-                        <li class="nav-item"> Appointment</li>
-                        <li class="nav-item special-nav"> Request Ambulance</li>
+                        <script> let navs =  new Navbar(); navs.showHeaderNavItems("navbar"); </script>
                     </ul>
                 </div>
                 <div class="login-register-container">
@@ -64,12 +62,9 @@
                         <span> සිංහල </span>
                         <img src="<c:url value="/public/images/sri-lanka.png "/>" alt="sri lanakan flag" width="100%">
                     </div>
-                    <div class="register-btn">
-                        Register
-                    </div>
-                    <div class="login-btn">
-                        Login
-                    </div>
+                    <script>
+                        let loginRegsiter = new LoginLogout(); loginRegsiter.showLoginLogoutItems("login-register-container")
+                    </script>
                 </div>
             </div>
         </div>
@@ -512,13 +507,8 @@
         <div class="first-row">
             <img src="<c:url value="/public/images/logo.png "/>" alt="logo" width="45px"/>
             <div class="navbar-container">
-                <ul class="navbar">
-                    <li class="nav-item"> Home</li>
-                    <li class="nav-item"> Diseases</li>
-                    <li class="nav-item"> Announcement</li>
-                    <li class="nav-item"> Clinik</li>
-                    <li class="nav-item"> Appointment</li>
-                    <li class="nav-item special-nav"> Request Ambulance</li>
+                <ul class="navbar navbar1">
+                    <script> let navs1 =  new Navbar(); navs.showHeaderNavItems("navbar1"); </script>
                 </ul>
             </div>
         </div>
