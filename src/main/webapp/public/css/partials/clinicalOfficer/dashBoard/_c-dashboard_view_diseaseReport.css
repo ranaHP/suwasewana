@@ -20,6 +20,7 @@ body{
     min-height: 100vh;
     width: 100%;
     padding: 10px;
+    overflow-x: hidden;
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
@@ -100,6 +101,7 @@ span{
     text-align: center;
     line-height: 80px;
     cursor: pointer;
+    margin-top: 25px;
 }
 .scroll{
     display: flex;
@@ -165,6 +167,9 @@ span{
     .death-rate{
         width: 60%;
         margin:5px 0;
+    }
+    #mychart{
+        width: 400px;
     }
 }
 @media screen and (max-width: 624px) {

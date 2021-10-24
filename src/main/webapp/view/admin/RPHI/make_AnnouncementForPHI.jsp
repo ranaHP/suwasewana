@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Suwasewana</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/RPHI/MakeAnnouncementForPHI.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>

@@ -12,7 +12,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Suwasewana</title>
 
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/RegPHI.css "/>">
     <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>

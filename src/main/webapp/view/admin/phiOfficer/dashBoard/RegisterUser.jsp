@@ -21,7 +21,7 @@
     <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <title>Register User</title>
+    <title>Suwasewana</title>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
