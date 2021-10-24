@@ -35,6 +35,7 @@
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
     <%--    for popup script--%>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <script src="<c:url value="/public/js/complain.js"/>"></script>
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
 
@@ -46,6 +47,7 @@
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
     <!-- hero banner -->
     <section class="hero-banner-main-header-container">
+        <div class="mypopup" id="popup" style="display: none;"></div>
         <!-- for header -->
         <div class="user-main-header-container">
             <div class="main-header">
@@ -179,12 +181,12 @@
                     <div class="dashboard-page-sub-title">
                         Complaints History
                     </div>
-                    <form class="previous-form">
+                    <form class="previous-form" id="search_cType_Title" onsubmit="return searchComplain();">
                         <div class="form-group">
                             <label for="cTitleSearch">
                                 Complaint Title
                             </label>
-                            <input type="text" name="name" id="cTitleSearch" autocomplete="off" />
+                            <input type="text" name="name" id="cTitleSearch" autocomplete="off" autofocus />
 
                         </div>
 
@@ -193,7 +195,9 @@
                                 Complaints Type
                             </label>
                             <input id="ComplaintsTypeSearch" type="text" list="allComplaintsTypeSearch"
-                                   name="ComplaintsTypeSearch" autocomplete="off">
+                                   name="ComplaintsTypeSearch" autocomplete="off"
+                                   onclick="document.getElementById('ComplaintsTypeSearch').value=''";
+                            >
                             <datalist id="allComplaintsTypeSearch">
                                 <option value="Mahapola" option=" Mahapola"></option>
                             </datalist>
@@ -203,175 +207,11 @@
                             <label>
                                 &nbsp;
                             </label>
-                            <button class="submitBtn " > Search Complaint</button>
+                            <button type="submit" class="submitBtn "> Search Complaint</button>
                         </div>
                     </form>
-                    <div class="row previous-complaint-list">
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
-                                <div class="header">
-                                    Complaints about health services
-                                    <p> 2021/01/10</p>
-                                </div>
+                    <div class="row previous-complaint-list" id="previous-complaint-list" style="justify-content: unset">
 
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
-
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
-                                <div class="header">
-                                    Complaints about health services
-                                    <p> 2021/01/10</p>
-                                </div>
-
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
-
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="complaint-card-container">
-                            <div class="complaint-card">
-                                <div class="header">
-                                    Complaints about health services
-                                    <p> 2021/01/10</p>
-                                </div>
-
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Location : pending ...
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            Status : pending ...
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="22px" />
-                                            proofs :
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="row">
-                                    <div class="proofs-images d-flex-j-c-space-b">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                        <img src="<c:url value="/public/images/animal-complaint.jpg"/>" alt="" srcset="" width="30%">
-                                    </div>
-                                </div>
-                                <div class="footer">
-                                    <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/user.svg"/>" width="25px" />
-                                        Mr Akila Disanayake
-                                    </div>
-                                </div>
-                                <div class="footer d-flex-j-c-flex-end">
-
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -405,14 +245,22 @@
                         Make a Complaints
                     </div>
                     <div class="make-complaint-form">
-                        <form onsubmit="return makeComplain();">
+                        <form onsubmit="return checkValidation();" method="post">
                             <div class="row">
                                 <div class="form-group">
                                     <label for="cTitle">
                                         complaint Title
                                     </label>
-                                    <input type="text" name="name" id="cTitle" autocomplete="off" />
-
+                                    <input type="text" name="name" id="cTitle" autocomplete="off"
+                                           onkeydown="validation.checklength(
+                                           document.getElementById('cTitle').value,
+                                           'ecTitle',10);"
+                                           onblur="validation.checklength(
+                                           document.getElementById('cTitle').value,
+                                           'ecTitle',10);"
+                                           onfocus="validation.removeerror('ecTitle');"
+                                    />
+                                    <label id="ecTitle"></label>
                                 </div>
                             </div>
                             <div class="row">
@@ -421,21 +269,32 @@
                                         complaint Type
                                     </label>
                                     <input id="complaintType" type="text" list="allcomplaintType"
-                                           name="complaintType" autocomplete="off" >
+                                           name="complaintType" autocomplete="off"
+                                        onblur="validation.selectCheck('complaintType','eallcomplaintType')";
+                                           onchange="validation.selectCheck('complaintType','eallcomplaintType')"
+                                           onclick="document.getElementById('complaintType').value=''";
+                                    >
                                     <datalist id="allcomplaintType">
                                         <option value="Mahapola" option=" Mahapola"></option>
                                         <option value="Mahapola" option=" Mahapola"></option>
                                     </datalist>
+                                    <label id="eallcomplaintType"></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="uDetailsType">
                                         User Details Type
                                     </label>
-                                    <input id="uDetailsType" type="text" list="alluDetailsType" name="alluDetailsType" autocomplete="off" >
+                                    <input id="uDetailsType" type="text" list="alluDetailsType" name="alluDetailsType" autocomplete="off"
+                                           onblur="validation.selectCheck('uDetailsType','euDetailsType')";
+                                           onchange="validation.selectCheck('uDetailsType','euDetailsType')";
+                                           onclick="document.getElementById('uDetailsType').value=''";
+
+                                    >
                                     <datalist id="alluDetailsType">
                                         <option id="0" name="With Details" value="With Details" option="With Details"></option>
                                         <option id="1" name="Anonymous" value="Anonymous" option="Anonymous"></option>
                                     </datalist>
+                                    <label id="euDetailsType"></label>
                                 </div>
                             </div>
                             <div class="row">
@@ -443,46 +302,51 @@
                                     <label for="uDetailsType">
                                         MOH Area
                                     </label>
-                                    <input id="MOHArea" type="text" list="allMOHArea" name="allMOHArea" autocomplete="off"
-                                           onblur="fillMOH('MOHArea');"
-                                            onchange="fillMOH('MOHArea');"
+                                    <input id="MOHArea" type="text" list="allMOHArea" name="allMOHArea"  value="wwwwwww" autocomplete="off"
+
+                                           onchange="fillMOH('MOHArea');
+                                           validation.selectCheck('MOHArea','eMOHArea');"
+                                           onclick="document.getElementById('MOHArea').value='';
+                                                    fillMOH('MOHArea');"
+                                           onblur="validation.selectCheck('MOHArea','eMOHArea');"
                                      >
                                     <datalist id="allMOHArea">
                                     </datalist>
+                                    <label id="eMOHArea"></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="phi">
                                         Your Area's PHI Name
                                     </label>
-                                    <input id="phi" type="text" list="allphi" name="allphi" autocomplete="off" >
+                                    <input id="phi" type="text" list="allphi" name="allphi" autocomplete="off"
+                                           onblur="validation.selectCheck('phi','ephi')";
+                                           onchange="validation.selectCheck('phi','ephi')"
+                                           onclick="document.getElementById('phi').value=''";
+                                    >
                                     <datalist id="allphi">
-                                        <option value="Hansana" option="Hansana"></option>
+                                        <option value="Plz select Your MOH Area" option="Plz select Your MOH Area" readonly></option>
                                     </datalist>
+                                    <label id="ephi"></label>
                                 </div>
 
                             </div>
-<%--                            <div class="row">--%>
-<%--                                <div class="form-group">--%>
-<%--                                    <label for="phi">--%>
-<%--                                        Your Area's PHI Name--%>
-<%--                                    </label>--%>
-<%--                                    <input id="phi" type="text" list="allphi" name="phi" autocomplete="off">--%>
-<%--                                    <datalist id="allphi">--%>
-<%--                                        <option value="Hansana" option="Hansana"></option>--%>
-<%--                                    </datalist>--%>
-<%--                                </div>--%>
-<%--                                <div class="form-group">--%>
 
-<%--                                </div>--%>
-
-<%--                            </div>--%>
                             <div class="row">
                                 <div class="form-group">
                                     <label for="reason">
                                         Description
                                     </label>
                                     <textarea rows="4" cols="50" type="text" placeholder="deascription"
-                                              name="reason" id="reason"></textarea>
+                                              name="reason" id="reason"
+                                              onkeydown="validation.checklength(
+                                           document.getElementById('reason').value,
+                                           'ereason',10);"
+                                              onblur="validation.checklength(
+                                           document.getElementById('reason').value,
+                                           'ereason',10);"
+                                              onfocus="validation.removeerror('ereason');"
+                                    ></textarea>
+                                    <label id="ereason"></label>
                                 </div>
 
                             </div>
@@ -491,15 +355,16 @@
                                     <div class="image-upload-card-container">
                                         <div class="image-upload-card">
                                             <img id="proof1" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof1input"
+                                            <input type="file" accept="image/*" name="file" id="proof1input"
                                                    onchange="loadFile(event , 'proof1')" style="display: none;">
+
                                             <label for="proof1input" style="cursor: pointer;">Upload Image</label>
                                         </div>
                                     </div>
                                     <div class="image-upload-card-container">
                                         <div class="image-upload-card">
                                             <img id="proof2" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof2input"
+                                            <input type="file" accept="image/*" name="file" id="proof2input"
                                                    onchange="loadFile(event, 'proof2')" style="display: none;">
                                             <label for="proof2input" style="cursor: pointer;">Upload Image</label>
                                         </div>
@@ -507,16 +372,18 @@
                                     <div class="image-upload-card-container">
                                         <div class="image-upload-card">
                                             <img id="proof3" width="100%" />
-                                            <input type="file" accept="image/*" name="image" id="proof3input"
+                                            <input type="file" accept="image/*" name="file" id="proof3input"
                                                    onchange="loadFile(event, 'proof3')" style="display: none;">
                                             <label for="proof3input" style="cursor: pointer;">Upload Image</label>
                                         </div>
                                     </div>
+                                    <button onclick="imageUpload();"> add pic</button>
+
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group d-flex-a-i-end">
-                                    <button class="submitBtn "> Make Complaint</button>
+                                    <button type="submit" class="submitBtn "> Make Complaint</button>
                                 </div>
 
                             </div>
@@ -542,33 +409,142 @@
     </div>
 
 </div>
-<script defer>
-    var loadFile = function (event, imgContainerId) {
-        var image = document.getElementById(imgContainerId);
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
-</script>
+
+
+
 
 <script>
-    function makeComplain() {
+    function checkValidation(){
+        if( validation.checklength(document.getElementById('cTitle').value,'ecTitle',10) &&
+            validation.selectCheck('complaintType','eallcomplaintType') &&
+            validation.selectCheck('uDetailsType','euDetailsType') &&
+            validation.selectCheck('MOHArea','eMOHArea') &&
+            validation.selectCheck('phi','ephi')&&
+            validation.checklength(document.getElementById('reason').value,'ereason',10)
+        ){
+            console.log("correct");
+            imageUpload();
+
+
+        }
+        else {
+            validation.checklength(document.getElementById('cTitle').value,'ecTitle',10);
+            validation.selectCheck('complaintType','eallcomplaintType');
+            validation.selectCheck('uDetailsType','euDetailsType');
+            validation.selectCheck('MOHArea','eMOHArea');
+            validation.selectCheck('phi','ephi');
+            validation.checklength(document.getElementById('reason').value,'ereason',10);
+            console.log("incorrect");
+
+        }
+
+        return false;
+    }
+</script>
+
+
+<%--image upload--%>
+<script>
+    function imageUpload() {
+
+        var fd = new FormData();
+        let imageNames = [];
+        if ($('#proof1input')[0].files[0]) {
+            fd.append('file', $('#proof1input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url1 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof1input')[0].files[0].name.split(".")[$('#proof1input')[0].files[0].name.split(".").length - 1];
+            imageNames.push(url1);
+        }
+        if ($('#proof2input')[0].files[0]) {
+            fd.append('file', $('#proof2input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url2 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof2input')[0].files[0].name.split(".")[$('#proof2input')[0].files[0].name.split(".").length - 1];
+            imageNames.push(url2);
+
+        }
+        if ($('#proof3input')[0].files[0]) {
+            fd.append('file', $('#proof3input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url3 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof3input')[0].files[0].name.split(".")[$('#proof3input')[0].files[0].name.split(".").length - 1];
+            imageNames.push(url3);
+        }
+
+        imageNames.map((item, index) => {
+            fd.append('ImageName' + (index + 1), item);
+        })
+
+
+        console.log("image neames array "+imageNames);
+        console.log("image neames length "+imageNames.length);
+        if(imageNames.length!=0){
+            $.ajax({
+                url: '/suwasewana_war/fileuploadservlet',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != 0) {
+                        console.log("successfully image uploadedss ---- " +imageNames )
+                        makeComplain(imageNames);
+                    } else {
+                        console.log('file not uploaded');
+
+                    }
+                },
+            });
+        }
+        else {
+            makeComplains();
+        }
+
+        return false;
+    }
+
+
+<%--make complain--%>
+    function makeComplains(){
+        console.log("without images")
+        console.log("make complain call");
+
+        let url1 = (imageNames[0]==null ? " ":imageNames[0] );
+        let url2 = (imageNames[1]==null ? " ":imageNames[1] );
+        let url3 = (imageNames[2]==null ? " ":imageNames[2] );
+
+        // let url1 = " ";
+        // let url2 = " ";
+        // let url3 = " ";
 
         // take complaintype
         var CTypeObj = document.getElementById("complaintType");
         var datalist = document.getElementById(CTypeObj.getAttribute("list"));
-        let ComplainType=(datalist.options.namedItem(CTypeObj.value).id);
-        console.log(ComplainType);
+        let ComplainType;
+        let UserType;
+        let PId;
+        let MOHId;
+        if(datalist.options.namedItem(CTypeObj.value)){
+            ComplainType=(datalist.options.namedItem(CTypeObj.value).id);
+        }
+
         // take usertype
         var UTypeObj = document.getElementById("uDetailsType");
         var datalist = document.getElementById(UTypeObj.getAttribute("list"));
-        let UserType=(datalist.options.namedItem(UTypeObj.value).id);
-
-        console.log(UserType);
+        if(datalist.options.namedItem(UTypeObj.value)){
+            UserType=(datalist.options.namedItem(UTypeObj.value).id);
+        }
 
         // take phiID
-        var phiObj = document.getElementById("uDetailsType");
+        var phiObj = document.getElementById("phi");
         var datalist = document.getElementById(phiObj.getAttribute("list"));
-        let PId=(datalist.options.namedItem(phiObj.value).id);
-        console.log(PId);
+        if(datalist.options.namedItem(phiObj.value)){
+            PId=(datalist.options.namedItem(phiObj.value).id);
+        }
 
 
 
@@ -579,6 +555,9 @@
                 uType: UserType,
                 cPhi: PId,
                 cReason: document.getElementById("reason").value,
+                img1:url1,
+                img2:url2,
+                img3:url3
             };
         console.log(reqData);
 
@@ -587,14 +566,91 @@
             function (data, status) {
                 console.log(data.includes("success"))
                 if (data.includes("success")) {
+                    console.log("successsss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'success',
-                        message: 'Appointment Successfully Requested!'
+                        message: 'Complain Successfully Added!'
                     });
+                    getAllComplain();
                 } else {
+                    console.log("unsuccesssss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'fail',
-                        message: 'Appointment Request Fails !',
+                        message: 'Complain Send Fail !',
+                        data: data
+                    });
+                }
+            }
+        );
+        return false;
+    }
+    function makeComplain(imageNames) {
+        console.log("make complain call");
+
+        let url1 = (imageNames[0]==null ? " ":imageNames[0] );
+        let url2 = (imageNames[1]==null ? " ":imageNames[1] );
+        let url3 = (imageNames[2]==null ? " ":imageNames[2] );
+
+        // let url1 = " ";
+        // let url2 = " ";
+        // let url3 = " ";
+
+        // take complaintype
+        var CTypeObj = document.getElementById("complaintType");
+        var datalist = document.getElementById(CTypeObj.getAttribute("list"));
+        let ComplainType;
+        let UserType;
+        let PId;
+        let MOHId;
+        if(datalist.options.namedItem(CTypeObj.value)){
+             ComplainType=(datalist.options.namedItem(CTypeObj.value).id);
+        }
+
+        // take usertype
+        var UTypeObj = document.getElementById("uDetailsType");
+        var datalist = document.getElementById(UTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(UTypeObj.value)){
+            UserType=(datalist.options.namedItem(UTypeObj.value).id);
+        }
+
+        // take phiID
+        var phiObj = document.getElementById("phi");
+        var datalist = document.getElementById(phiObj.getAttribute("list"));
+        if(datalist.options.namedItem(phiObj.value)){
+            PId=(datalist.options.namedItem(phiObj.value).id);
+        }
+
+
+
+        let reqData =
+            {
+                cTitle: document.getElementById("cTitle").value,
+                cType: ComplainType,
+                uType: UserType,
+                cPhi: PId,
+                cReason: document.getElementById("reason").value,
+                img1:url1,
+                img2:url2,
+                img3:url3
+            };
+        console.log(reqData);
+
+        $.post("/suwasewana_war/user-complain-controller/create",
+            reqData,
+            function (data, status) {
+                console.log(data.includes("success"))
+                if (data.includes("success")) {
+                    console.log("successsss brooo")
+                    popup.showAppointmentSuccessMessage({
+                        status: 'success',
+                        message: 'Complain Successfully Added!'
+                    });
+                    getAllComplain();
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.showAppointmentSuccessMessage({
+                        status: 'fail',
+                        message: 'Complain Send Fail !',
                         data: data
                     });
                 }
@@ -605,15 +661,86 @@
 </script>
 
 
+<%--initialize--%>
+<script>
+    let validation = new FormInputValidation();
+    let complain= new Complain('previous-complaint-list');
+</script>
+
+
+<%--popup--%>
+<script defer>
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+        var loadFile = function (event, imgContainerId) {
+        var image = document.getElementById(imgContainerId);
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
+</script>
+
+
+<%--for search--%>
+<script>
+    function searchComplain(){
+        var ComplainTypeObj = document.getElementById("ComplaintsTypeSearch");
+        var complaindatalist = document.getElementById(ComplainTypeObj.getAttribute("list"));
+        let CType,Title;
+        if(complaindatalist.options.namedItem(ComplainTypeObj.value)){
+            CType=(complaindatalist.options.namedItem(ComplainTypeObj.value).id);
+        }
+
+
+        let searchItem = {
+            Title : document.getElementById("cTitleSearch").value,
+            complaintype: CType
+        }
+        let complainCardList = [];
+        $.post("/suwasewana_war/user-complain-controller/search",
+            searchItem,
+            function (data, status) {
+                console.log("unsuccesssss brooo "+data)
+                complainCardList = JSON.parse(data);
+                typedatalist=complainCardList;
+                document.getElementById("previous-complaint-list").innerHTML = " ";
+                complain.setData(complainCardList);
+            }
+        );
+        return false;
+    }
+</script>
+
+
+<script>
+
+    getAllComplain();
+    let typedatalist={};
+    function getAllComplain() {
+        let complainCardList = [];
+        $.post("/suwasewana_war/user-complain-controller/view",
+            {},
+            function (data, status) {
+                complainCardList = JSON.parse(data);
+                typedatalist=complainCardList;
+                document.getElementById("previous-complaint-list").innerHTML = " ";
+                complain.setData(complainCardList);
+            }
+        );
+    }
+
+</script>
+
+
 <%--script for take complain types--%>
 <script defer>
     $.post("/suwasewana_war/user-complain-controller/",
         function (data, status) {
             let rs= JSON.parse(data);
             let complainType=document.getElementById("allcomplaintType");
+            let searchcomplintype=document.getElementById("allComplaintsTypeSearch");
             complainType.innerHTML="";
+            searchcomplintype.innerHTML="";
             rs.map((element) => {
                 complainType.innerHTML+= '<option  id="'+element.CType+'" name="'+element.Type+'" value="' + element.Type +  '" option="' + element.Type +  '"></option>'
+                searchcomplintype.innerHTML+='<option  id="'+element.CType+'" name="'+element.Type+'" value="' + element.Type +  '" option="' + element.Type +  '"></option>'
             })
         }
     );
@@ -624,32 +751,35 @@
     let mohDetails=[];
     $.post("/suwasewana_war/user-complain-controller/moh",
         function (data, status) {
-            console.log(data);
             let rs= JSON.parse(data);
             this.mohDetails=rs;
-            console.log(data);
 
             let MNames=document.getElementById("allMOHArea");
             MNames.innerHTML="";
             rs.map((element,index) => {
-                console.log("moh"+element.MName)
                 MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
             })
         }
     );
-    console.log(mohDetails);
 
     function fillMOH(listid){
+
         var listObj = document.getElementById(listid);
          var datalist = document.getElementById(listObj.getAttribute("list"));
-        let mohid=(datalist.options.namedItem(listObj.value).id);
-        ViewPHI(mohid);
+         if(datalist.options.namedItem(listObj.value)){
+             let mohid=(datalist.options.namedItem(listObj.value).id);
+             ViewPHI(mohid);
+         }
+
     }
 
 
 <%--script for take PHI list--%>
 //     let mid=0;
 //     ViewPHI(mid);
+
+
+
     function ViewPHI(mid){
         $.post("/suwasewana_war/user-complain-controller/phi",
             function (data, status) {
@@ -657,8 +787,8 @@
                 let PNames=document.getElementById("allphi");
                 PNames.innerHTML="";
                 rs.map((element) => {
-                    if(element.mohId==mid){PNames.innerHTML+= '<option id="'+element.mohId+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'}
-                    // console.log("moh"+element.MName)
+                    if(element.mohId==mid){PNames.innerHTML+= '<option id="'+element.phi_Id+'" name="'+element.full_name+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'}
+
 
                 })
             }

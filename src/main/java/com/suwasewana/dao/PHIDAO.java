@@ -24,12 +24,12 @@ public class PHIDAO {
 
     public ArrayList<PHIModel> GetPHIDetails() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_phi)) {
-            System.out.println("awoooooooo");
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<PHIModel>phiList = new ArrayList<PHIModel>();
             while (rs.next()) {
                 String name = rs.getString("full_name");
                 String id = rs.getString("mohId");
+                String pid=rs.getString("phi_Id");
                 PHIModel temp = new PHIModel(
                         id,
                         name,
@@ -43,7 +43,7 @@ public class PHIDAO {
                         "",
                         "",
                         "",
-                        ""
+                        pid
                 );
 //
                 phiList.add(temp);

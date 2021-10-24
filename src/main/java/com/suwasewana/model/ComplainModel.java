@@ -10,19 +10,27 @@ public class ComplainModel {
     protected String CTitle;
     protected String CMessage;
     protected String PHIId;
+    protected String PHIName;
     protected String Status;
-
+    protected String img1;
+    protected String img2;
+    protected String img3;
+//
     public ComplainModel
-    (String CTitle,String CType, String UType,  String PHIId,String CMessage,String User, String Posted_Date, String Status){
+    (String CTitle,String CType,String UType,String PHIId,String CMessage,String PName ,  String User, String Posted_Date, String Status,String img1 ,String img2, String img3){
         super();
+        this.CTitle=CTitle;
         this.CType=CType;
         this.UType=UType;
+        this.PHIId=PHIId;
+        this.PHIName=PName;
         this.User=User;
         this.Posted_Date=Posted_Date;
-        this.CTitle=CTitle;
         this.CMessage=CMessage;
-        this.PHIId=PHIId;
         this.Status=Status;
+        this.img1=img1;
+        this.img2=img2;
+        this.img3=img3;
     }
 
     public String getCType() {
@@ -87,5 +95,37 @@ public class ComplainModel {
 
     public void setStatus(String status) {
         Status = status;
+    }
+
+    public String getPHIName() {
+        return PHIName;
+    }
+
+    public void setPHIName(String PHIName) {
+        this.PHIName = PHIName;
+    }
+
+    public String getImg1() {
+        return img1;
+    }
+
+    public void setImg1(String img1) {
+        this.img1 = img1;
+    }
+
+    public String getImg2() {
+        return img2;
+    }
+
+    public void setImg2(String img2) {
+        this.img2 = img2;
+    }
+
+    public String getImg3() {
+        return img3;
+    }
+
+    public void setImg3(String img3) {
+        this.img3 = img3;
     }
 }

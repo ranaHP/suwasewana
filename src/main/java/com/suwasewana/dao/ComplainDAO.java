@@ -50,7 +50,6 @@ public class ComplainDAO {
 
 
     public String AddComplain(ComplainModel cm) {
-        System.out.println("data come to dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
 //            preparedStatement.setString(1, cm.getTitle() );
@@ -62,15 +61,10 @@ public class ComplainDAO {
             preparedStatement.setString(7,  "");
             preparedStatement.setString(8, "");
             int  rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
 
             return  "success";
         } catch (SQLException throwables) {
             printSQLException(throwables);
-//            System.out.println(throwables.getErrorCode());
-//            System.out.println(throwables.getSQLState());
-//            System.out.println(throwables.getMessage());
-//            System.out.println(throwables);
             return throwables.getMessage();
         }
 

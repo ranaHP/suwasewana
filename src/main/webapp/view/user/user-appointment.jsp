@@ -198,6 +198,7 @@
                             <datalist id="allappointmentTypeSearch">
 
                             </datalist>
+
                         </div>
                         <div class="form-group">
                             <label for="phiSearch">
