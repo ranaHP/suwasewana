@@ -239,7 +239,7 @@
                                         Appointment Title
                                     </label>
                                     <input type="text" name="name" id="aTitle" autocomplete="off"
-                                           value="Maduni baba hanbaernna" required/>
+                                            required/>
 
                                 </div>
                             </div>
@@ -260,9 +260,9 @@
                                         Your Area's PHI Name
                                     </label>
                                     <input id="phi" type="text" list="allphi" name="phi" autocomplete="off" required
-                                           value="akila" onclick="document.getElementById('phi').value = '' ">
+                                            onclick="document.getElementById('phi').value = '' ">
                                     <datalist id="allphi">
-                                        <option value="Hansana" option="Hansana"></option>
+                                        <option value="Mr Anjana" ></option>
                                     </datalist>
                                 </div>
                             </div>
@@ -272,7 +272,7 @@
                                         Reason of Appointment
                                     </label>
                                     <textarea rows="4" cols="50" type="text" placeholder="reason" name="reason"
-                                              id="reason"> Manduni lanaya </textarea>
+                                              id="reason"> Reason.... </textarea>
                                 </div>
 
                             </div>

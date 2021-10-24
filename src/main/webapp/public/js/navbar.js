@@ -13,7 +13,7 @@ class Navbar{
                             <li class="nav-item"> Announcement</li>
                         </a>
                         <a href="${this.myUrl}/s/clinic">
-                            <li class="nav-item"> Clinik</li>
+                            <li class="nav-item"> Clinic</li>
                         </a>
                         <a href="${this.myUrl}/s/appointment">
                             <li class="nav-item"> Appointment</li>

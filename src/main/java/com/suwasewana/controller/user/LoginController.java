@@ -62,11 +62,11 @@ public class LoginController extends HttpServlet {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
             System.out.println(userLoginDetailsResponse);
-//            Cookie loginCookie = new Cookie("unic",userLoginDetailsResponse.getUnic());
-            //setting cookie to expiry in 30 mins
-//            loginCookie.setMaxAge(300*60);
-//            res.addCookie(loginCookie);
-//            System.out.println(loginCookie.getValue());
+            Cookie loginCookie = new Cookie("unic",userLoginDetailsResponse.getUnic());
+//            setting cookie to expiry in 30 mins
+            loginCookie.setMaxAge(300*60);
+            res.addCookie(loginCookie);
+            System.out.println(loginCookie.getValue());
         }
         out.print(responseJsonString);
         out.flush();

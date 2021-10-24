@@ -178,18 +178,18 @@
                         <div class="dash-tab">
 
                             <div class="dash-title">
-                                Dashboard
+                                Government
                             </div>
                         </div>
                         <div class="dash-tab">
 
                             <div class="dash-title">
-                                Diseases
+                                PHI
                             </div>
                         </div>
                         <div class="dash-tab">
                             <div class="dash-title">
-                                Announcement
+                                Clinics
                             </div>
                         </div>
                     </div>
