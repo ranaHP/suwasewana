@@ -36,7 +36,7 @@ public class PHIRegistrationContoroller extends HttpServlet {
         PHIRegisterModel phiRegisterDetails = new PHIRegisterModel(
                 req.getParameter("full_name"),
                 req.getParameter("NIC"),
-                "",
+                req.getParameter("c_officer_no"),
                 "",
                 req.getParameter("mobile"),
                 req.getParameter("street_no"),

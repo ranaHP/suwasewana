@@ -25,13 +25,13 @@ public class AdminDAO {
             preparedStatement.setString(1, phiRegister.getFull_name());
             preparedStatement.setString(2, phiRegister.getNIC());
             preparedStatement.setString(3, phiRegister.getC_officer_no());
-            preparedStatement.setString(4, phiRegister.getDevice_MAC());
+            preparedStatement.setString(4, "");
             preparedStatement.setString(5, phiRegister.getMobile());
             preparedStatement.setString(6, phiRegister.getStreet_no());
             preparedStatement.setString(7, phiRegister.getState());
             preparedStatement.setString(8, phiRegister.getCity());
-            preparedStatement.setString(9, phiRegister.getPassword());
-            preparedStatement.setString(10,phiRegister.getLogin_status());
+            preparedStatement.setString(9, "defualt");
+            preparedStatement.setString(10,"");
             preparedStatement.setString(11, phiRegister.getPhi_post());
             int rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
@@ -43,14 +43,26 @@ public class AdminDAO {
 //            System.out.println(throwables.getSQLState());
 //            System.out.println(throwables.getMessage());
 //            System.out.println(throwables);
+            System.out.println("Error");
             return throwables.getMessage();
         }
 
 
     }
 
-    private void printSQLException(SQLException throwables) {
-
-
+    private void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
     }
 }

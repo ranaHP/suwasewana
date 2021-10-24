@@ -10,6 +10,7 @@ public class PHIRegisterModel {
     protected String street_no;
     protected String state;
     protected String city;
+    protected String moh_area;
     protected String password;
     protected String login_status;
     protected String phi_post;
@@ -39,6 +40,7 @@ public class PHIRegisterModel {
         this.login_status = login_status;
         this.phi_post = phi_post;
     }
+
 
     public String getFull_name() {
         return full_name;

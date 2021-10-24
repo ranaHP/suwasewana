@@ -14,10 +14,15 @@
 <head>
     <title>Title</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/RegPHI.css "/>">
     <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
 
     <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"/>" />
 </head>
@@ -34,10 +39,11 @@
             <span>Register PHI</span>
         </div>
 
-        <form action="">
+        <form onsubmit="return register();">
             <div class="singal_row">
                 <div class="form-item">
-                    <input type="text" id="fullName" autocomplete="off" required
+                    <input type="text" id="fullName" value="hash" name="fullName" autocomplete="off" required
+                           onclick="document.getElementById('fullName').value = '' "
                            onblur="validation.nameValidation(
                             document.getElementById('fullName').value,
                             'LfullName'
@@ -54,11 +60,12 @@
             <div class="multirow">
                 <div class="milturow_left">
                     <div class="form-item">
-                        <input type="text" id="NIC" autocomplete="off" required
-                               onblur="validation.nicValidation(
-                                document.getElementById('NIC'),
-                                'LNIC')
-                            ;"
+                        <input type="text" id="NIC" value="980939449v" name="NIC" autocomplete="off" required
+                               onclick="document.getElementById('NIC').value = '' "
+<%--                               onblur="validation.nicValidation(--%>
+<%--                                document.getElementById('NIC'),--%>
+<%--                                'LNIC')--%>
+<%--                            ;"--%>
                         >
                         <label for="NIC">NIC</label>
                         <span class="error" id="LNIC"></span>
@@ -66,7 +73,8 @@
                 </div>
                 <div class="multirow_right">
                     <div class="form-item">
-                        <input type="text" id="TpNo" autocomplete="off" required
+                        <input type="text" id="TpNo" value="0984744742"  autocomplete="off" required
+                               onclick="document.getElementById('TpNo').value = '' "
                                onkeyup="validation.mobileValidation(
                                 document.getElementById('TpNo').value,
                                 'LTpNo'
@@ -85,7 +93,8 @@
             <div class="multirow">
                 <div class="milturow_left" id="mohHeadDiv">
                     <div class="form-item" >
-                        <input type="text" id="MoHhead" autocomplete="off" required
+                        <input type="text" value="galle" id="MoHhead" name="MoHhead" autocomplete="off" required
+<%--                               onclick="document.getElementById('MoHhead').value = '' "--%>
                                onblur="validation.nameValidation(
                                 document.getElementById('MoHhead').value,
                                 'LMoHhead'
@@ -101,7 +110,8 @@
                 </div>
                 <div class="multirow_right" >
                     <div class="form-item" >
-                        <input type="text" id="street" autocomplete="off" required
+                        <input type="text" value="galle" id="street" name="street" autocomplete="off" required
+<%--                               onclick="document.getElementById('street').value = '' "--%>
                                onblur="validation.nameValidation(
                                 document.getElementById('street').value,
                                 'Lstreet'
@@ -119,7 +129,8 @@
             <div class="multirow">
                 <div class="milturow_left" id="PHIState">
                     <div class="form-item" style=" width: 100%;">
-                        <input type="text" id="State" autocomplete="off" required
+                        <input type="text" id="State" value="galle" name="State" autocomplete="off" required
+                               onclick="document.getElementById('State').value = '' "
                                onblur="validation.nameValidation(
                                 document.getElementById('State').value,
                                 'LState'
@@ -136,6 +147,7 @@
                 <div class="multirow_right" id="addcityDiv">
                     <label >MOH Area</label> <br>
                     <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllColors"
+<%--                           onclick="document.getElementById('MArea').value = '' "--%>
                            onkeypress=""
                            onblur="validation.SearchSelect(
                                 document.getElementById('MArea').value,
@@ -161,7 +173,7 @@
                 </div>
             </div>
 
-            <div class="status">
+            <div class="status" id="post" onclick="document.getElementById('post').value = '' ">
                 <label > PHI</label> <input type="checkbox">
                 <label > RPHI</label> <input type="checkbox">
             </div>
@@ -176,8 +188,6 @@
 
 
 </div>
-
-
 <script>
     selectedOptionList = [];
 
@@ -243,6 +253,35 @@
 <script defer>
     let validation = new FormInputValidation();
 
+    function register() {
+        let reqData =
+            {
+                full_name: document.getElementById("fullName").value,
+                NIC: document.getElementById("NIC").value,
+                mobile: document.getElementById("TpNo").value,
+                city: document.getElementById("MoHhead").value,
+                street_no: document.getElementById("street").value,
+                state: document.getElementById("State").value,
+                c_officer_no: document.getElementById("MArea").value,
+                phi_post: document.getElementById("post").value,
+            };
+        console.log(reqData)
+
+       $.post("/test_war_exploded/phi-register-controller",
+            reqData,
+            function (data, status) {
+
+                console.log(data.includes("success"))
+                if (data.includes("success") ) {
+                    popup.showRegistrationSuccessMessage({ status : 'success' , message: 'Successfully Citizen Registered'});
+                } else {
+                    popup.showRegistrationSuccessMessage({ status : 'fail' , message: 'Citizen Registration Fails !' , data: data});
+
+                }
+
+            }
+        );
+    }
 
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
