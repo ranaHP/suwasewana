@@ -12,7 +12,7 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Suwasewana</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/RegPHI.css "/>">

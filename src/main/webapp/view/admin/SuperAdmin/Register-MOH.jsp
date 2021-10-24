@@ -35,7 +35,7 @@
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
   <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
-    <title>Title</title>
+    <title>Suwasewana</title>
 </head>
 <body>
 

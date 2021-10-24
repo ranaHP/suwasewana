@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Dashboard</title>
+    <title>Suwasewana</title>
     <script src="<c:url value="/public/js/popup.js"></c:url> "></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/c-dashboard.css "/>">
     <script src="https://unpkg.com/feather-icons"></script>
@@ -69,13 +69,13 @@
                 <div class="chart" id="chart1">
                     <h4>Patient growth</h4>
                     <div class="g-chart" style="width: 300px">
-                        <canvas id="myChart" height="150" width="250"></canvas>
+                        <canvas id="myChart" height="180" width="307" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
                 <div class="chart" id="chart2">
                     <h4>Clinic growth</h4>
                     <div class="g-chart" style="width: 300px">
-                        <canvas id="myChart2" height="150" width="250"></canvas>
+                        <canvas id="myChart2" height="180" width="307" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
             </div>

@@ -10,6 +10,7 @@ body{
     /*min-height: 100vh;*/
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
+    overflow-x: hidden;
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
@@ -180,5 +181,14 @@ input[type=time]:focus{
 
         transition: 0.2s ease;
         /*transition-delay: 0.1s;*/
+    }
+    .live-card{
+        width: 80%;
+    }
+    .right .live-card-border{
+        width: 70%;
+    }
+    .live{
+        width: 80%;
     }
 }

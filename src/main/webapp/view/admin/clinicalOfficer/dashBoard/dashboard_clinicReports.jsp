@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-clinicReports.css"/> "/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <title>Title</title>
+    <title>Suwasewana</title>
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -126,7 +126,7 @@
         data: {
             labels: ['Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Fever','Eye diseases'],
             datasets: [{
-                label: '# of Votes',
+                label: '',
                 data: [12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -137,14 +137,14 @@
                     'rgba(255, 159, 64, 0.2)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    'rgb(255,99,132)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
-                borderWidth: 1
+                borderWidth: 0
             }]
         },
         options: {
@@ -163,7 +163,7 @@
         data: {
             labels: ['Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Fever','Eye diseases'],
             datasets: [{
-                label: '# of Votes',
+                label: '',
                 data: [12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -181,7 +181,7 @@
                     'rgba(153, 102, 255, 1)',
                     'rgba(255, 159, 64, 1)'
                 ],
-                borderWidth: 1
+                borderWidth: 0
             }]
         },
         options: {

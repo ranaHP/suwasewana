@@ -33,18 +33,44 @@
     margin-top: 150px;
     position: relative;
 }
-.logo{
-    /* background-color: blue; */
+.popup-icon{
+    width:  45px ;
+    height: 80px;
     display: flex;
     justify-content: center;
-    height: 45px;
-    margin-bottom:15px ;
-}
-.logo img{
-    width: 25px;
-    height: 33px;
+    align-items: center;
+    background-image: url("logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
     margin: auto;
+    margin-top: 10px;
+
 }
+.popup-icon svg{
+    color: rgba(0, 128, 0, 0.541);
+    width: 40px;
+    border-radius: 50%;
+    padding: 20px;
+    height: fit-content;
+    background-color: rgba(0, 128, 0, 0.055);
+}
+.feather-16{
+    width: 50px;
+    height: 50px;
+}
+/*.logo{*/
+/*    !* background-color: blue; *!*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    height: 45px;*/
+/*    margin-bottom:15px ;*/
+/*}*/
+/*.logo img{*/
+/*    width: 25px;*/
+/*    height: 33px;*/
+/*    margin: auto;*/
+/*    background-image: url("/public/images/logo.png");*/
+/*}*/
 .popup-container .title span{
     font-size: 1em;
     font-weight: 500;
