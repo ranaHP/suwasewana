@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
+import com.suwasewana.model.ClinicalOfficerModel;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,24 +64,18 @@ public class RegisterController extends HttpServlet {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private void RegClinicalOfficer(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
-        System.out.println("come to reg clinical officer");
+        ClinicalOfficerModel clinicalOfficerModel=new ClinicalOfficerModel(
+                req.getParameter("CName"),
+                req.getParameter("CNIC"),
+                req.getParameter("CTpNo"),
+                req.getParameter("Ccity"),
+                req.getParameter("Cstreet"),
+                req.getParameter("CState"),
+                req.getParameter("CMohArea")
+        );
+//        String result = userDAO.UserMakeAppointment(userAppointmentDetails);
+//        res.getWriter().println(result);
     }
 
 

@@ -147,7 +147,7 @@
                         </datalist>
                         <button onclick="test();">test</button>
                         <br>
-                        <span class="error" id="LMArea"></span>
+                        <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                     </div>
                 </div>
 
@@ -231,24 +231,24 @@
             console.log("sending data "+reqData.CState);
             console.log("sending data "+reqData.CMohArea);
 
-            // $.post("/suwasewana_war/admin-register-controller/clinical_officer",
-            //     reqData,
-            //     function (data, status) {
-            //         console.log(data.includes("success"))
-            //         if (data.includes("success")) {
-            //             popup.showAppointmentSuccessMessage({
-            //                 status: 'success',
-            //                 message: 'Appointment Successfully Requested!'
-            //             });
-            //         } else {
-            //             popup.showAppointmentSuccessMessage({
-            //                 status: 'fail',
-            //                 message: 'Appointment Request Fails !',
-            //                 data: data
-            //             });
-            //         }
-            //     }
-            // );
+            $.post("/suwasewana_war/admin-register-controller/clinical_officer",
+                reqData,
+                function (data, status) {
+                    console.log(data.includes("success"))
+                    if (data.includes("success")) {
+                        popup.showAppointmentSuccessMessage({
+                            status: 'success',
+                            message: 'Appointment Successfully Requested!'
+                        });
+                    } else {
+                        popup.showAppointmentSuccessMessage({
+                            status: 'fail',
+                            message: 'Appointment Request Fails !',
+                            data: data
+                        });
+                    }
+                }
+            );
             return false;
         }
 
