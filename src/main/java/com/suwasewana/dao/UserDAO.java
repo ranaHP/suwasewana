@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class UserDAO {
@@ -26,7 +27,8 @@ public class UserDAO {
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final  String USER_LOGIN_ATTEMPT = "SELECT login_status FROM `citizen` WHERE uMobile = ?";
-    private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT suspended_time FROM `citizen` WHERE uMobile = ?; ";
+    private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT DATE_ADD(suspended_time, INTERVAL 5 minute) AS suspended_time FROM `citizen` WHERE uMobile = ? AND DATE_ADD(suspended_time, INTERVAL 5 minute) > current_timestamp(); ";
+    private static final  String USER_LOGOUT = "UPDATE `citizen` SET `login_status` = '0' WHERE `citizen`.`uMobile` = ?; ";
     private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `citizen` SET `login_status` = ? , `suspended_time` = current_timestamp() WHERE `citizen`.`uMobile` = ?; ";
     Connection connection;
 
@@ -37,8 +39,22 @@ public class UserDAO {
     public String GetLoginSuspendedTime(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_SUSPENDED_TIME)) {
             preparedStatement.setString(1, userLogin.getMobile());
-            Integer rs = preparedStatement.executeUpdate();
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
 
+            if(rs.next()){
+                System.out.println(rs.getString("suspended_time"));
+                return rs.getString("suspended_time");
+            }else{
+                System.out.println("unblocked");
+                GetLoginAttemptChange(userLogin, "0");
+                return "unblocked";
+            }
+//            while (rs.next()) {
+//                String suspended_time = rs.getString("suspended_time");
+//                System.out.println("suspended_time");
+//            }
+//            System.out.println("unblocked");
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
@@ -76,6 +92,7 @@ public class UserDAO {
         }
         return new UserLoginModel("", "", "");
     }
+
     public String CheckLoginAttempt(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_ATTEMPT)) {
             preparedStatement.setString(1, userLogin.getMobile());
@@ -100,8 +117,12 @@ public class UserDAO {
             case "3":
                 return  CheckLoginValidation(userLogin);
             case "-1":
+                String getSuspendTime = GetLoginSuspendedTime(userLogin);
+                if(getSuspendTime == "unblocked"){
+                    return  CheckLoginValidationStatus(userLogin);
+                }
                 UserLoginModel loginModel = new UserLoginModel("", "", "");
-                loginModel.setMessage("User account temporarily suspended. Please try again after 5 minutes");
+                loginModel.setMessage("User account temporarily suspended. Please try again after " + getSuspendTime );
                 return  loginModel;
             case "4":
                 UserLoginModel loginModel1 = new UserLoginModel("", "", "");
@@ -113,7 +134,6 @@ public class UserDAO {
         return new UserLoginModel("", "", "");
     }
 
-
     public UserLoginModel CheckLoginValidation(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN_VALIDATION)) {
             preparedStatement.setString(1, userLogin.getMobile());
@@ -123,7 +143,12 @@ public class UserDAO {
                 String mobile = rs.getString("uMobile");
                 String password = rs.getString("uPassword");
                 String nic = rs.getString("uNic");
-                System.out.println(mobile + " - " + password + " - " + nic );
+                UserLoginModel userResponse = new UserLoginModel(mobile, password , nic);
+                userResponse.setuCity(rs.getString("uCity"));
+                userResponse.setuProvince(rs.getString("uProvince"));
+                userResponse.setuDistrict(rs.getString("uDistrict"));
+                userResponse.setuMoh(rs.getString("uMoh"));
+                userResponse.setUname(rs.getString("uname"));
                 if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
                     UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, nic);
                     GetLoginAttemptChange(userLogin, "4");
@@ -136,8 +161,18 @@ public class UserDAO {
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
-
         return new UserLoginModel("", "", "");
+    }
+
+    public Integer UserLogout(String uMobile) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGOUT)) {
+            preparedStatement.setString(1, uMobile);
+            Integer rs = preparedStatement.executeUpdate();
+            return rs;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        return 0;
     }
 
     public String UserRegistration(UserRegistrationModel userRegister) {

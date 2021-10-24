@@ -206,11 +206,11 @@
                 } else if (result.status === "error") {
                     document.getElementById('user-form-error').innerText = result.data;
                     document.getElementById('user-form-error').style.display = "block";
-                    document.getElementById("user-password").value = "";
-                    document.getElementById("user-mobile").value = "";
-                    setTimeout(() => {
-                        document.getElementById('user-form-error').style.display = "none";
-                    }, 8000)
+                    // document.getElementById("user-password").value = "";
+                    // document.getElementById("user-mobile").value = "";
+                    // setTimeout(() => {
+                    //     document.getElementById('user-form-error').style.display = "none";
+                    // }, 8000)
                 }
             }
             xhttp.open("GET", url, true);

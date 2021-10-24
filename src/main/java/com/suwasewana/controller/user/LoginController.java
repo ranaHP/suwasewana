@@ -13,7 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Random;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 @WebServlet("/user-login-controller")
 public class LoginController extends HttpServlet {
     UserDAO userDAO;
@@ -54,7 +61,7 @@ public class LoginController extends HttpServlet {
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-
+            System.out.println(userLoginDetailsResponse);
 //            Cookie loginCookie = new Cookie("unic",userLoginDetailsResponse.getUnic());
             //setting cookie to expiry in 30 mins
 //            loginCookie.setMaxAge(300*60);
