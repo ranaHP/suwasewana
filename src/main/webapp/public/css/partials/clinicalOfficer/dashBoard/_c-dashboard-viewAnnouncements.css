@@ -1,0 +1,207 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    margin-left: 78px;
+    background-color: #dfe4ea59;
+    max-width: calc(100vw - 78px);
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    /* background-color: red;*/
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.container{
+    min-height: 100vh;
+    /*overflow-x: hidden;*/
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.search-section{
+    width: 90%;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    /* padding:0 250px; */
+    padding-left: 20%;
+}
+/* for searching */
+.searchbar{
+    display: flex;
+}
+input{
+    width: 80%;
+    border: 0;
+    border-radius: 3px;
+    height: 26px;
+    padding-left: 5px;
+    box-shadow: 1px 1px 6px rgba(131, 128, 128, 0.315);
+    outline: none;
+}
+.search-section button{
+    width: 100px;
+    height:26px;
+    margin:0 5px;
+    background-color: #0D47A1;
+    letter-spacing: .1em;
+}
+.left{
+    width: 70%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.right{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30%;
+}
+.announcements-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.announcement{
+    padding: 8px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 180px;
+    width: 60%;
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    border-radius: 2px;
+}
+.announcement-title{
+    color: rgba(0, 0, 0, 0.76);
+    font-size: 1.2em;
+    text-align: center;
+}
+.announce-description{
+    color: rgba(0, 0, 0, 0.575);
+    font-size: .8em;
+    text-align: center;
+}
+.announce-details{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: .7em;
+    color: rgba(0, 0, 0, 0.705);
+}
+span{
+    color: rgba(0, 0, 0, 0.63);
+}
+.image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image img{
+    min-width: 150px;
+}
+.detail{
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    border: none;
+    padding: 3.5px;
+    border-radius: 2px;
+    margin:0 5px;
+    width: 90px;
+    cursor: pointer;
+    color: white;
+    font-size: .7em;
+}
+.delete button{
+    background-color: #EB3B5A;
+}
+.Edit button{
+    background-color: #F0AD4E;
+}
+.button-section{
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 1075px) {
+    .button-section{
+        flex-direction: column;
+        align-items: center;
+    }
+    button{
+        margin-top: 5px;
+        width: 100px;
+    }
+    .announcement{
+        height: 200px;
+        width: 80%;
+    }
+}
+@media screen and (max-width: 700px){
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+        transition: 0.2s ease;
+    }
+}
+@media screen and (max-width: 600px) {
+    .announcement{
+        flex-direction: column;
+        height: 400px;
+    }
+    .announce-details{
+        width: 90%;
+        margin-top: 10px;
+    }
+    .search-section{
+        padding: 5px;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 390px) {
+    .announcement{
+        height: 470px;
+        width: 85%;
+    }
+    .announce-description{
+        font-size: .7em;
+        margin-top: 10px;
+    }
+    .announcement-title{
+        width: 100%;
+    }
+}

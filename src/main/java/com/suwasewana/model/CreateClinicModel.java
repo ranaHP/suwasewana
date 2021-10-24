@@ -3,6 +3,7 @@ package com.suwasewana.model;
 import java.sql.Blob;
 
 public class CreateClinicModel {
+    public String clinicID;
     public String disease;
     public String title;
     public String location;
@@ -10,10 +11,14 @@ public class CreateClinicModel {
     public String datetime;
     public String duration;
     public String maxpatient;
+    public String Target;
     public String conduct;
     public String description;
+    public String cNic;
+
 
     public CreateClinicModel(
+            String clinicID,
            String disease,
            String title,
            String location,
@@ -21,8 +26,11 @@ public class CreateClinicModel {
            String datetime,
            String duration,
            String maxpatient,
+            String Target,
            String conduct,
-           String description
+           String description,
+           String cNic
+
     ){
         super();
         this.disease= disease;
@@ -32,8 +40,12 @@ public class CreateClinicModel {
         this.datetime= datetime;
         this.duration= duration;
         this.maxpatient= maxpatient;
+        this.Target=Target;
         this.conduct= conduct;
         this.description= description;
+        this.clinicID=clinicID;
+        this.cNic=cNic;
+
 
     }
 
@@ -93,6 +105,14 @@ public class CreateClinicModel {
         this.maxpatient = maxpatient;
     }
 
+    public String getTarget() {
+        return Target;
+    }
+
+    public void setTarget(String target) {
+        Target = target;
+    }
+
     public String getConduct() {
         return conduct;
     }
@@ -108,5 +128,22 @@ public class CreateClinicModel {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getClinicID() {
+        return clinicID;
+    }
+
+    public void setClinicID(String clinicID) {
+        this.clinicID = clinicID;
+    }
+
+    public String getcNic() {
+        return cNic;
+    }
+
+    public void setcNic(String cNic) {
+        this.cNic = cNic;
+    }
+
 
 }

@@ -34,7 +34,7 @@
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
-  <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"/>" />
+  <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
     <title>Title</title>
 </head>
 <body>

@@ -3,6 +3,7 @@ package com.suwasewana.dao;
 import com.suwasewana.core.DB;
 import com.suwasewana.model.CreateClinicModel;
 
+import java.lang.annotation.Target;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -10,10 +11,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class createClinicDAO {
-  private  static final String CREATE_CLINIC ="INSERT INTO `clinics`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,NULL );";
+  private  static final String CREATE_CLINIC ="INSERT INTO `clinics`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,NULL,?);";
   private static final String VIEW_CLINICS = "SELECT * FROM `clinics`";
-  private static final String SELECT_CLINICS = "SELECT * FROM `clinics` WHERE `clinics`.`clinic-no` = 10";
-  
+  private static final String SELECT_CLINICS = "SELECT * FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
+  private static final String DELETE_CLINICS ="DELETE FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
     Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -21,6 +22,7 @@ public class createClinicDAO {
     }
     public String createClinic(CreateClinicModel createClinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLINIC)) {
+//            preparedStatement.setString(1,"");
             preparedStatement.setString(1,createClinic.getDisease());
             preparedStatement.setString(2,createClinic.getTitle());
             preparedStatement.setString(3,createClinic.getLocation());
@@ -28,8 +30,11 @@ public class createClinicDAO {
             preparedStatement.setString(5,createClinic.getDatetime());
             preparedStatement.setString(6,createClinic.getDuration());
             preparedStatement.setString(7,createClinic.getMaxpatient());
-            preparedStatement.setString(8,createClinic.getConduct());
-            preparedStatement.setString(9,createClinic.getDescription());
+            preparedStatement.setString(8,createClinic.getTarget());
+            preparedStatement.setString(9,createClinic.getConduct());
+            preparedStatement.setString(10,createClinic.getDescription());
+            preparedStatement.setString(11,"12");
+
             int rs = preparedStatement.executeUpdate();
             return "sucsess";
 
@@ -41,9 +46,12 @@ public class createClinicDAO {
     }
     public ArrayList<CreateClinicModel> ViewClinics(CreateClinicModel viewClinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(VIEW_CLINICS)){
+//            System.out.println("came to dao");
             ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> viewClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
+                String clinicID =rs.getString("clinic-no");
                 String disease =rs.getString("Disease");
                 String title = rs.getString("ClinicTitle");
                 String Location = rs.getString("Location");
@@ -51,9 +59,12 @@ public class createClinicDAO {
                 String DataTime = rs.getString("Data&Time");
                 String Duration = rs.getString("Duration");
                 String MaxPatient = rs.getString("MaxPatient");
+                String Target=rs.getString("Target");
                 String Conduct = rs.getString("Conduct");
                 String Description = rs.getString("Description");
+                String cNic=rs.getString("cNic");
                 CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
                         disease,
                         title,
                         Location,
@@ -61,11 +72,16 @@ public class createClinicDAO {
                         DataTime,
                         Duration,
                         MaxPatient,
+                        Target,
                         Conduct,
-                        Description
+                        Description,
+                        cNic
+
+
 
                 );
                  viewClinicList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
         };
         return viewClinicList;
         } catch (SQLException throwables) {
@@ -77,9 +93,13 @@ public class createClinicDAO {
 
     public ArrayList<CreateClinicModel> selectClinics(CreateClinicModel viewClinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
+            System.out.println("jjj");
+            preparedStatement.setString(1, viewClinic.getClinicID());
             ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> selectClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
+                String clinicID =rs.getString("clinic-no");
                 String disease =rs.getString("Disease");
                 String title = rs.getString("ClinicTitle");
                 String Location = rs.getString("Location");
@@ -87,9 +107,12 @@ public class createClinicDAO {
                 String DataTime = rs.getString("Data&Time");
                 String Duration = rs.getString("Duration");
                 String MaxPatient = rs.getString("MaxPatient");
+                String Target=rs.getString("Target");
                 String Conduct = rs.getString("Conduct");
                 String Description = rs.getString("Description");
+                String cNic = rs.getString("cNic");
                 CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
                         disease,
                         title,
                         Location,
@@ -97,11 +120,15 @@ public class createClinicDAO {
                         DataTime,
                         Duration,
                         MaxPatient,
+                        Target,
                         Conduct,
-                        Description
+                        Description,
+                        cNic
+
 
                 );
                 selectClinicList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
             };
             return selectClinicList;
         } catch (SQLException throwables) {
@@ -109,6 +136,17 @@ public class createClinicDAO {
 //            return throwables.getMessage();
         }
         return null;
+    }
+
+    public String deleteClinic(CreateClinicModel deleteClinic) {
+        boolean rowDeleted;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CLINICS)) {
+                 preparedStatement.setString(1,deleteClinic.getClinicID());
+                rowDeleted = preparedStatement.executeUpdate() > 0;
+                return "success";
+        } catch (SQLException throwables) {
+            return throwables.getMessage();
+        }
     }
 
     private void printSQLException(SQLException ex) {
@@ -126,6 +164,7 @@ public class createClinicDAO {
             }
         }
     }
+
 
 }
 

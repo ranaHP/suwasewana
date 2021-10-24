@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.annotation.Target;
 import java.util.ArrayList;
 
 @WebServlet("/create-clinic-controller/*")
@@ -43,6 +44,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select");
                       selectClinic(req,res);
                     break;
+                case "delete":
+                    res.getWriter().println("delete");
+                      deleteClinic(req,res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -53,7 +58,17 @@ import java.util.ArrayList;
     }
 
     private void createClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-       CreateClinicModel createClinic = new CreateClinicModel(
+        String CNic = "12";
+//        Cookie[] cookies = req.getCookies();
+//        if(cookies !=null){
+//            for(Cookie cookie : cookies){
+//                if(cookie.getName().equals("unic")) {
+//                    cNic = cookie.getValue();
+//                }
+//            }
+//        }
+            CreateClinicModel createClinic = new CreateClinicModel(
+               req.getParameter(""),
                req.getParameter("disease"),
                req.getParameter("title"),
                req.getParameter("location"),
@@ -61,8 +76,11 @@ import java.util.ArrayList;
                req.getParameter("datetime"),
                req.getParameter("duration"),
                req.getParameter("maxpatient"),
+                    req.getParameter("Target"),
                req.getParameter("conduct"),
-               req.getParameter("description")
+               req.getParameter("description"),
+               "12"
+
        );
         String result= createClinicDAO.createClinic(createClinic);
         res.getWriter().println(result);
@@ -70,33 +88,64 @@ import java.util.ArrayList;
     private void viewClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         CreateClinicModel viewClinic = new CreateClinicModel(
                 "",
-                req.getParameter("title"),
+                req.getParameter("disease"),
                 "",
                 "",
                 "",
                 "",
                 "",
                 "",
+                "",
+                "",
+                "12",
                 ""
+
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
         res.getWriter().println(gson.toJson(result));
     }
 
     private void selectClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+            System.out.println("selettttttttttttttttt");
         CreateClinicModel selectClinic = new CreateClinicModel(
-                "",
-                req.getParameter("title"),
-                "",
-                "",
+                req.getParameter("clinicID"),
+                req.getParameter("disease"),
                 "",
                 "",
                 "",
                 "",
+                "",
+                "",
+                "",
+                "",
+                "12",
                 ""
+
+
         );
         System.out.println("select");
         ArrayList<CreateClinicModel> result= createClinicDAO.selectClinics(selectClinic);
         res.getWriter().println(gson.toJson(result));
+    }
+    private void deleteClinic(HttpServletRequest req,HttpServletResponse res) throws IOException {
+          System.out.println("Deleteeeeeeeeee");
+          CreateClinicModel deleteClinic = new CreateClinicModel(
+                  req.getParameter("clinicID"),
+                  req.getParameter("title"),
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "12",
+                  ""
+          );
+          System.out.println("delete");
+          String result = createClinicDAO.deleteClinic(deleteClinic);
+         res.getWriter().println(result);
+          System.out.println(result);
     }
 }

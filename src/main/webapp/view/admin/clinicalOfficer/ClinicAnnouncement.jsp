@@ -1,39 +1,38 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.io.PrintWriter" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
-<%@ taglib prefix="C" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/createAnnouncement/ClinicAnnouncement.css"/>">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Title</title>
+  <title>Title</title>
 
   <%--    for side navbar style--%>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
+  <script src="<c:url value="/public/js/ClinicalOfficer/clinicAnnouncements.js"/>"></script>
 
 </head>
-<body onload="view()">
+<body>
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"></c:import>
 <div id="mainContent" class="AC_main_Container">
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
     <div class="dashboard-name">Admin/Register/ClinicalOfficer</div>
   </div>
-  <form action="">
+  <form action="" id="form">
     <div class="AC_container">
-
-
-      <div class="AC_Body_container">
+      <div class="AC_Body_container" id="AC_Body_container">
         <div class="Container_left">
           <div class="LRow">
             <div class="form-item">
-              <input type="text" id="fullName" autocomplete="off" required>
-              <label for="fullName">Search by Name</label>
-              <span class="error" id="LfullName"></span>
+              <input type="text" id="clinicID"  autocomplete="off" required>
+              <label class="name" for="clinicID">Search by Name</label>
+              <span class="error" id="LfullName" onclick="view()"><i class="icon" data-feather="search"></i></span>
             </div>
           </div>
           <div class="LRow">
@@ -130,8 +129,7 @@
                     <img id="proof3" width="100%"/>
                     <input type="file" accept="image/*" name="image" id="proof3input"
                            onchange="loadFile(event, 'proof3')" style="display: none;">
-                    <label id="upload-btn" for="proof3input" style="cursor: pointer;">Upload
-                      Image</label>
+                    <label id="upload-btn" for="proof3input" style="cursor: pointer;">Upload Image</label>
                   </div>
                 </div>
               </div>
@@ -154,40 +152,36 @@
   var textarea = document.querySelector('textarea');
 
   textarea.addEventListener('keydown', autosize);
-
   function autosize() {
     var el = this;
     setTimeout(function () {
       el.style.cssText = 'height:auto; padding:0';
-      // for box-sizing other than "content-box" use:
-      // el.style.cssText = '-moz-box-sizing:content-box';
       el.style.cssText = 'height:' + el.scrollHeight + 'px';
     }, 0);
   }
-
-  function view(){
-    // alert("view")
-    let clinicList=[]
-    $.post("/test_war_exploded/create-clinic-controller/select",
-            // reqData,
-            function(data,status){
-              clinicList=JSON.parse(data)
-              alert(data)
-              // let option = document.createElement("div")
-              // option.classList.add("live-card")
-              // option.classList.add("live-card")
-              // option.innerHTML+=`
-              //          <h>view clinics</h>
-              //   `
-              // // console.log(option)
-              // document.getElementById('card-containor').appendChild(option)
-            }
-    );
-    // alert("i")
-  }
 </script>
 <script>
-  feather.replace({width: "10px"})
+  feather.replace({width: "8px"})
+</script>
+<script defer>
+
+  let selectClinic = new selectClinics("form");
+  function view(){
+    let clinicList=[]
+    let reqData =
+            {
+              clinicID: document.getElementById("clinicID").value,
+            };
+    console.log(reqData);
+    $.post("/test_war_exploded/create-clinic-controller/select",
+            reqData,
+            function(data,status){
+              clinicList=JSON.parse(data)
+              selectClinic.setData(clinicList);
+              alert(data)
+            }
+    );
+  }
 </script>
   <script defer src="<c:url value="/public/js/common/side-navbar.js"></c:url> " ></script>
 </body>

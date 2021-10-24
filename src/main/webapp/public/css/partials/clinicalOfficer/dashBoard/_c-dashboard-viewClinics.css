@@ -107,7 +107,7 @@ button{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    /*overflow-x: hidden;*/
+    overflow-x: hidden;
     /*overflow-y: visible;*/
     padding-top: 10px;
     margin: 0px;
@@ -116,17 +116,17 @@ button{
     margin: 14px 32px 15px 0px;
     padding: 10px 5px;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.2em;
 }
 .live-card{
     justify-content: space-around;
     align-items: center;
     padding: 10px;
-    font-size: .8em;
+    /*font-size: .8em;*/
     width: 250px;
     height: 350px;
-    color: #06060660;
-    font-family: Segoe UI;
+    color: rgba(6, 6, 6, 0.45);
+    font-family: Arial;
     box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.16);
     margin:15px;
     cursor: pointer;
@@ -140,23 +140,25 @@ button{
 .live-card .clinic-title{
     padding: 10px 0px 0px 0px;
     text-align: center;
-    font-size: 1.4em;
+    font-size: 1.3em;
     color:rgba(33, 33, 77, 0.808);
+    font-family: "Segoe UI";
     /* background-color: rgba(0, 0, 139, 0.137); */
 }
 .live-card .clinic-date{
     padding: 1px 10px 10px 10px;
+    color: rgba(0, 0, 0, 0.84);
 }
 .live-card .clinic-description{
     padding: 10px;
-    font-size: .9em;
-    /*color: rgba(0, 0, 0, 0.7);*/
+    font-size: .8em;
+    color: rgba(0, 0, 0, 0.67);
 }
 .live-card .clinic-details{
     padding: 10px 10px 10px 10px;
     display: flex;
     flex-direction: column;
-    font-size: .9em;
+    /*font-size: .8em;*/
 }
 .clinic-details #item{
     padding: 2px;
@@ -173,16 +175,21 @@ span{
 }
 .delete-button{
     padding: 2px 18px;
-    margin: 2px 2px 7px 2px;
+    /*margin: 2px 2px 7px 2px;*/
     background-color: #EB3B5A;
     border-radius: 2px;
     color: white;
     cursor: pointer;
     font-size: .9em;
 }
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 .edit-button{
     padding: 2px 18px;
-    margin: 2px 2px 7px 2px;
+    /*margin: 2px 2px 7px 2px;*/
     background-color: #F0AD4E;
     border-radius: 2px;
     color: white;
@@ -192,7 +199,7 @@ span{
 }
 .current-participant-count{
     display: flex;
-    margin-top: 30px;
+    margin-top: 24px;
     margin-left: 2px;
 }
 .current-participant-count .current-participant-img{
@@ -213,6 +220,15 @@ span{
     color: black;
 }
 /* responsive */
+@media screen and (max-width: 540px){
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
+    }
+}
 @media screen and (max-width: 412px) {
     .cardselect{
         flex-direction: column;
@@ -221,13 +237,7 @@ span{
         display: flex;
         justify-content: space-around;
     }
-    .sidebar-main-show{
-        max-width: calc(100vw - 78px);
-        margin-left: 78px;
 
-        transition: 0.2s ease;
-        /*transition-delay: 0.1s;*/
-    }
 }
 @media screen and (max-width: 320px) {
     .live-card{

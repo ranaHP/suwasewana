@@ -25,7 +25,7 @@
 
 </head>
 <body>
-    <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"/>" />
+    <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
     <div class="MR_main_Container">
         <div class="header">
             <div class="upper-title">SUWASEWANA</div>

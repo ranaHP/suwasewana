@@ -20,7 +20,7 @@
         x
     </div>
     <div class="logo-details">
-<%--        <!-- <i class='bx bxl-c-plus-plus'></i> -->--%>
+        <!-- <i class='bx bxl-c-plus-plus'></i> -->
         <img src="<c:url value="/public/images/logo/logo.png"/>"   class="logoImage" alt="logo"/>
         <span class="logo_name">Suwasewana</span>
     </div>
@@ -31,7 +31,8 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Home</a></li>
+<%--                <li><a class="link_name" href="#">Home</a></li>--%>
+                <li><a href="/test_war_exploded/s/clinic-dashboard">Home</a></li>
             </ul>
         </li>
         <li>
@@ -44,8 +45,8 @@
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">List Clinic</a></li>--%>
-                <li><a href="#">List Clinic </a></li>
-                <li><a href="#">Create Clinic </a></li>
+                <li><a href="/test_war_exploded/s/view-clinics">List Clinic </a></li>
+                <li><a href="/test_war_exploded/s/create-clinic">Create Clinic </a></li>
             </ul>
         </li>
         <li>
@@ -57,8 +58,8 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="#">List Announcement </a></li>
-                <li><a href="#">Create Announcement </a></li>
+                <li><a href="/test_war_exploded/s/viewClinic-announcements">List Announcement </a></li>
+                <li><a href="/test_war_exploded/s/select-announcements">Create Announcement </a></li>
             </ul>
         </li>
 

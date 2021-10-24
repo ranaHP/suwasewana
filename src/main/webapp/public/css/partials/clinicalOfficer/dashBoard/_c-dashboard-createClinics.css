@@ -76,7 +76,7 @@ input,textarea{
     outline: none;
 }
 #description{
-    height: 208px;
+    height: 150px;
     margin: 0px;
 }
 
@@ -135,7 +135,7 @@ button{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 100%;
     max-width: 500px;
     height: 450px;
     margin: 2px auto;

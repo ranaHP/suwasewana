@@ -42,15 +42,27 @@ public class Router extends HttpServlet {
                     rd.forward(request,response);
                     break;
                 case "login_officer":
-                    rd = request.getRequestDispatcher("view/OfficerLogin/OfficerLogin.jsp ");
+                    rd = request.getRequestDispatcher("/view/admin/OfficerLogin/OfficerLogin.jsp");
                     rd.forward(request,response);
                     break;
                 case "appointment":
                     rd = request.getRequestDispatcher("/view/user/user-appointment.jsp");
                     rd.forward(request,response);
                     break;
+                case "clinic":
+                    rd = request.getRequestDispatcher("/view/user/user-clinics.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "diseases":
+                    rd = request.getRequestDispatcher("/view/user/user-diseases-details.jsp");
+                    rd.forward(request,response);
+                    break;
                 case "complain":
                     rd = request.getRequestDispatcher("/view/user/user-complain.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "clinic-dashboard":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard.jsp");
                     rd.forward(request,response);
                     break;
                 case "create-clinic":
@@ -63,6 +75,76 @@ public class Router extends HttpServlet {
                     break;
                 case "select-announcements":
                     rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/ClinicAnnouncement.jsp");
+                    rd.forward(request,response);
+                    break;
+
+                case "viewClinic-announcements":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_viewAnnouncements.jsp");
+                    rd.forward(request,response);
+                    break;
+
+                case "viewClinic-reports":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_clinicReports.jsp");
+                    rd.forward(request,response);
+                    break;
+
+                case "verify-patients":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_verifyPatients.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view-RPHI-announcement":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_view_RPHI_announcement.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view-complaints":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_viewComplaints.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view-appointments":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_viewAppointments.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "PHI-view-report":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_view_report.jsp");
+                    rd.forward(request,response);
+                    break;
+
+                case "admin-dashboard":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Dashboard-Home.jsp");
+                    rd.forward(request,response);
+                    break;
+
+                case "view_PHI":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/View-PHI.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view_MOH":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/View-MOH.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view_ClinicalOfficers":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/View-ClinicalOfficers.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "register_PHI":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Register-PHI.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "register_C-officer":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Register-ClinicalOfficer.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "register_MOH":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Register-MOH.jsp");
+                    rd.forward(request,response);
+                    break;
+
+                case "public_announcements":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Public-Announcements.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "MakAnnouncementsForPHI":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPHI.jsp");
                     rd.forward(request,response);
                     break;
                 default:
