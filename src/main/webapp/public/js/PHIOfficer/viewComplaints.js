@@ -29,7 +29,7 @@ complaints=[{
 ]
 
 let container = document.getElementById("complain-section")
-
+let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
 complaints.map((item=>{
     let complaintBox = document.createElement("div")
@@ -58,9 +58,9 @@ complaints.map((item=>{
         <div class="images-button-section">
             <!-- images of complaint -->
             <div class="img">
-            <div class="pre-button"><object data="../icons/chevron-left.svg" width="12" height="12"> </object></i></div>
-            <div class="images"><img src="../PHI-view complaint/images/img1.png" width="120px" height="80px"/></div>
-            <div class="next-button"><object data="../icons/chevron-right.svg" width="12" height="12"> </object></div>
+            <div class="pre-button"><object data="${Url}/public/images/icons/chevron-left.svg" width="12" height="12"> </object></i></div>
+            <div class="images"><img src="${Url}/public/images/uploadedImages/animal-complaint.jpg" width="120px" height="80px"/></div>
+            <div class="next-button"><object data="${Url}/public/images/icons/chevron-right.svg" width="12" height="12"> </object></div>
             </div>
             <!-- action buttons -->
             <div class="buttons">

@@ -49,14 +49,18 @@ body{
 }
 .search-section{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /*flex-direction: column;*/
+    justify-content: space-around;
+    align-items: center;
     height: 70px;
     align-content: center;
+    width: 50%;
+    margin-left: 17%;
 }
 .search-section input{
-    margin-left: 20%;
+    /*margin-left: 20%;*/
     padding-left: 5px;
+    margin: 0 5px;
     border: 0;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);
     height: 25px;
@@ -82,7 +86,8 @@ body{
     width: 60%;
     height: 110px;
     margin-top: 15px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);*/
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.1);
 }
 .right{
     display: flex;
@@ -175,6 +180,15 @@ button{
     .information div{
         margin: 0;
     }
+    .search-section{
+        flex-direction: column;
+        height: 100px;
+        width: 100%;
+        margin-left: 2px;
+    }
+    .search-section input{
+        width: 180px;
+    }
 }
 @media screen and (max-width: 625px){
     .sidebar-main-show{
@@ -182,6 +196,7 @@ button{
         margin-left: 78px;
         transition: 0.2s ease;
     }
+
 }
 @media screen and (max-width: 536px) {
     .right{

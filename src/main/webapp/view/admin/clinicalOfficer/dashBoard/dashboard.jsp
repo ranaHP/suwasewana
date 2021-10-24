@@ -4,8 +4,7 @@
 <html>
 <head>
     <title>Dashboard</title>
-    <link rel="stylesheet"
-          href="<c:url value="../../../../public/css/partials/clinicalOfficer/dashBoard/c-dashboard.css "/>">
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/c-dashboard.css "/>">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
             integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q=="
@@ -18,10 +17,14 @@
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
 
 </head>
-<body>
-<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>" />
+<body id="mainContent">
+<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
+<div class="header">
+    <div class="upper-title">SUWASEWANA </div>
+    <div class="dashboard-name">Clinic/Dashboard/ClinicList</div>
+</div>
 
-<div id="mainContent" class="c-db-container ">
+<div  class="c-db-container ">
     <div class="c-container-left">
         <div class="upcomin-clinic">
             <h4>Up-Coming Clinic</h4>
@@ -38,7 +41,7 @@
                         <button class="reschdulebtn">Reschdule</button>
                     </div>
                     <div class="card-right">
-                        <img src="<c:url value="../../../../public/images/svg/login/image1.svg "/>" alt="" srcset=""
+                        <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
                              width=100% height=100%>
                     </div>
                 </div>
@@ -51,7 +54,7 @@
                         <button class="reschdulebtn">Reschdule</button>
                     </div>
                     <div class="card-right">
-                        <img src="<c:url value="../../../../public/images/svg/login/image1.svg "/>" alt="" srcset=""
+                        <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
                              width=100% height=100%>
                     </div>
                 </div>
@@ -64,14 +67,14 @@
             <div class="charts">
                 <div class="chart" id="chart1">
                     <h4>Patient growth</h4>
-                    <div class="g-chart">
-                        <canvas id="myChart" height="160" width="550"></canvas>
+                    <div class="g-chart" style="width: 300px">
+                        <canvas id="myChart" height="150" width="250"></canvas>
                     </div>
                 </div>
                 <div class="chart" id="chart2">
                     <h4>Clinic growth</h4>
-                    <div class="g-chart">
-                        <canvas id="myChart2" height="160" width="550"></canvas>
+                    <div class="g-chart" style="width: 300px">
+                        <canvas id="myChart2" height="150" width="250"></canvas>
                     </div>
                 </div>
             </div>
@@ -89,7 +92,7 @@
         <div class="c-right-container">
             <div class="noclinic">
                 <div class="ncimg">
-                    <img src="<c:url value="../../../../public/images/svg/login/image1.svg "/>" alt="" srcset=""
+                    <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
                          width=100% height=100%>
                 </div>
                 <div class="nc-amount">
