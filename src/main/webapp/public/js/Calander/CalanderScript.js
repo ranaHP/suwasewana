@@ -20,7 +20,7 @@ class Calender {
     event = [
         {
             year: 2021,
-            month: 1,
+            month: 10,
             date: 1,
             events: [
                 {
@@ -44,7 +44,7 @@ class Calender {
         },
         {
             year: 2021,
-            month: 3,
+            month: 10,
             date: 5,
             events: [
                 {
@@ -60,8 +60,8 @@ class Calender {
         },
         {
             year: 2020,
-            month: 9,
-            date: 24,
+            month: 10,
+            date: 27,
             events: [
                 {
                     title: 'D clinic',

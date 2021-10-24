@@ -6,7 +6,8 @@
 
 .calender-container {
     width: 100%;
-    height: 100px;
+    /*height: 100px;*/
+    /*background-color: red;*/
 }
 
 .calender {
@@ -31,7 +32,7 @@
 
 .month-year-container span {
     margin: auto 0;
-    color: rgba(0, 0, 0, 0.562);
+    color: rgba(0, 0, 0, 0.8);
     font-size: 1em;
     cursor: pointer;
 }
@@ -50,7 +51,7 @@
 .days-container {
     /* background-color: #741c1c; */
     /* height: calc(100% - 50px); */
-    height: 100%;
+    height: fit-content;
     border-radius: 10px 10px 0 0;
 
 }
@@ -69,7 +70,7 @@
 }
 
 .days {
-    height: 100%;
+    height: fit-content;
     justify-content: flex-start;
     align-content: flex-start;
     padding-top: 10px;
