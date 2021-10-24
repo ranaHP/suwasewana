@@ -39,7 +39,7 @@ class Appointment {
             this.container.innerHTML += `
             <div class="appointment-card-container">
                                 <div class="appointment-card">
-                                    <div class="title" >
+                                    <div class="atitle" >
                                         ${item.aTitle}
                                         <p style="font-size: .6em">Posted : ${item.posted_data}</p>
                                        

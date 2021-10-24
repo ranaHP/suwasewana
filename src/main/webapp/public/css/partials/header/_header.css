@@ -33,6 +33,7 @@
 .main-header li {
     cursor: pointer;
     text-align: center;
+    padding: 3px 0px;
   }
 
 .main-header li a{
@@ -46,7 +47,7 @@
     background-color: #EB3B5A;
     border-radius: 59px;
     color: white;
-    padding: 1px 20px;
+    padding: 3px 20px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 }
 

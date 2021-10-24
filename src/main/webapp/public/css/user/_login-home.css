@@ -19,3 +19,7 @@ body{
 section{
 
 }
+
+a{
+    text-decoration: none !important;
+}
