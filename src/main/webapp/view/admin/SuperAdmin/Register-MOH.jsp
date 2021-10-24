@@ -29,6 +29,10 @@
   <!-- moh list  -->
   <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
 
+  <%--    for popup style--%>
+  <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+  <%--    for popup script--%>
+  <script src="<c:url value="/public/js/popup.js"/>"></script>
 
   <%--    for side navbar style--%>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
@@ -40,7 +44,7 @@
 <body>
 
 <div class="MR_main_Container">
-
+  <div class="mypopup" id="popup" style="display: none;"></div>
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
     <div class="dashboard-name">Admin/Register/MOH</div>
@@ -51,7 +55,7 @@
       <span>Register MOH</span>
     </div>
 
-    <form action="">
+    <form action="" onsubmit="return checkvalidation();" >
       <div class="multirow">
         <div class="milturow_left">
           <div class="form-item">
@@ -238,6 +242,49 @@
 
 
 </div>
+
+
+
+<script>
+  function checkvalidation(){
+    return false;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
 

@@ -43,10 +43,10 @@
             <span>Register PHI</span>
         </div>
 
-        <form onsubmit="return register();">
+        <form onsubmit="return imageUpload();">
             <div class="singal_row">
                 <div class="form-item">
-                    <input type="text" id="fullName" value="hash" name="fullName" autocomplete="off" required
+                    <input type="text" id="fullName" value="hash" name="fullName" autocomplete="off"
                            onclick="document.getElementById('fullName').value = '' "
                            onblur="validation.nameValidation(
                             document.getElementById('fullName').value,
@@ -64,7 +64,7 @@
             <div class="multirow">
                 <div class="milturow_left">
                     <div class="form-item">
-                        <input type="text" id="NIC" value="980939449v" name="NIC" autocomplete="off" required
+                        <input type="text" id="NIC" value="980939449v" name="NIC" autocomplete="off"
                                onclick="document.getElementById('NIC').value = '' "
 <%--                               onblur="validation.nicValidation(--%>
 <%--                                document.getElementById('NIC'),--%>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="multirow_right">
                     <div class="form-item">
-                        <input type="text" id="TpNo" value="0984744742"  autocomplete="off" required
+                        <input type="text" id="TpNo" value="0984744742"  autocomplete="off"
                                onclick="document.getElementById('TpNo').value = '' "
                                onkeyup="validation.mobileValidation(
                                 document.getElementById('TpNo').value,
@@ -94,10 +94,10 @@
                 </div>
             </div>
 
-            <div class="multirow">
+            <div class="multirow" style="margin-top: 30px;">
                 <div class="milturow_left" id="mohHeadDiv">
                     <div class="form-item" >
-                        <input type="text" value="galle" id="MoHhead" name="MoHhead" autocomplete="off" required
+                        <input type="text" value="galle" id="MoHhead" name="MoHhead" autocomplete="off"
 <%--                               onclick="document.getElementById('MoHhead').value = '' "--%>
                                onblur="validation.nameValidation(
                                 document.getElementById('MoHhead').value,
@@ -114,7 +114,7 @@
                 </div>
                 <div class="multirow_right" >
                     <div class="form-item" >
-                        <input type="text" value="galle" id="street" name="street" autocomplete="off" required
+                        <input type="text" value="galle" id="street" name="street" autocomplete="off"
 <%--                               onclick="document.getElementById('street').value = '' "--%>
                                onblur="validation.nameValidation(
                                 document.getElementById('street').value,
@@ -129,11 +129,12 @@
                         <span class="error" id="Lstreet"></span>
                     </div>
                 </div>
+
             </div>
             <div class="multirow">
                 <div class="milturow_left" id="PHIState">
                     <div class="form-item" style=" width: 100%;">
-                        <input type="text" id="State" value="galle" name="State" autocomplete="off" required
+                        <input type="text" id="State" value="galle" name="State" autocomplete="off"
                                onclick="document.getElementById('State').value = '' "
                                onblur="validation.nameValidation(
                                 document.getElementById('State').value,
@@ -150,33 +151,59 @@
                 </div>
                 <div class="multirow_right" id="addcityDiv">
                     <label >MOH Area</label> <br>
-                    <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllColors"
-<%--                           onclick="document.getElementById('MArea').value = '' "--%>
-                           onkeypress=""
+                    <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
+                           onclick="document.getElementById('MArea').value='';"
                            onblur="validation.SearchSelect(
-                                document.getElementById('MArea').value,
-                                'LMArea'
-                            );"
+                                    document.getElementById('MArea').value,
+                                    'LMArea'
+                                );"
                     >
-                    <datalist id="AllColors">
-                        <option class="city_option" label="Akuressa" value="Akuressa">
-                        <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-                        <option class="city_option" label="Ahangama" value="Ahangama">
-                        <option class="city_option" label="Matara" value="Matara">
-                        <option class="city_option" label="Akuressa" value="Akuressa">
-                        <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-                        <option class="city_option" label="Ahangama" value="Ahangama">
-                        <option class="city_option" label="Matara" value="Matara">
-                        <option class="city_option" label="Akuressa" value="Akuressa">
-                        <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-                        <option class="city_option" label="Ahangama" value="Ahangama">
-                        <option class="city_option" label="Matara" value="Matara">
+                    <datalist id="AllMArea">
                     </datalist>
+                    <button onclick="test();">test</button>
                     <br>
-                    <span class="error" id="LMArea"></span>
+                    <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                 </div>
             </div>
 
+            <div class="multirow" style="margin-top: 30px;">
+                <div class="milturow_left" >
+                    <div class="form-item" >
+                        <input type="text" value="galle" id="Postalcode"  autocomplete="off"
+                               onblur="validation.nameValidation(
+                                document.getElementById('Postalcode').value,
+                                'LPostalcode'
+                            );"
+                               onkeyup="validation.nameValidation(
+                                document.getElementById('Postalcode').value,
+                                'LPostalcode'
+                            );"
+                        >
+                        <label for="MoHhead">Postalcode</label>
+                        <span class="error" id="LPostalcode"></span>
+                    </div>
+                </div>
+                <div class="multirow_right" >
+                </div>
+
+            </div>
+
+            <div class="singal_row" style="margin-top: 20px">
+                <div class="image-upload-card-list-container">
+                    <div class="image-upload-card-container">
+                        <div class="image-upload-card">
+                            <img id="proof1" width="100%" />
+                            <input type="file" accept="image/*" name="file" id="proof1input"
+                                   onchange="loadFile(event , 'proof1')" style="display: none;">
+
+                            <label for="proof1input" style="cursor: pointer;">Upload Image</label>
+                        </div>
+<%--                        <button onclick="imageUpload()">add</button>--%>
+                    </div>
+
+
+                </div>
+            </div>
             <div class="status" id="post" onclick="document.getElementById('post').value = '' ">
                 <label > PHI</label> <input type="checkbox">
                 <label > RPHI</label> <input type="checkbox">
@@ -192,72 +219,94 @@
 
 
 </div>
+
+<%--for image upload--%>
 <script>
-    selectedOptionList = [];
+    function checkMOHid(){
+        var MTypeObj = document.getElementById('MArea');
+        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(MTypeObj.value)){
 
-    function AddValue() {
-        const Value = document.querySelector('#SelectCity').value;
-        console.log("work" + Value);
-        if (!Value) return;
-        if (selectedOptionList.findIndex(item => Value == item) == -1) {
-            selectedOptionList.push(Value);
-            const Text = document.querySelector('option[value="' + Value + '"]').label;
-            const option = document.createElement("option");
-            option.value = "";
-            option.text = "";
-            // document.getElementById('selected-options-container').appendChild(option);
-            document.getElementById("selected-options-container").innerHTML += `
-                <div class="selected-options">
-                    ${Value}
-                    <div class="close-btn" onclick="deleteSelectedItem('${Value}')">
-                            X
-                    </div>
-                </div>
-                `
+            return (datalist.options.namedItem(MTypeObj.value).id);
         }
-        console.log(selectedOptionList);
-        document.querySelector('#SelectCity').value = "";
-
-    }
-
-    function SearchSelect(feild) {
-        if (selectedOptionList.length == 0) {
-            document.getElementById(feild).innerHTML = "*required";
-        } else {
-            document.getElementById(feild).innerHTML = "";
+        else {
+            return  0;
         }
     }
+    var loadFile = function (event, imgContainerId) {
+        var image = document.getElementById(imgContainerId);
+        image.src = URL.createObjectURL(event.target.files[0]);
+    };
 
-    selectedOptionList = [];
+    function imageUpload() {
 
-    function deleteSelectedItem(value) {
-        let index = selectedOptionList.findIndex(item => value == item);
-        let temp = selectedOptionList.filter(item => item != value);
-        selectedOptionList = temp;
-        document.getElementById("selected-options-container").innerHTML = "";
-        for (let i = 0; i < selectedOptionList.length; i++) {
-            document.getElementById("selected-options-container").innerHTML += `
-                <div class="selected-options">
-                    ${selectedOptionList[i]}
-                    <div class="close-btn" onclick="deleteSelectedItem('${selectedOptionList[i]}')">
-                            X
-                    </div>
-                </div>
-                `
+        var fd = new FormData();
+        let imageNames = [];
+        if ($('#proof1input')[0].files[0]) {
+            fd.append('file', $('#proof1input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url1 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof1input')[0].files[0].name.split(".")[$('#proof1input')[0].files[0].name.split(".").length - 1];
+
+            imageNames.push(url1);
         }
+
+
+        imageNames.map((item, index) => {
+            fd.append('ImageName' + (index + 1), item);
+        })
+
+
+        console.log("image neames array "+imageNames);
+        if(imageNames.length!=0){
+            $.ajax({
+                url: '/suwasewana_war/fileuploadservlet',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != 0) {
+                        console.log("successfully image uploadedss ---- " +imageNames )
+                        registerwithimage(imageNames);
+                    } else {
+                        console.log('file not uploaded');
+
+                    }
+                },
+            });
+        }
+        else {
+            console.log("no image selected")
+            registerwithoutimage();
+        }
+        return false;
     }
-
-
-    function validate(e) {
-        AddValue(document.getElementById('AllColors').value,
-            document.getElementById('AllColors').text);
-    }
-
 </script>
+
+
 <script defer>
     let validation = new FormInputValidation();
 
-    function register() {
+    function registerwithimage(imagearray) {
+        let reqData =
+            {
+                full_name: document.getElementById("fullName").value,
+                NIC: document.getElementById("NIC").value,
+                mobile: document.getElementById("TpNo").value,
+                Address:document.getElementById("TpNo").value,
+                city: document.getElementById("MoHhead").value,
+                District: document.getElementById("street").value,
+                phi_post: document.getElementById("post").value,
+            };
+        console.log(reqData)
+        console.log("with image " + imagearray[0])
+
+        return false;
+    }
+    function registerwithoutimage() {
+        console.log("without image")
         let reqData =
             {
                 full_name: document.getElementById("fullName").value,
@@ -271,22 +320,33 @@
             };
         console.log(reqData)
 
-       $.post("/test_war_exploded/phi-register-controller",
-            reqData,
-            function (data, status) {
 
-                console.log(data.includes("success"))
-                if (data.includes("success") ) {
-                    popup.showRegistrationSuccessMessage({ status : 'success' , message: 'Successfully Citizen Registered'});
-                } else {
-                    popup.showRegistrationSuccessMessage({ status : 'fail' , message: 'Citizen Registration Fails !' , data: data});
-
-                }
-
-            }
-        );
+        return false;
     }
 
+
+
+
+
+</script>
+
+<script defer>
+    let mohDetails=[];
+    $.post("/suwasewana_war/user-complain-controller/moh",
+        function (data, status) {
+            // console.log(data);
+            let rs= JSON.parse(data);
+            this.mohDetails=rs;
+            // console.log(data);
+
+            let MNames=document.getElementById("AllMArea");
+            MNames.innerHTML="";
+            rs.map((element,index) => {
+                // console.log("moh"+element.MName)
+                MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
+            })
+        }
+    );
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class AdminDAO {
 
     private static final String PHI_REGISTRATION = "INSERT INTO `phi_officer` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp());";
+    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
     Connection connection;
 
     public AdminDAO() {
@@ -32,6 +32,7 @@ public class AdminDAO {
             preparedStatement.setString(5, clinicalOfficerModel.getDistrict() );
             preparedStatement.setString(6, clinicalOfficerModel.getAddress() );
             preparedStatement.setString(7, clinicalOfficerModel.getPass() );
+            preparedStatement.setString(8, clinicalOfficerModel.getMOHAREA() );
 
             System.out.println("qry: "+preparedStatement);
             int rs = preparedStatement.executeUpdate();
