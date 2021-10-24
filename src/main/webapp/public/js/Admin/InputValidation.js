@@ -1,4 +1,6 @@
 class FormInputValidation {
+    $;
+
 
     mobileValidation(mobile, fieldName) {
         const regExp = /[a-zA-Z]/g;
@@ -35,14 +37,17 @@ class FormInputValidation {
 
     SearchSelect(val, feild) {
         console.log("value = " + val);
+        let isValida = true;
         if (val == "") {
             this.setErrorMessageForField("required*", feild, 0)
             console.log("empty")
+            isValida = false;
         } else {
             console.log("not empty")
             this.setErrorMessageForField("", feild, 0)
+            isValida = true;
         }
-
+        return isValida;
     }
 
     nameValidation(name, fieldName) {
@@ -77,7 +82,7 @@ class FormInputValidation {
             // console.log("if")
             isValida = false;
             this.setErrorMessageForField("Invalid NIC NO", fieldName, 0)
-        } else if (NICNo.length == 10 && !$.isNumeric(NICNo.substr(0, 9))) {
+        } else if (NICNo.length == 10 && !this.$.isNumeric(NICNo.substr(0, 9))) {
             // console.log("else if")
             this.setErrorMessageForField("Invalid NIC NO", fieldName, 0)
             isValida = false;
