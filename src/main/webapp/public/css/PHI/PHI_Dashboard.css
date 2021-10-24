@@ -3,12 +3,25 @@
     padding: 0;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
+    /*width: 100vw;*/
 }
 
 body {
     padding-left: 78px;
     background-color: #dfe4ea59;
+    /*max-width: calc(100vw - 78px);*/
 
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 180px);
+    margin-left: 180px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
 }
 
 .topic {
@@ -25,6 +38,7 @@ body {
     box-shadow: 0 3px 3px #0a0a0a1c;
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
 }
 
 .header .upper-title {
@@ -43,9 +57,12 @@ body {
 
 
 .body-content {
-    margin: auto;
+    /*margin: auto;*/
     margin-top: 40px;
-    width: 95%;
+    width: 100%;
+    /*background-color: red;*/
+    /*width: 100vw;*/
+    overflow-x: hidden;
 }
 
 .summary-card {
@@ -714,6 +731,11 @@ ul {
 
     .calander {
         margin-bottom: 130px;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 0px);
+        margin-left: 0px;
+        transition: 0.2s ease;
     }
 }
 

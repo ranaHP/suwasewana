@@ -102,17 +102,28 @@ input[type=time]:focus{
     align-content: center;
     justify-content: center;
 }
-button{
+.create-button button{
     border: none;
     padding: 8px;
     width: 95%;
-    background-color: #0D47A1;
+    /*background-color: #0D47A1;*/
+    background-color: #2E86DE;
     color: white;
-    border-radius: 5px;
-    font-family: Segoe UI;
+    border-radius: 3px;
+    font-family: Arial;
     font-size: .9em;
     letter-spacing: .1em;
     cursor: pointer;
+}
+.live{
+    background-color: #2E86DE;
+    border: none;
+    cursor: pointer;
+    font-family: Arial;
+    border-radius: 3px;
+    color: white;
+    width: 100%;
+    padding: 3px;
 }
 .right-inputs , .left-inputs{
     width: 100%;
@@ -139,7 +150,6 @@ button{
     max-width: 500px;
     height: 450px;
     margin: 2px auto;
-
     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='1' stroke-dasharray='6%2c 8' stroke-dashoffset='2' stroke-linecap='square'/%3e%3c/svg%3e");
 }
 

@@ -18,7 +18,7 @@
 <div class="containor container" id="mainContent">
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
-        <div class="dashboard-name">Clinic/Dashboard/ClnicList</div>
+        <div class="dashboard-name">Clinical officer/Dashboard/Clinic List</div>
     </div>
 <%--     filter section --%>
     <div class="mypopup" id="popup" style="display: none;"></div>

@@ -31,19 +31,19 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Home</a></li>
+                <li><a href="/test_war_exploded/s/admin-dashboard">Home</a></li>
             </ul>
         </li>
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-collection'></i>
+                    <i class='bx bx-clipboard'></i>
                     <span class="link_name">PHI/RPHI</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">List</a></li>
+<%--                <li><a class="link_name" href="#">List</a></li>--%>
                 <li><a href="/test_war_exploded/s/register_PHI">Register PHI/RPHI</a></li>
                 <li><a href="/test_war_exploded/s/view_PHI">List PHI/RPHI</a></li>
             </ul>
@@ -51,13 +51,13 @@
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-collection'></i>
+                    <i class='bx bx-folder-plus'></i>
                     <span class="link_name">Clinical officers</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">List</a></li>
+<%--                <li><a class="link_name" href="#">List</a></li>--%>
                 <li><a href="/test_war_exploded/s/register_C-officer">Register Clinical officers</a></li>
                 <li><a href="/test_war_exploded/s/view_ClinicalOfficers">List Clinical officers</a></li>
             </ul>
@@ -65,13 +65,13 @@
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-collection'></i>
+                    <i class='bx bxs-home'></i>
                     <span class="link_name">MOH</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">List</a></li>
+<%--                <li><a class="link_name" href="#">List</a></li>--%>
                 <li><a href="/test_war_exploded/s/register_MOH">Register MOH</a></li>
                 <li><a href="/test_war_exploded/s/view_MOH">List MOH Areas</a></li>
             </ul>
@@ -116,16 +116,16 @@
 <%--                <li><a class="link_name" href="#">History</a></li>--%>
 <%--            </ul>--%>
 <%--        </li>--%>
-        <li>
-            <a href="#">
-                <i class='bx bx-cog'></i>
-                <span class="link_name">Setting</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Setting</a></li>
-            </ul>
-        </li>
-        <li>
+<%--        <li>--%>
+<%--            <a href="#">--%>
+<%--                <i class='bx bx-cog'></i>--%>
+<%--                <span class="link_name">Setting</span>--%>
+<%--            </a>--%>
+<%--            <ul class="sub-menu blank">--%>
+<%--                <li><a class="link_name" href="#">Setting</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
+<%--        <li>--%>
             <div class="profile-details">
                 <div class="profile-content">
                     <img src="<c:url value="/public/images/avatar.png"/>" src="image/profile.jpg" alt="profileImg">

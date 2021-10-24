@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-size: 14px;
+    font-family: Arial;
 }
 body{
     display: flex;
@@ -17,12 +18,12 @@ body{
     flex-direction: column;
     justify-content: space-around;
     min-height: 100vh;
-    width: 85%;
+    width: 100%;
     padding: 10px;
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
-    /*margin-left: 260px;*/
+    margin-left: 260px;
     /* background-color: red;*/
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/

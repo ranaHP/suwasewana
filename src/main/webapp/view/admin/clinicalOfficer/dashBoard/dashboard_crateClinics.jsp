@@ -29,7 +29,7 @@
     <!-- suwasewana title -->
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
-        <div class="dashboard-name">Clinic/Dashboard/ClinicList</div>
+        <div class="dashboard-name">Clinic/Dashboard/Create clinics</div>
     </div>
     <!-- content divide to left and right -->
     <div class="content" id="content">
@@ -37,7 +37,7 @@
             <div class="create-clinics-title">Create Clinic Session</div>
             <div class="form-container">
                 <!-- form container -->
-                <div class="form" onkeyup="card()">
+                <div class="form">
                     <form id="loginForm" onsubmit="return checkclinicregistration(event)" >
                         <div class="form-inputs">
                             <div class="left-inputs">
@@ -101,7 +101,7 @@
             <!-- live card section -->
             <div class="right">
                 <div class="card-container">
-                    <div class="live-card-title">Live Clinic Card</div>
+                    <div class="live-card-title"><button class="live"  onclick="card()">Click here to see Clinic Card</button></div>
                     <div class="live-card-border">
                         <div class="live-card" id="live-card">
 

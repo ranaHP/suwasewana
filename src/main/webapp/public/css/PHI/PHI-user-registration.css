@@ -6,15 +6,23 @@
     letter-spacing: 1px;
     color: #636e72;
 }
+body{
+    background-color: #dfe4ea59;
+    margin-left: 78px;
+    width: 100%;
+    max-width: calc(100vw - 78px);
+    overflow-x: hidden;
 
+}
 
 .header {
     padding: 10px 15px 10px 34px;
-    min-height: 40px;
+    min-height: 60px;
     margin-bottom: 2px;
     box-shadow: 0 3px 3px #0a0a0a1c;
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
 }
 
 .header .upper-title {
@@ -29,6 +37,17 @@
     letter-spacing: .1em;
     color: rgba(0, 0, 0, 0.527);
     margin-top: 3px;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
 }
 
 input, select {
@@ -48,6 +67,7 @@ input, select {
     min-height: 90vh;
     /* background-color: aqua; */
     /* display: flex; */
+    overflow-x: hidden;
 }
 
 .error {
@@ -473,6 +493,11 @@ label {
     .address {
         margin-top: 10px;
         margin-bottom: 10px;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+        transition: 0.2s ease;
     }
 
 }

@@ -1,0 +1,39 @@
+.f-title{
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.616);
+}
+.f-sub{
+    font-size: 1em;
+    color: rgba(60, 60, 75, 0.726);
+}
+.f-num{
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(0, 0, 0, 0.692);
+}
+
+.f-1{
+    font-size: 1.2em;
+    color: rgba(19, 18, 18, 0.527);
+}
+.f-2{
+    font-size: .9em;
+}
+.f-3{
+    font-size: .8em;
+    color: #1e1f20cb;
+}
+.f-4{
+    font-size: .7em;
+    color: #1e1f20be;
+}
+.f-white{
+    color: white;
+}
+.f-black{
+    font-size: 1.2em;
+    color: black;
+}
+.f-i{
+    font-size: .5em;
+}

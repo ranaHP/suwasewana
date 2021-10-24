@@ -51,21 +51,21 @@ complaints.map((item=>{
                 <p class="f-3">${item.Type}</p>
             </div>
             <div class="view-details">
-                <p class="f-4">User details</p>
-                <p class="f-3"><a style="color: blue;" href="">view</a></p>
+                <p class="f-4"j >User details</p>
+                <p class="f-3"><a style="color: blue; cursor: pointer"  onclick="popup.showPopup()">view</a></p>
             </div>
         </div>
         <div class="images-button-section">
             <!-- images of complaint -->
             <div class="img">
             <div class="pre-button"><object data="${Url}/public/images/icons/chevron-left.svg" width="12" height="12"> </object></i></div>
-            <div class="images"><img src="${Url}/public/images/uploadedImages/animal-complaint.jpg" width="120px" height="80px"/></div>
+            <div class="images"><img src="${Url}/public/images/animal-complaint.jpg" width="120px" height="80px"/></div>
             <div class="next-button"><object data="${Url}/public/images/icons/chevron-right.svg" width="12" height="12"> </object></div>
             </div>
             <!-- action buttons -->
             <div class="buttons">
                 <div class="to-be-progress">
-                    <button class="f-4">To be progress</button>
+                    <button class="f-4" onclick="popup.showPopup()">To be progress</button>
                 </div>
                 <div class="done">
                     <button class="f-4">Done</button>
