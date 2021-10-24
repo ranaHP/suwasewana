@@ -47,7 +47,7 @@ class clinicList {
                         <div class="buttons">
 
                             <div onclick="popup.showDeleteClinicAlertMessage(${item.clinicID})" class="delete-button">Delete</div>
-                            <div class="edit-button" onclick="window.location='http://localhost:8080/test_war_exploded/s/create-clinic';">Edit</div>
+                            <div class="edit-button" onclick="window.location='http://localhost:8093/test_war_exploded/s/create-clinic';">Edit</div>
 
                         </div>
                     </div>

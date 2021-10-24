@@ -7,7 +7,7 @@
 <head>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/createAnnouncement/ClinicAnnouncement.css"/>">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <title>Title</title>
+  <title>Suwasewana</title>
 
   <%--    for side navbar style--%>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>

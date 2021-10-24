@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>suwesewana</title>
+    <title>Suwasewana</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/createAnnouncement/create-announcement.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
