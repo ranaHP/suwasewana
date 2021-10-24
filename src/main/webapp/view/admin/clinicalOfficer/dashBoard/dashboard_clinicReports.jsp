@@ -12,6 +12,7 @@
     <title>Suwasewana</title>
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/user/_commen.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
@@ -25,16 +26,46 @@
     </div>
     <!--report containor  -->
     <div class="report-containor">
+        <div class="row">
+            <div class="title">
+                <h4>Clinic Report</h4>
+            </div>
+        </div>
         <div class="month-select">
             <div class="from-to-month-select">
-                <span>From</span>
-                <select name="" id="select1">
-                    <option value="1">select the month</option>
-                </select>
-                <span>To</span>
-                <select name="" id="select2">
-                    <option value="1">select the month</option>
-                </select>
+                <div class="form-group">
+                    <label for="sDate">
+                        Start Date
+                    </label>
+                    <input type="Date" name="name" id="sDate" autocomplete="off"
+                           required/>
+
+                </div>
+                <div class="form-group">
+                    <label for="eDate">
+                        End Date
+                    </label>
+                    <input type="Date" name="name" id="eDate" autocomplete="off"
+                           required/>
+                </div>
+                <div class="form-group">
+                    <label for="diseases_name">
+                        Diseases
+                    </label>
+                    <input type="text" name="name" id="diseases_name" autocomplete="off"
+                           required/>
+
+                </div>
+                <div class="form-group" style="display: flex;justify-content: center;align-items: center;">
+                    <label> &nbsp;</label>
+                    <button class="submitBtn" type="submit"> Search</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="title">
+                <h4>Report</h4>
             </div>
         </div>
         <div class="reports">
@@ -101,23 +132,23 @@
     // })
 
     // select month
-    months=["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
-    months.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select1').appendChild(option)
-
-    })
-
-    months=["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
-    months.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select2').appendChild(option)
-
-    })
+    // months=["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+    // months.map(name=>{
+    //     let option= document.createElement('option')
+    //     option.value=name
+    //     option.innerText=name
+    //     document.getElementById('select1').appendChild(option)
+    //
+    // })
+    //
+    // months=["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+    // months.map(name=>{
+    //     let option= document.createElement('option')
+    //     option.value=name
+    //     option.innerText=name
+    //     document.getElementById('select2').appendChild(option)
+    //
+    // })
 
     //charts
     var ctx = document.getElementById('myChart');
