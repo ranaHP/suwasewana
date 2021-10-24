@@ -32,7 +32,7 @@
 </head>
 <body>
 <div class="MR_main_Container">
-
+    <div class="mypopup" id="popup" style="display: none;"></div>
     <div class="header">
         <div class="upper-title">SUWASEWANA</div>
         <div class="dashboard-name">Admin/Register/PHI</div>
@@ -43,10 +43,10 @@
             <span>Register PHI</span>
         </div>
 
-        <form onsubmit="return imageUpload();">
+        <form onsubmit="return checkvalidation();">
             <div class="singal_row">
                 <div class="form-item">
-                    <input type="text" id="fullName" value="hash" name="fullName" autocomplete="off"
+                    <input type="text" id="fullName" value="Akila"  name="fullName" autocomplete="off"
                            onclick="document.getElementById('fullName').value = '' "
                            onblur="validation.nameValidation(
                             document.getElementById('fullName').value,
@@ -64,12 +64,12 @@
             <div class="multirow">
                 <div class="milturow_left">
                     <div class="form-item">
-                        <input type="text" id="NIC" value="980939449v" name="NIC" autocomplete="off"
-                               onclick="document.getElementById('NIC').value = '' "
-<%--                               onblur="validation.nicValidation(--%>
-<%--                                document.getElementById('NIC'),--%>
-<%--                                'LNIC')--%>
-<%--                            ;"--%>
+                        <input type="text" id="NIC" value="199910910064" name="NIC" autocomplete="off"
+                               onclick="document.getElementById('NIC').value = '' ;"
+                               onblur="validation.nicValidation(
+                                    document.getElementById('NIC'),
+                                    'LNIC')
+                                ;"
                         >
                         <label for="NIC">NIC</label>
                         <span class="error" id="LNIC"></span>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="multirow_right">
                     <div class="form-item">
-                        <input type="text" id="TpNo" value="0984744742"  autocomplete="off"
+                        <input type="text" id="TpNo" value="0713895000"  autocomplete="off"
                                onclick="document.getElementById('TpNo').value = '' "
                                onkeyup="validation.mobileValidation(
                                 document.getElementById('TpNo').value,
@@ -97,36 +97,36 @@
             <div class="multirow" style="margin-top: 30px;">
                 <div class="milturow_left" id="mohHeadDiv">
                     <div class="form-item" >
-                        <input type="text" value="galle" id="MoHhead" name="MoHhead" autocomplete="off"
-<%--                               onclick="document.getElementById('MoHhead').value = '' "--%>
+                        <input type="text"  id="City" value="Galla" name="City" autocomplete="off"
+<%--                               onclick="document.getElementById('City').value = '' "--%>
                                onblur="validation.nameValidation(
-                                document.getElementById('MoHhead').value,
-                                'LMoHhead'
+                                document.getElementById('City').value,
+                                'LCity'
                             );"
                                onkeyup="validation.nameValidation(
-                                document.getElementById('MoHhead').value,
-                                'LMoHhead'
+                                document.getElementById('City').value,
+                                'LCity'
                             );"
                         >
-                        <label for="MoHhead">City</label>
-                        <span class="error" id="LMoHhead"></span>
+                        <label for="City">City</label>
+                        <span class="error" id="LCity"></span>
                     </div>
                 </div>
                 <div class="multirow_right" >
                     <div class="form-item" >
-                        <input type="text" value="galle" id="street" name="street" autocomplete="off"
-<%--                               onclick="document.getElementById('street').value = '' "--%>
+                        <input type="text"  id="District" value="Galla" name="District" autocomplete="off"
+<%--                               onclick="document.getElementById('District').value = '' "--%>
                                onblur="validation.nameValidation(
-                                document.getElementById('street').value,
-                                'Lstreet'
+                                document.getElementById('District').value,
+                                'LDistrict'
                             );"
                                onkeyup="validation.nameValidation(
-                                document.getElementById('street').value,
-                                'Lstreet'
+                                document.getElementById('District').value,
+                                'LDistrict'
                             );"
                         >
-                        <label for="street">Street No</label>
-                        <span class="error" id="Lstreet"></span>
+                        <label for="District">District</label>
+                        <span class="error" id="LDistrict"></span>
                     </div>
                 </div>
 
@@ -134,19 +134,19 @@
             <div class="multirow">
                 <div class="milturow_left" id="PHIState">
                     <div class="form-item" style=" width: 100%;">
-                        <input type="text" id="State" value="galle" name="State" autocomplete="off"
-                               onclick="document.getElementById('State').value = '' "
+                        <input type="text" id="postalcode" value="607000"  name="postalcode" autocomplete="off"
+                               onclick="document.getElementById('postalcode').value = '' "
                                onblur="validation.nameValidation(
-                                document.getElementById('State').value,
-                                'LState'
+                                document.getElementById('postalcode').value,
+                                'Lpostalcode'
                             );"
                                onkeyup="validation.nameValidation(
-                                document.getElementById('State').value,
-                                'LState'
+                                document.getElementById('postalcode').value,
+                                'Lpostalcode'
                             );"
                         >
-                        <label for="State">State</label>
-                        <span class="error" id="LState"></span>
+                        <label for="postalcode">Postalcode</label>
+                        <span class="error" id="Lpostalcode"></span>
                     </div>
                 </div>
                 <div class="multirow_right" id="addcityDiv">
@@ -160,7 +160,6 @@
                     >
                     <datalist id="AllMArea">
                     </datalist>
-                    <button onclick="test();">test</button>
                     <br>
                     <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                 </div>
@@ -169,18 +168,18 @@
             <div class="multirow" style="margin-top: 30px;">
                 <div class="milturow_left" >
                     <div class="form-item" >
-                        <input type="text" value="galle" id="Postalcode"  autocomplete="off"
+                        <input type="text"  id="Address" value="this is address"  autocomplete="off"
                                onblur="validation.nameValidation(
-                                document.getElementById('Postalcode').value,
-                                'LPostalcode'
+                                document.getElementById('Address').value,
+                                'LAddress'
                             );"
                                onkeyup="validation.nameValidation(
-                                document.getElementById('Postalcode').value,
-                                'LPostalcode'
+                                document.getElementById('Address').value,
+                                'LAddress'
                             );"
                         >
-                        <label for="MoHhead">Postalcode</label>
-                        <span class="error" id="LPostalcode"></span>
+                        <label for="Address">Address</label>
+                        <span class="error" id="LAddress"></span>
                     </div>
                 </div>
                 <div class="multirow_right" >
@@ -205,8 +204,8 @@
                 </div>
             </div>
             <div class="status" id="post" onclick="document.getElementById('post').value = '' ">
-                <label > PHI</label> <input type="checkbox">
-                <label > RPHI</label> <input type="checkbox">
+                <label > PHI</label> <input type="radio" id="phi" name="post" value="PHI" checked>
+                <label > RPHI</label>  <input type="radio" id="rphi" name="post" value="RPHI">
             </div>
 
 
@@ -219,7 +218,10 @@
 
 
 </div>
-
+<script defer>
+    let validation = new FormInputValidation();
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+</script>
 <%--for image upload--%>
 <script>
     function checkMOHid(){
@@ -272,7 +274,6 @@
                         registerwithimage(imageNames);
                     } else {
                         console.log('file not uploaded');
-
                     }
                 },
             });
@@ -287,22 +288,74 @@
 
 
 <script defer>
-    let validation = new FormInputValidation();
 
+    function checkvalidation(){
+        let mohid=checkMOHid();
+        if(
+            validation.nameValidation(document.getElementById('Address').value,'LAddress')&&
+            validation.SearchSelect(document.getElementById('MArea').value,'LMArea' )&&
+            validation.nameValidation(document.getElementById('postalcode').value,'Lpostalcode')&&
+            validation.nameValidation(document.getElementById('District').value,'LDistrict')&&
+            validation.nameValidation(document.getElementById('City').value,'LCity')&&
+            validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo')&&
+            validation.nicValidation( document.getElementById('NIC'),'LNIC')&&
+            validation.nameValidation( document.getElementById('fullName').value,'LfullName')&&
+            (mohid!=0)
+        )
+        {
+            console.log("correct detais ");
+            imageUpload();
+        }
+        else {
+
+                validation.nameValidation(document.getElementById('Address').value,'LAddress');
+                validation.nameValidation(document.getElementById('postalcode').value,'Lpostalcode');
+                validation.nameValidation(document.getElementById('District').value,'LDistrict');
+                validation.nameValidation(document.getElementById('City').value,'LCity');
+                validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo');
+                validation.nicValidation( document.getElementById('NIC'),'LNIC');
+                validation.nameValidation( document.getElementById('fullName').value,'LfullName');
+            if(mohid==0){
+                validation.setErrorMessageForField("Enter valid Area", 'LMArea', 0);
+                document.getElementsByClassName('LMArea').value="Enter valid Area";
+            }
+        }
+
+        return false;
+    }
     function registerwithimage(imagearray) {
         let reqData =
             {
                 full_name: document.getElementById("fullName").value,
                 NIC: document.getElementById("NIC").value,
                 mobile: document.getElementById("TpNo").value,
-                Address:document.getElementById("TpNo").value,
-                city: document.getElementById("MoHhead").value,
-                District: document.getElementById("street").value,
-                phi_post: document.getElementById("post").value,
+                Address:document.getElementById("Address").value,
+                city: document.getElementById("City").value,
+                District: document.getElementById("District").value,
+                phi_post: document.querySelector('input[name="post"]:checked').value,
+                postalCode: document.getElementById("postalcode").value,
+                MOHArea:checkMOHid(),
+                DP:imagearray[0]
             };
-        console.log(reqData)
-        console.log("with image " + imagearray[0])
-
+        console.log("post ==== "+reqData.phi_post)
+        $.post("/suwasewana_war/admin-register-controller/phi",
+            reqData,
+            function (data, status) {
+                console.log(data.includes("success"))
+                if (data.includes("success")) {
+                    popup.Register({
+                        status: 'success',
+                        message: 'Officer Successfully Added!'
+                    });
+                } else {
+                    popup.Register({
+                        status: 'fail',
+                        message: 'Officer Registration Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
         return false;
     }
     function registerwithoutimage() {
@@ -312,14 +365,34 @@
                 full_name: document.getElementById("fullName").value,
                 NIC: document.getElementById("NIC").value,
                 mobile: document.getElementById("TpNo").value,
-                city: document.getElementById("MoHhead").value,
-                street_no: document.getElementById("street").value,
-                state: document.getElementById("State").value,
-                c_officer_no: document.getElementById("MArea").value,
-                phi_post: document.getElementById("post").value,
+                Address:document.getElementById("Address").value,
+                city: document.getElementById("City").value,
+                District: document.getElementById("District").value,
+                phi_post: document.querySelector('input[name="post"]:checked').value,
+                postalCode: document.getElementById("postalcode").value,
+                MOHArea:checkMOHid(),
+                DP:""
             };
-        console.log(reqData)
 
+        console.log("post ==== "+reqData.phi_post)
+        $.post("/suwasewana_war/admin-register-controller/phi",
+            reqData,
+            function (data, status) {
+                console.log(data.includes("success"))
+                if (data.includes("success")) {
+                    popup.Register({
+                        status: 'success',
+                        message: 'Officer Successfully Added!'
+                    });
+                } else {
+                    popup.Register({
+                        status: 'fail',
+                        message: 'Officer Registration Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
 
         return false;
     }

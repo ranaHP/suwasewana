@@ -1,10 +1,7 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
-import com.suwasewana.model.ClinicalOfficerModel;
-import com.suwasewana.model.PHIRegisterModel;
-import com.suwasewana.model.UserLoginModel;
-import com.suwasewana.model.UserRegistrationModel;
+import com.suwasewana.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +9,7 @@ import java.sql.SQLException;
 
 public class AdminDAO {
 
-    private static final String PHI_REGISTRATION = "INSERT INTO `phi_officer` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String PHI_REGISTRATION = "INSERT INTO `suwaserwana_db`.`phi_officer` (`full_name`, `NIC`, `mobile`, `device_MAC`, `Address`, `City`, `District`, `phi_post`, `login_status`, `password`, `PostalCode`, `mohId`, `DP`,`suspended_time`)  VALUES (?, ?, ?, NULL , ?, ?, ?, ?, '0', ?, ?, ?, ?,current_timestamp());";
     private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
     Connection connection;
 
@@ -48,21 +45,22 @@ public class AdminDAO {
     }
 
 
-    public String phiRegistration(PHIRegisterModel phiRegister) {
+    public String phiRegistration(PHIModel phiRegister) {
         System.out.println("data come to dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(PHI_REGISTRATION)) {
-            preparedStatement.setString(1, phiRegister.getFull_name());
-            preparedStatement.setString(2, phiRegister.getNIC());
-            preparedStatement.setString(3, phiRegister.getC_officer_no());
-            preparedStatement.setString(4, "");
-            preparedStatement.setString(5, phiRegister.getMobile());
-            preparedStatement.setString(6, phiRegister.getStreet_no());
-            preparedStatement.setString(7, phiRegister.getState());
-            preparedStatement.setString(8, phiRegister.getCity());
-            preparedStatement.setString(9, "defualt");
-            preparedStatement.setString(10,"");
-            preparedStatement.setString(11, phiRegister.getPhi_post());
+            preparedStatement.setString(1, phiRegister.getFull_name() );
+            preparedStatement.setString(2, phiRegister.getNIC() );
+            preparedStatement.setString(3, phiRegister.getMobile());
+            preparedStatement.setString(4, phiRegister.getAddress());
+            preparedStatement.setString(5, phiRegister.getCity());
+            preparedStatement.setString(6, phiRegister.getDistrict());
+            preparedStatement.setString(7, phiRegister.getPhi_post());
+            preparedStatement.setString(8, phiRegister.getPassword() );
+            preparedStatement.setString(9, phiRegister.getPostalCode());
+            preparedStatement.setString(10,phiRegister.getMohId());
+            preparedStatement.setString(11, phiRegister.getDp());
+            System.out.println("SQL "+preparedStatement);
             int rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
 

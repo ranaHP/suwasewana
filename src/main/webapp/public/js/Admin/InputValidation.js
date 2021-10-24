@@ -36,14 +36,11 @@ class FormInputValidation {
     }
 
     SearchSelect(val, feild) {
-        console.log("value = " + val);
         let isValida = true;
         if (val == "") {
             this.setErrorMessageForField("required*", feild, 0)
-            console.log("empty")
             isValida = false;
         } else {
-            console.log("not empty")
             this.setErrorMessageForField("", feild, 0)
             isValida = true;
         }
@@ -51,7 +48,6 @@ class FormInputValidation {
     }
 
     nameValidation(name, fieldName) {
-        console.log("register name ")
         let isValida = true;
         if (name === "") {
             this.setErrorMessageForField("required*", fieldName, 0)
@@ -151,10 +147,10 @@ class FormInputValidation {
                 }
 
                 // Show Details
-                console.log("Gender : " + gender)
-                console.log("Year : " + year)
-                console.log("Month : " + month)
-                console.log("Day :" + day)
+                // console.log("Gender : " + gender)
+                // console.log("Year : " + year)
+                // console.log("Month : " + month)
+                // console.log("Day :" + day)
             }
         }
         return isValida;
