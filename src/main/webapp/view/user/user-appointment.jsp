@@ -233,6 +233,7 @@
                         Make a appointments
                     </div>
                     <div class="make-appointment-form">
+
                         <form onsubmit="return makeAppointment(event);">
                             <div class="row">
                                 <div class="form-group">

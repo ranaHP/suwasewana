@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
-    private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?,current_timestamp());";
     private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` LEFT JOIN `appointment_type` ON appointment.appointmentType = appointment_type.appointment_type_no WHERE user = ?";
@@ -196,7 +196,8 @@ public class UserDAO {
             preparedStatement.setString(8, userRegister.getuCity());
             preparedStatement.setString(9, userRegister.getUlocation());
             preparedStatement.setString(10, userRegister.getUaddress());
-            preparedStatement.setString(11, "");
+            preparedStatement.setString(11, "0");
+            System.out.println(preparedStatement);
             int rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
 
