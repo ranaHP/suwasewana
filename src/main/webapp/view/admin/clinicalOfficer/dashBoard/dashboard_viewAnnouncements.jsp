@@ -23,7 +23,7 @@
     <!-- suwasewana header -->
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
-        <div class="dashboard-name">Clinical offficer/Dashboard/View announcements</div>
+        <div class="dashboard-name">Clinical officer/Dashboard/View announcements</div>
     </div>
     <div class="search-section">
         <div class="searchbar">

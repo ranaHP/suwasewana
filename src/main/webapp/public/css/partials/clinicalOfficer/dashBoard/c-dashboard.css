@@ -127,7 +127,7 @@ body{
     display: flex;
     height: 86%;
     justify-content: space-between;
-    padding-right: 20px;
+    /*padding-right: 20px;*/
     align-items: center;
     /* background-color: aqua; */
 }

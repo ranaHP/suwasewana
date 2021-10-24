@@ -57,6 +57,7 @@ body{
     margin-left: 78px;
     background-color: #dfe4ea59;
 }
+
 .containor{
 
     display: flex;
@@ -77,8 +78,7 @@ body{
     display: flex;
     font-family: corbel;
     min-height: 100vh;
-    position: relative;
-}
+/*    position: relative;*/}
 .complain-section{
     display: flex;
     flex-direction: column;

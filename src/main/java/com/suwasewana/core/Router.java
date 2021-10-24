@@ -87,13 +87,25 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_clinicReports.jsp");
                     rd.forward(request,response);
                     break;
+                case "viewDisease-reports":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_view_diseaseReport.jsp");
+                    rd.forward(request,response);
+                    break;
 
                 case "verify-patients":
                     rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_verifyPatients.jsp");
                     rd.forward(request,response);
                     break;
+                case "Register-patients":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/RegisterUser.jsp");
+                    rd.forward(request,response);
+                    break;
                 case "view-RPHI-announcement":
                     rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_view_RPHI_announcement.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "PHI-dashboard":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/phi-dashboard.jsp");
                     rd.forward(request,response);
                     break;
                 case "view-complaints":
@@ -102,6 +114,10 @@ public class Router extends HttpServlet {
                     break;
                 case "view-appointments":
                     rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_viewAppointments.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "manage-toDO":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_todolist.jsp");
                     rd.forward(request,response);
                     break;
                 case "PHI-view-report":
@@ -145,6 +161,14 @@ public class Router extends HttpServlet {
                     break;
                 case "MakAnnouncementsForPHI":
                     rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPHI.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "AssignTask":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/assign_TasksAndManage.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "MOHAnnouncements":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/MOH-Announcements.jsp");
                     rd.forward(request,response);
                     break;
                 default:

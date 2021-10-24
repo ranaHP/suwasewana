@@ -43,7 +43,7 @@
 
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
-    <div class="dashboard-name">Admin/Register/ClinicalOfficer</div>
+    <div class="dashboard-name">Admin/Register/MOH</div>
   </div>
 
   <div class="MR_container">

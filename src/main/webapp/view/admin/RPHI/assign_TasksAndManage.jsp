@@ -23,10 +23,10 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body id="mainContent">
-<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+<c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp" />
 <div class="header">
     <div class="upper-title">SUWASEWANA </div>
-    <div class="dashboard-name">PHI/Dashboard/Manage todo lIst</div>
+    <div class="dashboard-name">RPHI/Dashboard/Manage to do list</div>
 </div>
 
 <div class="todo-container">

@@ -1,23 +1,23 @@
 news = [{
-    title:"Covid-19 Confirmed Death",
+    title:"Granting facilities for rural hospitals",
     postedDate:"2021/08/23",
     more:"erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta",
     description:"he process of writing a job description requires having a clear understanding he process of writing a job description requires of the job’s duties and responsibilitie",
 },
     {
-        title:"Covid-19 Confirmed Death",
+        title:"Granting facilities for rural hospitals",
         postedDate:"2021/08/23",
         more:"erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta",
         description:"he process of writing a job description requires having a clear understanding he process of writing a job description requires of the job’s duties and responsibilitie",
     },
     {
-        title:"Covid-19 Confirmed Death",
+        title:"Granting facilities for rural hospitals",
         postedDate:"2021/08/23",
         more:"erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta",
         description:"he process of writing a job description requires having a clear understanding he process of writing a job description requires of the job’s duties and responsibilitie",
     },
     {
-        title:"Covid-19 Confirmed Death",
+        title:"Granting facilities for rural hospitals",
         postedDate:"2021/08/23",
         more:"erisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus vestibulum augue ut aliquet. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar nibh tempor porta",
         description:"he process of writing a job description requires having a clear understanding he process of writing a job description requires of the job’s duties and responsibilitie",
@@ -28,6 +28,7 @@ news = [{
 
 let container=document.getElementById('announcements-container')
 let j=0;
+let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 news.map((item=>{
     let announcement = document.createElement("div")
     announcement.classList.add("announcement")
@@ -35,7 +36,7 @@ news.map((item=>{
     announcement.innerHTML=`
 <div class="left">
                 <div class="image-container">
-                    <img src="image3.png" width="270px">
+                    <img src="${Url}/public/images/c2.jpg" width="250px" height="150px">
                 </div>
             </div>
             <div class="right">

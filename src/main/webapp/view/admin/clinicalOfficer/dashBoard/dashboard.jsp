@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <script src="<c:url value="/public/js/popup.js"></c:url> "></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/c-dashboard.css "/>">
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
@@ -21,7 +22,7 @@
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
 <div class="header">
     <div class="upper-title">SUWASEWANA </div>
-    <div class="dashboard-name">Clinic/Dashboard/ClinicList</div>
+    <div class="dashboard-name">Clinic/Dashboard/Home</div>
 </div>
 
 <div  class="c-db-container ">
@@ -144,7 +145,7 @@
     // calender.reangeSelect(2021, 9, 10, 6, 8);
 
 </script>
-<script src="<c:url value="../../../../public/js/ClinicalOfficer/Dashboard.js"/>"></script>
+<script src="<c:url value="/public/js/ClinicalOfficer/Dashboard.js"/>"></script>
 <script>
     let mycard = new card("")
 </script>

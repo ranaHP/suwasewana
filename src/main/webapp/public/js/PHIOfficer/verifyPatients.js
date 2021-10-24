@@ -72,7 +72,7 @@ requests.map((item=>{
              <button class="reject-b">Reject</button>
          </div>
          <div class="down-buttons">
-             <button class="view-b">View patient</button>
+             <button class="view-b" onclick="popup.showPopup()">View patient</button>
          </div>
 </div>
 </div>

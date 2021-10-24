@@ -30,7 +30,7 @@
 <!-- <div class="containor"> -->
 <div class="header">
     <div class="upper-title">SUWASEWANA </div>
-    <div class="dashboard-name">PHI/Dashboard/View announcements</div>
+    <div class="dashboard-name">PHI/Dashboard/View Disease reports</div>
 </div>
 <div class="content">
     <div class="summary-disease">

@@ -28,13 +28,13 @@
     <!-- suwasewana header -->
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
-        <div class="dashboard-name">PHI/Dashboard</div>
+        <div class="dashboard-name">Admin/Dashboard/Home</div>
     </div>
     <div class="main-content">
         <!-- officer count -->
         <div class="officer-count">
             <div class="count-box">
-                <div class="l"><img src="<c:url value="/public/images/icons/circle.svg"/>" >
+                <div class="l"><img src="<c:url value="/public/images/icons/compass.svg"/>" width="35px" >
 
                 </div>
                 <div class="r">

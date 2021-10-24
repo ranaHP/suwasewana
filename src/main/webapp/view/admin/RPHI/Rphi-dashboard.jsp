@@ -40,11 +40,11 @@
 </head>
 
 <body id="mainContent">
-<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+<c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp" />
 <%--    <div class="main-container">--%>
         <div class="header">
             <div class="upper-title">SUWASEWANA</div>
-            <div class="dashboard-name">PHI/Dashboard/Home</div>
+            <div class="dashboard-name">RPHI/Dashboard/Home</div>
         </div>
 
         <div class="body-content">
@@ -53,7 +53,7 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="card-icon">
-                                <img  src="<c:url value="/public/images/PHI_Dashboard/time-clock-circle.svg "/>" srcset="">
+                                <img src="<c:url value="/public/images/PHI_Dashboard/time-clock-circle.svg "/>" srcset="">
                             </div>
                             <div class="card-details">
                                 <h5>200</h5>

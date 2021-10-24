@@ -66,7 +66,7 @@ announcement.map((item => {
 </div>
 <div class="right">
     <div class="image">
-        <img src="${myUrl}/public/images/image1.png" width="80%">
+        <img src="${myUrl}/public/images/disease-banner.png" width="80%">
     </div>
     <div class="button-section">
         <div class="delete">
