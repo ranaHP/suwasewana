@@ -6,7 +6,7 @@ class Navbar{
             `<a href="${this.myUrl}/s/">
                             <li class="nav-item"> Home</li>
                         </a>
-                        <a href="${this.myUrl}/s/">
+                        <a href="${this.myUrl}/s/diseases">
                             <li class="nav-item"> Diseases</li>
                         </a>
                         <a href="${this.myUrl}/s/announcement">
@@ -18,8 +18,8 @@ class Navbar{
                         <a href="${this.myUrl}/s/appointment">
                             <li class="nav-item"> Appointment</li>
                         </a>
-                        <a href="${this.myUrl}/s/">
-                            <li class="nav-item special-nav"> PHI Details</li>
+                        <a href="${this.myUrl}/s/complain">
+                            <li class="nav-item special-nav"> Complain</li>
                         </a>`
     }
 }

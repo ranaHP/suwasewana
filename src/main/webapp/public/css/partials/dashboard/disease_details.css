@@ -1,0 +1,253 @@
+
+*{
+    font-family: 'Montserrat';
+
+}
+.diseases-details{
+    /* background-color: red; */
+}
+.diseases-details .d-title{
+    display: flex;
+}
+.d-title button{
+    width: 200px;
+    height: 30px;
+    margin: 30px 0 ;
+
+    background-color: #fff;
+    border: 1px solid #006633FF !important;
+    color: #006633FF;
+    outline: none;
+    border: 0;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    margin-left: 20px;
+}
+button:hover{
+    box-shadow: 3px 6px 5px rgba(0, 0, 0, 0.164);
+}
+ul{
+    list-style: none;
+}
+.row1{
+    height: fit-content;
+    /* background-color: red; */
+    display: flex;
+    width: 100%;
+    font-size: 1.0em;
+}
+.summary{
+    width: 600px !important;
+    background-color: rgb(240, 252, 255);
+    box-sizing: border-box;
+}
+.summary img{
+
+}
+.summary-desc{
+    padding: 20px;
+    padding-top: 10px;
+}
+.summary-desc ul{
+    /* background-color: #fff; */
+    text-align: center;
+    font-size: 1.1em;
+}
+.summary-desc li{
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+}
+
+.summary-desc li div{
+    font-weight: 600;
+    font-size: 1.2em;
+    /* padding-left: 10px; */
+}
+.summary-desc li img{
+    font-weight: 600;
+    padding: 2px 0;
+}
+
+.history-what-is-container{
+    width: 100% !important;
+    /* background-color: rgb(226, 43, 73); */
+}
+.d-s-title{
+    font-size: 1.5em;
+    padding-bottom: 15px ;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.774);
+}
+.history-what-is-container{
+    padding: 10px;
+    padding-top: 0;
+    font-size: 1.1em;
+}
+
+.what-is{
+    padding-top: 50px;
+}
+.symptopms{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.s-item{
+    width: 200px;
+    /* background-color: rgb(187, 19, 19); */
+    height: fit-content;
+    display: flex;
+    height: 50px;
+    font-size: 1.2em;
+    text-align: center;
+    /* margin: 10px; */
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border:  1px solid rgb(248, 183, 183);
+    margin: 10px ;
+    cursor: pointer;
+}
+
+.p-item{
+    width: 100%;
+    /* background-color: rgb(187, 19, 19); */
+    height: fit-content;
+    display: flex;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin: 10px ;
+    cursor: pointer;
+    color: #000;
+}
+.s-item:hover , .p-item:hover{
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.151);
+}
+.banner1{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.symptopms-list{
+    padding: 15px 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.desc{
+    font-size: 1.05em;
+    color: rgb(46, 46, 46);
+}
+
+.prevention-list{
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.d-s-s-titel{
+    padding-top: 15px;
+    font-size: 1.2em;
+    padding-bottom: 10px ;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.616);
+}
+.image-set{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.banner2{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.treatments-list{
+    padding: 2px 0 !important;
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: flex-start;
+    /* align-items: center; */
+    flex-direction: column;
+}
+.treatments-list .t-item{
+    height: fit-content;
+    display: flex;
+    font-size: 1.2em;
+    padding: 5px 0;
+    /* background-color: red; */
+}
+.treatments{
+    width: 60% !important;
+}
+.banner3{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.emergency-contanat-container{
+    width: 100%;
+
+}
+.emergency-contanat-cards{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.emg-card{
+    width: 200px;
+    background-color: #3D7EE4;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    padding: 10px;
+}
+.emd-card-title{
+    color: white;
+    font-size: 1.3em;
+    font-weight: 600;
+}
+.emg-card-number{
+
+    color: white;
+    font-size: 3em;
+    font-weight: 600;
+}
+
+
+
+.chart-contanat-container{
+    width: 100%;
+
+}
+.chart-contanat-cards{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.chart-card{
+    padding: 10px;
+    /* height: 200px; */
+    width: 100%;
+    min-width: 200px;
+}
