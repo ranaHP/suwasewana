@@ -52,7 +52,7 @@
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-book-alt'></i>
+                    <i class='bx bxs-bell-plus'></i>
                     <span class="link_name">Announcement</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
@@ -66,15 +66,14 @@
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-line-chart'></i>
+                    <i class='bx bxs-bar-chart-alt-2'></i>
                     <span class="link_name">Reports</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="../../../aindex.jsp"> Diseases Reports </a></li>
-                <li><a href="#"> Clinics Reports</a></li>
-                <li><a href="#"> Prediction Reports</a></li>
+                <li><a href="/test_war_exploded/s/viewDisease-reports"> Diseases Reports </a></li>
+                <li><a href="/test_war_exploded/s/viewClinic-reports"> Clinics Reports</a></li>
             </ul>
         </li>
         <li>

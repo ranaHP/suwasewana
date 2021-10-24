@@ -167,7 +167,8 @@ input:focus + label{
     padding: 5px;
     width: 80px;
     border-radius: 3px;
-    background-color: #EB3B5A;
+    /*background-color: #EB3B5A;*/
+    background-color: #d9534f;
     color: white;
     font-size: .7em;
     cursor: pointer;

@@ -18,13 +18,17 @@
     <link rel="stylesheet"
           href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.2/mapbox-gl-geocoder.css"
           type="text/css">
+    <%--    side nav bar styles--%>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Register User</title>
 </head>
-<body>
-    <div class="maincontainer">
+<body id="mainContent">
+<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+<%--    <div class="maincontainer">--%>
         <div class="header">
             <div class="upper-title">SUWASEWANA</div>
-            <div class="dashboard-name">PHI/Dashboard/Verify patient</div>
+            <div class="dashboard-name">PHI/Dashboard/Register users</div>
         </div>
         <form action="">
             <div class="form">
@@ -229,7 +233,7 @@
                 </div>
             </div>
         </form>
-    </div>
+<%--    </div>--%>
     <script>
         // feather.replace({width: '1.2em', height: '1.2em'})
     </script>
@@ -288,5 +292,6 @@
 
 
     </script>
+<script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
 </html>

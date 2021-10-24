@@ -7,6 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
+
+<%--pop up styles--%>
+    <link rel="stylesheet" href="<c:url value="/popup/common-popup.css"/> "/>
+    <script src="<c:url value="/popup/Message.js"></c:url> "></script>
     <script src="https://unpkg.com/feather-icons"></script>
 
 <%--    side nav bar styles--%>
@@ -17,11 +21,14 @@
 <body>
 
 <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+
 <%--<div class="main-contents">--%>
+<div class="popup-container" id="PopupContainer"></div>
     <div id="mainContent" class="container">
+
         <div class="header">
             <div class="upper-title">SUWASEWANA </div>
-            <div class="dashboard-name">PHI/Dashboard/View announcements</div>
+            <div class="dashboard-name">PHI/Dashboard/View Appointments</div>
         </div>
         <!-- Search appointments section -->
         <div class="search-section">
@@ -40,7 +47,7 @@
                             <p class="f-3">Type - Scholarship </p>
                             <p class="f-3">Talk About People's Bank staff vaccination </p>
                         </div>
-                        <div class="reject-button">
+                        <div class="reject-button" onclick="popup.showPopup()">
                             <button class="f-4">Reject Appointment </button>
                         </div>
                     </div>
@@ -81,13 +88,20 @@
                     </div>
                 </div>
             </div>
-        </div>
+<%--        </div>--%>
 <%--    </div>--%>
 
     <script>
         feather.replace({width: "10px",height:"10px"})
     </script>
-    <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+
+
+    <script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+        <script defer>
+            let popup= new require_message_popup('PopupContainer' , "Reason for Reject")
+        </script>
+
+</div>
 </div>
 </body>
 </html>

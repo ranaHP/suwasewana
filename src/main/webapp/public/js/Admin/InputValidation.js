@@ -46,7 +46,7 @@ class FormInputValidation {
     }
 
     nameValidation(name, fieldName) {
-
+        console.log("register name ")
         let isValida = true;
         if (name === "") {
             this.setErrorMessageForField("required*", fieldName, 0)
@@ -336,7 +336,44 @@ class FormInputValidation {
         }
         return isValida;
     }
+    passwordValidation(password, fieldName) {
+        let isValida = true;
+        if (password.length < 8) {
+            this.setErrorMessageForField("password should have minimum 8 characters", fieldName, 0);
+            isValida = false;
+        }
+        if (password.length >= 10) {
+            this.setErrorMessageForField("valid password", fieldName, 1);
+            isValida = true;
+        }
 
+        if(!password.match(this.lowerCaseLetters)){
+            this.setErrorMessageForField("lowercase letter required", fieldName,0);
+            isValida = false;
+        }
+        if(!password.match(this.upperCaseLetters)){
+            this.setErrorMessageForField("uppercase letter required", fieldName,0);
+            isValida = false;
+        }
+        if(!password.match(this.numbers)){
+            this.setErrorMessageForField("number required", fieldName,0);
+            isValida = false;
+        }
+        if (password.includes(" ")) {
+            this.setErrorMessageForField("space cannot be used", fieldName,0);
+            isValida = false;
+        }
+
+        if (password === "") {
+            this.setErrorMessageForField("required*", fieldName,0);
+            isValida = false;
+        }
+        if (!password) {
+            this.setErrorMessageForField("required*", fieldName,0);
+            isValida = false;
+        }
+        return isValida;
+    }
     checkpasserror(fieldName) {
         if (!this.CheckPasswordwithoutblock()) {
             this.setErrorMessageForField("Invalid password type", fieldName, 0)

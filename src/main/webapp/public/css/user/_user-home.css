@@ -5,6 +5,7 @@
 @import url('../partials/latest-announstment/latest-announstment.css');
 @import url('../partials/diseases-details/diseases-details.css');
 @import url('../partials/footer/footer.css');
+@import url('_commen.css');
 
 *{
     padding: 0;
@@ -24,5 +25,5 @@ section{
 
 }
 a{
-    text-decoration: none;
+    text-decoration: none !important;
 }

@@ -1,5 +1,7 @@
 package com.suwasewana.model;
 
+import com.suwasewana.core.SuwasewanaHashing;
+
 public class UserRegistrationModel {
     protected String uMobile;
     protected String uname;
@@ -17,23 +19,24 @@ public class UserRegistrationModel {
 
     public UserRegistrationModel(
             String uMobile,
-             String uname,
+            String uname,
             String uPassword,
-             String uNic,
+            String uNic,
             String uProvince,
             String uDistrict,
             String uCity,
             String uMoh,
-            String uaddress ,
+            String uaddress,
             String ulocation,
-            String ulogin_status
-    ) {
+            String ulogin_status,
+            String s) {
         super();
+        SuwasewanaHashing hashing = new SuwasewanaHashing(uPassword);
         this.uCity = uCity;
         this.uProvince = uProvince;
         this.uDistrict  = uDistrict;
         this.uname = uname;
-        this.uPassword = uPassword;
+        this.uPassword = hashing.getHashValue();
         this.uMoh = uMoh;
         this.uMobile = uMobile;
         this.uNic = uNic;

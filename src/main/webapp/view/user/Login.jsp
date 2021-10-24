@@ -24,7 +24,8 @@
     <link href="<c:url value="/public/css/user/_login-home.css"/>" rel="stylesheet"/>
     <!-- for commen style  sheet link  -->
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
-
+    <script src="<c:url value="/public/js/navbar.js"/>"></script>
+    <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
 
 </head>
 <body>
@@ -41,12 +42,7 @@
                 </div>
                 <div class="navbar-container">
                     <ul class="navbar">
-                        <li class="nav-item"> Home</li>
-                        <li class="nav-item"> Diseases</li>
-                        <li class="nav-item"> Announcement</li>
-                        <li class="nav-item"> Clinik</li>
-                        <li class="nav-item"> Appointment</li>
-                        <li class="nav-item special-nav"> Request Ambulance</li>
+                        <script> let navs =  new Navbar(); navs.showHeaderNavItems("navbar"); </script>
                     </ul>
                 </div>
                 <div class="login-register-container">
@@ -54,12 +50,9 @@
                         <span> සිංහල </span>
                         <img src="<c:url value="/public/images/sri-lanka.png "/>" alt="sri lanakan flag" width="100%">
                     </div>
-                    <div class="register-btn">
-                        Register
-                    </div>
-                    <div class="login-btn">
-                        Login
-                    </div>
+                    <script>
+                        let loginRegsiter = new LoginLogout(); loginRegsiter.showLoginLogoutItemsLogin("login-register-container")
+                    </script>
                 </div>
             </div>
         </div>
@@ -94,6 +87,7 @@
                                        'user-mobile-error'
                                    ); hideFormError();"
                                    maxlength="10"
+                                   value="0412283111"
                             />
                             <div id="user-mobile-error" class="form-field-error"></div>
                         </div>
@@ -102,7 +96,7 @@
                     <div class="row">
                         <div class="form-group">
                             <label for="user-password">
-                                Mobile Number
+                                Password
                             </label>
                             <div class="w-100 p-relative">
                                 <input type="password" autocomplete="false" name="user-password" id="user-password"
@@ -111,6 +105,7 @@
                                    document.getElementById('user-password').value,
                                    'user-password-error'
                                ); hideFormError()"
+                                  value="asd123ASD123"
                                 />
                                 <div onclick="passwordVisibility()" class="password-visibility">
                                     <i data-feather="eye-off" id="eyeOff" style="display: none" class="c-gray"> </i>
@@ -161,13 +156,8 @@
         <div class="first-row">
             <img src="<c:url value="/public/images/logo.png "/>" alt="logo" width="45px"/>
             <div class="navbar-container">
-                <ul class="navbar">
-                    <li class="nav-item"> Home</li>
-                    <li class="nav-item"> Diseases</li>
-                    <li class="nav-item"> Announcement</li>
-                    <li class="nav-item"> Clinik</li>
-                    <li class="nav-item"> Appointment</li>
-                    <li class="nav-item special-nav"> Request Ambulance</li>
+                <ul class="navbar navbar1">
+                    <script> let navs1s =  new Navbar(); navs.showHeaderNavItems("navbar1"); </script>
                 </ul>
             </div>
         </div>
@@ -197,12 +187,13 @@
     }
 
     function checkLoginValidation() {
+        let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
         if (
             validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
             validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
         ) {
-            let url = "/test_war_exploded/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
+            let url = myUrl+"/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function () {
                 console.log(this.response);
@@ -211,14 +202,15 @@
                 console.log(result);
 
                 if (result.status === "success") {
-                    location.replace("/test_war_exploded/s/");
+                    location.replace(myUrl + "/s/");
                 } else if (result.status === "error") {
+                    document.getElementById('user-form-error').innerText = result.data;
                     document.getElementById('user-form-error').style.display = "block";
-                    document.getElementById("user-password").value = "";
-                    document.getElementById("user-mobile").value = "";
-                    setTimeout(() => {
-                        document.getElementById('user-form-error').style.display = "none";
-                    }, 8000)
+                    // document.getElementById("user-password").value = "";
+                    // document.getElementById("user-mobile").value = "";
+                    // setTimeout(() => {
+                    //     document.getElementById('user-form-error').style.display = "none";
+                    // }, 8000)
                 }
             }
             xhttp.open("GET", url, true);

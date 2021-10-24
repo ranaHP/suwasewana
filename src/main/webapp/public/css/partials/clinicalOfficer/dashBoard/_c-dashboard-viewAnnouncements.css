@@ -148,7 +148,8 @@ button{
     font-size: .7em;
 }
 .delete button{
-    background-color: #EB3B5A;
+    /*background-color: #EB3B5A;*/
+    background-color: #d9534f;
 }
 .Edit button{
     background-color: #F0AD4E;

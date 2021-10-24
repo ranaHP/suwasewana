@@ -139,7 +139,7 @@ select,input{
     padding: 30px;
 }
 .table{
-    width: 100%;
+    /*width: 100%;*/
     border-collapse: collapse;
     padding: 25px;
 }
@@ -261,6 +261,10 @@ table{
         align-items: center;
         margin-top: 10px;
         padding-top: 30px;
+    }
+    .left,.right{
+        width: 120%;
+        margin-top: 20px;
     }
 
 
