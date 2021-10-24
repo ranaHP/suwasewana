@@ -22,27 +22,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
-    <%--    for popup style--%>
-    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
-    <%--    for popup script--%>
-    <script src="<c:url value="/public/js/popup.js"/>"></script>
-
     <title> User Home Suwasewana </title>
 
 </head>
 <body>
-    <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
+<c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
     <div class="MR_main_Container">
-        <div class="mypopup" id="popup" style="display: none;"></div>
+
         <div class="header">
             <div class="upper-title">SUWASEWANA</div>
             <div class="dashboard-name">Admin/Register/ClinicalOfficer</div>
         </div>
+
         <div class="MR_container">
             <div class="title">
                 <span>Register Clinical Officer</span>
             </div>
-            <form action=""  onsubmit="return checkvalidation();" >
+
+            <form action="">
                 <div class="singal_row">
                     <div class="form-item">
                         <input type="text" id="fullName" autocomplete="off"
@@ -89,34 +86,35 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="multirow">
-                    <div class="milturow_left" >
-                        <div class="form-item" id="Moh_headdiv">
-                            <input type="text" id="COCity" autocomplete="off"
+                    <div class="milturow_left">
+                        <div class="form-item" >
+                            <input type="text" id="City" autocomplete="off" required
                                    onblur="validation.nameValidation(
-                                    document.getElementById('COCity').value,
-                                    'LCOCity'
-                                );"
+                                document.getElementById('City').value,
+                                'LCity'
+                            );"
                                    onkeyup="validation.nameValidation(
-                                    document.getElementById('COCity').value,
-                                    'LCOCity'
-                                );"
+                                document.getElementById('City').value,
+                                'LCity'
+                            );"
                             >
-                            <label for="COCity">City</label>
-                            <span class="error" id="LCOCity"></span>
+                            <label for="City">City</label>
+                            <span class="error" id="LCity"></span>
                         </div>
                     </div>
                     <div class="multirow_right" >
-                        <div class="form-item" >
-                            <input type="text" id="District" autocomplete="off"
+                        <div class="form-item" id="StrrrtDiv">
+                            <input type="text" id="District" autocomplete="off" required
                                    onblur="validation.nameValidation(
-                                    document.getElementById('District').value,
-                                    'LDistrict'
-                                );"
+                                document.getElementById('District').value,
+                                'LDistrict'
+                            );"
                                    onkeyup="validation.nameValidation(
-                                    document.getElementById('District').value,
-                                    'LDistrict'
-                                );"
+                                document.getElementById('District').value,
+                                'LDistrict'
+                            );"
                             >
                             <label for="District">District</label>
                             <span class="error" id="LDistrict"></span>
@@ -126,24 +124,25 @@
                 <div class="multirow">
                     <div class="milturow_left"  style="margin-top: 21px;">
                         <div class="form-item" >
-                            <input type="text" id="Address" autocomplete="off"
+                            <input type="text" id="Address" autocomplete="off" required
                                    onblur="validation.nameValidation(
-                                    document.getElementById('Address').value,
-                                    'LAddress'
-                                );"
+                                document.getElementById('Address').value,
+                                'LAddress'
+                            );"
                                    onkeyup="validation.nameValidation(
-                                    document.getElementById('Address').value,
-                                    'LAddress'
-                                );"
+                                document.getElementById('Address').value,
+                                'LAddress'
+                            );"
                             >
                             <label for="Address">Address</label>
                             <span class="error" id="LAddress"></span>
                         </div>
+
                     </div>
                     <div class="multirow_right" id="addcityDiv">
                         <label >MOH Area</label> <br>
                         <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
-                                onclick="document.getElementById('MArea').value='';"
+                               onclick="document.getElementById('MArea').value='';"
                                onblur="validation.SearchSelect(
                                     document.getElementById('MArea').value,
                                     'LMArea'
@@ -171,7 +170,6 @@
 
 
     <script defer>
-        let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
         let validation = new FormInputValidation();
     </script>
 
@@ -243,14 +241,14 @@
                 function (data, status) {
                     console.log(data.includes("success"))
                     if (data.includes("success")) {
-                        popup.Register({
+                        popup.showAppointmentSuccessMessage({
                             status: 'success',
-                            message: 'Officer Successfully Added!'
+                            message: 'Appointment Successfully Requested!'
                         });
                     } else {
-                        popup.Register({
+                        popup.showAppointmentSuccessMessage({
                             status: 'fail',
-                            message: 'Officer Registration Fails !',
+                            message: 'Appointment Request Fails !',
                             data: data
                         });
                     }
@@ -289,10 +287,68 @@
 
 
     <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+    <script>
+        selectedOptionList = [];
+
+        function AddValue() {
+            const Value = document.querySelector('#SelectCity').value;
+            console.log("work" + Value);
+            if (!Value) return;
+            if (selectedOptionList.findIndex(item => Value == item) == -1) {
+                selectedOptionList.push(Value);
+                const Text = document.querySelector('option[value="' + Value + '"]').label;
+                const option = document.createElement("option");
+                option.value = "";
+                option.text = "";
+                // document.getElementById('selected-options-container').appendChild(option);
+                document.getElementById("selected-options-container").innerHTML += `
+                    <div class="selected-options">
+                        ${Value}
+                        <div class="close-btn" onclick="deleteSelectedItem('${Value}')">
+                                X
+                        </div>
+                    </div>
+                    `
+            }
+            console.log(selectedOptionList);
+            document.querySelector('#SelectCity').value = "";
+
+        }
+
+        function SearchSelect(feild) {
+            if (selectedOptionList.length == 0) {
+                document.getElementById(feild).innerHTML = "*required";
+            } else {
+                document.getElementById(feild).innerHTML = "";
+            }
+        }
+
+        selectedOptionList = [];
+
+        function deleteSelectedItem(value) {
+            let index = selectedOptionList.findIndex(item => value == item);
+            let temp = selectedOptionList.filter(item => item != value);
+            selectedOptionList = temp;
+            document.getElementById("selected-options-container").innerHTML = "";
+            for (let i = 0; i < selectedOptionList.length; i++) {
+                document.getElementById("selected-options-container").innerHTML += `
+                    <div class="selected-options">
+                        ${selectedOptionList[i]}
+                        <div class="close-btn" onclick="deleteSelectedItem('${selectedOptionList[i]}')">
+                                X
+                        </div>
+                    </div>
+                    `
+            }
+        }
 
 
+        function validate(e) {
+            AddValue(document.getElementById('AllColors').value,
+                document.getElementById('AllColors').text);
+        }
 
-
+    </script>
 
 
 </body>

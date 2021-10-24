@@ -1,7 +1,9 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
+import com.suwasewana.model.ClinicalOfficerModel;
 import com.suwasewana.model.PHIRegisterModel;
+import com.suwasewana.model.UserLoginModel;
 import com.suwasewana.model.UserRegistrationModel;
 
 import java.sql.Connection;
@@ -11,13 +13,40 @@ import java.sql.SQLException;
 public class AdminDAO {
 
     private static final String PHI_REGISTRATION = "INSERT INTO `phi_officer` VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-
+    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp());";
     Connection connection;
 
     public AdminDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
+
+    public String ClinicalOfficerRegistration(ClinicalOfficerModel clinicalOfficerModel) {
+        System.out.println("data come to dao");
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Clinical_Officer_REGISTRATION)) {
+            preparedStatement.setString(1, clinicalOfficerModel.getName() );
+            preparedStatement.setString(2, clinicalOfficerModel.getNIC() );
+            preparedStatement.setString(3, clinicalOfficerModel.getMobile() );
+            preparedStatement.setString(4, clinicalOfficerModel.getCity() );
+            preparedStatement.setString(5, clinicalOfficerModel.getDistrict() );
+            preparedStatement.setString(6, clinicalOfficerModel.getAddress() );
+            preparedStatement.setString(7, clinicalOfficerModel.getPass() );
+
+            System.out.println("qry: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+
+    }
+
+
     public String phiRegistration(PHIRegisterModel phiRegister) {
         System.out.println("data come to dao");
 

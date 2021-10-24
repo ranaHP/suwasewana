@@ -1,6 +1,7 @@
 package com.suwasewana.controller.Admin;
 
 import com.google.gson.Gson;
+import com.suwasewana.dao.AdminDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
@@ -20,10 +21,11 @@ import java.util.ArrayList;
 @WebServlet("/admin-register-controller/*")
 public class RegisterController extends HttpServlet {
     UserDAO userDAO;
+    AdminDAO adminDAO;
     private Gson gson = new Gson();
 
     public void init() {
-        userDAO = new UserDAO();
+        adminDAO= new AdminDAO();
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -70,12 +72,12 @@ public class RegisterController extends HttpServlet {
                 req.getParameter("CNIC"),
                 req.getParameter("CTpNo"),
                 req.getParameter("Ccity"),
-                req.getParameter("Cstreet"),
-                req.getParameter("CState"),
+                req.getParameter("CDistrict"),
+                req.getParameter("CAddress"),
                 req.getParameter("CMohArea")
         );
-//        String result = userDAO.UserMakeAppointment(userAppointmentDetails);
-//        res.getWriter().println(result);
+        String result = adminDAO.ClinicalOfficerRegistration(clinicalOfficerModel);
+        res.getWriter().println(result);
     }
 
 
