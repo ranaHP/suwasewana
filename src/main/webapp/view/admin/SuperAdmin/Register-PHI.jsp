@@ -20,6 +20,10 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
     <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
 </head>
 <body>
 <div class="MR_main_Container">

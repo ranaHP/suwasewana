@@ -35,14 +35,17 @@ class FormInputValidation {
 
     SearchSelect(val, feild) {
         console.log("value = " + val);
+        let isValida = true;
         if (val == "") {
             this.setErrorMessageForField("required*", feild, 0)
             console.log("empty")
+            isValida = false;
         } else {
             console.log("not empty")
             this.setErrorMessageForField("", feild, 0)
+            isValida = true;
         }
-
+        return isValida;
     }
 
     nameValidation(name, fieldName) {
