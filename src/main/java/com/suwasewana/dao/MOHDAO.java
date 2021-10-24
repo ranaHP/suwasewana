@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MOHDAO {
-    @SuppressWarnings("SqlResolve")
+//    @SuppressWarnings("SqlResolve")
 
     private static final String MOH_Detail="SELECT * FROM suwaserwana_db.moh;";
     Connection connection;
@@ -24,10 +24,13 @@ public class MOHDAO {
     }
 
     public ArrayList<MOHModel> GetMOHDetails() {
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_Detail)) {
+
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<MOHModel> mohList = new ArrayList<MOHModel>();
             while (rs.next()) {
+
                 String id = rs.getString("idMOH");
                 String name = rs.getString("MName");
                 MOHModel temp = new MOHModel(
@@ -35,7 +38,6 @@ public class MOHDAO {
                         name,
                         "",
                         ""
-
 
                 );
 //

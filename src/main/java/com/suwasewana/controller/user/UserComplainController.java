@@ -92,6 +92,7 @@ public class UserComplainController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void ViewMOH(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+        System.out.println("Come to view moh controller");
         ArrayList<MOHModel> result = mohdao.GetMOHDetails();
         res.getWriter().println(gson.toJson(result));
     }

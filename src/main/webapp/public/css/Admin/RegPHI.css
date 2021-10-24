@@ -6,6 +6,25 @@
     font-size: 18px;
 }
 
+.image-upload-card-container {
+    height: fit-content ;
+    width: 32%;
+}
+.image-upload-card{
+    display: flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    flex-direction: column;
+}
+.image-upload-card label {
+    background-color: #0275d8;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 6px;
+    font-family: 'Segoe UI' ;
+
+}
 label {
     font-size: 0.7em;
     margin-bottom: 5px;
@@ -58,7 +77,7 @@ form {
     /* background-color: aquamarine; */
     display: flex;
     min-height: 35px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 #row2 {
@@ -176,7 +195,7 @@ form {
     top: 10px;
     left: -10px;
     font-size: 12px;
-    background: #fff;
+    /*background: #fff;*/
     padding: 0 10px;
     /* color: #999; */
     transition: all .3s ease

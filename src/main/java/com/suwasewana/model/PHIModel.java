@@ -1,52 +1,49 @@
 package com.suwasewana.model;
 
+import com.suwasewana.core.SuwasewanaHashing;
+
 public class PHIModel {
 
     protected String mohId;
     protected String PostalCode;
     protected String password;
-    protected String login_status;
     protected String phi_post;
     protected String District;
     protected String City;
     protected String Address;
-    protected String device_MAC;
     protected String mobile;
     protected String NIC;
     protected String full_name;
-    protected String phi_Id;
+    protected String Dp;
 
 
     public PHIModel
             (
-                     String mohId,
-                     String full_name,
-                     String PostalCode,
-                     String password,
-                     String login_status,
-                     String phi_post,
-                     String District,
-                     String City,
-                     String Address,
-                     String device_MAC,
-                     String mobile,
-                     String NIC,
-                     String phi_Id
+                    String full_name,
+                    String NIC,
+                    String mobile,
+                    String Address,
+                    String City,
+                    String District,
+                    String phi_post,
+                    String PostalCode,
+                    String mohId,
+                    String Dp
             ) {
         super();
+        SuwasewanaHashing hashing = new SuwasewanaHashing("abc");
         this.mohId=mohId;
         this.PostalCode=PostalCode;
-        this.password=password;
-        this.login_status=login_status;
-        this.phi_post=phi_post;
-        this.District=District;
-        this.City=City;
-        this.Address=Address;
-        this.device_MAC=device_MAC;
-        this.mobile=mobile;
-        this.NIC=NIC;
         this.full_name=full_name;
-        this.phi_Id=phi_Id;
+        this.NIC=NIC;
+        this.mobile=mobile;
+        this.Address=Address;
+        this.City=City;
+        this.District=District;
+        this.phi_post=phi_post;
+        this.password=hashing.getHashValue();
+        this.Dp=Dp;
+
     }
 
     public String getMohId() {
@@ -71,14 +68,6 @@ public class PHIModel {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getLogin_status() {
-        return login_status;
-    }
-
-    public void setLogin_status(String login_status) {
-        this.login_status = login_status;
     }
 
     public String getPhi_post() {
@@ -113,14 +102,6 @@ public class PHIModel {
         Address = address;
     }
 
-    public String getDevice_MAC() {
-        return device_MAC;
-    }
-
-    public void setDevice_MAC(String device_MAC) {
-        this.device_MAC = device_MAC;
-    }
-
     public String getMobile() {
         return mobile;
     }
@@ -145,11 +126,11 @@ public class PHIModel {
         this.full_name = full_name;
     }
 
-    public String getPhi_Id() {
-        return phi_Id;
+    public String getDp() {
+        return Dp;
     }
 
-    public void setPhi_Id(String phi_Id) {
-        this.phi_Id = phi_Id;
+    public void setDp(String dp) {
+        Dp = dp;
     }
 }

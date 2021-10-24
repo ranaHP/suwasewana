@@ -6,6 +6,7 @@ import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
 import com.suwasewana.model.ClinicalOfficerModel;
+import com.suwasewana.model.PHIModel;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,7 +44,9 @@ public class RegisterController extends HttpServlet {
                 case "clinical_officer":
                     RegClinicalOfficer(req, res);
                     break;
-
+                case "phi":
+                    RegPHI(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -59,7 +62,36 @@ public class RegisterController extends HttpServlet {
 
 
 
+    private void RegPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        PHIModel phiModel= new PHIModel(
+                req.getParameter("full_name"),
+                req.getParameter("NIC"),
+                req.getParameter("mobile"),
+                req.getParameter("Address"),
+                req.getParameter("city"),
+                req.getParameter("District"),
+                req.getParameter("phi_post"),
+                req.getParameter("postalCode"),
+                req.getParameter("MOHArea"),
+                req.getParameter("DP")
+        );
+        System.out.println("data = "+
+                req.getParameter("full_name")+" "+
+                req.getParameter("NIC")+" "+
+                req.getParameter("mobile")+" "+
+                req.getParameter("Address")+" "+
+                req.getParameter("city")+" "+
+                req.getParameter("District")+" "+
+                req.getParameter("phi_post")+" "+
+                req.getParameter("postalCode")+" "+
+                req.getParameter("MOHArea")+" "+
+                req.getParameter("DP")
+                );
 
+
+        String result = adminDAO.phiRegistration(phiModel);
+        res.getWriter().println(result);
+    }
 
 
 

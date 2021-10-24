@@ -30,23 +30,23 @@ public class PHIDAO {
                 String name = rs.getString("full_name");
                 String id = rs.getString("mohId");
                 String pid=rs.getString("phi_Id");
-                PHIModel temp = new PHIModel(
-                        id,
-                        name,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        pid
-                );
+//                PHIModel temp = new PHIModel(
+//                        id,
+//                        name,
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        pid
+//                );
 //
-                phiList.add(temp);
+//                phiList.add(temp);
             }
             return phiList;
         } catch (SQLException throwables) {

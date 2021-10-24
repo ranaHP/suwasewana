@@ -151,7 +151,6 @@
                         >
                         <datalist id="AllMArea">
                         </datalist>
-                        <button onclick="test();">test</button>
                         <br>
                         <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                     </div>
