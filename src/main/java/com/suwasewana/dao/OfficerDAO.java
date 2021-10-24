@@ -27,22 +27,17 @@ public class OfficerDAO {
             preparedStatement.setString(2, officerLogin.getPassword());
             ResultSet rs = preparedStatement.executeQuery();
 
-
-            System.out.println("rs -DAO "+rs+"/");
             while (rs.next()) {
                 String mobile = rs.getString("mobile");
                 String password = rs.getString("password");
                 String mac=rs.getString("mac");
-                System.out.println("mobile "+mobile+"/");
-                System.out.println("pass "+password+"/");
                 if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac==null ) {
-                    System.out.println("null mach");
+
                     String updateMAC=officerLogin.getMAC();
                     try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC)){
                         UpdateStatement.setString(1,updateMAC);
                         UpdateStatement.setString(2,mobile);
                         UpdateStatement.setString(3,password);
-                        System.out.println("update work"+UpdateStatement);
                         UpdateStatement.executeUpdate();
                     }
                     catch (SQLException throwables) {
@@ -52,7 +47,7 @@ public class OfficerDAO {
                     return officerLogindetails;
                 }
                 if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
-                    System.out.println("valid mach");
+
                     OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
                     return officerLogindetails;
                 }

@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Create clinics</title>
+    <title>Suwasewana</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard_view_diseaseReport.css"/> "/>

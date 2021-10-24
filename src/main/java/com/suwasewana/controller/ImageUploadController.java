@@ -42,8 +42,8 @@ public class ImageUploadController extends HttpServlet {
                 String imageName = req.getParameter("ImageName"+ (i));
                 System.out.println(imageName);
                 if(imageName != null  ){
-                    part.write("G:/javaee/Smaple Project user/src/main/webapp/public/images/uploadedImages/"+imageName);
-                    System.out.println("G:/javaee/Smaple Project user/src/main/webapp/public/images/uploadedImages/"+imageName);
+                    part.write("D:/java/java projects/suwasewana/src/main/webapp/public/images/uploadimage/"+imageName);
+                    System.out.println("D:/java/java projects/suwasewana/src/main/webapp/public/images/uploadimage/"+imageName);
                 }
 
             }

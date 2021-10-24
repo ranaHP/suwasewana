@@ -18,8 +18,12 @@ body{
     background-size: contain;
     min-height: 100vh;
 }
-section{
-
+.desc{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+.desc::-webkit-scrollbar {
+    display: none;
 }
 
 a{

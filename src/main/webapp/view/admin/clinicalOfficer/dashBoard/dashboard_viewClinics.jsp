@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Suwasewana</title>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-viewClinics.css"/> "/>
@@ -27,10 +27,10 @@
             <input type="text" id ="filter" required autocomplete="off" name="clinic-title" onkeyup="search()" />
             <button>Search</button>
         </div>
-        <div class="results">
-            <div class="value" id="value"></div>
-            <div class="Results">: Results <i data-feather="layers" width="15px" height="12px"></i></div>
-        </div>
+<%--        <div class="results">--%>
+<%--            <div class="value" id="value"></div>--%>
+<%--            <div class="Results">: Results <i data-feather="layers" width="15px" height="12px"></i></div>--%>
+<%--        </div>--%>
     </div>
     <div class="card-containor" id="card-containor">
 <%--          <div id="option" class="live-card"></div>--%>
@@ -61,7 +61,7 @@
         if(userInput === "Delete"){
             document.getElementById("deleteAuthErrorMessage").style.display = "none";
             deleteClinics(appointmentId);
-            alert("okay")
+            // alert("okay")
         }else{
             document.getElementById("deleteAuthErrorMessage").style.display = "block";
         }

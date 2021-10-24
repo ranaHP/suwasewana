@@ -25,7 +25,6 @@ public class MOHDAO {
 
     public ArrayList<MOHModel> GetMOHDetails() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_Detail)) {
-            System.out.println("awoooooooo");
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<MOHModel> mohList = new ArrayList<MOHModel>();
             while (rs.next()) {
@@ -42,7 +41,6 @@ public class MOHDAO {
 //
                 mohList.add(temp);
             }
-            System.out.println("moh list "+mohList);
             return mohList;
 
         } catch (SQLException throwables) {

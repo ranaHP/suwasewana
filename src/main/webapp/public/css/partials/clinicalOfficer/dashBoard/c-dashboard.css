@@ -78,16 +78,16 @@ body{
     height: 72%;
 }
 .charts{
-    width: 60%;
+    width: 50%;
     /* background-color: chartreuse; */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 .calander{
-    width: 40%;
+    width: 47%;
     /* background-color: crimson; */
-    padding-right: 20px;
+    padding-right: 54px;
 }
 .chart{
     /* background-color: darkcyan; */
@@ -192,7 +192,7 @@ body{
 
 /* calander */
 .calander h4{
-    margin-left: 1.4vw;
+    margin-left: 2.5vw;
 }
 
 
