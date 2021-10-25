@@ -57,7 +57,7 @@ public class OfficerLoginController extends HttpServlet {
         res.setCharacterEncoding("UTF-8");
 
         String responseJsonString = "";
-        if (officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("") ) {
+        if (officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getDevice_MAC().equals("") ) {
             ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 //            res.getWriter().println("Response unsuecc");

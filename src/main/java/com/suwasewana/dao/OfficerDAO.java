@@ -12,8 +12,8 @@ import java.sql.SQLException;
 
 public class OfficerDAO {
     @SuppressWarnings("SqlResolve")
-    private static final String CHECK_OFFICER_LOGIN_VALIDATION = "SELECT * FROM `officer_table` WHERE `mobile` = ? and `password` = ?";
-    private static final String UPDATE_MAC = "UPDATE `officer_table` SET `mac`=? WHERE `mobile` = ? and `password` = ?";
+    private static final String CHECK_OFFICER_LOGIN_VALIDATION = "SELECT * FROM `phi_officer` WHERE mobile = ? AND password = ? AND device_MAC = ?";
+    private static final String UPDATE_MAC = "UPDATE `phi_officer` SET `device_MAC` = ? WHERE mobile = ?;";
     Connection connection;
 
     public OfficerDAO(){
@@ -25,30 +25,58 @@ public class OfficerDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_OFFICER_LOGIN_VALIDATION)) {
             preparedStatement.setString(1, officerLogin.getMobile());
             preparedStatement.setString(2, officerLogin.getPassword());
+            preparedStatement.setString(3, "12-34-56-78");
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                String mobile = rs.getString("mobile");
+                String phi_Id  = rs.getString("phi_Id ");
+                String full_name = rs.getString("full_name");
+                String NIC  = rs.getString("NIC ");
+                String City = rs.getString("City");
+                String phi_post = rs.getString("phi_post");
+                String District = rs.getString("District");
                 String password = rs.getString("password");
-                String mac=rs.getString("mac");
-                if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac==null ) {
+                String PostalCode = rs.getString("PostalCode");
+                String mohId  = rs.getString("mohId ");
+                String DP  =rs.getString("DP ");
+                String mobile  =rs.getString("mobile");
+                String device_MAC  =rs.getString("device_MAC");
 
-                    String updateMAC=officerLogin.getMAC();
+                if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && device_MAC==null ) {
+
+                    String updateMAC=officerLogin.getDevice_MAC();
                     try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC)){
                         UpdateStatement.setString(1,updateMAC);
                         UpdateStatement.setString(2,mobile);
-                        UpdateStatement.setString(3,password);
                         UpdateStatement.executeUpdate();
                     }
                     catch (SQLException throwables) {
                         printSQLException(throwables);
                     }
                     OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                    officerLogindetails.setPhi_Id(phi_Id);
+                    officerLogindetails.setFull_name(full_name);
+                    officerLogindetails.setNIC(NIC);
+                    officerLogindetails.setCity(City);
+                    officerLogindetails.setPhi_post(phi_post);
+                    officerLogindetails.setDistrict(District);
+                    officerLogindetails.setPostalCode(PostalCode);
+                    officerLogindetails.setMohId(mohId);
+                    officerLogindetails.setDP(DP);
                     return officerLogindetails;
                 }
-                if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
+                if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && device_MAC.equals(officerLogin.getDevice_MAC())) {
 
-                    OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                    OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,device_MAC);
+                    officerLogindetails.setPhi_Id(phi_Id);
+                    officerLogindetails.setFull_name(full_name);
+                    officerLogindetails.setNIC(NIC);
+                    officerLogindetails.setCity(City);
+                    officerLogindetails.setPhi_post(phi_post);
+                    officerLogindetails.setDistrict(District);
+                    officerLogindetails.setPostalCode(PostalCode);
+                    officerLogindetails.setMohId(mohId);
+                    officerLogindetails.setDP(DP);
                     return officerLogindetails;
                 }
             }
