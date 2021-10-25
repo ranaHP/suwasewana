@@ -45,6 +45,29 @@
     </div>
 
 </div>
+
+<script>
+
+    getAllMOHDetails();
+    let moh_details_list={};
+    function getAllMOHDetails() {
+        let MOHList = [];
+        $.post("/suwasewana_war/admin-controller/mohall",
+            {},
+            function (data, status) {
+                MOHList = JSON.parse(data);
+                moh_details_list=MOHList;
+                document.getElementById("previous-complaint-list").innerHTML = " ";
+                complain.setData(MOHList);
+            }
+        );
+    }
+
+</script>
+
+
+
+
 <script>
     districts=["Galle","Matara","Colombo","Hambanthota","Nuwara","Kegalle","Nuwara Eliya","Jaffna"];
     districts.map(name=>{
