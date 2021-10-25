@@ -2,7 +2,6 @@
     margin: 0;
     padding: 0;
     font-size: 14px;
-    font-family: Arial;
 }
 body{
     display: flex;
@@ -11,6 +10,7 @@ body{
     margin-left: 78px;
     background-color: #dfe4ea59;
     max-width: calc(100vw - 78px);
+    box-sizing: border-box;
 }
 .content{
     font-family: Arial, Helvetica, sans-serif;
@@ -21,6 +21,9 @@ body{
     width: 100%;
     padding: 10px;
     overflow-x: hidden;
+    font-family: Arial;
+    padding: 50px;
+    padding-top: 0;
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
@@ -42,6 +45,7 @@ body{
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
+    box-sizing: border-box;
 }
 .header .upper-title{
     font-weight: bold;
@@ -69,19 +73,44 @@ body{
     justify-content: space-around;
     align-items: center;
 }
-.summary-description,.infected-chart-details,.death-rate{
+.summary-description, .death-rate{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     background-color: white;
-    height: 100px;
-    width: 20%;
+    height: fit-content;
+    width: 90%;
     text-align: center;
+    margin: 10px auto;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+}
+.infected-chart-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    height: fit-content;
+    width: 40%;
+    text-align: center;
+    margin: 10px auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    padding: 20px;
+}
+.infected-chart-details p{
+
+    font-size: 1.1em;
 }
 .summary-description title{
     align-items: center;
+}
+.summary-description-container{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    width: 60%;
+    height: fit-content;
 }
 span{
     font-family: Arial, Helvetica, sans-serif;
@@ -145,7 +174,18 @@ span{
 .selected-disease-description div{
     margin-top: 10px;
 }
+.title{
+    font-size: 1.4em;
+    color: rgba(0, 0, 0, 0.67) !important;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
 
+.title h6{
+    font-size: 1.3em;
+    color: rgba(0, 0, 0, 0.68) !important;
+    padding-top: 20px;
+}
 @media screen and (max-width: 1150px) {
     .summary-disease,.infected-details{
         flex-direction: column;
