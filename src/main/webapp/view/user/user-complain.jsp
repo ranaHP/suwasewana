@@ -785,6 +785,9 @@
         $.post(myUrl+"/user-complain-controller/phi",
             function (data, status) {
                 let rs= JSON.parse(data);
+                console.log("asdasd");
+                console.log(rs);
+                console.log("asdasd");
                 let PNames=document.getElementById("allphi");
                 PNames.innerHTML="";
                 rs.map((element) => {
