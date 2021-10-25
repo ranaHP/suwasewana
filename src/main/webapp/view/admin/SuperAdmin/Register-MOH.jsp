@@ -364,14 +364,17 @@
             reqData,
             function (data, status) {
               if (data.includes("success") ) {
-                console.log("success")
-                popup.showRegistrationSuccessMessage({ status : 'success' , message: 'Successfully Citizen Registered'});
+                popup.RegisterMOH({
+                  status: 'success',
+                  message: 'Successfully Added!'
+                });
               } else {
-                console.log("unsuccess")
-                popup.showRegistrationSuccessMessage({ status : 'fail' , message: 'Citizen Registration Fails !' , data: data});
-
+                popup.RegisterMOH({
+                  status: 'fail',
+                  message: 'Registration Fails !',
+                  data: data
+                });
               }
-
             }
     );
 
