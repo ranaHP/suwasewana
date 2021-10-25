@@ -3,10 +3,7 @@ package com.suwasewana.controller.Admin;
 import com.google.gson.Gson;
 import com.suwasewana.dao.AdminDAO;
 import com.suwasewana.dao.UserDAO;
-import com.suwasewana.model.AppointmentModel;
-import com.suwasewana.model.AppointmentTypeModel;
-import com.suwasewana.model.ClinicalOfficerModel;
-import com.suwasewana.model.PHIModel;
+import com.suwasewana.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,6 +44,9 @@ public class RegisterController extends HttpServlet {
                 case "phi":
                     RegPHI(req, res);
                     break;
+                case "moh":
+                    RegMOH(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -57,6 +57,23 @@ public class RegisterController extends HttpServlet {
 
     }
 
+    private void RegMOH(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        MOHRegModel mohRegModel= new MOHRegModel(
+                req.getParameter("uname"),
+                req.getParameter("Mobiel"),
+                req.getParameter("MOHHead"),
+                req.getParameter("allcities"),
+                req.getParameter("province"),
+                req.getParameter("district"),
+                req.getParameter("city"),
+                req.getParameter("x"),
+                req.getParameter("y")
+        );
+
+
+        String result = adminDAO.mohRegistration(mohRegModel);
+        res.getWriter().println(result);
+    }
 
 
 
@@ -75,18 +92,7 @@ public class RegisterController extends HttpServlet {
                 req.getParameter("MOHArea"),
                 req.getParameter("DP")
         );
-        System.out.println("data = "+
-                req.getParameter("full_name")+" "+
-                req.getParameter("NIC")+" "+
-                req.getParameter("mobile")+" "+
-                req.getParameter("Address")+" "+
-                req.getParameter("city")+" "+
-                req.getParameter("District")+" "+
-                req.getParameter("phi_post")+" "+
-                req.getParameter("postalCode")+" "+
-                req.getParameter("MOHArea")+" "+
-                req.getParameter("DP")
-                );
+
 
 
         String result = adminDAO.phiRegistration(phiModel);
