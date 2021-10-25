@@ -299,6 +299,11 @@
     </div>
 </div>
 <script defer>
+
+
+
+
+
     let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity");
     // document.getElementById('province').addEventListener('input', function (evt) {
     //     locationgenarator.provinceSelect(this.value)

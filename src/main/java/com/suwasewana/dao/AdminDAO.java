@@ -11,12 +11,40 @@ public class AdminDAO {
 
     private static final String PHI_REGISTRATION = "INSERT INTO `suwaserwana_db`.`phi_officer` (`full_name`, `NIC`, `mobile`, `device_MAC`, `Address`, `City`, `District`, `phi_post`, `login_status`, `password`, `PostalCode`, `mohId`, `DP`,`suspended_time`)  VALUES (?, ?, ?, NULL , ?, ?, ?, ?, '0', ?, ?, ?, ?,current_timestamp());";
     private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
+    private static final String MOH_REGISTRATION="INSERT INTO `suwaserwana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
     Connection connection;
 
     public AdminDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
+
+    public String mohRegistration(MOHRegModel mohRegModel) {
+        System.out.println("data come to dao");
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_REGISTRATION)) {
+            preparedStatement.setString(1, mohRegModel.getMName() );
+            preparedStatement.setString(2, mohRegModel.getTpNo() );
+            preparedStatement.setString(3, mohRegModel.getMOHHead() );
+            preparedStatement.setString(4, mohRegModel.getProvince() );
+            preparedStatement.setString(5, mohRegModel.getDistrict() );
+            preparedStatement.setString(6, mohRegModel.getCity() );
+            preparedStatement.setString(7, mohRegModel.getX() );
+            preparedStatement.setString(8, mohRegModel.getY() );
+            preparedStatement.setString(9, mohRegModel.getCities() );
+            System.out.println("qry: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+
+    }
+
+
 
     public String ClinicalOfficerRegistration(ClinicalOfficerModel clinicalOfficerModel) {
         System.out.println("data come to dao");

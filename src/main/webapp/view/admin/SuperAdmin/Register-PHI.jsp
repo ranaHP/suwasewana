@@ -199,8 +199,6 @@
                         </div>
 <%--                        <button onclick="imageUpload()">add</button>--%>
                     </div>
-
-
                 </div>
             </div>
             <div class="status" id="post" onclick="document.getElementById('post').value = '' ">
