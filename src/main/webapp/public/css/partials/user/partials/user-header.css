@@ -1,0 +1,104 @@
+.user-main-header-container{
+    background-color: rgba(255, 255, 255, 0.137);
+    /* border-bottom: 1px solid rgba(255, 253, 253, 0.835); */
+}
+.main-header{
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header .logo img {
+    width: 40px;
+}
+
+.main-header .navbar-container {
+    min-width: 750px;
+}
+
+.main-header ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    border-radius: 59px;
+    min-width: 30%;
+    padding: 8px 8px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    font-family: 'Arial', sans-serif;
+    color: #707070;
+    font-size: .93em;
+}
+.main-header li {
+    cursor: pointer;
+    text-align: center;
+}
+
+.main-header li a{
+    text-decoration: none;
+}
+.main-header li:hover {
+    text-decoration: underline;
+}
+
+.main-header .special-nav {
+    background-color: #EB3B5A;
+    border-radius: 59px;
+    color: white;
+    padding: 1px 40px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.main-header .login-register-container {
+    display: flex;
+    align-items: center;
+}
+
+.login-register-container .language{
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    color: #707070;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0 10px;
+
+}
+.login-register-container span {
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.language img{
+    width: 40px;
+}
+
+.login-register-container .register-btn {
+    color: #006633FF;
+    padding: 0px 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 60px;
+    font-size: 1.05em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.login-register-container  .login-btn {
+    background-color: #006633FF;
+    color: white;
+    padding: 0px 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    border-radius: 60px;
+    font-size: 1.05em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+  

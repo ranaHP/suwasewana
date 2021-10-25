@@ -1,0 +1,101 @@
+
+.latest-announstment-container{
+    min-height: 300px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 15px;
+}
+.latest-announstment-container .announcetment-list-card-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: scroll;
+    background-position-x: center;
+    overflow-y: hidden;
+    margin:0 10px ;
+    cursor: grab;
+    scrollbar-width: thin;
+}
+
+.latest-announstment-container .announcetment-list-card-container .latest-announstment-arrow{
+    cursor: pointer;
+}
+.announcetment-list-card-container::-webkit-scrollbar {
+    width: 10px !important;
+    height: 10px;
+}
+   
+.announcetment-list-card-container::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+
+}
+   
+.announcetment-list-card-container::-webkit-scrollbar-thumb {
+    background-color: rgba(61, 63, 62, 0.116);
+    
+}
+
+.announcetment-list-card-container .latest-announstment-cards-container{
+    background-color: #fff;
+    min-height: 200px;
+    width: 25%;
+    min-width: 300px;
+    padding: 10px;
+}
+
+.latest-announstment-card{
+    width: 100%;
+    min-height: 300px ;
+    border: 1px solid rgb(236, 236, 236);
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.151);
+    border-radius: 1px;
+}
+
+
+.latest-announstment-card .image-container{
+    width: 100%;
+    position: relative;
+
+}
+.latest-announstment-card .header{
+    padding: 10px;
+    font-size: 1.2em;
+    color: rgba(0, 0, 0, 0.719);
+    font-weight: 500;
+}
+.latest-announstment-card .desc{
+    padding: 10px;
+    font-size: 1.1em;
+    color: rgba(0, 0, 0, 0.719);
+
+}
+.latest-announstment-card .posted-time{
+    padding: 0 10px;
+    font-size: .9em;
+    color: rgba(0, 0, 0, 0.836);
+}
+
+.latest-announstment-card .suwasaewana{
+    padding: 0 10px;
+    font-size: .9em;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.836);
+}
+
+.latest-announstment-card .image-container .read-more-btn{
+    width: 100px;
+    background-color: #EB3B5A;
+    position: absolute;
+    text-align: center;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.295);
+    border-radius: 10px;
+    color:  white;
+    bottom: -5px;
+    right: 10px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,503 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95em;
+    letter-spacing: 1px;
+    color: #636e72;
+}
+body{
+    background-color: #dfe4ea59;
+    margin-left: 78px;
+    width: 100%;
+    max-width: calc(100vw - 78px);
+    overflow-x: hidden;
+
+}
+
+.header {
+    padding: 10px 15px 10px 34px;
+    min-height: 60px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+
+.header .upper-title {
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+
+.header .dashboard-name {
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+
+input, select {
+    padding-left: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.178);
+    height: 27px;
+    margin-top: 6px;
+    border-radius: 2px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.075);
+    outline: none;
+    font-size: 1.1em;
+}
+
+.maincontainer {
+    /* margin-left: 60px; */
+    min-height: 90vh;
+    /* background-color: aqua; */
+    /* display: flex; */
+    overflow-x: hidden;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.form {
+    margin: auto;
+    padding-top: 30px;
+    min-height: 80vh;
+    width: 85vw;
+    /* background-color: aquamarine; */
+    display: flex;
+}
+
+.formleft {
+    /* background-color: blueviolet; */
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 90vh;
+}
+
+.searchNyNic {
+    /* background-color: rgb(199, 154, 199); */
+    width: 43%;
+    position: relative;
+}
+
+.searchNyNic input {
+    width: 98%;
+    font-size: 1.2em;
+    /* padding-left: 30px; */
+    letter-spacing: 1px;
+    /* border: 1px solid red; */
+}
+
+#searchNIC {
+    box-shadow: unset;
+}
+
+.searchNyNic .form-item input {
+    font-size: 1.2em;
+}
+
+.icon {
+    position: absolute;
+    /* background-color: #4834d4; */
+    top: 13px;
+    right: 10px;
+}
+
+.formleft .searchNyNic, .formrow, .address, .passwordAndbtn {
+    min-height: 50px;
+    /* background-color: rgb(50, 92, 92); */
+}
+
+.col1 {
+    /* background-color: brown; */
+}
+
+.col2 {
+    /* background-color: chartreuse; */
+}
+
+.formrow {
+    display: flex;
+}
+
+.formrow div {
+    height: 100%;
+    width: 50%;
+}
+
+.col1 input, .col2 input {
+    width: 85%;
+}
+
+.col1 select, .col2 select {
+    width: 87%;
+}
+
+.address input {
+    width: 92.5%;
+}
+
+.password {
+    display: flex;
+}
+
+.password div {
+    width: 50%;
+    height: 100%;
+    font-size: 1em;
+}
+
+
+#message {
+    display: none;
+    /* background: #f1f1f1; */
+    color: #000;
+    position: relative;
+    padding: 0;
+    margin-bottom: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+#message p {
+    padding: 10px 35px;
+    font-size: 0.9em;
+}
+
+#message h3 {
+    font-size: 1em;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}
+
+
+.buttonreg {
+    /* background-color: black; */
+    width: 93.4%;
+}
+
+.buttonreg button {
+    float: right;
+    margin-top: 10px;
+    height: 20px;
+    width: 90px;
+    border-radius: 3px;
+    font-size: 1.1em;
+    font-weight: 500;
+    color: aliceblue;
+    background-color: #4834d4;
+    border: none;
+}
+
+.formright {
+    /* background-color: blue; */
+    padding-left: 50px;
+    width: 45%;
+    min-height: 80vh;
+}
+
+label {
+    font-size: 1em;
+}
+
+/* map */
+#map {
+    height: 100%;
+    width: 100%;
+}
+
+.coordinates {
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    position: absolute;
+    bottom: 40px;
+    left: 10px;
+    padding: 5px 10px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 18px;
+    border-radius: 3px;
+    display: none;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+    height: 20px !important;
+    font-size: 0.6em !important;
+    width: 167px !important;
+    padding: 4px 20px !important;
+    /* float: right !important; */
+}
+
+.mapboxgl-ctrl-geocoder {
+    width: 100px !important;
+}
+
+.mapboxgl-ctrl-top-right .mapboxgl-ctrl {
+    /* float: right !important; */
+    margin: 10px 0 !important;
+    padding: 0 10px !important;
+}
+
+.mapboxgl-ctrl-geocoder--icon-search {
+    left: unset !important;
+    right: 10px !important;
+    top: 3px !important
+}
+
+.mapboxgl-ctrl-geocoder--icon-close {
+    margin-top: -7px !important;
+}
+
+.map {
+    margin-top: 35px;
+    /* background-color: chartreuse; */
+}
+
+.mapcontainer {
+    background-color: aqua;
+    height: 110px;
+    margin-top: 7px;
+}
+
+.registerfor {
+    /* background-color: rgb(255, 0, 119); */
+    margin-top: 26px;
+}
+
+.disease_container {
+    /* background-color: #636e72; */
+    height: fit-content;
+    margin-top: 7px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.searchdiseas {
+    position: relative;
+    /* background-color: aquamarine; */
+    width: 150px;
+}
+
+.searchdiseas input {
+    width: 100%;
+    font-size: 1.2em !important;
+    height: 23px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    box-shadow: unset;
+}
+
+.dsicon {
+    position: absolute;
+    top: 14px;
+    right: 10px;
+}
+
+.diseases input {
+    height: 17px;
+    width: 17px;
+    border: none !important;
+    margin: unset;
+}
+
+.diseases {
+    /* background-color: red; */
+    /* height: 30px; */
+    width: 100px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.diseases label {
+    margin-left: 10px;
+}
+
+/* input up  */
+.form-item {
+    position: relative;
+    /* margin-bottom: 15px */
+}
+
+.form-item input {
+    display: block;
+    width: 80%;
+    height: 22px;
+    font-size: 0.8em;
+    background: transparent;
+    /* border: solid 1px #ccc; */
+    border: none;
+    border-bottom: solid 1px #ccc;
+    color: rgba(0, 0, 0, 0.63);
+    font-size: 0.7em;
+    transition: all .3s ease;
+    border-radius: 1px;
+    padding: 0 6px;
+    outline: none;
+}
+
+.form-item input:focus {
+    border-color: rgba(0, 0, 255, 0.63)
+}
+
+.form-item label {
+    position: absolute;
+    cursor: text;
+    z-index: 2;
+    top: 5px;
+    left: -10px;
+    font-size: 12px;
+    background: #fff;
+    padding: 0 10px;
+    color: rgba(153, 153, 153, 0.534);
+    transition: all .3s ease
+}
+
+.form-item input:focus + label,
+.form-item input:valid + label {
+    font-size: 11px;
+    top: -12px
+}
+
+.form-item input:focus + label {
+    color: blue
+}
+
+
+@media only screen and (max-width: 700px ) {
+    .form {
+        flex-direction: column;
+    }
+
+    .formleft {
+        width: 100%;
+        min-height: 70vh;
+    }
+
+    .formright {
+        width: 100%;
+        padding: 0;
+    }
+
+    .mapcontainer {
+        width: 93%;
+    }
+
+    .col2 {
+        margin-left: 45px;
+    }
+
+    .col2 input, .col1 input {
+        /* background-color: #636e72; */
+        width: 98%;
+    }
+
+    .col1 select, .col2 select {
+        width: 100%;
+    }
+
+    .buttonreg {
+        /* background-color: #636e72; */
+        width: 99.6%;
+    }
+
+    .address input {
+        width: 99%;
+    }
+
+    .mapcontainer {
+        width: 100%;
+    }
+
+    #btnright {
+        display: flex;
+    }
+
+    #btnright button {
+        display: block !important;
+    }
+
+    #btnleft {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 375px ) {
+    .searchNyNic input {
+        font-size: 1em;
+    }
+
+    .formrow {
+        flex-direction: column;
+    }
+
+    .col2 {
+        margin: 13px 0 0 0;
+    }
+
+    .formleft {
+        min-height: 118vh;
+    }
+
+    .col1, .col2 {
+        width: 100% !important;
+    }
+
+    .password {
+        flex-direction: column;
+    }
+
+    .address {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+        transition: 0.2s ease;
+    }
+
+}

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-		<h1>Error</h1>
+		<h1>Something get wrong.............Please Contact SUWASEWANA </h1>
 		<h2><%=exception.getMessage() %><br/> </h2>
 	</center>	
 </body>

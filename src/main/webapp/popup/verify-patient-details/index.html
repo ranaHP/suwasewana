@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../common-popup.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<!-- <div class="popup-container">
+    <div class="popup zoomIn">
+        <div class="logo"><img src="../logo.png" alt="" srcset=""></div>
+        <div class="title">
+            <span>Reason for Reject</span>
+         </div>
+        <div class="row">
+             <span>message</span>
+        </div>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <div class="close-btn"><span>x</span>  </div>
+        <div class="btn-row">
+            <button class="not-btn">Not Now</button>
+            <button class="done-btn">Done</button>
+        </div>
+    </div> 
+</div> -->
+<div class="popup-container" id="PopupContainer"></div>
+   <script defer>
+       let popup= new verify_patient_detail_popup('PopupContainer',{ name : 'hansana' , 
+                                                                    age: 23 , 
+                                                                    NIC: '199910910064', 
+                                                                    Address:'Ihalapalukandewa,   Nanneriya road,  Galgamuwa',
+                                                                    province:"Kurunagala",
+                                                                    city:"Galgamuwa",
+                                                                    diseas:['corona','HIV'],
+                                                                    recdis:"HIV"
+                                                                })
+   </script>
+</body>
+</html>
+</body>
+</html>

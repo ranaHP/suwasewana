@@ -1,0 +1,29 @@
+@import url('../partials/header/_header.css');
+@import url('../partials/hero-banner/hero-banner.css');
+@import url('../partials/title/sectionTile.css');
+@import url('../partials/upcomming-clinic/upcomming-clinic.css');
+@import url('../partials/latest-announstment/latest-announstment.css');
+@import url('../partials/diseases-details/diseases-details.css');
+@import url('../partials/footer/footer.css');
+@import url('_commen.css');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    font-size: .78em;
+    background-color: rgba(245, 245, 245, 0.048);
+}
+.container{
+    background-image: url("../../images/bgsvg1.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    min-height: 100vh;
+}
+section{
+
+}
+a{
+    text-decoration: none !important;
+}

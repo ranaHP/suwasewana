@@ -1,0 +1,223 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: .98em;
+}
+h4{
+    color: rgb(88, 83, 83);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    padding-bottom: 10px;
+}
+body{
+    /*margin-left: 4vw;*/
+    /*margin-top: 8vh;*/
+    background-color: #f6f4f4;
+    max-width: calc(100vw - 78px);
+    margin-left: 78px;
+    box-sizing: border-box;
+
+}
+.header{
+    box-sizing: border-box;
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    width: 100%;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .7em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.c-db-container{
+    display: flex;
+    min-height: 100%;
+    padding: 40px;
+    transition: 0.2s ease;
+    padding: 10px;
+    flex-direction: column;
+}
+
+
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+
+
+.c-container-left{
+    width: 70%;
+    /* background-color: aqua; */
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Segoe UI' ;
+    width: 100%;
+    padding:0 20px ;
+    /* background-color: red; */
+}
+.form-group input , textarea{
+    width: 100%;
+    box-sizing: border-box;
+    /* max-width: 400px; */
+    height: 30px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.158);
+    outline: none;
+    border: none;
+    padding: 8px;
+    border-radius: 2px;
+    color: rgba(0, 0, 0, 0.815);
+    font-family: 'Nunito', sans-serif;
+}
+.form-group label{
+    font-size: 1.1em;
+    color: rgba(0, 0, 0, 0.774);
+    padding: 8px 0;
+}
+::placeholder{
+    /* padding: px; */
+}
+.form-group .submitBtn {
+    width: 200px;
+    height: 30px;
+    margin: 30px 0 ;
+
+    background-color: #006633FF;
+    color: white;
+    outline: none;
+    border: 0;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+}
+.m-auto{
+    margin: auto;
+}
+
+
+textarea{
+    border: none;
+    height: fit-content;
+}
+.float-right{
+    float: right;
+}
+.d-flex-a-i-end{
+    display: flex;
+    align-items: flex-end;
+}
+.d-flex-j-c-cnter{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.d-flex-j-c-flex-end{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end !important;
+}
+.d-flex-j-c-space-b{
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between !important;
+}
+
+
+.bg-danger{
+    background-color: #d9534f;
+
+}
+.bg-success{
+    /* background-color: #5cb85c; */
+    background-color: #fff;
+    color: #5cb85c;
+    border: 1px solid #5cb85c;
+
+}
+.bg-warnig{
+    background-color: #f0ad4e;
+
+}
+.bg-primary{
+    /* background-color: #0275d8; */
+
+    background-color: #fff;
+    color: #0275d8;
+    border: 1px solid #0275d8;
+}
+
+a{
+    text-decoration: none !important;
+    font-size: 1.1em;
+    color: gray;
+}
+
+.atitle{
+    font-size: 1.6em;
+    font-family: 'Segoe UI' ;
+    color: rgb(61, 61, 61);
+    text-align: center;
+}
+
+
+.left-col{
+    width: 60%;
+}
+.right-col{
+    width: 40%;
+}
+
+.form-container{
+    display: flex;
+}
+
+.image-upload-card-list-container{
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.image-upload-card-container {
+    height: fit-content ;
+    width: 32%;
+    /* background-color: rgb(255, 255, 241); */
+}
+.image-upload-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.image-upload-card label {
+    background-color: #006633FF;
+    width: 100%;
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+    /* padding: 10px; */
+    font-family: 'Segoe UI' ;
+
+}

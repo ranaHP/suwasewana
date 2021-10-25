@@ -1,0 +1,236 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+select{
+    width: 170px;
+    height: 30px;
+    border: none;
+    font-size: .6em;
+    padding-left: 4px;
+    color: rgba(0, 0, 0, 0.61);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.13);
+    outline: none;
+}
+.search-section{
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* padding-left: 25px; */
+    padding-left: 15%;
+}
+@keyframes opacity{
+    from{
+        opacity: 0.4;
+    }
+    to{
+        opacity: 1;
+    }
+}
+#images{
+    display: flex;
+}
+body{
+    margin-left: 78px;
+    background-color: #dfe4ea59;
+}
+
+.containor{
+
+    display: flex;
+    flex-direction: column;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.content{
+    display: flex;
+    font-family: corbel;
+    min-height: 100vh;
+/*    position: relative;*/}
+.complain-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.complaint{
+    display: flex;
+    background-color: white;
+    width: 70%;
+    height: 170px;
+    margin-top: 20px;
+    padding: 15px;
+    justify-content: space-around;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+}
+#des{
+    line-height: 12px;
+}
+.action{
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+}
+.description{
+    width: 60%;
+}
+.images-button-section{
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+}
+.next-button , .pre-button{
+    display: flex;
+    align-items: center;
+    cursor: pointer!important;
+}
+.img{
+    display: flex!important;
+    align-items: center;
+}
+.images{
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+}
+.details{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    line-height: 20px;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+}
+.details p{
+    text-align: center;
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.done ,.to-be-progress{
+    display: flex;
+    justify-content: center;
+    margin-top: 2px;
+}
+.done button{
+    width: 75%;
+    padding: 2px;
+    border: 0;
+    cursor: pointer;
+    border-radius: 1px;
+    background-color: #2E86DE;
+    color: white!important;
+}
+.to-be-progress button{
+    width: 75%;
+    height: 60%;
+    padding: 2px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 1px;
+    background-color: #28a7468c;
+    color: white!important;
+}
+.date-range{
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+.date-range input{
+    width: 130px;
+}
+@media screen and (max-width: 860px) {
+    .content{
+        flex-direction: column;
+    }
+    .complaint{
+        flex-direction: column;
+        justify-content: center;
+        height: 290px;
+        margin: 4px;
+    }
+    .description{
+        width: 90%;
+    }
+    .action{
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    #des{
+        text-align: center;
+    }
+}
+@media screen and (max-width: 540px) {
+    .images-button-section{
+        width: 55%;
+    }
+    .complaint{
+        margin: 5px;
+    }
+    .action{
+        flex-direction: column;
+        align-items: center;
+    }
+    .details,.images-button-section{
+        width: 90%;
+        box-shadow: none;
+    }
+    .details{
+        box-shadow: none;
+    }
+    .img{
+        display: flex;
+        justify-content: center;
+    }
+    .complaint{
+        height: 550px;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
+    }
+}
+ 

@@ -7,4 +7,18 @@
         <exception-type>java.lang.Exception</exception-type>
         <location>/Error.jsp</location>
     </error-page>
+<!--    <servlet>-->
+<!--        <servlet-name>Login</servlet-name>-->
+<!--        <jsp-file>/view/Login.jsp</jsp-file>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>Login</servlet-name>-->
+<!--        <url-pattern>/login</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <context-param>-->
+<!--        <param-name>url</param-name>-->
+<!--        <param-value>/test_war_exploded/</param-value>-->
+<!--    </context-param>-->
+
+
 </web-app>

@@ -5,11 +5,12 @@
     margin: 0;
 }
 .login{
-    background-color: var(--primary-color);
+    /*background-color: var(--primary-color);*/
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh ;
+    background-image: url("../../images/bgPattern/p1.jpg");
 }
 .login .container{
     background-color: #EFF5F0;
@@ -32,6 +33,7 @@
     justify-content: space-between;
     border-radius: 40px;
     box-shadow: 10px 8px 26px rgba( 0 , 0 ,0 , 0.06) ;
+
 }
 .left .logo img{
     width: 50px;
@@ -122,7 +124,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.right form .form-group input:focus {
+    border: none;
+}
 .right form .form-group label{
     padding: 10px 0 20px 0 ;
     font-family: Arial;
@@ -138,6 +142,7 @@
     height: 40px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
     margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .right form .form-group input:hover{
@@ -208,7 +213,15 @@ input::-webkit-inner-spin-button {
 .sm-logo {
     display: none;
 }
-
+.alert-danger1{
+    text-align: center;
+    font-size: .9em;
+    font-family: Arial, serif;
+    color: #ffffff;
+    background-color: rgba(255, 0, 0, 0.43);
+    margin-top: 10px;
+    padding: 10px;
+}
 @media only screen and (max-width: 576px) {
     .login .container{
         width: 90%;

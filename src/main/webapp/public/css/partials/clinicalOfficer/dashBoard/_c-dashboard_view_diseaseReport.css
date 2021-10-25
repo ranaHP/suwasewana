@@ -1,0 +1,231 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 78px;
+    background-color: #dfe4ea59;
+    max-width: calc(100vw - 78px);
+    box-sizing: border-box;
+}
+.content{
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 100vh;
+    width: 100%;
+    padding: 10px;
+    overflow-x: hidden;
+    font-family: Arial;
+    padding: 50px;
+    padding-top: 0;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    /* background-color: red;*/
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .7em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.containor div{
+    padding:10px;
+    margin-top: 20px;
+}
+.selected-disease-description{
+    margin: 20px 3px;
+    border: 1px solid rgba(47, 47, 47, 0.3);
+    font-size: .9em;
+}
+.summary-disease{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.summary-description, .death-rate{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    height: fit-content;
+    width: 90%;
+    text-align: center;
+    margin: 10px auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+}
+.infected-chart-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    height: fit-content;
+    width: 40%;
+    text-align: center;
+    margin: 10px auto;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    padding: 20px;
+}
+.infected-chart-details p{
+
+    font-size: 1.1em;
+}
+.summary-description title{
+    align-items: center;
+}
+.summary-description-container{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    width: 60%;
+    height: fit-content;
+}
+span{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8em;
+    color: rgba(14, 13, 13, 0.781);
+}
+.disease-list{
+    display: flex;
+    overflow: scroll;
+    margin: 5px;
+    width: 100%;
+    font-size: .8em;
+}
+.icon{
+    width: 4%;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+.scroll{
+    display: flex;
+    justify-content: center;
+}
+.disease-list .disease-name{
+    width: 25%;
+    min-width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 45px;
+    margin: 6px;
+    background-color: white;
+    cursor: pointer;
+    font-size: .8em;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+}
+.disease-list .disease-name:hover{
+    background-color: #009684a1;
+}
+.disease-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    overflow-y: scroll;
+}
+
+.disease-list::-webkit-scrollbar {
+    display: none;
+}
+
+.infected-details,.infected-summary-charts{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.age-expansion,.gender-expansion,.selected-disease-description{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.selected-disease-description div{
+    margin-top: 10px;
+}
+.title{
+    font-size: 1.4em;
+    color: rgba(0, 0, 0, 0.67) !important;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+.title h6{
+    font-size: 1.3em;
+    color: rgba(0, 0, 0, 0.68) !important;
+    padding-top: 20px;
+}
+@media screen and (max-width: 1150px) {
+    .summary-disease,.infected-details{
+        flex-direction: column;
+    }
+    .summary-chart,.infected-summary-charts{
+        width: 100%;
+    }
+    .summary-description,.infected-chart-details{
+        width: 80%;
+        padding: 0px;
+    }
+    .infected-summary-charts{
+        flex-direction: column;
+        margin: 0;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+    .death-rate{
+        width: 60%;
+        margin:5px 0;
+    }
+    #mychart{
+        width: 400px;
+    }
+}
+@media screen and (max-width: 624px) {
+    .mychart1{
+        width: 300px;
+    }
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+
+        transition: 0.2s ease;
+        /*transition-delay: 0.1s;*/
+    }
+}
+@media screen and (max-width: 492px) {
+    .mychart1,.myChart2,.myChart3{
+        width: 190px;
+    }
+}

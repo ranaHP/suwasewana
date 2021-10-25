@@ -1,0 +1,179 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+body{
+    margin-left: 78px;
+    background-color: #dfe4ea59;
+    max-width: calc(100vw - 78px);
+}
+.containor{
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    width: 100%;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    width: 100%;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    /* width: 100%; */
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.report-containor{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 50px;
+    padding-top: 0;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.reports{
+    display: flex;
+    width: 100%;
+}
+.report1,.report2{
+    display: flex;
+    /* flex-direction: column; */
+    margin-top: 10px;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+.clinic-expansion-chart{
+    display: flex;
+    flex-direction: column;
+}
+.search-category{
+    height: 80px;
+    display: flex;
+}
+.month-select{
+    height: fit-content;
+
+}
+.from-to-month-select{
+    display: flex;
+    justify-content: flex-start;
+    width: 900px;
+    float: left;
+}
+.from-to-month-select span{
+    display: flex;
+    align-items: center;
+}
+.chart-summary{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+.most,.least{
+    background-color: white;
+    width: 60%;
+    padding: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.title h4{
+    font-size: 1.3em;
+    color: rgba(0, 0, 0, 0.67) !important;
+    padding-top: 20px;
+}
+
+.title h6{
+    font-size: 1.3em;
+    color: rgba(0, 0, 0, 0.68) !important;
+    padding-top: 20px;
+}
+@media screen and (max-width: 1075px) {
+    .reports{
+        flex-direction: column;
+        align-items: center;
+    }
+    .report1,.report2{
+        border: 1px solid rgba(4, 4, 4, 0.178);
+        width: 80%;
+        align-items: center;
+        padding: 10px;
+    }
+    .chart-summary{
+        justify-content: space-around;
+        width: 90%;
+        align-content: center;
+        align-items: center;
+        height: 70%;
+    }
+    .chart-summary div{
+        background-color: rgba(221, 219, 219, 0.178);
+        height: 40px;
+        font-size: .8em;
+    }
+}
+@media screen and (max-width: 872px) {
+    .mychart{
+        width: 300px;
+    }
+    .from-to-month-select{
+        width: 100%;
+    }
+    .from-to-month-select span{
+        font-size: .6em;
+    }
+    select{
+        font-size: .5em;
+    }
+    .report2,.report1{
+        flex-direction: column;
+    }
+
+}
+@media screen and (max-width: 515px) {
+    .chart-summary{
+        font-size: .6em;
+    }
+    .mychart{
+        width: 200px;
+    }
+    .chart-title{
+        font-size: .6em;
+        text-align: center;
+    }
+}

@@ -1,0 +1,222 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #dfe4ea59;
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.container{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100vw - 78px);
+    margin-left: 78px;
+    min-height: 100vh;
+    transition: 0.2s ease;
+    overflow-x: hidden;
+}
+/*nav bar*/
+
+.sidebar-main-show{
+    max-width: calc(100vw - 260px);
+    margin-left: 260px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.search-section{
+    display: flex;
+    /*flex-direction: column;*/
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    align-content: center;
+    width: 50%;
+    margin-left: 17%;
+}
+.search-section input{
+    /*margin-left: 20%;*/
+    padding-left: 5px;
+    margin: 0 5px;
+    border: 0;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);
+    height: 25px;
+    width: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.request-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.request-card{
+    font-family: Segoe UI;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    width: 60%;
+    height: 110px;
+    margin-top: 15px;
+    /*box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);*/
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.1);
+}
+.right{
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+}
+.information{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.buttons{
+    width: 30%;
+    padding-top: 15px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+button{
+    font-size: .7em;
+    padding: 2px;
+}
+.up,.down{
+    display: flex;
+    justify-content: space-between;
+}
+.up,.down div{
+    padding: 10px;
+    margin-right: 50px;
+}
+.icon{
+    margin-right: 5px;
+}
+.up-buttons,.down-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-bottom: 10px;
+}
+.up-buttons button{
+    width: 48%;
+    cursor: pointer;
+}
+.down-buttons button{
+    width: 100%;
+    color: white;
+    border: 0;
+    background-color: #0275D8;
+    border-radius: 3px;
+    padding: 2.5px;
+    cursor: pointer;
+}
+.accept-b{
+    background-color: white;
+    border-radius: 3px;
+    color: #5CB85C;
+    border: none;
+    border: 1px solid #5cb85c
+}
+.reject-b{
+    background-color: white;
+    border-radius: 3px;
+    color: #D9534F;
+    border: none;
+    border: 1px solid #d9534f
+}
+.accept-b:hover{
+    background-color: #5cb85ce8;
+    color: white;
+}
+.reject-b:hover{
+    background-color: #d9544fe7;
+    color: white;
+}
+@media screen and (max-width: 1010px) {
+    .request-card{
+        flex-direction: column;
+        height: 200px;
+    }
+    .right{
+        width: 100%;
+    }
+    .details{
+        text-align: center;
+    }
+    .buttons{
+        margin-right: 5px;
+    }
+    .information div{
+        margin: 0;
+    }
+    .search-section{
+        flex-direction: column;
+        height: 100px;
+        width: 100%;
+        margin-left: 2px;
+    }
+    .search-section input{
+        width: 180px;
+    }
+}
+@media screen and (max-width: 625px){
+    .sidebar-main-show{
+        max-width: calc(100vw - 78px);
+        margin-left: 78px;
+        transition: 0.2s ease;
+    }
+
+}
+@media screen and (max-width: 536px) {
+    .right{
+        flex-direction: column;
+        align-items: center;
+    }
+    .buttons{
+        width: 90%;
+    }
+    .request-card{
+        height: 230px;
+    }
+}
+@media screen and (max-width: 420px) {
+    .details{
+        font-size: .8em;
+    }
+    .request-card{
+        width: 75%;
+        height: 250px;
+    }
+}
+

@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+.calender-container {
+    width: 100%;
+    /*height: 100px;*/
+    /*background-color: red;*/
+}
+
+.calender {
+    /*background-color: #fff;*/
+    /*border-radius: 8px;*/
+    /*box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.185);*/
+    padding-top: 20px;
+}
+
+.month-year-container {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    height: fit-content;
+}
+
+.month-year-container svg {
+    cursor: pointer;
+}
+
+.month-year-container span {
+    margin: auto 0;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.pre-nxt-month-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.596);
+    cursor: pointer;
+}
+
+.days-container {
+    /* background-color: #741c1c; */
+    /* height: calc(100% - 50px); */
+    height: fit-content;
+    border-radius: 10px 10px 0 0;
+
+}
+
+.days-name, .days {
+    width: 90%;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.days-name {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.116);
+    color: rgba(0, 0, 0, 0.404);
+}
+
+.days {
+    height: fit-content;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.d-name, .date {
+    width: calc(100% / 7);
+    text-align: center;
+}
+
+.d-name {
+    font-size: 0.9em;
+}
+
+.date {
+    font-size: 0.8em;
+    /* height: calc(82% / 5); */
+    height: 45px;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(78, 78, 78, 0.548);
+    /* background-color: rgba(255, 127, 80, 0.253); */
+
+}
+
+.badge {
+    background-color: tomato;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    font-size: .6em;
+    line-height: 16px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+}
+
+.today {
+    /* background-color: coral; */
+    background-color: rgba(255, 127, 80, 0.068);
+    border: 1px solid coral;
+    border-radius: 50%;
+    color: #000;
+    box-sizing: border-box;
+    /* border-radius: 50px; */
+}
+
+.currentMonthday {
+    color: #000;
+    background-color: #fff;
+
+}
+
+.range {
+    background-color: rgba(255, 127, 80, 0.068);
+    color: #000;
+    box-sizing: border-box;
+}
+
+.range-start {
+    background-color: coral;
+    color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: 8px;
+}
+
+.range-end {
+    background-color: coral;
+    color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    border-radius: 8px;
+}

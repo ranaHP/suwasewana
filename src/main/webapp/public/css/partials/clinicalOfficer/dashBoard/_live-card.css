@@ -1,0 +1,187 @@
+
+/*.live-card{*/
+/*    padding: 10px;*/
+/*    font-size: .8em;*/
+/*    width: 90%;*/
+/*    height: 400px;*/
+/*    color: #06060660;*/
+/*    font-family: Segoe UI;*/
+/*    box-shadow: 0 0 6px rgba(0, 0, 0, 0.151);*/
+/*}*/
+/*.live-card .clinic-title{*/
+/*    padding: 10px 10px 0 10px;*/
+/*    font-size: 1.4em;*/
+/*}*/
+/*.live-card .clinic-date{*/
+/*    padding: 1px 10px 10px 10px;*/
+/*}*/
+/*.live-card .clinic-description{*/
+/*    padding: 10px;*/
+/*    font-size: .9em;*/
+/*}*/
+/*.live-card .clinic-details{*/
+/*    padding: 10px 10px 10px 10px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    font-size: .9em;*/
+/*}*/
+/*.live-card .clinic-details .item{*/
+/*    padding: 10px;*/
+/*}*/
+/*.clinic-details #item{*/
+/*    padding: 2px;*/
+/*}*/
+/*span{*/
+/*    color: #0606069d;*/
+/*}*/
+
+/*.down-box{*/
+/*    padding: 10px;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    font-family: Segoe UI, serif;*/
+/*}*/
+/*.delete-button{*/
+/*    padding: 4px 22px;*/
+/*    margin: 2px 2px 7px 2px;*/
+/*    background-color: #D9534F;*/
+/*    border-radius: 2px;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.edit-button{*/
+/*    padding: 4px 22px;*/
+/*    margin: 2px 2px 7px 2px;*/
+/*    background-color: #F0AD4E;*/
+/*    border-radius: 2px;*/
+/*    color: white;*/
+/*    cursor: pointer;*/
+/*}*/
+/*.current-participant-count{*/
+/*    display: flex;*/
+/*    margin-top: 30px;*/
+/*    margin-left: 2px;*/
+/*}*/
+/*.current-participant-count .current-participant-img{*/
+/*    padding: 1px;*/
+/*    height: 25px;*/
+/*    width: 25px;*/
+/*    color: rgba(0, 0, 0, 0.521);*/
+/*    align-content: center;*/
+/*    border-radius: 100px;*/
+/*    text-align: center;*/
+/*    box-shadow: 0 0 6px rgba(0, 0, 0, 0.151);*/
+/*    overflow: hidden;*/
+/*}*/
+/*.current-participant-count .count-participants{*/
+/*    margin-top: 6px;*/
+/*    margin-left: 5px;*/
+/*    font-size: .8em;*/
+/*    color: black;*/
+/*}*/
+.live-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /*align-items: center;*/
+    padding: 10px;
+    font-size: .9em;
+    /*width: 250px;*/
+    width: 90%;
+    max-width: 250px;
+    height: 350px;
+    color: #06060660;
+    font-family: Arial;
+    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.16);
+    margin:15px;
+    cursor: pointer;
+    transition: 0.9s;
+    background-color: white;
+}
+/* .live-card:hover{
+    transform: scale(1.03);
+    z-index: 5;
+} */
+.button{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.live-card .clinic-title{
+    padding: 10px 0px 0px 0px;
+    text-align: center;
+    font-size: 1.4em;
+    color:rgba(33, 33, 77, 0.808);
+    /* background-color: rgba(0, 0, 139, 0.137); */
+}
+.live-card .clinic-date{
+    padding: 1px 10px 10px 10px;
+}
+.live-card .clinic-description{
+    padding: 10px;
+    font-size: 1em;
+    color: rgba(0, 0, 0, 0.79);
+}
+.live-card .clinic-details{
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: .9em;
+}
+.clinic-details div{
+    margin: 2px 0;
+}
+.clinic-details #item{
+    padding: 2px;
+}
+span{
+    color: #0606069d;
+}
+
+.down-box{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-family: Segoe UI;
+}
+.delete-button{
+    padding: 2px 18px;
+    /*margin: 2px 2px 7px 2px;*/
+    background-color: #EB3B5A;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    font-size: .9em;
+}
+.edit-button{
+    padding: 2px 18px;
+    /*margin: 2px 2px 7px 2px;*/
+    background-color: #F0AD4E;
+    border-radius: 2px;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    font-size: .9em;
+}
+.current-participant-count{
+    display: flex;
+    margin-top: 30px;
+    margin-left: 2px;
+}
+.current-participant-count .current-participant-img{
+    padding: 1px;
+    height: 25px;
+    width: 25px;
+    color: rgba(0, 0, 0, 0.521);
+    align-content: center;
+    border-radius: 100px;
+    text-align: center;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.151);
+    overflow: hidden;
+}
+.current-participant-count .count-participants{
+    margin-top: 6px;
+    margin-left: 5px;
+    font-size: .8em;
+    color: black;
+}

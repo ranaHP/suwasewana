@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    margin-left: 78px;
+    background-color: #f3f3f359;
+}
+.container{
+    min-height: 100vh;
+    /* overflow-x: hidden; */
+    font-family: 'Open Sans', sans-serif;
+}
+.header{
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header .upper-title{
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header .dashboard-name{
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.search-section{
+    width: 90%;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    /* padding:0 250px; */
+    padding-left: 20%;
+    box-sizing: border-box;
+}
+/* for searching */
+.searchbar{
+    display: flex;
+}
+input{
+    width: 80%;
+    border: 0;
+    border-radius: 3px;
+    height: 26px;
+    padding-left: 5px;
+    box-shadow: 1px 1px 6px rgba(131, 128, 128, 0.315);
+    outline: none;
+}
+.search-section button{
+    width: 100px;
+    height:26px;
+    margin:0 5px;
+    background-color: #0D47A1;
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.157);
+    letter-spacing: .1em;
+    font-weight: 600;
+    color: #f2f6fd;
+}
+.left{
+    width: 70%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 10px;
+}
+.right{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30%;
+}
+.announcements-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.announcement{
+    padding: 8px;
+    margin-top: 20px;
+    display: flex;
+    /* justify-content: space-around; */
+    align-items: center;
+    height: 200px;
+    width: 60%;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    border-radius: 2px;
+    /* flex-direction: row-reverse; */
+    cursor: pointer;
+}
+.announcement:hover{
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.164);
+}
+.announcement-title{
+    color: rgba(0, 0, 0, 0.76);
+    font-size: 1.3em;
+    text-align: left !important;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.announce-description{
+    color: rgba(0, 0, 0, 0.575);
+    font-size: .8em;
+    text-align: left;
+}
+.announce-details{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    align-items: flex-start;
+    font-size: .75em;
+    color: rgba(0, 0, 0, 0.527);
+    padding: 10px 0;
+}
+.announce-details span{
+    padding-left: 20px;
+    color: rgba(0, 0, 0, 0.657);
+    font-weight: 600;
+    font-size: 1em;
+}
+span::before{
+    content: ": ";
+}
+
+.image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image img{
+    min-width: 150px;
+    height: 120px;
+}
+.detail{
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    border: none;
+    padding: 3.5px;
+    border-radius: 2px;
+    margin:0 5px;
+    width: 90px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.849);
+    font-size: .8em;
+}
+.delete button{
+    background-color: #EB3B5A;
+}
+.Edit button{
+    background-color: #F0AD4E;
+}
+.button-section{
+    display: flex;
+    justify-content: center;
+}
+@media screen and (max-width: 1075px) {
+    .button-section{
+        flex-direction: column;
+        align-items: center;
+    }
+    button{
+        margin-top: 5px;
+        width: 100px;
+    }
+    .announcement{
+        height: 200px;
+        width: 80%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .announcement{
+        flex-direction: column;
+        height: 400px;
+    }
+    .announce-details{
+        width: 90%;
+        margin-top: 10px;
+    }
+    .button-section{
+        flex-direction: row;
+    }
+    .search-section{
+        padding: 5px;
+        align-items: center;
+    }
+}
+@media screen and (max-width: 390px) {
+    .announcement{
+        height: 460px;
+        width: 85%;
+    }
+    .announce-description{
+        font-size: .7em;
+        margin-top: 10px;
+    }
+    .announcement-title{
+        width: 100%;
+    }
+}
