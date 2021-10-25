@@ -127,15 +127,19 @@
                         console.log("---------------success");
                         if(post=="COfficer"){
                             console.log("valide clinical officer")
+                            location.assign("http://localhost:8080/suwasewana_war/s/clinic-dashboard");
                         }
                         if(post=="PHI"){
                             console.log("valide PHI")
+                            location.assign("http://localhost:8080/suwasewana_war/s/PHI-dashboard");
                         }
                         if(post=="RPHI"){
                             console.log("valide RPHI")
+                            location.assign("http://localhost:8080/suwasewana_war/s/PHI-dashboard");
                         }
                         if(post=="Admin"){
                             console.log("valide Admin")
+                            location.assign("http://localhost:8080/suwasewana_war/s/admin-dashboard");
                         }
                     } else if (result.status === "error") {
                         console.log("---------------unsucess");
