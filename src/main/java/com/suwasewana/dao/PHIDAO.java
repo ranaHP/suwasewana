@@ -25,28 +25,26 @@ public class PHIDAO {
     public ArrayList<PHIModel> GetPHIDetails() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_phi)) {
             ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs);
             ArrayList<PHIModel>phiList = new ArrayList<PHIModel>();
             while (rs.next()) {
                 String name = rs.getString("full_name");
                 String id = rs.getString("mohId");
-                String pid=rs.getString("phi_Id");
-//                PHIModel temp = new PHIModel(
-//                        id,
-//                        name,
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        pid
-//                );
-//
-//                phiList.add(temp);
+                String mohId=rs.getString("mohId");
+                PHIModel temp = new PHIModel(
+                        name,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        mohId,
+                        ""
+                );
+
+                phiList.add(temp);
             }
             return phiList;
         } catch (SQLException throwables) {

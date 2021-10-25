@@ -98,7 +98,7 @@
     display: flex;
     align-items: center;
     font-family: 'Segoe UI' ;
-    cursor: rgba(0, 0, 0, 0.527);
+    cursor: pointer;
     
 }
 .current-registered-count img {

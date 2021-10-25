@@ -19,127 +19,145 @@
 </head>
 <body>
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"></c:import>
-<div id="mainContent" class="AC_main_Container">
+<div class="AC_main_Container">
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
     <div class="dashboard-name">Admin/Register/ClinicalOfficer</div>
   </div>
-  <form action="" id="form">
-    <div class="AC_container">
-      <div class="AC_Body_container" id="AC_Body_container">
-        <div class="Container_left">
-          <div class="LRow">
-            <div class="form-item">
-              <input type="text" id="clinicID"  autocomplete="off" required>
-              <label class="name" for="clinicID">Search by Name</label>
-              <span class="error" id="LfullName" onclick="view()"><i class="icon" data-feather="search"></i></span>
-            </div>
+  <div class="c-db-container">
+    <div class="row" style="width: 100%;">
+      <form>
+        <div class="row" style="align-items: center;justify-content: center;">
+          <div class="form-group">
+            <label for="aTitle">
+              Clinic Name
+            </label>
+            <input type="text" name="name" id="aTitle12" autocomplete="off"
+                   required/>
           </div>
-          <div class="LRow">
-            <label>Title</label><br>
-            <input type="text" name="" id="Title">
-          </div>
-          <div class="LRow mt5">
-            <textarea rows='1' placeholder='Type Description here...'></textarea>
-            <label id="Des">Description</label>
-
-          </div>
-          <div class="LRow">
-
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <i data-feather="circle"></i>
-                </div>
-                <div class="row_text">
-                  <label>Location</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text">
-              </div>
-            </div>
-
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <i data-feather="calendar"></i>
-                </div>
-                <div class="row_text">
-                  <label>Date & Time</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text">
-              </div>
-            </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <i data-feather="clock"></i>
-                </div>
-                <div class="row_text">
-                  <label>Duration</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text">
-              </div>
-            </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <i data-feather="user"></i>
-                </div>
-                <div class="row_text">
-                  <label>Conduct By</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text">
-              </div>
-            </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <i data-feather="triangle"></i>
-                </div>
-                <div class="row_text">
-                  <label >Max limit</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text">
-              </div>
-            </div>
-
+          <div class="form-group">
+            <label for="aTitle">
+              &nbsp;
+            </label>
+            <button class="submitBtn " type="submit" > Search </button>
           </div>
         </div>
-        <div class="Container_right">
-          <div class="RRow">
-            <textarea rows='1' id="TargetP" placeholder='Type target patients here...'></textarea>
-            <label id="target">Target Participant</label>
-          </div>
-          <div class="RRow">
-            <div class="row ">
-              <div class="image-upload-card-list-container">
+      </form>
+    </div>
+    <div class="form-container">
+      <div class="left-col">
+        <div class="row" >
+          <form style="width: 100%;">
+            <div class="row">
+              <div class="form-group">
+                <label for="aTitle">
+                  Announctment Title
+                </label>
+                <input type="text" name="name" id="aTitle1" autocomplete="off"
+                       required/>
 
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <label for="reason">
+                  Announctment Description
+                </label>
+                <textarea rows="4" cols="50" type="text" placeholder="reason" name="reason"
+                          id="reason"> Reason.... </textarea>
+              </div>
+
+            </div>
+            <div class="row" style="display: flex;flex-wrap: wrap;justify-content: flex-start;">
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Location
+                </label>
+                <input type="text" name="name" id="aTitle2" autocomplete="off"
+                       required/>
+
+              </div>
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Date & Time
+                </label>
+                <input type="text" name="name" id="aTitle3" autocomplete="off"
+                       required/>
+
+              </div>
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Duration
+                </label>
+                <input type="text" name="name" id="aTitle31" autocomplete="off"
+                       required/>
+
+              </div>
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Conduct By
+                </label>
+                <input type="text" name="name" id="aTitle4" autocomplete="off"
+                       required/>
+
+              </div>
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Max limit
+                </label>
+                <input type="text" name="name" id="aTitle5" autocomplete="off"
+                       required/>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group d-flex-a-i-end">
+
+                <button class="submitBtn " type="submit" > Make Announctment</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="right-col">
+        <div class="row" >
+          <form style="width: 100%;">
+            <div class="row">
+              <div class="form-group">
+                <label for="aTitle">
+                  Target Peoples
+                </label>
+                <input type="text" name="name" id="aTitle" autocomplete="off"
+                       required/>
+
+              </div>
+            </div>
+            <div class="row">
+
+
+            </div>
+
+
+            <div class="row">
+              <div class="form-group d-flex-a-i-end">
                 <div class="image-upload-card-container">
                   <div class="image-upload-card">
-                    <img id="proof3" width="100%"/>
-                    <input type="file" accept="image/*" name="image" id="proof3input"
-                           onchange="loadFile(event, 'proof3')" style="display: none;">
-                    <label id="upload-btn" for="proof3input" style="cursor: pointer;">Upload Image</label>
+                    <img id="proof2" width="100%" />
+                    <input type="file" accept="image/*" name="file" id="proof2input"
+                           onchange="loadFile(event, 'proof2')" style="display: none;">
+                    <label for="proof2input" style="cursor: pointer;">Upload Image</label>
                   </div>
                 </div>
               </div>
+
             </div>
-          </div>
+          </form>
         </div>
       </div>
-      <button id="sybmit">submit</button>
     </div>
-  </form>
+  </div>
 
 </div>
 <script>
