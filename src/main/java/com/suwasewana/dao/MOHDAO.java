@@ -78,7 +78,7 @@ public class MOHDAO {
                         "",
                         ""
                 );
-//
+                System.out.println("Moh district "+ temp.getDistrict());
                 mohList.add(temp);
             }
             return mohList;
