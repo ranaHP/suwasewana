@@ -45,7 +45,7 @@ class Complain {
                             <div class="complaint-card">
                                 <div class="header">
                                     ${item.CTitle}
-                                    <p> ${item.Posted_Date}</p>
+                                    <p> ${(item.Posted_Date).split(" ")[0]}</p>
                                 </div>
 
                                 <div class="properties">
