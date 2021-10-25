@@ -302,7 +302,7 @@
                                     <label for="uDetailsType">
                                         MOH Area
                                     </label>
-                                    <input id="MOHArea" type="text" list="allMOHArea" name="allMOHArea"  value="wwwwwww" autocomplete="off"
+                                    <input id="MOHArea" type="text" list="allMOHArea" name="allMOHArea"  autocomplete="off"
 
                                            onchange="fillMOH('MOHArea');
                                            validation.selectCheck('MOHArea','eMOHArea');"
@@ -377,7 +377,7 @@
                                             <label for="proof3input" style="cursor: pointer;">Upload Image</label>
                                         </div>
                                     </div>
-                                    <button onclick="imageUpload();"> add pic</button>
+<%--                                    <button onclick="imageUpload();"> add pic</button>--%>
 
                                 </div>
                             </div>
