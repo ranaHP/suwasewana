@@ -7,7 +7,7 @@ public class OfficerLoginModel {
     protected String full_name;
     protected String NIC ;
     protected String Address;
-    protected String device_MAC;
+    protected String MAC;
     protected String City;
     protected String District;
     protected String phi_post;
@@ -21,7 +21,7 @@ public class OfficerLoginModel {
         super();
         this.mobile=mob;
         this.password=pass;
-        this.device_MAC=mac;
+        this.MAC=mac;
     }
 
     public String getMobile() {
@@ -72,12 +72,12 @@ public class OfficerLoginModel {
         Address = address;
     }
 
-    public String getDevice_MAC() {
-        return device_MAC;
+    public String getMAC() {
+        return MAC;
     }
 
-    public void setDevice_MAC(String device_MAC) {
-        this.device_MAC = device_MAC;
+    public void setMAC(String MAC) {
+        this.MAC = MAC;
     }
 
     public String getCity() {
