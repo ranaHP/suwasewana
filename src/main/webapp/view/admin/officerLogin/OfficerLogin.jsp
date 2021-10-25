@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <div class="formlable"><label> Mobile Number</label></div>
 
-                            <input type="text" autofocus maxlength="10" required autocomplete="off" name="user-mobile" id="user-mobile"
+                            <input type="text" autofocus maxlength="10" value="0713805000" required autocomplete="off" name="user-mobile" id="user-mobile"
                                    onkeyup="validation.mobileValidation(
                                         document.getElementById('user-mobile').value,
                                         'user-mobile-error'
@@ -50,7 +50,7 @@
                         <div class="form-group">
                             <div class="formlable"><label> Password</label> </div>
 
-                            <input type="password" required autocomplete="false" name="user-password" id="user-password"
+                            <input type="password" value="1234@Akila" required autocomplete="false" name="user-password" id="user-password"
                                    onkeyup="validation.passwordValidation(
                                         document.getElementById('user-password').value,
                                         'user-password-error'
@@ -61,6 +61,15 @@
                                 <i data-feather="eye" id="eye" class="c-gray"></i>
                             </div>
                             <div id="user-password-error" class="form-field-error"></div>
+
+                        </div>
+                        <div class="type">
+                            <select name="post" id="Post">
+                                <option value="PHI">PHI</option>
+                                <option value="RPHI">RPHI</option>
+                                <option value="COfficer">Clinical Officer</option>
+                                <option value="Admin">Admin</option>
+                            </select>
                         </div>
                         <div class="loginbtn"><input type="submit" class="login-btn" value="Login" /></div>
                         <div id="user-form-error" class=" form-response-error t-center pt-5" style=" font-size: .6em;">
@@ -98,12 +107,15 @@
         }
 
         function checkLoginValidation() {
-
+            console.log("check logoon validation  work")
             if (
                 validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
                 validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
             ) {
-                let url = "/suwasewana_war/officer-login-controller?user-mobile=" + document.getElementById("user-mobile").value+ "&user-password=" + document.getElementById("user-password").value;
+
+                let post=document.getElementById("Post").value;
+                console.log(post);
+                let url = "/suwasewana_war/officer-login-controller?user-mobile=" + document.getElementById("user-mobile").value+ "&user-password=" + document.getElementById("user-password").value+ "&Post="+post;
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function () {
                     let result = JSON.parse(this.response);
@@ -113,14 +125,26 @@
                     if (result.status === "success") {
                     //     location.replace("https://www.w3schools.com");
                         console.log("---------------success");
+                        if(post=="COfficer"){
+                            console.log("valide clinical officer")
+                        }
+                        if(post=="PHI"){
+                            console.log("valide PHI")
+                        }
+                        if(post=="RPHI"){
+                            console.log("valide RPHI")
+                        }
+                        if(post=="Admin"){
+                            console.log("valide Admin")
+                        }
                     } else if (result.status === "error") {
                         console.log("---------------unsucess");
-                    //     document.getElementById('user-form-error').style.display = "block";
-                    //     document.getElementById("user-password").value = "";
-                    //     document.getElementById("user-mobile").value = "";
-                    //     setTimeout(() => {
-                    //         document.getElementById('user-form-error').style.display = "none";
-                    //     }, 8000)
+                        document.getElementById('user-form-error').style.display = "block";
+                        // document.getElementById("user-password").value = "";
+                        // document.getElementById("user-mobile").value = "";
+                        setTimeout(() => {
+                            document.getElementById('user-form-error').style.display = "none";
+                        }, 3000)
                     }
                     else{
                         console.log("somthing going wrong");
