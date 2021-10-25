@@ -32,7 +32,7 @@ public class UserDAO {
 
     private static final  String USER_LOGIN_ATTEMPT = "SELECT login_status FROM `citizen` WHERE uMobile = ?";
     private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT DATE_ADD(suspended_time, INTERVAL 5 minute) AS suspended_time FROM `citizen` WHERE uMobile = ? AND DATE_ADD(suspended_time, INTERVAL 5 minute) > current_timestamp(); ";
-    private static final  String USER_LOGOUT = "UPDATE `citizen` SET `login_status` = '0' WHERE `citizen`.`uMobile` = ?; ";
+    private static final  String USER_LOGOUT = "UPDATE `citizen` SET `login_status` = '0' WHERE `citizen`.`uNic` = ?; ";
     private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `citizen` SET `login_status` = ? , `suspended_time` = current_timestamp() WHERE `citizen`.`uMobile` = ?; ";
     private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`,`img1`,`img2`,`img3`) " +
@@ -171,10 +171,11 @@ public class UserDAO {
         return new UserLoginModel("", "", "");
     }
 
-    public Integer UserLogout(String uMobile) {
+    public Integer UserLogout(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGOUT)) {
-            preparedStatement.setString(1, uMobile);
+            preparedStatement.setString(1, userLogin.getUnic());
             Integer rs = preparedStatement.executeUpdate();
+            System.out.println(rs);
             return rs;
         } catch (SQLException throwables) {
             printSQLException(throwables);

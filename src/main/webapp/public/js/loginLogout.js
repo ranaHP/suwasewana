@@ -8,7 +8,7 @@ class LoginLogout{
            `<div class="register-btn" onclick="window.location='${this.myUrl}/s/register';" >
                 ${this.getCookie("unic")}
             </div>
-            <div class="login-btn" onclick="window.location='${this.myUrl}/s/  ';">
+            <div class="login-btn" onclick="loginRegsiter.logout()">
                 Logout
             </div>`
        }else{
@@ -24,7 +24,7 @@ class LoginLogout{
 
     showLoginLogoutItemsLogin(div){
         if(this.getCookie('unic') != ""){
-            window.location='${this.myUrl}/s/';
+            window.location='/test_war_exploded/s/';
         }else{
             document.querySelector("."+div).innerHTML +=
                 `
@@ -60,6 +60,29 @@ class LoginLogout{
             }
         }
         return "";
+    }
+    logout(){
+
+        // window.location='${this.myUrl}/s/';
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            console.log(this.response);
+            // document.cookie = "unic" + "=" + "" + ";" + (1*24*60*60*1000) + ";path=/";
+            var pathBits = location.pathname.split('/');
+            var pathCurrent = ' path=';
+
+            // do a simple pathless delete first.
+            document.cookie = 'unic' + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT;';
+
+            for (var i = 0; i < pathBits.length; i++) {
+                pathCurrent += ((pathCurrent.substr(-1) != '/') ? '/' : '') + pathBits[i];
+                document.cookie = 'unic' + '=; expires=Thu, 01-Jan-1970 00:00:01 GMT;' + pathCurrent + ';';
+            }
+            location.replace( "/test_war_exploded/s/login")
+
+        }
+        xhttp.open("GET", this.myUrl+"/user-login-controller/logout?unic="+this.getCookie("unic"), true);
+        xhttp.send();
     }
 
 }
