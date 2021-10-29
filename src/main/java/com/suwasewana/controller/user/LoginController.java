@@ -14,14 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.util.Arrays;
-import java.util.Base64;
-import java.util.Random;
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
 @WebServlet("/user-login-controller/*")
 public class LoginController extends HttpServlet {
     UserDAO userDAO;
@@ -82,12 +74,10 @@ public class LoginController extends HttpServlet {
             ResponseType suwasewanaRespose = new ResponseType("success", this.gson.toJson(userLoginDetailsResponse));
             responseJsonString = this.gson.toJson(suwasewanaRespose);
             System.out.println(this.gson.toJson(userLoginDetailsResponse));
-//            Cookie loginCookie = new Cookie("uDetails",this.gson.toJson(userLoginDetailsResponse));
-            Cookie loginCookie = new Cookie("unic",this.gson.toJson(userLoginDetailsResponse).toString());
-//            setting cookie to expiry in 30 mins
+            String temp = userLoginDetailsResponse.getUname() +"/" + userLoginDetailsResponse.getUnic() + '/' + userLoginDetailsResponse.getMobile()+ '/' + userLoginDetailsResponse.getuMoh() + '/' + userLoginDetailsResponse.getuProvince() + '/' + userLoginDetailsResponse.getuDistrict() + '/' + userLoginDetailsResponse.getuCity();
+            Cookie loginCookie = new Cookie("uDetails", temp);
             loginCookie.setMaxAge(300*60);
             res.addCookie(loginCookie);
-            System.out.println(loginCookie.getValue());
         }
         out.print(responseJsonString);
         out.flush();

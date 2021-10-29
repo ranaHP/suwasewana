@@ -27,11 +27,7 @@ function checkLoginValidation() {
         let url = myUrl+"/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function () {
-            console.log(this.response);
-
             let result = JSON.parse([this.response]);
-            console.log(JSON.parse([result.data]));
-
             if (result.status === "success") {
                 location.replace(myUrl + "/s/");
             } else if (result.status === "error") {

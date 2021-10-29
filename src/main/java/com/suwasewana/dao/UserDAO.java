@@ -162,11 +162,11 @@ public class UserDAO {
                 userResponse.setuMoh(rs.getString("uMoh"));
                 userResponse.setUname(rs.getString("uname"));
                 if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
-//                    GetLoginAttemptChange(userLogin, "4");
+                    GetLoginAttemptChange(userLogin, "4");
                     return userResponse;
                 }
             }
-//            GetLoginAttemptChangeSupport(userLogin);
+            GetLoginAttemptChangeSupport(userLogin);
             return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
             printSQLException(throwables);

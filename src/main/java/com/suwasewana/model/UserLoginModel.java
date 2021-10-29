@@ -92,7 +92,7 @@ public class UserLoginModel {
     public void setuMoh(String uMoh) {
         this.uMoh = uMoh;
     }
-    public String toString(){
-        return "";
+    public String getString(){
+        return "{'mobile' : '0412283111'}";
     }
 }
