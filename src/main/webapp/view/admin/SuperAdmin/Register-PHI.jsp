@@ -16,7 +16,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/RegPHI.css "/>">
-    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
+    <script src="<c:url value="/public/js/admin/InputValidation.js "/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <%--    for popup style--%>
@@ -212,6 +212,86 @@
             </div>
 
         </form>
+
+
+
+        <div class="bulck_registration_form" >
+            <style>
+
+                .bulck_registration_form{
+                    box-sizing: border-box;
+                    padding: 20px;
+                    width: 95%;
+                    border: 1px solid #bdbdbd;
+                    margin-top: 10px;
+                    padding-left: 5px;
+                    border-radius: 5px
+
+                }
+                table{
+                    font-size: .7em;
+                }
+                th{
+                    padding: 5px;
+                    color: rgb(58, 58, 58);
+                    font-size: .8em;
+                    font-weight: 500;
+                }
+                .register_btn{
+                    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.178);
+                    background-color: #2108ff;
+
+
+                }
+                .add-all-btn{
+                    /*font-size: .8em;*/
+                    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.178);
+                    background-color: #2108ff;
+
+                }
+                .refresh-from-local{
+                    /*font-size: .8em;*/
+                    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.178);
+                    background-color: white;
+                    color: #2108ff;
+
+                }
+                td{
+                    padding: 5px;
+                    color: rgb(58, 58, 58);
+                    font-size: .8em;
+                    font-weight: 500;
+                }
+            </style>
+
+            <h5 style="color: #1d1b31;font-weight: 500"> This area is for bulk registration</h5>
+            <hr>
+            <br>
+            <input type="file" id="file" style="display: none;">
+            <label class="submit" for="file" style="cursor: pointer;">Upload PHI Data Set (CSV file)</label>
+
+            <button class="submit add-all-btn" onclick="phiBluckAddition()" > Register All PHI</button>
+            <button class=" submit refresh-from-local" onclick="makeTable()"> Refresh From LocalStorage</button>
+            <table border="1" id="bulkAdditionTable">
+                <tr>
+                    <th>Full_name</th>
+                    <th>NIC </th>
+                    <th>Mobile</th>
+                    <th>device_MAC</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>District</th>
+                    <th>phi_post</th>
+                    <th>PostalCode</th>
+                    <th>MohId </th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+
+            </table>
+        </div>
+
     </div>
 
 
@@ -219,6 +299,112 @@
 <script defer>
     let validation = new FormInputValidation();
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    document.getElementById('file').onchange = function () {
+        // console.log('asd')
+        var file = this.files[0];
+
+        var reader = new FileReader();
+        reader.onload = function (progressEvent) {
+            var lines = this.result.split('\n');
+            let phi_data = [];
+            for (var line = 1; line < lines.length; line++) {
+                // console.log(lines[line].split(","));
+                let temp = {
+                    phi_Id: "",
+                    full_name: lines[line].split(",")[0],
+                    NIC: lines[line].split(",")[1],
+                    mobile: lines[line].split(",")[2],
+                    device_MAC: lines[line].split(",")[3],
+                    Address: lines[line].split(",")[4],
+                    City: lines[line].split(",")[5],
+                    District: lines[line].split(",")[6],
+                    phi_post: lines[line].split(",")[7],
+                    login_status: "0",
+                    password: "",
+                    PostalCode: lines[line].split(",")[8],
+                    mohId: lines[line].split(",")[9],
+                    DP: "",
+                    suspended_time: "",
+                    databse_support: "no"
+                }
+                phi_data.push(temp);
+
+
+            }
+            localStorage.setItem("phiTemparyData", JSON.stringify(phi_data));
+            makeTable()
+        };
+        reader.readAsText(file);
+    };
+
+    function phiBluckAddition() {
+        if (localStorage.getItem("phiTemparyData") == "") {
+            return;
+        }
+        let phi_data_set = JSON.parse(localStorage.getItem("phiTemparyData"));
+        let phi_temp = phi_data_set;
+        phi_data_set.map((phi, index) => {
+
+            let reqData =
+                {
+                    full_name: phi.full_name ,
+                    NIC: phi.NIC,
+                    mobile:phi.mobile ,
+                    Address: phi.Address,
+                    city: phi.City,
+                    District: phi.District,
+                    phi_post: "PHI",
+                    postalCode: phi.PostalCode,
+                    MOHArea: phi.mohId,
+                    DP:""
+                };
+
+            console.log(reqData)
+            $.post("/test_war_exploded/admin-register-controller/phi",
+                reqData,
+                function (data, status) {
+                    console.log(data)
+                    if (data.includes("success")) {
+                        document.getElementById("bpds"+index).innerHTML = "✅ Registered ";
+                        phi_temp[index].databse_support = "✅ Registered ";
+                    } else {
+                        document.getElementById("bpds"+index).innerHTML = "❌ " +data ;
+                        phi_temp[index].databse_support = "❌ " +data ;
+                    }
+                }
+            );
+
+        })
+        localStorage.removeItem("phiTemparyData");
+        console.log(phi_data_set)
+        console.log(phi_temp)
+        localStorage.setItem("phiTemparyData" , JSON.stringify(phi_temp))
+    }
+    function makeTable(){
+        if (localStorage.getItem("phiTemparyData") == "") {
+            return;
+        }
+        let phi_data_set = JSON.parse(localStorage.getItem("phiTemparyData"));
+        phi_data_set.map((temp, index) => {
+            document.getElementById("bulkAdditionTable").innerHTML += `
+                        <tr>
+                    <td id="bpdf` +index + `" >`+ temp.full_name +`</td>
+                     <td id="bpdnic` +index + `" >`+ temp.NIC +`</td>
+                     <td id="bpdfmobile` +index + `">`+ temp.mobile +`</td>
+                     <td id="bpddm` +index + `">`+ temp.device_MAC +`</td>
+                     <td id="bpda` +index + `">`+ temp.Address+`</td>
+                     <td id="bpdc` +index + `">`+ temp.City+`</td>
+                     <td id="bpdd` +index + `">`+ temp.District+`</td>
+                     <td id="bpdpp` +index + `">`+ temp.phi_Id +`</td>
+                     <td id="bpdpc` +index + `">`+ temp.PostalCode+`</td>
+                     <td id="bpdmoh` +index + `">`+ temp.mohId+`</td>
+                     <td id="bpds` +index + `">`+ (temp.databse_support == "no"  ? "Not Registered" : "Registered ✅") +`</td>
+                     <td id="bpda` +index + `">
+                         <button class="submit register_btn"> Register </button>
+                     </td>
+                </tr>`;
+        })
+    }
 </script>
 <%--for image upload--%>
 <script>
@@ -261,7 +447,7 @@
         console.log("image neames array "+imageNames);
         if(imageNames.length!=0){
             $.ajax({
-                url: '/suwasewana_war/fileuploadservlet',
+                url: '/test_war_exploded/fileuploadservlet',
                 type: 'post',
                 data: fd,
                 contentType: false,
@@ -336,7 +522,7 @@
                 DP:imagearray[0]
             };
         console.log("post ==== "+reqData.phi_post)
-        $.post("/suwasewana_war/admin-register-controller/phi",
+        $.post("/test_war_exploded/admin-register-controller/phi",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -373,7 +559,7 @@
             };
 
         console.log("post ==== "+reqData.phi_post)
-        $.post("/suwasewana_war/admin-register-controller/phi",
+        $.post("/test_war_exploded/admin-register-controller/phi",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -403,7 +589,7 @@
 
 <script defer>
     let mohDetails=[];
-    $.post("/suwasewana_war/user-complain-controller/moh",
+    $.post("/test_war_exploded/user-complain-controller/moh",
         function (data, status) {
             // console.log(data);
             let rs= JSON.parse(data);

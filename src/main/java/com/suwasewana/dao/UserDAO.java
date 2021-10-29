@@ -1,5 +1,6 @@
 package com.suwasewana.dao;
 
+import com.google.gson.Gson;
 import com.suwasewana.core.DB;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
@@ -14,9 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import com.google.gson.Gson;
 
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
+    private Gson gson = new Gson();
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
     private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?,current_timestamp());";
     private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
@@ -32,7 +35,7 @@ public class UserDAO {
 
     private static final  String USER_LOGIN_ATTEMPT = "SELECT login_status FROM `citizen` WHERE uMobile = ?";
     private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT DATE_ADD(suspended_time, INTERVAL 5 minute) AS suspended_time FROM `citizen` WHERE uMobile = ? AND DATE_ADD(suspended_time, INTERVAL 5 minute) > current_timestamp(); ";
-    private static final  String USER_LOGOUT = "UPDATE `citizen` SET `login_status` = '0' WHERE `citizen`.`uMobile` = ?; ";
+    private static final  String USER_LOGOUT = "UPDATE `citizen` SET `login_status` = '0' WHERE `citizen`.`uNic` = ?; ";
     private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `citizen` SET `login_status` = ? , `suspended_time` = current_timestamp() WHERE `citizen`.`uMobile` = ?; ";
     private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`,`img1`,`img2`,`img3`) " +
@@ -146,7 +149,9 @@ public class UserDAO {
             preparedStatement.setString(1, userLogin.getMobile());
             preparedStatement.setString(2, userLogin.getPassword());
             ResultSet rs = preparedStatement.executeQuery();
+//            Gson gson = new Gson();
             while (rs.next()) {
+                System.out.println( rs);
                 String mobile = rs.getString("uMobile");
                 String password = rs.getString("uPassword");
                 String nic = rs.getString("uNic");
@@ -157,12 +162,10 @@ public class UserDAO {
                 userResponse.setuMoh(rs.getString("uMoh"));
                 userResponse.setUname(rs.getString("uname"));
                 if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
-                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, nic);
                     GetLoginAttemptChange(userLogin, "4");
-                    return userLoginDetails;
+                    return userResponse;
                 }
             }
-            System.out.println("in to support to 1");
             GetLoginAttemptChangeSupport(userLogin);
             return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
@@ -171,10 +174,11 @@ public class UserDAO {
         return new UserLoginModel("", "", "");
     }
 
-    public Integer UserLogout(String uMobile) {
+    public Integer UserLogout(UserLoginModel userLogin) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGOUT)) {
-            preparedStatement.setString(1, uMobile);
+            preparedStatement.setString(1, userLogin.getUnic());
             Integer rs = preparedStatement.executeUpdate();
+            System.out.println(rs);
             return rs;
         } catch (SQLException throwables) {
             printSQLException(throwables);
