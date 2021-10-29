@@ -92,4 +92,7 @@ public class UserLoginModel {
     public void setuMoh(String uMoh) {
         this.uMoh = uMoh;
     }
+    public String toString(){
+        return "";
+    }
 }

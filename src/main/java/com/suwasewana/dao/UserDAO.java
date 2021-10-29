@@ -1,5 +1,6 @@
 package com.suwasewana.dao;
 
+import com.google.gson.Gson;
 import com.suwasewana.core.DB;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
@@ -14,9 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import com.google.gson.Gson;
 
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
+    private Gson gson = new Gson();
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
     private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?,current_timestamp());";
     private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
@@ -146,7 +149,9 @@ public class UserDAO {
             preparedStatement.setString(1, userLogin.getMobile());
             preparedStatement.setString(2, userLogin.getPassword());
             ResultSet rs = preparedStatement.executeQuery();
+//            Gson gson = new Gson();
             while (rs.next()) {
+                System.out.println( rs);
                 String mobile = rs.getString("uMobile");
                 String password = rs.getString("uPassword");
                 String nic = rs.getString("uNic");
@@ -157,13 +162,11 @@ public class UserDAO {
                 userResponse.setuMoh(rs.getString("uMoh"));
                 userResponse.setUname(rs.getString("uname"));
                 if (mobile.equals(userLogin.getMobile()) && password.equals(userLogin.getPassword())) {
-                    UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, nic);
-                    GetLoginAttemptChange(userLogin, "4");
-                    return userLoginDetails;
+//                    GetLoginAttemptChange(userLogin, "4");
+                    return userResponse;
                 }
             }
-            System.out.println("in to support to 1");
-            GetLoginAttemptChangeSupport(userLogin);
+//            GetLoginAttemptChangeSupport(userLogin);
             return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
             printSQLException(throwables);
