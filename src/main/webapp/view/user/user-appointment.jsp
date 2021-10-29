@@ -241,7 +241,7 @@
                                         Appointment Title
                                     </label>
                                     <input type="text" name="name" id="aTitle" autocomplete="off"
-                                            required minlength="10"/>
+                                            required minlength="10" value="To get a sign for Mahapola Application" />
 
                                 </div>
                             </div>
@@ -274,7 +274,7 @@
                                         Reason of Appointment
                                     </label>
                                     <textarea rows="4" cols="50" type="text" placeholder="Reason...." name="reason"
-                                              id="reason">  </textarea>
+                                              id="reason"> Violating the very strict and complicated definitions and rules under the Health Insurance Portability and Accountability Act (HIPAA) can cause serious repercussions – both for individual employees as well as the company, clinic, practice or hospital where the PHI breach occurred. The Office of Civil Rights does not grade on a curve.  </textarea>
                                 </div>
 
                             </div>

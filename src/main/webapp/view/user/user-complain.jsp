@@ -702,7 +702,7 @@
                 console.log("unsuccesssss brooo "+data)
                 complainCardList = JSON.parse(data);
                 typedatalist=complainCardList;
-                document.getElementById("previous-complaint-list").innerHTML = " ";
+                // document.getElementById("previous-complaint-list").innerHTML = " ";
                 complain.setData(complainCardList);
             }
         );
@@ -716,16 +716,16 @@
     getAllComplain();
     let typedatalist={};
     function getAllComplain() {
-        let complainCardList = [];
-        $.post(myUrl+"/user-complain-controller/view",
-            {},
-            function (data, status) {
-                complainCardList = JSON.parse(data);
-                typedatalist=complainCardList;
-                document.getElementById("previous-complaint-list").innerHTML = " ";
-                complain.setData(complainCardList);
-            }
-        );
+        // let complainCardList = [];
+        // $.post(myUrl+"/user-complain-controller/view",
+        //     {},
+        //     function (data, status) {
+        //         complainCardList = JSON.parse(data);
+        //         typedatalist=complainCardList;
+        //         document.getElementById("previous-complaint-list").innerHTML = " ";
+        //         complain.setData(complainCardList);
+        //     }
+        // );
     }
 
 </script>
