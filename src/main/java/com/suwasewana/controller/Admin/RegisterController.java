@@ -47,6 +47,12 @@ public class RegisterController extends HttpServlet {
                 case "moh":
                     RegMOH(req, res);
                     break;
+                case "vaccine":
+                    AddVaccine(req, res);
+                    break;
+                case "All_vaccine_details":
+                    AllVaccineDetails(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -55,6 +61,35 @@ public class RegisterController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+
+
+    private void AllVaccineDetails(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        ArrayList<VaccineModel> result = adminDAO.GetVaccineDetail();
+        res.getWriter().println(gson.toJson(result));
+    }
+
+
+    private void AddVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        VaccineModel vaccineModel=new VaccineModel(
+                "",
+                req.getParameter("Name"),
+                req.getParameter("Country"),
+                req.getParameter("Recommended_for"),
+                req.getParameter("Date"),
+                req.getParameter("image"),
+                req.getParameter("status"),
+                req.getParameter("dosage"),
+                req.getParameter("side_effects"),
+                req.getParameter("how_work"),
+                req.getParameter("How_Well_work"),
+                ""
+        );
+
+
+        String result = adminDAO.AddnewVaccine(vaccineModel) ;
+        res.getWriter().println(result);
     }
 
     private void RegMOH(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
