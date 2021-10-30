@@ -53,6 +53,12 @@ public class RegisterController extends HttpServlet {
                 case "All_vaccine_details":
                     AllVaccineDetails(req, res);
                     break;
+                case "delvaccine":
+                    DelVaccine(req, res);
+                    break;
+                case "updatevaccine":
+                    UpdateVaccine(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -69,6 +75,31 @@ public class RegisterController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
 
+    private void DelVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String result = adminDAO.DelVaccine(req.getParameter("V_Type")) ;
+        res.getWriter().println(result);
+    }
+
+    private void UpdateVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        System.out.println("co,e to controller");
+        VaccineModel vaccineModel=new VaccineModel(
+                req.getParameter("id"),
+                req.getParameter("Name"),
+                req.getParameter("Country"),
+                req.getParameter("Recommended_for"),
+                req.getParameter("Date"),
+                req.getParameter("image"),
+                req.getParameter("status"),
+                req.getParameter("dosage"),
+                req.getParameter("side_effects"),
+                req.getParameter("how_work"),
+                req.getParameter("How_Well_work"),
+                ""
+        );
+
+        String result = adminDAO.UpdateVaccine(vaccineModel) ;
+        res.getWriter().println(result);
+    }
 
     private void AddVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -86,7 +117,6 @@ public class RegisterController extends HttpServlet {
                 req.getParameter("How_Well_work"),
                 ""
         );
-
 
         String result = adminDAO.AddnewVaccine(vaccineModel) ;
         res.getWriter().println(result);

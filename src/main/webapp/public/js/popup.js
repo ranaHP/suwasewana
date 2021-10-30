@@ -235,7 +235,7 @@ class SuwasewanaPopup{
             <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container"> 
                 ${data.message}!
-                <div class="error-message"> Reason :  ${(data.data.includes("Duplicate entry") ? "This Account is already exist" : data.data)} </div>
+                <div class="error-message"> Reason :  ${(data.data.includes("Duplicate entry") ? "This Vaccine is already exist" : data.data)} </div>
                 <div class="row" >
                     <div class="form-group">
                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 

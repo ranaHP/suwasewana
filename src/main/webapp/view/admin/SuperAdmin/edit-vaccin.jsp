@@ -49,7 +49,7 @@
                 </form>
 
             </div>
-            <form onsubmit="return imageUpload();">
+<%--            <form >--%>
                 <div class="body_container">
                     <div class="basic_content">
                         <div class="basic-title">1. Basic Infromation</div>
@@ -116,14 +116,18 @@
                             <div class="row_textarea" contenteditable="true" id="How_well_work"></div>
                         </div>
                         <div class="btn_row">
-                            <button class="btn_done_all" style="background-color: #f0ad4e;">Update</button>
-                            <button class="btn_done_all" style="background-color: #d9534f;">Delete</button>
-                            <button class="btn_done_all" style="background-color: #ff7675;">Temporary Hide</button>
-                            <button class="btn_done_all" >Unhide</button>
+                            <button class="btn_done_all" style="background-color: #f0ad4e;"
+                            onclick="imageUpload();"
+                            >Update</button>
+                            <button class="btn_done_all" style="background-color: #d9534f;"
+                                onclick="DelVaccine();"
+                            >Delete</button>
+                            <button class="btn_done_all" id="hide" style="background-color: #ff7675;">Temporary Hide</button>
+                            <button class="btn_done_all" id="unhide">Unhide</button>
                         </div>
                     </div>
                 </div>
-            </form>
+<%--            </form>--%>
 
         </div>
     </div>
@@ -134,19 +138,24 @@
 <%--script for take vaccine types--%>
 <script defer>
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-    console.log("url   = "+myUrl+"/admin-register-controller/All_vaccine_details/");
+    // console.log("url   = "+myUrl+"/admin-register-controller/All_vaccine_details/");
 
     let rs;
-    $.post(myUrl+"/admin-register-controller/All_vaccine_details/",
-        function (data, status) {
-            rs= JSON.parse(data);
-            let vaccineType=document.getElementById("AllVaccineslist");
+    LoadVaccine();
+    function LoadVaccine(){
+        $.post(myUrl+"/admin-register-controller/All_vaccine_details/",
 
-            rs.map((element) => {
-                vaccineType.innerHTML+= '<option  id="'+element.ID+'" name="'+element.Name+'" value="' + element.Name +  '" option="' + element.Name +  '"></option>'
-            })
-        }
-    );
+            function (data, status) {
+                rs= JSON.parse(data);
+                let vaccineType=document.getElementById("AllVaccineslist");
+                vaccineType.innerHTML='';
+                rs.map((element) => {
+                    vaccineType.innerHTML+= '<option  id="'+element.ID+'" name="'+element.Name+'" value="' + element.Name +  '" option="' + element.Name +  '"></option>'
+                })
+            }
+        );
+    }
+
 
 
 
@@ -158,7 +167,7 @@
             VType=(datalist.options.namedItem(VTypeObj.value).id);
             rs.map((element) => {
                 if(element.ID==VType){
-                    console.log("go to inside "+ element.Name);
+                    // console.log("go to inside "+ element.Name);
                     document.getElementById("Name").value=element.Name;
                     document.getElementById("country").value=element.Country;
                     document.getElementById("recomanded_for").value=element.Recommended_for;
@@ -168,17 +177,56 @@
                     document.getElementById("side_effects").innerText=element.side_effects;
                     document.getElementById("How_work").innerText=element.how_work;
                     document.getElementById("How_well_work").innerText=element.How_Well_work;
-                    document.getElementById("proof1").src=myUrl+"/public/images/vaccine/302021132559GMT053015965.JPG ";
+                    document.getElementById("proof1").src=myUrl+"/public/images/vaccine/"+element.image;
+                    if(element.view_status==1){
+                        document.getElementById("unhide").disabled = true;
+                        document.getElementById("unhide").style.background="#bdc3c7";
+                        document.getElementById("hide").disabled = false;
+                    }
+                    else{
+                        document.getElementById("unhide").disabled = false;
+                        document.getElementById("hide").disabled = true;
+                        document.getElementById("hide").style.background="#bdc3c7";
+                    }
                 }
-
-
-
             })
         }
-        console.log("vaccine type "+VType);
-        alert();
+
+        // console.log("vaccine type "+VType);
         return false;
     }
+    function DelVaccine(){
+        let VType;
+        var VTypeObj = document.getElementById("Search_V_input");
+        var datalist = document.getElementById(VTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(VTypeObj.value)){
+            VType=(datalist.options.namedItem(VTypeObj.value).id);
+            let reqData ={V_Type:VType}
+            $.post(myUrl+"/admin-register-controller/delvaccine/",
+                reqData,
+                function (data, status) {
+                    if (data.includes("success")) {
+                        console.log("successsss brooo");
+                        // popup.showAppointmentSuccessMessage({
+                        //     status: 'success',
+                        //     message: 'Complain Successfully Added!'
+                        // });
+                        clearData();
+                        LoadVaccine();
+                    } else {
+                        console.log("unsuccesssss brooo");
+                        // popup.showAppointmentSuccessMessage({
+                        //     status: 'fail',
+                        //     message: 'Complain Send Fail !',
+                        //     data: data
+                        // });
+                    }
+                }
+            );
+
+        }
+    }
+
 </script>
 
 
@@ -196,46 +244,57 @@
             document.getElementById("side_effects").innerText="";
             document.getElementById("How_work").innerText="";
             document.getElementById("How_well_work").innerText="";
+            document.getElementById("proof1").src=myUrl+"public/images/logo/placeholder.png";
+            document.getElementById("upload_empty").innerText="";
             return false;
     }
-    function Submit_vaccin_data(imgarray){
-        let reqData =
-            {
-                Name: document.getElementById("Name").value,
-                Country: document.getElementById("country").value,
-                Recommended_for: document.getElementById("recomanded_for").value,
-                Date:document.getElementById("date").value,
-                image:imgarray[0],
-                status: document.getElementById("status").innerText,
-                dosage: document.getElementById("dosage").innerText,
-                side_effects: document.getElementById("side_effects").innerText,
-                how_work: document.getElementById("How_work").innerText,
-                How_Well_work:document.getElementById("How_well_work").innerText
-            };
+    function UpdateData(imgarray){
 
-        alert()
-        $.post("/suwasewana_war/admin-register-controller/vaccine",
-            reqData,
-            function (data, status) {
+        let VType;
+        var VTypeObj = document.getElementById("Search_V_input");
+        var datalist = document.getElementById(VTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(VTypeObj.value)) {
+            VType = (datalist.options.namedItem(VTypeObj.value).id);
 
-                if (data.includes("success")) {
+            let reqData =
+                {
+                    id:VType,
+                    Name: document.getElementById("Name").value,
+                    Country: document.getElementById("country").value,
+                    Recommended_for: document.getElementById("recomanded_for").value,
+                    Date:document.getElementById("date").value,
+                    image:imgarray[0],
+                    status: document.getElementById("status").innerText,
+                    dosage: document.getElementById("dosage").innerText,
+                    side_effects: document.getElementById("side_effects").innerText,
+                    how_work: document.getElementById("How_work").innerText,
+                    How_Well_work:document.getElementById("How_well_work").innerText
+                };
+            $.post(myUrl+"/admin-register-controller/updatevaccine",
+                reqData,
+                function (data, status) {
 
-                    popup.RegisterVaccine({
-                        status: 'success',
-                        message: 'Successfully Added!'
-                    });
-                    clearData();
-                } else {
+                    if (data.includes("success")) {
 
-                    popup.RegisterVaccine({
-                        status: 'fail',
-                        message: 'Vaccine insertion Fails !',
-                        data: data
-                    });
+                        popup.RegisterVaccine({
+                            status: 'success',
+                            message: 'Successfully Updated!'
+                        });
+                        clearData();
+                    } else {
+
+                        popup.RegisterVaccine({
+                            status: 'fail',
+                            message: 'Vaccine Update Fails !',
+                            data: data
+                        });
+                    }
                 }
-            }
-        );
-        alert();
+            );
+
+        }
+
+
 
         return false;
     }
@@ -247,7 +306,6 @@
     };
 
     function imageUpload() {
-
         var fd = new FormData();
         let imageNames = [];
         if ($('#proof1input')[0].files[0]) {
@@ -260,26 +318,22 @@
             imageNames.push(url1);
         }
 
-
         imageNames.map((item, index) => {
             fd.append('ImageName' + (index + 1), item);
         })
-
-
-
         if(imageNames.length!=0){
             $.ajax({
-                url: '/suwasewana_war/vaccineFileUploadServlet',
+                url: myUrl+'/vaccineFileUploadServlet',
                 type: 'post',
                 data: fd,
                 contentType: false,
                 processData: false,
                 success: function (response) {
                     if (response != 0) {
-
-                        Submit_vaccin_data(imageNames);
+                        console.log("picture upload succesfully")
+                        UpdateData(imageNames);
                     } else {
-
+                        console.log("Picture upload error")
                     }
                 },
             });
@@ -289,7 +343,8 @@
             document.getElementById("upload_empty").innerText="Need to upload a image";
 
         }
-        return false;
+
+        // return false;
     }
 </script>
 <script>
