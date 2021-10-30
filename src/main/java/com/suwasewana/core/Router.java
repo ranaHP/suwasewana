@@ -175,6 +175,10 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/RPHI/MOH-Announcements.jsp");
                     rd.forward(request,response);
                     break;
+                case "vaccineType":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/edit-vaccin.jsp");
+                    rd.forward(request,response);
+                    break;
                 default:
                     response.getWriter().println("404 Page not Found");
                     break;

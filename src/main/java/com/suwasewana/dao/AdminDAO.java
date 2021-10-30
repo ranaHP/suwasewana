@@ -5,13 +5,21 @@ import com.suwasewana.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class AdminDAO {
 
     private static final String PHI_REGISTRATION = "INSERT INTO `suwaserwana_db`.`phi_officer` (`full_name`, `NIC`, `mobile`, `device_MAC`, `Address`, `City`, `District`, `phi_post`, `login_status`, `password`, `PostalCode`, `mohId`, `DP`,`suspended_time`)  VALUES (?, ?, ?, NULL , ?, ?, ?, ?, '0', ?, ?, ?, ?,current_timestamp());";
     private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
     private static final String MOH_REGISTRATION="INSERT INTO `suwaserwana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
+    private static final String AddVaccine="INSERT INTO `suwaserwana_db`.`vaccine` (`name`, `country`, `recomonded_for`, `date`, `image`, `status`, `dose`, `comon_side_effects`, `how_it_work`, `how_well_it_work`, `view_status`) VALUES (?,?,?,?,?,?,?,?,?,?,?);\n";
+    private static final String Select_all_Vaccines="SELECT * FROM suwaserwana_db.vaccine;";
+    private static final String Delet_Vaccin="DELETE FROM `suwaserwana_db`.`vaccine` WHERE (`v_id` = ?);";
+    private static final String Update_Vaccin="UPDATE `suwaserwana_db`.`vaccine` SET `name` = ?, `country` = ?, `recomonded_for` = ?, `date` = ?, `image` = ?, `status` = ?, `dose` = ?, `comon_side_effects` = ?, `how_it_work` = ?, `how_well_it_work` = ? WHERE (`v_id` = ?);";
+    private static final String Hide_Vaccine_Type="UPDATE `suwaserwana_db`.`vaccine` SET `view_status` = '0' WHERE (`v_id` = ?);";
+    private static final String unHide_Vaccine_Type="UPDATE `suwaserwana_db`.`vaccine` SET `view_status` = '1' WHERE (`v_id` = ?);";
     Connection connection;
 
     public AdminDAO() {
@@ -19,6 +27,151 @@ public class AdminDAO {
         connection = db.getConnection();
     }
 
+    public String HideVaccine(String v_Id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Hide_Vaccine_Type)) {
+            preparedStatement.setString(1, v_Id );
+            System.out.println("preparedStatement in hide: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+    public String UnHideVaccine(String v_Id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(unHide_Vaccine_Type)) {
+            preparedStatement.setString(1, v_Id );
+            System.out.println("preparedStatement in unhide: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+
+    public String DelVaccine(String v_Id) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Delet_Vaccin)) {
+            preparedStatement.setString(1, v_Id );
+
+
+            System.out.println("qry: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+
+    }
+
+    public ArrayList<VaccineModel> GetVaccineDetail() {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Select_all_Vaccines)) {
+
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<VaccineModel> vaccineModelsList = new ArrayList<VaccineModel>();
+            while (rs.next()) {
+
+                String id = rs.getString("v_id");
+                String name = rs.getString("name");
+                String country = rs.getString("country");
+                String recomonded_for = rs.getString("recomonded_for");
+                String date = rs.getString("date");
+                String image = rs.getString("image");
+                String status = rs.getString("status");
+                String dose = rs.getString("dose");
+                String comon_side_effects = rs.getString("comon_side_effects");
+                String how_it_work = rs.getString("how_it_work");
+                String how_well_it_work = rs.getString("how_well_it_work");
+                String view_status = rs.getString("view_status");
+
+
+
+
+                VaccineModel temp = new VaccineModel(
+                        id,
+                        name,
+                        country,
+                        recomonded_for,
+                        date,
+                        image,
+                        status,
+                        dose,
+                        comon_side_effects,
+                        how_it_work,
+                        how_well_it_work,
+                        view_status
+                );
+//
+                vaccineModelsList.add(temp);
+            }
+            return vaccineModelsList;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
+
+    public String AddnewVaccine(VaccineModel vaccineModel) {
+        System.out.println("data come to vaccine dao");
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(AddVaccine)) {
+            preparedStatement.setString(1, vaccineModel.getName() );
+            preparedStatement.setString(2, vaccineModel.getCountry() );
+            preparedStatement.setString(3, vaccineModel.getRecommended_for() );
+            preparedStatement.setString(4, vaccineModel.getDate() );
+            preparedStatement.setString(5, vaccineModel.getImage());
+            preparedStatement.setString(6, vaccineModel.getStatus());
+            preparedStatement.setString(7, vaccineModel.getDosage());
+            preparedStatement.setString(8, vaccineModel.getSide_effects());
+            preparedStatement.setString(9, vaccineModel.getHow_work());
+            preparedStatement.setString(10, vaccineModel.getHow_Well_work());
+            preparedStatement.setString(11, "1");
+
+            System.out.println("qry: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+
+    }
+    public String UpdateVaccine(VaccineModel vaccineModel) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Update_Vaccin)) {
+            preparedStatement.setString(1, vaccineModel.getName() );
+            preparedStatement.setString(2, vaccineModel.getCountry() );
+            preparedStatement.setString(3, vaccineModel.getRecommended_for() );
+            preparedStatement.setString(4, vaccineModel.getDate() );
+            preparedStatement.setString(5, vaccineModel.getImage());
+            preparedStatement.setString(6, vaccineModel.getStatus());
+            preparedStatement.setString(7, vaccineModel.getDosage());
+            preparedStatement.setString(8, vaccineModel.getSide_effects());
+            preparedStatement.setString(9, vaccineModel.getHow_work());
+            preparedStatement.setString(10, vaccineModel.getHow_Well_work());
+            preparedStatement.setString(11, vaccineModel.getID());
+
+            System.out.println("qry for update: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+
+    }
     public String mohRegistration(MOHRegModel mohRegModel) {
         System.out.println("data come to dao");
 
