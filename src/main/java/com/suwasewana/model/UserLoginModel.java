@@ -17,6 +17,7 @@ public class UserLoginModel {
         super();
         SuwasewanaHashing hashing = new SuwasewanaHashing(pass);
         this.mobile = number;
+        System.out.println(number);
         this.password = hashing.getHashValue();
         this.unic = nic;
     }

@@ -20,5 +20,22 @@
 <!--        <param-value>/test_war_exploded/</param-value>-->
 <!--    </context-param>-->
 
+<!--    <servlet>-->
+<!--        <servlet-name>AdminServlet</servlet-name>-->
+<!--        <servlet-class>AdminServlet</servlet-class>-->
+<!--    </servlet>-->
 
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>AdminServlet</servlet-name>-->
+<!--        <url-pattern>/servlet1</url-pattern>-->
+<!--    </servlet-mapping>-->
+
+<!--    <filter>-->
+<!--        <filter-name>f1</filter-name>-->
+<!--        <filter-class>MyFilter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>f1</filter-name>-->
+<!--        <url-pattern>/servlet1</url-pattern>-->
+<!--    </filter-mapping>-->
 </web-app>

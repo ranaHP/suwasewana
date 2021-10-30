@@ -27,11 +27,16 @@ function checkLoginValidation() {
         let url = myUrl+"/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function () {
+            console.log(this.response)
+
             let result = JSON.parse([this.response]);
+            console.log(result)
+            console.log(this.response)
             if (result.status === "success") {
                 location.replace(myUrl + "/s/");
             } else if (result.status === "error") {
                 document.getElementById('user-form-error').innerText = result.data;
+                document.getElementById('user-form-error').style.color = 'red';
                 document.getElementById('user-form-error').style.display = "block";
                 document.getElementById("user-password").value = "";
                 document.getElementById("user-mobile").value = "";

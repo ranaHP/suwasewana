@@ -37,6 +37,7 @@
     <script src="<c:url value="/public/js/popup.js"/>"></script>
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
+    <script src="<c:url value="/public/js/loginDetails.js"/>"></script>
 
     <title>Complain</title>
 </head>
@@ -54,7 +55,8 @@
                 </div>
                 <div class="navbar-container">
                     <ul class="navbar">
-                        <script> let navs =  new Navbar(); navs.showHeaderNavItems("navbar"); </script>
+                        <script> let navs = new Navbar();
+                        navs.showHeaderNavItems("navbar"); </script>
                     </ul>
                 </div>
                 <div class="login-register-container">
@@ -63,7 +65,8 @@
                         <img src="<c:url value="/public/images/sri-lanka.png "/>" alt="sri lanakan flag" width="100%">
                     </div>
                     <script>
-                        let loginRegsiter = new LoginLogout(); loginRegsiter.showLoginLogoutItems("login-register-container")
+                        let loginRegsiter = new LoginLogout();
+                        loginRegsiter.showLoginLogoutItems("login-register-container")
                     </script>
                 </div>
             </div>
@@ -76,22 +79,16 @@
         <div class="dashboard-container">
             <div class="left-dashboard">
                 <div class="dashboard-profile-details">
-                    <img src="<c:url value="/public/images/avatar.png"/>" width="90px"/>
-                    <div class="profile-name">
-                        Hansana Ranaweera
-                    </div>
-                    <div class="profile-location">
-                        Akuressa
-                    </div>
-                    <div class="moh-area">
-                        Matara MOH
-                    </div>
+                    <script>
+                        let loginDetails = new LoginDetails();
+                        loginDetails.showLoginDetails("dashboard-profile-details")
+                    </script>
                 </div>
                 <div class="dashboard-icon-set">
 
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/grid.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/grid.svg"/>" width="20px"/>
                             <!-- <object data="images/icons/grid.svg" width="20px" height="20px" style="color: brown;"> </object> -->
                         </div>
                         <div class="dash-title">
@@ -100,7 +97,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Diseases
@@ -108,7 +105,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/volume-2.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/volume-2.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Announcement
@@ -116,7 +113,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/layers.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/layers.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Clinic
@@ -124,7 +121,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Complain
@@ -132,7 +129,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Appoiment
@@ -140,7 +137,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/edit.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/edit.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Edite Profile
@@ -148,7 +145,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
 
                         <div class="dash-title">
@@ -157,7 +154,7 @@
                     </div>
                     <div class="dash-tab">
                         <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
                         <div class="dash-title">
                             Support
@@ -508,7 +505,8 @@
             <img src="<c:url value="/public/images/logo.png "/>" alt="logo" width="45px"/>
             <div class="navbar-container">
                 <ul class="navbar navbar1">
-                    <script> let navs1 =  new Navbar(); navs.showHeaderNavItems("navbar1"); </script>
+                    <script> let navs1 = new Navbar();
+                    navs.showHeaderNavItems("navbar1"); </script>
                 </ul>
             </div>
         </div>

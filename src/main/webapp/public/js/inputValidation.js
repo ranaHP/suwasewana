@@ -37,7 +37,7 @@ class FormInputValidation {
 
     setErrorMessageForField(error, field, status) {
         document.getElementById(field).innerHTML = error;
-        if(status){
+        if(!status){
             document.getElementById(field).classList.add("form-field-success");
             document.getElementById(field).classList.remove("form-field-error");
         }else{

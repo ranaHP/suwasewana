@@ -20,8 +20,8 @@ import com.google.gson.Gson;
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
     private Gson gson = new Gson();
-    private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `citizen` WHERE `uMobile` = ? and `uPassword` = ?";
-    private static final String USER_REGISTRATION = "INSERT INTO `citizen` VALUES (?,?,?,?,?,?,?,?,?,?,?,current_timestamp());";
+    private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `user` WHERE `uMobile` = ? and `uPassword` = ?";
+    private static final String USER_REGISTRATION = "INSERT INTO `user` VALUES (?,?,?,?,?,?,?,?,?,?,?,current_timestamp());";
     private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` LEFT JOIN `appointment_type` ON appointment.appointmentType = appointment_type.appointment_type_no WHERE user = ?";
@@ -33,10 +33,10 @@ public class UserDAO {
     private static final String SEARCH_COMPLAIN_type="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CType = ?;";
     private static final String SEARCH_COMPLAIN_title="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CTitle like ?;";
 
-    private static final  String USER_LOGIN_ATTEMPT = "SELECT login_status FROM `citizen` WHERE uMobile = ?";
-    private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT DATE_ADD(suspended_time, INTERVAL 5 minute) AS suspended_time FROM `citizen` WHERE uMobile = ? AND DATE_ADD(suspended_time, INTERVAL 5 minute) > current_timestamp(); ";
-    private static final  String USER_LOGOUT = "UPDATE `citizen` SET `login_status` = '0' WHERE `citizen`.`uNic` = ?; ";
-    private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `citizen` SET `login_status` = ? , `suspended_time` = current_timestamp() WHERE `citizen`.`uMobile` = ?; ";
+    private static final  String USER_LOGIN_ATTEMPT = "SELECT login_status FROM `user` WHERE uMobile = ?";
+    private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT DATE_ADD(suspended_time, INTERVAL 5 minute) AS suspended_time FROM `user` WHERE uMobile = ? AND DATE_ADD(suspended_time, INTERVAL 5 minute) > current_timestamp(); ";
+    private static final  String USER_LOGOUT = "UPDATE `user` SET `login_status` = '0' WHERE `user`.`uNic` = ?; ";
+    private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `user` SET `login_status` = ? , `suspended_time` = current_timestamp() WHERE `user`.`uMobile` = ?; ";
     private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`,`img1`,`img2`,`img3`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?);";
@@ -148,6 +148,7 @@ public class UserDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN_VALIDATION)) {
             preparedStatement.setString(1, userLogin.getMobile());
             preparedStatement.setString(2, userLogin.getPassword());
+            System.out.println(userLogin.getPassword());
             ResultSet rs = preparedStatement.executeQuery();
 //            Gson gson = new Gson();
             while (rs.next()) {
