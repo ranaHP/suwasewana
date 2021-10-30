@@ -59,6 +59,12 @@ public class RegisterController extends HttpServlet {
                 case "updatevaccine":
                     UpdateVaccine(req, res);
                     break;
+                case "vaccinehide":
+                    vaccinehide(req, res);
+                    break;
+                case "vaccineunhide":
+                    vaccineunhide(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -79,7 +85,14 @@ public class RegisterController extends HttpServlet {
         String result = adminDAO.DelVaccine(req.getParameter("V_Type")) ;
         res.getWriter().println(result);
     }
-
+    private void vaccinehide(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String result = adminDAO.HideVaccine( req.getParameter("V_Type")) ;
+        res.getWriter().println(result);
+    }
+    private void vaccineunhide(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String result = adminDAO.UnHideVaccine( req.getParameter("V_Type")) ;
+        res.getWriter().println(result);
+    }
     private void UpdateVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         System.out.println("co,e to controller");
         VaccineModel vaccineModel=new VaccineModel(

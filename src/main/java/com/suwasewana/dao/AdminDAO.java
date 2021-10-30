@@ -18,11 +18,36 @@ public class AdminDAO {
     private static final String Select_all_Vaccines="SELECT * FROM suwaserwana_db.vaccine;";
     private static final String Delet_Vaccin="DELETE FROM `suwaserwana_db`.`vaccine` WHERE (`v_id` = ?);";
     private static final String Update_Vaccin="UPDATE `suwaserwana_db`.`vaccine` SET `name` = ?, `country` = ?, `recomonded_for` = ?, `date` = ?, `image` = ?, `status` = ?, `dose` = ?, `comon_side_effects` = ?, `how_it_work` = ?, `how_well_it_work` = ? WHERE (`v_id` = ?);";
+    private static final String Hide_Vaccine_Type="UPDATE `suwaserwana_db`.`vaccine` SET `view_status` = '0' WHERE (`v_id` = ?);";
+    private static final String unHide_Vaccine_Type="UPDATE `suwaserwana_db`.`vaccine` SET `view_status` = '1' WHERE (`v_id` = ?);";
     Connection connection;
 
     public AdminDAO() {
         DB db = new DB();
         connection = db.getConnection();
+    }
+
+    public String HideVaccine(String v_Id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Hide_Vaccine_Type)) {
+            preparedStatement.setString(1, v_Id );
+            System.out.println("preparedStatement in hide: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+    public String UnHideVaccine(String v_Id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(unHide_Vaccine_Type)) {
+            preparedStatement.setString(1, v_Id );
+            System.out.println("preparedStatement in unhide: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
     }
 
     public String DelVaccine(String v_Id) {

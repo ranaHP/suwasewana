@@ -122,8 +122,8 @@
                             <button class="btn_done_all" style="background-color: #d9534f;"
                                 onclick="DelVaccine();"
                             >Delete</button>
-                            <button class="btn_done_all" id="hide" style="background-color: #ff7675;">Temporary Hide</button>
-                            <button class="btn_done_all" id="unhide">Unhide</button>
+                            <button class="btn_done_all" id="hide" onclick="sethide();" style="background-color: #ff7675;">Temporary Hide</button>
+                            <button class="btn_done_all" id="unhide" onclick="setunhide();">Unhide</button>
                         </div>
                     </div>
                 </div>
@@ -156,7 +156,82 @@
         );
     }
 
+    function sethide(){
+        console.log("call to hide");
+        let VType;
+        var VTypeObj = document.getElementById("Search_V_input");
+        var datalist = document.getElementById(VTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(VTypeObj.value)){
+            VType=(datalist.options.namedItem(VTypeObj.value).id);
+            let reqData ={V_Type:VType}
+            $.post(myUrl+"/admin-register-controller/vaccinehide/",
+                reqData,
+                function (data, status) {
+                    if (data.includes("success")) {
+                        console.log("successsss brooo");
+                        // popup.showAppointmentSuccessMessage({
+                        //     status: 'success',
+                        //     message: 'Complain Successfully Added!'
+                        // });
+                        LoadVaccine();
+                        LoadData();
 
+                        document.getElementById("unhide").disabled = false;
+                        document.getElementById("hide").disabled = true;
+                        document.getElementById("hide").style.background="#bdc3c7";
+                        document.getElementById("unhide").style.background="#27AE60";
+
+                    } else {
+                        console.log("unsuccesssss brooo");
+                        // popup.showAppointmentSuccessMessage({
+                        //     status: 'fail',
+                        //     message: 'Complain Send Fail !',
+                        //     data: data
+                        // });
+                    }
+                }
+            );
+
+        }
+    }
+    function setunhide(){
+        console.log("call to unhide")
+        let VType;
+        var VTypeObj = document.getElementById("Search_V_input");
+        var datalist = document.getElementById(VTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(VTypeObj.value)){
+            VType=(datalist.options.namedItem(VTypeObj.value).id);
+            let reqData ={V_Type:VType}
+            $.post(myUrl+"/admin-register-controller/vaccineunhide/",
+                reqData,
+                function (data, status) {
+                    if (data.includes("success")) {
+                        console.log("successsss brooo");
+                        // popup.showAppointmentSuccessMessage({
+                        //     status: 'success',
+                        //     message: 'Complain Successfully Added!'
+                        // });
+                        LoadVaccine();
+                        LoadData();
+
+                        document.getElementById("unhide").disabled = true;
+                        document.getElementById("hide").disabled = false;
+                        document.getElementById("hide").style.background="#ff7675";
+                        document.getElementById("unhide").style.background="#bdc3c7";
+
+                    } else {
+                        console.log("unsuccesssss brooo");
+                        // popup.showAppointmentSuccessMessage({
+                        //     status: 'fail',
+                        //     message: 'Complain Send Fail !',
+                        //     data: data
+                        // });
+                    }
+                }
+            );
+
+        }
+    }
 
 
     function LoadData(){
@@ -178,15 +253,18 @@
                     document.getElementById("How_work").innerText=element.how_work;
                     document.getElementById("How_well_work").innerText=element.How_Well_work;
                     document.getElementById("proof1").src=myUrl+"/public/images/vaccine/"+element.image;
+                    console.log("status "+element.view_status);
                     if(element.view_status==1){
                         document.getElementById("unhide").disabled = true;
-                        document.getElementById("unhide").style.background="#bdc3c7";
                         document.getElementById("hide").disabled = false;
+                        document.getElementById("hide").style.background="#ff7675";
+                        document.getElementById("unhide").style.background="#bdc3c7";
                     }
                     else{
                         document.getElementById("unhide").disabled = false;
                         document.getElementById("hide").disabled = true;
                         document.getElementById("hide").style.background="#bdc3c7";
+                        document.getElementById("unhide").style.background="#27AE60";
                     }
                 }
             })
