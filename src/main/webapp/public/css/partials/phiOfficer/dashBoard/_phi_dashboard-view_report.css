@@ -137,7 +137,7 @@ body{
     justify-content:space-around;
     align-items: center;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
-    height: 180px;
+    height: 220px;
     background-color: white;
 }
 input{
@@ -150,6 +150,7 @@ input{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    color: rgba(0, 0, 0, 0.76);
     /* font-size: 1.8em; */
 }
 .types p{
@@ -174,6 +175,9 @@ button{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+}
+.right{
+    padding: 3px;
 }
 .right p{
     display: flex;
@@ -206,7 +210,7 @@ button{
     }
     .add-com-type{
         flex-direction: column;
-        height: 270px;
+        height: 370px;
     }
     .left{
         display: flex;

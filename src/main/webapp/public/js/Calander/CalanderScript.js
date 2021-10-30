@@ -25,7 +25,7 @@ class Calender {
             events: [
                 {
                     title: 'Corona clinic',
-                    desc: ' ABCD ',
+                    desc: ' Should supervise public until 2 p.m. ',
                 },
                 {
                     title: 'Corona clinic',
@@ -48,13 +48,13 @@ class Calender {
             date: 5,
             events: [
                 {
-                    title: 'D clinic',
-                    desc: ' ABCD ',
+                    title: 'Corona clinic',
+                    desc: ' Should supervise public until 2 p.m. in corona clinic ',
                 },
 
                 {
-                    title: 'E clinic',
-                    desc: ' ABCD ',
+                    title: 'Corona clinic',
+                    desc: ' Should supervise public until 4 p.m. in Dengue clinic ',
                 }
             ]
         },

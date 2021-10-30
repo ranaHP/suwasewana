@@ -14,7 +14,7 @@
     <script defer src="<c:url value="/public/js/RPHI/makeAnnouncementForPHI.js"></c:url> "></script>
 </head>
 <body id="mainContent">
-<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp"></c:import>
+<c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp"></c:import>
 <div class="container">
     <!-- suwasewana header -->
     <div class="header">

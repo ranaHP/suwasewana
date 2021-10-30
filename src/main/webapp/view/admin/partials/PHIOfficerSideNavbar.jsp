@@ -149,6 +149,15 @@
 <%--            </ul>--%>
 <%--        </li>--%>
         <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link_name">Logout</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </li>
+        <li>
             <div class="profile-details">
                 <div class="profile-content">
                     <img src="<c:url value="/public/images/avatar.png"/>" src="image/profile.jpg" alt="profileImg">

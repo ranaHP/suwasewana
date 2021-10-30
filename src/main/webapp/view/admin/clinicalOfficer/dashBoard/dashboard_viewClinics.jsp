@@ -9,8 +9,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="<c:url value="/public/js/ClinicalOfficer/viewClinics.js"></c:url> "></script>
-    <script src="<c:url value="/public/js/popup.js"/>"></script>
-    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+
+<%--    Add popup styles and scripting file--%>
+    <script src = "<c:url value="/public/js/popup.js"/>"></script>
+    <link href = "<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
 
 </head>
 <body>
@@ -21,7 +23,9 @@
         <div class="dashboard-name">Clinical officer/Dashboard/Clinic List</div>
     </div>
 <%--     filter section --%>
+    <%--    Create a div with popup id and set display none--%>
     <div class="mypopup" id="popup" style="display: none;"></div>
+
     <div class="cardselect">
         <div class="searchbar">
             <input type="text" id ="filter" required autocomplete="off" name="clinic-title" onkeyup="search()" />

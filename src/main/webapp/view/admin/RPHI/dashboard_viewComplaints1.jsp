@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/feather-icons"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewComplaints.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
@@ -21,7 +20,7 @@
     <script src="<c:url value="/popup/Message.js"></c:url> "></script>
 </head>
 <body id="mainContent">
-  <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+  <c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp" />
   <div class="popup-container" id="PopupContainer"></div>
   <div class="containor">
 
@@ -38,35 +37,7 @@
                       <option value="1">select the complaint type</option>
                   </select>
               </div>
-              <div class="complaints" style="display: flex; padding: 40px" >
-                  <div class="complain-section" id="complain-section">
-
-                  </div>
-                  <div class="add-com-type">
-
-                      <p class="f-1">Add Complaint type</p>
-                      <div class="right">
-
-                          <%--                    <p class="f-4">Types</p>--%>
-                          <div class="types">
-                              <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i> Animal issue</p>
-                              <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Environment issue</p>
-                              <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Animal issue</p>
-                              <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Food issue</p>
-                              <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Environment issue</p>
-                              <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Environment issue</p>
-                              <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Animal issue</p>
-                              <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Food issue</p>
-                          </div>
-                      </div>
-                      <div class="left">
-
-                          <div class="add">
-                              <input></input>
-                              <button class="f-4">add</button>
-                          </div>
-                      </div>
-                  </div>
+              <div class="complain-section" id="complain-section">
 
               </div>
           </div>
@@ -96,8 +67,7 @@
 
   </script>
 <script>
-    feather.replace({ width : "15px"})
-    // let popup= new require_message_popup('PopupContainer', "Do you need to send a massage <br>to complainer ?")
+    let popup= new require_message_popup('PopupContainer', "Do you need to send a massage <br>to complainer ?")
 </script>
 
 </body>

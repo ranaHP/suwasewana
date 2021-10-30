@@ -34,7 +34,7 @@
         <!-- officer count -->
         <div class="officer-count">
             <div class="count-box">
-                <div class="l"><img src="<c:url value="/public/images/icons/compass.svg"/>" width="35px" >
+                <div class="l">
 
                 </div>
                 <div class="r">
@@ -44,7 +44,7 @@
             </div>
 
             <div class="count-box">
-                <div class="l"><img src="<c:url value="/public/images/icons/circle.svg"/>" ></div>
+                <div class="l"></div>
                 <div class="r">
                     <p class="registered">Registered RPHI</p>
                     <p class="count">65</p>
@@ -52,7 +52,7 @@
             </div>
 
             <div class="count-box">
-                <div class="l"><img src="<c:url value="/public/images/icons/circle.svg "/>" ></div>
+                <div class="l"></div>
                 <div class="r">
                     <p class="registered">Registered Clinical officers</p>
                     <p class="count">450</p>

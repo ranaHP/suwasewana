@@ -1,9 +1,7 @@
-
 class verify_patient_detail_popup{
     constructor(popupContaienr ,data){
         this.Data=data;
         this.container = document.getElementById(popupContaienr);
-        // this.container.classList.add("popup-container");
         this.init();
     }
     init(){
@@ -14,16 +12,16 @@ class verify_patient_detail_popup{
         // let logo= document.createElement('div');
         // logo.classList.add('logo');
         // popup.appendChild(logo);
-        //logo
+        // //logo
         // let logo_img=document.createElement('img');
         // logo_img.setAttribute("src","../logo.png")
         // logo.appendChild(logo_img);
+
         let popupIcon = document.createElement('div');
         popupIcon.classList.add('popup-icon');
         popupIcon.innerHTML = '<i class="feather-16" data-feather="list"  ></i>';
 
         popup.appendChild(popupIcon);
-
         //title row
         let title=document.createElement('div');
         title.classList.add('title');
@@ -151,8 +149,7 @@ class verify_patient_detail_popup{
         this.container.style.display = "block";
     }
     hidePopup(){
-        this.container.style.display = "none";
-        // this.container.classList.remove(popup-container)
+        this.container.style.display = "none"; 
     }
 
 }

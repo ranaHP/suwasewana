@@ -45,7 +45,7 @@
             <form action=""  onsubmit="return checkvalidation();" >
                 <div class="singal_row">
                     <div class="form-item">
-                        <input type="text" id="fullName" autocomplete="off"
+                        <input type="text" id="fullName" value="Madhuni tharukshi" autocomplete="off"
                                onblur="validation.nameValidation(
                                 document.getElementById('fullName').value,
                                 'LfullName'
@@ -62,8 +62,8 @@
                 <div class="multirow">
                     <div class="milturow_left">
                         <div class="form-item">
-                            <input type="text" id="NIC" autocomplete="off"
-                                   onblur="validation.nicValidation(
+                            <input type="text" id="NIC" value="997140559V" autocomplete="off"
+                                   onkeyup="validation.nameValidation(
                                     document.getElementById('NIC'),
                                     'LNIC')
                                 ;"
@@ -74,7 +74,7 @@
                     </div>
                     <div class="multirow_right">
                         <div class="form-item">
-                            <input type="text" id="TpNo" autocomplete="off"
+                            <input type="text" id="TpNo" value="0775836281" autocomplete="off"
                                    onkeyup="validation.mobileValidation(
                                     document.getElementById('TpNo').value,
                                     'LTpNo'
@@ -191,7 +191,7 @@
         function checkvalidation(){
             let mohid=checkMOHid();
             if(validation.nameValidation(document.getElementById('fullName').value,'LfullName' )&&
-                validation.nicValidation( document.getElementById('NIC'),'LNIC')&&
+                validation.nameValidation( document.getElementById('NIC'),'LNIC')&&
                 validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo')&&
                 validation.nameValidation(document.getElementById('COCity').value,'LCOCity' )&&
                 validation.nameValidation( document.getElementById('District').value,'LDistrict')&&
@@ -203,7 +203,7 @@
             }
             else{
                 validation.nameValidation(document.getElementById('fullName').value,'LfullName' );
-                validation.nicValidation( document.getElementById('NIC'),'LNIC');
+                validation.nameValidation( document.getElementById('NIC'),'LNIC');
                 validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo');
                 validation.nameValidation(document.getElementById('COCity').value,'LCOCity' );
                 validation.nameValidation( document.getElementById('District').value,'LDistrict');
@@ -237,7 +237,7 @@
             console.log("sending data "+reqData.CAddress);
             console.log("sending data "+reqData.CMohArea);
 
-            $.post("/suwasewana_war/admin-register-controller/clinical_officer",
+            $.post("/test_war_exploded/admin-register-controller/clinical_officer",
                 reqData,
                 function (data, status) {
                     console.log(data.includes("success"))
@@ -263,7 +263,7 @@
 
     <script defer>
         let mohDetails=[];
-        $.post("/suwasewana_war/user-complain-controller/moh",
+        $.post("/test_war_exploded/user-complain-controller/moh",
             function (data, status) {
                 // console.log(data);
                 let rs= JSON.parse(data);
@@ -278,7 +278,7 @@
                 })
             }
         );
-        // console.log(mohDetails);
+        console.log(mohDetails);
 
 
 

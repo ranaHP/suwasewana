@@ -91,7 +91,7 @@
                 </div>
                 <div class="dashboard-icon-set">
 
-                    <div class="dash-tab active" onclick="window.location='http://localhost:8093/test_war_exploded/s/dashboard';">
+                    <div class="dash-tab active" onclick="window.location='http://localhost:8080/test_war_exploded/s/dashboard';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/grid.svg"/>" width="20px"/>
 <%--                             <object data="images/icons/grid.svg" width="20px" height="20px" style="color: brown;"> </object>--%>
@@ -100,7 +100,7 @@
                             Dashboard
                         </div>
                     </div>
-                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/diseases';">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8080/test_war_exploded/s/diseases';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -108,7 +108,7 @@
                             Diseases
                         </div>
                     </div>
-                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/announcetment';">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8080/test_war_exploded/s/announcetment';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/volume-2.svg"/>" width="20px"/>
                         </div>
@@ -116,7 +116,7 @@
                             Announcement
                         </div>
                     </div>
-                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/clinic';">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8080/test_war_exploded/s/clinic';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/layers.svg"/>" width="20px"/>
                         </div>
@@ -124,7 +124,7 @@
                             Clinic
                         </div>
                     </div>
-                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/complain';">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8080/test_war_exploded/s/complain';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -132,7 +132,7 @@
                             Complain
                         </div>
                     </div>
-                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/appointment';">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8080/test_war_exploded/s/appointment';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px"/>
                         </div>
@@ -140,7 +140,7 @@
                             Appoiment
                         </div>
                     </div>
-                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/profile';">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8080/test_war_exploded/s/profile';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/edit.svg"/>" width="20px"/>
                         </div>
@@ -148,7 +148,7 @@
                             Edite Profile
                         </div>
                     </div>
-                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/patient';">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8080/test_war_exploded/s/patient';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>
@@ -157,7 +157,7 @@
                             Patient
                         </div>
                     </div>
-                    <div class="dash-tab" onclick="window.location='http://localhost:8093/test_war_exploded/s/support';">
+                    <div class="dash-tab" onclick="window.location='http://localhost:8080/test_war_exploded/s/support';">
                         <div class="dash-icon">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px"/>
                         </div>

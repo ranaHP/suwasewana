@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-size: 16px;
+    font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
 }
 .header{
@@ -28,7 +28,7 @@ select{
     width: 170px;
     height: 30px;
     border: none;
-    font-size: .6em;
+    font-size: .7em;
     padding-left: 4px;
     color: rgba(0, 0, 0, 0.61);
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.13);
@@ -40,7 +40,55 @@ select{
     flex-direction: column;
     justify-content: center;
     /* padding-left: 25px; */
-    padding-left: 15%;
+    padding-left: 7%;
+}
+.add-com-type{
+    width: 30%;
+    /*height: 100vh;*/
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    /*height: 300px;*/
+    height: 430px;
+    /*padding: 10px;*/
+    background-color: white;
+    /*margin: 10px 0 0 0;*/
+
+}
+.add-com-type input{
+    border: 0;
+    /*box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);*/
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.158);
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+    height: 25px;
+}
+.add{
+    display: flex;
+    flex-direction: column;
+}
+.add-com-type button{
+    margin-top: 10px;
+    border: 0;
+    padding: 3px 12px;
+    border-radius: 2px;
+    background-color: #2E86DE;
+    color: white!important;
+    cursor: pointer;
+    font-size: .8em;
+
+}
+.types{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: rgba(0, 0, 0, 0.76);
+    /* font-size: 1.8em; */
+}
+.types p{
+    margin-top: 2px;
 }
 @keyframes opacity{
     from{
@@ -87,9 +135,9 @@ body{
 .complaint{
     display: flex;
     background-color: white;
-    width: 70%;
+    width: 90%;
     height: 170px;
-    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 15px;
     justify-content: space-around;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
@@ -104,10 +152,12 @@ body{
 }
 .description{
     width: 60%;
+    font-size: 1em;
 }
 .images-button-section{
     background-color: white;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    align-items: center;
 }
 .next-button , .pre-button{
     display: flex;

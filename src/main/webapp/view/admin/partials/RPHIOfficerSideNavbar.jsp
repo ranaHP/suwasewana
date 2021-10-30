@@ -20,7 +20,7 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a href="/test_war_exploded/s/PHI-dashboard">Home</a></li>
+                <li><a href="/test_war_exploded/s/RPHI-dashboard">Home</a></li>
             </ul>
         </li>
         <li>
@@ -46,7 +46,7 @@
             </div>
             <ul class="sub-menu">
                 <%--                <li><a class="link_name" href="#">verify-patients</a></li>--%>
-                <li><a href="/test_war_exploded/s/Register-patients">Register patients</a></li>
+                <li><a href="/test_war_exploded/s/Register-patients1">Register patients</a></li>
             </ul>
         </li>
         <li>
@@ -74,7 +74,7 @@
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">verify-patients</a></li>--%>
-                <li><a href="/test_war_exploded/s/verify-patients">Verify patients</a></li>
+                <li><a href="/test_war_exploded/s/verify-patients1">Verify patients</a></li>
             </ul>
         </li>
         <li>
@@ -87,7 +87,7 @@
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">View appointments</a></li>--%>
-                <li><a href="/test_war_exploded/s/view-appointments">View appointments</a></li>
+                <li><a href="/test_war_exploded/s/view-appointments1">View appointments</a></li>
             </ul>
         </li>
 
@@ -133,7 +133,7 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="/test_war_exploded/s/view-complaints">View complaints</a></li>
+                <li><a href="/test_war_exploded/s/view-complaints1">View complaints</a></li>
             </ul>
         </li>
         <li>
@@ -142,7 +142,7 @@
                 <span class="link_name">View Complaint Reports</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a href="/test_war_exploded/s/PHI-view-report">View Complaint Reports</a></li>
+                <li><a href="/test_war_exploded/s/PHI-view-report1">View Complaint Reports</a></li>
             </ul>
         </li>
 <%--        <li>--%>
@@ -174,6 +174,16 @@
                 </div>
                 <i class='bx bx-log-out'></i>
             </div>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link_name">Logout</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a href="#">Logout</a></li>
+            </ul>
         </li>
     </ul>
 </div>

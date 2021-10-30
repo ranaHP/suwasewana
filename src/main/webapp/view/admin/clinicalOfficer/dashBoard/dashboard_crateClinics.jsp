@@ -43,45 +43,45 @@
                             <div class="left-inputs">
                                 <div class="inputs">
                                     <label> Clinic Title</label>
-                                    <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" />
+                                    <input type="text" required autocomplete="off" value="Covid 19 clinic" name="clinic-title" id="clinic-title" />
                                 </div>
                                 <div class="inputs">
                                     <label> Disease</label>
-                                    <input type="text" required autocomplete="off" name=" disease" id="disease" />
+                                    <input type="text" required autocomplete="off" value="Covid 19" name=" disease" id="disease" />
                                 </div>
                                 <div class="inputs">
                                     <label> Location</label>
-                                    <input type="text"  required autocomplete="off" name=" location" id="location"/>
+                                    <input type="text"  required autocomplete="off" value="at MOH" name=" location" id="location"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Target MOH</label>
-                                    <input type="text" required autocomplete="off" name="target-MOH" id="target-MOH"/>
+                                    <input type="text" required autocomplete="off" value="Ahangama" name="target-MOH" id="target-MOH"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Data & Time</label>
-                                    <input type="text"  required autocomplete="off" name="date-time" id="date-time"/>
+                                    <input type="text"  required autocomplete="off" value="09/08/2021" name="date-time" id="date-time"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Duration (hours)</label>
-                                    <input type="text" required autocomplete="off" name="duration" id="duration"/>
+                                    <input type="text" required autocomplete="off" value="7 hours" name="duration" id="duration"/>
                                 </div>
                             </div>
                             <div class="right-inputs">
                                 <div class="inputs">
                                     <label> Max Patient</label>
-                                    <input type="number" required autocomplete="off" name="max-patient" id="max-patient"/>
+                                    <input type="number" required autocomplete="off" name="max-patient" value="70" id="max-patient"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Target participants </label>
-                                    <input type="text" required autocomplete="off" name="patient" id="patient"/>
+                                    <input type="text" required autocomplete="off" value="For public" name="patient" id="patient"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Conduct</label>
-                                    <input type="text" required autocomplete="off" name="conduct" id="conduct" />
+                                    <input type="text" required autocomplete="off" value="Dr.DIas" name="conduct" id="conduct" />
                                 </div>
                                 <div class="inputs">
                                     <label>Description</label>
-                                    <textarea type="text"  id="description" required autocomplete="off" name="description"></textarea>
+                                    <textarea type="text"  id="description" required autocomplete="off" name="description"> while others focus on specific types of care. Some examples include specialized clinics, sexual health clinics, and mental health clinics</textarea>
                                 </div>
 
 

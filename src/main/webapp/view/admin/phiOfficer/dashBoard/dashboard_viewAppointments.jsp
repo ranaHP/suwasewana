@@ -30,6 +30,7 @@
             <div class="upper-title">SUWASEWANA </div>
             <div class="dashboard-name">PHI/Dashboard/View Appointments</div>
         </div>
+
         <!-- Search appointments section -->
         <div class="search-section">
             <input class="f-4" placeholder="Search by name"/>
@@ -37,57 +38,241 @@
 
         <!-- appintments content -->
         <div class="appointments-container">
+      <div class="appointments" style="display: flex; flex-direction: column; width: 100%; padding: 0 40px">
 
-            <div class="appointment">
-                <!-- appointment sender's details -->
-                <div class="sender">
-                    <div class="sender-information">
-                        <div class="information">
-                            <p class="f-2">Akila Anjana Dissanayaka</p>
-                            <p class="f-3">Type - Scholarship </p>
-                            <p class="f-3">Talk About People's Bank staff vaccination </p>
-                        </div>
-                        <div class="reject-button" onclick="popup.showPopup()">
-                            <button class="f-4">Reject Appointment </button>
-                        </div>
-                    </div>
-                    <div class="sender-details">
-                        <div class="sender-location f-4"><i data-feather="map-pin"></i>  Galgamuwa</div>
-                        <div class="sender-mobile f-4"><i data-feather="phone"></i>  0713805000</div>
-                        <div class="send-date f-4"><i data-feather="calendar"></i>  9/18/2021</div>
+          <div class="appointment">
+              <!-- appointment sender's details -->
+              <div class="sender">
+                  <div class="sender-information">
+                      <div class="information">
+                          <p class="f-1">Akila Anjana Dissanayaka</p>
+                          <p class="f-3">Type - Scholarship </p>
+                          <p class="f-3">Talk About People's Bank staff vaccination </p>
+                      </div>
+                      <div class="reject-button" onclick="popup.showPopup()">
+                          <button class="f-4">Reject Appointment </button>
+                      </div>
+                  </div>
+                  <div class="sender-details">
+                      <div class="sender-location f-4"><i data-feather="map-pin"></i>  Galgamuwa</div>
+                      <div class="sender-mobile f-4"><i data-feather="phone"></i>  0713805000</div>
+                      <div class="send-date f-4"><i data-feather="calendar"></i>  9/18/2021</div>
+                  </div>
+              </div>
+              <!-- the date selection section by phi -->
+              <div class="date-details">
+                  <!-- first date select -->
+                  <div class="up">
+                      <p style="text-align: center" class="f-2">Available Time Slots</p>
+                      <div class="first">
+<%--                          <div class="first-date">--%>
+<%--                              <div class="dateF"><input type="text" placeholder="Date" style="text-align: center"></input></div>--%>
+<%--                          </div>--%>
+                          <div class="first-time-slots">
+                              <input placeholder="Time" style="text-align: center">
+                          </div>
+                      </div>
+                      <!-- second date select-->
+                      <div class="second">
+<%--                          <div class="second-date">--%>
+<%--                              &lt;%&ndash;                            <span>Second time</span>&ndash;%&gt;--%>
+<%--                              <div class="dateS"><input type="text" placeholder="Date" style="text-align: center"></input></div>--%>
+<%--                          </div>--%>
+                          <div class="second-time-slots">
+                              <input placeholder="Time" style="text-align: center">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="send-button-note">
+                      <textarea placeholder="Special note" style="text-align: center"></textarea>
+                      <button class="f-3">Send</button>
+
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="appointment">
+              <!-- appointment sender's details -->
+              <div class="sender">
+                  <div class="sender-information">
+                      <div class="information">
+                          <p class="f-1">Akila Anjana Dissanayaka</p>
+                          <p class="f-3">Type - Scholarship </p>
+                          <p class="f-3">Talk About People's Bank staff vaccination </p>
+                      </div>
+                      <div class="reject-button" onclick="popup.showPopup()">
+                          <button class="f-4">Reject Appointment </button>
+                      </div>
+                  </div>
+                  <div class="sender-details">
+                      <div class="sender-location f-4"><i data-feather="map-pin"></i>  Galgamuwa</div>
+                      <div class="sender-mobile f-4"><i data-feather="phone"></i>  0713805000</div>
+                      <div class="send-date f-4"><i data-feather="calendar"></i>  9/18/2021</div>
+                  </div>
+              </div>
+              <!-- the date selection section by phi -->
+              <div class="date-details">
+                  <!-- first date select -->
+                  <div class="up">
+                      <p style="text-align: center" class="f-2">Available Time Slots</p>
+                      <div class="first">
+<%--                          <div class="first-date">--%>
+<%--                              <div class="dateF"><input type="text" placeholder="Date" style="text-align: center"></input></div>--%>
+<%--                          </div>--%>
+                          <div class="first-time-slots">
+                              <input placeholder="Time" style="text-align: center">
+                          </div>
+                      </div>
+                      <!-- second date select-->
+                      <div class="second">
+<%--                          <div class="second-date">--%>
+<%--                              &lt;%&ndash;                            <span>Second time</span>&ndash;%&gt;--%>
+<%--                              <div class="dateS"><input type="text" placeholder="Date" style="text-align: center"></input></div>--%>
+<%--                          </div>--%>
+                          <div class="second-time-slots">
+                              <input placeholder="Time" style="text-align: center">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="send-button-note">
+                      <textarea placeholder="Special note" style="text-align: center"></textarea>
+                      <button class="f-3">Send</button>
+
+                  </div>
+              </div>
+          </div>
+          <div class="appointment">
+              <!-- appointment sender's details -->
+              <div class="sender">
+                  <div class="sender-information">
+                      <div class="information">
+                          <p class="f-1">Akila Anjana Dissanayaka</p>
+                          <p class="f-3">Type - Scholarship </p>
+                          <p class="f-3">Talk About People's Bank staff vaccination </p>
+                      </div>
+                      <div class="reject-button" onclick="popup.showPopup()">
+                          <button class="f-4">Reject Appointment </button>
+                      </div>
+                  </div>
+                  <div class="sender-details">
+                      <div class="sender-location f-4"><i data-feather="map-pin"></i>  Galgamuwa</div>
+                      <div class="sender-mobile f-4"><i data-feather="phone"></i>  0713805000</div>
+                      <div class="send-date f-4"><i data-feather="calendar"></i>  9/18/2021</div>
+                  </div>
+              </div>
+              <!-- the date selection section by phi -->
+              <div class="date-details">
+                  <!-- first date select -->
+                  <div class="up">
+                      <p style="text-align: center" class="f-2">Available Time Slots</p>
+                      <div class="first">
+<%--                          <div class="first-date">--%>
+<%--                              <div class="dateF"><input type="text" placeholder="Date" style="text-align: center"></input></div>--%>
+<%--                          </div>--%>
+                          <div class="first-time-slots">
+                              <input placeholder="Time" style="text-align: center">
+                          </div>
+                      </div>
+                      <!-- second date select-->
+                      <div class="second">
+<%--                          <div class="second-date">--%>
+<%--                              &lt;%&ndash;                            <span>Second time</span>&ndash;%&gt;--%>
+<%--                              <div class="dateS"><input type="text" placeholder="Date" style="text-align: center"></input></div>--%>
+<%--                          </div>--%>
+                          <div class="second-time-slots">
+                              <input placeholder="Time" style="text-align: center">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="send-button-note">
+                      <textarea placeholder="Special note" style="text-align: center"></textarea>
+                      <button class="f-3">Send</button>
+
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="appointment">
+              <!-- appointment sender's details -->
+              <div class="sender">
+                  <div class="sender-information">
+                      <div class="information">
+                          <p class="f-1">Akila Anjana Dissanayaka</p>
+                          <p class="f-3">Type - Scholarship </p>
+                          <p class="f-3">Talk About People's Bank staff vaccination </p>
+                      </div>
+                      <div class="reject-button" onclick="popup.showPopup()">
+                          <button class="f-4">Reject Appointment </button>
+                      </div>
+                  </div>
+                  <div class="sender-details">
+                      <div class="sender-location f-4"><i data-feather="map-pin"></i>  Galgamuwa</div>
+                      <div class="sender-mobile f-4"><i data-feather="phone"></i>  0713805000</div>
+                      <div class="send-date f-4"><i data-feather="calendar"></i>  9/18/2021</div>
+                  </div>
+              </div>
+              <!-- the date selection section by phi -->
+              <div class="date-details">
+                  <!-- first date select -->
+                  <div class="up">
+                      <p style="text-align: center" class="f-2">Available Time Slots</p>
+                      <div class="first">
+<%--                          <div class="first-date">--%>
+<%--                              <div class="dateF"><input type="text" placeholder="Date" style="text-align: center"></input></div>--%>
+<%--                          </div>--%>
+                          <div class="first-time-slots">
+                              <input placeholder="Time" style="text-align: center">
+                          </div>
+                      </div>
+                      <!-- second date select-->
+                      <div class="second">
+<%--                          <div class="second-date">--%>
+<%--                              &lt;%&ndash;                            <span>Second time</span>&ndash;%&gt;--%>
+<%--                              <div class="dateS"><input type="text" placeholder="Date" style="text-align: center"></input></div>--%>
+<%--                          </div>--%>
+                          <div class="second-time-slots">
+                              <input placeholder="Time" style="text-align: center">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="send-button-note">
+                      <textarea placeholder="Special note" style="text-align: center"></textarea>
+                      <button class="f-3">Send</button>
+
+                  </div>
+              </div>
+          </div>
+      </div>
+<%--            <hr>--%>
+            <div class="add-com-type">
+
+                <p class="f-1">Add Appointment type</p>
+                <div class="right">
+
+<%--                    <p class="f-4">Types</p>--%>
+                    <div class="types">
+                        <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Mahapola scholarship</p>
+                        <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  For get the cv sign</p>
+                        <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  For take information</p>
+                        <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  For grade 5 scholarships</p>
+                        <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Mahapola scholarship</p>
+                        <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  Mahapola scholarship</p>
+                        <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  For get the cv sign</p>
+                        <p> <i data-feather="edit"  style="color: rgb(22, 212, 38)"></i>  For grade 5 scholarships</p>
                     </div>
                 </div>
-                <!-- the date selection section by phi -->
-                <div class="date-details">
-                    <!-- first date select -->
-                   <div class="up">
-                       <p style="text-align: center" class="f-2">Available Time Slots</p>
-                       <div class="first">
-                           <div class="first-date">
-                               <div class="dateF"><input type="text" placeholder="Date" style="text-align: center"></input></div>
-                           </div>
-                           <div class="first-time-slots">
-                               <input placeholder="Time" style="text-align: center">
-                           </div>
-                       </div>
-                       <!-- second date select-->
-                       <div class="second">
-                           <div class="second-date">
-                               <%--                            <span>Second time</span>--%>
-                               <div class="dateS"><input type="text" placeholder="Date" style="text-align: center"></input></div>
-                           </div>
-                           <div class="second-time-slots">
-                               <input placeholder="Time" style="text-align: center">
-                           </div>
-                       </div>
-                   </div>
-                    <div class="send-button-note">
-                        <textarea placeholder="Special note" style="text-align: center"></textarea>
-                        <button class="f-3">Send</button>
+                <div class="left">
 
+                    <div class="add">
+                        <input placeholder="Type here.."></input>
+                        <button class="f-4">add</button>
                     </div>
                 </div>
             </div>
+
+
 <%--        </div>--%>
 <%--    </div>--%>
 

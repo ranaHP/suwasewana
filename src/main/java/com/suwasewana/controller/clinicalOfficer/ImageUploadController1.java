@@ -1,16 +1,16 @@
-package com.suwasewana.controller;
+package com.suwasewana.controller.clinicalOfficer;
 
 import com.google.gson.Gson;
-import com.suwasewana.core.ResponseType;
 import com.suwasewana.dao.UserDAO;
-import com.suwasewana.model.UserLoginModel;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet(name = "FileUploadServlet", urlPatterns = { "/fileuploadservlet" })
 @MultipartConfig(
@@ -18,7 +18,7 @@ import java.io.PrintWriter;
         maxFileSize = 1024 * 1024 * 10,      // 10 MB
         maxRequestSize = 1024 * 1024 * 100   // 100 MB
 )
-public class ImageUploadController extends HttpServlet {
+public class ImageUploadController1 extends HttpServlet {
     UserDAO userDAO;
     private Gson gson = new Gson();
 

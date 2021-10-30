@@ -14,8 +14,12 @@
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <%--    Add scripting files--%>
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
+
+    <%--    Add calendar styles event popup styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
     <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
 
@@ -83,10 +87,13 @@
             </div>
             <div class="calander">
                 <h4>Calander</h4>
+
+                <%-- Makes div  for calendar and calendar event popups--%>
                 <div class="calander-body">
                     <div class="calender-container" id="calender" ></div>
                     <div class="mypopup" id="popup" style="display: none;position: fixed; top: 0; left: 0;"></div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -144,6 +151,9 @@
 <script defer>
     let calender = new Calender("calender");
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+
+
+
     // calender.reangeSelect(2021, 9, 10, 6, 8);
 
 </script>

@@ -21,7 +21,7 @@
 </head>
 <body>
 
-  <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+  <c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp" />
   <div class="popup-container" id="PopupContainer"></div>
     <div class="container" id="mainContent">
 

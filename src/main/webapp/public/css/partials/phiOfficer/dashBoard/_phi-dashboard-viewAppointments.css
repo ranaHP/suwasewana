@@ -44,10 +44,62 @@
 body{
     background-color: #dfe4ea59;
 }
-.appointments-container{
+.add-com-type{
+    width: 30%;
+    /*height: 100vh;*/
     display: flex;
     flex-direction: column;
+    justify-content:space-around;
     align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
+    /*height: 300px;*/
+    height: 430px;
+    /*padding: 10px;*/
+    background-color: white;
+    /*margin: 10px 0 0 0;*/
+
+}
+.add-com-type input{
+    border: 0;
+    /*box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);*/
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.158);
+    font-family: Arial, Helvetica, sans-serif;
+    outline: none;
+    height: 25px;
+}
+.add{
+    display: flex;
+    flex-direction: column;
+}
+.add-com-type button{
+     margin-top: 10px;
+    border: 0;
+    padding: 3px 12px;
+    border-radius: 2px;
+    background-color: #2E86DE;
+    color: white!important;
+    cursor: pointer;
+    font-size: .8em;
+
+}
+.appointment div{
+    padding: 2px;
+}
+.types{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: rgba(0, 0, 0, 0.76);
+    /* font-size: 1.8em; */
+}
+.types p{
+    margin-top: 2px;
+}
+.appointments-container{
+    display: flex;
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    padding: 30px;
 }
 .search-section{
     display: flex;
@@ -66,14 +118,14 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 .appointment{
-    width: 78%;
-    min-height: 170px;
+    width: 100%;
+    min-height: 150px;
     display: flex;
     justify-content: space-around;
     border: 2px dashed rgba(185, 185, 187, 0.9);
     background-color: white;
-    padding: 10px;
-    margin-top: 25px;
+    padding: 5px;
+    margin-bottom: 25px;
 }
 .sender-information{
     font-family: corbel;
@@ -89,6 +141,7 @@ body{
     float: right;
     border-radius: 3px;
     cursor: pointer;
+    margin-right: 10px;
 }
 .sender-details{
     font-family: Arial, Helvetica, sans-serif;
@@ -98,9 +151,9 @@ body{
     /*width: 50%;*/
     padding-left: 5px;
 }
-.sender-details div{
-    margin: 0 2px;
-}
+/*.sender-details div{*/
+/*    margin: 0 2px;*/
+/*}*/
 .send-button-note{
     display: flex;
     flex-direction: column;

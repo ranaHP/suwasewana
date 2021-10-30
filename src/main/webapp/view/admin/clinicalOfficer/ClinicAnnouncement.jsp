@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/createAnnouncement/ClinicAnnouncement.css"/>">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Suwasewana</title>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <%--    for side navbar style--%>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -22,90 +22,99 @@
 <div class="AC_main_Container">
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
-    <div class="dashboard-name">Admin/Register/ClinicalOfficer</div>
+    <div class="dashboard-name">Clinical officer/create announcements</div>
   </div>
   <div class="c-db-container">
     <div class="row" style="width: 100%;">
       <form>
         <div class="row" style="align-items: center;justify-content: center;">
           <div class="form-group">
-            <label for="aTitle">
-              Clinic Name
+            <label for="clinicID">
+              Search by Clinic ID
             </label>
-            <input type="text" name="name" id="aTitle12" autocomplete="off"
+            <input type="text" name="clinicID" id="clinicID" autocomplete="off"
                    required/>
           </div>
           <div class="form-group">
-            <label for="aTitle">
-              &nbsp;
-            </label>
-            <button class="submitBtn " type="submit" > Search </button>
+<%--            <label for="aTitle">--%>
+<%--              &nbsp;--%>
+<%--            </label>--%>
+            <button class="submitBtn " type="submit" onclick="return view() " > Search </button>
           </div>
         </div>
       </form>
     </div>
-    <div class="form-container">
+    <div class="form-container" id="form">
       <div class="left-col">
         <div class="row" >
           <form style="width: 100%;">
             <div class="row">
               <div class="form-group">
-                <label for="aTitle">
+                <label for="clinic-title">
                   Announctment Title
                 </label>
-                <input type="text" name="name" id="aTitle1" autocomplete="off"
+                <input type="text" name="name" id="clinic-title" autocomplete="off"
                        required/>
 
               </div>
             </div>
             <div class="row">
               <div class="form-group">
-                <label for="reason">
+                <label for="description">
                   Announctment Description
                 </label>
                 <textarea rows="4" cols="50" type="text" placeholder="reason" name="reason"
-                          id="reason"> Reason.... </textarea>
+                          id="description"> Reason.... </textarea>
               </div>
 
             </div>
             <div class="row" style="display: flex;flex-wrap: wrap;justify-content: flex-start;">
               <div class="form-group" style="width: 250px;">
-                <label for="aTitle">
+                <label for="location">
                   Location
                 </label>
-                <input type="text" name="name" id="aTitle2" autocomplete="off"
+                <input type="text" name="name" id="location" autocomplete="off"
                        required/>
 
               </div>
               <div class="form-group" style="width: 250px;">
-                <label for="aTitle">
+                <label for="date-time">
                   Date & Time
                 </label>
-                <input type="text" name="name" id="aTitle3" autocomplete="off"
+                <input type="text" name="name" id="date-time" autocomplete="off"
                        required/>
 
               </div>
               <div class="form-group" style="width: 250px;">
-                <label for="aTitle">
+                <label for="duration">
                   Duration
                 </label>
-                <input type="text" name="name" id="aTitle31" autocomplete="off"
+                <input type="text" name="name" id="duration" autocomplete="off"
                        required/>
 
               </div>
               <div class="form-group" style="width: 250px;">
-                <label for="aTitle">
+                <label for="conduct">
                   Conduct By
                 </label>
-                <input type="text" name="name" id="aTitle4" autocomplete="off"
+                <input type="text" name="name" id="conduct" autocomplete="off"
                        required/>
 
               </div>
               <div class="form-group" style="width: 250px;">
-                <label for="aTitle">
+                <label for="max-patient">
                   Max limit
                 </label>
-                <input type="text" name="name" id="aTitle5" autocomplete="off"
+                <input type="text" name="name" id="max-patient" autocomplete="off"
+                       required/>
+
+              </div>
+
+              <div class="form-group" style="width: 250px;">
+                <label for="disease">
+                  Disease
+                </label>
+                <input type="text" name="disease" id="disease" autocomplete="off"
                        required/>
 
               </div>
@@ -114,7 +123,7 @@
             <div class="row">
               <div class="form-group d-flex-a-i-end">
 
-                <button class="submitBtn " type="submit" > Make Announctment</button>
+                <button class="submitBtn " type="submit" onsubmit="announcement(event)" > Make Announctment</button>
               </div>
 
             </div>
@@ -126,16 +135,23 @@
           <form style="width: 100%;">
             <div class="row">
               <div class="form-group">
-                <label for="aTitle">
+                <label for="patient">
                   Target Peoples
                 </label>
-                <input type="text" name="name" id="aTitle" autocomplete="off"
+                <input type="text" name="name" id="patient" autocomplete="off"
                        required/>
 
               </div>
             </div>
             <div class="row">
+              <div class="form-group">
+                <label for="target-MOH">
+                  Target MOH
+                </label>
+                <input type="text" name="moh" id="target-MOH" autocomplete="off"
+                       required/>
 
+              </div>
 
             </div>
 
@@ -144,11 +160,13 @@
               <div class="form-group d-flex-a-i-end">
                 <div class="image-upload-card-container">
                   <div class="image-upload-card">
-                    <img id="proof2" width="100%" />
-                    <input type="file" accept="image/*" name="file" id="proof2input"
-                           onchange="loadFile(event, 'proof2')" style="display: none;">
-                    <label for="proof2input" style="cursor: pointer;">Upload Image</label>
+                    <img id="proof1" width="100%" />
+                    <input type="file" accept="image/*" name="file" id="proof1input"
+                           onchange="loadFile(event , 'proof1')" style="display: none;">
+
+                    <label for="proof1input" style="cursor: pointer;">Upload Image</label>
                   </div>
+                  <%--                        <button onclick="imageUpload()">add</button>--%>
                 </div>
               </div>
 
@@ -182,6 +200,56 @@
   feather.replace({width: "8px"})
 </script>
 <script defer>
+  var loadFile = function (event, imgContainerId) {
+    var image = document.getElementById(imgContainerId);
+    image.src = URL.createObjectURL(event.target.files[0]);
+  };
+
+  function imageUpload() {
+
+    var fd = new FormData();
+    let imageNames = [];
+    if ($('#proof1input')[0].files[0]) {
+      fd.append('file', $('#proof1input')[0].files[0]);
+      let name = new Date().toString().split(" ");
+      let url1 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+              Math.floor(10000 + Math.random() * 10000) + "." +
+              $('#proof1input')[0].files[0].name.split(".")[$('#proof1input')[0].files[0].name.split(".").length - 1];
+
+      imageNames.push(url1);
+    }
+
+
+    imageNames.map((item, index) => {
+      fd.append('ImageName' + (index + 1), item);
+    })
+
+
+    console.log("image neames array "+imageNames);
+    if(imageNames.length!=0){
+      $.ajax({
+        url: '/test_war_exploded/fileuploadservlet',
+        type: 'post',
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function (response) {
+          if (response != 0) {
+            console.log("successfully image uploadedss ---- " +imageNames )
+            // registerwithimage(imageNames);
+          } else {
+            console.log('file not uploaded');
+          }
+        },
+      });
+    }
+    else {
+      console.log("no image selected")
+      // registerwithoutimage();
+    }
+    return false;
+  }
+
 
   let selectClinic = new selectClinics("form");
   function view(){
@@ -199,6 +267,37 @@
               alert(data)
             }
     );
+    return false;
+  }
+
+  function announcement(data){
+    // console.log(document.getElementById('disease').value)
+    alert(document.getElementById('disease').value)
+   imageUpload()
+    let reqData =
+            {
+              // disease:data.target.elements.disease.value,
+              title:"hhhh",
+              // location:data.target.elements.location.value,
+              // MOH:document.getElementById("target-MOH").value,
+              // datetime: document.getElementById("date-time").value,
+              // duration: data.target.elements.duration.value,
+              // maxpatient:document.getElementById("max-patient").value,
+              // Target: data.target.elements.patient.value,
+              // conduct: data.target.elements.conduct.value,
+              // description: data.target.elements.description.value,
+            };
+
+    console.log(reqData)
+    console.log("finish")
+    alert(reqData)
+    $.post("/test_war_exploded/clinicAnnouncementController/createA",
+            reqData,
+            function(data,status){
+              alert(data)
+            }
+    );
+    return false;
   }
 </script>
   <script defer src="<c:url value="/public/js/common/side-navbar.js"></c:url> " ></script>

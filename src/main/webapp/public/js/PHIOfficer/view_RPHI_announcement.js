@@ -36,7 +36,7 @@ news.map((item=>{
     announcement.innerHTML=`
 <div class="left">
                 <div class="image-container">
-                    <img src="${Url}/public/images/c2.jpg" width="250px" height="150px">
+                    <img src="${Url}/public/images/download.jpg" width="250px" height="150px">
                 </div>
             </div>
             <div class="right">

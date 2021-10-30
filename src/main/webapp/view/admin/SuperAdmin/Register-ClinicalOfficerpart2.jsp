@@ -60,7 +60,7 @@
                     <div class="milturow_left">
                         <div class="form-item">
                             <input type="text" id="NIC" autocomplete="off"
-                                   onblur="validation.nicValidation(
+                                   onkeyup="validation.nameValidation(
                                     document.getElementById('NIC'),
                                     'LNIC')
                                 ;"
@@ -190,7 +190,7 @@
         function checkvalidation(){
             let mohid=checkMOHid();
             if(validation.nameValidation(document.getElementById('fullName').value,'LfullName' )&&
-                validation.nicValidation( document.getElementById('NIC'),'LNIC')&&
+                validation.nameValidation( document.getElementById('NIC'),'LNIC')&&
                 validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo')&&
                 validation.nameValidation(document.getElementById('COCity').value,'LCOCity' )&&
                 validation.nameValidation( document.getElementById('District').value,'LDistrict')&&
@@ -202,7 +202,7 @@
             }
             else{
                 validation.nameValidation(document.getElementById('fullName').value,'LfullName' );
-                validation.nicValidation( document.getElementById('NIC'),'LNIC');
+                validation.nameValidation( document.getElementById('NIC'),'LNIC');
                 validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo');
                 validation.nameValidation(document.getElementById('COCity').value,'LCOCity' );
                 validation.nameValidation( document.getElementById('District').value,'LDistrict');
@@ -261,22 +261,22 @@
 
 
     <script defer>
-        let mohDetails=[];
-        $.post("/suwasewana_war/user-complain-controller/moh",
-            function (data, status) {
-                // console.log(data);
-                let rs= JSON.parse(data);
-                this.mohDetails=rs;
-                // console.log(data);
-
-                let MNames=document.getElementById("AllMArea");
-                MNames.innerHTML="";
-                rs.map((element,index) => {
-                    // console.log("moh"+element.MName)
-                    MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
-                })
-            }
-        );
+        // let mohDetails=[];
+        // $.post("/suwasewana_war/user-complain-controller/moh",
+        //     function (data, status) {
+        //         // console.log(data);
+        //         let rs= JSON.parse(data);
+        //         this.mohDetails=rs;
+        //         // console.log(data);
+        //
+        //         let MNames=document.getElementById("AllMArea");
+        //         MNames.innerHTML="";
+        //         rs.map((element,index) => {
+        //             // console.log("moh"+element.MName)
+        //             MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
+        //         })
+        //     }
+        // );
         // console.log(mohDetails);
 
 

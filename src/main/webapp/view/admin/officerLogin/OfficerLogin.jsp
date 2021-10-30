@@ -111,7 +111,7 @@
                     console.log(url)
                     console.log(result);
                     if (result.status === "success") {
-                    //     location.replace("https://www.w3schools.com");
+                        // location.replace("https://www.w3schools.com");
                         console.log("---------------success");
                     } else if (result.status === "error") {
                         console.log("---------------unsucess");

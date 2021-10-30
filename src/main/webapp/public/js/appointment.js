@@ -18,7 +18,7 @@ class Appointment {
     ];
 
     container;
-    url = "http://localhost:8093/test_war_exploded/public/";
+    url = "http://localhost:8080/test_war_exploded/public/";
 
     constructor(container) {
         // this.AppointmentArray = JSON.parse(data);

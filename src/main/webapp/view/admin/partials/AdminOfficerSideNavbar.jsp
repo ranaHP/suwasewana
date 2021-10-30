@@ -107,6 +107,16 @@
                 <li><a class="link_name" href="#">Update case details</a></li>
             </ul>
         </li>
+
+        <li>
+            <a href="#">
+                <i class='bx bx-log-out'></i>
+                <span class="link_name">Logout</span>
+            </a>
+            <ul class="sub-menu blank">
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </li>
         <li>
 <%--            <a href="#">--%>
 <%--                <i class='bx bx-history'></i>--%>

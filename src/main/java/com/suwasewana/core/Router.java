@@ -42,7 +42,7 @@ public class Router extends HttpServlet {
                     rd.forward(request,response);
                     break;
                 case "login_officer":
-                    rd = request.getRequestDispatcher("/view/admin/OfficerLogin/OfficerLogin.jsp");
+                    rd = request.getRequestDispatcher("/view/admin/officerLogin/OfficerLogin.jsp");
                     rd.forward(request,response);
                     break;
                 case "appointment":
@@ -167,8 +167,32 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPHI.jsp");
                     rd.forward(request,response);
                     break;
+                case "RPHI-dashboard":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/Rphi-dashboard.jsp");
+                    rd.forward(request,response);
+                    break;
                 case "AssignTask":
                     rd = request.getRequestDispatcher("/view/admin/RPHI/assign_TasksAndManage.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "verify-patients1":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/dashboard_verifyPatients1.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "PHI-view-report1":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/dashboard_view_report1.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "Register-patients1":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/RegisterUser1.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view-complaints1":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/dashboard_viewComplaints1.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view-appointments1":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/dashboard_viewAppointments1.jsp");
                     rd.forward(request,response);
                     break;
                 case "MOHAnnouncements":

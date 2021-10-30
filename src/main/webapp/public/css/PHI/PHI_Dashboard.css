@@ -63,6 +63,7 @@ body {
     /*background-color: red;*/
     /*width: 100vw;*/
     overflow-x: hidden;
+    padding: 0 60px;
 }
 
 .summary-card {
@@ -222,15 +223,16 @@ body {
 .calander-complain {
     display: flex;
     margin: 0 20px;
-    min-height: 55vh;
+    /*min-height: 55vh;*/
 }
 
-.complains {
-    width: 35%;
-}
+/*.complains {*/
+/*    width: 35%;*/
+/*}*/
 
 .type-container {
     padding-right: 20px;
+
 }
 
 .complain-body {
@@ -242,6 +244,15 @@ body {
 .complain-body::-webkit-scrollbar {
     display: none; /* for Chrome, Safari, and Opera */
 }
+.type-container{
+    /*background-color: green;*/
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+}
 
 .complain {
     border-radius: 3px;
@@ -249,8 +260,10 @@ body {
     min-height: 55px;
     padding: 7px 0;
     display: flex;
-    border: 1px dashed #7f8c8d;
+    /*border: 1px dashed #7f8c8d;*/
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
     background-color: #ffffffc0;
+    /*width: 100%;*/
 }
 
 .color-circle {
@@ -314,34 +327,40 @@ body {
 }
 
 .complain-type {
-    width: 35%;
+    width: 60%;
+    margin-top: 120px;
 }
 
 .types {
-    margin-top: 10px;
+
     min-height: fit-content;
+    align-items: center;
+    height: 300px;
     padding: 10px;
     display: flex;
     border-radius: 3px;
     box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.08);
     position: relative;
+    width: 100%;
     background-color: #ffffffc0;
+
 }
 
 .type-chart {
-    width: 35%;
+    width: 90%;
     /* background-color: #FA8231; */
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: -25px;
     /* position: absolute; */
 }
 
 .donat-chart {
     position: absolute;
-    width: 100px;
-    height: 100px;
-    top: -10px;
+    /*width: 100px;*/
+    /*height: 100px;*/
+    /*top: -10px;*/
 }
 
 .diff-types li {
@@ -349,7 +368,7 @@ body {
     color: rgba(0, 0, 0, 0.692);
     letter-spacing: 1px;
     font-family: Arial, Helvetica, sans-serif;
-    padding-top: 5px;
+    padding-top: 15px;
 }
 
 ul {
@@ -424,12 +443,9 @@ ul {
 
 .todoList-apponment {
     display: flex;
-    margin: 20px;
-}
-
-.todo-list {
-    width: 55%;
-    /* background-color: aqua; */
+    flex-direction: column;
+    /*margin: 20px;*/
+    width: 100%;
 }
 
 .todo-container {
@@ -524,9 +540,9 @@ ul {
 }
 
 
-.Appoinment {
-    width: 45%;
-}
+/*.Appoinment {*/
+/*    width: 45%;*/
+/*}*/
 
 
 .appoinment-list {
@@ -588,7 +604,7 @@ ul {
 }
 
 .appinment-container {
-    margin: 10px 10px 0 10px;
+    /*margin: 10px 10px 0 10px;*/
     overflow: auto;
     height: 290px;
 }
@@ -596,7 +612,13 @@ ul {
 .appinment-container::-webkit-scrollbar {
     display: none;
 }
-
+.calander-complain{
+    /*background-color: red;*/
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 2px;
+}
 
 @media only screen and (max-width: 1027px ) {
     .chart-map, .calander-complain, .todoList-apponment {
@@ -608,9 +630,9 @@ ul {
         width: 80%;
     }
 
-    .complains {
-        width: 80%;
-    }
+    /*.complains {*/
+    /*    width: 80%;*/
+    /*}*/
 
     .map {
         height: 340px;

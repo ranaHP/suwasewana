@@ -46,7 +46,7 @@
         <form onsubmit="return checkvalidation();">
             <div class="singal_row">
                 <div class="form-item">
-                    <input type="text" id="fullName" value="Akila"  name="fullName" autocomplete="off"
+                    <input type="text" id="fullName" value="Akila disanayaka"  name="fullName" autocomplete="off"
                            onclick="document.getElementById('fullName').value = '' "
                            onblur="validation.nameValidation(
                             document.getElementById('fullName').value,
@@ -66,7 +66,7 @@
                     <div class="form-item">
                         <input type="text" id="NIC" value="199910910064" name="NIC" autocomplete="off"
                                onclick="document.getElementById('NIC').value = '' ;"
-                               onblur="validation.nicValidation(
+                               onkeyup="validation.nameValidation(
                                     document.getElementById('NIC'),
                                     'LNIC')
                                 ;"
@@ -97,7 +97,7 @@
             <div class="multirow" style="margin-top: 30px;">
                 <div class="milturow_left" id="mohHeadDiv">
                     <div class="form-item" >
-                        <input type="text"  id="City" value="Galla" name="City" autocomplete="off"
+                        <input type="text"  id="City" value="Galle" name="City" autocomplete="off"
 <%--                               onclick="document.getElementById('City').value = '' "--%>
                                onblur="validation.nameValidation(
                                 document.getElementById('City').value,
@@ -114,7 +114,7 @@
                 </div>
                 <div class="multirow_right" >
                     <div class="form-item" >
-                        <input type="text"  id="District" value="Galla" name="District" autocomplete="off"
+                        <input type="text"  id="District" value="Galle" name="District" autocomplete="off"
 <%--                               onclick="document.getElementById('District').value = '' "--%>
                                onblur="validation.nameValidation(
                                 document.getElementById('District').value,
@@ -261,7 +261,7 @@
         console.log("image neames array "+imageNames);
         if(imageNames.length!=0){
             $.ajax({
-                url: '/suwasewana_war/fileuploadservlet',
+                url: '/test_war_exploded/fileuploadservlet',
                 type: 'post',
                 data: fd,
                 contentType: false,
@@ -296,7 +296,7 @@
             validation.nameValidation(document.getElementById('District').value,'LDistrict')&&
             validation.nameValidation(document.getElementById('City').value,'LCity')&&
             validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo')&&
-            validation.nicValidation( document.getElementById('NIC'),'LNIC')&&
+            validation.nameValidation( document.getElementById('NIC'),'LNIC')&&
             validation.nameValidation( document.getElementById('fullName').value,'LfullName')&&
             (mohid!=0)
         )
@@ -311,7 +311,7 @@
                 validation.nameValidation(document.getElementById('District').value,'LDistrict');
                 validation.nameValidation(document.getElementById('City').value,'LCity');
                 validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo');
-                validation.nicValidation( document.getElementById('NIC'),'LNIC');
+                validation.nameValidation( document.getElementById('NIC'),'LNIC');
                 validation.nameValidation( document.getElementById('fullName').value,'LfullName');
             if(mohid==0){
                 validation.setErrorMessageForField("Enter valid Area", 'LMArea', 0);
@@ -336,7 +336,7 @@
                 DP:imagearray[0]
             };
         console.log("post ==== "+reqData.phi_post)
-        $.post("/suwasewana_war/admin-register-controller/phi",
+        $.post("/test_war_exploded/admin-register-controller/phi",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -373,7 +373,7 @@
             };
 
         console.log("post ==== "+reqData.phi_post)
-        $.post("/suwasewana_war/admin-register-controller/phi",
+        $.post("/test_war_exploded/admin-register-controller/phi",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -403,7 +403,7 @@
 
 <script defer>
     let mohDetails=[];
-    $.post("/suwasewana_war/user-complain-controller/moh",
+    $.post("/test_war_exploded/user-complain-controller/moh",
         function (data, status) {
             // console.log(data);
             let rs= JSON.parse(data);

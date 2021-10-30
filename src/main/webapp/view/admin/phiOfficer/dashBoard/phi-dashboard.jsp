@@ -114,7 +114,7 @@
             </div>
             <div class="chart-map">
                 <div class="Chart-side">
-                    <div class="chart-container">
+                    <div class="chart-container" style="padding: 25px">
                         <label  class="topic">Rapidly spreading disease - week</label>
                         <div class="D-chart-container">
                             <div class="d-chart-header">
@@ -132,128 +132,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="complain-dis-chart">
-                        <label class="topic"> complain</label>
-                        <div class="co-chart-container">
-                            <div class="c-chart">
-                                <span>Environmental issues</span>
-                                <canvas id="myChart2" height="70" width="100"></canvas>
-                            </div>
-                            <div class="c-chart">
-                                <span>Environmental issues</span>
-                                <canvas id="myChart3" height="70" width="100"></canvas>
-                            </div>
-                        </div>
+<%--                    <div class="complain-dis-chart">--%>
+<%--                        <label class="topic"> complain</label>--%>
+<%--                        <div class="co-chart-container">--%>
+<%--                            <div class="c-chart">--%>
+<%--                                <span>Environmental issues</span>--%>
+<%--                                <canvas id="myChart2" height="70" width="100"></canvas>--%>
+<%--                            </div>--%>
+<%--                            <div class="c-chart">--%>
+<%--&lt;%&ndash;                                <span>Environmental issues</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                <canvas id="myChart3" height="70" width="100"></canvas>&ndash;%&gt;--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                    </div>
+<%--                    </div>--%>
                 </div>
-                <div class="map-container">
+                <div class="map-container" style="padding: 20px">
                     <label class="topic">MOH Area</label>
                     <div class="map">
                         <div id="map"></div>
                     </div>
                 </div>
             </div>
-            <div class="calander-complain">
-                <div class="complains">
-                    <label class="topic">New Complains</label>
-                    <div class="complain-body">
-                        <div class="complain">
-                            <div class="color-circle">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle"></div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle"></div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                        <div class="complain">
-                            <div class="color-circle"></div>
-                            <div class="content">
-                                <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                                <label > today</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="viewmore">
-                        <span>view more(34)</span>
-                    </div>
-                </div>
+            <div class="calander-complain" style="padding: 10px">
+
                 <div class="complain-type">
                     <div class="type-container">
                         <label class="topic">Complain distribution</label>
                         <div class="types">
+
                             <div class="type-chart">
                                 <div class="donat-chart">
-                                    <canvas id="donat-chart" height="100" width="100"></canvas>
+                                    <canvas id="donat-chart" height="200" width="200"></canvas>
                                 </div>
 
                             </div>
@@ -273,7 +183,7 @@
 <%--                        <img src="../../../images/svg/login/6583.jpg" alt="" srcset="">--%>
                     </div>
                 </div>
-                <div class="calander">
+                <div class="calander" style="padding: 20px">
                     <div class="calanderbody">
 
                         <div class="calender-container" id="calender"></div>
@@ -282,7 +192,102 @@
                     </div>
                 </div>
             </div>
-            <div class="todoList-apponment">
+
+<%--            complaints--%>
+
+            <div class="complains" style="padding: 20px">
+                <label class="topic">New Complains</label>
+                <div class="complain-body">
+                    <div class="complain">
+                        <div class="color-circle">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle"></div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle"></div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                    <div class="complain">
+                        <div class="color-circle"></div>
+                        <div class="content">
+                            <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
+                            <label > today</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="viewmore">
+                    <span>view more(34)</span>
+                </div>
+            </div>
+            <div class="todoList-apponment" style="padding: 20px">
                 <div class="todo-list">
                     <label class="topic">Today Evets</label>
                     <div class="todo-container ">
@@ -460,7 +465,7 @@
 
                     </div>
                 </div>
-                <div class="Appoinment">
+                <div class="Appoinment" style="padding: 20px">
                     <label class="topic">New Appoinments</label>
                     <div class="appinment-container">
 

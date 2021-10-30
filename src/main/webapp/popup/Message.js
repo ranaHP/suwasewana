@@ -17,13 +17,11 @@ class require_message_popup{
         // let logo_img=document.createElement('img');
         // logo_img.setAttribute("src","../logo.png")
         // logo.appendChild(logo_img);
-
         let popupIcon = document.createElement('div');
         popupIcon.classList.add('popup-icon');
         popupIcon.innerHTML = '<i class="feather-16" data-feather="list"  ></i>';
 
         popup.appendChild(popupIcon);
-
         //title row
         let title=document.createElement('div');
         title.classList.add('title');

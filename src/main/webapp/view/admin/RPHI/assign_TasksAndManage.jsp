@@ -12,6 +12,7 @@
     <title>Suwasewana</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="<c:url value="/public/css/user/_commen.css"/> "/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard_todolist.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
@@ -21,6 +22,8 @@
     <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="<c:url value="/public/css/user/_commen.css"/> "/>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp" />
@@ -69,6 +72,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
     <div class="right-container">
@@ -89,8 +93,47 @@
 
             </div>
         </div>
+
+    </div>
+
+
+</div>
+<div class="task" style="width: 60%;background-color: #FCFCFC; height: 200px;display: flex">
+    <div class="month-select" style="width: 100%">
+        <div class="from-to-month-select">
+            <h4 style="margin-left: 20px">Assign Tasks</h4>
+            <div class="form-group">
+                <label for="sDate">
+                    Task date
+                </label>
+                <input type="Date" name="name" id="sDate" autocomplete="off"
+                       required/>
+
+            </div>
+            <div class="form-group">
+                <label for="eDate">
+                    Search by name
+                </label>
+                <input type="text" name="name" id="eDate" autocomplete="off"
+                       required/>
+            </div>
+            <div class="form-group">
+                <label for="diseases_name">
+                    Task
+                </label>
+                <input type="text" name="name" id="diseases_name" autocomplete="off"
+                       required/>
+
+            </div>
+            <div class="form-group" style="display: flex;justify-content: center;align-items: center">
+                <label> &nbsp;</label>
+                <button class="submitBtn" type="submit" style="width: 100%">Assign Task</button>
+            </div>
+
+        </div>
     </div>
 </div>
+
 
 <script defer >
     let todo = new TodoList("pending-list" , "overdue-list" , "completed-list", "inprogess-list");

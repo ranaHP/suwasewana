@@ -210,13 +210,14 @@ a{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 20px;
 }
 .image-upload-card label {
     background-color: #006633FF;
     width: 100%;
     text-align: center;
     color: white;
-    margin-top: 10px;
+    margin-top: 20px;
     /* padding: 10px; */
     font-family: 'Segoe UI' ;
 
