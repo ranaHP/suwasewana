@@ -114,6 +114,7 @@
 </div>
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 </script>
 <script>
     function clearData(){
@@ -126,6 +127,7 @@
             document.getElementById("side_effects").innerText="";
             document.getElementById("How_work").innerText="";
             document.getElementById("How_well_work").innerText="";
+            document.getElementById("proof1").src=myUrl+"/public/images/logo/placeholder.png";
             return false;
     }
     function Submit_vaccin_data(imgarray){
@@ -140,11 +142,12 @@
                 dosage: document.getElementById("dosage").innerText,
                 side_effects: document.getElementById("side_effects").innerText,
                 how_work: document.getElementById("How_work").innerText,
-                How_Well_work:document.getElementById("How_well_work").innerText
+                How_Well_work:document.getElementById("How_well_work").innerText,
+
             };
 
-        alert()
-        $.post("/suwasewana_war/admin-register-controller/vaccine",
+        // alert()
+        $.post(myUrl+"/admin-register-controller/vaccine",
             reqData,
             function (data, status) {
 
@@ -165,7 +168,7 @@
                 }
             }
         );
-        alert();
+        // alert();
 
         return false;
     }
@@ -199,7 +202,7 @@
 
         if(imageNames.length!=0){
             $.ajax({
-                url: '/suwasewana_war/vaccineFileUploadServlet',
+                url: myUrl+'/vaccineFileUploadServlet',
                 type: 'post',
                 data: fd,
                 contentType: false,

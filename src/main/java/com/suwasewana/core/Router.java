@@ -175,7 +175,11 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/RPHI/MOH-Announcements.jsp");
                     rd.forward(request,response);
                     break;
-                case "vaccineType":
+                case "AddvaccineType":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Add-vaccin.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "editvaccineType":
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/edit-vaccin.jsp");
                     rd.forward(request,response);
                     break;

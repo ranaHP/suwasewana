@@ -14,12 +14,17 @@ public class AdminDAO {
     private static final String PHI_REGISTRATION = "INSERT INTO `suwaserwana_db`.`phi_officer` (`full_name`, `NIC`, `mobile`, `device_MAC`, `Address`, `City`, `District`, `phi_post`, `login_status`, `password`, `PostalCode`, `mohId`, `DP`,`suspended_time`)  VALUES (?, ?, ?, NULL , ?, ?, ?, ?, '0', ?, ?, ?, ?,current_timestamp());";
     private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
     private static final String MOH_REGISTRATION="INSERT INTO `suwaserwana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
-    private static final String AddVaccine="INSERT INTO `suwaserwana_db`.`vaccine` (`name`, `country`, `recomonded_for`, `date`, `image`, `status`, `dose`, `comon_side_effects`, `how_it_work`, `how_well_it_work`, `view_status`) VALUES (?,?,?,?,?,?,?,?,?,?,?);\n";
-    private static final String Select_all_Vaccines="SELECT * FROM suwaserwana_db.vaccine;";
-    private static final String Delet_Vaccin="DELETE FROM `suwaserwana_db`.`vaccine` WHERE (`v_id` = ?);";
-    private static final String Update_Vaccin="UPDATE `suwaserwana_db`.`vaccine` SET `name` = ?, `country` = ?, `recomonded_for` = ?, `date` = ?, `image` = ?, `status` = ?, `dose` = ?, `comon_side_effects` = ?, `how_it_work` = ?, `how_well_it_work` = ? WHERE (`v_id` = ?);";
-    private static final String Hide_Vaccine_Type="UPDATE `suwaserwana_db`.`vaccine` SET `view_status` = '0' WHERE (`v_id` = ?);";
-    private static final String unHide_Vaccine_Type="UPDATE `suwaserwana_db`.`vaccine` SET `view_status` = '1' WHERE (`v_id` = ?);";
+
+
+    private static final String AddVaccine="INSERT INTO `suwasewana_db`.`vaccine` (`name`, `country`, `recomonded_for`, `date`, `image`, `status`, `dose`, `comon_side_effects`, `how_it_work`, `how_well_it_work`, `view_status`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String Select_all_Vaccines="SELECT * FROM suwasewana_db.vaccine;";
+    private static final String Delet_Vaccin="DELETE FROM `suwasewana_db`.`vaccine` WHERE (`v_id` = ?);";
+    private static final String Update_Vaccin="UPDATE `suwasewana_db`.`vaccine` SET `name` = ?, `country` = ?, `recomonded_for` = ?, `date` = ?, `image` = ?, `status` = ?, `dose` = ?, `comon_side_effects` = ?, `how_it_work` = ?, `how_well_it_work` = ? WHERE (`v_id` = ?);";
+    private static final String Update_Vaccin_withoutimg="UPDATE `suwasewana_db`.`vaccine` SET `name` = ?, `country` = ?, `recomonded_for` = ?, `date` = ?,  `status` = ?, `dose` = ?, `comon_side_effects` = ?, `how_it_work` = ?, `how_well_it_work` = ? WHERE (`v_id` = ?);";
+    private static final String Hide_Vaccine_Type="UPDATE `suwasewana_db`.`vaccine` SET `view_status` = '0' WHERE (`v_id` = ?);";
+    private static final String unHide_Vaccine_Type="UPDATE `suwasewana_db`.`vaccine` SET `view_status` = '1' WHERE (`v_id` = ?);";
+
+
     Connection connection;
 
     public AdminDAO() {
@@ -160,6 +165,31 @@ public class AdminDAO {
             preparedStatement.setString(9, vaccineModel.getHow_work());
             preparedStatement.setString(10, vaccineModel.getHow_Well_work());
             preparedStatement.setString(11, vaccineModel.getID());
+
+            System.out.println("qry for update: "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+
+    }
+    public String UpdateVaccinewithoutimg(VaccineModel vaccineModel) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Update_Vaccin_withoutimg)) {
+            preparedStatement.setString(1, vaccineModel.getName() );
+            preparedStatement.setString(2, vaccineModel.getCountry() );
+            preparedStatement.setString(3, vaccineModel.getRecommended_for() );
+            preparedStatement.setString(4, vaccineModel.getDate() );
+            preparedStatement.setString(5, vaccineModel.getStatus());
+            preparedStatement.setString(6, vaccineModel.getDosage());
+            preparedStatement.setString(7, vaccineModel.getSide_effects());
+            preparedStatement.setString(8, vaccineModel.getHow_work());
+            preparedStatement.setString(9, vaccineModel.getHow_Well_work());
+            preparedStatement.setString(10, vaccineModel.getID());
 
             System.out.println("qry for update: "+preparedStatement);
             int rs = preparedStatement.executeUpdate();

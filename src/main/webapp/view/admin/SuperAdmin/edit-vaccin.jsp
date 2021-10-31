@@ -253,7 +253,8 @@
                     document.getElementById("How_work").innerText=element.how_work;
                     document.getElementById("How_well_work").innerText=element.How_Well_work;
                     document.getElementById("proof1").src=myUrl+"/public/images/vaccine/"+element.image;
-                    console.log("status "+element.view_status);
+                    // console.log("imgName array - "+document.getElementById("proof1").src.split('/')[document.getElementById("proof1").src.split('/').length-1])
+                    // console.log("status "+element.view_status);
                     if(element.view_status==1){
                         document.getElementById("unhide").disabled = true;
                         document.getElementById("hide").disabled = false;
@@ -322,7 +323,7 @@
             document.getElementById("side_effects").innerText="";
             document.getElementById("How_work").innerText="";
             document.getElementById("How_well_work").innerText="";
-            document.getElementById("proof1").src=myUrl+"public/images/logo/placeholder.png";
+            document.getElementById("proof1").src=myUrl+"/public/images/logo/placeholder.png";
             document.getElementById("upload_empty").innerText="";
             return false;
     }
@@ -348,6 +349,8 @@
                     how_work: document.getElementById("How_work").innerText,
                     How_Well_work:document.getElementById("How_well_work").innerText
                 };
+
+            console.log("image name array - "+reqData.image);
             $.post(myUrl+"/admin-register-controller/updatevaccine",
                 reqData,
                 function (data, status) {
@@ -376,11 +379,68 @@
 
         return false;
     }
+
+    function UpdateDatawithoutImg(){
+
+        let VType;
+        var VTypeObj = document.getElementById("Search_V_input");
+        var datalist = document.getElementById(VTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(VTypeObj.value)) {
+            VType = (datalist.options.namedItem(VTypeObj.value).id);
+
+            let reqData =
+                {
+                    id:VType,
+                    Name: document.getElementById("Name").value,
+                    Country: document.getElementById("country").value,
+                    Recommended_for: document.getElementById("recomanded_for").value,
+                    Date:document.getElementById("date").value,
+                    image:"",
+                    status: document.getElementById("status").innerText,
+                    dosage: document.getElementById("dosage").innerText,
+                    side_effects: document.getElementById("side_effects").innerText,
+                    how_work: document.getElementById("How_work").innerText,
+                    How_Well_work:document.getElementById("How_well_work").innerText
+                };
+
+            console.log("image name array - "+reqData.image);
+            $.post(myUrl+"/admin-register-controller/updatevaccinewithoutimg",
+                reqData,
+                function (data, status) {
+
+                    if (data.includes("success")) {
+
+                        popup.RegisterVaccine({
+                            status: 'success',
+                            message: 'Successfully Updated!'
+                        });
+                        clearData();
+                    } else {
+
+                        popup.RegisterVaccine({
+                            status: 'fail',
+                            message: 'Vaccine Update Fails !',
+                            data: data
+                        });
+                    }
+                }
+            );
+
+        }
+
+
+
+        return false;
+    }
+
 </script>
 <script>
+    let image_name_1="";
     var loadFile = function (event, imgContainerId) {
         var image = document.getElementById(imgContainerId);
         image.src = URL.createObjectURL(event.target.files[0]);
+        image_name_1=event.target.files[0].name;
+        // console.log("show img name in load "+image_name_1);
     };
 
     function imageUpload() {
@@ -399,7 +459,11 @@
         imageNames.map((item, index) => {
             fd.append('ImageName' + (index + 1), item);
         })
-        if(imageNames.length!=0){
+
+
+        // console.log("image name in src "+document.getElementById("proof1").src.split('/')[document.getElementById("proof1").src.split('/').length-1].length)
+        // let current_img=document.getElementById("proof1").src.split('/')[document.getElementById("proof1").src.split('/').length-1].length;
+        if(imageNames.length!=0 ){
             $.ajax({
                 url: myUrl+'/vaccineFileUploadServlet',
                 type: 'post',
@@ -417,9 +481,7 @@
             });
         }
         else {
-
-            document.getElementById("upload_empty").innerText="Need to upload a image";
-
+            UpdateDatawithoutImg();
         }
 
         // return false;
