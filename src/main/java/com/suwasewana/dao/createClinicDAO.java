@@ -47,6 +47,7 @@ public class createClinicDAO {
     }
 
     public String updateClinic(CreateClinicModel updateClinic) {
+        boolean rowUpdate;
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CLINICS)) {
             System.out.println("came to update");
 //            preparedStatement.setString(1,"");
@@ -62,10 +63,10 @@ public class createClinicDAO {
             preparedStatement.setString(10,updateClinic.getDescription());
             preparedStatement.setString(11,updateClinic.getClinicID());
 
-            int rs = preparedStatement.executeUpdate();
-            System.out.println(rs);
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
 
-            return "sucsess";
 
         } catch (SQLException throwables) {
             printSQLException(throwables);

@@ -1,3 +1,4 @@
+let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class verify_reject_popup{
     constructor(popupContaienr , data){
         this.Data=data;

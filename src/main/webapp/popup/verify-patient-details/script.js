@@ -9,18 +9,13 @@ class verify_patient_detail_popup{
         popup.classList.add('popup' ,'zoomIn');
         this.container.appendChild(popup);
         // //logo row
-        // let logo= document.createElement('div');
-        // logo.classList.add('logo');
-        // popup.appendChild(logo);
+        let logo= document.createElement('div');
+        logo.classList.add('logo');
+        popup.appendChild(logo);
         // //logo
-        // let logo_img=document.createElement('img');
-        // logo_img.setAttribute("src","../logo.png")
-        // logo.appendChild(logo_img);
-        let popupIcon = document.createElement('div');
-        popupIcon.classList.add('popup-icon');
-        popupIcon.innerHTML = '<i class="feather-16" data-feather="list"  ></i>';
-
-        popup.appendChild(popupIcon);
+        let logo_img=document.createElement('img');
+        logo_img.setAttribute("src","../logo.png")
+        logo.appendChild(logo_img);
 
         //title row
         let title=document.createElement('div');

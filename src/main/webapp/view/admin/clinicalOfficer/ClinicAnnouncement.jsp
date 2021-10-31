@@ -191,14 +191,10 @@
 
   function imageUpload() {
     console.log("image upload")
-    console.log("a")
-
     var fd = new FormData();
-    console.log("c")
     let imageNames = [];
 
     if ($('#proof1input')[0].files[0]) {
-      console.log("ccccccccccccccccccccccccccccccccccccccccccc")
       fd.append('file', $('#proof1input')[0].files[0]);
       let name = new Date().toString().split(" ");
       let url1 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +

@@ -52,6 +52,10 @@ import java.util.ArrayList;
                     res.getWriter().println("updateclinics");
                     updateClinic(req, res);
                     break;
+                case "vaccineCLinic":
+                    res.getWriter().println("vaccineCLinic");
+                    updateClinic(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -65,7 +69,7 @@ import java.util.ArrayList;
     private void updateClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.getWriter().println("update");
         CreateClinicModel updateClinic= new CreateClinicModel(
-                req.getParameter("clinicID"),
+
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),
@@ -76,6 +80,7 @@ import java.util.ArrayList;
                 req.getParameter("Target"),
                 req.getParameter("conduct"),
                 req.getParameter("description"),
+                req.getParameter("clinicID"),
                 "12"
 
         );

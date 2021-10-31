@@ -7,8 +7,7 @@
 .popup-container{
     width: 100vw;
     height: 100vh;
-    /*background-color: aquamarine;*/
-    background-color: rgba(0, 0, 0, 0.657);
+    background-color: aquamarine;
     display: flex;
     align-items: center;
      display: none;
@@ -60,11 +59,13 @@
     border-radius: 8px;
     padding: 20px;
     margin: auto;
+    margin-top: 150px;
     position: relative;
     margin-top: 80px;
 }
-.logo{
-    /* background-color: blue; */
+.popup-icon{
+    width:  45px ;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -83,6 +84,7 @@
     height: fit-content;
     background-color: rgba(0, 128, 0, 0.055);
 }
+/*.title span{*/
 /*.popup-container .title span{*/
 .feather-16{
     width: 50px;
@@ -187,7 +189,7 @@
 }
 
 .not-btn{
-
+    
     background-color: #70A1FF;
 }
 .update-btn{
