@@ -11,8 +11,8 @@
     <script defer src="<c:url value="/public/js/PHIOfficer/verifyPatients.js"/> "></script>
 
     <%--pop up styles--%>
-    <link rel="stylesheet" href="<c:url value="/popup/common-popup.css"/> "/>
-    <script src="<c:url value="/popup/verify-patient-details/script.js"></c:url> "></script>
+    <link rel="stylesheet" href="<c:url value="/Popup/common-popup.css"/> "/>
+    <script src="<c:url value="/Popup/verify-patient-details/script.js"></c:url> "></script>
 
     <title>Suwasewana</title>
     <%--    side nav bar styles--%>
@@ -20,9 +20,11 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-  <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
-  <div class="popup-container" id="PopupContainer"></div>
-    <div class="container" id="mainContent">
+
+<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+<div class="popup-container" id="PopupContainer"></div>
+<div class="container" id="mainContent">
+
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">PHI/Dashboard/verify Patients</div>
@@ -34,25 +36,25 @@
     </div>
     <div class="request-container" id="request-container">
 
-        </div>
     </div>
+</div>
 </div>
 
 <script>
     feather.replace(({width:"10px",height:"10px"}))
 </script>
-  <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
-  <script>
-      let popup= new verify_patient_detail_popup('PopupContainer',{ name : 'hansana' ,
-          age: 23 ,
-          NIC: '199910910064',
-          Address:'Ihalapalukandewa,   Nanneriya road,  Galgamuwa',
-          province:"Kurunagala",
-          city:"Galgamuwa",
-          diseas:['corona','HIV'],
-          recdis:"HIV"
-      })
-  </script>
+<script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+<script>
+    let popup= new verify_patient_detail_popup('PopupContainer',{ name : 'hansana' ,
+        age: 23 ,
+        NIC: '199910910064',
+        Address:'Ihalapalukandewa,   Nanneriya road,  Galgamuwa',
+        province:"Kurunagala",
+        city:"Galgamuwa",
+        diseas:['corona','HIV'],
+        recdis:"HIV"
+    })
+</script>
 </body>
 
 </html>

@@ -48,6 +48,11 @@ import java.util.ArrayList;
                     res.getWriter().println("delete");
                       deleteClinic(req,res);
                     break;
+                case "updateclinic":
+                    res.getWriter().println("updateclinics");
+                    updateClinic(req, res);
+                    break;
+
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -55,6 +60,28 @@ import java.util.ArrayList;
         } catch (Exception error) {
             throw new ServletException(error);
         }
+    }
+
+    private void updateClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        res.getWriter().println("update");
+        CreateClinicModel updateClinic= new CreateClinicModel(
+                req.getParameter("clinicID"),
+                req.getParameter("disease"),
+                req.getParameter("title"),
+                req.getParameter("location"),
+                req.getParameter("MOH"),
+                req.getParameter("datetime"),
+                req.getParameter("duration"),
+                req.getParameter("maxpatient"),
+                req.getParameter("Target"),
+                req.getParameter("conduct"),
+                req.getParameter("description"),
+                "12"
+
+        );
+        System.out.println("update");
+        String result= createClinicDAO.updateClinic(updateClinic);
+        res.getWriter().println(result);
     }
 
     private void createClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

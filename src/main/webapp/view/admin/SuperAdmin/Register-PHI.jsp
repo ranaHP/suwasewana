@@ -261,7 +261,7 @@
         console.log("image neames array "+imageNames);
         if(imageNames.length!=0){
             $.ajax({
-                url: '/suwasewana_war/fileuploadservlet',
+                url: '/test_war_exploded/fileuploadservlet',
                 type: 'post',
                 data: fd,
                 contentType: false,
@@ -336,7 +336,7 @@
                 DP:imagearray[0]
             };
         console.log("post ==== "+reqData.phi_post)
-        $.post("/suwasewana_war/admin-register-controller/phi",
+        $.post("/test_war_exploded/admin-register-controller/phi",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -373,7 +373,7 @@
             };
 
         console.log("post ==== "+reqData.phi_post)
-        $.post("/suwasewana_war/admin-register-controller/phi",
+        $.post("/test_war_exploded/admin-register-controller/phi",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -403,7 +403,7 @@
 
 <script defer>
     let mohDetails=[];
-    $.post("/suwasewana_war/user-complain-controller/moh",
+    $.post("/test_war_exploded/user-complain-controller/moh",
         function (data, status) {
             // console.log(data);
             let rs= JSON.parse(data);

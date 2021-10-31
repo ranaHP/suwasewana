@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Chathuranga
-  Date: 10/23/2021
-  Time: 11:10 AM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -157,32 +150,30 @@
         </div>
         <hr>
         <!-- add complaint type -->
-        <div class="add-com-type f-3">
-            <div class="left">
-                <p>Add complain type</p>
-                <div class="add">
-                    <input></input>
-                    <button class="f-4">add</button>
-                </div>
-            </div>
-            <div class="right">
-                <p class="f3-bold">Types</p>
-                <div class="types gray">
-                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Environmental Issues</p>
-                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Animal Issues</p>
-                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Animal Issues</p>
-                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Water Related Issues</p>
-                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Unhealthy Foods Related</p>
-                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Land Issues</p>
-                </div>
-            </div>
-        </div>
+        <%--        <div class="add-com-type f-3">--%>
+        <%--            <div class="left">--%>
+        <%--                <p>Add complain type</p>--%>
+        <%--                <div class="add">--%>
+        <%--                    <input></input>--%>
+        <%--                    <button class="f-4">add</button>--%>
+        <%--                </div>--%>
+        <%--            </div>--%>
+        <%--            <div class="right">--%>
+        <%--                <p class="f-4">Types</p>--%>
+        <%--                <div class="types">--%>
+        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Environmental Issues</p>--%>
+        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Animal Issues</p>--%>
+        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Animal Issues</p>--%>
+        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Water Related Issues</p>--%>
+        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Unhealthy Foods Related</p>--%>
+        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Land Issues</p>--%>
+        <%--                </div>--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
     </div>
 </div>
 <script>
     feather.replace(({width:"12px",height:"12px"}))
-
-
     complaints=["Land Issues","Unhealthy Foods Related","Water Related Issues","Animal Issues","Environmental Issues","others"];
     let j=1
     complaints.map(name=>{

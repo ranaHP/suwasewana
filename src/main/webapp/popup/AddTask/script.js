@@ -1,4 +1,3 @@
-let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class verify_reject_popup{
     constructor(popupContaienr , data){
         this.Data=data;
@@ -15,8 +14,9 @@ class verify_reject_popup{
         // popup.appendChild(logo);
         // //logo
         // let logo_img=document.createElement('img');
-        // logo_img.setAttribute("src","logo.png")
+        // logo_img.setAttribute("src","../logo.png")
         // logo.appendChild(logo_img);
+
         let popupIcon = document.createElement('div');
         popupIcon.classList.add('popup-icon');
         popupIcon.innerHTML = '<i class="feather-16" data-feather="list"  ></i>';

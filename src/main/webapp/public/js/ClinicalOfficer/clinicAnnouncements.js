@@ -10,123 +10,120 @@ class selectClinics {
         this.ClinicArray = data;
         this.container.innerHTML=" ";
         console.log(data);
-        alert("came")
+        // alert("came")
         this.ClinicArray.map((item) => {
             this.container.innerHTML += `
- <div class="AC_container">
-      <div class="AC_Body_container" id="AC_Body_container">
-        <div class="Container_left">
-          <div class="LRow">
-            <div class="form-item">
-              <input type="text" id="clinicID"  autocomplete="off" required>
-              <label class="name" for="clinicID">Search by Name</label>
-              <span class="error" id="LfullName" onclick="view()"><img src="${this.url}/images/icons/search.svg" width="10px" style="padding-top: 8px"/></span>
-            </div>
-          </div>
-          <div class="LRow">
-            <label>Title</label><br>
-            <input type="text" name="" id="Title">
-          </div>
-          <div class="LRow mt5">
-            <textarea rows='1'>${item.description}</textarea>
-            <label id="Des">Description</label>
-
-          </div>
-          <div class="LRow">
-
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/circle.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label>Location</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.location}">
+                      <div class="left-col">
+        <div class="row" >
+          <form style="width: 100%;">
+            <div class="row">
+              <div class="form-group">
+                <label for="aTitle">
+                  Announctment Title
+                </label>
+                <input type="text" name="clinic-title" id="clinic-title" autocomplete="off"
+                       required value="${item.title}"/>
               </div>
             </div>
-
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/calendar.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label>Date & Time</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.datetime}">
+            <div class="row">
+              <div class="form-group">
+                <label for="reason">
+                  Announctment Description
+                </label>
+                <textarea rows="4" cols="50" type="text" placeholder="reason" name="description"
+                          id="description"> ${item.description} </textarea>
               </div>
             </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/clock.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label>Duration</label>
-                </div>
+            <div class="row" style="display: flex;flex-wrap: wrap;justify-content: flex-start;">
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Location
+                </label>
+                <input type="text" name="location" id="location" autocomplete="off"
+                       required value="${item.location}"/>
               </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.duration}">
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Date & Time
+                </label>
+                <input type="text" name="date-time" id="date-time" autocomplete="off"
+                       required value="${item.datetime}"/>
               </div>
-            </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/user.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label>Conduct By</label>
-                </div>
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Duration
+                </label>
+                <input type="text" name="duration" id="duration" autocomplete="off"
+                       required value="${item.duration}"/>
               </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.conduct}">
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Conduct By
+                </label>
+                <input type="text" name="conduct" id="conduct" autocomplete="off"
+                       required value="${item.conduct}"/>
               </div>
-            </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/triangle.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label >Max limit</label>
-                </div>
+              <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Max limit
+                </label>
+                <input type="text" name="max-patient" id="max-patient" autocomplete="off"
+                       required value="${item.maxpatient}"/>
               </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.maxpatient}">
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <div class="Container_right">
-          <div class="RRow">
-            <textarea rows='1' id="TargetP" placeholder='Type target patients here...'>${item.disease}</textarea>
-            <label id="target">Target Participant</label>
-          </div>
-          <div class="RRow">
-            <div class="row ">
-              <div class="image-upload-card-list-container">
-
-                <div class="image-upload-card-container">
-                  <div class="image-upload-card">
-                    <img id="proof3" width="100%"/>
-                    <input type="file" accept="image/*" name="image" id="proof3input"
-                           onchange="loadFile(event, 'proof3')" style="display: none;">
-                    <label id="upload-btn" for="proof3input" style="cursor: pointer;">Upload Image</label>
-                  </div>
-                </div>
+               <div class="form-group" style="width: 250px;">
+                <label for="aTitle">
+                  Disease
+                </label>
+                <input type="text" name="disease" id="disease" autocomplete="off"
+                       required value="${item.disease}"/>
               </div>
             </div>
-          </div>
+            <div class="row">
+              <div class="form-group d-flex-a-i-end">
+                <button class="submitBtn " type="submit" onclick="return imageUpload()" > Make Announctment</button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
-      <button id="sybmit">submit</button>
-    </div>
+      <div class="right-col">
+        <div class="row" >
+          <form style="width: 100%;">
+            <div class="row">
+              <div class="form-group">
+                <label for="aTitle">
+                  Target Peoples
+                </label>
+                <input type="text" name="patient" id="patient" autocomplete="off"
+                       required value="${item.Target}"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <label for="aTitle">
+                  Target MOH
+                </label>
+                <input type="text" name="target-MOH" id="target-MOH" autocomplete="off"
+                       required value="${item.MOH}"/>
+                  </div>
+            </div>
+            <div class="row">
+              <div class="form-group d-flex-a-i-end">
+                <div class="image-upload-card-container">
+                  <div class="image-upload-card">
+                    <img id="proof1" width="100%" />
+                    <input type="file" accept="image/*" name="file" id="proof1input"
+                           onchange="loadFile(event , 'proof1')" style="display: none;">
+
+                    <label for="proof1input" style="cursor: pointer;">Upload Image</label>
+                  </div>
+<!--                                       <button onclick="imageUpload()">add</button>-->
+                </div>
+              </div>
+
+            </div>
+        </div>
+      </div>
             `;
         })
     }

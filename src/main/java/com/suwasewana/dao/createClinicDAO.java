@@ -11,10 +11,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class createClinicDAO {
-  private  static final String CREATE_CLINIC ="INSERT INTO `clinics`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,NULL,?);";
+  private  static final String CREATE_CLINIC ="INSERT INTO `clinics`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?);";
   private static final String VIEW_CLINICS = "SELECT * FROM `clinics`";
   private static final String SELECT_CLINICS = "SELECT * FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
+  private static final String UPDATE_CLINICS =  "UPDATE `clinics` SET `Disease` = ?, `ClinicTitle` = ? , `Location` = ?,  `Target MOH` = ?, `Data&Time` = ?,  `Duration` = ?,  `MaxPatient` = ?, `Target` = ?, `Conduct` = ?, `Description` = ? WHERE `clinics`.`clinic-no` = ?;";
     Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -36,6 +37,34 @@ public class createClinicDAO {
             preparedStatement.setString(11,"12");
 
             int rs = preparedStatement.executeUpdate();
+            return "sucsess";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+    }
+
+    public String updateClinic(CreateClinicModel updateClinic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CLINICS)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+            preparedStatement.setString(1,updateClinic.getDisease());
+            preparedStatement.setString(2,updateClinic.getTitle());
+            preparedStatement.setString(3,updateClinic.getLocation());
+            preparedStatement.setString(4,updateClinic.getMOH());
+            preparedStatement.setString(5,updateClinic.getDatetime());
+            preparedStatement.setString(6,updateClinic.getDuration());
+            preparedStatement.setString(7,updateClinic.getMaxpatient());
+            preparedStatement.setString(8,updateClinic.getTarget());
+            preparedStatement.setString(9,updateClinic.getConduct());
+            preparedStatement.setString(10,updateClinic.getDescription());
+            preparedStatement.setString(11,updateClinic.getClinicID());
+
+            int rs = preparedStatement.executeUpdate();
+            System.out.println(rs);
+
             return "sucsess";
 
         } catch (SQLException throwables) {
