@@ -24,6 +24,7 @@
 
     <!-- moh list  -->
     <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
 </head>
@@ -176,14 +177,14 @@
                             </div>
                         </div>
                         <div class="dashboard-page-sub-title">
-                            <img class="vaccin_image" src="<c:url value="/public/images/vaccine/pfizer.png  "/>"  alt="">
+                            <img class="vaccin_image" id="v_image" src="<c:url value="/public/images/vaccine/pfizer.png  "/>"  alt="">
                         </div>
                         <div class="dashboard-page-sub-title" style="margin-top: 30px;">
-                            <span class="recomanded_for_main_text">Recommended for:</span> <span class="recomanded_for"> Anyone 12 or older</span>
+                            <span class="recomanded_for_main_text">Recommended for:</span> <span class="recomanded_for" id="rec_for"> Anyone 12 or older</span>
                         </div>
                         <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px;">
                             <span class="v_description_title">Status</span>
-                            <p style="padding-left: 10px; margin-top: 10px;">
+                            <p style="padding-left: 10px; margin-top: 10px;" id="Status">
                                 Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                                 specified age groups in other countries, including in the European Union (under the name
                                 Comirnaty). Pfizer-BioNTech is awaiting final approval of an EUA for children ages 5-11. The CDC
@@ -201,7 +202,7 @@
                         </div>
                         <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px;">
                             <span class="v_description_title">Dosage</span>
-                            <p style="padding-left: 10px; margin-top: 10px;">
+                            <p style="padding-left: 10px; margin-top: 10px;" id="Dosage">
                                 Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                                 specified age groups in other countries, including in the European Union (under the name
                                 Comirnaty). Pfizer-BioNTech is awaiting final approval of an EUA for children ages 5-11. The CDC
@@ -219,7 +220,7 @@
                         </div>
                         <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px;">
                             <span class="v_description_title">Common side effects</span>
-                            <p style="padding-left: 10px; margin-top: 10px;">
+                            <p style="padding-left: 10px; margin-top: 10px;" id="side_effect">
                                 Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                                 specified age groups in other countries, including in the European Union (under the name
                                 Comirnaty). Pfizer-BioNTech is awaiting final approval of an EUA for children ages 5-11. The CDC
@@ -237,7 +238,7 @@
                         </div>
                         <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px;">
                             <span class="v_description_title">How it works</span>
-                            <p style="padding-left: 10px; margin-top: 10px;">
+                            <p style="padding-left: 10px; margin-top: 10px;" id="How_work">
                                 Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                                 specified age groups in other countries, including in the European Union (under the name
                                 Comirnaty). Pfizer-BioNTech is awaiting final approval of an EUA for children ages 5-11. The CDC
@@ -255,7 +256,7 @@
                         </div>
                         <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px; margin-bottom: 30px;">
                             <span class="v_description_title">How well it works</span>
-                            <p style="padding-left: 10px; margin-top: 10px; padding-right: 10px;">
+                            <p style="padding-left: 10px; margin-top: 10px; padding-right: 10px;" id="How_well_work">
                                 Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                                 specified age groups in other countries, including in the European Union (under the name
                                 Comirnaty). Pfizer-BioNTech is awaiting final approval of an EUA for children ages 5-11. The CDC
@@ -297,11 +298,40 @@
             </div>
         </div>
     </div>
+
+
+    <script defer>
+
+        myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+        vaccineId = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[1].split("/")[0];
+        console.log(vaccineId);
+
+
+        $.post(myUrl+"/admin-register-controller/All_vaccine_details/",
+
+            function (data, status) {
+                rs= JSON.parse(data);
+
+                rs.map((element) => {
+
+                    if(element.ID==vaccineId){
+                        document.getElementById('rec_for').innerText=element.Recommended_for;
+                        document.getElementById('Status').innerText=element.status;
+                        document.getElementById('Dosage').innerText=element.dosage;
+                        document.getElementById('side_effect').innerText=element.side_effects;
+                        document.getElementById('How_work').innerText=element.how_work;
+                        document.getElementById('How_well_work').innerText=element.How_Well_work;
+                        document.getElementById("v_image").src=myUrl+"/public/images/vaccine/"+element.image;
+                    }
+                })
+            }
+        );
+    </script>
+
+
     <script defer>
         let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity");
-        // document.getElementById('province').addEventListener('input', function (evt) {
-        //     locationgenarator.provinceSelect(this.value)
-        // });
+
         let moh = new MOHSelectGenarate('allmoh');
         mapInit();
         function mapInit() {

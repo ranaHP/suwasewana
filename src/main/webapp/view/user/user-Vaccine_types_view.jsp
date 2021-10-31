@@ -20,12 +20,12 @@
     <script src="https://unpkg.com/feather-icons"></script>
 
     <!-- location js -->
-    <script src="<c:url value="/public/js/locationSelectGenarator.js"/>"></script>
+<%--    <script src="<c:url value="/public/js/locationSelectGenarator.js"/>"></script>--%>
 
     <!-- moh list  -->
     <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
     <!-- main container -->
@@ -170,7 +170,7 @@
 
                     <div class="dashboard-container">
 
-                        <div class="vaccination_container">
+                        <div class="vaccination_container" id="Vaccin_container">
 
                             <div class="vaccine_card">
                                 <div class="title">
@@ -250,7 +250,7 @@
         </div>
     </div>
     <script defer>
-        let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity");
+        // let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity");
         // document.getElementById('province').addEventListener('input', function (evt) {
         //     locationgenarator.provinceSelect(this.value)
         // });
@@ -289,6 +289,78 @@
     </script>
     <script>
         feather.replace({ width: "20px" })
+    </script>
+    <script defer>
+        let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+        LoadVaccine();
+        let rs;
+        console.log("url - "+ myUrl+"/admin-register-controller/All_vaccine_details/");
+        function LoadVaccine(){
+            $.post(myUrl+"/admin-register-controller/All_vaccine_details/",
+
+                function (data, status) {
+                    rs= JSON.parse(data);
+                    let vaccineType=document.getElementById("Vaccin_container");
+                    vaccineType.innerHTML='';
+                    rs.map((element) => {
+                        if(element.view_status==1){
+                            vaccineType.innerHTML+= `<div class="vaccine_card">
+                                <div class="title">
+                                    <span> `+element.Name+` </span>
+                                </div>
+                                <div class="vaccin_image">
+                                    <img src="`+myUrl+`/public/images/vaccine/`+element.image+`" alt="" srcset="">
+                                </div>
+                                <div class="vaccin_detail_row">
+                                    <div class="vaccination_detail_icon">
+                                        <img src="<c:url value="/public/images/icons/vaccination/map-pin.svg "/>" alt="" srcset="">
+                                    </div>
+                                    <div class="vaccine_row_details">
+                                        <span> country  :  </span>
+                                        <span class="V_row_detail">`+element.Country+` </span>
+                                    </div>
+                                </div>
+
+                                <div class="vaccin_detail_row">
+                                    <div class="vaccination_detail_icon">
+                                         <img src="<c:url value="/public/images/icons/vaccination/thumbs-up.svg "/>" alt="" srcset="">
+                                    </div>
+                                    <div class="vaccine_row_details">
+                                        <span> Recommended for :    </span>
+                                        <span class="V_row_detail">`+element.Recommended_for+`  </span>
+                                    </div>
+                                </div>
+                                <div class="vaccin_detail_row">
+                                    <div class="vaccination_detail_icon">
+                                        <img src="<c:url value="/public/images/icons/vaccination/streamline-icon-health-medical-syringe@55x55.svg "/>" alt="" srcset="">
+                                    </div>
+                                    <div class="vaccine_row_details">
+                                        <span> Dosage :    </span>
+                                        <span class="V_row_detail"> `+element.dosage+` </span>
+                                    </div>
+                                </div>
+                                <div class="vaccin_detail_row" style="margin-bottom: 0px;">
+                                    <div class="vaccination_detail_icon">
+                                        <img src="<c:url value="/public/images/icons/vaccination/calendar%20(1).svg "/>" alt="" srcset="">
+                                    </div>
+                                    <div class="vaccine_row_details" >
+                                        <span> Date :    </span>
+                                        <span class="V_row_detail"> `+element.Date+` </span>
+                                    </div>
+                                </div>
+                                <div class="V_card_btnrow">
+                                    <button class="V_card_btn" onclick="loadPAge(`+element.ID+`);" >View more</button>
+                                </div>
+                            </div>`
+                        }
+                    })
+                }
+            );
+        }
+
+        function loadPAge(v_id){
+            window.location='http://localhost:8080/suwasewana_war/s/'+v_id+'/vaccine-details';
+        }
     </script>
 </body>
 </html>
