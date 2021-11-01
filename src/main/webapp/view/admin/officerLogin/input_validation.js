@@ -37,7 +37,7 @@ class FormInputValidation {
 
     setErrorMessageForField(error, field, status) {
         document.getElementById(field).innerHTML = error;
-        if(!status){
+        if(status){
             document.getElementById(field).classList.add("form-field-success");
             document.getElementById(field).classList.remove("form-field-error");
         }else{
@@ -86,75 +86,4 @@ class FormInputValidation {
         return isValida;
     }
 
-    nameValidation(name, fieldName) {
-
-        let isValida = true;
-        if (name === "") {
-            this.setErrorMessageForField("required*", fieldName, 0)
-            isValida = false;
-        }
-        if(name.length>0){
-            this.setErrorMessageForField(" ", fieldName, 0)
-            isValida = true;
-        }
-
-        if (!name) {
-            this.setErrorMessageForField("required*", fieldName, 0)
-            isValida = false;
-        }
-        return isValida;
-
-    }
-
-    selectCheck(name,fieldName){
-        // console.log("select check "+ name+" "+fieldName)
-        let isValida = true;
-        if(!name){
-            isValida = false;
-        }
-        else {
-            var CTypeObj = document.getElementById(name);
-            var datalist = document.getElementById(CTypeObj.getAttribute("list"));
-            // console.log(datalist);
-            let ComplainType=(datalist.options.namedItem(CTypeObj.value));
-            // console.log("id"+datalist.options.namedItem(CTypeObj.value).id);
-            if(!ComplainType && ComplainType!=""){
-                // console.log("empty comp type" +ComplainType)
-                this.setErrorMessageForField("Required*", fieldName, 0)
-                isValida = false;
-            }
-            else {
-                // console.log(" not empty comp type" +ComplainType)
-                this.setErrorMessageForField("", fieldName, 0)
-                isValida = true;
-            }
-            return isValida;
-        }
-
-    }
-    checklength(name, fieldName,length) {
-        // console.log("check length "+ name+" "+fieldName+" "+length)
-        let isValida = true;
-        if (name === "") {
-            this.setErrorMessageForField("required*", fieldName, 0)
-            isValida = false;
-        }
-        if(name.length<=length){
-            this.setErrorMessageForField("Require more detail", fieldName, 0)
-            isValida = false;
-        }
-        if(name.length>length){
-            this.setErrorMessageForField("", fieldName, 0)
-            isValida = true;
-        }
-        if (!name) {
-            this.setErrorMessageForField("required*", fieldName, 0)
-            isValida = false;
-        }
-        return isValida;
-
-    }
-    removeerror(feildname){
-        this.setErrorMessageForField("", feildname, 0)
-    }
 }

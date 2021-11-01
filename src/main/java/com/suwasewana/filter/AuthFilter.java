@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-    @WebFilter({ "/servlet1", "/servlet2", "/servlet3" })
+    @WebFilter({ "/servlet1", "/servlet2", "/servlet3" , "/test" })
 public class AuthFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
@@ -22,38 +22,27 @@ public class AuthFilter implements Filter {
         response.getWriter().println("Hanssana Ranaweera filter");
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        HttpSession session = ((HttpServletRequest) request).getSession(false);
-        String loginURI = ((HttpServletRequest) request).getContextPath() + "/s/login";
 
-        boolean loggedIn = session != null && session.getAttribute("user") != null;
-        boolean loginRequest = ((HttpServletRequest) request).getRequestURI().equals(loginURI);
-        String uNic = "";
+        String loginURI = ((HttpServletRequest) request).getContextPath() + "/s/login";
+        System.out.println("login url " + loginURI);
+
+        String uDetails = "";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) uNic = cookie.getValue();
+                if(cookie.getName().equals("uDetails")) uDetails = cookie.getValue();
             }
         }
-        System.out.println(uNic);
-        res.getWriter().println(uNic);
+        System.out.println(uDetails);
+        res.getWriter().println(uDetails);
 
-        if (uNic != "") {
+        if (uDetails != "") {
+            System.out.println(uDetails);
             chain.doFilter(request, response);
-            System.out.println(uNic);
         } else {
-//            ((HttpServletResponse) response).sendRedirect(loginURI);
+            ((HttpServletResponse) response).sendRedirect(loginURI);
             System.out.println("login");
-
         }
-
-
-
-
-//        if (uNic != null || uNic != "" ) {
-//            chain.doFilter(request, response);
-//        } else {
-//            ((HttpServletResponse) response).sendRedirect(loginURI);
-//        }
     }
 
 }

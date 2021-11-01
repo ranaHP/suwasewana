@@ -116,3 +116,14 @@ a{
     color: rgb(61, 61, 61);
     text-align: center;
 }
+
+.form-field-success{
+    font-size: 1.1em;
+    color: red;
+    padding-top: 5px;
+}
+.form-field-error{
+    font-size: 1.1em;
+    color: green;
+    padding: 5px;
+}

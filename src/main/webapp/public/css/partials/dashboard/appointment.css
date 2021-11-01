@@ -19,14 +19,18 @@
 }
 .previous-appointment-list{
     background-color: #fff;
-    height: 500px;
+    /*height: 500px;*/
     padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /*background-color: #006633;*/
 }
 
 .appointment-card-container{
     /* padding: 10px; */
     width: 30%;
-    /* margin:0  10px; */
+     margin: 10px;
    
 }
 .appointment-card{

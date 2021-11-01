@@ -241,7 +241,7 @@
                                         Appointment Title
                                     </label>
                                     <input type="text" name="name" id="aTitle" autocomplete="off"
-                                            required/>
+                                            required minlength="10" value="To get a sign for Mahapola Application" />
 
                                 </div>
                             </div>
@@ -273,8 +273,8 @@
                                     <label for="reason">
                                         Reason of Appointment
                                     </label>
-                                    <textarea rows="4" cols="50" type="text" placeholder="reason" name="reason"
-                                              id="reason"> Reason.... </textarea>
+                                    <textarea rows="4" cols="50" type="text" placeholder="Reason...." name="reason"
+                                              id="reason"> Violating the very strict and complicated definitions and rules under the Health Insurance Portability and Accountability Act (HIPAA) can cause serious repercussions – both for individual employees as well as the company, clinic, practice or hospital where the PHI breach occurred. The Office of Civil Rights does not grade on a curve.  </textarea>
                                 </div>
 
                             </div>
@@ -305,10 +305,12 @@
     </div>
 </div>
 <script defer>
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let appointment = new Appointment("previous-appointment-list");
     getAllAppointment()
     getAllAppointmentType()
+    ViewPHI()
     function getAllAppointment() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
@@ -413,7 +415,21 @@
         }
         appointment.setSearch(searchItem);
     }
-
+    function ViewPHI(){
+        $.post(myUrl+"/user-complain-controller/phi",
+            function (data, status) {
+                let rs= JSON.parse(data);
+                console.log("asdasd");
+                console.log(rs);
+                console.log("asdasd");
+                let PNames=document.getElementById("allphi");
+                PNames.innerHTML="";
+                rs.map((element) => {
+                    PNames.innerHTML+= '<option id="'+element.phi_Id+'" name="'+element.full_name+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'
+                })
+            }
+        );
+    }
 </script>
 </body>
 </html>
