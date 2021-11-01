@@ -5,6 +5,7 @@ import com.suwasewana.core.DB;
 import com.suwasewana.model.ComplainModel;
 import com.suwasewana.model.ComplainTypeModel;
 import com.suwasewana.model.MOHModel;
+import com.suwasewana.model.MOHRegModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -41,6 +42,43 @@ public class MOHDAO {
 
                 );
 //
+                mohList.add(temp);
+            }
+            return mohList;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
+
+    public ArrayList<MOHRegModel> GetallMOHDetails() {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_Detail)) {
+
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<MOHRegModel> mohList = new ArrayList<MOHRegModel>();
+            while (rs.next()) {
+
+                String name = rs.getString("MName");
+                String District = rs.getString("District");
+                String Head = rs.getString("MHead");
+                String Mobile = rs.getString("TpNo");
+
+                MOHRegModel temp = new MOHRegModel(
+                        name,
+                        Mobile,
+                        Head,
+                        "",
+                        "",
+                        District,
+                        "",
+                        "",
+                        ""
+                );
+                System.out.println("Moh district "+ temp.getDistrict());
                 mohList.add(temp);
             }
             return mohList;

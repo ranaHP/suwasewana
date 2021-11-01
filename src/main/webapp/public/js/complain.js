@@ -1,21 +1,5 @@
 class Complain {
-   // ComplainArray = [
-   //      {
-   //          CType: " ",
-   //          UType: " ",
-   //          User:" ",
-   //          Posted_Date: " ",
-   //          CTitle: " ",
-   //          CMessage: " ",
-   //          posted_data: " ",
-   //          PHIId:"",
-   //          PHIName
-   //          Status: " ",
-   //          img1: " ",
-   //          img2: " ",
-   //          img3: " "
-   //      }
-   //  ];
+
     ComplainArray={};
 
 
