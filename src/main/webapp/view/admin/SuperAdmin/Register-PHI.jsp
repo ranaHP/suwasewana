@@ -40,10 +40,10 @@
 
     <div class="MR_container">
         <div class="title">
-            <span>Register PHI</span>
+            <span>Registration of Public Health Inspector</span>
         </div>
-
         <form onsubmit="return checkvalidation();">
+
             <div class="singal_row">
                 <div class="form-item">
                     <input type="text" id="fullName" value="Akila"  name="fullName" autocomplete="off"
@@ -98,7 +98,7 @@
                 <div class="milturow_left" id="mohHeadDiv">
                     <div class="form-item" >
                         <input type="text"  id="City" value="Galla" name="City" autocomplete="off"
-<%--                               onclick="document.getElementById('City').value = '' "--%>
+                        <%--                               onclick="document.getElementById('City').value = '' "--%>
                                onblur="validation.nameValidation(
                                 document.getElementById('City').value,
                                 'LCity'
@@ -115,7 +115,7 @@
                 <div class="multirow_right" >
                     <div class="form-item" >
                         <input type="text"  id="District" value="Galla" name="District" autocomplete="off"
-<%--                               onclick="document.getElementById('District').value = '' "--%>
+                        <%--                               onclick="document.getElementById('District').value = '' "--%>
                                onblur="validation.nameValidation(
                                 document.getElementById('District').value,
                                 'LDistrict'
@@ -126,7 +126,7 @@
                             );"
                         >
                         <label for="District">District</label>
-                        <span class="error" id="LDistrict"></span>
+                        <div class="error" id="LDistrict" ></div>
                     </div>
                 </div>
 
@@ -150,7 +150,7 @@
                     </div>
                 </div>
                 <div class="multirow_right" id="addcityDiv">
-                    <label >MOH Area</label> <br>
+                    <label style=" width: 90%">MOH Area</label>
                     <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
                            onclick="document.getElementById('MArea').value='';"
                            onblur="validation.SearchSelect(
@@ -160,7 +160,7 @@
                     >
                     <datalist id="AllMArea">
                     </datalist>
-                    <br>
+
                     <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                 </div>
             </div>
@@ -197,7 +197,7 @@
 
                             <label for="proof1input" style="cursor: pointer;">Upload Image</label>
                         </div>
-<%--                        <button onclick="imageUpload()">add</button>--%>
+                        <%--                        <button onclick="imageUpload()">add</button>--%>
                     </div>
                 </div>
             </div>
@@ -213,23 +213,24 @@
 
         </form>
 
-
-
-        <div class="bulck_registration_form" >
+        <div class="bulck_registration_form"  >
             <style>
 
                 .bulck_registration_form{
                     box-sizing: border-box;
                     padding: 20px;
-                    width: 95%;
+                    width: 100%;
                     border: 1px solid #bdbdbd;
                     margin-top: 10px;
-                    padding-left: 5px;
-                    border-radius: 5px
+                    /*padding-left: 5px;*/
+                    border-radius: 5px;
+                    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
 
                 }
                 table{
-                    font-size: .7em;
+                    font-size: .9em;
+                    width: 100%;
+                    margin: auto;
                 }
                 th{
                     padding: 5px;
@@ -240,7 +241,7 @@
                 .register_btn{
                     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.178);
                     background-color: #2108ff;
-
+                    font-size: 1em;
 
                 }
                 .add-all-btn{
@@ -253,8 +254,11 @@
                     /*font-size: .8em;*/
                     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.178);
                     background-color: white;
-                    color: #2108ff;
+                    color: #343434;
 
+                }
+                .refresh-from-local:hover{
+                    color: white;
                 }
                 td{
                     padding: 5px;
@@ -262,9 +266,20 @@
                     font-size: .8em;
                     font-weight: 500;
                 }
+                table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+
+                td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
             </style>
 
-            <h5 style="color: #1d1b31;font-weight: 500"> This area is for bulk registration</h5>
+            <h5 style="color: #1d1b31;font-weight: 500;padding-bottom: 10px"> Bulk Registration of Public Health Inspector </h5>
             <hr>
             <br>
             <input type="file" id="file" style="display: none;">
