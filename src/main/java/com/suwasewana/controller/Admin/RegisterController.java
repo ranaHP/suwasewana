@@ -59,6 +59,9 @@ public class RegisterController extends HttpServlet {
                 case "updatevaccine":
                     UpdateVaccine(req, res);
                     break;
+                case "updatevaccinewithoutimg":
+                    UpdateVaccinewithoutimg(req, res);
+                    break;
                 case "vaccinehide":
                     vaccinehide(req, res);
                     break;
@@ -111,6 +114,26 @@ public class RegisterController extends HttpServlet {
         );
 
         String result = adminDAO.UpdateVaccine(vaccineModel) ;
+        res.getWriter().println(result);
+    }
+    private void UpdateVaccinewithoutimg(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        System.out.println("co,e to controller");
+        VaccineModel vaccineModel=new VaccineModel(
+                req.getParameter("id"),
+                req.getParameter("Name"),
+                req.getParameter("Country"),
+                req.getParameter("Recommended_for"),
+                req.getParameter("Date"),
+                req.getParameter("image"),
+                req.getParameter("status"),
+                req.getParameter("dosage"),
+                req.getParameter("side_effects"),
+                req.getParameter("how_work"),
+                req.getParameter("How_Well_work"),
+                ""
+        );
+
+        String result = adminDAO.UpdateVaccinewithoutimg(vaccineModel) ;
         res.getWriter().println(result);
     }
 
