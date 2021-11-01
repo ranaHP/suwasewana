@@ -1,9 +1,8 @@
 body{
-    margin:0;
-    font-family:Arial, Helvetica, sans-serif;
-    margin-left: 78px;
-    max-width: calc(100vw - 78px);
-    background-color: #dfe4ea59;
+    margin: 0;
+    padding: 0;
+    /* font-size: 16px; */
+    box-sizing: border-box;
 }
 *{
     /*box-sizing: border-box;*/
