@@ -13,7 +13,7 @@
 <html>
 <head>
     <title>Suwasewana</title>
-    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
+    <script src="<c:url value="/public/js/admin/InputValidation.js "/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/RegClinicalOfficer.css "/>"/>
 
 
