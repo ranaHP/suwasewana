@@ -110,6 +110,7 @@ class FormInputValidation {
         // console.log("select check "+ name+" "+fieldName)
         let isValida = true;
         if(!name){
+            console.log("name is not come")
             isValida = false;
         }
         else {

@@ -53,7 +53,6 @@
             <div class="main-header">
                 <div class="logo">
                     <img src="<c:url value="/public/images/logo.png "/>" alt="logo" width="100%"/>
-
                 </div>
                 <div class="navbar-container">
                     <ul class="navbar">
@@ -186,7 +185,9 @@
                             <label for="cTitleSearch">
                                 Complaint Title
                             </label>
-                            <input type="text" name="name" id="cTitleSearch" autocomplete="off" autofocus />
+                            <input type="text" name="name" id="cTitleSearch" autocomplete="off"
+                            onfocus="document.getElementById('cTitleSearch').value='';"
+                            />
 
                         </div>
 
@@ -251,7 +252,7 @@
                                     <label for="cTitle">
                                         complaint Title
                                     </label>
-                                    <input type="text" name="name" id="cTitle" autocomplete="off"
+                                    <input type="text" name="name" id="cTitle" autocomplete="off" autofocus
                                            onkeydown="validation.checklength(
                                            document.getElementById('cTitle').value,
                                            'ecTitle',10);"
@@ -291,8 +292,8 @@
 
                                     >
                                     <datalist id="alluDetailsType">
-                                        <option id="0" name="With Details" value="With Details" option="With Details"></option>
-                                        <option id="1" name="Anonymous" value="Anonymous" option="Anonymous"></option>
+                                        <option id="1" name="With Details" value="With Details" option="With Details"></option>
+                                        <option id="0" name="Anonymous" value="Anonymous" option="Anonymous"></option>
                                     </datalist>
                                     <label id="euDetailsType"></label>
                                 </div>
@@ -322,9 +323,10 @@
                                            onblur="validation.selectCheck('phi','ephi')";
                                            onchange="validation.selectCheck('phi','ephi')"
                                            onclick="document.getElementById('phi').value=''";
+                                           onfocus="document.getElementById('ephi').innerText='';"
                                     >
                                     <datalist id="allphi">
-                                        <option value="Plz select Your MOH Area" option="Plz select Your MOH Area" readonly></option>
+<%--                                        <option value="Plz select Your MOH Area" option="Plz select Your MOH Area" readonly></option>--%>
                                     </datalist>
                                     <label id="ephi"></label>
                                 </div>
@@ -415,17 +417,24 @@
 
 <script>
     function checkValidation(){
+
+        var phiObj = document.getElementById("phi");
+        var datalist = document.getElementById(phiObj.getAttribute("list"));
+        if(datalist.options.namedItem(phiObj.value)){
+            PId=(datalist.options.namedItem(phiObj.value).id);
+        }
+
+
         if( validation.checklength(document.getElementById('cTitle').value,'ecTitle',10) &&
             validation.selectCheck('complaintType','eallcomplaintType') &&
             validation.selectCheck('uDetailsType','euDetailsType') &&
             validation.selectCheck('MOHArea','eMOHArea') &&
             validation.selectCheck('phi','ephi')&&
-            validation.checklength(document.getElementById('reason').value,'ereason',10)
+            validation.checklength(document.getElementById('reason').value,'ereason',10)&&
+            PId!=0
         ){
             console.log("correct");
             imageUpload();
-
-
         }
         else {
             validation.checklength(document.getElementById('cTitle').value,'ecTitle',10);
@@ -434,7 +443,13 @@
             validation.selectCheck('MOHArea','eMOHArea');
             validation.selectCheck('phi','ephi');
             validation.checklength(document.getElementById('reason').value,'ereason',10);
+            if(PId==0){
+                document.getElementById('ephi').innerText="Pleace select Another near MOH Area";
+            }
             console.log("incorrect");
+
+
+            alert();
 
         }
 
@@ -482,7 +497,10 @@
 
         console.log("image neames array "+imageNames);
         console.log("image neames length "+imageNames.length);
+        alert();
         if(imageNames.length!=0){
+            console.log("inside upload img if")
+            alert();
             $.ajax({
                 url: '/suwasewana_war/fileuploadservlet',
                 type: 'post',
@@ -492,7 +510,7 @@
                 success: function (response) {
                     if (response != 0) {
                         console.log("successfully image uploadedss ---- " +imageNames )
-                        makeComplain(imageNames);
+                        makeComplainwithimg(imageNames);
                     } else {
                         console.log('file not uploaded');
 
@@ -501,6 +519,7 @@
             });
         }
         else {
+            console.log("inside upload img else")
             makeComplains();
         }
 
@@ -512,14 +531,14 @@
     function makeComplains(){
         console.log("without images")
         console.log("make complain call");
+        alert()
+        // let url1 = (imageNames[0]==null ? " ":imageNames[0] );
+        // let url2 = (imageNames[1]==null ? " ":imageNames[1] );
+        // let url3 = (imageNames[2]==null ? " ":imageNames[2] );
 
-        let url1 = (imageNames[0]==null ? " ":imageNames[0] );
-        let url2 = (imageNames[1]==null ? " ":imageNames[1] );
-        let url3 = (imageNames[2]==null ? " ":imageNames[2] );
-
-        // let url1 = " ";
-        // let url2 = " ";
-        // let url3 = " ";
+        let url1 = " ";
+        let url2 = " ";
+        let url3 = " ";
 
         // take complaintype
         var CTypeObj = document.getElementById("complaintType");
@@ -546,6 +565,13 @@
             PId=(datalist.options.namedItem(phiObj.value).id);
         }
 
+        //take moh
+        var mohObj = document.getElementById("MOHArea");
+        var datalist = document.getElementById(mohObj.getAttribute("list"));
+        if(datalist.options.namedItem(mohObj.value)){
+            MOHId=(datalist.options.namedItem(mohObj.value).id);
+        }
+
 
 
         let reqData =
@@ -557,10 +583,10 @@
                 cReason: document.getElementById("reason").value,
                 img1:url1,
                 img2:url2,
-                img3:url3
+                img3:url3,
+                MOH:MOHId
             };
-        console.log(reqData);
-
+        console.log("phi id "+reqData.cPhi)
         $.post("/suwasewana_war/user-complain-controller/create",
             reqData,
             function (data, status) {
@@ -571,7 +597,7 @@
                         status: 'success',
                         message: 'Complain Successfully Added!'
                     });
-                    getAllComplain();
+                    // getAllComplain();
                 } else {
                     console.log("unsuccesssss brooo")
                     popup.showAppointmentSuccessMessage({
@@ -584,7 +610,7 @@
         );
         return false;
     }
-    function makeComplain(imageNames) {
+    function makeComplainwithimg(imageNames) {
         console.log("make complain call");
 
         let url1 = (imageNames[0]==null ? " ":imageNames[0] );
@@ -620,6 +646,12 @@
             PId=(datalist.options.namedItem(phiObj.value).id);
         }
 
+        //take moh
+        var mohObj = document.getElementById("MOHArea");
+        var datalist = document.getElementById(mohObj.getAttribute("list"));
+        if(datalist.options.namedItem(mohObj.value)){
+            MOHId=(datalist.options.namedItem(mohObj.value).id);
+        }
 
 
         let reqData =
@@ -631,9 +663,11 @@
                 cReason: document.getElementById("reason").value,
                 img1:url1,
                 img2:url2,
-                img3:url3
+                img3:url3,
+                MOH:MOHId
             };
-        console.log(reqData);
+        console.log("reqData MOH id- "+reqData.MOH);
+
 
         $.post("/suwasewana_war/user-complain-controller/create",
             reqData,
@@ -645,7 +679,7 @@
                         status: 'success',
                         message: 'Complain Successfully Added!'
                     });
-                    getAllComplain();
+                    // getAllComplain();
                 } else {
                     console.log("unsuccesssss brooo")
                     popup.showAppointmentSuccessMessage({
@@ -691,7 +725,8 @@
 
         let searchItem = {
             Title : document.getElementById("cTitleSearch").value,
-            complaintype: CType
+            complaintype: CType,
+            nic:"199910910064"
         }
         let complainCardList = [];
         $.post("/suwasewana_war/user-complain-controller/search",
@@ -786,11 +821,18 @@
                 let rs= JSON.parse(data);
                 let PNames=document.getElementById("allphi");
                 PNames.innerHTML="";
+                let i=0;
                 rs.map((element) => {
-                    if(element.mohId==mid){PNames.innerHTML+= '<option id="'+element.phi_Id+'" name="'+element.full_name+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'}
 
-
+                    if(element.mohId==mid){
+                        i=1;
+                        PNames.innerHTML+= '<option id="'+element.NIC+'" name="'+ element.full_name +'-'+element.assignCity+'"  value="'+ element.full_name +'-'+element.assignCity+'"   option="'+ element.full_name +' - '+element.assignCity+'" ></option>'
+                    }
                 })
+                if(i==0){
+                    PNames.innerHTML="";
+                    PNames.innerHTML= '<option id="0" name="No PHI assigned yet" value="No PHI assigned yet" option="No PHI assigned yet"></option>'
+                }
             }
         );
     }

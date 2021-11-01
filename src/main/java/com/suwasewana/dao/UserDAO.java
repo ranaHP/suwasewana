@@ -25,18 +25,26 @@ public class UserDAO {
     private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
 
 
-    private static final String USER_GET_Complain = "SELECT * FROM user_complains left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id;";
-    private static final String SEARCH_COMPLAIN_both = "SELECT * FROM user_complains left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id  where CType=? and CTitle like ?;";
-    private static final String SEARCH_COMPLAIN_type="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CType = ?;";
-    private static final String SEARCH_COMPLAIN_title="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CTitle like ?;";
+    private static final String USER_GET_Complain = "SELECT * FROM suwasewana_db.user_complaint left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic WHERE user=?;";
+
+    //    private static final String SEARCH_COMPLAIN_both = "SELECT * FROM user_complains left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id  where CType=? and CTitle like ?;";
+    private static final String SEARCH_COMPLAIN_both = "SELECT * FROM suwasewana_db.user_complaint left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic  where complaint_type_id=? and tittle like ? and user=?;";
+
+//    private static final String SEARCH_COMPLAIN_type="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CType = ?;";
+    private static final String SEARCH_COMPLAIN_type="SELECT * FROM suwasewana_db.user_complaint  left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic where complaint_type_id = ? and user=?;";
+
+
+//    private static final String SEARCH_COMPLAIN_title="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CTitle like ?;";
+    private static final String SEARCH_COMPLAIN_title="SELECT * FROM suwasewana_db.user_complaint  left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic where tittle like ? and user=?;";
+
 
     private static final  String USER_LOGIN_ATTEMPT = "SELECT login_status FROM `citizen` WHERE uMobile = ?";
     private static final  String USER_LOGIN_SUSPENDED_TIME = "SELECT DATE_ADD(suspended_time, INTERVAL 5 minute) AS suspended_time FROM `citizen` WHERE uMobile = ? AND DATE_ADD(suspended_time, INTERVAL 5 minute) > current_timestamp(); ";
     private static final  String USER_LOGOUT = "UPDATE `citizen` SET `login_status` = '0' WHERE `citizen`.`uMobile` = ?; ";
     private static final  String USER_LOGIN_ATTEMPT_CHANGE = "UPDATE `citizen` SET `login_status` = ? , `suspended_time` = current_timestamp() WHERE `citizen`.`uMobile` = ?; ";
-    private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
-            "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`,`img1`,`img2`,`img3`) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?);";
+    private static  final  String INSERT_COMPLAIN="INSERT INTO `suwasewana_db`.`user_complaint` " +
+            "(`tittle`, `description`, `user`, `status`, `phi_message`, `phi_id`, `complaint_type_id`, `moh`, `img1`, `img2`, `img3`) " +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
     Connection connection;
 
     public UserDAO() {
@@ -317,20 +325,35 @@ public class UserDAO {
             return throwables.getMessage();
         }
     }
-    public String UserMakeComplain(ComplainModel complainModel) {
-        System.out.println("data come to dao");
-        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
-            preparedStatement.setString(1, complainModel.getCType());
-            preparedStatement.setString(2, complainModel.getUType());
-            preparedStatement.setString(3, complainModel.getUser());
-            preparedStatement.setString(4, complainModel.getCTitle());
-            preparedStatement.setString(5, complainModel.getCMessage());
-            preparedStatement.setString(6, complainModel.getPHIId());
-            preparedStatement.setString(7, complainModel.getStatus());
-            preparedStatement.setString(8, complainModel.getImg1());
-            preparedStatement.setString(9, complainModel.getImg2());
-            preparedStatement.setString(10, complainModel.getImg3());
 
+
+
+    public String UserMakeComplain(ComplainModel complainModel) {
+        System.out.println("data come to create complain dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
+            preparedStatement.setString(1, complainModel.getCTitle() );
+            preparedStatement.setString(2, complainModel.getCMessage() );
+
+            System.out.println("user type in dao "+ complainModel.getUType());
+            if (complainModel.getUType().equals("0")) {
+                System.out.println("Dont view user detail ");
+                preparedStatement.setString(3, null);
+            }
+            else{
+                System.out.println("view user detail ");
+                preparedStatement.setString(3, complainModel.getUser() );
+            }
+
+
+            preparedStatement.setString(4, "Pending" );
+            preparedStatement.setString(5, "" );
+            preparedStatement.setString(6, complainModel.getPHIId() );
+            preparedStatement.setString(7, complainModel.getCType() );
+            preparedStatement.setString(8, complainModel.getMOH() );
+            preparedStatement.setString(9, complainModel.getImg1() );
+            preparedStatement.setString(10, complainModel.getImg2() );
+            preparedStatement.setString(11, complainModel.getImg3() );
+            System.out.println("SQL "+preparedStatement);
             int  rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
 
@@ -343,11 +366,7 @@ public class UserDAO {
 
     }
 
-    public ArrayList<ComplainModel> SearchComplainDetails(String title, String type) {
-
-
-
-
+    public ArrayList<ComplainModel> SearchComplainDetails(String title, String type,String nic) {
         try {
             PreparedStatement preparedStatement;
             PreparedStatement preparedStatementboth ;
@@ -356,6 +375,7 @@ public class UserDAO {
             ResultSet rs = null;
             if(type==null && title==""){
                 preparedStatement = connection.prepareStatement(USER_GET_Complain);
+                preparedStatement.setString(1, nic);
                 rs = preparedStatement.executeQuery();
             }
             if(type!=null && title!=""){
@@ -363,18 +383,24 @@ public class UserDAO {
                 preparedStatementboth = connection.prepareStatement(SEARCH_COMPLAIN_both);
                 preparedStatementboth.setString(1, type);
                 preparedStatementboth.setString(2,"%"+ title + "%");
+                preparedStatementboth.setString(3, nic);
+                System.out.println("SQL - "+preparedStatementboth);
                 rs = preparedStatementboth.executeQuery();
             }
             if(type==null && title!=""){
                 System.out.println("only title");
                 preparedStatementtitle = connection.prepareStatement(SEARCH_COMPLAIN_title);
                 preparedStatementtitle.setString(1, "%"+title+"%");
+                preparedStatementtitle.setString(2, nic);
+                System.out.println("SQL - "+preparedStatementtitle);
                 rs = preparedStatementtitle.executeQuery();
             }
             if(type!=null && title==""){
                 System.out.println("only type");
                 preparedStatementtype = connection.prepareStatement(SEARCH_COMPLAIN_type);
                 preparedStatementtype.setString(1, type);
+                preparedStatementtype.setString(2, nic);
+                System.out.println("SQL - "+preparedStatementtype);
                 rs = preparedStatementtype.executeQuery();
             }
 
@@ -382,18 +408,23 @@ public class UserDAO {
             ArrayList<ComplainModel> ComplainList = new ArrayList<ComplainModel>();
             System.out.println("come to view detail");
             while (rs.next()) {
-                String Ctype = rs.getString("CType");
-                String Utype = rs.getString("UType");
-                String user = rs.getString("User");
-                String Poster_Date = rs.getString("Posted_Date");
-                String CTitle = rs.getString("CTitle");
-                String Cmessage = rs.getString("CMessage");
-                String Status = rs.getString("Status");
+
+
+                String CTitle = rs.getString("tittle");
+                String Cmessage = rs.getString("description");
+                String user = rs.getString("user");
+                String Poster_Date = rs.getString("posted_date_time");
+                String Status = rs.getString("status");
+                String response = rs.getString("phi_message");
+                String PID=rs.getString("phi_id");
                 String Pname = rs.getString("full_name");
-                String PID=rs.getString("PHIId");
+                String Ctype = rs.getString("complaint_type_id");
+                String Utype = rs.getString("user");
+                String MOH = rs.getString("moh");
                 String img1=rs.getString("img1");
                 String img2=rs.getString("img2");
                 String img3=rs.getString("img3");
+
 
                 ComplainModel temp = new ComplainModel(
                         CTitle,
@@ -407,7 +438,10 @@ public class UserDAO {
                         Status,
                         img1,
                         img2,
-                        img3
+                        img3,
+                        response,
+                        MOH
+
                 );
                 ComplainList.add(temp);
             }
@@ -418,26 +452,31 @@ public class UserDAO {
         return null;
     }
 
-    public ArrayList<ComplainModel> userGetComplainDetails(ComplainModel complainDetails) {
+    public ArrayList<ComplainModel> userGetComplainDetails(ComplainModel complainDetails , String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_Complain)) {
+            preparedStatement.setString(1, nic );
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<ComplainModel> ComplainList = new ArrayList<ComplainModel>();
 //            System.out.println("come to view detail");
             while (rs.next()) {
-                String Ctype = rs.getString("CType");
-                String Utype = rs.getString("UType");
-                String user = rs.getString("User");
-                String Poster_Date = rs.getString("Posted_Date");
-                String CTitle = rs.getString("CTitle");
-                String Cmessage = rs.getString("CMessage");
-                String Status = rs.getString("Status");
+
+
+                String CTitle = rs.getString("tittle");
+                String Cmessage = rs.getString("description");
+                String user = rs.getString("user");
+                String Poster_Date = rs.getString("posted_date_time");
+                String Status = rs.getString("status");
+                String response = rs.getString("phi_message");
+                String PID=rs.getString("phi_id");
                 String Pname = rs.getString("full_name");
-                String PID=rs.getString("PHIId");
+                String Ctype = rs.getString("complaint_type_id");
+                String Utype = rs.getString("user");
+                String MOH = rs.getString("moh");
                 String img1=rs.getString("img1");
                 String img2=rs.getString("img2");
                 String img3=rs.getString("img3");
 
-//                System.out.println("view detail"+CTitle);
+
                 ComplainModel temp = new ComplainModel(
                         CTitle,
                         Ctype,
@@ -450,8 +489,12 @@ public class UserDAO {
                         Status,
                         img1,
                         img2,
-                        img3
+                        img3,
+                        response,
+                        MOH
+
                 );
+
                 ComplainList.add(temp);
             }
             return ComplainList;
