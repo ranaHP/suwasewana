@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-createClinics.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/_db-header.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_live-card.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -38,64 +39,72 @@
             <div class="form-container">
                 <!-- form container -->
                 <div class="form">
-                    <form id="loginForm" onsubmit="return checkclinicregistration(event)" >
+                    <form id="loginForm" onsubmit="return checkvalidation()" >
                         <div class="form-inputs">
                             <div class="left-inputs">
                                 <div class="inputs">
                                     <label> Clinic Title</label>
-                                    <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" />
+                                    <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" value="for covid vaccination" />
                                 </div>
                                 <div class="inputs">
                                     <label> Dose count</label>
-                                    <input type="number" required autocomplete="off" name=" Dose-count" id="Dose-count" />
+                                    <input type="number" required autocomplete="off" name=" Dose-count" id="Dose-count" value="4"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Location</label>
-                                    <input type="text"  required autocomplete="off" name=" location" id="location"/>
+                                    <input type="text"  required autocomplete="off" name=" location" id="location" value="at moh"/>
                                 </div>
                                 <div class="inputs">
-                                    <div class="multirow_right" id="addcityDiv">
-                                        <label >MOH Area</label> <br>
-                                        <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" autocomplete="off" name="AllMArea"
-                                               onclick="document.getElementById('MArea').value='';"
-                                               onblur="validation.SearchSelect(
+                                    <label >MOH Area</label> <br>
+                                    <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
+                                           onclick="document.getElementById('MArea').value='';"
+                                           onblur="validation.SearchSelect(
                                     document.getElementById('MArea').value,
                                     'LMArea'
                                 );"
-                                        >
-                                        <datalist id="AllMArea">
-                                        </datalist>
-                                        <br>
-                                        <span class="error" id="LMArea" style="margin-left: 5px" ></span>
-                                    </div>
+                                    >
+                                    <datalist id="AllMArea">
+                                    </datalist>
+                                    <br>
+                                    <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                                 </div>
                                 <div class="inputs">
                                     <label> Data & Time</label>
-                                    <input type="text"  required autocomplete="off" name="date-time" id="date-time"/>
+                                    <input type="text"  required autocomplete="off" name="date-time" id="date-time" value="09/09/2021"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Duration (hours)</label>
-                                    <input type="text" required autocomplete="off" name="duration" id="duration"/>
+                                    <input type="text" required autocomplete="off" name="duration" id="duration" value="4 hours"/>
                                 </div>
                             </div>
                             <div class="right-inputs">
                                 <div class="inputs">
                                     <label> Max Patient</label>
-                                    <input type="number" required autocomplete="off" name="max-patient" id="max-patient"/>
+                                    <input type="number" required autocomplete="off" name="max-patient" id="max-patient" value="40"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Target participants </label>
-                                    <input type="text" required autocomplete="off" name="patient" id="patient"/>
+                                    <input type="text" required autocomplete="off" name="patient" id="patient" value="for public"/>
+                                </div>
+                                <div class="inputs">
+                                    <label >Vaccine name</label> <br>
+                                    <input autocomplete="off" style="padding: 5px;" list="AllVaccineslist" name="AllVaccineslist" type="text" id="Search_V_input" placeholder="Search by vaccine name"
+                                           onclick="document.getElementById('Search_V_input').value='';  ";
+                                    >
+                                    <datalist id="AllVaccineslist">
+
+                                    </datalist>
+                                    <br>
+                                    <span class="error" id="vaccine" style="margin-left: 5px" ></span>
                                 </div>
                                 <div class="inputs">
                                     <label> Age limit</label>
-                                    <input type="text" required autocomplete="off" name="Age-limit" id="Age-limit" />
+                                    <input type="text" required autocomplete="off" name="Age-limit" id="Age-limit" value="between 10-50"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Description</label>
-                                    <textarea type="text"  id="description" required autocomplete="off" name="description"></textarea>
+                                    <textarea type="text"  id="description" required autocomplete="off" name="description">every one should come at time</textarea>
                                 </div>
-
 
                             </div>
                         </div>
@@ -127,9 +136,10 @@
 </div>
 </div>
 </div>
-<script>
-    feather.replace()
+<script defer>
+    let validation = new FormInputValidation();
 
+    feather.replace()
     function checkMOHid(){
         var MTypeObj = document.getElementById('MArea');
         var datalist = document.getElementById(MTypeObj.getAttribute("list"));
@@ -141,13 +151,62 @@
             return  0;
         }
     }
-    var loadFile = function (event, imgContainerId) {
-        var image = document.getElementById(imgContainerId);
-        image.src = URL.createObjectURL(event.target.files[0]);
-    };
+
+    function checkVaccineid(){
+        var MTypeObj = document.getElementById('Search_V_input');
+        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(MTypeObj.value)){
+            // alert(datalist.options.namedItem(MTypeObj.value).id)
+            return (datalist.options.namedItem(MTypeObj.value).id);
+        }
+        else {
+            return  0;
+        }
+    }
+     function checkvalidation(){
+         let mohid=checkMOHid();
+         let vaccineid=checkVaccineid();
+         if((mohid!=0)&&(vaccineid!=0)){
+             vaccineClinic()
+         }else {
+             // alert("wrong")
+             if(mohid==0){
+                 validation.setErrorMessageForField("Enter valid Area", 'LMArea', 0);
+                 document.getElementsByClassName('LMArea').value="Enter valid Area";
+             }
+             if(vaccineid==0){
+                 validation.setErrorMessageForField("Enter valid vaccine", 'vaccine', 0);
+                 document.getElementsByClassName('vaccine').value="Enter valid Area";
+             }
+
+
+         }
+         return false;
+     }
+     function vaccineClinic(){
+        alert("vaccine")
+     }
+
 </script>
 
 <script defer>
+    let r;
+    LoadVaccine();
+    function LoadVaccine(){
+        // alert("hi");
+        $.post("/test_war_exploded/admin-register-controller/All_vaccine_details/",
+
+            function (data, status) {
+                r= JSON.parse(data);
+                let vaccineType=document.getElementById("AllVaccineslist");
+                vaccineType.innerHTML='';
+                r.map((element) => {
+                    vaccineType.innerHTML+= '<option  id="'+element.ID+'" name="'+element.Name+'" value="' + element.Name +  '" option="' + element.Name +  '"></option>'
+                })
+            }
+        );
+    }
+
     let mohDetails=[];
     $.post("/test_war_exploded/user-complain-controller/moh",
         function (data, status) {

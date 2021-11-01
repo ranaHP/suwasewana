@@ -11,15 +11,15 @@ import java.util.ArrayList;
 
 public class AdminDAO {
 
-    private static final String PHI_REGISTRATION = "INSERT INTO `suwaserwana_db`.`phi_officer` (`full_name`, `NIC`, `mobile`, `device_MAC`, `Address`, `City`, `District`, `phi_post`, `login_status`, `password`, `PostalCode`, `mohId`, `DP`,`suspended_time`)  VALUES (?, ?, ?, NULL , ?, ?, ?, ?, '0', ?, ?, ?, ?,current_timestamp());";
-    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
-    private static final String MOH_REGISTRATION="INSERT INTO `suwaserwana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
-    private static final String AddVaccine="INSERT INTO `suwaserwana_db`.`vaccine` (`name`, `country`, `recomonded_for`, `date`, `image`, `status`, `dose`, `comon_side_effects`, `how_it_work`, `how_well_it_work`, `view_status`) VALUES (?,?,?,?,?,?,?,?,?,?,?);\n";
-    private static final String Select_all_Vaccines="SELECT * FROM suwaserwana_db.vaccine;";
-    private static final String Delet_Vaccin="DELETE FROM `suwaserwana_db`.`vaccine` WHERE (`v_id` = ?);";
-    private static final String Update_Vaccin="UPDATE `suwaserwana_db`.`vaccine` SET `name` = ?, `country` = ?, `recomonded_for` = ?, `date` = ?, `image` = ?, `status` = ?, `dose` = ?, `comon_side_effects` = ?, `how_it_work` = ?, `how_well_it_work` = ? WHERE (`v_id` = ?);";
-    private static final String Hide_Vaccine_Type="UPDATE `suwaserwana_db`.`vaccine` SET `view_status` = '0' WHERE (`v_id` = ?);";
-    private static final String unHide_Vaccine_Type="UPDATE `suwaserwana_db`.`vaccine` SET `view_status` = '1' WHERE (`v_id` = ?);";
+    private static final String PHI_REGISTRATION = "INSERT INTO `suwasewana_db`.`phi_officer` (`full_name`, `NIC`, `mobile`, `device_MAC`, `Address`, `City`, `District`, `phi_post`, `login_status`, `password`, `PostalCode`, `mohId`, `DP`,`suspended_time`)  VALUES (?, ?, ?, NULL , ?, ?, ?, ?, '0', ?, ?, ?, ?,current_timestamp());";
+    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwasewana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
+    private static final String MOH_REGISTRATION="INSERT INTO `suwasewana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
+    private static final String AddVaccine="INSERT INTO `suwasewana_db`.`vaccine` (`name`, `country`, `recomonded_for`, `date`, `image`, `status`, `dose`, `comon_side_effects`, `how_it_work`, `how_well_it_work`, `view_status`) VALUES (?,?,?,?,?,?,?,?,?,?,?);\n";
+    private static final String Select_all_Vaccines="SELECT * FROM suwasewana_db.vaccine;";
+    private static final String Delet_Vaccin="DELETE FROM `suwasewana_db`.`vaccine` WHERE (`v_id` = ?);";
+    private static final String Update_Vaccin="UPDATE `suwasewana_db`.`vaccine` SET `name` = ?, `country` = ?, `recomonded_for` = ?, `date` = ?, `image` = ?, `status` = ?, `dose` = ?, `comon_side_effects` = ?, `how_it_work` = ?, `how_well_it_work` = ? WHERE (`v_id` = ?);";
+    private static final String Hide_Vaccine_Type="UPDATE `suwasewana_db`.`vaccine` SET `view_status` = '0' WHERE (`v_id` = ?);";
+    private static final String unHide_Vaccine_Type="UPDATE `suwasewana_db`.`vaccine` SET `view_status` = '1' WHERE (`v_id` = ?);";
     Connection connection;
 
     public AdminDAO() {
