@@ -114,7 +114,7 @@
                             </label>
                             <input type="text" placeholder="980707050V" name="nic" id="nic"
                                    autocomplete="off"
-                                   onkeyup="validation.nicValidation(
+                                   onkeyup="validation.nameValidation(
                                 document.getElementById('nic'), 'user-nic-error');"
                                    required
                             />
@@ -379,12 +379,12 @@
 
     function checkLoginValidation(data) {
         console.log(data);
-        alert("1")
+        // alert("1")
         if (
             validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
             validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error') &&
             validation.passwordValidation(document.getElementById('cpassword').value, 'user-cpassword-error') &&
-            validation.nicValidation(document.getElementById('nic'), 'user-nic-error')) {
+            validation.nameValidation(document.getElementById('nic'), 'user-nic-error')) {
             if (document.getElementById("user-password").value !== document.getElementById('cpassword').value) {
                 document.getElementById("user-cpassword-error").innerText = " password is not match";
             } else {
@@ -438,7 +438,7 @@
                 );
             }
         }
-        alert("1")
+        // alert("1")
         return false;
     }
 

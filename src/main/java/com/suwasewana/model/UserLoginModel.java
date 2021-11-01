@@ -17,6 +17,7 @@ public class UserLoginModel {
         super();
         SuwasewanaHashing hashing = new SuwasewanaHashing(pass);
         this.mobile = number;
+        System.out.println(number);
         this.password = hashing.getHashValue();
         this.unic = nic;
     }
@@ -91,5 +92,8 @@ public class UserLoginModel {
 
     public void setuMoh(String uMoh) {
         this.uMoh = uMoh;
+    }
+    public String getString(){
+        return "{'mobile' : '0412283111'}";
     }
 }

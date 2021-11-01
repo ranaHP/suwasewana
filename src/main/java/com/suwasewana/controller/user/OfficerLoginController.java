@@ -38,19 +38,21 @@ public class OfficerLoginController extends HttpServlet {
     private void checkUserLogin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String mobile = req.getParameter("user-mobile");
         String password = req.getParameter("user-password");
+        String post = req.getParameter("Post");
         String mac="";
 //        System.out.println("Mobile "+mobile);
 //        System.out.println("Pass "+password);
+//        System.out.println("Post "+post);
         mac=GetMaC();
         OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac);
 
 //        res.getWriter().println("Mobile "+officerLoginModel.getMobile());
 //        res.getWriter().println("Pass "+officerLoginModel.getPassword());
 //        res.getWriter().println("mac "+officerLoginModel.getMAC());
-        OfficerLoginModel officerLoginresponse = officerDAO.CheckLoginValidation(officerLoginModel);
-//        System.out.println("ControllerMobile "+officerLoginresponse.getMobile());
-//        System.out.println("ControllerMobilePass "+officerLoginresponse.getPassword());
-//        System.out.println("ControllerMobilemac "+officerLoginresponse.getMAC());
+        OfficerLoginModel officerLoginresponse = officerDAO.CheckLoginValidation(officerLoginModel,post);
+        System.out.println("ControllerMobile new"+officerLoginresponse.getMobile());
+        System.out.println("ControllerMobilePass new "+officerLoginresponse.getPassword());
+        System.out.println("ControllerMobilemac new"+officerLoginresponse.getMAC());
 
         PrintWriter out = res.getWriter();
         res.setContentType("application/json");

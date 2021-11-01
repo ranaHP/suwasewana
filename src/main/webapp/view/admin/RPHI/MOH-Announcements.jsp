@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/announcementCard.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/Admin/public_Announcements.js"></c:url> "></script>
+    <script defer src="<c:url value="/public/js/admin/public_Announcements.js"></c:url> "></script>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp"></c:import>
@@ -78,6 +78,10 @@
         var image = document.getElementById('images');
         image.src = URL.createObjectURL(event.target.files[0]);
     };
+
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    vaccineId = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[1].split("/")[0];
+    console.log(vaccineId);
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

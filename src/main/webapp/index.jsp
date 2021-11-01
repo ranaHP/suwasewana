@@ -15,9 +15,17 @@
 <%--    <c:if test="${request.getServletPath()}">--%>
 <%--        <c:import url="view/Login.jsp"/>--%>
 <%--    </c:if>--%>
-<a href="view/user/Login.jsp" > <h1> login </h1></a>
-<a href="view/admin/clinicalOfficer/dashBoard/Dashboard.jsp" > <h1> clinical officer home </h1></a>
-    <a href="view/admin/clinicalOfficer/dashBoard/dashboard_crateClinics.jsp" > <h1> create clinic</h1></a>
-    <a href="view/admin/OfficerLogin/OfficerLogin.jsp" > <h1> officer login</h1></a>
+<%--<a href="view/user/Login.jsp" > <h1> login </h1></a>--%>
+    <a href="s/login" > <h1> home </h1></a>
+    <a href="s/clinic-dashboard" > <h1> clinic</h1></a>
+<a href="s/PHI-dashboard" > <h1> phi</h1></a>
+<a href="s/admin-dashboard" > <h1> admin</h1></a>
+
+<%--<form action="servlet1">--%>
+<%--    Name:<input type="text" name="name"/><br/>--%>
+<%--    Password:<input type="password" name="password"/><br/>--%>
+<%--    <input type="submit" value="login">--%>
+
+<%--</form>--%>
     </body>
 </html>
