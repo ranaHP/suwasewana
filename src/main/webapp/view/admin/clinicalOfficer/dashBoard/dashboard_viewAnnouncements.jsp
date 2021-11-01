@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-viewAnnouncements.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/ClinicalOfficer/viewAnnouncements.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/ClinicalOfficer/viewAnnouncements.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
@@ -37,6 +39,23 @@
 </div>
 <script>
     feather.replace(({width:"8px",height:"8px"}))
+</script>
+<script defer>
+    let viewAnnouncementslist = new viewAnnouncements("announcements-container");
+    // let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    view();
+    function view(){
+        let announcementArray=[]
+        $.post("/test_war_exploded/create-clinic-controller/view",
+            // reqData,
+            function(data,status){
+                announcementArray=JSON.parse(data)
+                viewAnnouncementslist.setData(announcementArray);
+
+            }
+        );
+
+    }
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

@@ -44,14 +44,13 @@
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     view();
     function view(){
-
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
             // reqData,
             function(data,status){
                 clinicListArray=JSON.parse(data)
                 clinicList1.setData(clinicListArray);
-                // alert(data)
+                console.log(data)
 
             }
         );

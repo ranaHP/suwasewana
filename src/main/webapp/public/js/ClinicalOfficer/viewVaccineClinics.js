@@ -5,15 +5,17 @@ class clinicList {
     clinicListArray = [
         {
             clinicID:" ",
-            disease:" ",
-            title:" ",
-            MOH:" ",
-            conduct:" ",
-            datetime:" ",
-            description:" ",
+            tittle:" ",
+            start_date_time:" ",
             duration:" ",
-            location:" ",
-            maxpatient:" "
+            description:" ",
+            max_patient:" ",
+            target_moh:" ",
+            target_people:" ",
+            target_age_limit:" ",
+            v_id:" ",
+            location:"",
+            dose_count:""
         }
     ];
 
@@ -30,15 +32,16 @@ class clinicList {
         this.clinicListArray.map((item) => {
             this.container.innerHTML += `
                <div class="live-card">
-                    <div class="clinic-title"  id="clinic-title">${item.disease} Awareness clinic</div>
-                    <div class="clinic-date">${item.datetime}</div>
+                    <div class="clinic-title"  id="clinic-title">${item.tittle}</div>
+                    <div class="clinic-date">${item.start_date_time}</div>
                     <div class="clinic-description">${item.description}</div>
                     <div class="clinic-details">
                         <div class="location" id="item1"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> Location :</span> ${item.location}</div>
-                        <div class="conduct"  id="item2"><span><span><object data="${Url}/public/images/icons/user.svg" width="8" height="8"> </object></span> Conduct :</span> ${item.conduct}</div>
-                        <div class="max-limit"  id="item3"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Max participant limit :</span>${item.maxpatient}</div>
-                        <div class="moh-area"  id="4"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> MOH Area :</span>${item.MOH}</div>
-                        <div class="target-participants"  id="item5"><span><span><object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object></span> Target participant :</span> ${item.title}</div>
+                        <div class="dose"  id="item2"><span><span><object data="${Url}/public/images/icons/user.svg" width="8" height="8"> </object></span> Dose count :</span> ${item.dose_count}</div>
+                        <div class="max-limit"  id="item3"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Max participant limit :</span>${item.max_patient}</div>
+                        <div class="moh-area"  id="4"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> MOH Area :</span>${item.target_moh}</div>
+                        <div class="target-participants"  id="item5"><span><span><object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object></span> Target participant :</span> ${item.target_people}</div>
+                        <div class="age"  id="4"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> Age limit :</span>${item.target_age_limit}</div>
                     </div>
                     <div class="down-box">
                         <div class="current-participant-count">

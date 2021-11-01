@@ -1,67 +1,46 @@
 let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-announcement = [{
-    title: "Dengue awareness session",
-    description: "Awareness clinic for educate prevention method when you affected with Dengue.Awareness clinic for educate prevention method when you affected with Dengue",
-    Target: "Dengue patients",
-    Location: "Town hall",
-    Date: "2020.03.05",
-    Time: "7.00 A.M.",
-    Duration: "5 hours",
-    Conductedby: "Dr.jorge",
-    Maxlimit: 16,
-},
-    {
-        title: "Maleria awareness session",
-        description: "Awareness clinic for educate prevention method when you affected with Dengue.Awareness clinic for educate prevention method when you affected with Dengue",
-        Target: "Maleria patients",
-        Location: "Town hall",
-        Date: "2020.03.05",
-        Time: "7.00 A.M.",
-        Duration: "5 hours",
-        Conductedby: "Dr.jorge",
-        Maxlimit: 16,
-    },
-    {
-        title: "Corona awareness session",
-        description: "Awareness clinic for educate prevention method when you affected with Dengue.Awareness clinic for educate prevention method when you affected with Dengue",
-        Target: "Corona patients",
-        Location: "Town hall",
-        Date: "2020.03.05",
-        Time: "7.00 A.M.",
-        Duration: "5 hours",
-        Conductedby: "Dr.jorge",
-        Maxlimit: 16,
-    },
-    {
-        title: "Thiroxine awareness session",
-        description: "Awareness clinic for educate prevention method when you affected with Dengue.Awareness clinic for educate prevention method when you affected with Dengue",
-        Target: "Thiroxine patients",
-        Location: "Town hall",
-        Date: "2020.03.05",
-        Time: "7.00 A.M.",
-        Duration: "5 hours",
-        Conductedby: "Dr.jorge",
-        Maxlimit: 16,
-    }
-]
-let container = document.getElementById('announcements-container')
+class viewAnnouncements{
+    announcementArray=[
+        {
+            title:"",
+            maxpatient:"",
+            location:"",
+            duration:"",
+            disease:"",
+            description:"",
+            datetime:"",
+            conduct:"",
+            clinicID:"",
+            cNic:"",
+            Target:"",
+            MOH:""
+        }
 
-announcement.map((item => {
-        let announcements = document.createElement("div")
-        announcements.classList.add("announcement")
-        announcements.innerHTML = `
-    <div class="left">
+    ];
+    container;
+
+    constructor(container) {
+        this.container = document.getElementById(container);
+    }
+    setData(data) {
+        if(!data) return;
+        this.announcementArray = data;
+        console.log(data);
+        this.announcementArray.map((item) => {
+            this.container.innerHTML += `
+              <div class="announcement">
+                      <div class="left">
     <div class="announcement-title" id="title">${item.title} <span>For</span> ${item.Target} </div>
     <div class="announce-description">Awareness clinic for educate prevention method when you affected with Dengue.Awareness clinic for educate prevention method when you affected with Dengue
     </div>
-   
+
     <div class="announce-details">
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/map-pin.svg" width="8" height="8"> </object> Location</p> <span>  ${item.Location}       </span></div>
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/calendar.svg" width="8" height="8"> </object> Date</p> <span> ${item.Date}</span></div>
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/clock.svg" width="8" height="8"> </object> Time</p> <span>${item.Time}</span></div>
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/bell.svg" width="8" height="8"> </object> Duration</p> <span> ${item.Duration}      </span>  </div>
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/award.svg" width="8" height="8"> </object> Conducted by</p> <span>${item.Conductedby}    </span></div>
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/check-circle.svg" width="8" height="8"> </object> Max limit</p> <span>${item.Maxlimit}   </span></div>
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/map-pin.svg" width="8" height="8"> </object> Location</p> <span>  ${item.location}       </span></div>
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/calendar.svg" width="8" height="8"> </object> Date Time</p> <span> ${item.datetime}</span></div>
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/clock.svg" width="8" height="8"> </object> disease</p> <span>${item.disease}</span></div>
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/bell.svg" width="8" height="8"> </object> Duration</p> <span> ${item.duration}      </span>  </div>
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/award.svg" width="8" height="8"> </object> Conducted by</p> <span>${item.conduct}    </span></div>
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/check-circle.svg" width="8" height="8"> </object> Max limit</p> <span>${item.maxpatient}   </span></div>
     </div>
 </div>
 <div class="right">
@@ -77,11 +56,14 @@ announcement.map((item => {
         </div>
     </div>
 </div>
-    `
-        container.appendChild(announcements)
-        console.log("gg")
+             </div>
+            `
+            ;
+            console.log("map")
+        })
     }
-))
+}
+
 
 
 function search() {

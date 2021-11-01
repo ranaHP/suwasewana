@@ -5,6 +5,7 @@ import com.suwasewana.dao.clinicalAnnouncementsDAO;
 import com.suwasewana.dao.createClinicDAO;
 import com.suwasewana.model.CreateClinicAnnouncementsModel;
 import com.suwasewana.model.CreateClinicModel;
+import com.suwasewana.model.vaccineClinicModel;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,10 +40,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("createA");
                     createClinicA(req, res);
                     break;
-//                case "updateclinic":
-////                    res.getWriter().println("updateclinics");
-//                    updateClinic(req, res);
-//                    break;
+                case "viewAnnouncements":
+                    res.getWriter().println("view announcements");
+                    viewAnnouncements(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -52,6 +53,26 @@ import java.util.ArrayList;
         }
     }
 
+    private void viewAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
+      res.getWriter().println("announcement view");
+      CreateClinicAnnouncementsModel viewAnnouncement=new CreateClinicAnnouncementsModel(
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+      );
+        ArrayList<CreateClinicAnnouncementsModel> result= clinicalAnnouncementsDAO.ViewclinicAnnouncements(viewAnnouncement);
+        res.getWriter().println(gson.toJson(result));
+    }
 
 
     private void createClinicA(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

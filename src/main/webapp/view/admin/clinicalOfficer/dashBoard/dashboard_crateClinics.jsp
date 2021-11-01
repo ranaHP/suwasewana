@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/_db-header.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_live-card.css"/> "/>
+    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<c:url value="/public/js/ClinicalOfficer/createClinic.js"/>"></script>
@@ -38,50 +39,60 @@
             <div class="form-container">
                 <!-- form container -->
                 <div class="form">
-                    <form id="loginForm" onsubmit="return checkclinicregistration(event)" >
+                    <form id="loginForm" onsubmit="return Checkvalidation()" >
                         <div class="form-inputs">
                             <div class="left-inputs">
                                 <div class="inputs">
                                     <label> Clinic Title</label>
-                                    <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" />
+                                    <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" value="Covid awareness clinic" />
                                 </div>
                                 <div class="inputs">
                                     <label> Disease</label>
-                                    <input type="text" required autocomplete="off" name=" disease" id="disease" />
+                                    <input type="text" required autocomplete="off" name=" disease" id="disease" value="Covid 19" />
                                 </div>
                                 <div class="inputs">
                                     <label> Location</label>
-                                    <input type="text"  required autocomplete="off" name=" location" id="location"/>
+                                    <input type="text"  required autocomplete="off" name=" location" id="location" value="At moh"/>
                                 </div>
                                 <div class="inputs">
-                                    <label>Target MOH</label>
-                                    <input type="text" required autocomplete="off" name="target-MOH" id="target-MOH"/>
+                                    <label >MOH Area</label> <br>
+                                    <input autocomplete="off" class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
+                                           onclick="document.getElementById('MArea').value='';"
+                                           onblur="validation.SearchSelect(
+                                    document.getElementById('MArea').value,
+                                    'LMArea'
+                                );"
+                                    >
+                                    <datalist id="AllMArea">
+                                    </datalist>
+                                    <br>
+                                    <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                                 </div>
                                 <div class="inputs">
                                     <label> Data & Time</label>
-                                    <input type="text"  required autocomplete="off" name="date-time" id="date-time"/>
+                                    <input type="text"  required autocomplete="off" name="date-time" id="date-time" value="09/08/2021"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Duration (hours)</label>
-                                    <input type="text" required autocomplete="off" name="duration" id="duration"/>
+                                    <input type="text" required autocomplete="off" name="duration" id="duration" value="5 hours"/>
                                 </div>
                             </div>
                             <div class="right-inputs">
                                 <div class="inputs">
                                     <label> Max Patient</label>
-                                    <input type="number" required autocomplete="off" name="max-patient" id="max-patient"/>
+                                    <input type="number" required autocomplete="off" name="max-patient" id="max-patient" value="50"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Target participants </label>
-                                    <input type="text" required autocomplete="off" name="patient" id="patient"/>
+                                    <input type="text" required autocomplete="off" name="patient" id="patient" value="FOr public"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Conduct</label>
-                                    <input type="text" required autocomplete="off" name="conduct" id="conduct" />
+                                    <input type="text" required autocomplete="off" name="conduct" id="conduct" value="by dr. dias" />
                                 </div>
                                 <div class="inputs">
                                     <label>Description</label>
-                                    <textarea type="text"  id="description" required autocomplete="off" name="description"></textarea>
+                                    <textarea type="text"  id="description" required autocomplete="off" name="description">Every one should come before 8a.m. to the main hall of the moh</textarea>
                                 </div>
 
 
@@ -121,14 +132,26 @@
 
 <script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 <script defer>
+    let validation = new FormInputValidation();
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    function Checkvalidation(){
+        let MOH=checkMOHid()
+        if(MOH!=0){
+            checkclinicregistration(event)
+        }
+        else {
+            validation.setErrorMessageForField("Enter valid Area", 'LMArea', 0);
+            document.getElementsByClassName('LMArea').value="Enter valid Area";
+        }
+        return false;
+    }
     function checkclinicregistration(data) {
         let reqData =
             {
                 disease:data.target.elements.disease.value,
                 title:document.getElementById("clinic-title").value,
                 location:data.target.elements.location.value,
-                MOH:document.getElementById("target-MOH").value,
+                MOH:checkMOHid(),
                 datetime: document.getElementById("date-time").value,
                 duration: data.target.elements.duration.value,
                 maxpatient:document.getElementById("max-patient").value,
@@ -156,6 +179,35 @@
         );
         return false;
     }
+
+    function checkMOHid(){
+        var MTypeObj = document.getElementById('MArea');
+        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(MTypeObj.value)){
+
+            return (datalist.options.namedItem(MTypeObj.value).id);
+        }
+        else {
+            return  0;
+        }
+    }
+
+    let mohDetails=[];
+    $.post("/test_war_exploded/user-complain-controller/moh",
+        function (data, status) {
+            // console.log(data);
+            let rs= JSON.parse(data);
+            this.mohDetails=rs;
+            // console.log(data);
+
+            let MNames=document.getElementById("AllMArea");
+            MNames.innerHTML="";
+            rs.map((element,index) => {
+                // console.log("moh"+element.MName)
+                MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
+            })
+        }
+    );
 
 </script>
 

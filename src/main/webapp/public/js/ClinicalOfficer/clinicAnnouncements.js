@@ -1,3 +1,4 @@
+
 class selectClinics {
     ClinicArray = [];
     container;

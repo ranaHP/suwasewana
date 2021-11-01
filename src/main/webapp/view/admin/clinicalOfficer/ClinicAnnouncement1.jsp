@@ -11,15 +11,12 @@
   <%--    for side navbar style--%>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-  <script src="<c:url value="/public/js/popup.js"></c:url> "></script>
   <script src="https://unpkg.com/feather-icons"></script>
   <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
   <script src="<c:url value="/public/js/ClinicalOfficer/clinicAnnouncements.js"/>"></script>
-  <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
 </head>
 <body>
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"></c:import>
-<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="AC_main_Container">
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
@@ -191,7 +188,7 @@
   feather.replace({width: "8px"})
 </script>
 <script defer>
-  let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+
   function imageUpload() {
     console.log("image upload")
     var fd = new FormData();
@@ -275,17 +272,9 @@
             reqData,
             function(data,status){
               if(data.includes("sucsess")){
-                updateclinics()
-                popup.showCreateClinicSuccessMessage({
-                  status: 'success',
-                  message: 'Successfully Created!'
-                })
+                  updateclinics()
               } else{
-                popup.showCreateClinicSuccessMessage({
-                  status: 'fail',
-                  message: 'Failed to create !',
-                  data: data
-                });
+                 alert("no")
               }
             }
           );
@@ -311,8 +300,7 @@
     $.post("/test_war_exploded/create-clinic-controller/updateclinic",
             reqData,
             function (data,status){
-             // alert("wrong")
-             //  alert(data)
+              alert(data)
             });
 
     return false;

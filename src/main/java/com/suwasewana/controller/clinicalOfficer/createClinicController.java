@@ -88,7 +88,7 @@ import java.util.ArrayList;
                     "",
                     ""
             );
-        ArrayList<CreateClinicModel> result= createClinicDAO.ViewVaccineClinics(vaccineClinicView);
+        ArrayList<vaccineClinicModel> result= createClinicDAO.ViewVaccineClinics(vaccineClinicView);
         res.getWriter().println(gson.toJson(result));
     }
 
@@ -134,7 +134,7 @@ import java.util.ArrayList;
                 "12"
 
         );
-        System.out.println("update");
+        System.out.println("updateeeeeeeeeee");
         String result= createClinicDAO.updateClinic(updateClinic);
         res.getWriter().println(result);
     }
