@@ -2,6 +2,7 @@ package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
 import com.suwasewana.model.CreateClinicModel;
+import com.suwasewana.model.vaccineClinicModel;
 
 import java.lang.annotation.Target;
 import java.sql.Connection;
@@ -16,6 +17,9 @@ public class createClinicDAO {
   private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
   private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `disease` = ?, `title` = ? , `location` = ?,  `target_moh` = ?, `Data&Time` = ?,  `duration` = ?,  `max-sheet` = ?, `target_people` = ?, `conduct-by` = ?, `description` = ? WHERE `clinics`.`ncs_id` = ?;";
+
+  private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+  private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session`";
     Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -45,6 +49,7 @@ public class createClinicDAO {
         }
 
     }
+
 
     public String updateClinic(CreateClinicModel updateClinic) {
         boolean rowUpdate;
@@ -192,6 +197,77 @@ public class createClinicDAO {
         }
     }
 
+
+    public String vaccineClinic(vaccineClinicModel vaccineclinic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_VACCINE_CLINIC)) {
+            preparedStatement.setString(1,vaccineclinic.getTittle());
+            preparedStatement.setString(2,vaccineclinic.getStart_date_time());
+            preparedStatement.setString(3,vaccineclinic.getDuration());
+            preparedStatement.setString(4,vaccineclinic.getDescription());
+            preparedStatement.setString(5,vaccineclinic.getMax_patient());
+            preparedStatement.setString(6,vaccineclinic.getTarget_moh());
+            preparedStatement.setString(7,vaccineclinic.getTarget_people());
+            preparedStatement.setString(8,vaccineclinic.getTarget_age_limit());
+            preparedStatement.setString(9,"12");
+            preparedStatement.setString(10,vaccineclinic.getV_id());
+            preparedStatement.setString(11,vaccineclinic.getLocation());
+            preparedStatement.setString(12,vaccineclinic.getDose_count());
+
+            int rs = preparedStatement.executeUpdate();
+            return "sucsess";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+    }
+
+    public ArrayList<CreateClinicModel> ViewVaccineClinics(vaccineClinicModel vaccineClinicView) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(VIEW_VACCINE_CLINICS)){
+            System.out.println("came to dao");
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> viewClinicList = new ArrayList<CreateClinicModel>();
+            while (rs.next()){
+//                String vcs_id =rs.getString("vcs_id");
+                String title =rs.getString("tittle");
+                String DataTime = rs.getString("start_date_time");
+                String Duration = rs.getString("duration");
+                String Description = rs.getString("description");
+                String MaxPatient = rs.getString("max_patient");
+                String TargetMOH = rs.getString("target_moh");
+                String Target = rs.getString("target_people");
+                String age_limit=rs.getString("target_age_limit");
+                String clinical_officer = rs.getString("clinical_officer");
+                String v_id = rs.getString("v_id");
+                String location = rs.getString("location");
+                String dose_count = rs.getString("dose_count");
+                CreateClinicModel temp = new CreateClinicModel(
+//                        vcs_id,
+                        title,
+                        DataTime,
+                        Duration,
+                        Description,
+                        MaxPatient,
+                        TargetMOH,
+                        Target,
+                        age_limit,
+                        clinical_officer,
+                        v_id,
+                        location,
+                        dose_count
+                );
+                viewClinicList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return viewClinicList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
 
 }
 

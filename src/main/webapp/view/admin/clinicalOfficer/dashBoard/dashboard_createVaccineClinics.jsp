@@ -138,6 +138,7 @@
 </div>
 <script defer>
     let validation = new FormInputValidation();
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 
     feather.replace()
     function checkMOHid(){
@@ -167,6 +168,7 @@
          let mohid=checkMOHid();
          let vaccineid=checkVaccineid();
          if((mohid!=0)&&(vaccineid!=0)){
+             // alert("okay")
              vaccineClinic()
          }else {
              // alert("wrong")
@@ -184,7 +186,39 @@
          return false;
      }
      function vaccineClinic(){
-        alert("vaccine")
+        let reqData = {
+            clinictitle: document.getElementById("clinic-title").value,
+            Dosecount: document.getElementById("Dose-count").value,
+            location: document.getElementById("location").value,
+            // MArea: document.getElementById("MArea").value,
+            MArea:checkMOHid(),
+            datetime: document.getElementById("date-time").value,
+            duration: document.getElementById("duration").value,
+            maxpatient: document.getElementById("max-patient").value,
+            patient: document.getElementById("patient").value,
+            vaccine: checkVaccineid(),
+            Agelimit: document.getElementById("Age-limit").value,
+            description: document.getElementById("description").value
+        };
+         $.post("/test_war_exploded/create-clinic-controller/vaccineCLinic",
+             reqData,
+             function(data,status){
+                 if(data.includes("sucsess")){
+                     popup.showCreateClinicSuccessMessage({
+                         status: 'success',
+                         message: 'Successfully Created!'
+                     })
+                 } else{
+                     popup.showCreateClinicSuccessMessage({
+                         status: 'fail',
+                         message: 'Failed to create !',
+                         data: data
+                     });
+                 }
+             }
+         );
+         return false;
+
      }
 
 </script>

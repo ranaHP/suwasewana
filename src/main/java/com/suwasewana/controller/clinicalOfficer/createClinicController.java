@@ -3,6 +3,7 @@ package com.suwasewana.controller.clinicalOfficer;
 import com.google.gson.Gson;
 import com.suwasewana.dao.createClinicDAO;
 import com.suwasewana.model.CreateClinicModel;
+import com.suwasewana.model.vaccineClinicModel;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,9 +54,13 @@ import java.util.ArrayList;
                     updateClinic(req, res);
                     break;
                 case "vaccineCLinic":
-                    res.getWriter().println("vaccineCLinic");
-//                    updateClinic(req, res);
+//                    res.getWriter().println("vaccineCLinic");
+                    vaccineClinic(req, res);
                     break;
+                case "VaccineClinicsView":
+//                    res.getWriter().println("VaccineClinicsView");
+                    VaccineClinicsView(req, res);
+                    break;    
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -64,6 +69,51 @@ import java.util.ArrayList;
         } catch (Exception error) {
             throw new ServletException(error);
         }
+    }
+
+    private void VaccineClinicsView(HttpServletRequest req, HttpServletResponse res) throws IOException {
+//            res.getWriter().println("vaccine");
+            vaccineClinicModel vaccineClinicView = new vaccineClinicModel(
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+            );
+        ArrayList<CreateClinicModel> result= createClinicDAO.ViewVaccineClinics(vaccineClinicView);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void vaccineClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
+            res.getWriter().println("vaccine");
+        vaccineClinicModel vaccineclinic= new vaccineClinicModel(
+                "",
+                req.getParameter("clinictitle"),
+                req.getParameter("datetime"),
+                req.getParameter("duration"),
+                req.getParameter("description"),
+                req.getParameter("maxpatient"),
+                req.getParameter("MArea"),
+                req.getParameter("patient"),
+                req.getParameter("Agelimit"),
+                req.getParameter("12"),
+                req.getParameter("vaccine"),
+                req.getParameter("location"),
+                req.getParameter("Dosecount")
+
+        );
+
+        String result = createClinicDAO.vaccineClinic(vaccineclinic);
+        res.getWriter().println(result);
+
     }
 
     private void updateClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
