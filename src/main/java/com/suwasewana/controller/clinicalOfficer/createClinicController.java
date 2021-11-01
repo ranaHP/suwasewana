@@ -54,7 +54,7 @@ import java.util.ArrayList;
                     break;
                 case "vaccineCLinic":
                     res.getWriter().println("vaccineCLinic");
-                    updateClinic(req, res);
+//                    updateClinic(req, res);
                     break;
 
                 default:
@@ -70,17 +70,17 @@ import java.util.ArrayList;
         res.getWriter().println("update");
         CreateClinicModel updateClinic= new CreateClinicModel(
 
-                req.getParameter("disease"),
+                req.getParameter(""),
                 req.getParameter("title"),
-                req.getParameter("location"),
-                req.getParameter("MOH"),
                 req.getParameter("datetime"),
                 req.getParameter("duration"),
-                req.getParameter("maxpatient"),
-                req.getParameter("Target"),
-                req.getParameter("conduct"),
+                req.getParameter("disease"),
                 req.getParameter("description"),
-                req.getParameter("clinicID"),
+                req.getParameter("maxpatient"),
+                req.getParameter("conduct"),
+                req.getParameter("MOH"),
+                req.getParameter("Target"),
+                req.getParameter("location"),
                 "12"
 
         );
@@ -100,18 +100,18 @@ import java.util.ArrayList;
 //            }
 //        }
             CreateClinicModel createClinic = new CreateClinicModel(
-               req.getParameter(""),
-               req.getParameter("disease"),
-               req.getParameter("title"),
-               req.getParameter("location"),
-               req.getParameter("MOH"),
-               req.getParameter("datetime"),
-               req.getParameter("duration"),
-               req.getParameter("maxpatient"),
+                    req.getParameter(""),
+                    req.getParameter("title"),
+                    req.getParameter("datetime"),
+                    req.getParameter("duration"),
+                    req.getParameter("disease"),
+                    req.getParameter("description"),
+                    req.getParameter("maxpatient"),
+                    req.getParameter("conduct"),
+                    req.getParameter("MOH"),
                     req.getParameter("Target"),
-               req.getParameter("conduct"),
-               req.getParameter("description"),
-               "12"
+                    req.getParameter("location"),
+                    "12"
 
        );
         String result= createClinicDAO.createClinic(createClinic);
@@ -120,7 +120,8 @@ import java.util.ArrayList;
     private void viewClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         CreateClinicModel viewClinic = new CreateClinicModel(
                 "",
-                req.getParameter("disease"),
+                "",
+                 "",
                 "",
                 "",
                 "",
@@ -129,7 +130,6 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                "12",
                 ""
 
         );

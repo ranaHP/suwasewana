@@ -8,11 +8,11 @@ class verify_patient_detail_popup{
         let popup=document.createElement('div');
         popup.classList.add('popup' ,'zoomIn');
         this.container.appendChild(popup);
-        // //logo row
+        //logo row
         let logo= document.createElement('div');
         logo.classList.add('logo');
         popup.appendChild(logo);
-        // //logo
+        //logo
         let logo_img=document.createElement('img');
         logo_img.setAttribute("src","../logo.png")
         logo.appendChild(logo_img);

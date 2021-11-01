@@ -11,11 +11,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class createClinicDAO {
-  private  static final String CREATE_CLINIC ="INSERT INTO `clinics`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?);";
-  private static final String VIEW_CLINICS = "SELECT * FROM `clinics`";
-  private static final String SELECT_CLINICS = "SELECT * FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
-  private static final String DELETE_CLINICS ="DELETE FROM `clinics` WHERE `clinics`.`clinic-no` = ?";
-  private static final String UPDATE_CLINICS =  "UPDATE `clinics` SET `Disease` = ?, `ClinicTitle` = ? , `Location` = ?,  `Target MOH` = ?, `Data&Time` = ?,  `Duration` = ?,  `MaxPatient` = ?, `Target` = ?, `Conduct` = ?, `Description` = ? WHERE `clinics`.`clinic-no` = ?;";
+  private  static final String CREATE_CLINIC ="INSERT INTO `normal_clinic_session`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?);";
+  private static final String VIEW_CLINICS = "SELECT * FROM `normal_clinic_session`";
+  private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
+  private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
+  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `disease` = ?, `title` = ? , `location` = ?,  `target_moh` = ?, `Data&Time` = ?,  `duration` = ?,  `max-sheet` = ?, `target_people` = ?, `conduct-by` = ?, `description` = ? WHERE `clinics`.`ncs_id` = ?;";
     Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -24,16 +24,16 @@ public class createClinicDAO {
     public String createClinic(CreateClinicModel createClinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLINIC)) {
 //            preparedStatement.setString(1,"");
-            preparedStatement.setString(1,createClinic.getDisease());
             preparedStatement.setString(2,createClinic.getTitle());
-            preparedStatement.setString(3,createClinic.getLocation());
-            preparedStatement.setString(4,createClinic.getMOH());
             preparedStatement.setString(5,createClinic.getDatetime());
             preparedStatement.setString(6,createClinic.getDuration());
-            preparedStatement.setString(7,createClinic.getMaxpatient());
-            preparedStatement.setString(8,createClinic.getTarget());
-            preparedStatement.setString(9,createClinic.getConduct());
+            preparedStatement.setString(1,createClinic.getDisease());
             preparedStatement.setString(10,createClinic.getDescription());
+            preparedStatement.setString(7,createClinic.getMaxpatient());
+            preparedStatement.setString(9,createClinic.getConduct());
+            preparedStatement.setString(4,createClinic.getMOH());
+            preparedStatement.setString(8,createClinic.getTarget());
+            preparedStatement.setString(3,createClinic.getLocation());
             preparedStatement.setString(11,"12");
 
             int rs = preparedStatement.executeUpdate();
@@ -81,18 +81,18 @@ public class createClinicDAO {
 //            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> viewClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
-                String clinicID =rs.getString("clinic-no");
-                String disease =rs.getString("Disease");
-                String title = rs.getString("ClinicTitle");
-                String Location = rs.getString("Location");
-                String TargetMOH = rs.getString("Target MOH");
-                String DataTime = rs.getString("Data&Time");
-                String Duration = rs.getString("Duration");
-                String MaxPatient = rs.getString("MaxPatient");
-                String Target=rs.getString("Target");
-                String Conduct = rs.getString("Conduct");
-                String Description = rs.getString("Description");
-                String cNic=rs.getString("cNic");
+                String clinicID =rs.getString("ncs_id");
+                String disease =rs.getString("title");
+                String title = rs.getString("start_date_time");
+                String Location = rs.getString("duration");
+                String TargetMOH = rs.getString("disease");
+                String DataTime = rs.getString("description");
+                String Duration = rs.getString("max_sheet");
+                String MaxPatient = rs.getString("conduct_by");
+                String Target=rs.getString("target_moh");
+                String Conduct = rs.getString("target_people");
+                String Description = rs.getString("location");
+                String cNic = rs.getString("clinical_officer");
                 CreateClinicModel temp = new CreateClinicModel(
                         clinicID,
                         disease,
@@ -106,9 +106,6 @@ public class createClinicDAO {
                         Conduct,
                         Description,
                         cNic
-
-
-
                 );
                  viewClinicList.add(temp);
 //                System.out.println(title+"--"+disease+"--"+Location);
@@ -129,18 +126,18 @@ public class createClinicDAO {
 //            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> selectClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
-                String clinicID =rs.getString("clinic-no");
-                String disease =rs.getString("Disease");
-                String title = rs.getString("ClinicTitle");
-                String Location = rs.getString("Location");
-                String TargetMOH = rs.getString("Target MOH");
-                String DataTime = rs.getString("Data&Time");
-                String Duration = rs.getString("Duration");
-                String MaxPatient = rs.getString("MaxPatient");
-                String Target=rs.getString("Target");
-                String Conduct = rs.getString("Conduct");
-                String Description = rs.getString("Description");
-                String cNic = rs.getString("cNic");
+                String clinicID =rs.getString("ncs_id");
+                String disease =rs.getString("title");
+                String title = rs.getString("start_date_time");
+                String Location = rs.getString("duration");
+                String TargetMOH = rs.getString("disease");
+                String DataTime = rs.getString("description");
+                String Duration = rs.getString("max_sheet");
+                String MaxPatient = rs.getString("conduct_by");
+                String Target=rs.getString("target_moh");
+                String Conduct = rs.getString("target_people");
+                String Description = rs.getString("location");
+                String cNic = rs.getString("clinical_officer");
                 CreateClinicModel temp = new CreateClinicModel(
                         clinicID,
                         disease,
