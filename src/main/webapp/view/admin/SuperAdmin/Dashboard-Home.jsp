@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/dashboard_home.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/Admin/dashboard_home.js"></c:url> "></script>
+    <script defer src="<c:url value="/public/js/admin/dashboard_home.js"></c:url> "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </head>
@@ -161,48 +161,6 @@
     </div>
 </div>
 
-<script>
-    diseases=["Dengue","Eye disease","Corona","Maleria","Throxine","Fever"];
-    diseases.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select').appendChild(option)
-    })
-
-    areas=["Ahangama","Eluketiya","Colombo","Galle","Matara","Colombo"];
-    areas.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select1').appendChild(option)
-    })
-
-    areas=["Ahangama","Eluketiya","Colombo","Galle","Matara","Colombo"];
-    areas.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select2').appendChild(option)
-    })
-
-    MOH=["Ahangama","Eluketiya","Colombo","Galle","Matara","Colombo"];
-    MOH.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select3').appendChild(option)
-    })
-
-    disease=["Dengue","Eye disease","Corona","Maleria","Throxine","Fever"];
-    disease.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select4').appendChild(option)
-    })
-
-</script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
 </body>
 </html>
