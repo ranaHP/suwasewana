@@ -2,47 +2,47 @@ package com.suwasewana.model;
 
 public class AppointmentModel {
     String aTitle;
-    String appointmentType;
-    String phi;
-    String reason;
-    String appointmentId;
-    String posted_data;
+    String aType ;
+    String aPhi ;
+    String aReason;
+    String app_id;
+    String posted_date_time;
     String round;
-    String location;
-    String time_slot1;
-    String time_slot2;
-    String special_notice;
+    String alocation;
+    String time_slot_1;
+    String time_slot_2;
+    String phi_message;
     String status;
-    String user;
+    String user_nic ;
 
     public AppointmentModel(
             String aTitle,
-            String appointmentType,
-            String phi,
-            String reason,
-            String appointmentId,
-            String posted_data,
+            String aType ,
+            String aPhi ,
+            String aReason,
+            String app_id,
+            String posted_date_time,
             String round,
-            String location,
-            String time_slot1,
-            String time_slot2,
-            String special_notice,
+            String alocation,
+            String time_slot_1,
+            String time_slot_2,
+            String phi_message,
             String status,
-            String user ){
+            String user_nic  ){
 
          this.aTitle = aTitle;
-         this.appointmentType = appointmentType;
-         this.phi = phi;
-         this.reason = reason;
-         this.appointmentId = appointmentId;
-         this.posted_data = posted_data;
+         this.aType  = aType ;
+         this.aPhi  = aPhi ;
+         this.aReason = aReason;
+         this.app_id = app_id;
+         this.posted_date_time = posted_date_time;
          this.round = round;
-         this.location = location;
-         this.time_slot1 = time_slot1;
-         this.time_slot2 = time_slot2;
-         this.special_notice = special_notice;
+         this.alocation = alocation;
+         this.time_slot_1 = time_slot_1;
+         this.time_slot_2 = time_slot_2;
+         this.phi_message = phi_message;
          this.status = status;
-         this.user = user;
+         this.user_nic  = user_nic ;
     }
 
     public String getaTitle() {
@@ -53,44 +53,44 @@ public class AppointmentModel {
         this.aTitle = aTitle;
     }
 
-    public String getAppointmentType() {
-        return appointmentType;
+    public String getaType() {
+        return aType;
     }
 
-    public void setAppointmentType(String appointmentType) {
-        this.appointmentType = appointmentType;
+    public void setaType(String aType) {
+        this.aType = aType;
     }
 
-    public String getPhi() {
-        return phi;
+    public String getaPhi() {
+        return aPhi;
     }
 
-    public void setPhi(String phi) {
-        this.phi = phi;
+    public void setaPhi(String aPhi) {
+        this.aPhi = aPhi;
     }
 
-    public String getReason() {
-        return reason;
+    public String getaReason() {
+        return aReason;
     }
 
-    public void setReason(String reason) {
-        this.reason = reason;
+    public void setaReason(String aReason) {
+        this.aReason = aReason;
     }
 
-    public String getAppointmentId() {
-        return appointmentId;
+    public String getApp_id() {
+        return app_id;
     }
 
-    public void setAppointmentId(String appointmentId) {
-        this.appointmentId = appointmentId;
+    public void setApp_id(String app_id) {
+        this.app_id = app_id;
     }
 
-    public String getPosted_data() {
-        return posted_data;
+    public String getPosted_date_time() {
+        return posted_date_time;
     }
 
-    public void setPosted_data(String posted_data) {
-        this.posted_data = posted_data;
+    public void setPosted_date_time(String posted_date_time) {
+        this.posted_date_time = posted_date_time;
     }
 
     public String getRound() {
@@ -101,36 +101,36 @@ public class AppointmentModel {
         this.round = round;
     }
 
-    public String getLocation() {
-        return location;
+    public String getAlocation() {
+        return alocation;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAlocation(String alocation) {
+        this.alocation = alocation;
     }
 
-    public String getTime_slot1() {
-        return time_slot1;
+    public String getTime_slot_1() {
+        return time_slot_1;
     }
 
-    public void setTime_slot1(String time_slot1) {
-        this.time_slot1 = time_slot1;
+    public void setTime_slot_1(String time_slot_1) {
+        this.time_slot_1 = time_slot_1;
     }
 
-    public String getTime_slot2() {
-        return time_slot2;
+    public String getTime_slot_2() {
+        return time_slot_2;
     }
 
-    public void setTime_slot2(String time_slot2) {
-        this.time_slot2 = time_slot2;
+    public void setTime_slot_2(String time_slot_2) {
+        this.time_slot_2 = time_slot_2;
     }
 
-    public String getSpecial_notice() {
-        return special_notice;
+    public String getPhi_message() {
+        return phi_message;
     }
 
-    public void setSpecial_notice(String special_notice) {
-        this.special_notice = special_notice;
+    public void setPhi_message(String phi_message) {
+        this.phi_message = phi_message;
     }
 
     public String getStatus() {
@@ -141,11 +141,11 @@ public class AppointmentModel {
         this.status = status;
     }
 
-    public String getUser() {
-        return user;
+    public String getUser_nic() {
+        return user_nic;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUser_nic(String user_nic) {
+        this.user_nic = user_nic;
     }
 }

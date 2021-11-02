@@ -3,6 +3,7 @@ package com.suwasewana.controller.phiOfficer.nphi;
 import com.google.gson.Gson;
 import com.suwasewana.dao.AppointmentDAO;
 import com.suwasewana.dao.OfficerDAO;
+import com.suwasewana.model.AppointmentForPHIModel;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
 
@@ -30,7 +31,10 @@ public class PHIAppointmentServlet extends HttpServlet {
             switch (getUrlData[getUrlData.length-1]) {
                     case "appointment_type":
                         getAppointmentType(request, response);
-                    break;
+                        break;
+                    case "appointment_for_phi":
+                        getAppointmentForPHI(request, response);
+                        break;
                 default:
                     response.getWriter().println("404 Page not Found");
                     break;
@@ -48,6 +52,10 @@ public class PHIAppointmentServlet extends HttpServlet {
 
     private void getAppointmentType(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ArrayList<AppointmentTypeModel> result = appointmentDAO.getAppointmentTypes();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void getAppointmentForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        ArrayList<AppointmentForPHIModel> result = appointmentDAO.getAppointmentForPHI();
         res.getWriter().println(gson.toJson(result));
     }
 
