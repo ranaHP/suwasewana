@@ -7,7 +7,10 @@ body{
 }
 *{
     /*box-sizing: border-box;*/
-    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    /* font-size: 16px; */
+    box-sizing: border-box;
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);

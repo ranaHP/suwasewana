@@ -169,6 +169,88 @@ class SuwasewanaPopup{
         this.showPopup()
     }
 
+    Register(data) {
+        let eventsContaier = document.createElement('div');
+        console.log(data.name);
+        let eventDiv = document.createElement('div');
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> Officer Registration Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Officer Registration Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${(data.data.includes("Duplicate entry") ? "This Account is already exist" : data.data)} </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    RegisterMOH(data) {
+        let eventsContaier = document.createElement('div');
+        console.log(data.name);
+        let eventDiv = document.createElement('div');
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> MOH Registration Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">MOH Registration Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${(data.data.includes("Duplicate entry") ? "This Account is already exist" : data.data)} </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
     showDeleteAlertMessage(data) {
         let appointmentId = data;
         data = {data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."}
@@ -277,7 +359,7 @@ class SuwasewanaPopup{
         this.showPopup()
     }
     showDeleteClinicAlertMessage(data) {
-        alert(data)
+        // alert(data)
         let clinicID = data;
         data = {data: "if you want to delete this Clinic. Please type 'Delete' in the below input details."}
         let eventsContaier = document.createElement('div');

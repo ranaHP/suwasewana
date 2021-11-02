@@ -51,10 +51,12 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 5px;
+    padding: 50px;
+    padding-top: 0;
     width: 100%;
-    margin-top: 50px;
+    margin-top: 10px;
 }
+
 .reports{
     display: flex;
     width: 100%;
@@ -76,30 +78,24 @@ body{
     display: flex;
 }
 .month-select{
-    height: 50px;
+    height: fit-content;
+
 }
 .from-to-month-select{
     display: flex;
-    justify-content: space-around;
-    width: 70%;
-    float: right;
+    justify-content: flex-start;
+    width: 900px;
+    float: left;
 }
 .from-to-month-select span{
     display: flex;
     align-items: center;
 }
-select{
-    width: 30%;
-    height: 30px;
-    border: none;
-    font-size: .8em;
-    color: rgba(0, 0, 0, 0.404) ;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.13);
-}
 .chart-summary{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     width: 60%;
 }
 .most,.least{
@@ -114,6 +110,18 @@ select{
     align-items: center;
     justify-content: space-around;
     margin: 10px;
+}
+
+.title h4{
+    font-size: 1.3em;
+    color: rgba(0, 0, 0, 0.67) !important;
+    padding-top: 20px;
+}
+
+.title h6{
+    font-size: 1.3em;
+    color: rgba(0, 0, 0, 0.68) !important;
+    padding-top: 20px;
 }
 @media screen and (max-width: 1075px) {
     .reports{

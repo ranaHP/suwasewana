@@ -7,12 +7,10 @@
 .popup-container{
     width: 100vw;
     height: 100vh;
-    /*background-color: aquamarine;*/
-    background-color: rgba(0, 0, 0, 0.657);
+    background-color: aquamarine;
     display: flex;
     align-items: center;
-     display: none;
-    position: fixed;
+    /* display: none; */
 }
 .ml5{
     margin-left: 5px;
@@ -30,7 +28,6 @@
     border-radius: 8px;
     padding: 20px;
     margin: auto;
-    margin-top: 150px;
     position: relative;
 }
 .logo{
@@ -45,7 +42,7 @@
     height: 33px;
     margin: auto;
 }
-.popup-container .title span{
+.title span{
     font-size: 1em;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.747);
@@ -54,7 +51,7 @@
     font-size: 0.85em;
 } */
 
-.popup-container .title{
+.title{
     margin-bottom: 7px;
 }
 
@@ -75,7 +72,7 @@
 .row{
     margin-bottom: 5px;
 }
-.popup-container input{
+input{
     color: rgba(0, 0, 0, 0.479);
     padding: 0 5px;
     letter-spacing: 1px;
@@ -116,7 +113,7 @@
     margin-top: 10px;
 }
 
-.popup-container button{
+button{
     border: none;
     border-radius: 3px;
     width: 45%;

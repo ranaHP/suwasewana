@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../common-popup.css">
+        <button onclick="popup.showPopup()">show</button>
+        <script src="script.js"></script>
+    </head>
+    <body>
+        
+    <div class="popup-container" id="PopupContainer"></div>
+       <script defer>
+           let popup= new verify_patient_detail_popup('PopupContainer',{ name : 'hansana' , 
+                                                                        age: 23 , 
+                                                                        NIC: '199910910064', 
+                                                                        Address:'Ihalapalukandewa,   Nanneriya road,  Galgamuwa',
+                                                                        province:"Kurunagala",
+                                                                        city:"Galgamuwa",
+                                                                        diseas:['corona','HIV']
+                                                                    })
+       </script>
+    </body>
+    </html>
+    </body>
+    </html>
+
+    

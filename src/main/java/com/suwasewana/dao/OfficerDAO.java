@@ -12,12 +12,11 @@ import java.sql.SQLException;
 
 public class OfficerDAO {
     @SuppressWarnings("SqlResolve")
-    private static final String CHECK_OFFICER_LOGIN_VALIDATION = "SELECT * FROM `clinical_officer` WHERE `mobile` = ? and `password` = ?";
+    private static final String CHECK_OFFICER_LOGIN_VALIDATION = "SELECT * FROM `officer_table` WHERE `mobile` = ? and `password` = ?";
     private static final String UPDATE_MAC = "UPDATE `officer_table` SET `mac`=? WHERE `mobile` = ? and `password` = ?";
-    private static final String CUPDATE_MAC = "UPDATE `clinical_officer` SET `device_MAC`=? WHERE `mobile` = ? and `password` = ?";
-    private static final String UPDATE_MAC_IN_PHI = "UPDATE `phi_officer` SET `device_MAC`=? WHERE `mobile` = ? and `password` = ?";
-    private static final String CHECK_pOST_WITH_VALIDATION = "SELECT * FROM `phi_officer` WHERE `mobile` = ? and `password` = ? and `phi_post`=?";
-    private static final String Check_Admin = "SELECT * FROM `admin` WHERE `mobile` = ? and `password` = ? ";
+    private static final String UPDATE_MAC_IN_PHI = "UPDATE `phi` SET `MAC`=? WHERE `Mobile` = ? and `Password` = ?";
+    private static final String CHECK_pOST_WITH_VALIDATION = "SELECT * FROM `phi` WHERE `Mobile` = ? and `Password` = ? and `Post`=?";
+    private static final String Check_Admin = "SELECT * FROM `admin` WHERE `Mobile` = ? and `Password` = ? ";
     Connection connection;
 
     public OfficerDAO(){
@@ -156,7 +155,7 @@ public class OfficerDAO {
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && (mac==null || mac=="") ) {
                         System.out.println("null mach");
                         String updateMAC=officerLogin.getMAC();
-                        try (PreparedStatement UpdateStatement = connection.prepareStatement(CUPDATE_MAC)){
+                        try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC)){
                             UpdateStatement.setString(1,updateMAC);
                             UpdateStatement.setString(2,mobile);
                             UpdateStatement.setString(3,password);

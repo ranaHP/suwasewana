@@ -12,14 +12,20 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <html>
 <head>
-    <title>Title</title>
-    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
+    <title>Suwasewana</title>
+    <script src="<c:url value="/public/js/admin/InputValidation.js "/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/RegClinicalOfficer.css "/>"/>
 
 
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
 
     <title> User Home Suwasewana </title>
 
@@ -27,6 +33,7 @@
 <body>
     <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
     <div class="MR_main_Container">
+        <div class="mypopup" id="popup" style="display: none;"></div>
         <div class="header">
             <div class="upper-title">SUWASEWANA</div>
             <div class="dashboard-name">Admin/Register/ClinicalOfficer</div>
@@ -35,10 +42,10 @@
             <div class="title">
                 <span>Register Clinical Officer</span>
             </div>
-            <form action="">
+            <form action=""  onsubmit="return checkvalidation();" >
                 <div class="singal_row">
                     <div class="form-item">
-                        <input type="text" id="fullName" autocomplete="off" required
+                        <input type="text" id="fullName" autocomplete="off"
                                onblur="validation.nameValidation(
                                 document.getElementById('fullName').value,
                                 'LfullName'
@@ -55,7 +62,7 @@
                 <div class="multirow">
                     <div class="milturow_left">
                         <div class="form-item">
-                            <input type="text" id="NIC" autocomplete="off" required
+                            <input type="text" id="NIC" autocomplete="off"
                                    onblur="validation.nicValidation(
                                     document.getElementById('NIC'),
                                     'LNIC')
@@ -67,7 +74,7 @@
                     </div>
                     <div class="multirow_right">
                         <div class="form-item">
-                            <input type="text" id="TpNo" autocomplete="off" required
+                            <input type="text" id="TpNo" autocomplete="off"
                                    onkeyup="validation.mobileValidation(
                                     document.getElementById('TpNo').value,
                                     'LTpNo'
@@ -85,79 +92,67 @@
                 <div class="multirow">
                     <div class="milturow_left" >
                         <div class="form-item" id="Moh_headdiv">
-                            <input type="text" id="MoHhead" autocomplete="off" required
+                            <input type="text" id="COCity" autocomplete="off"
                                    onblur="validation.nameValidation(
-                                    document.getElementById('MoHhead').value,
-                                    'LMoHhead'
+                                    document.getElementById('COCity').value,
+                                    'LCOCity'
                                 );"
                                    onkeyup="validation.nameValidation(
-                                    document.getElementById('MoHhead').value,
-                                    'LMoHhead'
+                                    document.getElementById('COCity').value,
+                                    'LCOCity'
                                 );"
                             >
-                            <label for="MoHhead">City</label>
-                            <span class="error" id="LMoHhead"></span>
+                            <label for="COCity">City</label>
+                            <span class="error" id="LCOCity"></span>
                         </div>
                     </div>
                     <div class="multirow_right" >
                         <div class="form-item" >
-                            <input type="text" id="street" autocomplete="off" required
+                            <input type="text" id="District" autocomplete="off"
                                    onblur="validation.nameValidation(
-                                    document.getElementById('street').value,
-                                    'Lstreet'
+                                    document.getElementById('District').value,
+                                    'LDistrict'
                                 );"
                                    onkeyup="validation.nameValidation(
-                                    document.getElementById('street').value,
-                                    'Lstreet'
+                                    document.getElementById('District').value,
+                                    'LDistrict'
                                 );"
                             >
-                            <label for="street">Street No</label>
-                            <span class="error" id="Lstreet"></span>
+                            <label for="District">District</label>
+                            <span class="error" id="LDistrict"></span>
                         </div>
                     </div>
                 </div>
                 <div class="multirow">
-                    <div class="milturow_left"  style="display: flex; align-items: flex-end;">
+                    <div class="milturow_left"  style="margin-top: 21px;">
                         <div class="form-item" >
-                            <input type="text" id="State" autocomplete="off" required
+                            <input type="text" id="Address" autocomplete="off"
                                    onblur="validation.nameValidation(
-                                    document.getElementById('State').value,
-                                    'LState'
+                                    document.getElementById('Address').value,
+                                    'LAddress'
                                 );"
                                    onkeyup="validation.nameValidation(
-                                    document.getElementById('State').value,
-                                    'LState'
+                                    document.getElementById('Address').value,
+                                    'LAddress'
                                 );"
                             >
-                            <label for="State">State</label>
-                            <span class="error" id="LState"></span>
+                            <label for="Address">Address</label>
+                            <span class="error" id="LAddress"></span>
                         </div>
                     </div>
                     <div class="multirow_right" id="addcityDiv">
                         <label >MOH Area</label> <br>
-                        <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllColors"
-
+                        <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
+                                onclick="document.getElementById('MArea').value='';"
                                onblur="validation.SearchSelect(
                                     document.getElementById('MArea').value,
                                     'LMArea'
                                 );"
                         >
-                        <datalist id="AllColors">
-                            <option class="city_option" label="Akuressa" value="Akuressa">
-                            <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-                            <option class="city_option" label="Ahangama" value="Ahangama">
-                            <option class="city_option" label="Matara" value="Matara">
-                            <option class="city_option" label="Akuressa" value="Akuressa">
-                            <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-                            <option class="city_option" label="Ahangama" value="Ahangama">
-                            <option class="city_option" label="Matara" value="Matara">
-                            <option class="city_option" label="Akuressa" value="Akuressa">
-                            <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-                            <option class="city_option" label="Ahangama" value="Ahangama">
-                            <option class="city_option" label="Matara" value="Matara">
+                        <datalist id="AllMArea">
                         </datalist>
                         <br>
-                        <span class="error" id="LMArea"></span>
+                        <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                     </div>
                 </div>
 
@@ -173,71 +168,131 @@
     </div>
 
 
-    <script>
-        selectedOptionList = [];
 
-        function AddValue() {
-            const Value = document.querySelector('#SelectCity').value;
-            console.log("work" + Value);
-            if (!Value) return;
-            if (selectedOptionList.findIndex(item => Value == item) == -1) {
-                selectedOptionList.push(Value);
-                const Text = document.querySelector('option[value="' + Value + '"]').label;
-                const option = document.createElement("option");
-                option.value = "";
-                option.text = "";
-                // document.getElementById('selected-options-container').appendChild(option);
-                document.getElementById("selected-options-container").innerHTML += `
-                    <div class="selected-options">
-                        ${Value}
-                        <div class="close-btn" onclick="deleteSelectedItem('${Value}')">
-                                X
-                        </div>
-                    </div>
-                    `
-            }
-            console.log(selectedOptionList);
-            document.querySelector('#SelectCity').value = "";
-
-        }
-
-        function SearchSelect(feild) {
-            if (selectedOptionList.length == 0) {
-                document.getElementById(feild).innerHTML = "*required";
-            } else {
-                document.getElementById(feild).innerHTML = "";
-            }
-        }
-
-        selectedOptionList = [];
-
-        function deleteSelectedItem(value) {
-            let index = selectedOptionList.findIndex(item => value == item);
-            let temp = selectedOptionList.filter(item => item != value);
-            selectedOptionList = temp;
-            document.getElementById("selected-options-container").innerHTML = "";
-            for (let i = 0; i < selectedOptionList.length; i++) {
-                document.getElementById("selected-options-container").innerHTML += `
-                    <div class="selected-options">
-                        ${selectedOptionList[i]}
-                        <div class="close-btn" onclick="deleteSelectedItem('${selectedOptionList[i]}')">
-                                X
-                        </div>
-                    </div>
-                    `
-            }
-        }
-
-
-        function validate(e) {
-            AddValue(document.getElementById('AllColors').value,
-                document.getElementById('AllColors').text);
-        }
-
-    </script>
     <script defer>
+        let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
         let validation = new FormInputValidation();
     </script>
+
+
+
+    <script>
+        function checkMOHid(){
+            var MTypeObj = document.getElementById('MArea');
+            var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+            if(datalist.options.namedItem(MTypeObj.value)){
+
+                return (datalist.options.namedItem(MTypeObj.value).id);
+            }
+            else {
+                return  0;
+            }
+        }
+        function checkvalidation(){
+            let mohid=checkMOHid();
+            if(validation.nameValidation(document.getElementById('fullName').value,'LfullName' )&&
+                validation.nicValidation( document.getElementById('NIC'),'LNIC')&&
+                validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo')&&
+                validation.nameValidation(document.getElementById('COCity').value,'LCOCity' )&&
+                validation.nameValidation( document.getElementById('District').value,'LDistrict')&&
+                validation.nameValidation(document.getElementById('Address').value,'LAddress' )&&
+                validation.SearchSelect(document.getElementById('MArea').value,'LMArea' )&&
+                (mohid!=0)){
+                console.log("correct log");
+                registerClinicalOfficer();
+            }
+            else{
+                validation.nameValidation(document.getElementById('fullName').value,'LfullName' );
+                validation.nicValidation( document.getElementById('NIC'),'LNIC');
+                validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo');
+                validation.nameValidation(document.getElementById('COCity').value,'LCOCity' );
+                validation.nameValidation( document.getElementById('District').value,'LDistrict');
+                validation.nameValidation(document.getElementById('Address').value,'LAddress' );
+                validation.SearchSelect(document.getElementById('MArea').value,'LMArea' );
+                if(mohid==0){
+                    validation.setErrorMessageForField("Enter valid Area", 'LMArea', 0)
+                }
+
+            }
+
+            return false;
+        }
+
+        function registerClinicalOfficer(){
+            let reqData =
+                {
+                    CName: document.getElementById("fullName").value,
+                    CNIC: document.getElementById("NIC").value,
+                    CTpNo: document.getElementById("TpNo").value,
+                    Ccity: document.getElementById("COCity").value,
+                    CDistrict: document.getElementById("District").value,
+                    CAddress: document.getElementById("Address").value,
+                    CMohArea:checkMOHid()
+                };
+            console.log("sending data "+reqData.CName);
+            console.log("sending data "+reqData.CNIC);
+            console.log("sending data "+reqData.CTpNo);
+            console.log("sending data "+reqData.Ccity);
+            console.log("sending data "+reqData.CDistrict);
+            console.log("sending data "+reqData.CAddress);
+            console.log("sending data "+reqData.CMohArea);
+
+            $.post("/suwasewana_war/admin-register-controller/clinical_officer",
+                reqData,
+                function (data, status) {
+                    console.log(data.includes("success"))
+                    if (data.includes("success")) {
+                        popup.Register({
+                            status: 'success',
+                            message: 'Officer Successfully Added!'
+                        });
+                    } else {
+                        popup.Register({
+                            status: 'fail',
+                            message: 'Officer Registration Fails !',
+                            data: data
+                        });
+                    }
+                }
+            );
+            return false;
+        }
+
+    </script>
+
+
+    <script defer>
+        let mohDetails=[];
+        $.post("/suwasewana_war/user-complain-controller/moh",
+            function (data, status) {
+                // console.log(data);
+                let rs= JSON.parse(data);
+                this.mohDetails=rs;
+                // console.log(data);
+
+                let MNames=document.getElementById("AllMArea");
+                MNames.innerHTML="";
+                rs.map((element,index) => {
+                    // console.log("moh"+element.MName)
+                    MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
+                })
+            }
+        );
+        // console.log(mohDetails);
+
+
+
+
+    </script>
+
+
+
     <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+
+
+
+
+
+
 </body>
 </html>

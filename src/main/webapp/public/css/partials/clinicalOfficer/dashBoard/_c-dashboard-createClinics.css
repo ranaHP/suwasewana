@@ -10,6 +10,7 @@ body{
     /*min-height: 100vh;*/
     transition: 0.2s ease;
     /*transition-delay: 0.1s;*/
+    overflow-x: hidden;
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
@@ -67,11 +68,11 @@ label{
 }
 input,textarea{
     width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.32);
+    border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
     height: 30px;
     padding-left: 3px;
-    box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.15);
     margin-bottom: 10px;
     outline: none;
 }
@@ -107,7 +108,7 @@ input[type=time]:focus{
     padding: 8px;
     width: 95%;
     /*background-color: #0D47A1;*/
-    background-color: #2E86DE;
+    background-color: #006633FF;
     color: white;
     border-radius: 3px;
     font-family: Arial;
@@ -116,7 +117,7 @@ input[type=time]:focus{
     cursor: pointer;
 }
 .live{
-    background-color: #2E86DE;
+    background-color: #006633FF;
     border: none;
     cursor: pointer;
     font-family: Arial;
@@ -180,5 +181,14 @@ input[type=time]:focus{
 
         transition: 0.2s ease;
         /*transition-delay: 0.1s;*/
+    }
+    .live-card{
+        width: 80%;
+    }
+    .right .live-card-border{
+        width: 70%;
+    }
+    .live{
+        width: 80%;
     }
 }

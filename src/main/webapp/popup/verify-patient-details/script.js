@@ -1,9 +1,7 @@
-
 class verify_patient_detail_popup{
     constructor(popupContaienr ,data){
         this.Data=data;
         this.container = document.getElementById(popupContaienr);
-        // this.container.classList.add("popup-container");
         this.init();
     }
     init(){
@@ -146,8 +144,7 @@ class verify_patient_detail_popup{
         this.container.style.display = "block";
     }
     hidePopup(){
-        this.container.style.display = "none";
-        // this.container.classList.remove(popup-container)
+        this.container.style.display = "none"; 
     }
 
 }

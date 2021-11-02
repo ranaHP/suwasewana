@@ -40,10 +40,9 @@ public class OfficerLoginController extends HttpServlet {
         String password = req.getParameter("user-password");
         String post = req.getParameter("Post");
         String mac="";
-        System.out.println("inside controller");
-        System.out.println("Mobile "+mobile);
-        System.out.println("Pass "+password);
-        System.out.println("Post "+post);
+//        System.out.println("Mobile "+mobile);
+//        System.out.println("Pass "+password);
+//        System.out.println("Post "+post);
         mac=GetMaC();
         OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac);
 

@@ -14,7 +14,11 @@
 <head>
   <link rel="stylesheet" href="<c:url value="/public/css/Admin/RegMOH.css"/>">
   <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <!-- for map -->
+
+  <!-- location js -->
+  <script src="<c:url value="/public/js/Admin/View_location.js"/>"></script>
 
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
@@ -24,23 +28,25 @@
         type="text/css">
 
 
-  <script src="<c:url value="/public/js/locationSelectGenarator.js"/>"></script>
 
   <!-- moh list  -->
   <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
 
+  <%--    for popup style--%>
+  <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+  <%--    for popup script--%>
+  <script src="<c:url value="/public/js/popup.js"/>"></script>
 
   <%--    for side navbar style--%>
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
   <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
-    <title>Title</title>
+    <title>Suwasewana</title>
 </head>
 <body>
-
 <div class="MR_main_Container">
-
+  <div class="mypopup" id="popup" style="display: none;"></div>
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
     <div class="dashboard-name">Admin/Register/MOH</div>
@@ -51,11 +57,11 @@
       <span>Register MOH</span>
     </div>
 
-    <form action="">
+    <form action="" onsubmit="return checkvalidation();" >
       <div class="multirow">
         <div class="milturow_left">
           <div class="form-item">
-            <input type="text" id="MoHName" autocomplete="off" required
+            <input type="text" id="MoHName" autocomplete="off"
                    onblur="validation.nameValidation(
                                 document.getElementById('MoHName').value,
                                 'LMoHName'
@@ -71,7 +77,7 @@
         </div>
         <div class="multirow_right">
           <div class="form-item">
-            <input type="text" id="TpNo" autocomplete="off" required
+            <input type="text" id="TpNo" autocomplete="off"
                    onkeyup="validation.mobileValidation(
                                 document.getElementById('TpNo').value,
                                 'LTpNo'
@@ -90,7 +96,7 @@
       <div class="multirow">
         <div class="milturow_left" id="mohHeadDiv">
           <div class="form-item" id="Moh_headdiv">
-            <input type="text" id="MoHhead" autocomplete="off" required
+            <input type="text" id="MoHhead" autocomplete="off"
                    onblur="validation.nameValidation(
                                 document.getElementById('MoHhead').value,
                                 'LMoHhead'
@@ -107,21 +113,18 @@
         </div>
         <div class="multirow_right" id="addcityDiv">
           <div class="selected-options-container" id="selected-options-container">
+
+
           </div>
           <label >Add cities for MOH</label>
-          <input id="SelectCity" class="SelectColordiv" type="text" style="outline: none;" list="AllColors"
-                 onkeypress=""
+          <input id="SelectCity" class="SelectColordiv" type="text" style="outline: none;" list="AllCities" name="AllCities">
+          <datalist id="AllCities">
 
-          >
-          <datalist id="AllColors">
-            <option class="city_option" label="Akuressa" value="Akuressa">
-            <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-            <option class="city_option" label="Ahangama" value="Ahangama">
-            <option class="city_option" label="Matara" value="Matara">
           </datalist>
 
-          <button type="button" id="addSelect" onclick="AddValue(document.getElementById('AllColors').value,
-                        document.getElementById('AllColors').text);">Add
+
+
+          <button type="button" id="addSelect" onclick="AddValue();">Add
           </button>
           <br>
           <span class="error" id="LSelectCity"></span>
@@ -133,51 +136,27 @@
       <div class="multirow" id="row2">
         <div class="milturow_left">
           <div class="form-group">
-            <label >
-              Province
-            </label><br>
-            <input id="province" class="SelectColordiv" type="text" list="allprovince" name="province" autocomplete="off"
-                   onblur="validation.SearchSelect(
-                                document.getElementById('province').value,
-                                'LProvince'
-                            );"
-            >
-            <datalist id="allprovince">
+                <label for="province">
+                  Province
+                </label>
+                <br>
+                <input id="province"  class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="allprovince" name="province" required onblur="test();"
+                       autocomplete="off">
+                <datalist id="allprovince">
 
+                </datalist>
             </datalist>
           </div>
           <span class="error" id="LProvince"></span>
         </div>
 
         <div class="multirow_right">
-          <label >District</label> <br>
-          <!-- <input class="SelectColordiv" id="District" type="text" style="outline: none;" list="AllColors"
-                 onkeypress=""
-                 onblur="validation.SearchSelect(
-                      document.getElementById('District').value,
-                      'LDistrict'
-                  );"
-          >
-          <datalist id="AllColors">
-              <option class="city_option" label="Akuressa" value="Akuressa">
-              <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-              <option class="city_option" label="Ahangama" value="Ahangama">
-              <option class="city_option" label="Matara" value="Matara">
-              <option class="city_option" label="Akuressa" value="Akuressa">
-              <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-              <option class="city_option" label="Ahangama" value="Ahangama">
-              <option class="city_option" label="Matara" value="Matara">
-              <option class="city_option" label="Akuressa" value="Akuressa">
-              <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-              <option class="city_option" label="Ahangama" value="Ahangama">
-              <option class="city_option" label="Matara" value="Matara">
-          </datalist> -->
-
-          <input id="district" type="text" list="alldistrict" class="SelectColordiv" name="district" autocomplete="off"
-                 onblur="validation.SearchSelect(
-                                document.getElementById('district').value,
-                                'LDistrict'
-                            );">
+          <label for="district">
+            District
+          </label>
+          <br>
+          <input id="district" class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="alldistrict" name="district" required
+                 autocomplete="off">
           <datalist id="alldistrict">
 
           </datalist>
@@ -186,34 +165,11 @@
         </div>
       </div>
       <div class="singal_row">
-        <label >City</label> <br>
-        <!-- <input class="SelectColordiv" id="City" type="text" style="outline: none;" list="AllColors"
-               onkeypress=""
-               onblur="validation.SearchSelect(
-                        document.getElementById('City').value,
-                        'LCity'
-                    );"
-        >
-        <datalist id="AllColors">
-            <option class="city_option" label="Akuressa" value="Akuressa">
-            <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-            <option class="city_option" label="Ahangama" value="Ahangama">
-            <option class="city_option" label="Matara" value="Matara">
-            <option class="city_option" label="Akuressa" value="Akuressa">
-            <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-            <option class="city_option" label="Ahangama" value="Ahangama">
-            <option class="city_option" label="Matara" value="Matara">
-            <option class="city_option" label="Akuressa" value="Akuressa">
-            <option class="city_option" label="Galgamuwa" value="Galgamuwa">
-            <option class="city_option" label="Ahangama" value="Ahangama">
-            <option class="city_option" label="Matara" value="Matara">
-        </datalist> -->
-        <input id="city" type="text" class="SelectColordiv" list="allcity" name="city" autocomplete="off"
-               onblur="validation.SearchSelect(
-                                document.getElementById('city').value,
-                                'LCity'
-                            );"
-        >
+        <label for="city">
+          City
+        </label>
+        <br>
+        <input id="city" type="text" class="SelectColordiv" style="outline: none; padding-left: 3px" list="allcity" name="city" autocomplete="off" required>
         <datalist id="allcity">
 
         </datalist>
@@ -224,6 +180,7 @@
 
       <div class="map_container">
         <label >Select MOH Area</label>
+        <br>
         <div class="map">
           <div id="map"></div>
         </div>
@@ -239,8 +196,51 @@
 
 </div>
 
+
+
 <script>
 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  function test(){
+    // console.log("province "+document.getElementById("province").value);
+  }
   mapboxgl.accessToken = 'pk.eyJ1IjoiaGFuc2FuYTg3NiIsImEiOiJja3UwMWtrb3ExNjd2Mm9xaDh2MjdjM2FoIn0.6rDLn-mL41GbBUIW3B8MIA';
   const map = new mapboxgl.Map({
     container: 'map',
@@ -276,8 +276,8 @@
   selectedOptionList = [];
 
   function AddValue() {
-    const Value = document.querySelector('#SelectCity').value;
-    console.log("work" + Value);
+    const Value = document.getElementById('SelectCity').value;
+    // console.log("work" + Value);
     if (!Value) return;
     if (selectedOptionList.findIndex(item => Value == item) == -1) {
       selectedOptionList.push(Value);
@@ -286,17 +286,12 @@
       option.value = "";
       option.text = "";
       // document.getElementById('selected-options-container').appendChild(option);
-      document.getElementById("selected-options-container").innerHTML += `
-                <div class="selected-options">
-                    ${Value}
-                    <div class="close-btn" onclick="deleteSelectedItem('${Value}')">
-                            X
-                    </div>
-                </div>
-                `
+      // console.log("value ==> "+Value);
+      document.getElementById("selected-options-container").innerHTML += `<div class="selected-options">`+Value+`<div class="close-btn" onclick="deleteSelectedItem('`+ Value +`');">X</div></div>`
+
     }
-    console.log(selectedOptionList);
-    document.querySelector('#SelectCity').value = "";
+    // console.log("selectedOptionList "+selectedOptionList);
+    document.getElementById('SelectCity').value = "";
 
   }
 
@@ -307,23 +302,18 @@
       document.getElementById(feild).innerHTML = "";
     }
   }
-
-  selectedOptionList = [];
-
-  function deleteSelectedItem(value) {
+  function  deleteSelectedItem(value) {
+    // console.log("del Value "+value)
     let index = selectedOptionList.findIndex(item => value == item);
+    // console.log("index "+index);
     let temp = selectedOptionList.filter(item => item != value);
+    // console.log("temp "+temp);
     selectedOptionList = temp;
+
+    // console.log("selectedOptionList "+selectedOptionList)
     document.getElementById("selected-options-container").innerHTML = "";
     for (let i = 0; i < selectedOptionList.length; i++) {
-      document.getElementById("selected-options-container").innerHTML += `
-                <div class="selected-options">
-                    ${selectedOptionList[i]}
-                    <div class="close-btn" onclick="deleteSelectedItem('${selectedOptionList[i]}')">
-                            X
-                    </div>
-                </div>
-                `
+      document.getElementById("selected-options-container").innerHTML += `<div class="selected-options">`+selectedOptionList[i]+`<div class="close-btn" onclick="deleteSelectedItem('`+ selectedOptionList[i] +`');">X</div></div>`
     }
   }
 
@@ -341,16 +331,60 @@
             document.getElementById('allcity').text);
   }
 
+
+  function checkvalidation(){
+    if(validation.mobileValidation(document.getElementById('TpNo').value, 'LTpNo')&&
+            validation.nameValidation(document.getElementById('MoHName').value,'LMoHName' )&&
+            validation.nameValidation(document.getElementById('MoHhead').value,'LMoHhead' )){
+      console.log("correct log");
+      RegisterMOH();
+    }
+    else{
+      console.log("incorrect log");
+    }
+
+    return false;
+  }
+
+  function RegisterMOH(){
+    let reqData =
+            {
+              uname: document.getElementById('MoHName').value,
+              Mobiel: document.getElementById('TpNo').value,
+              MOHHead:document.getElementById('MoHhead').value,
+              allcities:JSON.stringify(selectedOptionList),
+              province: document.getElementById('province').value,
+              district: document.getElementById('district').value,
+              city: document.getElementById('city').value,
+              x: "",
+              y:""
+            };
+
+    $.post("/suwasewana_war/admin-register-controller/moh",
+            reqData,
+            function (data, status) {
+              if (data.includes("success") ) {
+                popup.RegisterMOH({
+                  status: 'success',
+                  message: 'Successfully Added!'
+                });
+              } else {
+                popup.RegisterMOH({
+                  status: 'fail',
+                  message: 'Registration Fails !',
+                  data: data
+                });
+              }
+            }
+    );
+
+
+  }
 </script>
 <script defer>
-  let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity");
-  // document.getElementById('province').addEventListener('input', function (evt) {
-  //     locationgenarator.provinceSelect(this.value)
-  // });
-  let moh = new MOHSelectGenarate('allmoh');
-</script>
-<script defer>
+  let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity", "AllCities");
   let validation = new FormInputValidation();
+  let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

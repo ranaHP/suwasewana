@@ -5,7 +5,7 @@ function charts(){
         data: {
             labels: [ 'Chicken gunya', 'Thiroxine', 'Fever','Eye diseases','Corona'],
             datasets: [{
-                label: '# of Votes',
+                label: '2021/10/27',
                 data: [ 70,92, 59, 60,89],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
@@ -42,7 +42,7 @@ function charts(){
         data: {
             labels: ['jan', 'Feb','March','April','May'],
             datasets: [{
-                label: '# of Votes',
+                label: '2021/10/27',
                 data: [12, 19,34,5,89],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',

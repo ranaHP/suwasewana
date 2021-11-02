@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Dashboard</title>
+    <title>Suwasewana</title>
     <script src="<c:url value="/public/js/popup.js"></c:url> "></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/c-dashboard.css "/>">
     <script src="https://unpkg.com/feather-icons"></script>
@@ -15,7 +15,9 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
+    <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
 
 </head>
 <body id="mainContent">
@@ -32,7 +34,7 @@
 
             <div class="clinic-list">
 
-                <i class="icon" data-feather="arrow-left"></i>
+<%--                <i class="icon" data-feather="arrow-left"></i>--%>
                 <div class="clinic-card">
                     <div class="card-left">
                         <h5>Covid 19 Awareness Session</h5>
@@ -56,10 +58,10 @@
                     </div>
                     <div class="card-right">
                         <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
-                             width=100% height=100%>
+                             width=100% height=100%/>
                     </div>
                 </div>
-                <i class="icon" data-feather="arrow-right"></i>
+<%--                <i class="icon" data-feather="arrow-right"></i>--%>
             </div>
 
 
@@ -68,14 +70,14 @@
             <div class="charts">
                 <div class="chart" id="chart1">
                     <h4>Patient growth</h4>
-                    <div class="g-chart" style="width: 300px">
-                        <canvas id="myChart" height="150" width="250"></canvas>
+                    <div class="g-chart" style="width: 100%;">
+                        <canvas id="myChart" height="50" width="100" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
                 <div class="chart" id="chart2">
                     <h4>Clinic growth</h4>
-                    <div class="g-chart" style="width: 300px">
-                        <canvas id="myChart2" height="150" width="250"></canvas>
+                    <div class="g-chart" style="width: 100%">
+                        <canvas id="myChart2" height="50" width="100" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
             </div>
