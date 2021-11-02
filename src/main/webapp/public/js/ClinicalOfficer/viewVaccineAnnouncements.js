@@ -2,19 +2,18 @@ let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + 
 class viewAnnouncements{
     announcementArray=[
         {
-            a_id:"",
             title:"",
-            maxpatient:"",
-            location:"",
-            duration:"",
-            disease:"",
             description:"",
+            banner:"",
+            vaccine_id:"",
+            max_sheet:"",
+            location:"",
+            target_people:"",
             datetime:"",
-            conduct:"",
-            clinicID:"",
-            cNic:"",
-            Target:"",
-            MOH:""
+            duration:"",
+            age_limit:"",
+            target_moh:"",
+            vaccine_clinic_id:""
         }
 
     ];
@@ -31,17 +30,18 @@ class viewAnnouncements{
             this.container.innerHTML += `
               <div class="announcement">
                       <div class="left">
-    <div class="announcement-title" id="title">${item.title} <span>For</span> ${item.Target} </div>
+    <div class="announcement-title" id="title">${item.title} <span>For</span> ${item.target_people} </div>
     <div class="announce-description">${item.description}
     </div>
 
     <div class="announce-details">
         <div class="detail"><p><object data="${myUrl}/public/images/icons/map-pin.svg" width="8" height="8"> </object> Location</p> <span>  ${item.location}       </span></div>
         <div class="detail"><p><object data="${myUrl}/public/images/icons/calendar.svg" width="8" height="8"> </object> Date Time</p> <span> ${item.datetime}</span></div>
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/clock.svg" width="8" height="8"> </object> disease</p> <span>${item.disease}</span></div>
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/clock.svg" width="8" height="8"> </object>vaccine</p> <span>${item.vaccine_id}</span></div>
         <div class="detail"><p><object data="${myUrl}/public/images/icons/bell.svg" width="8" height="8"> </object> Duration</p> <span> ${item.duration}      </span>  </div>
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/award.svg" width="8" height="8"> </object> Conducted by</p> <span>${item.conduct}    </span></div>
-        <div class="detail"><p><object data="${myUrl}/public/images/icons/check-circle.svg" width="8" height="8"> </object> Max limit</p> <span>${item.maxpatient}   </span></div>
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/award.svg" width="8" height="8"> </object> Age limit</p> <span>${item.age_limit}    </span></div>
+<!--        <div class="detail"><p><object data="${myUrl}/public/images/icons/award.svg" width="8" height="8"> </object> Target people</p> <span>${item.target_people}    </span></div>-->
+        <div class="detail"><p><object data="${myUrl}/public/images/icons/check-circle.svg" width="8" height="8"> </object> Max limit</p> <span>${item.max_sheet}   </span></div>
     </div>
 </div>
 <div class="right">
@@ -50,7 +50,7 @@ class viewAnnouncements{
     </div>
     <div class="button-section">
         <div class="delete">
-            <button onclick="popup.showDeleteAnnouncementAlertMessage(${item.clinicID})" >Delete</button>
+            <button onclick="popup.showDeleteAnnouncementAlertMessage(${item.vaccine_clinic_id})" >Delete</button>
         </div>
         <div class="Edit">
             <button>Edit</button>
@@ -61,7 +61,7 @@ class viewAnnouncements{
             `
             ;
             console.log("map")
-            console.log(item.clinicID)
+            console.log(item.vaccine_clinic_id)
         })
     }
 }

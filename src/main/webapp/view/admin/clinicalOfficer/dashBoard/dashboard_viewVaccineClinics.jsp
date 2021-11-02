@@ -55,39 +55,57 @@
             }
         );
     }
-    // function deleteCheckInputVsUserInput(appointmentId){
-    //     let userInput = document.getElementById("delete_input").value;
-    //     if(userInput === "Delete"){
-    //         document.getElementById("deleteAuthErrorMessage").style.display = "none";
-    //         deleteClinics(appointmentId);
-    //         // alert("okay")
-    //     }else{
-    //         document.getElementById("deleteAuthErrorMessage").style.display = "block";
-    //     }
-    // }
-    //
-    // function deleteClinics(clinicID){
-    //     // console.log("deleteclinicfunction")
-    //     $.post("/test_war_exploded/create-clinic-controller/delete",
-    //         {
-    //             clinicID: clinicID
-    //         },
-    //         function (data, status) {
-    //             if (data.includes("success")) {
-    //                 popup. showClinicDeleteSuccessMessage({
-    //                     status: 'success',
-    //                     message: 'Clinic Successfully Deleted!'
-    //                 });
-    //             } else {
-    //                 popup. showClinicDeleteSuccessMessage({
-    //                     status: 'fail',
-    //                     message: 'Clinic delete Fails !',
-    //                     data: data
-    //                 });
-    //             }
-    //         }
-    //     );
-    // }
+    function deleteCheckInputVsUserInput(appointmentId){
+        let userInput = document.getElementById("delete_input").value;
+        if(userInput === "Delete"){
+            document.getElementById("deleteAuthErrorMessage").style.display = "none";
+            deleteVClinics(appointmentId);
+            // alert("okay")
+        }else{
+            document.getElementById("deleteAuthErrorMessage").style.display = "block";
+        }
+    }
+
+    function deleteVClinics(clinicID){
+        // console.log("deleteclinicfunction")
+        $.post("/test_war_exploded/create-clinic-controller/deleteV",
+            {
+                clinicID: clinicID
+            },
+            function (data, status) {
+                if (data.includes("success")) {
+                    popup. showClinicDeleteSuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully Deleted!'
+                    });
+                } else {
+                    popup. showClinicDeleteSuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic delete Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
+    }
+
+    let mohDetails=[];
+    $.post("/test_war_exploded/user-complain-controller/moh",
+        function (data, status) {
+            // console.log(data);
+            let rs= JSON.parse(data);
+            this.mohDetails=rs;
+            console.log(data);
+
+
+            // let MNames=document.getElementById("AllMArea");
+            // MNames.innerHTML="";
+            // rs.map((element,index) => {
+            //     // console.log("moh"+element.MName)
+            //     MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
+            // })
+        }
+    );
 
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>

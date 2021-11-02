@@ -1,193 +1,150 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.io.PrintWriter" %>
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <html>
 <head>
-  <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/createAnnouncement/ClinicAnnouncement.css"/>">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Suwasewana</title>
-  <%--    for side navbar style--%>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
+  <%--    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>--%>
+  <link rel="stylesheet" href="<c:url value="/public/css/Admin/Add-vaccine-details.css"/> "/>
+  <link rel="stylesheet" href="<c:url value="/public/css/Admin/edit-vaccine-details.css"/> "/>
+
+  <%--    for popup style--%>
+  <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+  <script src="<c:url value="/public/js/ClinicalOfficer/clinicVaccineAnnouncements.js"/>"></script>
+  <%--    for popup script--%>
+  <script src="<c:url value="/public/js/popup.js"/>"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://unpkg.com/feather-icons"></script>
-  <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
-  <script src="<c:url value="/public/js/ClinicalOfficer/clinicAnnouncements.js"/>"></script>
+  <style>
+    @media only screen and (max-width: 320px ){
+      .load{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 140px;
+      }
+    }
+  </style>
+
 </head>
-<body>
-<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"></c:import>
-<div class="AC_main_Container">
+<body id="mainContent">
+<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
+<div class="mypopup" id="popup" style="display: none;"></div>
+<div class="Vaccin_main_Container">
+
   <div class="header">
     <div class="upper-title">SUWASEWANA</div>
-    <div class="dashboard-name">Clinical officer/create announcements</div>
+    <div class="dashboard-name">Admin/Register/ClinicalOfficer</div>
   </div>
-  <div class="c-db-container">
-    <div class="row" style="width: 100%;">
-      <form>
-        <div class="row" style="align-items: center;justify-content: center;">
-          <div class="form-group">
-            <label for="clinicID">
-              Search by Clinic ID
-            </label>
-            <input type="text" name="clinicID" id="clinicID" autocomplete="off"
-                   required/>
-          </div>
-          <div class="form-group">
-            <%--            <label for="aTitle">--%>
-            <%--              &nbsp;--%>
-            <%--            </label>--%>
-            <button class="submitBtn " type="submit" onclick="return view() " > Search </button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="form-container" id="form">
-      <div class="left-col">
-        <div class="row" >
-          <form style="width: 100%;">
-            <div class="row">
-              <div class="form-group">
-                <label for="clinic-title">
-                  Announctment Title
-                </label>
-                <input type="text" name="clinic-title" id="clinic-title" autocomplete="off"
-                       required/>
-
-              </div>
-            </div>
-            <div class="row">
-              <div class="form-group">
-                <label for="description">
-                  Announctment Description
-                </label>
-                <textarea rows="4" cols="50" type="text" placeholder="reason" name="description"
-                          id="description">  </textarea>
-              </div>
-
-            </div>
-            <div class="row" style="display: flex;flex-wrap: wrap;justify-content: flex-start;">
-              <div class="form-group" style="width: 250px;">
-                <label for="location">
-                  Location
-                </label>
-                <input type="text" name="location" id="location" autocomplete="off"
-                       required/>
-
-              </div>
-              <div class="form-group" style="width: 250px;">
-                <label for="date-time">
-                  Date & Time
-                </label>
-                <input type="text" name="date-time" id="date-time" autocomplete="off"
-                       required/>
-
-              </div>
-              <div class="form-group" style="width: 250px;">
-                <label for="duration">
-                  Duration
-                </label>
-                <input type="text" name="duration" id="duration" autocomplete="off"
-                       required/>
-
-              </div>
-              <div class="form-group" style="width: 250px;">
-                <label for="conduct">
-                  Conduct By
-                </label>
-                <input type="text" name="conduct" id="conduct" autocomplete="off"
-                       required/>
-
-              </div>
-              <div class="form-group" style="width: 250px;">
-                <label for="max-patient">
-                  Max limit
-                </label>
-                <input type="text" name="max-patient" id="max-patient" autocomplete="off"
-                       required/>
-
-              </div>
-
-              <div class="form-group" style="width: 250px;">
-                <label for="disease">
-                  Disease
-                </label>
-                <input type="text" name="disease" id="disease" autocomplete="off"
-                       required/>
-
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="form-group d-flex-a-i-end">
-
-                <button class="submitBtn " type="submit" onclick="return imageUpload()" > Make Announctment</button>
-              </div>
-
-            </div>
-          </form>
-        </div>
+  <div class="body-content">
+    <div class="MR_container">
+      <div class="title">
+        Vaccine clinic Announcement
       </div>
-      <div class="right-col">
-        <div class="row" >
-          <form style="width: 100%;">
-            <div class="row">
-              <div class="form-group">
-                <label for="patient">
-                  Target Peoples
-                </label>
-                <input type="text" name="patient" id="patient" autocomplete="off"
-                       required/>
+      <div class="seach_by_name" style="margin: 50px 0;">
+        <form onsubmit="return LoadData();" class="load">
+          <div>
+            <input id="CId" placeholder="search by clinic ID" list="AllMArea" name="AllMArea" autocomplete="off"
+                   onclick="document.getElementById('CId').value='';"
+<%--                   onblur="validation.SearchSelect(--%>
+<%--                                    document.getElementById('CId').value,--%>
+<%--                                    'LMArea'--%>
+<%--                                );"--%>
+            >
+            <datalist id="AllMArea">
+            </datalist>
+            <br>
+            <span class="error" id="LMArea" style="margin-left: 5px" ></span>
+          </div>
+          <button type="submit" onclick="return view() ">Search the clinic</button>
+          <button type="submit" onclick="return imageUpload() ">Create announcement</button>
+        </form>
+
+      </div>
+      <%--            <form >--%>
+      <div class="body_container">
+        <div class="basic_content">
+<%--          <div class="basic-title">1. Basic Infromation</div>--%>
+
+          <div class="basic_body_contetnt" id="form">
+            <div class="basic_left">
+              <div class="left_row">
+                <div class="left_row_left"><span>clinic-title  </span></div>
+                <div class="left_row_right"><input type="text" required  id="clinic-title"></div>
 
               </div>
-            </div>
-            <div class="row">
-              <div class="form-group">
-                <label for="target-MOH">
-                  Target MOH
-                </label>
-                <input type="text" name="target-MOH" id="target-MOH" autocomplete="off"
-                       required/>
-
+              <div class="left_row">
+                <div class="left_row_left"><span> description  </span></div>
+                <div class="left_row_right"><input type="text" required id="description"></div>
               </div>
 
+              <div class="left_row">
+                <div class="left_row_left"><span> start_date_time  </span></div>
+                <div class="left_row_right"><input type="text" required id="start_date_time"></div>
+              </div>
+
+              <div class="left_row">
+                <div class="left_row_left"><span> duration  </span></div>
+                <div class="left_row_right"><input type="text" required id="duration"></div>
+              </div>
+              <div class="left_row">
+                <div class="left_row_left"><span>Location</span></div>
+                <div class="left_row_right"><input type="text" id="Location" required></div>
+              </div>
+              <div class="left_row">
+                <div class="left_row_left"><span> Target MOH</span></div>
+                <div class="left_row_right"><input type="text" id="Target-MOH" required></div>
+              </div>
+              <div class="left_row">
+                <div class="left_row_left"><span>  Target Peoples</span></div>
+                <div class="left_row_right"><input type="text" id="Target-Peoples" required></div>
+              </div>
+              <div class="left_row">
+                <div class="left_row_left"><span> Max limit</span></div>
+                <div class="left_row_right"><input type="text" id="Max-limit" required></div>
+              </div>
+
+              <div class="left_row">
+                <div class="left_row_left"><span> Age limit</span></div>
+                <div class="left_row_right"><input type="text" id="Age-limit" required></div>
+              </div>
+
+              <div class="left_row">
+                <div class="left_row_left"><span> Vaccine name</span></div>
+                <div class="left_row_right"><input type="text" id="Vaccine-name" required></div>
+              </div>
             </div>
+            <div class="basic-right">
+              <div class="image-upload-card-container">
+                <div class="image-upload-card" style="margin-bottom: 180px">
+                  <img id="proof1" width="100%" />
+                  <input type="file" accept="image/*" name="file" id="proof1input"
+                         onchange="loadFile(event , 'proof1')" style="display: none;">
 
-
-            <div class="row">
-              <div class="form-group d-flex-a-i-end">
-                <div class="image-upload-card-container">
-                  <div class="image-upload-card">
-                    <img id="proof1" width="100%" />
-                    <input type="file" accept="image/*" name="file" id="proof1input"
-                           onchange="loadFile(event , 'proof1')" style="display: none;">
-
-                    <label for="proof1input" style="cursor: pointer;">Upload Image</label>
-                  </div>
-<%--                                          <button onclick="imageUpload()">add</button>--%>
+                  <label for="proof1input" style="cursor: pointer;">Upload Image</label>
                 </div>
+<%--                <div><button onclick="imageUpload()">Create announcement</button></div>--%>
+<%--                                                          <button onclick="imageUpload()">add</button>--%>
               </div>
-
             </div>
-          </form>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-
-</div>
-<script>
+</body>
+<script defer>
+  let validation = new FormInputValidation();
+  let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
   var loadFile = function (event, imgContainerId) {
     console.log("load file")
     var image = document.getElementById(imgContainerId);
     image.src = URL.createObjectURL(event.target.files[0]);
   };
-</script>
-
-<script>
-  feather.replace({width: "8px"})
-</script>
-<script defer>
 
   function imageUpload() {
     console.log("image upload")
@@ -218,7 +175,7 @@
           if (response != 0) {
             console.log("successfully image uploadedss ---- " +imageNames )
 
-            announcement(imageNames)
+            Vannouncement(imageNames)
           } else {
             console.log('file not uploaded');
           }
@@ -232,81 +189,90 @@
     return false;
   }
 
-  let selectClinic = new selectClinics("form");
-  function view(){
-    let clinicList=[]
-    let reqData =
-            {
-              clinicID: document.getElementById("clinicID").value,
-            };
-    console.log(reqData);
-    $.post("/test_war_exploded/create-clinic-controller/select",
-            reqData,
-            function(data,status){
-              clinicList=JSON.parse(data)
-              selectClinic.setData(clinicList);
-            }
-    );
-    return false;
-  }
+  function Vannouncement(imagearray){
+   let reqData ={
+     title:document.getElementById("clinic-title").value,
+     description:document.getElementById("description").value,
+     image:imagearray[0],
+     Vaccinename:document.getElementById("Vaccine-name").value,
+     Maxlimit:document.getElementById("Max-limit").value,
+     Location:document.getElementById("Location").value,
+     TargetPeoples:document.getElementById("Target-Peoples").value,
+     startdatetime:document.getElementById("start_date_time").value,
+     duration:document.getElementById("duration").value,
+     age_limit:document.getElementById("Age-limit").value,
+     TargetMOH:document.getElementById("Target-MOH").value,
+     CId:checkMOHid(),
 
-  function announcement(imagearray){
-    let reqData =
-            {
-              clinicID:document.getElementById("clinicID").value,
-              disease:document.getElementById("disease").value,
-              title:document.getElementById("clinic-title").value,
-              location:document.getElementById("location").value,
-              targetMOH:document.getElementById("target-MOH").value,
-              datetime:document.getElementById("date-time").value,
-              duration:document.getElementById("duration").value,
-              maxpatient:document.getElementById("max-patient").value,
-              patient:document.getElementById("patient").value,
-              conduct:document.getElementById("conduct").value,
-              description:document.getElementById("description").value,
-              image:imagearray[0]
-              // banner:imagearray[0],
-              // disease:document.getElementById("disease"),
-            };
-    $.post("/test_war_exploded/clinicAnnouncementController/createA",
+   };
+   console.log(reqData)
+    $.post("/test_war_exploded/clinicAnnouncementController/createVA",
             reqData,
             function(data,status){
               if(data.includes("sucsess")){
-                  updateclinics()
+                // updateclinics()
+                popup.showCreateClinicSuccessMessage({
+                  status: 'success',
+                  message: 'Successfully Created!'
+                })
               } else{
-                 alert("no")
+                popup.showCreateClinicSuccessMessage({
+                  status: 'fail',
+                  message: 'Failed to create !',
+                  data: data
+                });
               }
             }
-          );
-    return false;
+            );
+
+  }
+  let selectVclinics = new selectVClinics("form");
+
+  function view(){
+    let clinicListArray=[]
+    $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+            // reqData,
+            function(data,status){
+              clinicListArray=JSON.parse(data)
+              // console.log(clinicListArray)
+              selectVclinics.setData(clinicListArray);
+
+            }
+    );
+    return false
   }
 
-  function updateclinics(){
-    // alert("update")
-    let reqData =
-            {
-              clinicID:document.getElementById("clinicID").value,
-              disease:document.getElementById("disease").value,
-              title:document.getElementById("clinic-title").value,
-              location:document.getElementById("location").value,
-              targetMOH:document.getElementById("target-MOH").value,
-              datetime:document.getElementById("date-time").value,
-              duration:document.getElementById("duration").value,
-              maxpatient:document.getElementById("max-patient").value,
-              patient:document.getElementById("patient").value,
-              conduct:document.getElementById("conduct").value,
-              description:document.getElementById("description").value,
-            };
-    $.post("/test_war_exploded/create-clinic-controller/updateclinic",
-            reqData,
-            function (data,status){
-              alert(data)
-            });
 
-    return false;
+
+  function checkMOHid(){
+    // alert("check")
+    var MTypeObj = document.getElementById('CId');
+    var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+    if(datalist.options.namedItem(MTypeObj.value)){
+     // alert(datalist.options.namedItem(MTypeObj.value).id)
+      return (datalist.options.namedItem(MTypeObj.value).id);
+    }
+    else {
+      return  0;
+    }
   }
 
+
+  let mohDetails=[];
+  $.post("/test_war_exploded/create-clinic-controller/all-V-Clinics",
+          function (data, status) {
+            // console.log(data);
+            let rs= JSON.parse(data);
+            this.mohDetails=rs;
+            console.log(data);
+
+            let MNames=document.getElementById("AllMArea");
+            MNames.innerHTML="";
+            rs.map((element,index) => {
+              // console.log("moh"+element.MName)
+              MNames.innerHTML+= '<option  id="'+element.vcs_id+'"  name="'+element.vcs_id+'" value="'+element.vcs_id +  '" option="' +element.vcs_id +  '" ></option>'
+            })
+          }
+  );
 </script>
-<script defer src="<c:url value="/public/js/common/side-navbar.js"></c:url> " ></script>
-</body>
 </html>

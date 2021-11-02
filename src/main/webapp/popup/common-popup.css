@@ -10,7 +10,8 @@
     background-color: aquamarine;
     display: flex;
     align-items: center;
-    /* display: none; */
+     display: none;
+    position: fixed;
 }
 .ml5{
     margin-left: 5px;
@@ -27,8 +28,9 @@
     min-height: fit-content;
     border-radius: 8px;
     padding: 20px;
-    margin: auto;
+    margin: 100px auto;
     position: relative;
+    /*margin-top: 90px;*/
 }
 .logo{
     /* background-color: blue; */

@@ -2,6 +2,7 @@ package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
 import com.suwasewana.model.CreateClinicModel;
+import com.suwasewana.model.MOHModel;
 import com.suwasewana.model.vaccineClinicModel;
 
 import java.lang.annotation.Target;
@@ -20,7 +21,10 @@ public class createClinicDAO {
 
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session`";
-    Connection connection;
+  private static final String SELECT_VACCINE_CLINICS="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
+  private static final String DELETE_VCLINICS="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
+  private static final String VClinic_Detail="SELECT * FROM `vaccine_clinic_session`";
+  Connection connection;
     public createClinicDAO(){
         DB db = new DB();
         connection = db.getConnection();
@@ -262,6 +266,7 @@ public class createClinicDAO {
 //                System.out.println(title+"--"+disease+"--"+Location);
             };
             return viewClinicList;
+//            System.out.println(viewClinicList);
         } catch (SQLException throwables) {
             printSQLException(throwables);
 //            return throwables.getMessage();
@@ -269,7 +274,105 @@ public class createClinicDAO {
         return null;
     }
 
-}
+    public ArrayList<vaccineClinicModel> selectVClinics(vaccineClinicModel selectVclinics) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_VACCINE_CLINICS)){
+//            System.out.println("jjj");
+            preparedStatement.setString(1, selectVclinics.getVcs_id());
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<vaccineClinicModel> selectVClinicList = new ArrayList<vaccineClinicModel>();
+            while (rs.next()){
+                String vcs_id =rs.getString("vcs_id");
+                String title =rs.getString("tittle");
+                String DataTime = rs.getString("start_date_time");
+                String Duration = rs.getString("duration");
+                String Description = rs.getString("description");
+                String MaxPatient = rs.getString("max_patient");
+                String TargetMOH = rs.getString("target_moh");
+                String Target = rs.getString("target_people");
+                String age_limit=rs.getString("target_age_limit");
+                String clinical_officer = rs.getString("clinical_officer");
+                String v_id = rs.getString("v_id");
+                String location = rs.getString("location");
+                String dose_count = rs.getString("dose_count");
+                vaccineClinicModel temp = new vaccineClinicModel(
+                        vcs_id,
+                        title,
+                        DataTime,
+                        Duration,
+                        Description,
+                        MaxPatient,
+                        TargetMOH,
+                        Target,
+                        age_limit,
+                        clinical_officer,
+                        v_id,
+                        location,
+                        dose_count
+                );
+//                System.out.println(temp);
+                selectVClinicList.add(temp);
+//                System.out.println(selectVClinicList);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return selectVClinicList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public String deleteVClinic(vaccineClinicModel deleteVClinic) {
+        boolean rowDeleted;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_VCLINICS)) {
+            preparedStatement.setString(1,deleteVClinic.getVcs_id());
+            rowDeleted = preparedStatement.executeUpdate() > 0;
+            return "success";
+        } catch (SQLException throwables) {
+            return throwables.getMessage();
+        }
+    }
+
+    public ArrayList<vaccineClinicModel> allvClinics() {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(VClinic_Detail)) {
+
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<vaccineClinicModel> allvClinics = new ArrayList<vaccineClinicModel>();
+            while (rs.next()) {
+
+                String vcs_id = rs.getString("vcs_id");
+                String title = rs.getString("tittle");
+
+                vaccineClinicModel temp = new vaccineClinicModel(
+                        vcs_id,
+                        title,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+//
+                allvClinics.add(temp);
+            }
+            return allvClinics;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }}
 
 
 

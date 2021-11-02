@@ -51,6 +51,7 @@
             // reqData,
             function(data,status){
                 clinicListArray=JSON.parse(data)
+                // console.log(clinicListArray)
                 clinicList1.setData(clinicListArray);
 
             }

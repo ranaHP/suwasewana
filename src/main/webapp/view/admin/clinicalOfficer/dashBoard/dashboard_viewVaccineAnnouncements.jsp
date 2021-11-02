@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-viewAnnouncements.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="<c:url value="/public/js/ClinicalOfficer/viewAnnouncements.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/ClinicalOfficer/viewVaccineAnnouncements.js"></c:url> "></script>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
 </head>
@@ -47,13 +47,13 @@
     view();
     function view(){
         let announcementsArray=[]
-        $.post("/test_war_exploded/clinicAnnouncementController/viewAnnouncements",
-            // reqData,
+        $.post("/test_war_exploded/clinicAnnouncementController/viewVAnnouncements",
+        //     // reqData,
             function(data,status){
                 announcementsArray=JSON.parse(data)
                 viewAnnouncementslist.setData(announcementsArray);
-                // viewAnnouncementslist.setData(announcementsArray);
-                // alert(data)
+                // // viewAnnouncementslist.setData(announcementsArray);
+                console.log(data)
 
             }
         );
@@ -73,7 +73,7 @@
 
     function deleteAnnouncement(clinicID){
         // console.log("deleteclinicfunction")
-        $.post("/test_war_exploded/clinicAnnouncementController/deleteA",
+        $.post("/test_war_exploded/clinicAnnouncementController/deleteVA",
             {
                 clinicID: clinicID
             },
