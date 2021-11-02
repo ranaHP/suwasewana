@@ -100,9 +100,10 @@
                             </div>
                             <!-- create clinic button -->
                             <div class="create-button">
-                                <button>Create Clinic</button>
+                                <button >Create Clinic</button>
 
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -208,6 +209,52 @@
             })
         }
     );
+
+    // function updateclinics(){
+    //     // alert("update")
+    //     let reqData =
+    //         {
+    //             clinicID:document.getElementById("clinicID").value,
+    //             disease:document.getElementById("disease").value,
+    //             title:document.getElementById("clinic-title").value,
+    //             location:document.getElementById("location").value,
+    //             targetMOH:document.getElementById("target-MOH").value,
+    //             datetime:document.getElementById("date-time").value,
+    //             duration:document.getElementById("duration").value,
+    //             maxpatient:document.getElementById("max-patient").value,
+    //             patient:document.getElementById("patient").value,
+    //             conduct:document.getElementById("conduct").value,
+    //             description:document.getElementById("description").value,
+    //         };
+    //     console.log(reqData)
+    //     $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+    //         reqData,
+    //         function (data,status){
+    //             // alert("wrong")
+    //              alert(data)
+    //         });
+    //
+    //     return false;
+    // }
+    //
+    // function view(){
+    //     let clinicList=[]
+    //     let reqData =
+    //         {
+    //             clinicID: document.getElementById("clinicID").value,
+    //         };
+    //     console.log(reqData);
+    //     $.post("/test_war_exploded/create-clinic-controller/select",
+    //         reqData,
+    //         function(data,status){
+    //             alert(data)
+    //             clinicList=JSON.parse(data)
+    //             selectClinic.setData(clinicList);
+    //
+    //         }
+    //     );
+    //     return false;
+    // }
 
 </script>
 

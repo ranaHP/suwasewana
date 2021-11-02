@@ -194,8 +194,8 @@ import java.util.ArrayList;
                 req.getParameter("description"),
                 req.getParameter("maxpatient"),
                 req.getParameter("conduct"),
-                req.getParameter("MOH"),
-                req.getParameter("Target"),
+                req.getParameter("targetMOH"),
+                req.getParameter("patient"),
                 req.getParameter("location"),
                 "12"
 
@@ -257,7 +257,7 @@ import java.util.ArrayList;
             System.out.println("selettttttttttttttttt");
         CreateClinicModel selectClinic = new CreateClinicModel(
                 req.getParameter("clinicID"),
-                req.getParameter("disease"),
+               "",
                 "",
                 "",
                 "",

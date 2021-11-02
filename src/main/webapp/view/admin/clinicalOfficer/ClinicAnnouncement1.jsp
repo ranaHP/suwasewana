@@ -33,7 +33,7 @@
   </style>
 
 </head>
-<body id="mainContent">
+<body id="mainContent" onload="check()">
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
 <div class="mypopup" id="popup" style="display: none;"></div>
 <div class="Vaccin_main_Container">
@@ -234,7 +234,7 @@
             {
               clinicID: checkMOHid(),
             };
-    console.log(reqData)
+    // console.log(reqData)
     $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
             reqData,
             function(data,status){
@@ -255,7 +255,7 @@
     var MTypeObj = document.getElementById('CId');
     var datalist = document.getElementById(MTypeObj.getAttribute("list"));
     if(datalist.options.namedItem(MTypeObj.value)){
-     // alert(datalist.options.namedItem(MTypeObj.value).id)
+     alert(datalist.options.namedItem(MTypeObj.value).id)
       return (datalist.options.namedItem(MTypeObj.value).id);
     }
     else {
@@ -266,7 +266,8 @@
 
 
 </script>
-<script defer>
+<script>
+function check(){
   let mohDetails=[];
   $.post("/test_war_exploded/create-clinic-controller/all-V-Clinics",
           function (data, status) {
@@ -283,5 +284,6 @@
             })
           }
   );
+}
 </script>
 </html>

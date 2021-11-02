@@ -21,6 +21,7 @@
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container" >
     <!-- suwasewana header -->
     <div class="header">
@@ -43,7 +44,7 @@
 <script defer>
     // alert("start")
     let viewAnnouncementslist = new viewAnnouncements("announcements-container");
-    // let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     view();
     function view(){
         let announcementArray=[]
@@ -57,6 +58,40 @@
             }
         );
 
+    }
+    function deleteCheckInputVsUserInput(appointmentId){
+        let userInput = document.getElementById("delete_input").value;
+        if(userInput === "Delete"){
+            document.getElementById("deleteAuthErrorMessage").style.display = "none";
+            deleteAnnouncement(appointmentId);
+            // alert("okay")
+        }else{
+            document.getElementById("deleteAuthErrorMessage").style.display = "block";
+        }
+    }
+
+    function deleteAnnouncement(clinicID){
+        // console.log("deleteclinicfunction")
+        $.post("/test_war_exploded/clinicAnnouncementController/deleteA",
+            {
+                clinicID: clinicID
+            },
+            function (data, status) {
+                alert(data)
+                if (data.includes("success")) {
+                    popup. showAnnouncementDeleteSuccessMessage({
+                        status: 'success',
+                        message: 'Announcement Successfully Deleted!'
+                    });
+                } else {
+                    popup. showAnnouncementDeleteSuccessMessage({
+                        status: 'fail',
+                        message: 'Announcement delete Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
     }
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
