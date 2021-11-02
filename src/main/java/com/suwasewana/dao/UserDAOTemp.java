@@ -31,9 +31,9 @@ public class UserDAOTemp {
     public void insertUser(User user) throws SQLException {
         try (
                 PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getCountry());
+//            preparedStatement.setString(1, user.getName());
+//            preparedStatement.setString(2, user.getEmail());
+//            preparedStatement.setString(3, user.getCountry());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             printSQLException(e);
@@ -50,7 +50,7 @@ public class UserDAOTemp {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String country = rs.getString("country");
-                user = new User(id, name, email, country);
+//                user = new User(id, name, email, country);
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -69,7 +69,7 @@ public class UserDAOTemp {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String country = rs.getString("country");
-                users.add(new User(id, name, email, country));
+//                users.add(new User(id, name, email, country));
             }
         } catch (SQLException e) {
             printSQLException(e);
@@ -91,10 +91,10 @@ public class UserDAOTemp {
         boolean rowUpdated;
         try (
                 PreparedStatement statement = connection.prepareStatement(UPDATE_USERS_SQL);) {
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getEmail());
-            statement.setString(3, user.getCountry());
-            statement.setInt(4, user.getId());
+//            statement.setString(1, user.getName());
+//            statement.setString(2, user.getEmail());
+//            statement.setString(3, user.getCountry());
+//            statement.setInt(4, user.getId());
 
             rowUpdated = statement.executeUpdate() > 0;
         }
