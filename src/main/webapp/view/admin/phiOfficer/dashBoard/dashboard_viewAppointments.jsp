@@ -8,15 +8,19 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
 
-<%--pop up styles--%>
+    <%--pop up styles--%>
     <link rel="stylesheet" href="<c:url value="/popup/common-popup.css"/> "/>
     <script src="<c:url value="/popup/Message.js"></c:url> "></script>
     <script src="https://unpkg.com/feather-icons"></script>
 
-<%--    side nav bar styles--%>
+    <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <title>Suwasewana</title>
+    <title>Appointmenst</title>
+
+    <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
+
+
 </head>
 <body>
 

@@ -3,6 +3,7 @@ package com.suwasewana.model;
 public class AppointmentTypeModel {
     String typeNumber;
     String typeName;
+    String typeDesc;
 
     public AppointmentTypeModel(
             String typeNumber,
