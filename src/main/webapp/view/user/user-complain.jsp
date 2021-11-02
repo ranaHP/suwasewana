@@ -416,6 +416,8 @@
 
 
 <script>
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+
     function checkValidation(){
 
         var phiObj = document.getElementById("phi");
@@ -502,7 +504,7 @@
             console.log("inside upload img if")
             alert();
             $.ajax({
-                url: '/suwasewana_war/fileuploadservlet',
+                url: myUrl+'/fileuploadservlet',
                 type: 'post',
                 data: fd,
                 contentType: false,
@@ -587,7 +589,7 @@
                 MOH:MOHId
             };
         console.log("phi id "+reqData.cPhi)
-        $.post("/suwasewana_war/user-complain-controller/create",
+        $.post(myUrl+"/user-complain-controller/create",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -669,7 +671,7 @@
         console.log("reqData MOH id- "+reqData.MOH);
 
 
-        $.post("/suwasewana_war/user-complain-controller/create",
+        $.post(myUrl+"/user-complain-controller/create",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -729,7 +731,7 @@
             nic:"199910910064"
         }
         let complainCardList = [];
-        $.post("/suwasewana_war/user-complain-controller/search",
+        $.post(myUrl+"/user-complain-controller/search",
             searchItem,
             function (data, status) {
                 console.log("unsuccesssss brooo "+data)
@@ -750,7 +752,7 @@
     let typedatalist={};
     function getAllComplain() {
         let complainCardList = [];
-        $.post("/suwasewana_war/user-complain-controller/view",
+        $.post(myUrl+"/user-complain-controller/view",
             {},
             function (data, status) {
                 complainCardList = JSON.parse(data);
@@ -766,7 +768,7 @@
 
 <%--script for take complain types--%>
 <script defer>
-    $.post("/suwasewana_war/user-complain-controller/",
+    $.post(myUrl+"/user-complain-controller/",
         function (data, status) {
             let rs= JSON.parse(data);
             let complainType=document.getElementById("allcomplaintType");
@@ -784,7 +786,7 @@
 <%--script for take MOH list--%>
 <script defer>
     let mohDetails=[];
-    $.post("/suwasewana_war/user-complain-controller/moh",
+    $.post(myUrl+"/user-complain-controller/moh",
         function (data, status) {
             let rs= JSON.parse(data);
             this.mohDetails=rs;
@@ -816,7 +818,7 @@
 
 
     function ViewPHI(mid){
-        $.post("/suwasewana_war/user-complain-controller/phi",
+        $.post(myUrl+"/user-complain-controller/phi",
             function (data, status) {
                 let rs= JSON.parse(data);
                 let PNames=document.getElementById("allphi");

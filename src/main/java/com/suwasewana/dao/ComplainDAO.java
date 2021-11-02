@@ -2,10 +2,7 @@ package com.suwasewana.dao;
 
 
 import com.suwasewana.core.DB;
-import com.suwasewana.model.AppointmentModel;
-import com.suwasewana.model.ComplainModel;
-import com.suwasewana.model.ComplainTypeModel;
-import com.suwasewana.model.UserRegistrationModel;
+import com.suwasewana.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,21 +14,96 @@ public class ComplainDAO {
     @SuppressWarnings("SqlResolve")
     private static final String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`complain` (`idcomplain`, `Title`, `ComplainType`, `UserDetailType`, `AreaPHI`, `Des`, `Img1`, `Img2`, `Img3`) VALUES (null , ?, ?, ?, ?, ?,? , ?, ?);";
     private static final String COMPLAIN_TYPE="SELECT * FROM suwasewana_db.complaint_type;";
+    private static final String Complain_For_PHI="SELECT * FROM suwasewana_db.user_complaint uc LEFT JOIN suwasewana_db.user u ON u.uNic = uc.user LEFT JOIN suwasewana_db.complaint_type ct ON uc.complaint_type_id = ct.complaint_type_id WHERE phi_id=?;";
     Connection connection;
 
     public ComplainDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
+    public ArrayList<CommanForCompalinAndUser> userGetComplainDetailsForPHI(String nic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Complain_For_PHI)) {
+            preparedStatement.setString(1, nic );
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<CommanForCompalinAndUser> complainListForPHI = new ArrayList<CommanForCompalinAndUser>();
+            while (rs.next()) {
+                String comp_id=rs.getString("comp_id");
+                String CType=rs.getString("complaint_type_id");
+                String User=rs.getString("user");
+                String Posted_Date=rs.getString("posted_date_time");
+                String CTitle=rs.getString("tittle");
+                String CMessage=rs.getString("description");
+                String PHIId=rs.getString("phi_id");
+                String Status=rs.getString("status");
+                String img1=rs.getString("img1");
+                String img2=rs.getString("img2");
+                String img3=rs.getString("img3");
+                String PHIResponse=rs.getString("phi_message");
+
+                String uname=rs.getString("uname");
+                String uNic=rs.getString("uNic");
+                String uMobile=rs.getString("uMobile");
+                String address_line1=rs.getString("address_line1");
+                String street_nou=rs.getString("street_no");
+                String City=rs.getString("uCity");
+
+                String ComplainType=rs.getString("ctittle");
+
+                ComplainModel complaintemp = new ComplainModel(
+                        CTitle,
+                        CType,
+                        comp_id,
+                        PHIId,
+                        CMessage,
+                        "",
+                        User,
+                        Posted_Date,
+                        Status,
+                        img1,
+                        img2,
+                        img3,
+                        PHIResponse,
+                        ""
+
+                );
+
+                User usertemp = new User(
+                        uMobile,
+                        uname,
+                        "",
+                        uNic,
+                        "",
+                        "",
+                        City,
+                        "",
+                        "",
+                        "",
+                        "",
+                        street_nou,
+                        address_line1,
+                        ""
+                );
+
+                CommanForCompalinAndUser commanForCompalinAndUsertemp=new CommanForCompalinAndUser(complaintemp,usertemp,ComplainType);
+
+//
+                complainListForPHI.add(commanForCompalinAndUsertemp);
+            }
+            return complainListForPHI;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
 
     public ArrayList<ComplainTypeModel> GetComplainTypeDetails() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(COMPLAIN_TYPE)) {
-            System.out.println("awoooooooo");
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<ComplainTypeModel> complainList = new ArrayList<ComplainTypeModel>();
             while (rs.next()) {
                 String id = rs.getString("complaint_type_id");
-                String Type = rs.getString("tittle");
+                String Type = rs.getString("ctittle");
                 ComplainTypeModel temp = new ComplainTypeModel(
                         id,
                         Type

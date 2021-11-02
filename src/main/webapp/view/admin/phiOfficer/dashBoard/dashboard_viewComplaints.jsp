@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,13 +13,13 @@
 <%--    <script  src="<c:url value="/public/js/PHIOfficer/viewComplaints.js"/> "></script>--%>
     <title>Suwasewana</title>
     <%--    side nav bar styles--%>
-<%--    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>--%>
-<%--    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>--%>
-
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <script src="<c:url value="/public/js/complain.js"/>"></script>
 
 </head>
 <body id="mainContent">
-<%--  <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />--%>
+  <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
 <%--  <div class="popup-container" id="PopupContainer"></div>--%>
   <div class="main-container">
       <div class="header">
@@ -59,7 +61,7 @@
                   </div>
               </div>
 
-              <div class="complain_container">
+              <div class="complain_container" id="previous_complain_list">
 
 
                   <div class="complain_card">
@@ -128,7 +130,7 @@
                                   <img src="<c:url value="/public/images/icons/View%20complain/mail.svg "/>" alt="" srcset="">
                               </div>
                               <div class="C_container_right_card_row2_col2">
-                                  <span>21</span>
+                                  <span id="Pending">21</span>
                               </div>
                           </div>
                       </div>
@@ -142,7 +144,7 @@
                                   <img src="<c:url value="/public/images/icons/View%20complain/loader.svg "/>" alt="" srcset="">
                               </div>
                               <div class="C_container_right_card_row2_col2">
-                                  <span>21</span>
+                                  <span id="Progress">21</span>
                               </div>
                           </div>
                       </div>
@@ -156,7 +158,7 @@
                                   <img src="<c:url value="/public/images/icons/View%20complain/check-circle.svg "/>" alt="" srcset="">
                               </div>
                               <div class="C_container_right_card_row2_col2">
-                                  <span>21</span>
+                                  <span id="done">21</span>
                               </div>
                           </div>
                       </div>
@@ -172,10 +174,71 @@
   <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 
 <script defer>
-    let popup= new require_message_popup('PopupContainer', "Do you need to send a massage <br>to complainer ?")
+    // let popup= new require_message_popup('PopupContainer', "Do you need to send a massage <br>to complainer ?")
+    let complain= new Complain('previous_complain_list');
 
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    getAllComplain();
+    console.log("url "+myUrl+"/phi-complain-controller1/ViewComplainForPHI")
+    function getAllComplain() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
+            {},
+            function (data, status) {
+                let complainList = JSON.parse(data);
+                console.log("typedatalist"+ typedatalist)
+
+
+
+                // fill pending done in progress count
+                let pendin=0;
+                let done=0;
+                let progress=0;
+                complainList.map((element) => {
+                    console.log("status " +element.complainModel.Status);
+
+                    if(element.complainModel.Status=="Pending"){
+                        pendin++;
+                    }
+                    else if(element.complainModel.Status=="Done"){
+                        done++;
+                    }
+                    else if(element.complainModel.Status=="In Progress"){
+                        progress++;
+                    }
+                    else {
+                        console.log("Incorrect complain model status check ur database")
+                    }
+
+                })
+                document.getElementById("Pending").innerText=pendin;
+                document.getElementById("done").innerText=done;
+                document.getElementById("Progress").innerText=progress;
+
+
+                complain.setDataForPHI(complainList);
+
+                // fill compalain details
+
+
+            }
+        );
+
+    }
 </script>
+  <%--script for take complain types--%>
+  <script defer>
+      let complain_type=[];
+      $.post(myUrl+"/user-complain-controller/",
+          function (data, status) {
+              let rs= JSON.parse(data);
+              rs.map((element) => {
 
+              })
+          }
+      );
+  </script>
 </body>
 </body>
 </html>

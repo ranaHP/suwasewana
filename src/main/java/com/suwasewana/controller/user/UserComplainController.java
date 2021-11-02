@@ -5,10 +5,7 @@ import com.suwasewana.dao.ComplainDAO;
 import com.suwasewana.dao.MOHDAO;
 import com.suwasewana.dao.PHIDAO;
 import com.suwasewana.dao.UserDAO;
-import com.suwasewana.model.ComplainModel;
-import com.suwasewana.model.ComplainTypeModel;
-import com.suwasewana.model.MOHModel;
-import com.suwasewana.model.PHIModel;
+import com.suwasewana.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -66,6 +63,9 @@ public class UserComplainController extends HttpServlet {
                 case "phi":
                     userViewPHI(req, res);
                     break;
+                case "viewComplainforPHI":
+                    ComplainForPHI(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -75,6 +75,42 @@ public class UserComplainController extends HttpServlet {
         }
 
     }
+
+    private void ComplainForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("unic")) {
+                    uNic = cookie.getValue();
+                }
+            }
+        }
+        ComplainModel complainModeldetail = new ComplainModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+
+        );
+        String nic="199910910062";
+//        ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHI(nic);
+//        res.getWriter().println(gson.toJson(result));
+        res.getWriter().println("come to controller for phi");
+    }
+
+
 //    search complain
     private void searchComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
 //        System.out.println("title"+req.getParameter("Title"));
