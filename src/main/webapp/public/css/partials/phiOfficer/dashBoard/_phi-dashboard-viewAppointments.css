@@ -1,4 +1,11 @@
 
+*{
+    padding: 0%;
+    margin: 0%;
+    font-size: .9em;
+    font-family: 'Nunito Sans', sans-serif;
+
+}
 .container{
     padding: 0;
     display: flex;
@@ -8,7 +15,7 @@
     min-height: 100vh;
     transition: 0.2s ease;
     font-size: 18px;
-    /*background-color: #FCFCFC;*/
+    background-color: #Fff;
 }
 .header{
     padding: 10px 15px 10px 34px;
@@ -44,187 +51,240 @@
 body{
     background-color: #dfe4ea59;
 }
-.appointments-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.filter_appointment{
+    max-width: 800px     ;
 }
-.search-section{
+
+.appointments-container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.appointment-view{
+    width: 70%;
+    height: fit-content;
+    box-sizing: border-box;
+}
+.appointment-summary{
+    width: 30%;
+    height: fit-content;
+    box-sizing: border-box;
+}
+input{
+    border: 1px solid rgba(0, 0, 0, 0.212)!important;
+}
+.appointmnet-card{
+    width: 90%;
+    height: fit-content;
+    background-color: #fff;
+    border: 1px solid rgba(75, 72, 72, 0.158);
+    box-sizing: border-box;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.158);
+    border-radius: 5px;
+    margin: 10px 0;
+}
+.app-data-container{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+.app-title{
+    font-size: 1.6em;
+    font-weight: 500;
+    color: rgb(105, 105, 105);
+}
+.app-right{
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 70px;
-    align-content: center;
+    align-items: center;
+    border: 1px solid rgb(226, 226, 226);
+    height: fit-content;
+    border-radius: 5px;
+    margin:0 20px;
+    box-sizing: border-box;
 }
-.search-section input{
-    margin-left:8%;
-    padding-left: 5px;
-    border: 0;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);
-    height: 25px;
-    width: 20%;
-    font-family: Arial, Helvetica, sans-serif;
+.app-left{
+    width: 70%;
 }
-.appointment{
-    width: 78%;
-    min-height: 170px;
-    display: flex;
-    justify-content: space-around;
-    border: 2px dashed rgba(185, 185, 187, 0.9);
-    background-color: white;
-    padding: 10px;
-    margin-top: 25px;
-}
-.sender-information{
-    font-family: corbel;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-.reject-button button{
-    background-color:#D9534F;
-    color: white;
-    border: none;
-    padding: 5px;
-    float: right;
-    border-radius: 3px;
-    cursor: pointer;
-}
-.sender-details{
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    /*width: 50%;*/
-    padding-left: 5px;
-}
-.sender-details div{
-    margin: 0 2px;
-}
-.send-button-note{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 80%;
-    width: 100%;
-}
-.second div{
-    margin: 0 5px;
-}
-.first div{
-    margin: 0 5px;
-}
-.first,.second{
-    display: flex;
-    justify-content: space-around;
-    /*background-color: #0D47A1;*/
-    width: 100%;
-    margin:10px;
-}
-.send-button-note button{
-    background-color:#0275D8;
-    color: white;
-    border: none;
-    padding: 2px;
-    width: 100%;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-top: 2px;
-}
-.up{
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    margin: 0 3px;
-}
-input{
-    font-family: corbel;
+.admin-title{
+    /*font-size: 600;*/
+    font-size: 1.2em;
+    color: #0606068c;
+    font-family: "Segoe UI";
+    padding: 10px 0 ;
 }
 
-.date-details{
+.officer-details-container{
+    /* min-height: calc(100vh - 102px); */
+    min-height: 450px;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.164);
+    padding: 10px;
+    font-size: 1.25em;
+    box-sizing: border-box;
+}
+.officer-details-summry-header{
+    width: 100%;
     display: flex;
-    /*flex-direction: column;*/
+    justify-content: space-around;
+    border-bottom: 1px solid rgba(167, 167, 167, 0.582);
+
+}
+
+.officer-details-summry-header img{
+    width: 150px;
+    /* height: 100px; */
+    color: rgb(161, 161, 161);
+}
+
+.total-officers{
+    float: right;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.officer-total-count{
+    font-size: 1.6em;
+    color: rgba(0, 0, 0, 0.76);
+}
+
+.total-officers{
+    color: rgba(59, 59, 59, 0.76);
+}
+.officer-summary-card-container{
+    width: 100%;
+    box-sizing: border-box;
+
+}
+.officer-summary-card{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;
+    box-sizing: border-box;
+
+}
+.officer-count{
+    /* padding-right: 50px; */
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+}
+.officer-name{
+    font-size: 1em;
+    color: rgba(17, 17, 17, 0.795);
+}
+.officer-name a{
+    font-size: .8em;
+    color: rgba(24, 24, 24, 0.637);
+
+}
+
+.app-desc{
+    font-size: 1.2em;
+    font-weight: 500;
+    color: rgb(105, 105, 105);
+}
+.app-type{
+    font-size: 1em;
+    font-weight: 500;
+    color: rgb(105, 105, 105);
+    padding-bottom: 20px;
+}
+.app-status{
+    font-size: 1.2em;
+    font-weight: 600;
+    color: rgb(75, 75, 75);
+}
+
+.app-item{
+    width: 100%;
+    border-bottom: 1px solid rgb(226, 226, 226);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: rgb(105, 105, 105);
+}
+
+.search_Btn{
+    width: 150px;
+    height: 30px;
+    margin: 5px 5px ;
+    border: 1px solid #5cb85c;
+    background-color: #fff;
+    outline: none;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    border-radius: 3px;
+    color: #2e8d2e;
+    font-size: 1.3em;
+}
+.search_Btn:hover{
+    color: #fff;
+    background-color: #2e8d2e;
+    border: 1px solid #ffffff;
+}
+.app-submitBtn {
+    width: 100px;
+    height: 30px;
+    margin: 5px 5px ;
+
+    outline: none;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(255, 255, 255);
+    font-size: 1.1em;
+}
+.btn-danger{
+    border: 1px solid white;
+    background-color: #b92727;
+}
+.btn-success{
+    border: 1px solid white;
+    background-color: #2e478d;
+}
+.btn-primary{
+    border: 1px solid white;
+    background-color: #2e8d2e;
+}
+
+
+.app-header{
+    width: 100%;
+    /* background-color: rgba(144, 255, 159, 0.342); */
+
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid rgba(119, 151, 98, 0.158);
+    display: flex;
+    align-items: center;
+    padding:0 20px ;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    color: rgba(0, 0, 0, 0.836);
+    font-size: 1.01em;
+    /* font-weight: 600; */
+    /* text-shadow: 1px 1px 1px rgb(0, 0, 0, 0.16); */
+
+}
+.action-center{
+    width: 100%;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
-    /*background-color: red;*/
+    padding:  0 20px;
+    box-sizing: border-box;
+    background-color: rgba(144, 255, 159, 0.123);
 }
-.sender{
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-}
-.first{
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-}
-.second{
-    display: flex;
-    justify-content: space-around;
-    width: 90%;
-}
-/*!* responsive *!*/
-@media screen and (max-width: 1050px) {
-    .appointment{
-        flex-direction: column;
-        align-items: center;
-        height: 250px;
-        width: 90%;
-    }
-    .sender-details{
-        flex-direction: row;
-    }
-    .sender-information{
-        width: 100%;
-        flex-direction: row;
-        text-align: center;
-    }
-}
-@media screen and (max-width: 770px) {
-    .appointment{
-        height: 340px;
-    }
-    .sender{
-        flex-direction: column;
-    }
-    .date-details{
-        flex-direction: column;
-        align-items: center;
-    }
-    .sender-details{
-        padding: 15px;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-    }
-}
-@media screen and (max-width: 475px) {
-    .appointment{
-        height: 500px;
-    }
-    .reject-button{
-        padding: 15px;
-        align-items: center;
-    }
-    .sender-information{
-        flex-direction: column;
-    }
-    .sidebar-main-show{
-        max-width: calc(100vw - 78px);
-        margin-left: 78px;
-        transition: 0.2s ease;
-    }
-    .sender-details{
-        flex-direction: column;
-
-    }
-    .first,.second{
-        flex-direction: column;
-        align-items: center;
-    }
-    .first div, .second div{
-        margin: 0;
-    }
-}
-

@@ -16,10 +16,10 @@
     <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <title>Appointmenst</title>
-
+    <title>Appointment</title>
+    <script src="<c:url value="/public/js/PHIOfficer/phi_appointmnet.js"/>"></script>
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -27,85 +27,156 @@
 <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
 
 <%--<div class="main-contents">--%>
-<div class="popup-container" id="PopupContainer"></div>
-    <div id="mainContent" class="container">
+<%--<div class="popup-container" id="PopupContainer"></div>--%>
+<div id="mainContent" class="container">
 
-        <div class="header">
-            <div class="upper-title">SUWASEWANA </div>
-            <div class="dashboard-name">PHI/Dashboard/View Appointments</div>
-        </div>
-        <!-- Search appointments section -->
-        <div class="search-section">
-            <input class="f-4" placeholder="Search by name"/>
-        </div>
+    <div class="header">
+        <div class="upper-title">SUWASEWANA </div>
+        <div class="dashboard-name">PHI/Dashboard/View Appointments</div>
+    </div>
+    <!-- Search appointments section -->
+    <!-- appintments content -->
+    <div class="appointments-container">
 
-        <!-- appintments content -->
-        <div class="appointments-container">
-
-            <div class="appointment">
-                <!-- appointment sender's details -->
-                <div class="sender">
-                    <div class="sender-information">
-                        <div class="information">
-                            <p class="f-2">Akila Anjana Dissanayaka</p>
-                            <p class="f-3">Type - Scholarship </p>
-                            <p class="f-3">Talk About People's Bank staff vaccination </p>
-                        </div>
-                        <div class="reject-button" onclick="popup.showPopup()">
-                            <button class="f-4">Reject Appointment </button>
-                        </div>
+        <div class="appointment-view">
+            <div class="filter_appointment">
+                <div class="row">
+                    <div class="form-group" style="padding: 0;">
+                        <label for="user-nic">
+                            User NIC
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                               maxlength="13" />
+                        <div id="user-nic-error" class="form-field-error"></div>
                     </div>
-                    <div class="sender-details">
-                        <div class="sender-location f-4"><i data-feather="map-pin"></i>  Galgamuwa</div>
-                        <div class="sender-mobile f-4"><i data-feather="phone"></i>  0713805000</div>
-                        <div class="send-date f-4"><i data-feather="calendar"></i>  9/18/2021</div>
+                    <div class="form-group">
+                        <label for="app-type">
+                            Appointment Type
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-type" />
+                        <div id="app-type-error" class="form-field-error"></div>
                     </div>
-                </div>
-                <!-- the date selection section by phi -->
-                <div class="date-details">
-                    <!-- first date select -->
-                   <div class="up">
-                       <p style="text-align: center" class="f-2">Available Time Slots</p>
-                       <div class="first">
-                           <div class="first-date">
-                               <div class="dateF"><input type="text" placeholder="Date" style="text-align: center"></input></div>
-                           </div>
-                           <div class="first-time-slots">
-                               <input placeholder="Time" style="text-align: center">
-                           </div>
-                       </div>
-                       <!-- second date select-->
-                       <div class="second">
-                           <div class="second-date">
-                               <%--                            <span>Second time</span>--%>
-                               <div class="dateS"><input type="text" placeholder="Date" style="text-align: center"></input></div>
-                           </div>
-                           <div class="second-time-slots">
-                               <input placeholder="Time" style="text-align: center">
-                           </div>
-                       </div>
-                   </div>
-                    <div class="send-button-note">
-                        <textarea placeholder="Special note" style="text-align: center"></textarea>
-                        <button class="f-3">Send</button>
+                    <div class="form-group">
+                        <label for="app-status">
+                            Appointment Status
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-status" />
+                        <div id="app-status-error" class="form-field-error"></div>
+                    </div>
 
+                    <div class="form-group">
+                        <label >
+                            &nbsp;
+                        </label>
+                        <button class="search_Btn"> Search</button>
+                        <div id="user-mobile-error" class="form-field-error"></div>
                     </div>
                 </div>
             </div>
-<%--        </div>--%>
-<%--    </div>--%>
+            <div class="admin-title">
+                Current Appointment
+            </div>
+            <div id="appointmnet_card_container" >
 
-    <script>
-        feather.replace({width: "10px",height:"10px"})
-    </script>
+            </div>
+        </div>
+
+        <div class="appointment-summary">
+            <div class="admin-title">
+                Summary of Appointment
+            </div>
+            <div class="officer-details-container">
+                <div class="officer-details-summry-header">
+                    <img src="Asset 1.png" alt="" srcset="" width="50px">
+                    <div class="total-officers">
+                        <div class="officer-total-count" id="total_appointment_header">
+                            500
+                        </div>
+                        Total No of Appointment
+                    </div>
+                </div>
+                <div class="officer-summary-card-container">
+                    <div class="officer-summary-card">
+                        <div class="officer-name">
+                            Today Appointment
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count" id="today_appointment">
+                            520
+                        </div>
+                    </div>
+                    <div class="officer-summary-card">
+                        <div class="officer-name">
+                            Pending Appointment
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count" id="pendnig_appointment">
+                            520
+                        </div>
+                    </div>
+                    <div class="officer-summary-card">
+                        <div class="officer-name">
+                            completed Appointment
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count" id="completed_appointment">
+                            1, 255
+                        </div>
+                    </div>
+                </div>
+                <div class="officer-details-summry-header"> </div>
+                <div class="officer-summary-card-container" id="category_appointment_summary">
+
+                    <!-- <div class="officer-summary-card">
+                        <div class="officer-name">
+                            Mahapola
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count">
+                            851
+                        </div>
+                    </div>
+                    <div class="officer-summary-card">
+                        <div class="officer-name">
+                            Mahapola
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count">
+                            851
+                        </div>
+                    </div>
+                    <div class="officer-summary-card">
+                        <div class="officer-name">
+                            Mahapola
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count">
+                            851
+                        </div>
+                    </div> -->
+                </div>
+
+                <div class="officer-details-summry-header"> </div>
 
 
-    <script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
-        <script defer>
-            let popup= new require_message_popup('PopupContainer' , "Reason for Reject")
-        </script>
+            </div>
+        </div>
+    </div>
 
-</div>
 </div>
 </body>
+<script defer>
+    let appointmentObj = new Appointment();
+    appointmentObj.setDate([1,2,3,4,5,6]);
+    appointmentObj.makeAppointmnetCard();
+    appointmentObj.getAppointmentCategorySummary();
+
+    // appointmentObj.getDataFromApi();
+</script>
 </html>
