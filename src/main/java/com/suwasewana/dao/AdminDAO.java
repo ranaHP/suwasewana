@@ -73,38 +73,38 @@ public class AdminDAO {
     }
 
 
-    public String phiRegistration(PHIModel phiRegister) {
-        System.out.println("data come to dao");
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(PHI_REGISTRATION)) {
-            preparedStatement.setString(1, phiRegister.getFull_name() );
-            preparedStatement.setString(2, phiRegister.getNIC() );
-            preparedStatement.setString(3, phiRegister.getMobile());
-            preparedStatement.setString(4, phiRegister.getAddress());
-            preparedStatement.setString(5, phiRegister.getCity());
-            preparedStatement.setString(6, phiRegister.getDistrict());
-            preparedStatement.setString(7, phiRegister.getPhi_post());
-            preparedStatement.setString(8, phiRegister.getPassword() );
-            preparedStatement.setString(9, phiRegister.getPostalCode());
-            preparedStatement.setString(10,phiRegister.getMohId());
-            preparedStatement.setString(11, phiRegister.getDp());
-            System.out.println("SQL "+preparedStatement);
-            int rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
-
-            return "success";
-        } catch (SQLException throwables) {
-            printSQLException(throwables);
-//            System.out.println(throwables.getErrorCode());
-//            System.out.println(throwables.getSQLState());
-//            System.out.println(throwables.getMessage());
-//            System.out.println(throwables);
-            System.out.println("Error");
-            return throwables.getMessage();
-        }
-
-
-    }
+//    public String phiRegistration(PHIModel phiRegister) {
+//        System.out.println("data come to dao");
+//
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(PHI_REGISTRATION)) {
+//            preparedStatement.setString(1, phiRegister.getFull_name() );
+//            preparedStatement.setString(2, phiRegister.getNIC() );
+//            preparedStatement.setString(3, phiRegister.getMobile());
+//            preparedStatement.setString(4, phiRegister.getAddress());
+//            preparedStatement.setString(5, phiRegister.getCity());
+//            preparedStatement.setString(6, phiRegister.getDistrict());
+//            preparedStatement.setString(7, phiRegister.getPhi_post());
+//            preparedStatement.setString(8, phiRegister.getPassword() );
+//            preparedStatement.setString(9, phiRegister.getPostalCode());
+//            preparedStatement.setString(10,phiRegister.getMohId());
+//            preparedStatement.setString(11, phiRegister.getDp());
+//            System.out.println("SQL "+preparedStatement);
+//            int rs = preparedStatement.executeUpdate();
+//            System.out.println("dao value" + rs);
+//
+//            return "success";
+//        } catch (SQLException throwables) {
+//            printSQLException(throwables);
+////            System.out.println(throwables.getErrorCode());
+////            System.out.println(throwables.getSQLState());
+////            System.out.println(throwables.getMessage());
+////            System.out.println(throwables);
+//            System.out.println("Error");
+//            return throwables.getMessage();
+//        }
+//
+//
+//    }
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
