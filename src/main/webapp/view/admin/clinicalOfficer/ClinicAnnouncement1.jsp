@@ -48,7 +48,7 @@
         Vaccine clinic Announcement
       </div>
       <div class="seach_by_name" style="margin: 50px 0;">
-        <form onsubmit="return LoadData();" class="load">
+        <form class="load">
           <div>
             <input id="CId" placeholder="search by clinic ID" list="AllMArea" name="AllMArea" autocomplete="off"
                    onclick="document.getElementById('CId').value='';"
@@ -230,12 +230,18 @@
 
   function view(){
     let clinicListArray=[]
+    let reqData =
+            {
+              clinicID: checkMOHid(),
+            };
+    console.log(reqData)
     $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
-            // reqData,
+            reqData,
             function(data,status){
-              clinicListArray=JSON.parse(data)
-              // console.log(clinicListArray)
-              selectVclinics.setData(clinicListArray);
+      alert(data)
+              // clinicListArray=JSON.parse(data)
+              // // console.log(clinicListArray)
+              // selectVclinics.setData(clinicListArray);
 
             }
     );
@@ -258,6 +264,9 @@
   }
 
 
+
+</script>
+<script defer>
   let mohDetails=[];
   $.post("/test_war_exploded/create-clinic-controller/all-V-Clinics",
           function (data, status) {

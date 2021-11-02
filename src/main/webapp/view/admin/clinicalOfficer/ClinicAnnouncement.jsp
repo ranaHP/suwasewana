@@ -246,6 +246,7 @@
     $.post("/test_war_exploded/create-clinic-controller/select",
             reqData,
             function(data,status){
+      alert(data)
               clinicList=JSON.parse(data)
               selectClinic.setData(clinicList);
             }
@@ -257,16 +258,16 @@
     let reqData =
             {
               clinicID:document.getElementById("clinicID").value,
-              disease:document.getElementById("disease").value,
-              title:document.getElementById("clinic-title").value,
-              location:document.getElementById("location").value,
-              targetMOH:document.getElementById("target-MOH").value,
-              datetime:document.getElementById("date-time").value,
-              duration:document.getElementById("duration").value,
-              maxpatient:document.getElementById("max-patient").value,
-              patient:document.getElementById("patient").value,
-              conduct:document.getElementById("conduct").value,
-              description:document.getElementById("description").value,
+              // disease:document.getElementById("disease").value,
+              // title:document.getElementById("clinic-title").value,
+              // location:document.getElementById("location").value,
+              // targetMOH:document.getElementById("target-MOH").value,
+              // datetime:document.getElementById("date-time").value,
+              // duration:document.getElementById("duration").value,
+              // maxpatient:document.getElementById("max-patient").value,
+              // patient:document.getElementById("patient").value,
+              // conduct:document.getElementById("conduct").value,
+              // description:document.getElementById("description").value,
               image:imagearray[0]
               // banner:imagearray[0],
               // disease:document.getElementById("disease"),
@@ -312,7 +313,7 @@
             reqData,
             function (data,status){
              // alert("wrong")
-             //  alert(data)
+              alert(data)
             });
 
     return false;

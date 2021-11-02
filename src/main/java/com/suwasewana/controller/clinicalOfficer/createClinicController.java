@@ -186,7 +186,7 @@ import java.util.ArrayList;
         res.getWriter().println("update");
         CreateClinicModel updateClinic= new CreateClinicModel(
 
-                req.getParameter(""),
+                req.getParameter("clinicID"),
                 req.getParameter("title"),
                 req.getParameter("datetime"),
                 req.getParameter("duration"),

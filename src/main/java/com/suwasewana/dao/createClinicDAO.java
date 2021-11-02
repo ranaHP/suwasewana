@@ -22,7 +22,7 @@ public class createClinicDAO {
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session`";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
-  private static final String DELETE_VCLINICS="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
+  private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
   private static final String VClinic_Detail="SELECT * FROM `vaccine_clinic_session`";
   Connection connection;
     public createClinicDAO(){
@@ -275,9 +275,8 @@ public class createClinicDAO {
     }
 
     public ArrayList<vaccineClinicModel> selectVClinics(vaccineClinicModel selectVclinics) {
-
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_VACCINE_CLINICS)){
-//            System.out.println("jjj");
+            System.out.println("jjj");
             preparedStatement.setString(1, selectVclinics.getVcs_id());
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println(rs.toString());
@@ -310,10 +309,10 @@ public class createClinicDAO {
                         v_id,
                         location,
                         dose_count
+
+
                 );
-//                System.out.println(temp);
                 selectVClinicList.add(temp);
-//                System.out.println(selectVClinicList);
 //                System.out.println(title+"--"+disease+"--"+Location);
             };
             return selectVClinicList;
@@ -322,6 +321,7 @@ public class createClinicDAO {
 //            return throwables.getMessage();
         }
         return null;
+
     }
 
     public String deleteVClinic(vaccineClinicModel deleteVClinic) {

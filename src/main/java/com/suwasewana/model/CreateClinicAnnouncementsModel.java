@@ -1,6 +1,7 @@
 package com.suwasewana.model;
 
 public class CreateClinicAnnouncementsModel {
+    public String AID;
     public String clinicID;
     public String disease;
     public String title;
@@ -16,6 +17,7 @@ public class CreateClinicAnnouncementsModel {
     public String cNic;
 
     public CreateClinicAnnouncementsModel(
+            String AID,
             String clinicID,
             String disease,
             String title,
@@ -31,6 +33,7 @@ public class CreateClinicAnnouncementsModel {
             String cNic
             ){
         super();
+        this.AID=AID;
         this.clinicID=clinicID;
         this.disease= disease;
         this.title= title;
@@ -47,6 +50,14 @@ public class CreateClinicAnnouncementsModel {
 
 
 
+    }
+
+    public String getAID() {
+        return AID;
+    }
+
+    public void setAID(String AID) {
+        this.AID = AID;
     }
 
     public String getClinicID() {

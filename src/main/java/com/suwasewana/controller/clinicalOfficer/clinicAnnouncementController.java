@@ -152,6 +152,7 @@ import java.util.ArrayList;
               "",
               "",
               "",
+              "",
               ""
       );
         ArrayList<CreateClinicAnnouncementsModel> result= clinicalAnnouncementsDAO.ViewclinicAnnouncements(viewAnnouncement);
@@ -163,17 +164,18 @@ import java.util.ArrayList;
 //        res.getWriter().println("announcement controller");
         System.out.println("came to controller");
         CreateClinicAnnouncementsModel createClinicAnnouncementsModel = new CreateClinicAnnouncementsModel(
+                "",
                 req.getParameter("clinicID"),
-                req.getParameter("disease"),
-                req.getParameter("title"),
-                req.getParameter("location"),
-                req.getParameter("targetMOH"),
-                req.getParameter("datetime"),
-                req.getParameter("duration"),
-                req.getParameter("maxpatient"),
-                req.getParameter("patient"),
-                req.getParameter("conduct"),
-                req.getParameter("description"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                 req.getParameter("image"),
                 "12"
         );
@@ -185,6 +187,7 @@ import java.util.ArrayList;
     private void deleteAnnouncements(HttpServletRequest req,HttpServletResponse res) throws IOException {
         System.out.println("Deleteeeeeeeeee");
         CreateClinicAnnouncementsModel deleteAnnouncements = new CreateClinicAnnouncementsModel(
+                "",
                 req.getParameter("clinicID"),
                 "",
                 "",
