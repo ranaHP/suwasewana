@@ -52,7 +52,6 @@ public class UserComplainController extends HttpServlet {
                     userViewComplainType(req, res);
                     break;
                 case "moh":
-//                    res.getWriter().println("moh view");
                     ViewMOH(req,res);
                     break;
                 case "create":
@@ -82,7 +81,8 @@ public class UserComplainController extends HttpServlet {
 //        System.out.println("type"+req.getParameter("complaintype"));
         String title=req.getParameter("Title");
         String type=req.getParameter("complaintype");
-        ArrayList<ComplainModel> result = userDAO.SearchComplainDetails(title,type);
+        String nic=req.getParameter("nic");
+        ArrayList<ComplainModel> result = userDAO.SearchComplainDetails(title,type,nic);
         res.getWriter().println(gson.toJson(result));
     }
 
@@ -101,35 +101,23 @@ public class UserComplainController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void uerMakeComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
-        Cookie[] cookies = req.getCookies();
-        if(cookies !=null){
-            for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
-                }
-            }
-        }
+
         ComplainModel usercomplainDetails = new ComplainModel(
                 req.getParameter("cTitle"),
                 req.getParameter("cType"),
                 req.getParameter("uType"),
                 req.getParameter("cPhi"),
                 req.getParameter("cReason"),
-                "1234fr5",
-                "199910920064",
+                "",
+                "199910910064",
                 "",
                 "pending",
                 req.getParameter("img1"),
                 req.getParameter("img2"),
-                req.getParameter("img3")
+                req.getParameter("img3"),
+                "",
+                req.getParameter("MOH")
         );
-        System.out.println("Title "+usercomplainDetails.getCTitle());
-        System.out.println("cType "+usercomplainDetails.getCType() );
-        System.out.println("uType "+usercomplainDetails.getUType());
-        System.out.println("phiid "+usercomplainDetails.getPHIId());
-        System.out.println("reason "+usercomplainDetails.getCMessage());
-
         String result = userDAO.UserMakeComplain(usercomplainDetails);
         res.getWriter().println(result);
     }
@@ -153,14 +141,16 @@ public class UserComplainController extends HttpServlet {
                 "",
                 "",
                 "",
-                "pending",
+                "",
+                "",
+                "",
                 "",
                 "",
                 ""
 
         );
-
-        ArrayList<ComplainModel> result = userDAO.userGetComplainDetails(complainModeldetail);
+        String nic="199910910064";
+        ArrayList<ComplainModel> result = userDAO.userGetComplainDetails(complainModeldetail,nic);
         res.getWriter().println(gson.toJson(result));
     }
 

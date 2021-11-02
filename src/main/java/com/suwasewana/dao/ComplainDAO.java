@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ComplainDAO {
     @SuppressWarnings("SqlResolve")
     private static final String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`complain` (`idcomplain`, `Title`, `ComplainType`, `UserDetailType`, `AreaPHI`, `Des`, `Img1`, `Img2`, `Img3`) VALUES (null , ?, ?, ?, ?, ?,? , ?, ?);";
-    private static final String COMPLAIN_TYPE="SELECT * FROM suwaserwana_db.complains;";
+    private static final String COMPLAIN_TYPE="SELECT * FROM suwasewana_db.complaint_type;";
     Connection connection;
 
     public ComplainDAO() {
@@ -30,8 +30,8 @@ public class ComplainDAO {
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<ComplainTypeModel> complainList = new ArrayList<ComplainTypeModel>();
             while (rs.next()) {
-                String id = rs.getString("TypeId");
-                String Type = rs.getString("Type");
+                String id = rs.getString("complaint_type_id");
+                String Type = rs.getString("tittle");
                 ComplainTypeModel temp = new ComplainTypeModel(
                         id,
                         Type

@@ -13,9 +13,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MOHDAO {
-//    @SuppressWarnings("SqlResolve")
+    @SuppressWarnings("SqlResolve")
 
-    private static final String MOH_Detail="SELECT * FROM suwaserwana_db.moh;";
+    private static final String MOH_Detail="SELECT * FROM suwasewana_db.moh;";
     Connection connection;
 
     public MOHDAO() {
@@ -24,20 +24,18 @@ public class MOHDAO {
     }
 
     public ArrayList<MOHModel> GetMOHDetails() {
-
         try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_Detail)) {
-
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<MOHModel> mohList = new ArrayList<MOHModel>();
             while (rs.next()) {
-
-                String id = rs.getString("idMOH");
-                String name = rs.getString("MName");
+                String id = rs.getString("moh_id");
+                String name = rs.getString("name");
                 MOHModel temp = new MOHModel(
                         id,
                         name,
                         "",
                         ""
+
 
                 );
 //

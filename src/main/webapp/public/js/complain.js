@@ -1,21 +1,5 @@
 class Complain {
-   // ComplainArray = [
-   //      {
-   //          CType: " ",
-   //          UType: " ",
-   //          User:" ",
-   //          Posted_Date: " ",
-   //          CTitle: " ",
-   //          CMessage: " ",
-   //          posted_data: " ",
-   //          PHIId:"",
-   //          PHIName
-   //          Status: " ",
-   //          img1: " ",
-   //          img2: " ",
-   //          img3: " "
-   //      }
-   //  ];
+
     ComplainArray={};
 
 
@@ -45,14 +29,14 @@ class Complain {
                             <div class="complaint-card">
                                 <div class="header">
                                     ${item.CTitle}
-                                    <p> ${item.Posted_Date}</p>
+                                    <p> ${(item.Posted_Date).split(" ")[0]}</p>
                                 </div>
 
                                 <div class="properties">
                                     <ul>
                                         <li>
                                             <img src="${this.url}images/icons/usertype.svg" width="22px" />
-                                            UserType : ${item.UType==1? "anonymous":"non-anonymous" }
+                                            PHI Response : ${item.PHIResponse==""? "No action":item.PHIResponse }
                                         </li>
                                     </ul>
                                 </div>
