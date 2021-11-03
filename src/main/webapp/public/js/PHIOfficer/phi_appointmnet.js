@@ -5,22 +5,41 @@ class PHIAppointment{
     conatiner ;
 
     constructor(){
+
     }
 
     setData(data){
         this.appointmentList = data;
         this.makeAppointmnetCard(data);
+        this.getTodaysEvent();
     }
     setDataAppointmentType(data){
         this.appointmentTypeList = data;
-        this.getAppointmentCategorySummary()
+        this.getAppointmentCategorySummary();
     }
-    makeAppointmnetCard(data)
-    {
+    makeAppointmnetCard(data) {
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         this.conatiner = document.getElementById("appointmnet_card_container");
+        document.getElementById("resultCount").innerText = data.length;
+        if(data.length ==0){
+            this.conatiner.innerHTML += `<div class="appointmnet-card">
+                <div class="app-header">
+                    <div class="div">Suwasewana Message</div>
+                    <div class="div">Posted Date on ` + new Date() + ` </div>
+                </div>
+                <div class="app-data-container">
+                    <div class="app-left">
+                        <div class="app-title">
+                        No Data Found
+                        </div>
+                    </div>
+                </div>
+                <div class="action-center">
+                    </div>
+            </div>`
+            return;
+        }
         data.map( (app, index) => {
-            console.log(app);
             this.conatiner.innerHTML += `<div class="appointmnet-card">
                 <div class="app-header">
                     <div class="div">Appointmnet Number ` + app.appointment.aType + `</div>
@@ -74,26 +93,44 @@ class PHIAppointment{
         let total = 0;
         let pending = 0;
         let completed = 0;
+        setTimeout( () => {
+            this.appointmentList.map( (app, index) => {
+                if(app.appointment.status == "pending"){
+                    pending++;
+                }else if(app.appointment.status == "completed"){
+                    completed++;
+                }
+                total++;
+                document.getElementById("id"+app.appointmentType.typeNumber).innerText = Number(document.getElementById("id"+app.appointmentType.typeNumber).innerText) +1  ;
+            })
+            document.getElementById("today_appointment").innerHTML = total;
+            document.getElementById("total_appointment_header").innerHTML = total;
+            document.getElementById("pendnig_appointment").innerHTML = pending;
+            document.getElementById("completed_appointment").innerHTML = completed;
+        } ,200)
+
+
+    }
+
+    getTodaysEvent(){
         this.appointmentList.map( (app, index) => {
             if(app.appointment.status == "pending"){
-                pending++;
-            }else if(app.appointment.status == "completed"){
-                completed++;
-            }
-            total++;
-            document.getElementById("id"+app.appointmentType.typeNumber).innerText = Number(document.getElementById("id"+app.appointmentType.typeNumber).innerText) +1  ;
 
+            }
+            let today = new Date();
+            let today1 = new Date(app.appointment.posted_date_time);
+           // console.log(app.appointment.posted_date_time.split(" ")[0] + " " + today.getFullYear() + "-" + today.getMonth()  + "-" +today.getDay()  )
+            console.log("---------------------------------")
+            console.log( today)
+            console.log( today1)
+            console.log( today1 < today)
+            console.log("---------------------------------")
         })
-        document.getElementById("today_appointment").innerHTML = total;
-        document.getElementById("total_appointment_header").innerHTML = total;
-        document.getElementById("pendnig_appointment").innerHTML = pending;
-        document.getElementById("completed_appointment").innerHTML = completed;
+
 
     }
     getAppointmentCategorySummary(){
-        let data = JSON.parse('[{"typeNumber":"100","typeName":"Mahapola Scholarship"},{"typeNumber":"101","typeName":"Grade 5 Scholarship"},{"typeNumber":"102","typeName":"To Discuss Complaint"},{"typeNumber":"103","typeName":"Other"}]');
-        data.map( (category ,index) => {
-
+        this.appointmentTypeList.map( (category ,index) => {
             document.getElementById('category_appointment_summary').innerHTML += ` 
             <div class="officer-summary-card">
                 <div class="officer-name">
@@ -102,7 +139,7 @@ class PHIAppointment{
                     <a href=""> manage</a>
                 </div>
                 <div class="officer-count" id="id` + category.typeNumber +`" >
-                    00  
+                    0 
                 </div>
             </div>`;
         });
@@ -110,20 +147,24 @@ class PHIAppointment{
     }
 
     searchAppointment(){
-        document.getElementById('user-nic').value;
-        document.getElementById('app-type').value;
-        document.getElementById('app-status').value;
+        let nic = document.getElementById('user-nic').value;
+        let type = document.getElementById('app-type').value;
+        let status =document.getElementById('app-status').value;
+        if(type === "All"){
+            type = ""
+        }
+        if(status === "All"){
+            status = ""
+        }
         let filterdData = this.appointmentList.filter( (app) => {
             if(
-                app.appointmentType.typeName.includes(document.getElementById('app-type').value) &&
-                app.appointmentType.typeName.includes(document.getElementById('app-type').value) &&
-                app.appointmentType.typeName.includes(document.getElementById('app-type').value)
+                app.appointmentType.typeName.toLowerCase().includes(type.toLowerCase()) &&
+                app.appointment.user_nic.toLowerCase().includes(nic.toLowerCase()) &&
+                app.appointment.status.toLowerCase().includes(status.toLowerCase())
             ){
                 return app;
             }
-            console.log(app.appointmentType.typeName +" == " +document.getElementById('app-type').value )
         });
-        console.log(filterdData)
         this.conatiner.innerHTML = "";
         this.makeAppointmnetCard(filterdData);
 
