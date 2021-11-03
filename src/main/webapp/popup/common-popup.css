@@ -10,8 +10,7 @@
     background-color: aquamarine;
     display: flex;
     align-items: center;
-    display: none;
-    position: fixed;
+    /* display: none; */
 }
 .ml5{
     margin-left: 5px;
