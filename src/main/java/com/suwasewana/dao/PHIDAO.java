@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class PHIDAO {
     @SuppressWarnings("SqlResolve")
-    private static final String SELECT_phi="SELECT * FROM suwaserwana_db.phi_officer;";
+    private static final String SELECT_phi_with_city="SELECT full_name,nic,mobile_number,name,assignMOH FROM suwasewana_db.phi p LEFT JOIN suwasewana_db.cities c ON p.assignCity = c.city_id;";
     Connection connection;
 
     public PHIDAO() {
@@ -23,27 +23,37 @@ public class PHIDAO {
     }
 
     public ArrayList<PHIModel> GetPHIDetails() {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_phi)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_phi_with_city)) {
             ResultSet rs = preparedStatement.executeQuery();
-            System.out.println(rs);
             ArrayList<PHIModel>phiList = new ArrayList<PHIModel>();
             while (rs.next()) {
                 String name = rs.getString("full_name");
-                String id = rs.getString("mohId");
-                String mohId=rs.getString("mohId");
+                String id = rs.getString("assignMOH");
+                String nic=rs.getString("nic");
+                String mobile=rs.getString("mobile_number");
+                String assigncity=rs.getString("name");
                 PHIModel temp = new PHIModel(
+                        id,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        mobile,
+                        nic,
                         name,
                         "",
                         "",
                         "",
                         "",
                         "",
-                        "",
-                        "",
-                        mohId,
-                        ""
+                        assigncity
                 );
-
+//
                 phiList.add(temp);
             }
             return phiList;
