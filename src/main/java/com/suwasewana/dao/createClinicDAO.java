@@ -281,7 +281,7 @@ public class createClinicDAO {
             preparedStatement.setString(1, selectVclinics.getVcs_id());
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println(rs.toString());
-            ArrayList<vaccineClinicModel> selectClinicList = new ArrayList<vaccineClinicModel>();
+            ArrayList<vaccineClinicModel> selectVaClinicList = new ArrayList<vaccineClinicModel>();
             while (rs.next()){
                 String vcs_id =rs.getString("vcs_id");
                 String title =rs.getString("tittle");
@@ -311,10 +311,10 @@ public class createClinicDAO {
                         location,
                         dose_count
                 );
-                selectClinicList.add(temp);
+                selectVaClinicList.add(temp);
 //                System.out.println(title+"--"+disease+"--"+Location);
             };
-            return selectClinicList;
+            return selectVaClinicList;
         } catch (SQLException throwables) {
             printSQLException(throwables);
 //            return throwables.getMessage();

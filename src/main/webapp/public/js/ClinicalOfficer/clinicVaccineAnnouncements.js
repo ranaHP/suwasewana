@@ -1,5 +1,5 @@
 // alert("class")
-class selectVClinics {
+class selectVacClinics {
 
     ClinicArray = [
         {

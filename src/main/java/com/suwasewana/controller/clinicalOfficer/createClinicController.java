@@ -94,9 +94,9 @@ import java.util.ArrayList;
 
     private void AllVaccineClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        System.out.println("Come to view moh controller");
-        ArrayList<vaccineClinicModel> result = createClinicDAO.allvClinics();
-        res.getWriter().println(gson.toJson(result));
+//        System.out.println("Come to view moh controller");
+        ArrayList<vaccineClinicModel> result1 = createClinicDAO.allvClinics();
+        res.getWriter().println(gson.toJson(result1));
         }
 
     private void VaccineClinicsdelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -124,9 +124,8 @@ import java.util.ArrayList;
 
 
     private void VaccineClinicsSelect(HttpServletRequest req, HttpServletResponse res) throws IOException {
-//            res.getWriter().println("clinic select");
-//        res.getWriter().println(req.getParameter("CId"));
-            vaccineClinicModel selectVclinics= new vaccineClinicModel(
+//            res.getWriter().println("came");
+            vaccineClinicModel selectVaclinics= new vaccineClinicModel(
                     req.getParameter("clinicID"),
                     "",
                     "",
@@ -142,7 +141,7 @@ import java.util.ArrayList;
                     ""
             );
 
-        ArrayList<vaccineClinicModel> result= createClinicDAO.selectVClinics(selectVclinics);
+        ArrayList<vaccineClinicModel> result= createClinicDAO.selectVClinics(selectVaclinics);
         res.getWriter().println(gson.toJson(result));
         }
 

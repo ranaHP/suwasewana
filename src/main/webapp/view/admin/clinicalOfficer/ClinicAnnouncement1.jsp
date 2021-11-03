@@ -204,7 +204,7 @@
      duration:document.getElementById("duration").value,
      age_limit:document.getElementById("Age-limit").value,
      TargetMOH:document.getElementById("Target-MOH").value,
-     CId:checkMOHid(),
+     CId:checkid(),
 
    };
    console.log(reqData)
@@ -228,20 +228,20 @@
             );
 
   }
-  let selectVclinics = new selectVClinics("form");
+  let selectVclinics = new selectVacClinics("form");
 
   function view(){
     let clinicListArray=[]
     let reqData =
             {
-              clinicID: checkMOHid(),
+              clinicID: document.getElementById("CId").value,
             };
     // console.log(reqData)
     $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
             reqData,
-            function(data,status){
-      alert(data)
-              // clinicListArray=JSON.parse(data)
+            function(data1,status){
+               alert(data1)
+              // clinicListArray=JSON.parse(data1)
               // // console.log(clinicListArray)
               // selectVclinics.setData(clinicListArray);
 
@@ -252,7 +252,7 @@
 
 
 
-  function checkMOHid(){
+  function checkid(){
     // alert("check")
     var MTypeObj = document.getElementById('CId');
     var datalist = document.getElementById(MTypeObj.getAttribute("list"));
@@ -269,23 +269,26 @@
 
 </script>
 <script>
-function check(){
-  let mohDetails=[];
-  $.post("/test_war_exploded/create-clinic-controller/all-V-Clinics",
-          function (data, status) {
-            // console.log(data);
-            let rs= JSON.parse(data);
-            this.mohDetails=rs;
-            console.log(data);
 
-            let MNames=document.getElementById("AllMArea");
-            MNames.innerHTML="";
-            rs.map((element,index) => {
-              // console.log("moh"+element.MName)
-              MNames.innerHTML+= '<option  id="'+element.vcs_id+'"  name="'+element.vcs_id+'" value="'+element.vcs_id +  '" option="' +element.vcs_id +  '" ></option>'
-            })
-          }
-  );
-}
+ function check(){
+   let mohDetails=[];
+   $.post("/test_war_exploded/create-clinic-controller/all-V-Clinics",
+           function (data, status) {
+             // console.log(data);
+             let rs= JSON.parse(data);
+             this.mohDetails=rs;
+             // console.log(data);
+
+             let MNames=document.getElementById("AllMArea");
+             MNames.innerHTML="";
+             rs.map((element,index) => {
+               // console.log("moh"+element.MName)
+               MNames.innerHTML+= '<option  id="'+element.vcs_id+'"  name="'+element.vcs_id+'" value="'+element.vcs_id +  '" option="' +element.vcs_id +  '" ></option>'
+             })
+           }
+   );
+   return false
+ }
+
 </script>
 </html>

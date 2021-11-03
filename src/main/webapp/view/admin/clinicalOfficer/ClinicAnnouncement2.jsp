@@ -269,7 +269,6 @@ function view(){
             console.log(data)
             clinicList=JSON.parse(data)
             selectClinic.setData(clinicList);
-
           }
   );
   return false;
