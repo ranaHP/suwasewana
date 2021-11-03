@@ -27,7 +27,6 @@ class clinicList {
         console.log(data);
         this.clinicListArray.map((item) => {
             this.container.innerHTML += `
-<!--                <div class="clinic-card-container" >-->
                     <div class="clinic-card">
                         <div class="header">
                             ${item.title}
@@ -70,7 +69,6 @@ class clinicList {
                             </div>
                         </div>
                     </div>
-<!--                </div>-->
             `
             ;
             console.log("map")

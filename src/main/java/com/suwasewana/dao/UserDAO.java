@@ -37,6 +37,7 @@ public class UserDAO {
 
     private static final String USER_GET_HOME_ANNOUNCEMENT = "SELECT * FROM `normal_clinic_session` ";
     private static final String USER_GET_HOME_DISEASE = "SELECT * FROM `disease_cases` ";
+    private static final String USER_GET_HOME_HEALTH_ANNOUNCEMENT = "SELECT * FROM `health_announcement`";
 
     Connection connection;
 
@@ -543,6 +544,42 @@ public class UserDAO {
                 homediseaseList.add(temp);
             }
             return homediseaseList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
+    public ArrayList<UserHomeHealthAnnouncementModel> userGethomehealthannouncement(UserHomeHealthAnnouncementModel homehealthannouncementDetails) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_HOME_HEALTH_ANNOUNCEMENT )) {
+//            preparedStatement.setString(1, homeDetails.getUser());
+//            System.out.println(homeDetails.getUser());
+            System.out.println("data come to health dao");
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<UserHomeHealthAnnouncementModel> homehealthannouncementList = new ArrayList<UserHomeHealthAnnouncementModel>();
+            while (rs.next()) {
+                String announcement_id = rs.getString("announcement_id");
+                String title = rs.getString("title");
+                String description = rs.getString("description");
+                String banner = rs.getString("banner");
+                String target_district = rs.getString("target_district");
+                String target_provinces = rs.getString("target_provinces");
+                String target_cities = rs.getString("target_cities");
+
+                UserHomeHealthAnnouncementModel temp = new UserHomeHealthAnnouncementModel(
+                        announcement_id,
+                        title,
+                        description,
+                        banner,
+                        target_district,
+                        target_provinces,
+                        target_cities
+
+                );
+                homehealthannouncementList.add(temp);
+            }
+            return homehealthannouncementList;
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
