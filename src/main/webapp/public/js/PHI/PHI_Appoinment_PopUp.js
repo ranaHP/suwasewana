@@ -80,7 +80,7 @@ class PHIAppointmnetPopup{
             </div>
                 <div class="row" >
                 <div class="form-group" style="padding: 0;">
-                        <label for="user-nic">
+                        <label >
                             User NIC
                         </label>
                         <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
@@ -120,78 +120,77 @@ class PHIAppointmnetPopup{
     giveTimeSlot(data) {
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
-        if(data.round === "0"){
-            eventDiv.innerHTML = `
+        eventDiv.innerHTML = `
             <div class="popup-title">   Appointment Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
-                <h3> Appointment Title : <br/>` + data.title+ `</h3>
+                <h2> Appointment Acceptance Form</h2>
                 <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
-                 <label for="user-nic">
+                 <label >
                             Time Slot 1
                         </label>
                    <div class="row">
                    <div class="form-group" style="padding: 0 30px;">
-                        <label for="user-nic">
+                        <label >
                             Start Date & Time
                         </label>
-                        <input type="datetime-local" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                        <input type="datetime-local" autofocus autocomplete="off" name="ts1sd" id="ts1sd"
                                maxlength="13" 
                         />
-                        <div id="user-nic-error" class="form-field-error"></div>
+                        <div id="app-ts1sd-error" class="form-field-error"></div>
                     </div>
                    <div class="form-group" style="padding: 0 30px;">
-                        <label for="user-nic">
+                        <label >
                               End Time
                         </label>
-                        <input type="time" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                        <input type="time" autofocus autocomplete="off" name="ts1et" id="ts1et"
                                maxlength="13" 
                         />
-                        <div id="user-nic-error" class="form-field-error"></div>
+                        <div id="app-ts1et-error" class="form-field-error"></div>
                     </div>
                     
                     </div>
-                    <label for="user-nic">
+                    <label >
                             Time Slot 2
                         </label>
                    <div class="row">
                    <div class="form-group" style="padding: 0 30px;">
-                        <label for="user-nic">
+                        <label >
                             Start Date & Time
                         </label>
-                        <input type="datetime-local" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                        <input type="datetime-local" autofocus autocomplete="off" name="ts2sd" id="ts2sd"
                                maxlength="13" 
                         />
-                        <div id="user-nic-error" class="form-field-error"></div>
+                        <div id="app-ts2sd-error" class="form-field-error"></div>
                     </div>
                    <div class="form-group" style="padding: 0 30px;">
-                        <label for="user-nic">
+                        <label >
                               End Time
                         </label>
-                        <input type="time" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                        <input type="time" autofocus autocomplete="off" name="ts2ed" id="ts2ed"
                                maxlength="13"
                         />
-                        <div id="user-nic-error" class="form-field-error"></div>
+                        <div id="app-ts2ed-error" class="form-field-error"></div>
                     </div>
                     
                     </div>
                     <div class="form-group" style="padding: 0 30px;">
-                        <label for="user-nic">
+                        <label >
                             Location
                         </label>
-                        <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                        <input type="text" autofocus autocomplete="off" name="app-location" id="app-location"
                                minlength="3" 
                         />
-                        <div id="user-nic-error" class="form-field-error"></div>
+                        <div id="app-location-error" class="form-field-error"></div>
                     </div>
                     <div class="form-group" style="padding: 0 30px;">
-                        <label for="user-nic">
+                        <label >
                             Special Notice
                         </label>
-                        <textarea As="textarea" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                        <textarea As="textarea" class="textarea" autofocus autocomplete="off" name="app-sn" id="app-sn"
                           
                         ></textarea>
-                        <div id="user-nic-error" class="form-field-error"></div>
+                        <div id="app-sn-error" class="form-field-error"></div>
                     </div>
                 </div>
                 <div class="row" >
@@ -201,22 +200,127 @@ class PHIAppointmnetPopup{
                         onclick="popup.hidePopup()"> Save </button>
                     </div>
                 </div>`;
-        }else if(data.round === "1"){
-            eventDiv.innerHTML = `
-            <div class="popup-title">User Appointment Portal </div>
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    rejectAppointment(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">   Appointment Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-                <div class="error-message"> Reason :  ${data.data}</div>
-                <div class="row" >
-                    <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Close</button>
+                <h2> Appointment rejection Form</h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    <div class="form-group" style="padding: 0 30px;">
+                        <label >
+                            Reason to reject
+                        </label>
+                        <textarea As="textarea"  class="textarea" autofocus autocomplete="off" name="app-rr" id="app-rr"
+                          
+                        ></textarea>
+                        <div id="app-rr-error" class="form-field-error"></div>
                     </div>
                 </div>
-            </div>`;
-        }
+                <div class="row" >
+                
+                    <div class="form-group">
+                        <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Reject </button>
+                    </div>
+                </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    postPoneAppointment(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">   Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2> Appointment Postponatation Form </h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                 <label >
+                           New Time Slot 1
+                        </label>
+                   <div class="row">
+                   <div class="form-group" style="padding: 0 30px;">
+                        <label >
+                            Start Date & Time
+                        </label>
+                        <input type="datetime-local" autofocus autocomplete="off" name="app-pp-ts1sd" id="app-pp-ts1sd"
+                               maxlength="13" 
+                        />
+                    </div>
+                   <div class="form-group" style="padding: 0 30px;">
+                        <label >
+                              End Time
+                        </label>
+                        <input type="time" autofocus autocomplete="off" name="app-pp-ts1ed" id="app-pp-ts1ed"
+                               maxlength="13" 
+                        />
+                        
+                    </div>
+                    
+                    </div>
+                    <label >
+                           New Time Slot 2
+                        </label>
+                   <div class="row">
+                   <div class="form-group" style="padding: 0 30px;">
+                        <label >
+                            Start Date & Time
+                        </label>
+                        <input type="datetime-local" autofocus autocomplete="off" name="app-pp-ts2sd" id="app-pp-ts2sd"
+                               maxlength="13" 
+                        />
+                    </div>
+                   <div class="form-group" style="padding: 0 30px;">
+                        <label >
+                              End Time
+                        </label>
+                        <input type="time" autofocus autocomplete="off" name="app-pp-ts1ed" id="app-pp-ts1ed"
+                               maxlength="13"
+                        />
+                        
+                    </div>
+                    
+                    </div>
+                    <div class="form-group" style="padding: 0 30px;">
+                        <label >
+                            Location
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="app-pp-location" id="app-pp-location"
+                               minlength="3" 
+                        />
+                        
+                    </div>
+                    <div class="form-group" style="padding: 0 30px;">
+                        <label >
+                            Reason to Postpone
+                        </label>
+                        <textarea As="textarea" class="textarea" autofocus autocomplete="off" name="app-pp-pr" id="app-pp-pr"
+                          
+                        ></textarea>
+                        
+                    </div>
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group">
+                        <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Reject </button>
+                    </div>
+                </div>`;
         eventsContaier.appendChild(eventDiv);
 
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);

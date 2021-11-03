@@ -167,10 +167,7 @@
 <script >
     let popup = new PHIAppointmnetPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let validation = new FormInputValidation();
-    popup.giveTimeSlot({
-        round: '0',
-        message: 'Give available time slot!'
-    });
+
 </script>
 <script defer>
     let appointmentObj = new PHIAppointment();

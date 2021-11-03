@@ -82,8 +82,8 @@ class PHIAppointment{
                     </div>
                     <div class="btn-set">
                         <button class="app-submitBtn btn-danger" onclick="popup.giveTimeSlot({ round: '` + app.appointment.round +  `',message: 'Give available time slot!' , title: '` + app.appointment.aTitle + `'});"> Give Time Solt</button>
-                        <button class="app-submitBtn btn-success"> Reject</button>
-                        <button class="app-submitBtn btn-primary"> Postpone</button>
+                        <button class="app-submitBtn btn-success"  onclick="popup.rejectAppointment({ message: 'Reject Appointment' , title: '` + app.appointment.aTitle + `'});"> Reject</button>
+                        <button class="app-submitBtn btn-primary"  onclick="popup.postPoneAppointment({ message: 'Postpone Appointment' , title: '` + app.appointment.aTitle +  `'});"> Postpone</button>
                     </div>
                     </div>
             </div>`
