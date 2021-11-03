@@ -33,7 +33,23 @@ class FormInputValidation {
         }
         return isValida;
     }
+    NICValidation(nic, fieldName) {
+        var cnic_no_regex = new RegExp('^[0-9+]{9}[vV|xX]$');
+        var new_cnic_no_regex = new RegExp('^[0-9+]{12}$');
+        let isValida = true;
+        if (nic.length == 10 && cnic_no_regex.test(nic)) {
+            this.setErrorMessageForField("valid nic", fieldName, 1);
+            isValida = true;
 
+        } else if (nic.length == 12 && new_cnic_no_regex.test(nic)) {
+            this.setErrorMessageForField("valid nic", fieldName, 1)
+            isValida = true;
+        } else {
+            this.setErrorMessageForField("invalid nic", fieldName, 1)
+            isValida = false;
+        }
+        return isValida;
+    }
 
     setErrorMessageForField(error, field, status) {
         document.getElementById(field).innerHTML = error;
