@@ -223,16 +223,16 @@ public class UserDAO {
         System.out.println("data come to dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_CREATE_APPOINTMENT)) {
             preparedStatement.setString(1, appointment.getaTitle());
-            preparedStatement.setString(2, appointment.getAppointmentType());
-            preparedStatement.setString(3, appointment.getPhi());
-            preparedStatement.setString(4, appointment.getReason());
+            preparedStatement.setString(2, appointment.getaType());
+            preparedStatement.setString(3, appointment.getaPhi());
+            preparedStatement.setString(4, appointment.getaReason());
             preparedStatement.setString(5, String.valueOf(1));
             preparedStatement.setString(6, "");
             preparedStatement.setString(7, "");
             preparedStatement.setString(8, "");
             preparedStatement.setString(9, "");
             preparedStatement.setString(10, "pending");
-            preparedStatement.setString(11, appointment.getUser());
+            preparedStatement.setString(11, appointment.getUser_nic());
             preparedStatement.setString(12, null);
             int rs = preparedStatement.executeUpdate();
             System.out.println("dao value" + rs);
@@ -249,8 +249,8 @@ public class UserDAO {
 
     public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {
-            preparedStatement.setString(1, appointmentDetails.getUser());
-            System.out.println(appointmentDetails.getUser());
+            preparedStatement.setString(1, appointmentDetails.getUser_nic());
+            System.out.println(appointmentDetails.getUser_nic());
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
             while (rs.next()) {

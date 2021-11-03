@@ -42,7 +42,7 @@ public class RegisterController extends HttpServlet {
                     RegClinicalOfficer(req, res);
                     break;
                 case "phi":
-                    RegPHI(req, res);
+//                    RegPHI(req, res);
                     break;
                 case "moh":
                     RegMOH(req, res);
@@ -180,25 +180,25 @@ public class RegisterController extends HttpServlet {
 
 
 
-    private void RegPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        PHIModel phiModel= new PHIModel(
-                req.getParameter("full_name"),
-                req.getParameter("NIC"),
-                req.getParameter("mobile"),
-                req.getParameter("Address"),
-                req.getParameter("city"),
-                req.getParameter("District"),
-                req.getParameter("phi_post"),
-                req.getParameter("postalCode"),
-                req.getParameter("MOHArea"),
-                req.getParameter("DP")
-        );
-
-
-
-        String result = adminDAO.phiRegistration(phiModel);
-        res.getWriter().println(result);
-    }
+//    private void RegPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+//        PHIModel phiModel= new PHIModel(
+//                req.getParameter("full_name"),
+//                req.getParameter("NIC"),
+//                req.getParameter("mobile"),
+//                req.getParameter("Address"),
+//                req.getParameter("city"),
+//                req.getParameter("District"),
+//                req.getParameter("phi_post"),
+//                req.getParameter("postalCode"),
+//                req.getParameter("MOHArea"),
+//                req.getParameter("DP")
+//        );
+//
+//
+//
+//        String result = adminDAO.phiRegistration(phiModel);
+//        res.getWriter().println(result);
+//    }
 
 
 
