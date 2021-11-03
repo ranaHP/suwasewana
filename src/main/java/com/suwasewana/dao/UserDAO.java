@@ -1,11 +1,7 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
-import com.suwasewana.model.AppointmentModel;
-import com.suwasewana.model.AppointmentTypeModel;
-import com.suwasewana.model.ComplainModel;
-import com.suwasewana.model.UserLoginModel;
-import com.suwasewana.model.UserRegistrationModel;
+import com.suwasewana.model.*;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -37,6 +33,8 @@ public class UserDAO {
     private static  final  String INSERT_COMPLAIN="INSERT INTO `suwaserwana_db`.`user_complains` " +
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`,`img1`,`img2`,`img3`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?);";
+
+    private static final String USER_GET_HOME_ANNOUNCEMENT = "SELECT * FROM `normal_clinic_session` ";
     Connection connection;
 
     public UserDAO() {
@@ -463,7 +461,51 @@ public class UserDAO {
     }
 
 
+    public ArrayList<UserHomeModel> userGethome(UserHomeModel homeDetails) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_HOME_ANNOUNCEMENT )) {
+//            preparedStatement.setString(1, homeDetails.getUser());
+//            System.out.println(homeDetails.getUser());
+            System.out.println("data come to dao");
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<UserHomeModel> homeList = new ArrayList<UserHomeModel>();
+            while (rs.next()) {
+                String ncs_id = rs.getString("ncs_id");
+                String title = rs.getString("title");
+                String start_time = rs.getString("start_time");
+                String end_time = rs.getString("end_time");
+                String date = rs.getString("date");
+                String description = rs.getString("description");
+                String max_sheet = rs.getString("max_sheet");
+                String conduct_by = rs.getString("conduct_by");
+                String target_moh = rs.getString("target_moh");
+                String target_people = rs.getString("target_people");
+                String location = rs.getString("location");
+                String clinical_officer = rs.getString("clinical_officer");
+                String banner = rs.getString("banner");
+                UserHomeModel temp = new UserHomeModel(
+                         ncs_id,
+                         title,
+                         start_time,
+                         end_time,
+                         date,
+                         description,
+                         max_sheet,
+                         conduct_by,
+                         target_moh,
+                         target_people,
+                         location,
+                         clinical_officer,
+                         banner
+                );
+                homeList.add(temp);
+            }
+            return homeList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
 
+        return null;
+    }
 
 
 

@@ -34,7 +34,7 @@
         <!-- officer count -->
         <div class="officer-count">
             <div class="count-box">
-                <div class="l"><img src="<c:url value="/public/images/icons/compass.svg"/>" width="35px" >
+                <div class="l"><i data-feather="user-check"></i>
 
                 </div>
                 <div class="r">
@@ -44,7 +44,7 @@
             </div>
 
             <div class="count-box">
-                <div class="l"><img src="<c:url value="/public/images/icons/circle.svg"/>" ></div>
+                <div class="l"><i data-feather="user"></i></div>
                 <div class="r">
                     <p class="registered">Registered RPHI</p>
                     <p class="count">65</p>
@@ -52,7 +52,7 @@
             </div>
 
             <div class="count-box">
-                <div class="l"><img src="<c:url value="/public/images/icons/circle.svg "/>" ></div>
+                <div class="l"><i data-feather="user-plus"></i></div>
                 <div class="r">
                     <p class="registered">Registered Clinical officers</p>
                     <p class="count">450</p>
@@ -136,20 +136,20 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td data-label="Disease">A</td>
+                            <td data-label="Disease">Corona</td>
                             <td data-label="NO of clinics">1</td>
                         </tr>
                         <tr>
-                            <td data-label="Disease">B</td>
+                            <td data-label="Disease">Dengue</td>
                             <td data-label="NO of clinics">1</td>
                         </tr>
                         <tr>
-                            <td data-label="Disease">C</td>
+                            <td data-label="Disease">Maleria</td>
                             <td data-label="NO of clinics">1</td>
                         </tr>
 
                         <tr>
-                            <td data-label="Disease">D</td>
+                            <td data-label="Disease">Thyroxine</td>
                             <td data-label="NO of clinics">2</td>
                         </tr>
                         </tbody>
@@ -204,5 +204,8 @@
 
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
+<script>
+    feather.replace({width: '1.8em', height: '1.1em'})
+</script>
 </body>
 </html>

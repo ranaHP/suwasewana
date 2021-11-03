@@ -61,7 +61,7 @@
       <div class="multirow">
         <div class="milturow_left">
           <div class="form-item">
-            <input type="text" id="MoHName" autocomplete="off"
+            <input type="text" id="MoHName" autocomplete="off" value="Karapitiya MOH"
                    onblur="validation.nameValidation(
                                 document.getElementById('MoHName').value,
                                 'LMoHName'
@@ -77,7 +77,7 @@
         </div>
         <div class="multirow_right">
           <div class="form-item">
-            <input type="text" id="TpNo" autocomplete="off"
+            <input type="text" id="TpNo" autocomplete="off" value="0919514568"
                    onkeyup="validation.mobileValidation(
                                 document.getElementById('TpNo').value,
                                 'LTpNo'
@@ -96,7 +96,7 @@
       <div class="multirow">
         <div class="milturow_left" id="mohHeadDiv">
           <div class="form-item" id="Moh_headdiv">
-            <input type="text" id="MoHhead" autocomplete="off"
+            <input type="text" id="MoHhead" autocomplete="off" value="Ajantha"
                    onblur="validation.nameValidation(
                                 document.getElementById('MoHhead').value,
                                 'LMoHhead'
@@ -360,7 +360,7 @@
               y:""
             };
 
-    $.post("/suwasewana_war/admin-register-controller/moh",
+    $.post("/test_war_exploded/admin-register-controller/moh",
             reqData,
             function (data, status) {
               if (data.includes("success") ) {

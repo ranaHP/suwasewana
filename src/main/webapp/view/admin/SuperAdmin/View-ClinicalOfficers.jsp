@@ -24,7 +24,7 @@
     </div>
     <!-- view phi title -->
     <div class="main-title">
-        View phi
+        View Clinical Officer
     </div>
     <div class="search-section">
         <div class="select"  id="select_district">

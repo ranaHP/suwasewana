@@ -76,15 +76,15 @@
                 <li><a href="/test_war_exploded/s/view_MOH">List MOH Areas</a></li>
             </ul>
         </li>
-        <li>
-            <a href="#">
-                <i class='bx bx-line-chart'></i>
-                <span class="link_name">Chart</span>
-            </a>
-            <ul class="sub-menu blank">
-                <li><a class="link_name" href="#">Chart</a></li>
-            </ul>
-        </li>
+<%--        <li>--%>
+<%--            <a href="#">--%>
+<%--                <i class='bx bx-line-chart'></i>--%>
+<%--                <span class="link_name">Chart</span>--%>
+<%--            </a>--%>
+<%--            <ul class="sub-menu blank">--%>
+<%--                <li><a class="link_name" href="#">Chart</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
         <li>
             <div class="iocn-link">
                 <a href="#">
