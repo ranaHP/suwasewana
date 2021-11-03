@@ -90,6 +90,7 @@
     font-size: 1.3em;
     color: rgba(0, 0, 0, 0.671);
 }
+
 .row1_col3 button{
     border-radius: 3px;
     border: none;
@@ -110,13 +111,13 @@
 
 .search_row_row2{
     /* background-color: #4B7BEC; */
-    width: 60%;
+    width: 100%;
 }
 .row2_col1,.row2_col2{
     width: 50%;
 }
 .row2_col1 input,.row2_col2 input{
-    width: 130px;
+    width: 148px;
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.26);
     color: rgba(0, 0, 0, 0.671);
@@ -261,6 +262,7 @@ datalist {
 .complain_card_right_full_img img{
     width: 90%;
     border-radius: 2px;
+    height:150px;
     box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.158);
 
 }
@@ -271,11 +273,13 @@ datalist {
     justify-content: space-between;
     padding: 0 15px;
     margin-top: 10px;
+    min-width: 220px;
 
 }
 .complain_card_right_all_img img {
     width: 28%;
     border-radius: 2px;
+    height: 60px;
     box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.158);
 
 }
@@ -399,6 +403,12 @@ datalist {
     }
     .search_row_row2{
         flex-direction: column;
+    }
+    #searchByDate{
+        justify-content: flex-start;
+    }
+    #searchByDate button{
+        padding: 4px;
     }
     .row2_col1{
         margin-bottom: 20px;

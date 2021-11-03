@@ -48,6 +48,12 @@ public class PHIComplainController extends HttpServlet {
                 case "ViewComplainForPHI":
                     ComplainForPHI(req, res);
                     break;
+                case "search":
+                    SearchComplain(req, res);
+                    break;
+                case "searchbydate":
+                    SearchComplainbydate(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -57,6 +63,27 @@ public class PHIComplainController extends HttpServlet {
         }
 
     }
+
+        private void SearchComplainbydate(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+            System.out.println("date1"+req.getParameter("date1"));
+            System.out.println("date1"+req.getParameter("date2"));
+            String date1=req.getParameter("date1");
+            String date2=req.getParameter("date2");
+            String nic=req.getParameter("PHINic");
+            ArrayList<CommanForCompalinAndUser> result = complainDAO.SearchComplainBydate(date1,date2,nic);
+            res.getWriter().println(gson.toJson(result));
+        }
+
+        private void SearchComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+        System.out.println("title"+req.getParameter("title"));
+        System.out.println("type"+req.getParameter("Type"));
+        System.out.println("phi"+req.getParameter("PHINic"));
+            String title=req.getParameter("title");
+            String type=req.getParameter("Type");
+            String nic=req.getParameter("PHINic");
+            ArrayList<CommanForCompalinAndUser> result = complainDAO.SearchComplainDetailsPHI(title,type,nic);
+            res.getWriter().println(gson.toJson(result));
+        }
 
     private void ComplainForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
