@@ -344,11 +344,12 @@ public class createClinicDAO {
 
                 String vcs_id = rs.getString("vcs_id");
                 String title = rs.getString("tittle");
+                String dateTime= rs.getString("start_date_time");
 
                 vaccineClinicModel temp = new vaccineClinicModel(
                         vcs_id,
                         title,
-                        "",
+                        dateTime,
                         "",
                         "",
                         "",

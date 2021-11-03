@@ -40,10 +40,7 @@
             <span class="error" id="LMArea" style="margin-left: 5px" ></span>
             <button onclick="searchD()">Search</button>
         </div>
-<%--        <div class="results">--%>
-<%--            <div class="value" id="value"></div>--%>
-<%--            <div class="Results">: Results <i data-feather="layers" width="15px" height="12px"></i></div>--%>
-<%--        </div>--%>
+
     </div>
     <div class="card-containor" id="card-containor">
 <%--          <div id="option" class="live-card"></div>--%>
