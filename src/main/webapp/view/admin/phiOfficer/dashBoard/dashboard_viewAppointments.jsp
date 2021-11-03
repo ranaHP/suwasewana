@@ -9,32 +9,32 @@
 
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
     <script src="<c:url value="/public/js/PHIOfficer/phi_appointmnet.js"/>"></script>
+
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
 
     <%--pop up styles--%>
-    <link rel="stylesheet" href="<c:url value="/popup/common-popup.css"/> "/>
-    <script src="<c:url value="/popup/Message.js"></c:url> "></script>
+
     <script src="https://unpkg.com/feather-icons"></script>
 
     <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
 
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <title>Appointmenst</title>
+
+    <title>Appointments</title>
 
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
-
 
 
 </head>
 <body>
 
-<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp"/>
 <%--<div class="popup-container" id="PopupContainer"></div>--%>
 <div id="mainContent" class="container">
 
     <div class="header">
-        <div class="upper-title">SUWASEWANA </div>
+        <div class="upper-title">SUWASEWANA</div>
         <div class="dashboard-name">PHI/Dashboard/View Appointments</div>
     </div>
     <!-- Search appointments section -->
@@ -49,26 +49,26 @@
                             User NIC
                         </label>
                         <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
-                               maxlength="13" />
+                               maxlength="13"/>
                         <div id="user-nic-error" class="form-field-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="app-type">
                             Appointment Type
                         </label>
-                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-type" />
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-type"/>
                         <div id="app-type-error" class="form-field-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="app-status">
                             Appointment Status
                         </label>
-                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-status" />
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-status"/>
                         <div id="app-status-error" class="form-field-error"></div>
                     </div>
 
                     <div class="form-group">
-                        <label >
+                        <label>
                             &nbsp;
                         </label>
                         <button class="search_Btn"> Search</button>
@@ -79,7 +79,7 @@
             <div class="admin-title">
                 Current Appointment
             </div>
-            <div id="appointmnet_card_container" >
+            <div id="appointmnet_card_container">
 
             </div>
         </div>
@@ -90,7 +90,8 @@
             </div>
             <div class="officer-details-container">
                 <div class="officer-details-summry-header">
-                    <img src="<c:url value="/public/images/PHI_Dashboard/appointmnet_banner.png"/> " alt="" srcset="" width="50px">
+                    <img src="<c:url value="/public/images/PHI_Dashboard/appointmnet_banner.png"/> " alt="" srcset=""
+                         width="50px">
                     <div class="total-officers">
                         <div class="officer-total-count" id="total_appointment_header">
                             500
@@ -130,10 +131,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="officer-details-summry-header"> </div>
+                <div class="officer-details-summry-header"></div>
                 <div class="officer-summary-card-container" id="category_appointment_summary">
                 </div>
-                <div class="officer-details-summry-header"> </div>
+                <div class="officer-details-summry-header"></div>
             </div>
         </div>
     </div>
@@ -142,17 +143,37 @@
 </body>
 
 <script>
-    feather.replace({width: "10px",height:"10px"})
+    feather.replace({width: "10px", height: "10px"})
 </script>
 
 
-<script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+<script src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
 <script defer>
     // let popup= new require_message_popup('PopupContainer' , "Reason for Reject")
 </script>
 <script defer>
-    let appointmentObj = new Appointment();
-    appointmentObj.getAppointmentCategorySummary();
-    // appointmentObj.getDataFromApi();
+    let appointmentObj = new PHIAppointment();
+    init();
+    function init(){
+        const xhttp1 = new XMLHttpRequest();
+        xhttp1.onload = function () {
+            let result = JSON.parse([this.response]);
+            appointmentObj.setDataAppointmentType(result);
+            // appointmentObj.getAppointmentCategorySummary();
+        }
+        xhttp1.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_type", true);
+        xhttp1.send();
+        const xhttp2 = new XMLHttpRequest();
+        xhttp2.onload = function () {
+            let result = JSON.parse([this.response]);
+
+            appointmentObj.setData(result);
+            appointmentObj.makeAppointmnetCard();
+
+        }
+        xhttp2.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_for_phi", true);
+        xhttp2.send();
+    }
+
 </script>
 </html>
