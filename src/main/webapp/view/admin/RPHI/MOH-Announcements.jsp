@@ -12,10 +12,11 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/public_Announcements.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/announcementCard.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/admin/public_Announcements.js"></c:url> "></script>
+    <script defer src="<c:url value="/public/js/Admin/public_Announcements.js"></c:url> "></script>
 </head>
-<body id="mainContent">
+<body id="mainContent" onload="check()">
 <c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp"></c:import>
 <div class="container">
     <!-- suwasewana header -->
@@ -23,22 +24,23 @@
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">RPHI/Dashboard/Make announcements</div>
     </div>
-    <!-- <div class="main-title">Make announcements</div> -->
     <div class="search-section">
-        <div class="selected-options-container" id="selected-options-container">
-        </div>
         <div class="down">
-            <input id="SelectColor" type="text" list="AllColors" placeholder="select MOH">
-            <datalist id="AllColors">
-                <option label="Akuressa" value="Akuressa">
-                <option label="Galgamuwa" value="Galgamuwa">
-                <option label="Ahangama" value="Ahangama">
-                <option label="Matara" value="Matara">
-            </datalist>
 
-            <button type="button" class="add-button" onclick="AddValue(document.getElementById('AllColors').value, document.getElementById('AllColors').text);">Add</button>
-        </div>
-    </div>
+        <label >MOH Area</label> <br>
+        <input autocomplete="off" class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea" required
+               onclick="document.getElementById('MArea').value='';"
+               onblur="validation.SearchSelect(
+                                    document.getElementById('MArea').value,
+                                    'LMArea'
+                                );"
+        >
+        <datalist id="AllMArea">
+        </datalist>
+        <br>
+        <span class="error" id="LMArea" style="margin-left: 5px" ></span>
+
+        </div></div>
     <div class="make-announcement-container">
 
         <div class="left">
@@ -49,14 +51,21 @@
                         <input type="text" id="title" autocomplete="off" onkeyup="card()" required>
                         <label for="title">Title</label>
                     </div>
+<%--                    <div class="post-date" id="date">posted date -:${today} </div>--%>
                     <div class="form-item">
                         <label for="description" >Description</label>
                         <textarea id="description" name="content" rows="10" cols="30" row="5" onkeyup="card()"></textarea>
                     </div>
                     <div class="img-publish-button">
-                        <label for="file" class="upload" style="cursor: pointer;">Upload Image</label>
-                        <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
-                        <button class="publish-button">Publish</button>
+                    <div class="image-upload-card">
+                        <img id="proof1" width="100%" />
+                        <input type="file" accept="image/*" name="file" id="proof1input"
+                               onchange="loadFile(event , 'proof1')" style="display: none;">
+
+                        <label for="proof1input" class="upload" style="cursor: pointer;">Upload Image</label>
+                    </div>
+
+                     <button class="publish-button" onclick="return imageUpload()">Publish</button>
                     </div>
 
                 </form>
@@ -79,10 +88,97 @@
         image.src = URL.createObjectURL(event.target.files[0]);
     };
 
-    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-    vaccineId = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[1].split("/")[0];
-    console.log(vaccineId);
+    function imageUpload() {
+        console.log("image upload")
+        var fd = new FormData();
+        let imageNames = [];
+
+        if ($('#proof1input')[0].files[0]) {
+            fd.append('file', $('#proof1input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url1 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof1input')[0].files[0].name.split(".")[$('#proof1input')[0].files[0].name.split(".").length - 1];
+            imageNames.push(url1);
+        }
+
+        imageNames.map((item, index) => {
+            fd.append('ImageName' + (index + 1), item);
+        })
+        console.log("image neames array "+imageNames);
+        if(imageNames.length!=0){
+            $.ajax({
+                url: '/test_war_exploded/fileuploadservlet1',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != 0) {
+                        console.log("successfully image uploadedss ---- " +imageNames )
+
+                        StaffAnnouncement(imageNames)
+                    } else {
+                        console.log('file not uploaded');
+                    }
+                },
+            });
+        }
+        else {
+            console.log("no image selected")
+            // registerwithoutimage();
+        }
+        return false;
+    }
+
+    function StaffAnnouncement(imagearray){
+        reqData={
+            date:document.getElementById("date").value,
+            title:document.getElementById("title").value,
+            description:document.getElementById("description").value,
+            image:imagearray[0],
+            moh:checkid()
+        }
+        console.log(reqData)
+    }
+
 </script>
+<script>
+    let validation = new FormInputValidation();
+    function check(){
+        let mohDetails=[];
+        $.post("/test_war_exploded/user-complain-controller/moh",
+            function (data, status) {
+                // console.log(data);
+                let rs= JSON.parse(data);
+                this.mohDetails=rs;
+                // console.log(data);
+
+                let MNames=document.getElementById("AllMArea");
+                MNames.innerHTML="";
+                rs.map((element,index) => {
+                    // console.log("moh"+element.MName)
+                    MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
+                })
+            }
+        );
+    }
+
+    function checkid(){
+        // alert("check")
+        var MTypeObj = document.getElementById('MArea');
+        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(MTypeObj.value)){
+            alert(datalist.options.namedItem(MTypeObj.value).id)
+            return (datalist.options.namedItem(MTypeObj.value).id);
+        }
+        else {
+            return  0;
+        }
+    }
+
+</script>
+
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
 </html>

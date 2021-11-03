@@ -19,11 +19,11 @@ function card()
                         </div>
                         <div class="right">
                             <div class="up">
-                                <div class="announe-title"  id="hii">${title}</div>
-                                <div class="post-date">posted date -:${today} </div>
+                                <div class="announe-title"  id="title">${title}</div>
+                                <div class="post-date" id="date">posted date -:${today} </div>
                             </div>
                             <div class="down">
-                                  <div class="description">
+                                  <div class="description" id="description">
                                      ${description}
                                    </div>
                                 
@@ -59,12 +59,17 @@ function AddValue(){
     console.log(selectedOptionList);
     document.querySelector('#SelectColor').value ="";
 
+
+
+
+
 }
 
 selectedOptionList = [];
 
 function deleteSelectedItem(value){
     let index = selectedOptionList.findIndex(item => value == item);
+    console.log(index)
     let temp  = selectedOptionList.filter(item => item != value);
     selectedOptionList = temp;
     document.getElementById("selected-options-container").innerHTML = "";

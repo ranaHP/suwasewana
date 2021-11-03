@@ -28,10 +28,12 @@ body{
     margin-left: 78px;
     background-color: #dfe4ea59;
     max-width: calc(100vw - 78px);
+
 }
 .container{
     font-family: Arial, Helvetica, sans-serif;
     height: 100vh;
+
 
 }
 .sidebar-main-show{
@@ -50,13 +52,40 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 .main-title{
     height: 80px;
     display: flex;
-    padding-left: 5%;
+    padding-left: 15%;
     align-items: center;
     color: rgba(0, 0, 0, 0.815);
+    /*margin-left: 20px;*/
+}
+
+.image-upload-card-container {
+    height: fit-content ;
+    width: 32%;
+}
+.image-upload-card{
+    display: flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    flex-direction: column;
+    /*background-color: red;*/
+    width: 100%;
+}
+.image-upload-card label {
+    background-color: #0275d8;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 6px;
+    font-family: 'Segoe UI';
+
+}
+.down{
+    padding: 20px;
 }
 .left{
     display: flex;
