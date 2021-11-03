@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
     <script src="<c:url value="/public/js/PHIOfficer/phi_appointmnet.js"/>"></script>
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
+    <script src="<c:url value="/public/js/PHI/"/>"></script>
 
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
 
