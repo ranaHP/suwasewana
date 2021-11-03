@@ -10,17 +10,22 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewComplaints.css"/> "/>
 <%--    <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>--%>
     <script src="https://unpkg.com/feather-icons"></script>
-<%--    <script  src="<c:url value="/public/js/PHIOfficer/viewComplaints.js"/> "></script>--%>
     <title>Suwasewana</title>
     <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="<c:url value="/public/js/complain.js"/>"></script>
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/popup/Appintmentpopup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
 
 </head>
 <body id="mainContent">
   <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
-<%--  <div class="popup-container" id="PopupContainer"></div>--%>
+
+  <div class="mypopup" id="popup" style="display: none;"></div>
   <div class="main-container">
       <div class="header">
           <div class="upper-title">SUWASEWANA</div>
@@ -175,9 +180,13 @@
   <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 
 <script defer>
-    // let popup= new require_message_popup('PopupContainer', "Do you need to send a massage <br>to complainer ?")
+
+
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+
     let complain= new Complain('previous_complain_list');
 
+    let complainlist=[];
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     getAllComplain();
     console.log("url "+myUrl+"/phi-complain-controller1/ViewComplainForPHI")
@@ -188,7 +197,7 @@
             {},
             function (data, status) {
                 let complainList = JSON.parse(data);
-
+                complainlist=complainList;
 
 
                 // fill pending done in progress count
@@ -226,135 +235,112 @@
         );
 
     }
-    function search_By_Date(){
-        let date1=document.getElementById("date1").value;
-        let date2=document.getElementById("date2").value;
-        console.log("date1 "+ date1)
-        console.log("date2 "+ date2)
-        let phiNic='199910910062';
-        let searchItem={
-            date1:date1,
-            date2:date2,
-            PHINic:phiNic
-        }
-        $.post(myUrl+"/phi-complain-controller1/searchbydate",
-            searchItem,
-            function (data, status) {
 
-                let complainList = JSON.parse(data);
-
-
-
-                // fill pending done in progress count
-                let pendin=0;
-                let done=0;
-                let progress=0;
-                complainList.map((element) => {
-                    console.log("status " +element.complainModel.Status);
-
-                    if(element.complainModel.Status=="Pending"){
-                        pendin++;
-                    }
-                    else if(element.complainModel.Status=="Done"){
-                        done++;
-                    }
-                    else if(element.complainModel.Status=="In Progress"){
-                        progress++;
-                    }
-                    else {
-                        console.log("Incorrect complain model status check ur database")
-                    }
-
-                })
-                document.getElementById("Pending").innerText=pendin;
-                document.getElementById("done").innerText=done;
-                document.getElementById("Progress").innerText=progress;
-
-
-                complain.setDataForPHI(complainList);
+    function ViewPAtientDetails( nic){
+        console.log("user nic "+nic);
+        complainlist.map((element) =>{
+            if(element.user.uNic==nic){
+                    let uMobile=element.user.uMobile;
+                    let uname=element.user.uname;
+                    let uNic=element.user.uNic;
+                    let street_no=element.user.street_no;
+                    let address_line1=element.user.address_line1;
+                popup.viewComplainer({
+                    uMobile:uMobile,
+                        uname:uname,
+                            uNic:uNic,
+                                street_no:street_no,
+                                    address_line1:address_line1
+                });
+                    console.log("User details "+
+                        uMobile+" "+
+                        uname+" "+
+                        uNic+" "+
+                        street_no+" "+
+                        address_line1
+                    )
             }
-        );
+        });
 
     }
 
-
-    // take complaintype
-
-    function search_By_title_And_Type(){
-
-        var CTypeObj = document.getElementById("ComplainType");
-        var datalist = document.getElementById(CTypeObj.getAttribute("list"));
-        let ComplainType;
-        let UserType;
-        let PId;
-        let MOHId;
-        if(datalist.options.namedItem(CTypeObj.value)){
-            ComplainType=(datalist.options.namedItem(CTypeObj.value).id);
+    function SetAsProgress(complainId){
+        console.log("complain id "+complainId);
+        let reqData={
+            complainId:complainId
         }
-        let title=document.getElementById("Complain_title").value;
-        // console.log("type "+ComplainType);
-        // console.log("title"+title)
-        let phiNic='199910910062';
-        let searchItem={
-            PHINic:phiNic,
-            title:title,
-            Type:ComplainType
-        }
-        $.post(myUrl+"/phi-complain-controller1/search",
-            searchItem,
+        $.post(myUrl+"/phi-complain-controller1/SetAsProgress",
+            reqData,
             function (data, status) {
-
-                let complainList = JSON.parse(data);
-
-
-
-                // fill pending done in progress count
-                let pendin=0;
-                let done=0;
-                let progress=0;
-                complainList.map((element) => {
-                    console.log("status " +element.complainModel.Status);
-
-                    if(element.complainModel.Status=="Pending"){
-                        pendin++;
-                    }
-                    else if(element.complainModel.Status=="Done"){
-                        done++;
-                    }
-                    else if(element.complainModel.Status=="In Progress"){
-                        progress++;
-                    }
-                    else {
-                        console.log("Incorrect complain model status check ur database")
-                    }
-
-                })
-                document.getElementById("Pending").innerText=pendin;
-                document.getElementById("done").innerText=done;
-                document.getElementById("Progress").innerText=progress;
-
-
-                complain.setDataForPHI(complainList);
+                if (data.includes("success")) {
+                    getAllComplain();
+                    popup.SendResponsePHI({
+                        complain_Id: reqData.complainId,
+                        message: 'Status Change Failed!'
+                    });
+                } else {
+                    popup.ChangeComplainStatusSuccessMessage({
+                        status: 'fail',
+                        message: 'Status Change Failed!',
+                        data: data
+                    });
+                }
             }
         );
-
-
-
     }
+    function UpdateResponse(cid,massage){
+        let message=document.getElementById("myresponse").value;
+            console.log("complain id "+cid)
+            console.log("message "+message)
+        let reqData={
+                cid:cid,
+            message:message
+        }
+        $.post(myUrl+"/phi-complain-controller1/setResponse",
+            reqData,
+            function (data, status) {
+                if (data.includes("success")) {
+                    getAllComplain();
+                } else {
+                    console.log("unsuccesssss brooo")
+                }
+            }
+        );
+    }
+
+    function SetAsDone(complainId){
+        console.log("complain id "+complainId);
+        let reqData={
+            complainId:complainId
+        }
+        $.post(myUrl+"/phi-complain-controller1/set_as_done",
+            reqData,
+            function (data, status) {
+                if (data.includes("success")) {
+                    getAllComplain();
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.ChangeComplainStatusSuccessMessage({
+                        status: 'fail',
+                        message: 'Status Change Failed!',
+                        data: data
+                    });
+                }
+            }
+        );
+    }
+
+
+
+
+
+
+
+
+
 
 </script>
-  <%--script for take complain types--%>
-  <script defer>
-      let complain_type=[];
-      $.post(myUrl+"/user-complain-controller/",
-          function (data, status) {
-              let rs= JSON.parse(data);
-              rs.map((element) => {
 
-              })
-          }
-      );
-  </script>
 
   <%--script for take complain types--%>
   <script defer>

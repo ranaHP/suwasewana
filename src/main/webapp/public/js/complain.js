@@ -207,7 +207,7 @@ class Complain {
                                   Type : ${item.ComplainType}
                               </div>
                               <div class="card_bottom_row_col">
-                                    ${item.user.uNic? `<button>View complainer</button>`:""}
+                                    ${item.user.uNic? `<button onclick="ViewPAtientDetails(`+item.user.uNic+`)" >View complainer</button>`:""}
                               </div>
 
                           </div>
@@ -235,8 +235,9 @@ class Complain {
                                 
                               </div>
                               <div class="complain_card_right_button_row">
-                                  <button class="in_progree_btn">In Progress</button>
-                                  <button class="Done">Done</button>
+<!--                                  <button class="in_progree_btn">In Progress</button>-->
+                                  ${item.complainModel.Status=="In Progress" ? `<button class="in_progree_btn"  onclick="SetAsProgress(`+item.complainModel.UType+`)" disabled style="background: `+"#b2bec3"+`" >In Progress</button>`:`<button class="in_progree_btn"  onclick="SetAsProgress(`+item.complainModel.UType+`)" >In Progress</button>`}
+                                  ${item.complainModel.Status=="Done" ? `<button class="Done"  onclick="SetAsDone(`+item.complainModel.UType+`)" disabled style="background: `+"#b2bec3"+`" >Done</button>`:`<button class="Done"  onclick="SetAsDone(`+item.complainModel.UType+`)" >Done</button>`}
                               </div>
                           </div>
 

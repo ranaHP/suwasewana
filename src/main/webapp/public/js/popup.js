@@ -127,6 +127,47 @@ class SuwasewanaPopup{
         this.showPopup()
     }
 
+    // PHI succesfully change status
+    ChangeComplainStatusSuccessMessage(data) {
+        let eventsContaier = document.createElement('div');
+        console.log(data.name);
+        let eventDiv = document.createElement('div');
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> Complain Managing Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Complain Managing Portal</div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
 
     showAppointmentSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
@@ -412,6 +453,101 @@ class SuwasewanaPopup{
                 <div class="error-message"> Reason :  ${data.data}</div>
             </div>`;
         }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+
+
+
+    SendResponsePHI(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">   Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2> Do you need to send response for this?</h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    <div class="form-group" style="padding: 0 30px;display:flex; align-items: center; justify-content: center">
+                        <label >
+                            Response
+                        </label>
+                        <textarea As="textarea" id="myresponse" style="width: 50%;padding: 5px; min-height: 100px; margin-left: 10px"  class="textarea" autofocus autocomplete="off" name="app-rr" id="app-rr"
+                          
+                        ></textarea>
+                        <div id="app-rr-error" class="form-field-error"></div>
+                    </div>
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group" style="display: flex; justify-content: space-between">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="UpdateResponse('` + data.complain_Id +`'); popup.hidePopup();"> Send</button>
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #2ed573!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Skip</button>
+                    </div>
+                </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+
+    viewComplainer(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">   Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2> Appointment rejection Form</h2>
+                <style>
+                 table {
+                    font-family: arial, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+
+                td, th {
+                    border: 1px solid #dddddd;
+                    text-align: left;
+                    padding: 8px;
+                }
+                </style>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    <div class="form-group" style="padding: 0 30px;">
+                        
+                        <table >
+                            <tr>
+                                <th> Name</th>
+                                <th> NIC</th>
+                                <th> Mobile</th>
+                                <th> Address</th>
+                            </tr>
+                            <tr>
+                                <td> ${data.uname}</td>
+                                <td> ${data.uNic}</td>
+                                <td> ${data.uMobile}</td>
+                                <td> ${data.address_line1} `+ " "+` ${data.street_no}</td>
+                            </tr>
+                        </table>
+                        
+                        <div id="app-rr-error" class="form-field-error"></div>
+                    </div>
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
         eventsContaier.appendChild(eventDiv);
 
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);

@@ -18,6 +18,9 @@ public class ComplainDAO {
     private static final String Complain_For_PHI_title_type="SELECT * FROM suwasewana_db.user_complaint uc LEFT JOIN suwasewana_db.user u ON u.uNic = uc.user LEFT JOIN suwasewana_db.complaint_type ct ON uc.complaint_type_id = ct.complaint_type_id WHERE phi_id=? and uc.complaint_type_id=? and uc.tittle like ? ;";
     private static final String Complain_For_PHI_title="SELECT * FROM suwasewana_db.user_complaint uc LEFT JOIN suwasewana_db.user u ON u.uNic = uc.user LEFT JOIN suwasewana_db.complaint_type ct ON uc.complaint_type_id = ct.complaint_type_id WHERE phi_id=? and tittle LIKE ?;";
     private static final String Complain_For_PHI_type="SELECT * FROM suwasewana_db.user_complaint uc LEFT JOIN suwasewana_db.user u ON u.uNic = uc.user LEFT JOIN suwasewana_db.complaint_type ct ON uc.complaint_type_id = ct.complaint_type_id WHERE phi_id=? and uc.complaint_type_id=? ;";
+    private static final String Change_Status="UPDATE `suwasewana_db`.`user_complaint` SET `status` = 'Done' WHERE (`comp_id` = ?);";
+    private static final String Change_Status_to_progress="UPDATE `suwasewana_db`.`user_complaint` SET `status` = 'In Progress' WHERE (`comp_id` = ?);";
+    private static final String Change_Complain_Response="UPDATE `suwasewana_db`.`user_complaint` SET `phi_message` = ? WHERE (`comp_id` = ?);\n";
 
 
 
@@ -145,6 +148,54 @@ public class ComplainDAO {
         }
         return null;
     }
+
+    public String setResponse(String complainId , String message) {
+        System.out.println("data come to create complain dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Change_Complain_Response)) {
+            preparedStatement.setString(2, complainId );
+            preparedStatement.setString(1, message );
+            System.out.println("SQL "+preparedStatement);
+            int  rs = preparedStatement.executeUpdate();
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
+        }
+
+
+    }
+
+
+    public String ChangeStatus(String complainId) {
+        System.out.println("data come to create complain dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Change_Status)) {
+            preparedStatement.setString(1, complainId );
+            System.out.println("SQL "+preparedStatement);
+            int  rs = preparedStatement.executeUpdate();
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
+        }
+
+
+    }
+    public String ChangeStatustpProgress(String complainId) {
+        System.out.println("data come to create complain dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Change_Status_to_progress)) {
+            preparedStatement.setString(1, complainId );
+            System.out.println("SQL "+preparedStatement);
+            int  rs = preparedStatement.executeUpdate();
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
+        }
+
+
+    }
+
+
     public ArrayList<CommanForCompalinAndUser> SearchComplainBydate(String date1, String date2,String nic) {
 //        try {
 //            PreparedStatement preparedStatement;

@@ -54,6 +54,15 @@ public class PHIComplainController extends HttpServlet {
                 case "searchbydate":
                     SearchComplainbydate(req, res);
                     break;
+                case "set_as_done":
+                    SetAsDone(req, res);
+                    break;
+                case "SetAsProgress":
+                    SetAsProgress(req, res);
+                    break;
+                case "setResponse":
+                    setResponse(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -63,6 +72,57 @@ public class PHIComplainController extends HttpServlet {
         }
 
     }
+
+
+        private void setResponse(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+            String uNic = "";
+            Cookie[] cookies = req.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("unic")) {
+                        uNic = cookie.getValue();
+                    }
+                }
+            }
+            String complainId=req.getParameter("cid");
+            String message=req.getParameter("message");
+            String result = complainDAO.setResponse(complainId,message);
+            res.getWriter().println(gson.toJson(result));
+        }
+
+        private void SetAsProgress(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+            String uNic = "";
+            Cookie[] cookies = req.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("unic")) {
+                        uNic = cookie.getValue();
+                    }
+                }
+            }
+            String complainId=req.getParameter("complainId");
+            String result = complainDAO.ChangeStatustpProgress(complainId);
+            res.getWriter().println(gson.toJson(result));
+        }
+
+        private void SetAsDone(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+            String uNic = "";
+            Cookie[] cookies = req.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("unic")) {
+                        uNic = cookie.getValue();
+                    }
+                }
+            }
+            String complainId=req.getParameter("complainId");
+            String result = complainDAO.ChangeStatus(complainId);
+            res.getWriter().println(gson.toJson(result));
+        }
+
 
         private void SearchComplainbydate(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
             System.out.println("date1"+req.getParameter("date1"));
