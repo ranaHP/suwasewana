@@ -40,6 +40,7 @@ class PHIAppointment{
             return;
         }
         data.map( (app, index) => {
+            console.log(app);
             this.conatiner.innerHTML += `<div class="appointmnet-card">
                 <div class="app-header">
                     <div class="div">Appointmnet Number ` + app.appointment.aType + `</div>
@@ -80,7 +81,7 @@ class PHIAppointment{
                         Status - ` + app.appointment.status + `
                     </div>
                     <div class="btn-set">
-                        <button class="app-submitBtn btn-danger "> Give Time Solt</button>
+                        <button class="app-submitBtn btn-danger" onclick="popup.giveTimeSlot({ round: '` + app.appointment.round +  `',message: 'Give available time slot!' , title: '` + app.appointment.aTitle + `'});"> Give Time Solt</button>
                         <button class="app-submitBtn btn-success"> Reject</button>
                         <button class="app-submitBtn btn-primary"> Postpone</button>
                     </div>

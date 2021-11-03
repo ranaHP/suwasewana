@@ -2,8 +2,7 @@
 *{
     padding: 0%;
     margin: 0%;
-    font-size: .9em;
-    font-family: 'Nunito Sans', sans-serif;
+
 
 }
 .container{
@@ -16,6 +15,8 @@
     transition: 0.2s ease;
     font-size: 18px;
     background-color: #Fff;
+    font-size: .7em;
+    font-family: 'Nunito Sans', sans-serif;
 }
 .header{
     padding: 10px 15px 10px 34px;
@@ -68,6 +69,7 @@ body{
     width: 70%;
     height: fit-content;
     box-sizing: border-box;
+    font-size: .95em;
 }
 .appointment-summary{
     width: 30%;

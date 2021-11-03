@@ -63,69 +63,7 @@ class PHIAppointmnetPopup{
         this.container.appendChild(popupContaienr);
 
     }
-    createCalenderEvent(event){
-        let eventsContaier = document.createElement('div');
-        event[0].events.map(eventitem => {
-            let eventDiv = document.createElement('div');
-            eventDiv.innerHTML = "<br> <br> Event Title : <h2> " + eventitem.title + "</h2>";
-            eventDiv.innerHTML = "Event Desc : <h3> " + eventitem.desc + "</h3>";
-            eventsContaier.appendChild(eventDiv);
-            // popupMessage.classList.add('popup-message');
-        });
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-    }
 
-    showCalenderEnvetPopup(event) {
-        this.createCalenderEvent(event);
-        this.container.style.display = "block";
-    }
-
-    showPatientDetails(data) {
-        let eventsContaier = document.createElement('div');
-        console.log(data.name);
-        let eventDiv = document.createElement('div');
-        eventDiv.innerHTML = "<br><h4> Patient Details </h4>";
-        eventDiv.innerHTML += "<h5> Name -  " + data.name + " </h5>";
-        eventDiv.innerHTML += "<h5> Age - " + data.age + " </h5>";
-        eventDiv.classList.add('popup-title');
-        eventsContaier.appendChild(eventDiv);
-
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-        this.showPopup()
-    }
-
-    showRegistrationSuccessMessage(data) {
-        let eventsContaier = document.createElement('div');
-        console.log(data.name);
-        let eventDiv = document.createElement('div');
-        if (data.status === "success") {
-            eventDiv.innerHTML = `
-            <div class="popup-title"> Citizen Registration Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-                <button class="submitBtn" onclick="popup.gotoLogin('login')"> Go to Login  </button>
-            </div>`;
-        } else if (data.status === "fail") {
-            eventDiv.innerHTML = `
-            <div class="popup-title"> Citizen Registration Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-                <div class="error-message"> Reason :  ${data.data}</div>
-                <button class="submitBtn"  onclick="popup.gotoLogin('register')">  Reregister </button>
-            </div>`;
-        }
-        eventsContaier.appendChild(eventDiv);
-
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-        this.showPopup()
-    }
 
 
     showAppointmentSuccessMessage(data) {
@@ -141,6 +79,16 @@ class PHIAppointmnetPopup{
                 ${data.message}!
             </div>
                 <div class="row" >
+                <div class="form-group" style="padding: 0;">
+                        <label for="user-nic">
+                            User NIC
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                               maxlength="13" onkeyup="appointmentObj.searchAppointment()"
+                        />
+                        <div id="user-nic-error" class="form-field-error"></div>
+                    </div>
+                    
                     <div class="form-group">
                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
                         onclick="popup.hidePopup()"> Close</button>
@@ -169,113 +117,106 @@ class PHIAppointmnetPopup{
         this.showPopup()
     }
 
-    Register(data) {
+    giveTimeSlot(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
         let eventDiv = document.createElement('div');
-        if(data.status === "success"){
+        if(data.round === "0"){
             eventDiv.innerHTML = `
-            <div class="popup-title"> Officer Registration Portal </div>
+            <div class="popup-title">   Appointment Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-            </div>
-                <div class="row" >
-                    <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Close</button>
+                <h3> Appointment Title : <br/>` + data.title+ `</h3>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                 <label for="user-nic">
+                            Time Slot 1
+                        </label>
+                   <div class="row">
+                   <div class="form-group" style="padding: 0 30px;">
+                        <label for="user-nic">
+                            Start Date & Time
+                        </label>
+                        <input type="datetime-local" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                               maxlength="13" 
+                        />
+                        <div id="user-nic-error" class="form-field-error"></div>
                     </div>
-                </div>`;
-        }else if(data.status === "fail"){
-            eventDiv.innerHTML = `
-            <div class="popup-title">Officer Registration Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-                <div class="error-message"> Reason :  ${(data.data.includes("Duplicate entry") ? "This Account is already exist" : data.data)} </div>
-                <div class="row" >
-                    <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Close</button>
+                   <div class="form-group" style="padding: 0 30px;">
+                        <label for="user-nic">
+                              End Time
+                        </label>
+                        <input type="time" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                               maxlength="13" 
+                        />
+                        <div id="user-nic-error" class="form-field-error"></div>
+                    </div>
+                    
+                    </div>
+                    <label for="user-nic">
+                            Time Slot 2
+                        </label>
+                   <div class="row">
+                   <div class="form-group" style="padding: 0 30px;">
+                        <label for="user-nic">
+                            Start Date & Time
+                        </label>
+                        <input type="datetime-local" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                               maxlength="13" 
+                        />
+                        <div id="user-nic-error" class="form-field-error"></div>
+                    </div>
+                   <div class="form-group" style="padding: 0 30px;">
+                        <label for="user-nic">
+                              End Time
+                        </label>
+                        <input type="time" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                               maxlength="13"
+                        />
+                        <div id="user-nic-error" class="form-field-error"></div>
+                    </div>
+                    
+                    </div>
+                    <div class="form-group" style="padding: 0 30px;">
+                        <label for="user-nic">
+                            Location
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                               minlength="3" 
+                        />
+                        <div id="user-nic-error" class="form-field-error"></div>
+                    </div>
+                    <div class="form-group" style="padding: 0 30px;">
+                        <label for="user-nic">
+                            Special Notice
+                        </label>
+                        <textarea As="textarea" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                          
+                        ></textarea>
+                        <div id="user-nic-error" class="form-field-error"></div>
                     </div>
                 </div>
-            </div>`;
-        }
-        eventsContaier.appendChild(eventDiv);
-
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-        this.showPopup()
-    }
-
-    RegisterMOH(data) {
-        let eventsContaier = document.createElement('div');
-        console.log(data.name);
-        let eventDiv = document.createElement('div');
-        if(data.status === "success"){
-            eventDiv.innerHTML = `
-            <div class="popup-title"> MOH Registration Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-            </div>
                 <div class="row" >
+                
                     <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Close</button>
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #223580!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Save </button>
                     </div>
                 </div>`;
-        }else if(data.status === "fail"){
+        }else if(data.round === "1"){
             eventDiv.innerHTML = `
-            <div class="popup-title">MOH Registration Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-                <div class="error-message"> Reason :  ${(data.data.includes("Duplicate entry") ? "This Account is already exist" : data.data)} </div>
-                <div class="row" >
-                    <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Close</button>
-                    </div>
-                </div>
-            </div>`;
-        }
-        eventsContaier.appendChild(eventDiv);
-
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-        this.showPopup()
-    }
-
-    showDeleteAlertMessage(data) {
-        let appointmentId = data;
-        data = {data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."}
-        let eventsContaier = document.createElement('div');
-        let eventDiv = document.createElement('div');
-        eventDiv.innerHTML = `
             <div class="popup-title">User Appointment Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container " style="color: #d9534f!important;"> 
-                ${data.data}!
-                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
-                    <div class="form-group">
-                        <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                   
-                </div>  
-                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
                 <div class="row" >
                     <div class="form-group">
                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="deleteCheckInputVsUserInput('${appointmentId}')"> Delete Appointment</button>
+                        onclick="popup.hidePopup()"> Close</button>
                     </div>
                 </div>
             </div>`;
+        }
         eventsContaier.appendChild(eventDiv);
 
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
@@ -302,121 +243,6 @@ class PHIAppointmnetPopup{
 
         }
     }
-    // showCreateClinicSuccessMessage(data){
-    //     let eventsContaier = document.createElement('div');
-    //     console.log(data.name);
-    //     let eventDiv = document.createElement('div');
-    //     if(data.status === "success"){
-    //         eventDiv.innerHTML = `
-    //         <div class="popup-title"> Create clinic portral </div>
-    //
-    //         <div class="popup-desc">  SUWASEWANA.LK</div>
-    //         <div class="popup-message-container">
-    //             ${data.message}!
-    //         </div>`;
-    //     }else if(data.status === "fail"){
-    //         eventDiv.innerHTML = `
-    //         <div class="popup-title">Create clinic Portal </div>
-    //
-    //         <div class="popup-desc">  SUWASEWANA.LK</div>
-    //         <div class="popup-message-container">
-    //             ${data.message}!
-    //             <div class="error-message"> Reason :  ${data.data}</div>
-    //         </div>`;
-    //     }
-    //     eventsContaier.appendChild(eventDiv);
-    //
-    //     document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-    //     document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-    //     this.showPopup()
-    // }
-    showClinicDeleteSuccessMessage(data){
-        let eventsContaier = document.createElement('div');
-        console.log(data.name);
-        let eventDiv = document.createElement('div');
-        if(data.status === "success"){
-            eventDiv.innerHTML = `
-            <div class="popup-title">  Clinic view Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-            </div>`;
-        }else if(data.status === "fail"){
-            eventDiv.innerHTML = `
-            <div class="popup-title">Clinic view Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-                <div class="error-message"> Reason :  ${data.data}</div>
-            </div>`;
-        }
-        eventsContaier.appendChild(eventDiv);
 
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-        this.showPopup()
-    }
-    showDeleteClinicAlertMessage(data) {
-        // alert(data)
-        let clinicID = data;
-        data = {data: "if you want to delete this Clinic. Please type 'Delete' in the below input details."}
-        let eventsContaier = document.createElement('div');
-        let eventDiv = document.createElement('div');
-        eventDiv.innerHTML = `
-            <div class="popup-title">View clinic Portal </div>
-
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container " style="color: #d9534f!important;">
-                ${data.data}!
-                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
-                    <div class="form-group">
-                        <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-
-                </div>
-                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
-                <div class="row" >
-                    <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px"
-                        onclick="deleteCheckInputVsUserInput('${clinicID}')"> Delete Clinic</button>
-                    </div>
-                </div>
-            </div>`;
-        eventsContaier.appendChild(eventDiv);
-
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-        this.showPopup()
-    }
-    showCreateClinicSuccessMessage(data){
-        let eventsContaier = document.createElement('div');
-        console.log(data.name);
-        let eventDiv = document.createElement('div');
-        if(data.status === "success"){
-            eventDiv.innerHTML = `
-            <div class="popup-title"> Create clinic portral </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-            </div>`;
-        }else if(data.status === "fail"){
-            eventDiv.innerHTML = `
-            <div class="popup-title">User Appointment Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container"> 
-                ${data.message}!
-                <div class="error-message"> Reason :  ${data.data}</div>
-            </div>`;
-        }
-        eventsContaier.appendChild(eventDiv);
-
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-        this.showPopup()
-    }
 
 }
