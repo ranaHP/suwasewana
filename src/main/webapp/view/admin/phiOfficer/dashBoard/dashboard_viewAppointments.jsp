@@ -11,6 +11,7 @@
     <script src="<c:url value="/public/js/PHIOfficer/phi_appointmnet.js"/>"></script>
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
     <script src="<c:url value="/public/js/PHI/"/>"></script>
+    <script src="<c:url value="/public/js/PHI/PHI_Appoinment_PopUp.js"/>"></script>
 
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
 
