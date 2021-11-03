@@ -30,9 +30,10 @@
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
     <script src="<c:url value="/public/js/UserviewclinicAnnouncement.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/UserviewDiseasedetails.js"></c:url> "></script>
 
 </head>
-<body onload="getAllclinicannouncement()">
+<body onload="start()">
 <!-- main container -->
 <div class="container">
     <!-- hero banner -->
@@ -335,295 +336,297 @@
         </div>
         <div class="diseases-details-container">
             <div class="diseases-list-container" id="diseases-list-container">
-                <div class="diseases-card-container">
-                    <div class="diseases-card">
-                        <div class="left-container">
-                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
-                        </div>
-                        <div class="right-container">
-                            <div class="count-container">
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Active Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Death Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Total Cases
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-title">
-                                COVID-19
-                            </div>
-                            <div class="desc">
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
-
-                            </div>
-                            <div class="syntoms">
-                                <ul>
-                                    <li> Fever 99%</li>
-                                    <li>Fatigue 70%</li>
-                                    <li>Cough 59%</li>
-                                    <br>
-                                    <li>Lack of appetite 40%</li>
-                                    <li>Body aches 35%</li>
-                                    <li>Shortness of breath 31%</li>
-                                    <li>Mucus/phlegm 27%</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                <div class="diseases-card-container" id="diseases-card-container">
                 </div>
+<%--                <div class="diseases-card-container">--%>
+<%--                    <div class="diseases-card">--%>
+<%--                        <div class="left-container">--%>
+<%--                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">--%>
+<%--                        </div>--%>
+<%--                        <div class="right-container">--%>
+<%--                            <div class="count-container">--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Active Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Death Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Total Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="main-title">--%>
+<%--                                COVID-19--%>
+<%--                            </div>--%>
+<%--                            <div class="desc">--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
 
-                <div class="diseases-card-container">
-                    <div class="diseases-card">
-                        <div class="left-container">
-                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
-                        </div>
-                        <div class="right-container">
-                            <div class="count-container">
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Active Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Death Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Total Cases
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-title">
-                                COVID-19
-                            </div>
-                            <div class="desc">
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
+<%--                            </div>--%>
+<%--                            <div class="syntoms">--%>
+<%--                                <ul>--%>
+<%--                                    <li> Fever 99%</li>--%>
+<%--                                    <li>Fatigue 70%</li>--%>
+<%--                                    <li>Cough 59%</li>--%>
+<%--                                    <br>--%>
+<%--                                    <li>Lack of appetite 40%</li>--%>
+<%--                                    <li>Body aches 35%</li>--%>
+<%--                                    <li>Shortness of breath 31%</li>--%>
+<%--                                    <li>Mucus/phlegm 27%</li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-                            </div>
-                            <div class="syntoms">
-                                <ul>
-                                    <li> Fever 99%</li>
-                                    <li>Fatigue 70%</li>
-                                    <li>Cough 59%</li>
-                                    <br>
-                                    <li>Lack of appetite 40%</li>
-                                    <li>Body aches 35%</li>
-                                    <li>Shortness of breath 31%</li>
-                                    <li>Mucus/phlegm 27%</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                <div class="diseases-card-container">--%>
+<%--                    <div class="diseases-card">--%>
+<%--                        <div class="left-container">--%>
+<%--                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">--%>
+<%--                        </div>--%>
+<%--                        <div class="right-container">--%>
+<%--                            <div class="count-container">--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Active Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Death Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Total Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="main-title">--%>
+<%--                                COVID-19--%>
+<%--                            </div>--%>
+<%--                            <div class="desc">--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
 
-                <div class="diseases-card-container">
-                    <div class="diseases-card">
-                        <div class="left-container">
-                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
-                        </div>
-                        <div class="right-container">
-                            <div class="count-container">
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Active Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Death Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Total Cases
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-title">
-                                COVID-19
-                            </div>
-                            <div class="desc">
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
+<%--                            </div>--%>
+<%--                            <div class="syntoms">--%>
+<%--                                <ul>--%>
+<%--                                    <li> Fever 99%</li>--%>
+<%--                                    <li>Fatigue 70%</li>--%>
+<%--                                    <li>Cough 59%</li>--%>
+<%--                                    <br>--%>
+<%--                                    <li>Lack of appetite 40%</li>--%>
+<%--                                    <li>Body aches 35%</li>--%>
+<%--                                    <li>Shortness of breath 31%</li>--%>
+<%--                                    <li>Mucus/phlegm 27%</li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-                            </div>
-                            <div class="syntoms">
-                                <ul>
-                                    <li> Fever 99%</li>
-                                    <li>Fatigue 70%</li>
-                                    <li>Cough 59%</li>
-                                    <br>
-                                    <li>Lack of appetite 40%</li>
-                                    <li>Body aches 35%</li>
-                                    <li>Shortness of breath 31%</li>
-                                    <li>Mucus/phlegm 27%</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                <div class="diseases-card-container">--%>
+<%--                    <div class="diseases-card">--%>
+<%--                        <div class="left-container">--%>
+<%--                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">--%>
+<%--                        </div>--%>
+<%--                        <div class="right-container">--%>
+<%--                            <div class="count-container">--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Active Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Death Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Total Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="main-title">--%>
+<%--                                COVID-19--%>
+<%--                            </div>--%>
+<%--                            <div class="desc">--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
 
-                <div class="diseases-card-container">
-                    <div class="diseases-card">
-                        <div class="left-container">
-                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
-                        </div>
-                        <div class="right-container">
-                            <div class="count-container">
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Active Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Death Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Total Cases
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-title">
-                                COVID-19
-                            </div>
-                            <div class="desc">
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
+<%--                            </div>--%>
+<%--                            <div class="syntoms">--%>
+<%--                                <ul>--%>
+<%--                                    <li> Fever 99%</li>--%>
+<%--                                    <li>Fatigue 70%</li>--%>
+<%--                                    <li>Cough 59%</li>--%>
+<%--                                    <br>--%>
+<%--                                    <li>Lack of appetite 40%</li>--%>
+<%--                                    <li>Body aches 35%</li>--%>
+<%--                                    <li>Shortness of breath 31%</li>--%>
+<%--                                    <li>Mucus/phlegm 27%</li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-                            </div>
-                            <div class="syntoms">
-                                <ul>
-                                    <li> Fever 99%</li>
-                                    <li>Fatigue 70%</li>
-                                    <li>Cough 59%</li>
-                                    <br>
-                                    <li>Lack of appetite 40%</li>
-                                    <li>Body aches 35%</li>
-                                    <li>Shortness of breath 31%</li>
-                                    <li>Mucus/phlegm 27%</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                <div class="diseases-card-container">--%>
+<%--                    <div class="diseases-card">--%>
+<%--                        <div class="left-container">--%>
+<%--                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">--%>
+<%--                        </div>--%>
+<%--                        <div class="right-container">--%>
+<%--                            <div class="count-container">--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Active Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Death Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Total Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="main-title">--%>
+<%--                                COVID-19--%>
+<%--                            </div>--%>
+<%--                            <div class="desc">--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
 
-                <div class="diseases-card-container">
-                    <div class="diseases-card">
-                        <div class="left-container">
-                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
-                        </div>
-                        <div class="right-container">
-                            <div class="count-container">
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Active Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Death Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Total Cases
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="main-title">
-                                COVID-19
-                            </div>
-                            <div class="desc">
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
-                                According to researchers in China, these were the most common symptoms among people who
-                                had COVID-19
+<%--                            </div>--%>
+<%--                            <div class="syntoms">--%>
+<%--                                <ul>--%>
+<%--                                    <li> Fever 99%</li>--%>
+<%--                                    <li>Fatigue 70%</li>--%>
+<%--                                    <li>Cough 59%</li>--%>
+<%--                                    <br>--%>
+<%--                                    <li>Lack of appetite 40%</li>--%>
+<%--                                    <li>Body aches 35%</li>--%>
+<%--                                    <li>Shortness of breath 31%</li>--%>
+<%--                                    <li>Mucus/phlegm 27%</li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-                            </div>
-                            <div class="syntoms">
-                                <ul>
-                                    <li> Fever 99%</li>
-                                    <li>Fatigue 70%</li>
-                                    <li>Cough 59%</li>
-                                    <br>
-                                    <li>Lack of appetite 40%</li>
-                                    <li>Body aches 35%</li>
-                                    <li>Shortness of breath 31%</li>
-                                    <li>Mucus/phlegm 27%</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                <div class="diseases-card-container">--%>
+<%--                    <div class="diseases-card">--%>
+<%--                        <div class="left-container">--%>
+<%--                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">--%>
+<%--                        </div>--%>
+<%--                        <div class="right-container">--%>
+<%--                            <div class="count-container">--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Active Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Death Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                                <div class="count-card">--%>
+<%--                                    <div class="header">--%>
+<%--                                        102,250--%>
+<%--                                    </div>--%>
+<%--                                    <div class="desc">--%>
+<%--                                        Total Cases--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="main-title">--%>
+<%--                                COVID-19--%>
+<%--                            </div>--%>
+<%--                            <div class="desc">--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
+<%--                                According to researchers in China, these were the most common symptoms among people who--%>
+<%--                                had COVID-19--%>
+
+<%--                            </div>--%>
+<%--                            <div class="syntoms">--%>
+<%--                                <ul>--%>
+<%--                                    <li> Fever 99%</li>--%>
+<%--                                    <li>Fatigue 70%</li>--%>
+<%--                                    <li>Cough 59%</li>--%>
+<%--                                    <br>--%>
+<%--                                    <li>Lack of appetite 40%</li>--%>
+<%--                                    <li>Body aches 35%</li>--%>
+<%--                                    <li>Shortness of breath 31%</li>--%>
+<%--                                    <li>Mucus/phlegm 27%</li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
             </div>
         </div>
@@ -784,6 +787,30 @@
             }
         );
     }
+
+
+    let diseaseList = new diseasedetailsList("diseases-card-container");
+    getAlldiseasedetails()
+    function getAlldiseasedetails() {
+        // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
+        let diseaseCardList = [];
+        $.post("/test_war_exploded/user-home-disease-controller",
+
+            function (data, status) {
+                diseaseCardList = JSON.parse(data);
+                console.log(diseaseCardList)
+                document.getElementById("diseases-card-container").innerHTML = " ";
+                diseaseList.setData(diseaseCardList);
+
+            }
+        );
+    }
+    function start(){
+        getAlldiseasedetails();
+        getAllclinicannouncement();
+    }
+
+
     function imageUpload() {
 
         var fd = new FormData();

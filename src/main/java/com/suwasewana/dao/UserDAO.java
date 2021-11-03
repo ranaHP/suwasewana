@@ -34,7 +34,10 @@ public class UserDAO {
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`,`img1`,`img2`,`img3`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?);";
 
+
     private static final String USER_GET_HOME_ANNOUNCEMENT = "SELECT * FROM `normal_clinic_session` ";
+    private static final String USER_GET_HOME_DISEASE = "SELECT * FROM `disease_cases` ";
+
     Connection connection;
 
     public UserDAO() {
@@ -507,7 +510,45 @@ public class UserDAO {
         return null;
     }
 
+    public ArrayList<UserHomeDiseaseModel> userGethomedisease(UserHomeDiseaseModel homediseaseDetails) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_HOME_DISEASE )) {
+//            preparedStatement.setString(1, homeDetails.getUser());
+//            System.out.println(homeDetails.getUser());
+            System.out.println("data come to disease dao");
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<UserHomeDiseaseModel> homediseaseList = new ArrayList<UserHomeDiseaseModel>();
+            while (rs.next()) {
+                String cases_record_id = rs.getString("cases_record_id");
+                String district_id = rs.getString("district_id");
+                String disease_id = rs.getString("disease_id");
+                String city_id = rs.getString("city_id");
+                String active_cases = rs.getString("active_cases");
+                String death_cases = rs.getString("death_cases");
+                String recovered_cases = rs.getString("recovered_cases");
+                String date_time = rs.getString("date_time");
+                String isVerified = rs.getString("isVerified");
 
+                UserHomeDiseaseModel temp = new UserHomeDiseaseModel(
+                        cases_record_id,
+                        district_id,
+                        disease_id,
+                        city_id,
+                        active_cases,
+                        death_cases,
+                        recovered_cases,
+                        date_time,
+                        isVerified
+
+                );
+                homediseaseList.add(temp);
+            }
+            return homediseaseList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
