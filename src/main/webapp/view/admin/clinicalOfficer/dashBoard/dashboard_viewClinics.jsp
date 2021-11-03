@@ -24,10 +24,21 @@
     </div>
 <%--     filter section --%>
     <div class="mypopup" id="popup" style="display: none;"></div>
-    <div class="cardselect">
+    <div class="cardselect" style="padding:45px">
         <div class="searchbar">
             <input type="text" id ="filter" placeholder="Search clinic by name" required autocomplete="off" name="clinic-title" onkeyup="search()" />
-            <button>Search</button>
+
+        </div>
+        <div class="searchbar">
+            <input id="clinicID" placeholder="search by clinic date" list="AllMArea" name="AllMArea" autocomplete="off"
+
+                   onclick="document.getElementById('clinicID').value='';"
+            >
+            <datalist id="AllMArea">
+            </datalist>
+            <br>
+            <span class="error" id="LMArea" style="margin-left: 5px" ></span>
+            <button onclick="searchD()">Search</button>
         </div>
 <%--        <div class="results">--%>
 <%--            <div class="value" id="value"></div>--%>
@@ -258,22 +269,24 @@
         }
     }
 
-    let mohDetails=[];
-    $.post("/test_war_exploded/user-complain-controller/moh",
-        function (data, status) {
-            // console.log(data);
-            let rs= JSON.parse(data);
-            this.mohDetails=rs;
-            // console.log(data);
 
-            let MNames=document.getElementById("AllMArea");
-            MNames.innerHTML="";
-            rs.map((element,index) => {
-                // console.log("moh"+element.MName)
-                MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
-            })
-        }
-    );
+        let Details=[];
+        $.post("/test_war_exploded/create-clinic-controller/all-Clinics",
+        function (data, status) {
+        let rs= JSON.parse(data);
+        this.Details=rs;
+        let MNames=document.getElementById("AllMArea");
+        MNames.innerHTML="";
+        rs.map((element,index) => {
+        // console.log("moh"+element.MName)
+        MNames.innerHTML+= '<option  id="'+element.clinicID+'"  name="'+element.clinicID+'" value="'+element.datetime +  '" option="' +element.clinicID +  '" ></option>'
+    })
+    }
+        );
+
+
+
+
 
 
 

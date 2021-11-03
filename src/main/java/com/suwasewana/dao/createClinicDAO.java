@@ -18,6 +18,7 @@ public class createClinicDAO {
   private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
   private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `start_date_time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_moh` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
+  private static final String Clinic_Details="SELECT * FROM `normal_clinic_session`";
 
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session`";
@@ -370,7 +371,47 @@ public class createClinicDAO {
         }
 
         return null;
-    }}
+    }
+
+    public ArrayList<CreateClinicModel> allClinics() {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Clinic_Details)) {
+
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<CreateClinicModel> allClinics = new ArrayList<CreateClinicModel>();
+            while (rs.next()) {
+
+                String clinicID = rs.getString("ncs_id");
+                String title = rs.getString("title");
+                String datetime=rs.getString("start_date_time");
+
+                CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
+                        title,
+                        datetime,
+                       "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+//
+                allClinics.add(temp);
+            }
+            return allClinics;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+}
 
 
 

@@ -30,7 +30,7 @@ class clinicList {
             this.container.innerHTML += `
                <div class="live-card">
                     <div class="clinic-title"  id="clinic-title">${item.disease} Awareness clinic</div>
-                    <div class="clinic-date">${item.datetime}</div>
+                    <div class="clinic-date" id="date">${item.datetime}</div>
                     <div class="clinic-description">${item.description}</div>
                     <div class="clinic-details">
                         <div class="location" id="clinicID"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> ID :</span> ${item.clinicID}</div>
@@ -62,6 +62,23 @@ class clinicList {
 }
 
 //
+function searchD(){
+    let count=0
+    const input = document.getElementById('clinicID').value;
+    const cardContainor = document.getElementById('card-containor');
+    const card = cardContainor.getElementsByClassName('live-card')
+    for(let i=0 ; i<card.length ;i++){
+        let title = card[i].querySelector('#date');
+        // alert(title)
+
+        if(title.innerHTML.indexOf(input) > -1){
+            card[i].style.display=""
+        }else{
+            card[i].style.display="none"
+        }
+    }
+}
+
 function search(){
     let count=0
     const input = document.getElementById('filter').value.toUpperCase();

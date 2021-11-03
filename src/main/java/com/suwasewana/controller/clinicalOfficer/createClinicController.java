@@ -73,6 +73,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     AllVaccineClinics(req, res);
                     break;
+                case "all-Clinics":
+//                    res.getWriter().println("select-V-Clinics");
+                    AllClinics(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -81,6 +85,11 @@ import java.util.ArrayList;
         } catch (Exception error) {
             throw new ServletException(error);
         }
+    }
+
+    private void AllClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        ArrayList<CreateClinicModel> result = createClinicDAO.allClinics();
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void AllVaccineClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {

@@ -253,27 +253,7 @@ function updateclinics(){
 
     return false;
 }
-<%--   console.log(reqData)--%>
-<%--    $.post("/test_war_exploded/clinicAnnouncementController/createVA",--%>
-<%--            reqData,--%>
-<%--            function(data,status){--%>
-<%--              if(data.includes("sucsess")){--%>
-<%--                // updateclinics()--%>
-<%--                popup.showCreateClinicSuccessMessage({--%>
-<%--                  status: 'success',--%>
-<%--                  message: 'Successfully Created!'--%>
-<%--                })--%>
-<%--              } else{--%>
-<%--                popup.showCreateClinicSuccessMessage({--%>
-<%--                  status: 'fail',--%>
-<%--                  message: 'Failed to create !',--%>
-<%--                  data: data--%>
-<%--                });--%>
-<%--              }--%>
-<%--            }--%>
-<%--            );--%>
 
-<%--  }--%>
 let selectClinic = new selectClinics("form");
 
 function view(){
@@ -316,9 +296,9 @@ function view(){
 <script>
 function check(){
   let mohDetails=[];
-  $.post("/test_war_exploded/create-clinic-controller/all-V-Clinics",
+  $.post("/test_war_exploded/create-clinic-controller/all-Clinics",
           function (data, status) {
-            // console.log(data);
+            console.log(data);
             let rs= JSON.parse(data);
             this.mohDetails=rs;
             console.log(data);
@@ -327,7 +307,7 @@ function check(){
             MNames.innerHTML="";
             rs.map((element,index) => {
               // console.log("moh"+element.MName)
-              MNames.innerHTML+= '<option  id="'+element.vcs_id+'"  name="'+element.vcs_id+'" value="'+element.vcs_id +  '" option="' +element.vcs_id +  '" ></option>'
+              MNames.innerHTML+= '<option  id="'+element.clinicID+'"  name="'+element.clinicID+'" value="'+element.clinicID +  '" option="' +element.clinicID +  '" ></option>'
             })
           }
   );
