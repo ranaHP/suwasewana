@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard_todolist.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="<c:url value="/public/js/PHIOfficer/dashboard_todolist.js"/> "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>Suwasewana</title>
     <%--    side nav bar styles--%>
@@ -93,9 +94,23 @@
 </div>
 
 <script defer >
-    let todo = new TodoList("pending-list" , "overdue-list" , "completed-list", "inprogess-list");
+
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
     feather.replace({ width : "22px"})
+
+    getAllTask();
+    function getAllTask() {
+        $.post(myUrl+"/phi-Todo-controller/TakeTaskList",
+            {},
+            function (data, status) {
+                let taskList = JSON.parse(data);
+                let todo = new TodoList("pending-list" , "overdue-list" , "completed-list", "inprogess-list",taskList);
+
+            }
+        );
+
+    }
 
 
 </script>

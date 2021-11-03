@@ -5,6 +5,11 @@
     margin: 0;
 
 }
+.RPHI_message{
+    width: 80%;
+    padding-left: 11px;
+    padding-bottom: 4px;
+}
 body{
     margin-left: 78px;
     height: 100vh;
@@ -78,19 +83,32 @@ svg {
     padding:  10px 0;
 }
 .todo-item{
+    /*background-color: #019686;*/
+    margin-left: 50px;
+    width: 85%;
+
+    background-color: #fff;
+    border-radius: 1px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+    color: rgba(15, 15, 15, 0.938);
+    font-family: 'Tajawal', sans-serif;
+}
+.todo-item .row1{
     background-color: #fff;
     height: fit-content;
     border-radius: 1px;
-    width: 90%;
+    /*width: 90%;*/
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px 10px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
-    color: rgba(15, 15, 15, 0.938);
-    font-family: 'Tajawal', sans-serif;
+    /*box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);*/
+    /*color: rgba(15, 15, 15, 0.938);*/
+    /*font-family: 'Tajawal', sans-serif;*/
     margin: 10px auto;
+    margin-bottom: -6px;
+;
 }
 
 .todo-item:hover{
@@ -206,16 +224,16 @@ button:hover {
     min-height: 500px;
 }
 
-.overdue{
+.overdue {
     border-left: 3px solid rgba(255, 0, 0, 0.767);
 }
-.complete{
+.complete {
     border-left: 3px solid rgba(0, 128, 0, 0.808);
 }
-.inprogess{
+.inprogess {
     border-left: 3px solid rgba(0, 19, 128, 0.808);
 }
-.pending{
+.pending {
     border-left: 3px solid rgba(190, 155, 0, 0.808);
 }
 

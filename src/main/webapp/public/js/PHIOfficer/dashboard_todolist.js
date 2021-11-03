@@ -3,69 +3,72 @@ class TodoList{
     overdue_id = "";
     complete_id = "";
     inprogess_id = "";
-    taskArray = [
-        {
-            content: "Hansana ranweera",
-            startDate: "2021-08-1",
-            end_date: "2021-07-25",
-            status: "pending",
-            type: "phi"
-        },
-        {
-            content: "Akila",
-            startDate: "2021-08-1",
-            end_date: "2021-07-25",
-            status: "complete",
-            type: "phi"
-        },
-        {
-            content: "Hansana ranweera",
-            startDate: "2021-08-1",
-            end_date: "2021-07-25",
-            status: "pending",
-            type: "phi"
-        },
-        {
-            content: "Akila",
-            startDate: "2021-08-1",
-            end_date: "2021-07-25",
-            status: "complete",
-            type: "phi"
-        },
-        {
-            content: "Hansana ranweera",
-            startDate: "2021-08-1",
-            end_date: "2021-07-25",
-            status: "pending",
-            type: "phi"
-        },
-        {
-            content: "Akila",
-            startDate: "2021-08-1",
-            end_date: "2021-07-25",
-            status: "complete",
-            type: "phi"
-        },
-        {
-            content: "Manduni",
-            startDate: "2021-08-1",
-            end_date: "2021-07-25",
-            status: "overdue",
-            type: "phi"
-        },
-        {
-            content: "lover",
-            startDate: "2021-08-1",
-            end_date: "2021-07-25",
-            status: "inprogess",
-            type: "phi"
-        }
-    ];
-    constructor(pending_id , overdue_id, complete_id , inprogess_id){
+    taskArray = [];
+        // {
+        //     content: "Hansana ranweera",
+        //     startDate: "2021-08-1",
+        //     end_date: "2021-07-25",
+        //     status: "pending",
+        //     type: "phi"
+        // },
+        // {
+        //     content: "Akila",
+        //     startDate: "2021-08-1",
+        //     end_date: "2021-07-25",
+        //     status: "complete",
+        //     type: "phi"
+        // },
+        // {
+        //     content: "Hansana ranweera",
+        //     startDate: "2021-08-1",
+        //     end_date: "2021-07-25",
+        //     status: "pending",
+        //     type: "phi"
+        // },
+        // {
+        //     content: "Akila",
+        //     startDate: "2021-08-1",
+        //     end_date: "2021-07-25",
+        //     status: "complete",
+        //     type: "phi"
+        // },
+        // {
+        //     content: "Hansana ranweera",
+        //     startDate: "2021-08-1",
+        //     end_date: "2021-07-25",
+        //     status: "pending",
+        //     type: "phi"
+        // },
+        // {
+        //     content: "Akila",
+        //     startDate: "2021-08-1",
+        //     end_date: "2021-07-25",
+        //     status: "complete",
+        //     type: "phi"
+        // },
+        // {
+        //     content: "Manduni",
+        //     startDate: "2021-08-1",
+        //     end_date: "2021-07-25",
+        //     status: "overdue",
+        //     type: "phi"
+        // },
+        // {
+        //     content: "lover",
+        //     startDate: "2021-08-1",
+        //     end_date: "2021-07-25",
+        //     status: "inprogess",
+        //     type: "phi"
+        // }
+
+    constructor(pending_id , overdue_id, complete_id , inprogess_id,taskList){
         this.pending_id = pending_id;
         this.overdue_id = overdue_id;
         this.complete_id = complete_id;
         this.inprogess_id = inprogess_id;
+        this.taskArray=taskList;
+
+
         this.init( );
     }
     init(){
@@ -88,17 +91,18 @@ class TodoList{
 
             item_container.innerHTML += `
                         <div class="todo-item ${task.status} " >
-                            <div class="content">
+                            <div class="row1">
+                                 <div class="content">
                                 <div class="label">
                                     Content
                                 </div>
-                                ${task.content}
+                                ${task.title}
                             </div>
                             <div class="todo-date-time">
                                 <div class="label">
                                     Task start date
                                 </div>
-                               ${task.startDate}
+                               ${(task.posted_date).split(" ")[0]}
                             </div>
                             <div class="todo-action">
                                 <div class="label">
@@ -126,7 +130,7 @@ class TodoList{
                                         <span title="Delete"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                                         </span>
                                     </div> ` : ""
-            } 
+                            } 
 
                             ${task.status == 'inprogess' ?
                 `  
@@ -144,9 +148,9 @@ class TodoList{
                                         <span title="Delete"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                                         </span>
                                     </div> ` : ""
-            } 
+                            } 
                             ${task.status == 'overdue' ?
-                `    <div class="action-item onprogess" onClick="todo.changeStatus(${index} , 'inprogess' )">
+                `                    <div class="action-item onprogess" onClick="todo.changeStatus(${index} , 'inprogess' )">
                                         <span title="To OnProgress"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"></polyline><polyline points="17 18 12 13 7 18"></polyline></svg>
                                         </span> 
                                     </div>
@@ -155,7 +159,7 @@ class TodoList{
                                         <span title="Delete"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                                         </span>
                                     </div>` : ""
-            } 
+                            } 
 
                             ${task.status == 'complete' ?
                 `  
@@ -163,10 +167,14 @@ class TodoList{
                                     <span title="Delete"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                                     </span>
                                 </div>` : ""
-            } 
+                            } 
                              
                                </div>
                             </div>  
+                            </div>
+                            <div class="RPHI_message ">
+                                <span></span>
+                            </div>
                         </div>
             `
         })
