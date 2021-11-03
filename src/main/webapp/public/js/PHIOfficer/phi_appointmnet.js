@@ -9,16 +9,17 @@ class PHIAppointment{
 
     setData(data){
         this.appointmentList = data;
+        this.makeAppointmnetCard(data);
     }
     setDataAppointmentType(data){
         this.appointmentTypeList = data;
+        this.getAppointmentCategorySummary()
     }
-    makeAppointmnetCard()
+    makeAppointmnetCard(data)
     {
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-
         this.conatiner = document.getElementById("appointmnet_card_container");
-        this.appointmentList.map( (app, index) => {
+        data.map( (app, index) => {
             console.log(app);
             this.conatiner.innerHTML += `<div class="appointmnet-card">
                 <div class="app-header">
@@ -67,7 +68,6 @@ class PHIAppointment{
                     </div>
             </div>`
         } )
-        this.getAppointmentCategorySummary()
     }
 
     getSummaryCount(){
@@ -107,6 +107,26 @@ class PHIAppointment{
             </div>`;
         });
         this.getSummaryCount();
+    }
+
+    searchAppointment(){
+        document.getElementById('user-nic').value;
+        document.getElementById('app-type').value;
+        document.getElementById('app-status').value;
+        let filterdData = this.appointmentList.filter( (app) => {
+            if(
+                app.appointmentType.typeName.includes(document.getElementById('app-type').value) &&
+                app.appointmentType.typeName.includes(document.getElementById('app-type').value) &&
+                app.appointmentType.typeName.includes(document.getElementById('app-type').value)
+            ){
+                return app;
+            }
+            console.log(app.appointmentType.typeName +" == " +document.getElementById('app-type').value )
+        });
+        console.log(filterdData)
+        this.conatiner.innerHTML = "";
+        this.makeAppointmnetCard(filterdData);
+
     }
 }
 

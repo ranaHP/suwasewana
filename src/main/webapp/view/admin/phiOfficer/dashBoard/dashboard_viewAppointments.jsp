@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
     <script src="<c:url value="/public/js/PHIOfficer/phi_appointmnet.js"/>"></script>
+    <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
 
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
 
@@ -49,21 +50,35 @@
                             User NIC
                         </label>
                         <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
-                               maxlength="13"/>
+                               maxlength="13" onkeyup="appointmentObj.searchAppointment()"
+                        />
                         <div id="user-nic-error" class="form-field-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="app-type">
                             Appointment Type
                         </label>
-                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-type"/>
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-type" list="app_type_datalist"
+                               onclick="document.getElementById('app-type').value = ''"
+                               onkeyup="appointmentObj.searchAppointment()"/>
+                        <datalist id="app_type_datalist">
+                            <option value="No Data Found" option="No Data Found"></option>
+                        </datalist>
                         <div id="app-type-error" class="form-field-error"></div>
                     </div>
                     <div class="form-group">
                         <label for="app-status">
                             Appointment Status
                         </label>
-                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-status"/>
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-status" list="app_status_datalist"
+                               onkeyup="appointmentObj.searchAppointment()"
+                               onclick="document.getElementById('app-status').value = ''"
+                        />
+                        <datalist id="app_status_datalist" >
+                            <option value="All" option="all"></option>
+                            <option value="Pending" option="pending"></option>
+                            <option value="Completed" option="completed"></option>
+                        </datalist>
                         <div id="app-status-error" class="form-field-error"></div>
                     </div>
 
@@ -71,7 +86,7 @@
                         <label>
                             &nbsp;
                         </label>
-                        <button class="search_Btn"> Search</button>
+                        <button class="search_Btn" onclick="appointmentObj.searchAppointment()"> Search</button>
                         <div id="user-mobile-error" class="form-field-error"></div>
                     </div>
                 </div>
@@ -150,6 +165,7 @@
 <script src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
 <script defer>
     // let popup= new require_message_popup('PopupContainer' , "Reason for Reject")
+    let validation = new FormInputValidation();
 </script>
 <script defer>
     let appointmentObj = new PHIAppointment();
@@ -160,6 +176,10 @@
             let result = JSON.parse([this.response]);
             appointmentObj.setDataAppointmentType(result);
             // appointmentObj.getAppointmentCategorySummary();
+            document.getElementById("app_type_datalist").innerHTML = "";
+            result.map( (aType) => {
+                document.getElementById("app_type_datalist").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
+            })
         }
         xhttp1.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_type", true);
         xhttp1.send();
@@ -168,12 +188,11 @@
             let result = JSON.parse([this.response]);
 
             appointmentObj.setData(result);
-            appointmentObj.makeAppointmnetCard();
+            // appointmentObj.makeAppointmnetCard(result);
 
         }
         xhttp2.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_for_phi", true);
         xhttp2.send();
     }
-
 </script>
 </html>
