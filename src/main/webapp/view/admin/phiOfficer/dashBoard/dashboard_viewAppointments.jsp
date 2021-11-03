@@ -5,18 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
+    <script src="<c:url value="/public/js/PHIOfficer/phi_appointmnet.js"/>"></script>
+    <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
+
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
 
     <%--pop up styles--%>
-    <link rel="stylesheet" href="<c:url value="/popup/common-popup.css"/> "/>
-    <script src="<c:url value="/popup/Message.js"></c:url> "></script>
+
     <script src="https://unpkg.com/feather-icons"></script>
 
     <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <title>Appointmenst</title>
+
+    <title>Appointments</title>
 
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
 
@@ -24,88 +30,169 @@
 </head>
 <body>
 
-<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp"/>
+<%--<div class="popup-container" id="PopupContainer"></div>--%>
+<div id="mainContent" class="container">
 
-<%--<div class="main-contents">--%>
-<div class="popup-container" id="PopupContainer"></div>
-    <div id="mainContent" class="container">
+    <div class="header">
+        <div class="upper-title">SUWASEWANA</div>
+        <div class="dashboard-name">PHI/Dashboard/View Appointments</div>
+    </div>
+    <!-- Search appointments section -->
+    <!-- appintments content -->
+    <div class="appointments-container">
 
-        <div class="header">
-            <div class="upper-title">SUWASEWANA </div>
-            <div class="dashboard-name">PHI/Dashboard/View Appointments</div>
-        </div>
-        <!-- Search appointments section -->
-        <div class="search-section">
-            <input class="f-4" placeholder="Search by name"/>
-        </div>
-
-        <!-- appintments content -->
-        <div class="appointments-container">
-
-            <div class="appointment">
-                <!-- appointment sender's details -->
-                <div class="sender">
-                    <div class="sender-information">
-                        <div class="information">
-                            <p class="f-2">Akila Anjana Dissanayaka</p>
-                            <p class="f-3">Type - Scholarship </p>
-                            <p class="f-3">Talk About People's Bank staff vaccination </p>
-                        </div>
-                        <div class="reject-button" onclick="popup.showPopup()">
-                            <button class="f-4">Reject Appointment </button>
-                        </div>
+        <div class="appointment-view">
+            <div class="filter_appointment">
+                <div class="row">
+                    <div class="form-group" style="padding: 0;">
+                        <label for="user-nic">
+                            User NIC
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                               maxlength="13" onkeyup="appointmentObj.searchAppointment()"
+                        />
+                        <div id="user-nic-error" class="form-field-error"></div>
                     </div>
-                    <div class="sender-details">
-                        <div class="sender-location f-4"><i data-feather="map-pin"></i>  Galgamuwa</div>
-                        <div class="sender-mobile f-4"><i data-feather="phone"></i>  0713805000</div>
-                        <div class="send-date f-4"><i data-feather="calendar"></i>  9/18/2021</div>
+                    <div class="form-group">
+                        <label for="app-type">
+                            Appointment Type
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-type" list="app_type_datalist"
+                               onclick="document.getElementById('app-type').value = ''"
+                               onkeyup="appointmentObj.searchAppointment()"/>
+                        <datalist id="app_type_datalist">
+                            <option value="No Data Found" option="No Data Found"></option>
+                        </datalist>
+                        <div id="app-type-error" class="form-field-error"></div>
                     </div>
-                </div>
-                <!-- the date selection section by phi -->
-                <div class="date-details">
-                    <!-- first date select -->
-                   <div class="up">
-                       <p style="text-align: center" class="f-2">Available Time Slots</p>
-                       <div class="first">
-                           <div class="first-date">
-                               <div class="dateF"><input type="text" placeholder="Date" style="text-align: center"></input></div>
-                           </div>
-                           <div class="first-time-slots">
-                               <input placeholder="Time" style="text-align: center">
-                           </div>
-                       </div>
-                       <!-- second date select-->
-                       <div class="second">
-                           <div class="second-date">
-                               <%--                            <span>Second time</span>--%>
-                               <div class="dateS"><input type="text" placeholder="Date" style="text-align: center"></input></div>
-                           </div>
-                           <div class="second-time-slots">
-                               <input placeholder="Time" style="text-align: center">
-                           </div>
-                       </div>
-                   </div>
-                    <div class="send-button-note">
-                        <textarea placeholder="Special note" style="text-align: center"></textarea>
-                        <button class="f-3">Send</button>
+                    <div class="form-group">
+                        <label for="app-status">
+                            Appointment Status
+                        </label>
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-status" list="app_status_datalist"
+                               onkeyup="appointmentObj.searchAppointment()"
+                               onclick="document.getElementById('app-status').value = ''"
+                        />
+                        <datalist id="app_status_datalist" >
+                            <option value="All" option="all"></option>
+                            <option value="Pending" option="pending"></option>
+                            <option value="Completed" option="completed"></option>
+                        </datalist>
+                        <div id="app-status-error" class="form-field-error"></div>
+                    </div>
 
+                    <div class="form-group">
+                        <label>
+                            &nbsp;
+                        </label>
+                        <button class="search_Btn" onclick="appointmentObj.searchAppointment()"> Search</button>
+                        <div id="user-mobile-error" class="form-field-error"></div>
                     </div>
                 </div>
             </div>
-<%--        </div>--%>
-<%--    </div>--%>
+            <div class="admin-title">
+                Current Appointment
+            </div>
+            <div id="appointmnet_card_container">
 
-    <script>
-        feather.replace({width: "10px",height:"10px"})
-    </script>
+            </div>
+        </div>
 
+        <div class="appointment-summary">
+            <div class="admin-title">
+                Summary of Appointment
+            </div>
+            <div class="officer-details-container">
+                <div class="officer-details-summry-header">
+                    <img src="<c:url value="/public/images/PHI_Dashboard/appointmnet_banner.png"/> " alt="" srcset=""
+                         width="50px">
+                    <div class="total-officers">
+                        <div class="officer-total-count" id="total_appointment_header">
+                            500
+                        </div>
+                        Total No of Appointment
+                    </div>
+                </div>
+                <div class="officer-summary-card-container">
+                    <div class="officer-summary-card">
+                        <div class="officer-name">
+                            Today Appointment
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count" id="today_appointment">
+                            520
+                        </div>
+                    </div>
+                    <div class="officer-summary-card">
+                        <div class="officer-name">
+                            Pending Appointment
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count" id="pendnig_appointment">
+                            520
+                        </div>
+                    </div>
+                    <div class="officer-summary-card">
+                        <div class="officer-name">
+                            completed Appointment
+                            <br>
+                            <a href=""> manage</a>
+                        </div>
+                        <div class="officer-count" id="completed_appointment">
+                            1, 255
+                        </div>
+                    </div>
+                </div>
+                <div class="officer-details-summry-header"></div>
+                <div class="officer-summary-card-container" id="category_appointment_summary">
+                </div>
+                <div class="officer-details-summry-header"></div>
+            </div>
+        </div>
+    </div>
 
-    <script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
-        <script defer>
-            let popup= new require_message_popup('PopupContainer' , "Reason for Reject")
-        </script>
-
-</div>
 </div>
 </body>
+
+<script>
+    feather.replace({width: "10px", height: "10px"})
+</script>
+
+
+<script src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
+<script defer>
+    // let popup= new require_message_popup('PopupContainer' , "Reason for Reject")
+    let validation = new FormInputValidation();
+</script>
+<script defer>
+    let appointmentObj = new PHIAppointment();
+    init();
+    function init(){
+        const xhttp1 = new XMLHttpRequest();
+        xhttp1.onload = function () {
+            let result = JSON.parse([this.response]);
+            appointmentObj.setDataAppointmentType(result);
+            // appointmentObj.getAppointmentCategorySummary();
+            document.getElementById("app_type_datalist").innerHTML = "";
+            result.map( (aType) => {
+                document.getElementById("app_type_datalist").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
+            })
+        }
+        xhttp1.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_type", true);
+        xhttp1.send();
+        const xhttp2 = new XMLHttpRequest();
+        xhttp2.onload = function () {
+            let result = JSON.parse([this.response]);
+
+            appointmentObj.setData(result);
+            // appointmentObj.makeAppointmnetCard(result);
+
+        }
+        xhttp2.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_for_phi", true);
+        xhttp2.send();
+    }
+</script>
 </html>
