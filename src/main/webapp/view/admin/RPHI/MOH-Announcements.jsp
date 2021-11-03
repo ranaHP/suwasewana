@@ -132,14 +132,20 @@
     }
 
     function StaffAnnouncement(imagearray){
-        reqData={
-            date:document.getElementById("date").value,
+        let reqData={
+            // date:document.getElementById("date").value,
             title:document.getElementById("title").value,
             description:document.getElementById("description").value,
             image:imagearray[0],
             moh:checkid()
         }
         console.log(reqData)
+        $.post("/test_war_exploded/createRPHI_Annoncements/createA",
+            reqData,
+            function (data, status) {
+            alert(data)
+            }
+        );
     }
 
 </script>
