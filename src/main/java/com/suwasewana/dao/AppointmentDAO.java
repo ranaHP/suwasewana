@@ -2,6 +2,7 @@ package com.suwasewana.dao;
 
 import com.google.gson.Gson;
 import com.suwasewana.core.DB;
+import com.suwasewana.core.ResponseType;
 import com.suwasewana.model.AppointmentForPHIModel;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
@@ -27,6 +28,7 @@ public class AppointmentDAO {
     private static final String GET_APPOINTMENTS_FOR_PHI = "SELECT * FROM (SELECT * FROM (SELECT * FROM `user_appoinmnet` WHERE `user_appoinmnet`.`aPhi` = '980703223V')  AS phi_appointment\n" +
             "LEFT JOIN `user` ON `user`.`uNic` = `phi_appointment`.`user_nic`) AS user_appointment LEFT JOIN `appointment_type`\t ON `appointment_type`.`apponitment_type_id` = `user_appointment`.`aType`";
 
+    private static final String APPOINTMENTS_GIVE_TIME_SLOT = "UPDATE `user_appoinmnet` SET `phi_message` = ? , `user_appoinmnet`.`time_slot_1` = STR_TO_DATE(?, '%Y-%m-%d %T') , `user_appoinmnet`.`time_slot_2` = STR_TO_DATE(?, '%Y-%m-%d %T') , `user_appoinmnet`.`time_slot_1_end` = STR_TO_DATE(?, '%Y-%m-%d %T') ,`user_appoinmnet`.`time_slot_2_end` = STR_TO_DATE(?, '%Y-%m-%d %T'), `user_appoinmnet`.`status` = ? ,`user_appoinmnet`.`alocation` = ? WHERE `user_appoinmnet`.`app_id` = ?";
 
     public ArrayList<AppointmentTypeModel> getAppointmentTypes() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(APPOINTMENTS_TYPES)) {
@@ -63,7 +65,9 @@ public class AppointmentDAO {
                         rs.getString("time_slot_2"),
                         rs.getString("phi_message"),
                         rs.getString("status"),
-                        rs.getString("user_nic")
+                        rs.getString("user_nic"),
+                        rs.getString("time_slot_1_end"),
+                        rs.getString("time_slot_2_end")
                 );
                 AppointmentTypeModel appointmentType = new AppointmentTypeModel(
                         rs.getString("apponitment_type_id"),
@@ -96,6 +100,29 @@ public class AppointmentDAO {
         }
         return null;
     }
+
+    public ResponseType appointmentChangeTimeSlot(AppointmentModel appointment) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(APPOINTMENTS_GIVE_TIME_SLOT)) {
+            preparedStatement.setString(1, appointment.getPhi_message());
+            preparedStatement.setString(2, appointment.getTime_slot_1());
+            preparedStatement.setString(3, appointment.getTime_slot_2());
+            preparedStatement.setString(4, appointment.getTime_slot_1_end());
+            preparedStatement.setString(5, appointment.getTime_slot_2_end());
+            preparedStatement.setString(6, appointment.getStatus());
+            preparedStatement.setString(7, appointment.getAlocation());
+            preparedStatement.setString(8   , appointment.getApp_id()  );
+            int rs = preparedStatement.executeUpdate();
+            if(rs == 1){
+                return new ResponseType("success" ,"Update Successful");
+            }else{
+                return new ResponseType("error" ,"Update Unsuccessful");
+            }
+
+        } catch (SQLException throwables) {
+            return new ResponseType("error" ,throwables.getMessage());
+        }
+    }
+
 
 //    public ArrayList<AppointmentTypeModel> userGetAppointmentTypes() {
 //        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT_TYPE_NAME)) {

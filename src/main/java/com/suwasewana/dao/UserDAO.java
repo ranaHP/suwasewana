@@ -267,6 +267,8 @@ public class UserDAO {
                 String spNote = rs.getString("special_notice");
                 String status = rs.getString("status");
                 String user = rs.getString("user");
+                String time_slot_1_end = rs.getString("time_slot_1_end");
+                String time_slot_2_end = rs.getString("time_slot_2_end");
                 AppointmentModel temp = new AppointmentModel(
                         aTitle,
                         AType,
@@ -280,7 +282,9 @@ public class UserDAO {
                         ts2,
                         spNote,
                         status,
-                        user
+                        user,
+                        time_slot_2_end,
+                        time_slot_1_end
                 );
                 appointmentList.add(temp);
             }

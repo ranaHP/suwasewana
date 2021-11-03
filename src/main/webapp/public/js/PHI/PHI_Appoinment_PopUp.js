@@ -134,7 +134,7 @@ class PHIAppointmnetPopup{
                         <label >
                             Start Date & Time
                         </label>
-                        <input type="datetime-local" autofocus autocomplete="off" name="ts1sd" id="ts1sd"
+                        <input type="datetime-local" autofocus autocomplete="off" name="ts1sd" id="ts1sd1"
                                maxlength="13" 
                         />
                         <div id="app-ts1sd-error" class="form-field-error"></div>
@@ -143,7 +143,7 @@ class PHIAppointmnetPopup{
                         <label >
                               End Time
                         </label>
-                        <input type="time" autofocus autocomplete="off" name="ts1et" id="ts1et"
+                        <input type="time" autofocus autocomplete="off" name="ts1et" id="ts1et2"
                                maxlength="13" 
                         />
                         <div id="app-ts1et-error" class="form-field-error"></div>
@@ -197,7 +197,9 @@ class PHIAppointmnetPopup{
                 
                     <div class="form-group">
                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #223580!important;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Save </button>
+                        onclick="giveTimeSolt('` + data.id +`');"> Save </button>
+<!--                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #223580!important;margin-top: 10px" -->
+<!--                        onclick="popup.hidePopup()"> Save </button>-->
                     </div>
                 </div>`;
         eventsContaier.appendChild(eventDiv);
@@ -223,6 +225,34 @@ class PHIAppointmnetPopup{
                         <textarea As="textarea"  class="textarea" autofocus autocomplete="off" name="app-rr" id="app-rr"
                           
                         ></textarea>
+                        <div id="app-rr-error" class="form-field-error"> ` + data.data +`</div>
+                    </div>
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group">
+                        <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Cancel </button>
+                    </div>
+                </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    appointmentActionFail(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">   Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2 style="color: red"> Your Action was not successfully completed !</h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    <div class="form-group" style="padding: 0 30px;">
+                       ` + data.data +`
                         <div id="app-rr-error" class="form-field-error"></div>
                     </div>
                 </div>
@@ -239,7 +269,6 @@ class PHIAppointmnetPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
-
     postPoneAppointment(data) {
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
