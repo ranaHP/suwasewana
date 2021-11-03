@@ -7,32 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
+    <link rel="stylesheet"
+          href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard-viewAppointments.css"/> "/>
     <script src="<c:url value="/public/js/PHIOfficer/phi_appointmnet.js"/>"></script>
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
     <script src="<c:url value="/public/js/PHI/PHI_Appoinment_PopUp.js"/>"></script>
 
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
-
     <%--pop up styles--%>
-
     <script src="https://unpkg.com/feather-icons"></script>
-
     <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
-
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-    <title>Appointments</title>
-
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
-
+    <link href="<c:url value="/public/css/popup/Appintmentpopup.css"/>" rel="stylesheet"/>
+    <title>Appointments</title>
 
 </head>
 <body>
 
 <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp"/>
-<%--<div class="popup-container" id="PopupContainer"></div>--%>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div id="mainContent" class="container">
 
     <div class="header">
@@ -59,7 +54,8 @@
                         <label for="app-type">
                             Appointment Type
                         </label>
-                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-type" list="app_type_datalist"
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-type"
+                               list="app_type_datalist"
                                onclick="document.getElementById('app-type').value = ''"
                                onkeyup="appointmentObj.searchAppointment()"/>
                         <datalist id="app_type_datalist">
@@ -71,11 +67,12 @@
                         <label for="app-status">
                             Appointment Status
                         </label>
-                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-status" list="app_status_datalist"
+                        <input type="text" autofocus autocomplete="off" name="app-type" id="app-status"
+                               list="app_status_datalist"
                                onkeyup="appointmentObj.searchAppointment()"
                                onclick="document.getElementById('app-status').value = ''"
                         />
-                        <datalist id="app_status_datalist" >
+                        <datalist id="app_status_datalist">
                             <option value="All" option="all"></option>
                             <option value="Pending" option="pending"></option>
                             <option value="Completed" option="completed"></option>
@@ -93,7 +90,7 @@
                 </div>
             </div>
             <div class="admin-title">
-                Current Appointment (Result : <span id="resultCount" >0</span>)
+                Current Appointment (Result : <span id="resultCount">0</span>)
             </div>
             <div id="appointmnet_card_container">
 
@@ -143,7 +140,7 @@
                             <a href=""> manage</a>
                         </div>
                         <div class="officer-count" id="completed_appointment">
-                           0
+                            0
                         </div>
                     </div>
                 </div>
@@ -154,7 +151,10 @@
             </div>
         </div>
     </div>
-
+<button onclick="popup.showAppointmentSuccessMessage({
+                        status: 'success',
+                        message: 'Appointment Successfully Requested!'
+                    });"> asdasdasdasd</button>
 </div>
 </body>
 
@@ -164,22 +164,24 @@
 
 
 <script src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
-<script defer>
-    // let popup= new require_message_popup('PopupContainer' , "Reason for Reject")
+<script >
+    let popup = new PHIAppointmnetPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let validation = new FormInputValidation();
+
 </script>
 <script defer>
     let appointmentObj = new PHIAppointment();
     init();
-    function init(){
+
+    function init() {
         const xhttp1 = new XMLHttpRequest();
         xhttp1.onload = function () {
             let result = JSON.parse([this.response]);
             appointmentObj.setDataAppointmentType(result);
             // appointmentObj.getAppointmentCategorySummary();
             document.getElementById("app_type_datalist").innerHTML = "<option option='All' value='All' name='All'>";
-            result.map( (aType) => {
-                document.getElementById("app_type_datalist").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
+            result.map((aType) => {
+                document.getElementById("app_type_datalist").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='" + aType.typeName + "'>";
             })
         }
         xhttp1.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_type", true);
