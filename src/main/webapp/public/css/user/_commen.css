@@ -27,6 +27,11 @@
     color: rgba(0, 0, 0, 0.815);
     font-family: 'Nunito', sans-serif;
 }
+.textarea{
+    border: 1px solid #bbbbbb !important;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.158);
+
+}
 .form-group label{
     font-size: 1.1em;
     color: rgba(0, 0, 0, 0.774);
