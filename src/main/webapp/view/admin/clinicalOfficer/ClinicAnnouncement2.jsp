@@ -15,7 +15,7 @@
 
   <%--    for popup style--%>
   <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
-  <script src="<c:url value="/public/js/ClinicalOfficer/clinicVaccineAnnouncements.js"/>"></script>
+  <script src="<c:url value="/public/js/ClinicalOfficer/clinicAnnouncements.js"/>"></script>
   <%--    for popup script--%>
   <script src="<c:url value="/public/js/popup.js"/>"></script>
 
@@ -45,17 +45,17 @@
   <div class="body-content">
     <div class="MR_container">
       <div class="title">
-        Vaccine clinic Announcement
+        Normal clinic Announcement
       </div>
       <div class="seach_by_name" style="margin: 50px 0;">
         <form class="load">
           <div>
-            <input id="CId" placeholder="search by clinic ID" list="AllMArea" name="AllMArea" autocomplete="off"
-                   onclick="document.getElementById('CId').value='';"
-<%--                   onblur="validation.SearchSelect(--%>
-<%--                                    document.getElementById('CId').value,--%>
-<%--                                    'LMArea'--%>
-<%--                                );"--%>
+            <input id="clinicID" placeholder="search by clinic ID" list="AllMArea" name="AllMArea" autocomplete="off"
+                   onclick="document.getElementById('clinicID').value='';"
+                   onblur="validation.SearchSelect(
+                                    document.getElementById('clinicID').value,
+                                    'LMArea'
+                                );"
             >
             <datalist id="AllMArea">
             </datalist>
@@ -78,48 +78,57 @@
             <div class="basic_left">
               <div class="left_row">
                 <div class="left_row_left"><span>clinic-title  </span></div>
-                <div class="left_row_right"><input type="text" required  id="clinic-title"></div>
+                <div class="left_row_right"><input type="text" name="clinic-title" id="clinic-title" autocomplete="off"
+                                                   required/></div>
 
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span> description  </span></div>
-                <div class="left_row_right"><input type="text" required id="description"></div>
+                <div class="left_row_right"><input type="text" placeholder="reason" autocomplete="off" name="description"
+                                                      id="description">  </input></div>
               </div>
 
               <div class="left_row">
                 <div class="left_row_left"><span> start_date_time  </span></div>
-                <div class="left_row_right"><input type="text" required id="start_date_time"></div>
+                <div class="left_row_right"><input type="text" name="date-time" id="date-time" autocomplete="off"
+                                                   required/></div>
               </div>
 
               <div class="left_row">
                 <div class="left_row_left"><span> duration  </span></div>
-                <div class="left_row_right"><input type="text" required id="duration"></div>
+                <div class="left_row_right"><input type="text" name="duration" id="duration" autocomplete="off"
+                                                   required/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span>Location</span></div>
-                <div class="left_row_right"><input type="text" id="Location" required></div>
+                <div class="left_row_right"> <input type="text" name="location" id="location" autocomplete="off"
+                                                    required/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span> Target MOH</span></div>
-                <div class="left_row_right"><input type="text" id="Target-MOH" required></div>
+                <div class="left_row_right"><input type="text" name="target-MOH" id="target-MOH" autocomplete="off"
+                                                   required/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span>  Target Peoples</span></div>
-                <div class="left_row_right"><input type="text" id="Target-Peoples" required></div>
+                <div class="left_row_right"><input type="text" name="patient" id="patient" autocomplete="off"
+                                                   required/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span> Max limit</span></div>
-                <div class="left_row_right"><input type="text" id="Max-limit" required></div>
+                <div class="left_row_right"> <input type="text" name="max-patient" id="max-patient" autocomplete="off"
+                                                    required/></div>
               </div>
 
               <div class="left_row">
-                <div class="left_row_left"><span> Age limit</span></div>
-                <div class="left_row_right"><input type="text" id="Age-limit" required></div>
+                <div class="left_row_left"><span> Disease</span></div>
+                <div class="left_row_right"><input type="text" name="disease" id="disease" autocomplete="off"
+                                                   required/></div>
               </div>
 
               <div class="left_row">
-                <div class="left_row_left"><span> Vaccine name</span></div>
-                <div class="left_row_right"><input type="text" id="Vaccine-name" required></div>
+                <div class="left_row_left"><span> Conduct by</span></div>
+                <div class="left_row_right"><input type="text" id="conduct" required></div>
               </div>
             </div>
             <div class="basic-right">
@@ -140,7 +149,7 @@
       </div>
 </body>
 <script defer>
-  let validation = new FormInputValidation();
+<%--  let validation = new FormInputValidation();--%>
   let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
   var loadFile = function (event, imgContainerId) {
     console.log("load file")
@@ -177,7 +186,7 @@
           if (response != 0) {
             console.log("successfully image uploadedss ---- " +imageNames )
 
-            Vannouncement(imageNames)
+            announcement(imageNames)
           } else {
             console.log('file not uploaded');
           }
@@ -191,70 +200,106 @@
     return false;
   }
 
-  function Vannouncement(imagearray){
-   let reqData ={
-     title:document.getElementById("clinic-title").value,
-     description:document.getElementById("description").value,
-     image:imagearray[0],
-     Vaccinename:document.getElementById("Vaccine-name").value,
-     Maxlimit:document.getElementById("Max-limit").value,
-     Location:document.getElementById("Location").value,
-     TargetPeoples:document.getElementById("Target-Peoples").value,
-     startdatetime:document.getElementById("start_date_time").value,
-     duration:document.getElementById("duration").value,
-     age_limit:document.getElementById("Age-limit").value,
-     TargetMOH:document.getElementById("Target-MOH").value,
-     CId:checkMOHid(),
-
-   };
-   console.log(reqData)
-    $.post("/test_war_exploded/clinicAnnouncementController/createVA",
-            reqData,
-            function(data,status){
-              if(data.includes("sucsess")){
-                // updateclinics()
-                popup.showCreateClinicSuccessMessage({
-                  status: 'success',
-                  message: 'Successfully Created!'
-                })
-              } else{
-                popup.showCreateClinicSuccessMessage({
-                  status: 'fail',
-                  message: 'Failed to create !',
-                  data: data
-                });
-              }
+function announcement(imagearray){
+  let reqData =
+          {
+            clinicID:document.getElementById("clinicID").value,
+            image:imagearray[0]
+          };
+  $.post("/test_war_exploded/clinicAnnouncementController/createA",
+          reqData,
+          function(data,status){
+            if(data.includes("sucsess")){
+              updateclinics()
+              popup.showCreateClinicSuccessMessage({
+                status: 'success',
+                message: 'Successfully Created!'
+              })
+            } else{
+              popup.showCreateClinicSuccessMessage({
+                status: 'fail',
+                message: 'Failed to create !',
+                data: data
+              });
             }
-            );
+          }
+  );
+  return false;
+}
 
-  }
-  let selectVclinics = new selectVClinics("form");
-
-  function view(){
-    let clinicListArray=[]
+function updateclinics(){
+    // alert("update")
     let reqData =
-            {
-              clinicID: checkMOHid(),
-            };
-    // console.log(reqData)
-    $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
-            reqData,
-            function(data,status){
-      alert(data)
-              // clinicListArray=JSON.parse(data)
-              // // console.log(clinicListArray)
-              // selectVclinics.setData(clinicListArray);
+        {
+            clinicID:checkMOHid(),
+            disease:document.getElementById("disease").value,
+            title:document.getElementById("clinic-title").value,
+            location:document.getElementById("location").value,
+            targetMOH:document.getElementById("target-MOH").value,
+            datetime:document.getElementById("date-time").value,
+            duration:document.getElementById("duration").value,
+            maxpatient:document.getElementById("max-patient").value,
+            patient:document.getElementById("patient").value,
+            conduct:document.getElementById("conduct").value,
+            description:document.getElementById("description").value,
+        };
+    console.log(reqData)
+    $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+        reqData,
+        function (data,status){
+            // alert("wrong")
+            //  alert(data)
+        });
 
-            }
-    );
-    return false
-  }
+    return false;
+}
+<%--   console.log(reqData)--%>
+<%--    $.post("/test_war_exploded/clinicAnnouncementController/createVA",--%>
+<%--            reqData,--%>
+<%--            function(data,status){--%>
+<%--              if(data.includes("sucsess")){--%>
+<%--                // updateclinics()--%>
+<%--                popup.showCreateClinicSuccessMessage({--%>
+<%--                  status: 'success',--%>
+<%--                  message: 'Successfully Created!'--%>
+<%--                })--%>
+<%--              } else{--%>
+<%--                popup.showCreateClinicSuccessMessage({--%>
+<%--                  status: 'fail',--%>
+<%--                  message: 'Failed to create !',--%>
+<%--                  data: data--%>
+<%--                });--%>
+<%--              }--%>
+<%--            }--%>
+<%--            );--%>
+
+<%--  }--%>
+let selectClinic = new selectClinics("form");
+
+function view(){
+  let clinicList=[]
+  let reqData =
+          {
+            clinicID: document.getElementById("clinicID").value,
+          };
+  console.log(reqData);
+  $.post("/test_war_exploded/create-clinic-controller/select",
+          reqData,
+          function(data,status){
+            console.log(data)
+            clinicList=JSON.parse(data)
+            selectClinic.setData(clinicList);
+
+          }
+  );
+  return false;
+}
 
 
 
   function checkMOHid(){
     // alert("check")
-    var MTypeObj = document.getElementById('CId');
+    var MTypeObj = document.getElementById('clinicID');
     var datalist = document.getElementById(MTypeObj.getAttribute("list"));
     if(datalist.options.namedItem(MTypeObj.value)){
      alert(datalist.options.namedItem(MTypeObj.value).id)

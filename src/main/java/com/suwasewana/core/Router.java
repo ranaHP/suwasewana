@@ -77,12 +77,24 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_viewClinics.jsp");
                     rd.forward(request,response);
                     break;
-                case "edit-clinics":
-                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_editClinics.jsp");
+                case "vaccine_clinics":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_createVaccineClinics.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view_vaccine_clinics":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_viewVaccineClinics.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "vaccine_announcements":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/ClinicAnnouncement1.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "view_vaccine_announcements":
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_viewVaccineAnnouncements.jsp");
                     rd.forward(request,response);
                     break;
                 case "select-announcements":
-                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/ClinicAnnouncement.jsp");
+                    rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/ClinicAnnouncement2.jsp");
                     rd.forward(request,response);
                     break;
 

@@ -260,7 +260,32 @@
             {
               clinicID:document.getElementById("clinicID").value,
               image:imagearray[0]
-            };
+            }; function updateclinics(){
+      // alert("update")
+      let reqData =
+              {
+                clinicID:document.getElementById("clinicID").value,
+                disease:document.getElementById("disease").value,
+                title:document.getElementById("clinic-title").value,
+                location:document.getElementById("location").value,
+                targetMOH:document.getElementById("target-MOH").value,
+                datetime:document.getElementById("date-time").value,
+                duration:document.getElementById("duration").value,
+                maxpatient:document.getElementById("max-patient").value,
+                patient:document.getElementById("patient").value,
+                conduct:document.getElementById("conduct").value,
+                description:document.getElementById("description").value,
+              };
+      console.log(reqData)
+      $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+              reqData,
+              function (data,status){
+                // alert("wrong")
+                //  alert(data)
+              });
+
+      return false;
+    }
     $.post("/test_war_exploded/clinicAnnouncementController/createA",
             reqData,
             function(data,status){
@@ -282,32 +307,7 @@
     return false;
   }
 
-  function updateclinics(){
-    // alert("update")
-    let reqData =
-            {
-              clinicID:document.getElementById("clinicID").value,
-              disease:document.getElementById("disease").value,
-              title:document.getElementById("clinic-title").value,
-              location:document.getElementById("location").value,
-              targetMOH:document.getElementById("target-MOH").value,
-              datetime:document.getElementById("date-time").value,
-              duration:document.getElementById("duration").value,
-              maxpatient:document.getElementById("max-patient").value,
-              patient:document.getElementById("patient").value,
-              conduct:document.getElementById("conduct").value,
-              description:document.getElementById("description").value,
-            };
-    console.log(reqData)
-    $.post("/test_war_exploded/create-clinic-controller/updateclinic",
-            reqData,
-            function (data,status){
-             // alert("wrong")
-             //  alert(data)
-            });
 
-    return false;
-  }
 
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"></c:url> " ></script>

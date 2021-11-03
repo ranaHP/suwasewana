@@ -49,6 +49,7 @@
                 <li><a href="/test_war_exploded/s/create-clinic">Create Clinic </a></li>
             </ul>
         </li>
+
         <li>
             <div class="iocn-link">
                 <a href="#">
@@ -62,6 +63,35 @@
                 <li><a href="/test_war_exploded/s/select-announcements">Create Announcement </a></li>
             </ul>
         </li>
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bxs-bell-plus'></i>
+                    <span class="link_name">Vaccine clinics</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a href="/test_war_exploded/s/vaccine_clinics">create vaccine clinics </a></li>
+                <li><a href="/test_war_exploded/s/view_vaccine_clinics">view vaccine clinics </a></li>
+            </ul>
+        </li>
+
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bxs-bell-plus'></i>
+                    <span class="link_name">vaccine Announcement</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a href="/test_war_exploded/s/view_vaccine_announcements">List vaccine clinic Announcement </a></li>
+                <li><a href="/test_war_exploded/s/vaccine_announcements">Create vaccine clinic Announcement </a></li>
+            </ul>
+        </li>
+
+
 
         <li>
             <div class="iocn-link">

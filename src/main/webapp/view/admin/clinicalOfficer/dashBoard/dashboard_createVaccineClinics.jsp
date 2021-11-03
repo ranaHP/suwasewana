@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Suwasewana</title>
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-createClinics.css"/> "/>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-createClinics1.css"/>">
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/_db-header.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>

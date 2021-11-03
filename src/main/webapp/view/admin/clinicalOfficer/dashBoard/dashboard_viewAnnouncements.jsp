@@ -53,7 +53,7 @@
             function(data,status){
                 announcementArray=JSON.parse(data)
                 viewAnnouncementslist.setData(announcementArray);
-                alert(data)
+                // alert(data)
 
             }
         );
