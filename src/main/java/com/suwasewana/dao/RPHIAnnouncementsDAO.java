@@ -8,23 +8,24 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class RPHIAnnouncementsDAO {
-   private static final String CREATEA="INSERT INTO `clinic_announcement`  VALUES (NULL ,?,?,?,?,NULL,?);";
+   private static final String CREATEA="INSERT INTO `staff_announcement`  VALUES (NULL ,?,?,?,?,NULL,?);";
     Connection connection;
     public RPHIAnnouncementsDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
 
-    public String createA(RPHIAnnouncementsModel rphiAnnouncements) {
+    public String createA(RPHIAnnouncementsModel RPHIAnnouncements) {
         System.out.println("came to dao");
      try (PreparedStatement preparedStatement=connection.prepareStatement(CREATEA)) {
-         preparedStatement.setString(1,rphiAnnouncements.getTitle());
-         preparedStatement.setString(2,rphiAnnouncements.getDescription());
-         preparedStatement.setString(3,rphiAnnouncements.getBanner());
-         preparedStatement.setString(4,rphiAnnouncements.getTarget_moh());
-         preparedStatement.setString(5,rphiAnnouncements.getPhi_officer());
+         preparedStatement.setString(1,RPHIAnnouncements.getTitle());
+         preparedStatement.setString(2,RPHIAnnouncements.getDescription());
+         preparedStatement.setString(3,RPHIAnnouncements.getBanner());
+         preparedStatement.setString(4,RPHIAnnouncements.getTarget_moh());
+         preparedStatement.setString(5,"12");
 
          int rs = preparedStatement.executeUpdate();
+         System.out.println(rs);
          return "sucsess";
 
      }catch (SQLException throwables) {

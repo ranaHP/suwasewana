@@ -15,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/createRPHI_Annoncements/*")
+@WebServlet("/createRPHI_Announcements/*")
 public class RPHIAnnouncementController extends HttpServlet {
     RPHIAnnouncementsDAO rphiAnnouncementsDAO;
     private Gson gson = new Gson();
     public void init(){
-        RPHIAnnouncementsDAO rphiAnnouncementsDAO=new RPHIAnnouncementsDAO();
+        rphiAnnouncementsDAO =new RPHIAnnouncementsDAO();
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -49,17 +49,18 @@ public class RPHIAnnouncementController extends HttpServlet {
 
     private void createA(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        System.out.println("came to controller");
-        RPHIAnnouncementsModel rphiAnnouncements=new RPHIAnnouncementsModel(
+        System.out.println("came to controller 1");
+        RPHIAnnouncementsModel RPHIAnnouncements = new RPHIAnnouncementsModel(
                 "",
                 req.getParameter("title"),
                 req.getParameter("description"),
                 req.getParameter("image"),
                 req.getParameter("moh"),
                 "",
-                ""
+                "12"
         );
-        String result = rphiAnnouncementsDAO.createA(rphiAnnouncements);
+        System.out.println("before");
+        String result= rphiAnnouncementsDAO.createA(RPHIAnnouncements);
         res.getWriter().println(result);
         System.out.println(result);
     }

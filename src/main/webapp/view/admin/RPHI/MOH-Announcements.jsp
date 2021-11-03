@@ -14,10 +14,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="<c:url value="/public/js/Admin/public_Announcements.js"></c:url> "></script>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
 </head>
 <body id="mainContent" onload="check()">
 <c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp"></c:import>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container">
     <!-- suwasewana header -->
     <div class="header">
@@ -82,7 +86,9 @@
         </div>
     </div>
 </div>
-<script>
+<script defer>
+
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var loadFile = function(event) {
         var image = document.getElementById('images');
         image.src = URL.createObjectURL(event.target.files[0]);
@@ -138,14 +144,27 @@
             description:document.getElementById("description").value,
             image:imagearray[0],
             moh:checkid()
-        }
-        console.log(reqData)
-        $.post("/test_war_exploded/createRPHI_Annoncements/createA",
+        };
+        // console.log(reqData)
+        $.post("/test_war_exploded/createRPHI_Announcements/createA",
             reqData,
             function (data, status) {
-            alert(data)
-            }
+                if(data.includes("sucsess")){
+                    // updateclinics()
+                    popup.showCreateClinicSuccessMessage({
+                        status: 'success',
+                        message: 'Successfully Created!'
+                    })
+                } else{
+                    popup.showCreateClinicSuccessMessage({
+                        status: 'fail',
+                        message: 'Failed to create !',
+                        data: data
+                    });
+                }}
         );
+
+        return false
     }
 
 </script>
