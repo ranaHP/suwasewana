@@ -92,7 +92,7 @@
                 </div>
             </div>
             <div class="admin-title">
-                Current Appointment
+                Current Appointment (Result : <span id="resultCount" >0</span>)
             </div>
             <div id="appointmnet_card_container">
 
@@ -109,7 +109,7 @@
                          width="50px">
                     <div class="total-officers">
                         <div class="officer-total-count" id="total_appointment_header">
-                            500
+                            0
                         </div>
                         Total No of Appointment
                     </div>
@@ -122,7 +122,7 @@
                             <a href=""> manage</a>
                         </div>
                         <div class="officer-count" id="today_appointment">
-                            520
+                            0
                         </div>
                     </div>
                     <div class="officer-summary-card">
@@ -132,7 +132,7 @@
                             <a href=""> manage</a>
                         </div>
                         <div class="officer-count" id="pendnig_appointment">
-                            520
+                            0
                         </div>
                     </div>
                     <div class="officer-summary-card">
@@ -142,7 +142,7 @@
                             <a href=""> manage</a>
                         </div>
                         <div class="officer-count" id="completed_appointment">
-                            1, 255
+                           0
                         </div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@
             let result = JSON.parse([this.response]);
             appointmentObj.setDataAppointmentType(result);
             // appointmentObj.getAppointmentCategorySummary();
-            document.getElementById("app_type_datalist").innerHTML = "";
+            document.getElementById("app_type_datalist").innerHTML = "<option option='All' value='All' name='All'>";
             result.map( (aType) => {
                 document.getElementById("app_type_datalist").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
             })
