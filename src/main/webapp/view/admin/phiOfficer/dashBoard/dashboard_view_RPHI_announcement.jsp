@@ -24,8 +24,22 @@
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">PHI/Dashboard/View announcements</div>
     </div>
-    <!-- page title -->
     <div class="main-title">RPHI Announcement</div>
+    <div class="cardselect">
+        <div class="searchbar">
+            <input id="post-date" placeholder="search by clinic date" list="AllMArea" name="AllMArea" autocomplete="off"
+
+                   onclick="document.getElementById('post-date').value='';"
+            >
+            <datalist id="AllMArea">
+            </datalist>
+            <br>
+            <span class="error" id="LMArea" style="margin-left: 5px" ></span>
+            <button onclick="searchD()">Search</button>
+        </div>
+    </div>
+    <!-- page title -->
+
     <!-- announcements container -->
     <div class="announcements-container" id="announcements-container">
 
@@ -51,6 +65,24 @@
     );
 
 
+</script>
+<script defer>
+    let mohDetails=[];
+    $.post("/test_war_exploded/createRPHI_Announcements/selectA",
+        function (data, status) {
+            console.log(data);
+            let rs= JSON.parse(data);
+            this.mohDetails=rs;
+            console.log(data);
+
+            let MNames=document.getElementById("AllMArea");
+            MNames.innerHTML="";
+            rs.map((element,index) => {
+                // console.log("moh"+element.MName)
+                MNames.innerHTML+= '<option  id="'+element.announcement_id+'"  name="'+element.announcement_id+'" value="'+element.posted_date +  '" option="' +element.announcement_id +  '" ></option>'
+            })
+        }
+    );
 </script>
 </body>
 </html>

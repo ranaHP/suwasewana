@@ -14,8 +14,6 @@
     <script src="<c:url value="/public/js/popup.js"/>"></script>
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
 
-<%--    <script src="<c:url value="/Popup/AddTask/script.js"/>"></script>--%>
-<%--    <link href="<c:url value="/Popup/common-popup.css"/>" rel="stylesheet">--%>
 
 </head>
 <body>
@@ -56,11 +54,9 @@
 <script defer>
     let validation = new FormInputValidation();
     let clinicList1 = new clinicList("card-containor");
-
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     view();
     function view(){
-
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/view",
             // reqData,
@@ -84,7 +80,6 @@
     }
 
     function deleteClinics(clinicID){
-        // console.log("deleteclinicfunction")
         $.post("/test_war_exploded/create-clinic-controller/delete",
             {
                 clinicID: clinicID
@@ -106,14 +101,8 @@
         );
     }
 
-
-    //update clinics
-
-    //select clinis
-
     function select(id){
         // let selectClinic = new selectClinics("form");
-
             let clinicList=[]
             let reqData =
                 {
@@ -132,7 +121,6 @@
                 }
             );
             return false;
-
     }
 
     function updateclinics(){
