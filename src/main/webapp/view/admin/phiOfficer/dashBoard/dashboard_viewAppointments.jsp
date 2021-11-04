@@ -171,6 +171,8 @@
 </script>
 <script defer>
     let appointmentObj = new PHIAppointment();
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+
     init();
 
     function init() {
@@ -184,7 +186,7 @@
                 document.getElementById("app_type_datalist").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='" + aType.typeName + "'>";
             })
         }
-        xhttp1.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_type", true);
+        xhttp1.open("GET", myUrl+"/PHIAppointmentServlet/appointment_type", true);
         xhttp1.send();
         const xhttp2 = new XMLHttpRequest();
         xhttp2.onload = function () {
@@ -194,8 +196,46 @@
             // appointmentObj.makeAppointmnetCard(result);
 
         }
-        xhttp2.open("GET", "http://localhost:8093/test_war_exploded/PHIAppointmentServlet/appointment_for_phi", true);
+        xhttp2.open("GET", myUrl+"/PHIAppointmentServlet/appointment_for_phi", true);
         xhttp2.send();
+    }
+
+    function giveTimeSolt(app_id){
+
+        let reqData = {
+            status: "pending_for_citizen",
+            phi_message: document.getElementById('app-sn').value,
+            time_slot_2: document.getElementById('ts2sd').value.split("T")[0] + " " + document.getElementById('ts2sd').value.split("T")[1]+":00",
+            time_slot_1: document.getElementById('ts1sd1').value.split("T")[0] + " " +document.getElementById('ts1sd1').value.split("T")[1]+":00",
+            time_slot_2_end: document.getElementById('ts2sd').value.split("T")[0] + " " + document.getElementById('ts2ed').value+":00",
+            time_slot_1_end: document.getElementById('ts1sd1').value.split("T")[0] + " " +document.getElementById('ts1et2').value+":00",
+            alocation: document.getElementById('app-location').value,
+            app_id: app_id
+        }
+        console.log(reqData)
+        $.post(myUrl+"/PHIAppointmentServlet/giveTimeForAppointment",
+            reqData,
+            function (data, status) {
+                let result = JSON.parse(data)
+
+
+                console.log(result.status)
+                if (data.includes("success")) {
+                    popup.hidePopup();
+                } else {
+                    popup.appointmentActionFail({data: result.data});
+                    // popup.hidePopup();
+                    // alert('asd')
+                    // setTimeout(()=>{
+                    //     alert("aaresd")
+                    //     document.getElementById("app-rr-error").innerText = ""
+                    //     popup.appointmentActionFail({});
+                    // },500)
+
+                }
+
+            }
+        );
     }
 </script>
 </html>
