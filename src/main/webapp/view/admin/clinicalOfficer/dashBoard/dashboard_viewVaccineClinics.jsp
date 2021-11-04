@@ -115,6 +115,69 @@
     );
 
 
+    function select(id){
+        // let selectClinic = new selectClinics("form");
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+            reqData,
+            function(data,status){
+                // alert(data)
+                console.log(data)
+                // alert(data)
+                clinicList=JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showVaccineClinicEditMessage(data)
+
+            }
+        );
+        return false;
+    }
+
+
+    function updatevclinics(data){
+        alert("update")
+        let id=data;
+        let age=document.getElementById("target_age_limit").value;
+        let patient=document.getElementById("target_people").value;
+        let maxpatient = document.getElementById("max_patient").value;
+        let duration=document.getElementById("duration").value;
+        let datetime= document.getElementById("start_date_time").value;
+        let clinictitle=document.getElementById("tittle").value;
+        let description=document.getElementById("description").value;
+        let dose=document.getElementById("dose_count").value;
+        let location=document.getElementById("location").value;
+        // console.log(a)
+        // // alert("update")
+        let reqData =
+            {
+                clinicID:data,
+                age:age,
+                title:clinictitle,
+                location:location,
+                // targetMOH:document.getElementById("target-MOH").value,
+                datetime:datetime,
+                duration:duration,
+                maxpatient:maxpatient,
+                patient:patient,
+                dose:dose,
+                description:description
+            };
+        console.log(reqData)
+        alert(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/updatevclinic",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                alert(data)
+            });
+
+        return false;
+    }
 
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>

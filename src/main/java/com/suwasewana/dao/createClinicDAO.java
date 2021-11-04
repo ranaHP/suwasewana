@@ -24,6 +24,7 @@ public class createClinicDAO {
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session`";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
+  private static final String UPDATE_VCLINICS="UPDATE `vaccine_clinic_session` SET `tittle` =? , `start_date_time`= ? , `duration`= ? , `description`= ? , `max_patient`= ? ,`target_people`= ? , `target_age_limit`= ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String VClinic_Detail="SELECT * FROM `vaccine_clinic_session`";
   Connection connection;
     public createClinicDAO(){
@@ -412,6 +413,74 @@ public class createClinicDAO {
 
         return null;
     }
+
+    public String updatevClinic(vaccineClinicModel updatevclinic) {
+        boolean rowUpdate;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_VCLINICS)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+            preparedStatement.setString(1,updatevclinic.getTittle());
+            preparedStatement.setString(2,updatevclinic.getStart_date_time());
+            preparedStatement.setString(3,updatevclinic.getDuration());
+            preparedStatement.setString(4,updatevclinic.getDescription());
+            preparedStatement.setString(5,updatevclinic.getMax_patient());
+//            preparedStatement.setString(6,updatevclinic.getTarget_moh());
+            preparedStatement.setString(6,updatevclinic.getTarget_people());
+            preparedStatement.setString(7,updatevclinic.getTarget_age_limit());
+            preparedStatement.setString(8,updatevclinic.getV_id());
+            preparedStatement.setString(9,updatevclinic.getLocation());
+            preparedStatement.setString(10,updatevclinic.getDose_count());
+            preparedStatement.setString(11,updatevclinic.getVcs_id());
+
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
+
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+//
+//    public ArrayList<vaccineClinicModel> selectVClinics(vaccineClinicModel vaccineClinicselet) {
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(VClinic_Detail)) {
+//
+//            ResultSet rs = preparedStatement.executeQuery();
+//            ArrayList<vaccineClinicModel> allvClinics = new ArrayList<vaccineClinicModel>();
+//            while (rs.next()) {
+//
+//                String vcs_id = rs.getString("vcs_id");
+//                String title = rs.getString("tittle");
+//                String dateTime= rs.getString("start_date_time");
+//
+//                vaccineClinicModel temp = new vaccineClinicModel(
+//                        vcs_id,
+//                        title,
+//                        dateTime,
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        "",
+//                        ""
+//
+//                );
+////
+//                allvClinics.add(temp);
+//            }
+//            return allvClinics;
+//
+//        } catch (SQLException throwables) {
+//            printSQLException(throwables);
+//        }
+//
+//        return null;
+//    }
 }
 
 

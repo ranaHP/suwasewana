@@ -116,7 +116,7 @@
                     console.log(data)
                     clinicList=JSON.parse(data)
                     // selectClinic.setData(clinicList);
-                   popup.showAlertMessage(data)
+                   popup.showClinicEditMessage(data)
 
                 }
             );

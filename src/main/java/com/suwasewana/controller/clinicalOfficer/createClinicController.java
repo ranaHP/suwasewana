@@ -54,6 +54,10 @@ import java.util.ArrayList;
                     res.getWriter().println("updateclinics");
                     updateClinic(req, res);
                     break;
+                case "updatevclinic":
+//                    res.getWriter().println("updatevclinics");
+                    updatevClinic(req, res);
+                    break;
                 case "vaccineCLinic":
 //                    res.getWriter().println("vaccineCLinic");
                     vaccineClinic(req, res);
@@ -69,6 +73,7 @@ import java.util.ArrayList;
                 case "select-V-Clinics":
 //                    res.getWriter().println("select-V-Clinics");
                     VaccineClinicsSelect(req, res);
+                    break;
                 case "all-V-Clinics":
 //                    res.getWriter().println("select-V-Clinics");
                     AllVaccineClinics(req, res);
@@ -86,6 +91,29 @@ import java.util.ArrayList;
             throw new ServletException(error);
         }
     }
+
+    private void updatevClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
+          vaccineClinicModel updatevclinic= new vaccineClinicModel(
+                  req.getParameter("vcs_id"),
+                  req.getParameter("tittle"),
+                  req.getParameter("start_date_time"),
+                  req.getParameter("duration"),
+                  req.getParameter("description"),
+                  req.getParameter("max_patient"),
+                  req.getParameter("6"),
+                  req.getParameter("target_people"),
+                  req.getParameter("target_age_limit"),
+                  "12",
+                  "6",
+                  req.getParameter("location"),
+                  req.getParameter("dose_count")
+
+          ) ;
+        System.out.println("updateeeeeeeeeee");
+        String result= createClinicDAO.updatevClinic(updatevclinic);
+        res.getWriter().println(result);
+        }
+
 
     private void AllClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
         ArrayList<CreateClinicModel> result = createClinicDAO.allClinics();

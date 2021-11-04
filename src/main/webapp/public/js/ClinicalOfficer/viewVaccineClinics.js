@@ -40,7 +40,7 @@ class clinicList {
                         <div class="location" id="item1"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> Location :</span> ${item.location}</div>
                         <div class="dose"  id="item2"><span><span><object data="${Url}/public/images/icons/user.svg" width="8" height="8"> </object></span> Dose count :</span> ${item.dose_count}</div>
                         <div class="max-limit"  id="item3"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Max participant limit :</span>${item.max_patient}</div>
-                        <div class="moh-area"  id="moh-area"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> MOH Area :</span>takeMOH(${item.target_moh})</div>
+                        <div class="moh-area"  id="moh-area"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> MOH Area :</span>${item.target_moh}</div>
                         <div class="target-participants"  id="item5"><span><span><object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object></span> Target participant :</span> ${item.target_people}</div>
                         <div class="age"  id="4"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> Age limit :</span>${item.target_age_limit}</div>
                     </div>
@@ -52,7 +52,7 @@ class clinicList {
                         <div class="buttons">
 
                             <div onclick="popup.showDeleteClinicAlertMessage(${item.clinicID})" class="delete-button">Delete</div>
-                            <div class="edit-button" onclick="window.location='http://localhost:8093/test_war_exploded/s/create-clinic';">Edit</div>
+                            <div class="edit-button" onclick="select(${item.vcs_id})">Edit</div>
 
                         </div>
                     </div>

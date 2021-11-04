@@ -344,19 +344,86 @@ class SuwasewanaPopup{
         }
     }
 
-    showAlertMessage(data) {
-        alert(data)
-        console.log(data)
+    showVaccineClinicEditMessage(data) {
         data=JSON.parse(data)
         console.log(data)
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
-<!--            <div class="popup-title">User Appointment Portal </div>-->
-
             <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container " style="color: #d9534f!important;padding: 0px;">
-               
+                <div class="row" >
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style= "width:150px" >Description</label>
+                        <textarea  type="text"   id="description" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);height: 50px">${data[0].description}</textarea>
+                    </div>
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Title</label>
+                        <input type="text" value="${data[0].tittle}"  id="tittle" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">DateandTime</label>
+                        <input type="text"  id="start_date_time" value="${data[0].start_date_time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Duration</label>
+                        <input type="text"  id="duration" value="${data[0].duration}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                     
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Max limit</label>   
+                        <input type="text"  id="max_patient" value="${data[0].max_patient}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Target participants</label>    
+                        <input type="text" value="${data[0].target_people}"  id="target_people" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                     
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style="width:150px">Location</label>
+                        <input type="text" value="${data[0].location}"  id="location" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style="width:150px">Target age limit</label>
+                        <input type="text" value="${data[0].target_age_limit}"  id="target_age_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                         <label style="width:150px">Dose count</label>    
+                        <input type="text" value="${data[0].dose_count}"  id="dose_count" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+
+                </div>
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                   <button onclick="updatevclinics('`+ data[0].vcs_id+`');popup.hidePopup()">update</button>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    showClinicEditMessage(data) {
+        data=JSON.parse(data)
+        console.log(data)
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;padding: 0px;">
                 <div class="row" >
                     <label>Description</label>
                     <div class="form-group" style="margin-bottom: 5px">
