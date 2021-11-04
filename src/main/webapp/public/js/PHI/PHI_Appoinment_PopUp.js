@@ -1,11 +1,11 @@
-class PHIAppointmnetPopup{
-    title= '';
+class PHIAppointmnetPopup {
+    title = '';
     desc = '';
     message = '';
-    type= "0";
+    type = "0";
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
-    constructor(popupContaienr, title, desc, message, type ){
+    constructor(popupContaienr, title, desc, message, type) {
         this.title = title;
         this.desc = desc;
         this.message = message;
@@ -14,7 +14,7 @@ class PHIAppointmnetPopup{
         this.init();
     }
 
-    init(){
+    init() {
 
         // popup contaienr
         let popupContaienr = document.createElement('div');
@@ -65,12 +65,11 @@ class PHIAppointmnetPopup{
     }
 
 
-
     showAppointmentSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
         console.log(data.name);
         let eventDiv = document.createElement('div');
-        if(data.status === "success"){
+        if (data.status === "success") {
             eventDiv.innerHTML = `
             <div class="popup-title"> User Appointment Portal </div>
            
@@ -94,7 +93,7 @@ class PHIAppointmnetPopup{
                         onclick="popup.hidePopup()"> Close</button>
                     </div>
                 </div>`;
-        }else if(data.status === "fail"){
+        } else if (data.status === "fail") {
             eventDiv.innerHTML = `
             <div class="popup-title">User Appointment Portal </div>
            
@@ -124,7 +123,7 @@ class PHIAppointmnetPopup{
             <div class="popup-title">   Appointment Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
-                <h2> Appointment Acceptance Form</h2>
+                ${(data.round  === 1) ? "<h2> Appointment Acceptance Form</h2>": "<h2> Appointment Postponement Form</h2>"}
                 <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
                  <label >
                             Time Slot 1
@@ -185,7 +184,8 @@ class PHIAppointmnetPopup{
                     </div>
                     <div class="form-group" style="padding: 0 30px;">
                         <label >
-                            Special Notice
+                            
+                            ${(data.round  === 1) ? "Special Notice": "Reason to postpone"}
                         </label>
                         <textarea As="textarea" class="textarea" autofocus autocomplete="off" name="app-sn" id="app-sn"
                           
@@ -197,7 +197,7 @@ class PHIAppointmnetPopup{
                 
                     <div class="form-group">
                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #223580!important;margin-top: 10px" 
-                        onclick="giveTimeSolt('` + data.id +`');"> Save </button>
+                        onclick="giveTimeSlot('` + data.id + `' , '` +data.round + `');"> Save </button>
 <!--                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #223580!important;margin-top: 10px" -->
 <!--                        onclick="popup.hidePopup()"> Save </button>-->
                     </div>
@@ -225,14 +225,14 @@ class PHIAppointmnetPopup{
                         <textarea As="textarea"  class="textarea" autofocus autocomplete="off" name="app-rr" id="app-rr"
                           
                         ></textarea>
-                        <div id="app-rr-error" class="form-field-error"> ` + data.data +`</div>
+                        <div id="app-rr-error" class="form-field-error"> </div>
                     </div>
                 </div>
                 <div class="row" >
                 
-                    <div class="form-group">x1
+                    <div class="form-group">
                         <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Cancel </button>
+                        onclick="rejectAppointmentWithReason({ id: '` + data.id + `' , message: '` + data.message + `'})"> Reject Appointment </button>
                     </div>
                 </div>`;
         eventsContaier.appendChild(eventDiv);
@@ -246,130 +246,45 @@ class PHIAppointmnetPopup{
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
-            <div class="popup-title">   Appointment Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-                <h2 style="color: red"> Your Action was not successfully completed !</h2>
-                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
-                    <div class="form-group" style="padding: 0 30px;">
-                       ` + data.data +`
-                        <div id="app-rr-error" class="form-field-error"></div>
+                <div class="popup-title">   Appointment Portal </div>
+               
+                <div class="popup-desc">  SUWASEWANA.LK</div>
+                    <h2 style="color: red"> Your Action was not successfully completed !</h2>
+                    <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                        <div class="form-group" style="padding: 0 30px;">
+                           ` + data.data + `
+                            <div id="app-rr-error" class="form-field-error"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="row" >
-                
-                    <div class="form-group">
-                        <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Cancel </button>
-                    </div>
-                </div>`;
+                    <div class="row" >
+                    
+                        <div class="form-group">
+                            <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
+                            onclick="popup.hidePopup()"> Cancel </button>
+                        </div>
+                    </div>`;
         eventsContaier.appendChild(eventDiv);
 
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
-    postPoneAppointment(data) {
-        let eventsContaier = document.createElement('div');
-        let eventDiv = document.createElement('div');
-        eventDiv.innerHTML = `
-            <div class="popup-title">   Appointment Portal </div>
-           
-            <div class="popup-desc">  SUWASEWANA.LK</div>
-                <h2> Appointment Postponatation Form </h2>
-                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
-                 <label >
-                           New Time Slot 1
-                        </label>
-                   <div class="row">
-                   <div class="form-group" style="padding: 0 30px;">
-                        <label >
-                            Start Date & Time
-                        </label>
-                        <input type="datetime-local" autofocus autocomplete="off" name="app-pp-ts1sd" id="app-pp-ts1sd"
-                               maxlength="13" 
-                        />
-                    </div>
-                   <div class="form-group" style="padding: 0 30px;">
-                        <label >
-                              End Time
-                        </label>
-                        <input type="time" autofocus autocomplete="off" name="app-pp-ts1ed" id="app-pp-ts1ed"
-                               maxlength="13" 
-                        />
-                        
-                    </div>
-                    
-                    </div>
-                    <label >
-                           New Time Slot 2
-                        </label>
-                   <div class="row">
-                   <div class="form-group" style="padding: 0 30px;">
-                        <label >
-                            Start Date & Time
-                        </label>
-                        <input type="datetime-local" autofocus autocomplete="off" name="app-pp-ts2sd" id="app-pp-ts2sd"
-                               maxlength="13" 
-                        />
-                    </div>
-                   <div class="form-group" style="padding: 0 30px;">
-                        <label >
-                              End Time
-                        </label>
-                        <input type="time" autofocus autocomplete="off" name="app-pp-ts1ed" id="app-pp-ts1ed"
-                               maxlength="13"
-                        />
-                        
-                    </div>
-                    
-                    </div>
-                    <div class="form-group" style="padding: 0 30px;">
-                        <label >
-                            Location
-                        </label>
-                        <input type="text" autofocus autocomplete="off" name="app-pp-location" id="app-pp-location"
-                               minlength="3" 
-                        />
-                        
-                    </div>
-                    <div class="form-group" style="padding: 0 30px;">
-                        <label >
-                            Reason to Postpone
-                        </label>
-                        <textarea As="textarea" class="textarea" autofocus autocomplete="off" name="app-pp-pr" id="app-pp-pr"
-                          
-                        ></textarea>
-                        
-                    </div>
-                </div>
-                <div class="row" >
-                
-                    <div class="form-group">
-                        <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Reject </button>
-                    </div>
-                </div>`;
-        eventsContaier.appendChild(eventDiv);
 
-        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
-        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
-        this.showPopup()
-    }
-    showPopup(){
+    showPopup() {
         this.container.style.display = "block";
     }
-    hidePopup(){
+
+    hidePopup() {
         this.container.style.display = "none";
     }
 
-    gotoLogin(route){
-        switch (route){
+    gotoLogin(route) {
+        switch (route) {
             case "login" :
-                location.replace(this.myUrl+"/s/login");
+                location.replace(this.myUrl + "/s/login");
                 break;
             case "register" :
-                location.replace(this.myUrl+"/s/register");
+                location.replace(this.myUrl + "/s/register");
                 break;
             default:
                 break;

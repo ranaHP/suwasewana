@@ -282,43 +282,108 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
-    approveTime(data) {
+
+    requestAnotherTimeSlot(data) {
         let appointmentId = data;
-        data = {data: "Which time slot do you want to choose"}
+        data = {data: "If you are unable to accept this time slot. Please click on the \"Request Again Button\" to request another time slot."}
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
             <div class="popup-title">User Appointment Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #2b41bd!important;"> 
+                ${data.data}!
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+                    <div class="form-group" style="display: flex;width: 100%;flex-direction: row!important;align-items: center">
+                   
+                        
+                    <label for="delete_input" style="display: flex;align-items: center;justify-content: center">
+                        <input type="checkbox"  id="delete_input" name="delete_input" 
+                         style="width: 20px;height: 20px;margin: 0;padding: 0;border: 1px solid rgba(0,0,0,0.92);"> &nbsp; &nbsp; &nbsp;Are you sure
+                    </label>
+                    </div>
+                   
+                </div>  
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" >  Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="requestAnotherTime('${appointmentId}')"> Delete Appointment</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+    approveTime(data) {
+        console.log(data);
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">User Appointment Portal </div>
+            <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container " style="color: #d9534f!important;"> 
                 ${data.data}!
                 <div class="row" style="padding-top: 20px;padding-bottom: 10px; display: flex;justify-content: center;flex-direction: column">
-               
-                    <div class="select_item" onclick="chooseTimeSlot({timeSlot: 'time_slot_1'})">
-                        Time Slot 1
+                    <label for="ts1" >   <div class="select_item" >
+                    <input type="radio" id="ts1" value="time_slot_1" name="timeSlot" style="border:2px dotted #00f;display:block;background:#ff0000;margin: 10px auto" />
+                        Time Slot 1  
                         <br>
-                        2021-11-05 
+                        ${data.ts1.split(" ")[0]}
                         <br>
-                        15:46:00 - 16:47:00
-                    </div>
-                    <div class="select_item" onclick="chooseTimeSlot({timeSlot:'time_slot_1'})">
-                        Time Slot 1
+                        ${data.ts1.split(" ")[1]} - ${data.te1.split(" ")[1]}
+                    </div> </label>
+                   
+                    <label for="ts2" >    <div class="select_item" >
+                        <input type="radio" id="ts2" value="time_slot_2" name="timeSlot" style="border:2px dotted #00f;display:block;background:#ff0000;margin: 10px auto" />
+                             Time Slot 2
                         <br> 
                         2021-11-11 
                         <br>
                         17:48:00 - 04:47:00                       
-                    </div>
-                   
+                    </div> </label>
+<!--                   onclick="chooseTimeSlot({timeSlot:'time_slot_1'})"-->
                 </div>  
                  <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
                 <div class="row" >
                     <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Cancel</button>
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #1143c1!important;margin-top: 10px" 
+                       onclick="chooseTimeSlot({timeSlot:'time_slot_1' , app_id: ${data.app_id}})"> Save </button>
                     </div>
                 </div>
             </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+    appointmentActionFail(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">   Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2 style="color: red"> Your Action was not successfully completed !</h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    <div class="form-group" style="padding: 0 30px;">
+                       <br>
+                     <h3>  Please Contant Technical Team !</h3>
+                        <div id="app-rr-error" class="form-field-error"></div>
+                    </div>
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group">
+                        <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Cancel </button>
+                    </div>
+                </div>`;
         eventsContaier.appendChild(eventDiv);
 
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);

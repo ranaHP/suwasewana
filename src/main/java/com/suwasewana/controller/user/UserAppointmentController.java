@@ -1,6 +1,8 @@
 package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
+import com.suwasewana.core.ResponseType;
+import com.suwasewana.dao.AppointmentDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.dao.ComplainDAO;
 import com.suwasewana.model.AppointmentModel;
@@ -17,16 +19,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
 @WebServlet("/user-appointment-controller/*")
 public class UserAppointmentController extends HttpServlet {
     UserDAO userDAO;
+    AppointmentDAO appointmentDAO;
     private Gson gson = new Gson();
 
     public void init() {
         userDAO = new UserDAO();
+        appointmentDAO = new AppointmentDAO();
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -45,7 +50,6 @@ public class UserAppointmentController extends HttpServlet {
 //                    uerMakeAppointment(req, res);
                     break;
                 case "view":
-                    System.out.println("aahi");
                     userViewAppointment(req, res);
                     break;
                 case "delete":
@@ -53,6 +57,9 @@ public class UserAppointmentController extends HttpServlet {
                     break;
                 case "type":
 //                    userViewAppointmentType(req, res);
+                    break;
+                case "selectTimeSlot":
+                    selectTimeSlot(req, res);
                     break;
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -156,5 +163,25 @@ public class UserAppointmentController extends HttpServlet {
         System.out.println(gson.toJson(result));
         res.getWriter().println(gson.toJson(result));
     }
-
+    private void selectTimeSlot(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
+        AppointmentModel appointment = new AppointmentModel(
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("app_id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("status"),
+                "",
+                "",
+                "");
+//        res.getWriter().println(gson.toJson(appointment));
+        ResponseType result = appointmentDAO.chooseTimeSlot(appointment);
+        res.getWriter().println(gson.toJson(result));
+    }
 }

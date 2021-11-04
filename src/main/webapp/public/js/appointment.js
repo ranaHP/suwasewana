@@ -26,16 +26,18 @@ class Appointment {
         // console.log(this.AppointmentArray);
         this.container = document.getElementById(container);
     }
-    setData(data){
+
+    setData(data) {
         if (!data) return;
         this.container.innerHTML = " ";
         this.AppointmentArray = data;
         this.showCardData(this.AppointmentArray);
     }
+
     showCardData(data) {
         if (!data) return;
         this.container.innerHTML = " ";
-         data.map((item) => {
+        data.map((item) => {
             this.container.innerHTML += `
             <div class="appointment-card-container">
                                 <div class="appointment-card">
@@ -59,7 +61,7 @@ class Appointment {
                                             </li>
                                             <li>
                                                 <img src="${this.url}images/icons/list.svg" width="22px" />
-                                                Time Slot 2 :  ${item.time_slot_2 === "" ? "Pending..." : item.time_slot_2  + " - " +  item.time_slot_2_end.split(" ")[1]}
+                                                Time Slot 2 :  ${item.time_slot_2 === "" ? "Pending..." : item.time_slot_2 + " - " + item.time_slot_2_end.split(" ")[1]}
                                             </li>
                                             <li>
                                                 <img src="${this.url}images/icons/list.svg" width="22px" />
@@ -78,13 +80,14 @@ class Appointment {
                                         </div>
                                     </div>
                                     <div class="footer d-flex-j-c-flex-end"> 
-                                        ${ (item.status == "pending_citizen_action") ? `<div style="margin-left: 10px" class="accept-btn bg-success" onclick="popup.approveTime('${item.app_id}');">
+                                        ${(item.status === "pending_citizen_action") ? `
+                                        <div style="margin-left: 10px" class="accept-btn bg-success" onclick="popup.approveTime({app_id: '${item.app_id}' ,data: 'Which time slot do you want to choose', ts1: '${item.time_slot_1}',te1: '${item.time_slot_1_end}', ts2: '${item.time_slot_2}',te2: '${item.time_slot_2_end}' });">
                                             Accept
                                         </div>
-                                        <div style="margin-left: 10px" class="accept-btn bg-primary" onclick="popup.showDeleteAlertMessage('${item.app_id}');">
+                                        <div style="margin-left: 10px" class="accept-btn bg-primary" onclick="popup.requestAnotherTimeSlot('${item.app_id}');">
                                             Request Again
                                         </div>
-                                        ` : "" }
+                                        ` : ""}
                                         <div style="margin-left: 10px" class="accept-btn bg-danger" onclick="popup.showDeleteAlertMessage('${item.app_id}');">
                                             Cancel
                                         </div>
@@ -96,8 +99,8 @@ class Appointment {
         })
     }
 
-    setSearch(data){
-        console.log(data.phiSearch ,data.appointmentTypeSearch)
+    setSearch(data) {
+        console.log(data.phiSearch, data.appointmentTypeSearch)
         let filteredData = this.AppointmentArray.filter((item, index) => {
             // console.log(item)
             console.log(item.appointmentType + "  - " + data.appointmentTypeSearch);
@@ -108,7 +111,7 @@ class Appointment {
         this.showCardData(filteredData);
     }
 
-    setAllData(){
+    setAllData() {
         this.setData(this.AppointmentArray);
     }
 }
