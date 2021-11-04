@@ -14,6 +14,8 @@ public class AppointmentModel {
     String phi_message;
     String status;
     String user_nic ;
+    String time_slot_2_end ;
+    String time_slot_1_end ;
 
     public AppointmentModel(
             String aTitle,
@@ -28,7 +30,10 @@ public class AppointmentModel {
             String time_slot_2,
             String phi_message,
             String status,
-            String user_nic  ){
+            String user_nic,
+            String time_slot_2_end,
+            String time_slot_1_end
+    ){
 
          this.aTitle = aTitle;
          this.aType  = aType ;
@@ -43,6 +48,24 @@ public class AppointmentModel {
          this.phi_message = phi_message;
          this.status = status;
          this.user_nic  = user_nic ;
+         this.time_slot_2_end = time_slot_2_end;
+         this.time_slot_1_end = time_slot_1_end;
+    }
+
+    public String getTime_slot_2_end() {
+        return time_slot_2_end;
+    }
+
+    public void setTime_slot_2_end(String time_slot_2_end) {
+        this.time_slot_2_end = time_slot_2_end;
+    }
+
+    public String getTime_slot_1_end() {
+        return time_slot_1_end;
+    }
+
+    public void setTime_slot_1_end(String time_slot_1_end) {
+        this.time_slot_1_end = time_slot_1_end;
     }
 
     public String getaTitle() {
