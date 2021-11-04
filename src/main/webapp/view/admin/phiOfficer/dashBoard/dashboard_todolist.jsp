@@ -16,11 +16,18 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi-dashboard_todolist.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="<c:url value="/public/js/PHIOfficer/dashboard_todolist.js"/> "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>Suwasewana</title>
     <%--    side nav bar styles--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/popup/Appintmentpopup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
@@ -28,6 +35,7 @@
     <div class="upper-title">SUWASEWANA </div>
     <div class="dashboard-name">PHI/Dashboard/Manage todo lIst</div>
 </div>
+<div class="mypopup" id="popup" style="display: none;"></div>
 
 <div class="todo-container">
     <div class="left-container">
@@ -52,7 +60,7 @@
                 Create New Task
             </div>
             <div class="add-new-task">
-                <form onsubmit="return todo.insertTask(this)">
+                <form onsubmit="return AddTask()">
                     <div class="form-item">
                         <label> Task content:</label>
                         <textarea id="w3review" name="content" rows="4" cols="50" row="5"></textarea>
@@ -61,10 +69,10 @@
                     <div class="row">
                         <div class="form-item">
                             <label for="taskStartTime"> End date :</label>
-                            <input type="datetime-local"  name="taskEndTime" id="taskStartTime">
+                            <input type="date"  name="taskEndTime" id="taskStartTime">
                         </div>
                         <div class="form-item">
-                            <button type="submit" onclick="todo.show('Task added succesfully','success')" > Add Task  </button>
+                            <button type="submit"  > Add Task  </button>
                         </div>
                     </div>
                 </form>
@@ -93,10 +101,114 @@
 </div>
 
 <script defer >
-    let todo = new TodoList("pending-list" , "overdue-list" , "completed-list", "inprogess-list");
+
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 
     feather.replace({ width : "22px"})
 
+    getAllTask();
+    updateTaskStatus();
+    function updateTaskStatus(){
+        $.post(myUrl+"/phi-Todo-controller/UpdateOverdueTaskList",
+            {},
+            function (data, status) {
+
+            }
+        );
+    }
+
+    function AddTask(){
+        let reqdata={
+            title:document.getElementById("w3review").value,
+            date:document.getElementById("taskStartTime").value
+        }
+        $.post(myUrl+"/phi-Todo-controller/AddTask",
+            reqdata,
+            function (data, status) {
+                getAllTask();
+            }
+        );
+        return false;
+    }
+
+    function getAllTask() {
+        $.post(myUrl+"/phi-Todo-controller/TakeTaskList",
+            {},
+            function (data, status) {
+                let taskList = JSON.parse(data);
+                let todo = new TodoList("pending-list" , "overdue-list" , "completed-list", "inprogess-list",taskList);
+
+            }
+        );
+
+    }
+
+    function DeleteTask(id){
+        console.log("delet task id "+id);
+        let reqdata={
+            taskid:id
+        }
+        $.post(myUrl+"/phi-Todo-controller/delete",
+            reqdata,
+            function (data, status) {
+                getAllTask();
+            }
+        );
+    }
+    function SetToProgressTask(id){
+        console.log("progress task id "+id);
+        let reqdata={
+            taskid:id
+        }
+        $.post(myUrl+"/phi-Todo-controller/SetProgress",
+            reqdata,
+            function (data, status) {
+                getAllTask();
+            }
+        );
+    }
+    function EditTask(id,date,title){
+        // console.log("edit task id "+id);
+        // console.log("edit task date "+date);
+        // console.log("edit task title "+title);
+        popup.EditTask({
+           task_Id: id,
+            date:date,
+            title:title
+        });
+
+    }
+    function updateTask(taskid){
+        // console.log("call update task");
+        // console.log("task id"+taskid);
+        // console.log("new task "+document.getElementById("newTask").value);
+        // console.log("new date "+document.getElementById("newDate").value);
+        let reqdata={
+            taskid:taskid,
+            newTask:document.getElementById("newTask").value,
+            newDate:document.getElementById("newDate").value
+        }
+        $.post(myUrl+"/phi-Todo-controller/editTask",
+            reqdata,
+            function (data, status) {
+                getAllTask();
+            }
+        );
+
+    }
+    function CompleteTask(id){
+        console.log("complete task id "+id);
+        let reqdata={
+            taskid:id
+        }
+        $.post(myUrl+"/phi-Todo-controller/Complete",
+            reqdata,
+            function (data, status) {
+                getAllTask();
+            }
+        );
+    }
 
 </script>
 <script >
