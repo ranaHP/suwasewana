@@ -52,7 +52,7 @@
             function(data,status){
                 announcementsArray=JSON.parse(data)
                 viewAnnouncementslist.setData(announcementsArray);
-                // // viewAnnouncementslist.setData(announcementsArray);
+                // viewAnnouncementslist.setData(announcementsArray);
                 console.log(data)
 
             }

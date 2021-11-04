@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/view_RPHI_announcement.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/PHIOfficer/view_RPHI_announcement.js"/> "></script>
+    <script src="<c:url value="/public/js/PHIOfficer/view_RPHI_announcement.js"/> "></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <%--    side-nav-bar--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
@@ -32,5 +33,24 @@
 </div>
 </div>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+<script defer>
+    let selectA = new View_RPHI_announcement("announcements-container");
+
+    let AListArray=[]
+
+    // console.log(reqData)
+    $.post("/test_war_exploded/createRPHI_Announcements/selectA",
+        // reqData,
+        function(data1,status){
+            alert(data1)
+            // AListArray=JSON.parse(data1)
+            // // console.log(clinicListArray)
+            // selectA.setData(AListArray);
+
+        }
+    );
+
+
+</script>
 </body>
 </html>

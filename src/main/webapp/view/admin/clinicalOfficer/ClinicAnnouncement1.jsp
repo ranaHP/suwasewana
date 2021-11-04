@@ -236,7 +236,7 @@
             {
               clinicID: document.getElementById("CId").value,
             };
-    // console.log(reqData)
+    console.log(reqData)
     $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
             reqData,
             function(data1,status){

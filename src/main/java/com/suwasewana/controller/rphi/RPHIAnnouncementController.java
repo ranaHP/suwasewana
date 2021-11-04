@@ -2,6 +2,7 @@ package com.suwasewana.controller.rphi;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.RPHIAnnouncementsDAO;
+import com.suwasewana.model.CreateClinicAnnouncementsModel;
 import com.suwasewana.model.CreateClinicModel;
 import com.suwasewana.model.RPHIAnnouncementsModel;
 import com.suwasewana.model.vaccineClinicModel;
@@ -38,6 +39,10 @@ public class RPHIAnnouncementController extends HttpServlet {
 //                    res.getWriter().println("create");
                     createA(req,res);
                     break;
+                case "selectA":
+//                    res.getWriter().println("selectA");
+                    selectA(req,res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -45,6 +50,21 @@ public class RPHIAnnouncementController extends HttpServlet {
         } catch (Exception error) {
             throw new ServletException(error);
         }
+    }
+
+    private void selectA(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("select");
+        RPHIAnnouncementsModel selectA= new RPHIAnnouncementsModel(
+               "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        ArrayList<RPHIAnnouncementsModel> result= RPHIAnnouncementsDAO.ViewA(selectA);
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void createA(HttpServletRequest req, HttpServletResponse res) throws IOException {

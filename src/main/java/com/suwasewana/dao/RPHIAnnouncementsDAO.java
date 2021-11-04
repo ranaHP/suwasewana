@@ -6,6 +6,7 @@ import com.suwasewana.model.RPHIAnnouncementsModel;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class RPHIAnnouncementsDAO {
    private static final String CREATEA="INSERT INTO `staff_announcement`  VALUES (NULL ,?,?,?,?,NULL,?);";
@@ -13,6 +14,10 @@ public class RPHIAnnouncementsDAO {
     public RPHIAnnouncementsDAO() {
         DB db = new DB();
         connection = db.getConnection();
+    }
+
+    public static ArrayList<RPHIAnnouncementsModel> ViewA(RPHIAnnouncementsModel selectA) {
+    return null;
     }
 
     public String createA(RPHIAnnouncementsModel RPHIAnnouncements) {

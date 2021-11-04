@@ -54,7 +54,7 @@ import java.util.ArrayList;
                     createVClinicA(req, res);
                     break;
                 case "viewVAnnouncements":
-//                    res.getWriter().println("viewVAnnouncements");
+//                    res.getWriter().println("viewallVVAnnouncements");
                     viewVAnnouncements(req, res);
                     break;
                 case "deleteVA":
@@ -117,17 +117,17 @@ import java.util.ArrayList;
     private void createVClinicA(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //       res.getWriter().println("vaccine announcement");
         VaccineClinicAnnouncementsModel vaccineClinicAnnouncement= new VaccineClinicAnnouncementsModel(
-                req.getParameter("title"),
-                req.getParameter("description"),
+                "",
+                "",
                 req.getParameter("image"),
-                req.getParameter("Vaccinename"),
-                req.getParameter("Maxlimit"),
-                req.getParameter("Location"),
-                req.getParameter("TargetPeoples"),
-                req.getParameter("startdatetime"),
-                req.getParameter("duration"),
-                req.getParameter("age_limit"),
-                req.getParameter("TargetMOH"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
                 req.getParameter("CId"),
                 req.getParameter("12")
 

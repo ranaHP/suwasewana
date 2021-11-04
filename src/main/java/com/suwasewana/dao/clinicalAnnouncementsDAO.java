@@ -2,10 +2,8 @@ package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
 import com.suwasewana.model.CreateClinicAnnouncementsModel;
-import com.suwasewana.model.CreateClinicModel;
 import com.suwasewana.model.VaccineClinicAnnouncementsModel;
 
-import javax.xml.stream.Location;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
