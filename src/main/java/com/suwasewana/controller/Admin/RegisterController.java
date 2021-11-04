@@ -1,4 +1,4 @@
-package com.suwasewana.controller.admin;
+package com.suwasewana.controller.Admin;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.AdminDAO;

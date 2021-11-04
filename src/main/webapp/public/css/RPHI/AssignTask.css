@@ -1,0 +1,249 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.TaskAsignComtainer{
+    /* background-color: aqua; */
+    margin-left: 78px;
+}
+input, textarea{
+    border: none;
+    border: 1px solid rgba(0, 0, 0, 0.055);
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.178);
+    border-radius: 1px;
+    width: 65%;
+}
+input{
+    height: 20px;
+}
+.header {
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header .upper-title {
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+
+.header .dashboard-name {
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+
+.bodyContainer{
+    width: 95%;
+    /* background-color: blue; */
+    margin: 50px auto;
+}
+.taskAssign{
+    /* background-color: red; */
+}
+.taskAssignRow{
+    display: flex;
+    margin-bottom: 30px;
+}
+.taskAssignRowCol{
+    width: 450px;
+    display: flex;
+    align-items: flex-start;
+}
+
+
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /* margin: 4px 2px; */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+.button2 {
+    background-color: #008CBA;
+    color: white;
+}
+
+.button2:hover {
+
+    background-color: #075b77fa;
+    /* color: black;  */
+}
+
+
+#title{
+    margin-left: 15px;
+}
+#specialNote{
+    margin-left: 10px;
+}
+#expdate{
+    margin-left: 10px;
+}
+#PHIList{
+    margin-left: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 100px;
+}
+
+table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: left;
+}
+
+table th {
+    font-size: .85em;
+    /* letter-spacing: .1em; */
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 868px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+
+
+
+
+@media screen and (max-width: 842px){
+    .taskAssignRow{
+        flex-direction: column;
+    }
+    .taskAssignRow div{
+        margin-bottom: 15px;
+    }
+    #PHIList{
+        margin-left: 75px;
+    }
+    #expdate{
+        margin-left: 30px;
+    }
+    .button2{
+        width: 100px;
+    }
+}
+@media screen and (max-width: 504px){
+    .taskAssignRowCol{
+        width: 100%;
+        align-items: center;
+    }
+    body{
+        font-size: 11px;
+    }
+}
+
+
+
+
+
+
+
+
+/* general styling */
+body {
+    font-family: "Open Sans", sans-serif;
+    line-height: 1.25;
+}
