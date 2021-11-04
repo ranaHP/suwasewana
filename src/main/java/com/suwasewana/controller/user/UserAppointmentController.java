@@ -42,17 +42,17 @@ public class UserAppointmentController extends HttpServlet {
             RequestDispatcher rd;
             switch (getUrlData[getUrlData.length-1]) {
                 case "create":
-                    uerMakeAppointment(req, res);
+//                    uerMakeAppointment(req, res);
                     break;
                 case "view":
-                    System.out.println("View asd");
+                    System.out.println("aahi");
                     userViewAppointment(req, res);
                     break;
                 case "delete":
-                    userDeleteAppointment(req, res);
+//                    userDeleteAppointment(req, res);
                     break;
                 case "type":
-                    userViewAppointmentType(req, res);
+//                    userViewAppointmentType(req, res);
                     break;
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -78,8 +78,8 @@ public class UserAppointmentController extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
                 }
             }
         }
@@ -109,14 +109,14 @@ public class UserAppointmentController extends HttpServlet {
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
                 }
             }
         }
         AppointmentModel userAppointmentDetails = new AppointmentModel(
-                req.getParameter("aTitle"),
-                req.getParameter("aType"),
+                "",
+                "",
                 " ",
                 "",
                 "",
@@ -127,7 +127,7 @@ public class UserAppointmentController extends HttpServlet {
                 "",
                 "",
                 "",
-                uNic,
+                "980703223V",
                 "",
                 ""
         );

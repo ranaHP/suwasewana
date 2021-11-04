@@ -24,7 +24,6 @@ public class UserDAO {
     private static final String USER_REGISTRATION = "INSERT INTO `user` VALUES (?,?,?,?,?,?,?,?,?,?,?,current_timestamp());";
     private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
-    private static final String USER_GET_APPOINTMENT = "SELECT * FROM `appointment` LEFT JOIN `appointment_type` ON appointment.appointmentType = appointment_type.appointment_type_no WHERE user = ?";
     private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
 
 
@@ -41,6 +40,11 @@ public class UserDAO {
             "(`CType`, `UType`, `User`, `CTitle`, `CMessage`, `PHIId`, `Status`,`img1`,`img2`,`img3`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?);";
     Connection connection;
+
+
+
+//    /fixed
+    private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
 
     public UserDAO() {
         DB db = new DB();
@@ -255,35 +259,35 @@ public class UserDAO {
             ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
             while (rs.next()) {
                 String aTitle = rs.getString("aTitle");
-                String AType = rs.getString("name");
-                String phi = rs.getString("phi");
-                String reason = rs.getString("reason");
-                String aId = rs.getString("appointmentId");
-                String p_date = rs.getString("posted_data");
+                String aType  = rs.getString("aType");
+                String aPhi  = rs.getString("aPhi");
+                String aReason = rs.getString("aReason");
+                String app_id = rs.getString("app_id");
+                String posted_date_time = rs.getString("posted_date_time");
                 String round = rs.getString("round");
-                String location = rs.getString("location");
-                String ts1 = rs.getString("time_slot2");
-                String ts2 = rs.getString("time_slot1");
-                String spNote = rs.getString("special_notice");
+                String alocation = rs.getString("alocation");
+                String time_slot_1 = rs.getString("time_slot_1");
+                String time_slot_2 = rs.getString("time_slot_2");
+                String phi_message = rs.getString("phi_message");
                 String status = rs.getString("status");
-                String user = rs.getString("user");
-                String time_slot_1_end = rs.getString("time_slot_1_end");
-                String time_slot_2_end = rs.getString("time_slot_2_end");
+                String user_nic  = rs.getString("user_nic");
+                String time_slot_2_end  = rs.getString("time_slot_2_end");
+                String time_slot_1_end  = rs.getString("time_slot_1_end");
                 AppointmentModel temp = new AppointmentModel(
                         aTitle,
-                        AType,
-                        phi,
-                        reason,
-                        aId,
-                        p_date,
+                        aType ,
+                        aPhi ,
+                        aReason,
+                        app_id,
+                        posted_date_time,
                         round,
-                        location,
-                        ts1,
-                        ts2,
-                        spNote,
+                        alocation,
+                        time_slot_1,
+                        time_slot_2,
+                        phi_message,
                         status,
-                        user,
-                        time_slot_2_end,
+                        user_nic ,
+                        time_slot_2_end ,
                         time_slot_1_end
                 );
                 appointmentList.add(temp);

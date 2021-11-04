@@ -203,7 +203,7 @@
     function giveTimeSolt(app_id){
 
         let reqData = {
-            status: "pending_for_citizen",
+            status: "pending_citizen_action",
             phi_message: document.getElementById('app-sn').value,
             time_slot_2: document.getElementById('ts2sd').value.split("T")[0] + " " + document.getElementById('ts2sd').value.split("T")[1]+":00",
             time_slot_1: document.getElementById('ts1sd1').value.split("T")[0] + " " +document.getElementById('ts1sd1').value.split("T")[1]+":00",

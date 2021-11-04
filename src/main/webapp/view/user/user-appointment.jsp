@@ -309,8 +309,8 @@
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let appointment = new Appointment("previous-appointment-list");
     getAllAppointment()
-    getAllAppointmentType()
-    ViewPHI()
+    // getAllAppointmentType()
+    // ViewPHI()
     function getAllAppointment() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
@@ -429,6 +429,9 @@
                 })
             }
         );
+    }
+    function chooseTimeSlot(data){
+        alert(JSON.stringify(data))
     }
 </script>
 </body>

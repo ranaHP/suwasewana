@@ -230,7 +230,7 @@ class PHIAppointmnetPopup{
                 </div>
                 <div class="row" >
                 
-                    <div class="form-group">
+                    <div class="form-group">x1
                         <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
                         onclick="popup.hidePopup()"> Cancel </button>
                     </div>
@@ -260,7 +260,7 @@ class PHIAppointmnetPopup{
                 
                     <div class="form-group">
                         <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
-                        onclick="popup.hidePopup()"> Reject </button>
+                        onclick="popup.hidePopup()"> Cancel </button>
                     </div>
                 </div>`;
         eventsContaier.appendChild(eventDiv);

@@ -282,6 +282,49 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    approveTime(data) {
+        let appointmentId = data;
+        data = {data: "Which time slot do you want to choose"}
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">User Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;"> 
+                ${data.data}!
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px; display: flex;justify-content: center;flex-direction: column">
+               
+                    <div class="select_item" onclick="chooseTimeSlot({timeSlot: 'time_slot_1'})">
+                        Time Slot 1
+                        <br>
+                        2021-11-05 
+                        <br>
+                        15:46:00 - 16:47:00
+                    </div>
+                    <div class="select_item" onclick="chooseTimeSlot({timeSlot:'time_slot_1'})">
+                        Time Slot 1
+                        <br> 
+                        2021-11-11 
+                        <br>
+                        17:48:00 - 04:47:00                       
+                    </div>
+                   
+                </div>  
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Cancel</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
     showPopup(){
         this.container.style.display = "block";
     }

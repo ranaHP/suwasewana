@@ -1,4 +1,4 @@
-package com.suwasewana.controller.Admin;
+package com.suwasewana.controller.admin;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.AdminDAO;
@@ -147,7 +147,9 @@ public class RegisterController extends HttpServlet {
                 "",
                 "",
                 "",
-                uNic
+                uNic,
+                "",
+                ""
         );
         String result = userDAO.UserMakeAppointment(userAppointmentDetails);
         res.getWriter().println(result);
@@ -176,7 +178,9 @@ public class RegisterController extends HttpServlet {
                 "",
                 "",
                 "",
-                uNic
+                uNic,
+                "",
+                ""
         );
         ArrayList<AppointmentModel> result = userDAO.userGetAppointmentDetails(userAppointmentDetails);
         res.getWriter().println(gson.toJson(result));
