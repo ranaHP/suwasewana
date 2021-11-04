@@ -57,7 +57,112 @@ class PHIAppointment{
                         <div class="app-desc">
                         ` + app.appointment.aReason + `
                         </div>
-
+                        ${ (app.appointment.status  === "pending_citizen_action") ? `<style>
+                         table {
+                                font-family: arial, sans-serif;
+                                border-collapse: collapse;
+                                width: 100%;
+                                font-size: .99em;
+                                margin-top: 10px;
+                            }
+            
+                            td, th {
+                                border: 1px solid #dddddd;
+                                text-align: left;
+                                padding: 8px;
+                            }
+                        </style>
+                        <table>
+                        <tr>
+                        <th>
+                            Time Slot 1
+                        </th>
+                        <th>
+                            Time Slot 2
+                        </th>
+                        <th>
+                            Special Notice
+                        </th>
+                        </tr>
+                        <tr>
+                        <td>
+                            From - ${app.appointment.time_slot_1} <br> To - ${app.appointment.time_slot_2_end} 
+                        </td>
+                        <td>
+                           From - ${app.appointment.time_slot_2} <br> To - ${app.appointment.time_slot_1_end} 
+                        </td>
+                        <td>
+                          ${app.appointment.phi_message}  
+                        </td>
+                        </tr>
+                        </table> ` : ""} 
+                        ${ (app.appointment.status  === "time_slot_1 selected") ? `<style>
+                         table {
+                                font-family: arial, sans-serif;
+                                border-collapse: collapse;
+                                width: 100%;
+                                font-size: .99em;
+                                margin-top: 10px;
+                            }
+            
+                            td, th {
+                                border: 1px solid #dddddd;
+                                text-align: left;
+                                padding: 8px;
+                            }
+                        </style>
+                        <table>
+                        <tr>
+                        <th>
+                            Time Slot 1
+                        </th>
+                      
+                        <th>
+                            Special Notice
+                        </th>
+                        </tr>
+                        <tr>
+                        <td>
+                            From - ${app.appointment.time_slot_1} <br> To - ${app.appointment.time_slot_2_end} 
+                        </td>
+                        <td>
+                          ${app.appointment.phi_message}  
+                        </td>
+                        </tr>
+                        </table> ` : ""}      
+                        ${ (app.appointment.status  === "time_slot_2 selected") ? `<style>
+                         table {
+                                font-family: arial, sans-serif;
+                                border-collapse: collapse;
+                                width: 100%;
+                                font-size: .99em;
+                                margin-top: 10px;
+                            }
+            
+                            td, th {
+                                border: 1px solid #dddddd;
+                                text-align: left;
+                                padding: 8px;
+                            }
+                        </style>
+                        <table>
+                        <tr>
+                        <th>
+                            Time Slot 2
+                        </th>
+                        <th>
+                            Special Notice
+                        </th>
+                        </tr>
+                        <tr>
+                        <td>
+                           From - ${app.appointment.time_slot_2} <br> To - ${app.appointment.time_slot_1_end} 
+                        </td>
+                        <td>
+                          ${app.appointment.phi_message}  
+                        </td>
+                        </tr>
+                        </table> ` : ""}                  
                     </div>
                     <div class="app-right">
                         <div class="app-item">
@@ -80,11 +185,21 @@ class PHIAppointment{
                     <div class="app-status">
                         Status - ` + app.appointment.status + `
                     </div>
-                    <div class="btn-set">
-                        <button class="app-submitBtn btn-danger" onclick="popup.giveTimeSlot({ id: '` + app.appointment.app_id +  `',message: 'Give available time slot!' , title: '` + app.appointment.aTitle + `'});"> Give Time Solt</button>
+                    ${(app.appointment.status  === "pending") ?  `<div class="btn-set" >
+                        <button class="app-submitBtn btn-success" onclick="popup.giveTimeSlot({ id: '` + app.appointment.app_id +  `',message: 'Give available time slot!' , title: '` + app.appointment.aTitle + `' , round: 1});"> Give Time Solt</button>
+                        <button class="app-submitBtn btn-danger"  onclick="popup.rejectAppointment({ message: 'Reject Appointment' , id: '` + app.appointment.app_id + `'});"> Reject</button>
+<!--                        <button class="app-submitBtn btn-primary"  onclick="popup.postPoneAppointment({ message: 'Postpone Appointment' , title: '\` + app.appointment.aTitle +  \`'});"> Postpone</button>-->
+                    </div>`: ""}
+                    ${(app.appointment.status  === "pending_citizen_action" || app.appointment.status  === "time_slot_1 selected" || app.appointment.status  === "time_slot_2 selected") ?  `<div class="btn-set" >
+<!--                        <button class="app-submitBtn btn-danger" onclick="popup.giveTimeSlot({ id: '\` + app.appointment.app_id +  \`',message: 'Give available time slot!' , title: '\` + app.appointment.aTitle + \`'});"> Give Time Solt</button>-->
+<!--                        <button class="app-submitBtn btn-success"  onclick="popup.rejectAppointment({ message: 'Reject Appointment' , title: '\` + app.appointment.aTitle + \`'});"> Reject</button>-->
+                        <button class="app-submitBtn btn-primary"  onclick="popup.giveTimeSlot({ id: '` + app.appointment.app_id +  `',message: 'Give available time slot!' , title: '` + app.appointment.aTitle + `' , round: 2});"> Postpone</button>
+                    </div>`: ""}
+                    ${(app.appointment.status  === "pending1") ?  `<div class="btn-set" >
+                        <button class="app-submitBtn btn-danger" onclick="popup.giveTimeSlot({ id: '` + app.appointment.app_id +  `',message: 'Give available time slot!' , title: '` + app.appointment.aTitle + `' , round: 1});"> Give Time Solt</button>
                         <button class="app-submitBtn btn-success"  onclick="popup.rejectAppointment({ message: 'Reject Appointment' , title: '` + app.appointment.aTitle + `'});"> Reject</button>
                         <button class="app-submitBtn btn-primary"  onclick="popup.postPoneAppointment({ message: 'Postpone Appointment' , title: '` + app.appointment.aTitle +  `'});"> Postpone</button>
-                    </div>
+                    </div>`: ""}
                     </div>
             </div>`
         } )

@@ -305,16 +305,16 @@
     </div>
 </div>
 <script defer>
-    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let appointment = new Appointment("previous-appointment-list");
     getAllAppointment()
-    getAllAppointmentType()
-    ViewPHI()
+    // getAllAppointmentType()
+    // ViewPHI()
     function getAllAppointment() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
-        $.post("/test_war_exploded/user-appointment-controller/view",
+        $.post(myUrl+"/user-appointment-controller/view",
             {
                 aType: "",
                 aTitle: "",
@@ -331,7 +331,7 @@
     function getAllAppointmentType() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
-        $.post("/test_war_exploded/user-appointment-controller/type",
+        $.post(myUrl+"/user-appointment-controller/type",
             {},
             function (data, status) {
                 appointmentTypeList = JSON.parse(data);
@@ -386,7 +386,7 @@
         }
     }
     function deleteAppointment(appointmentId){
-        $.post("/test_war_exploded/user-appointment-controller/delete",
+        $.post(myUrl+"/user-appointment-controller/delete",
             {
                 appointmentId: appointmentId
             },
@@ -429,6 +429,36 @@
                 })
             }
         );
+    }
+    function chooseTimeSlot(data){
+        let selected_time_slot = "";
+        var radios = document.getElementsByName('timeSlot');
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                selected_time_slot = radios[i].value;
+                break;
+            }
+        }
+        let reqData =   {
+            app_id: data.app_id,
+            status: selected_time_slot+" selected",
+        }
+        $.post(myUrl+"/user-appointment-controller/selectTimeSlot",
+          reqData,
+            function (data, status) {
+                let result = JSON.parse(data);
+                if(result.status.includes('success')){
+                    getAllAppointment();
+                    popup.hidePopup();
+                }else{
+                    popup.appointmentActionFail({data: result.status});
+                }
+
+            }
+        );
+    }
+    function requestAnotherTime(data){
+        console.log(data)
     }
 </script>
 </body>

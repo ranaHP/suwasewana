@@ -42,6 +42,9 @@ public class PHIAppointmentServlet extends HttpServlet {
                     case "giveTimeForAppointment":
                         giveTimeSlotForAppointment(request, response);
                         break;
+                    case "rejectAppointment":
+                        rejectAppointment(request, response);
+                        break;
                 default:
                     response.getWriter().println("404 Page not Found");
                     break;
@@ -84,6 +87,28 @@ public class PHIAppointmentServlet extends HttpServlet {
                 req.getParameter("time_slot_1_end"));
 
         ResponseType result = appointmentDAO.appointmentChangeTimeSlot(appointment);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void rejectAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
+        AppointmentModel appointment = new AppointmentModel(
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("app_id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("phi_message"),
+                req.getParameter("status"),
+                "",
+                "",
+                ""
+        );
+
+        ResponseType result = appointmentDAO.rejectAppointment(appointment);
         res.getWriter().println(gson.toJson(result));
     }
 }
