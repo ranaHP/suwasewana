@@ -241,9 +241,9 @@
             reqData,
             function(data1,status){
                alert(data1)
-              // clinicListArray=JSON.parse(data1)
-              // // console.log(clinicListArray)
-              // selectVclinics.setData(clinicListArray);
+              clinicListArray=JSON.parse(data1)
+              // console.log(clinicListArray)
+              selectVclinics.setData(clinicListArray);
 
             }
     );

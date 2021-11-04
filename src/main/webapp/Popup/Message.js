@@ -15,8 +15,8 @@ class require_message_popup{
         popup.appendChild(logo);
         //logo
         let logo_img=document.createElement('img');
-        logo_img.setAttribute("src","../logo.png")
-        logo.appendChild(logo_img);
+        // logo_img.setAttribute("src","../logo.png")
+        // logo.appendChild(logo_img);
 
         //title row
         let title=document.createElement('div');
@@ -64,17 +64,17 @@ class require_message_popup{
         let close_icon=document.createElement('span');
         close_icon.innerText="x";
         closebtn.appendChild(close_icon);
-        closebtn.setAttribute("onclick", "popup.hidePopup()" );
+        closebtn.setAttribute("onclick", "popup.hidePopup1()" );
         popup.appendChild(closebtn);
 
 
 
     }
 
-    showPopup(){
+    showPopup1(){
         this.container.style.display = "block";
     }
-    hidePopup(){
+    hidePopup1(){
         this.container.style.display = "none"; 
     }
 

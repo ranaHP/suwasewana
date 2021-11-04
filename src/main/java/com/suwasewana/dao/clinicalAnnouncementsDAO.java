@@ -17,8 +17,8 @@ public class clinicalAnnouncementsDAO {
     private static final String VIEW_ANNOUNCEMENTS="SELECT * FROM clinic_announcement INNER JOIN normal_clinic_session ON clinic_announcement.clinic_id=normal_clinic_session.ncs_id";
     private static final String DELETE_ANNOUNCEMENTS="DELETE FROM `clinic_announcement` WHERE `clinic_announcement`.`clinic_id` = ?;";
 
-    private static final String INSERT_VANNOUNCEMENT=   "INSERT INTO `vaccine_clinic_announcement` VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-    private static final String VIEW_VANNOUNCEMENT="SELECT * FROM `vaccine_clinic_announcement`";
+    private static final String INSERT_VANNOUNCEMENT=   "INSERT INTO `vaccine_clinic_announcement` VALUES (NULL,?,?,?)";
+    private static final String VIEW_VANNOUNCEMENT="SELECT * FROM vaccine_clinic_announcement INNER JOIN vaccine_clinic_session ON vaccine_clinic_announcement.vcs_id =vaccine_clinic_session.vcs_id";
     private static final String DELETE_VANNOUNCEMENT="DELETE FROM `vaccine_clinic_announcement` WHERE `vaccine_clinic_announcement`.`vaccine_clinic_id`";
     Connection connection;
     public clinicalAnnouncementsDAO() {
@@ -28,7 +28,7 @@ public class clinicalAnnouncementsDAO {
 
     public String createClinicA(CreateClinicAnnouncementsModel createClinicAnnouncements) {
    try(PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ANNOUNCEMENT)) {
-       System.out.println("came to dao");
+//       System.out.println("came to dao");
        preparedStatement.setString(1,createClinicAnnouncements.getImage());
        preparedStatement.setString(2,createClinicAnnouncements.getClinicID());
 
@@ -122,20 +122,20 @@ public class clinicalAnnouncementsDAO {
 
     public String createVClinicA(VaccineClinicAnnouncementsModel vaccineClinicAnnouncement) {
         try(PreparedStatement preparedStatement = connection.prepareStatement(INSERT_VANNOUNCEMENT)) {
-            System.out.println("came to dao");
-            preparedStatement.setString(1,vaccineClinicAnnouncement.getTitle());
-            preparedStatement.setString(2,vaccineClinicAnnouncement.getDescription());
-            preparedStatement.setString(3,vaccineClinicAnnouncement.getBanner());
-            preparedStatement.setString(4,vaccineClinicAnnouncement.getVaccine_id());
-            preparedStatement.setString(5,vaccineClinicAnnouncement.getMax_sheet());
-            preparedStatement.setString(6,vaccineClinicAnnouncement.getLocation());
-            preparedStatement.setString(7,vaccineClinicAnnouncement.getTarget_people());
-            preparedStatement.setString(8,vaccineClinicAnnouncement.getDatetime());
-            preparedStatement.setString(9,vaccineClinicAnnouncement.getDuration());
-            preparedStatement.setString(10,vaccineClinicAnnouncement.getAge_limit());
-            preparedStatement.setString(11,vaccineClinicAnnouncement.getTarget_moh());
-            preparedStatement.setString(12,vaccineClinicAnnouncement.getVaccine_clinic_id());
-            preparedStatement.setString(13,"12");
+//            System.out.println("came to dao");
+//            preparedStatement.setString(1,vaccineClinicAnnouncement.getTitle());
+//            preparedStatement.setString(2,vaccineClinicAnnouncement.getDescription());
+            preparedStatement.setString(1,vaccineClinicAnnouncement.getBanner());
+//            preparedStatement.setString(4,vaccineClinicAnnouncement.getVaccine_id());
+//            preparedStatement.setString(5,vaccineClinicAnnouncement.getMax_sheet());
+//            preparedStatement.setString(6,vaccineClinicAnnouncement.getLocation());
+//            preparedStatement.setString(7,vaccineClinicAnnouncement.getTarget_people());
+//            preparedStatement.setString(8,vaccineClinicAnnouncement.getDatetime());
+//            preparedStatement.setString(9,vaccineClinicAnnouncement.getDuration());
+//            preparedStatement.setString(10,vaccineClinicAnnouncement.getAge_limit());
+//            preparedStatement.setString(11,vaccineClinicAnnouncement.getTarget_moh());
+            preparedStatement.setString(2,vaccineClinicAnnouncement.getVaccine_clinic_id());
+            preparedStatement.setString(3,"12");
 
             int rs = preparedStatement.executeUpdate();
             return "sucsess";

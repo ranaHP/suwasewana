@@ -94,9 +94,9 @@ import java.util.ArrayList;
 
     private void AllVaccineClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-//        System.out.println("Come to view moh controller");
+        System.out.println("Come to view moh controller");
         ArrayList<vaccineClinicModel> result1 = createClinicDAO.allvClinics();
-        res.getWriter().println(gson.toJson(result1));
+//        res.getWriter().println(gson.toJson(result1));
         }
 
     private void VaccineClinicsdelete(HttpServletRequest req, HttpServletResponse res) throws IOException {

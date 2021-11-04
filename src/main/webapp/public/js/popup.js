@@ -343,6 +343,54 @@ class SuwasewanaPopup{
 
         }
     }
+
+    showAlertMessage(data) {
+        alert(data)
+        data={
+            title:"",
+        }
+        // let appointmentId = data;
+        // data = {data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."}
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        // eventDiv.innerHTML = `
+        //     <div class="popup-title">User Appointment Portal </div>
+        //
+        //     <div class="popup-desc">  SUWASEWANA.LK</div>
+        //     <div class="popup-message-container " style="color: #d9534f!important;">
+        //         ${data.data}!
+        //         <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+        //             <div class="form-group">
+        //                 <input type="text" id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+        //             </div>
+        //             <div class="form-group">
+        //                 <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+        //             </div>
+        //             <div class="form-group">
+        //                 <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+        //             </div>
+        //             <div class="form-group">
+        //                 <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+        //             </div>
+        //             <div class="form-group">
+        //                 <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+        //             </div>
+        //
+        //         </div>
+        //          <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+        //         <div class="row" >
+        //             <div class="form-group">
+        //                 <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px"
+        //                 onclick="deleteCheckInputVsUserInput('${appointmentId}')"> Delete Appointment</button>
+        //             </div>
+        //         </div>
+        //     </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
     // showCreateClinicSuccessMessage(data){
     //     let eventsContaier = document.createElement('div');
     //     console.log(data.name);
