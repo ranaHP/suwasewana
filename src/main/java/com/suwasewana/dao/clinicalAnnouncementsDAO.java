@@ -64,7 +64,7 @@ public class clinicalAnnouncementsDAO {
 //            System.out.println(rs.toString());
             ArrayList<CreateClinicAnnouncementsModel> ViewclinicAnnouncements = new ArrayList<CreateClinicAnnouncementsModel>();
             while (rs.next()){
-                String AID=rs.getString("announcemet_id");
+                String AID=rs.getString("announcement_id");
                 String CId= rs.getString("clinic_id");
                 String title = rs.getString("title");
                 String disease =rs.getString("disease");

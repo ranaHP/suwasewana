@@ -1,24 +1,57 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
+import com.suwasewana.model.CreateClinicAnnouncementsModel;
 import com.suwasewana.model.RPHIAnnouncementsModel;
+import com.suwasewana.model.VaccineClinicAnnouncementsModel;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RPHIAnnouncementsDAO {
    private static final String CREATEA="INSERT INTO `staff_announcement`  VALUES (NULL ,?,?,?,?,NULL,?);";
-    Connection connection;
+   private static final String SELECTA="SELECT * FROM `staff_announcement` ";
+   Connection connection;
     public RPHIAnnouncementsDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
 
-    public static ArrayList<RPHIAnnouncementsModel> ViewA(RPHIAnnouncementsModel selectA) {
-    return null;
+    public ArrayList<RPHIAnnouncementsModel> ViewA(RPHIAnnouncementsModel selectA) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECTA)){
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<RPHIAnnouncementsModel> ViewVAnnouncements = new ArrayList<RPHIAnnouncementsModel>();
+            while (rs.next()){
+                String announcement_id=rs.getString("announcement_id");
+                String title=rs.getString("title");
+                String description=rs.getString("description");
+                String banner=rs.getString("banner");
+                String target_moh=rs.getString("target_moh");
+                String posted_date=rs.getString("posted_date");
+                String phi_officer=rs.getString("phi_officer");
+
+                RPHIAnnouncementsModel temp= new RPHIAnnouncementsModel(
+                        announcement_id,
+                        title,
+                        description,
+                        banner,
+                        target_moh,
+                        posted_date,
+                        phi_officer
+                );
+                ViewVAnnouncements.add(temp);
+
+            }
+            return ViewVAnnouncements;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
+
 
     public String createA(RPHIAnnouncementsModel RPHIAnnouncements) {
         System.out.println("came to dao");

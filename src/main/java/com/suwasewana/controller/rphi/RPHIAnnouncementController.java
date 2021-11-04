@@ -63,7 +63,7 @@ public class RPHIAnnouncementController extends HttpServlet {
                 "",
                 ""
         );
-        ArrayList<RPHIAnnouncementsModel> result= RPHIAnnouncementsDAO.ViewA(selectA);
+        ArrayList<RPHIAnnouncementsModel> result= rphiAnnouncementsDAO.ViewA(selectA);
         res.getWriter().println(gson.toJson(result));
     }
 

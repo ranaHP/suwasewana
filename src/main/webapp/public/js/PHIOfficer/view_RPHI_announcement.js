@@ -71,11 +71,17 @@
 //         moreText.style.display = "inline";
 //     }
 // }
-
+let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class View_RPHI_announcement{
     announcementArray=[
         {
-
+            announcement_id:"",
+            title:"",
+            description:"",
+            banner:"",
+            target_moh:"",
+            posted_date:"",
+            phi_officer:"",
         }
     ];
 
@@ -85,17 +91,33 @@ class View_RPHI_announcement{
         this.container = document.getElementById(container);
     }
     setData(data) {
-        // if(!data) return;
-        // this.ClinicArray = data;
-        // this.container.innerHTML=" ";
-        // console.log(data);
-        // // alert("came")
-        // this.ClinicArray.map((item) => {
-        //     this.container.innerHTML += `
-        //
-        //     `;
-        // })
-        alert("hi")
+        if(!data) return;
+        this.announcementArray = data;
+        this.container.innerHTML=" ";
+        console.log(data);
+        // alert("came")
+        this.announcementArray.map((item) => {
+            this.container.innerHTML += `
+       <div class="announcement">
+                         <div class="left">
+                <div class="image-container">
+                    <img src="${Url}/images/upoadimage/${item.banner}" width="250px" height="150px">
+                </div>
+            </div>
+            <div class="right">
+                <div class="up">
+                    <div class="announe-title">${item.title}</div>
+                    <div class="post-date">posted date -: ${item.posted_date}</div>
+                </div>
+                <div class="down">
+                    <div class="description">${item.description}  <span id="dots">...</span><span id="more" style="display: none;">${item.more}</span></div>
+                    <div class="view-buttion"><button onclick="myFunction()" id="myBtn">View more</button></div>
+                </div>
+            </div>
+       </div>
+            `;
+        })
+        // alert("hi")
     }
 
 

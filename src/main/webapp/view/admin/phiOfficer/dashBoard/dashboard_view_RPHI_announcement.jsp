@@ -42,10 +42,10 @@
     $.post("/test_war_exploded/createRPHI_Announcements/selectA",
         // reqData,
         function(data1,status){
-            alert(data1)
-            // AListArray=JSON.parse(data1)
-            // // console.log(clinicListArray)
-            // selectA.setData(AListArray);
+            // alert(data1)
+            AListArray=JSON.parse(data1)
+            // console.log(clinicListArray)
+            selectA.setData(AListArray);
 
         }
     );
