@@ -112,6 +112,54 @@
 
     }
 
+    function DeleteTask(id){
+        console.log("delet task id "+id);
+        let reqdata={
+            taskid:id
+        }
+        $.post(myUrl+"/phi-Todo-controller/delete",
+            reqdata,
+            function (data, status) {
+                getAllTask();
+            }
+        );
+    }
+    function SetToProgressTask(id){
+        console.log("progress task id "+id);
+        let reqdata={
+            taskid:id
+        }
+        $.post(myUrl+"/phi-Todo-controller/SetProgress",
+            reqdata,
+            function (data, status) {
+                getAllTask();
+            }
+        );
+    }
+    function EditTask(id){
+        console.log("edit task id "+id);
+        // let reqdata={
+        //     taskid:id
+        // }
+        // $.post(myUrl+"/phi-Todo-controller/SetPending",
+        //     reqdata,
+        //     function (data, status) {
+        //         getAllTask();
+        //     }
+        // );
+    }
+    function CompleteTask(id){
+        console.log("complete task id "+id);
+        let reqdata={
+            taskid:id
+        }
+        $.post(myUrl+"/phi-Todo-controller/Complete",
+            reqdata,
+            function (data, status) {
+                getAllTask();
+            }
+        );
+    }
 
 </script>
 <script >

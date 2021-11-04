@@ -15,11 +15,64 @@ public class TodoDAO {
     @SuppressWarnings("SqlResolve")
 
     private static final String TakeTasklist="SELECT * FROM suwasewana_db.task_list tl LEFT JOIN suwasewana_db.task_assign TAL ON tl.task_id = TAL.task_id LEFT JOIN suwasewana_db.phi p ON p.nic = tl.phi_id WHERE tl.phi_id=? ;";
+    private static final String DeleteTask="DELETE FROM `suwasewana_db`.`task_list` WHERE (`task_id` = ?);";
+    private static final String CompleteTask="UPDATE `suwasewana_db`.`task_list` SET `status` = 'complete' WHERE (`task_id` = ?);";
+    private static final String ProgressTask="UPDATE `suwasewana_db`.`task_list` SET `status` = 'inprogess' WHERE (`task_id` = ?);";
+    private static final String PendingTask="UPDATE `suwasewana_db`.`task_list` SET `status` = 'pending' WHERE (`task_id` = ?);";
     Connection connection;
 
     public TodoDAO() {
         DB db = new DB();
         connection = db.getConnection();
+    }
+
+    public String DeletTask( String id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DeleteTask)) {
+            preparedStatement.setString(1, id);
+            int  rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+    public String SetComplete( String id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CompleteTask)) {
+            preparedStatement.setString(1, id);
+            int  rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+    public String EditTask( String id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(PendingTask)) {
+            preparedStatement.setString(1, id);
+            int  rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+    public String SetProgress( String id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ProgressTask)) {
+            preparedStatement.setString(1, id);
+            int  rs = preparedStatement.executeUpdate();
+            return "success";
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
     }
 
     public ArrayList<TaskModel> GetAllTask( String nic) {
@@ -37,7 +90,9 @@ public class TodoDAO {
                 String expire_date=rs.getString("expire_date");
                 String status=rs.getString("status");
 
-
+                if(RPHIMessage==null){
+                    RPHIMessage=" ";
+                }
 
                 TaskModel temp = new TaskModel(
                          Taskid,

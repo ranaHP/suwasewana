@@ -49,6 +49,19 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
             case "TakeTaskList":
                 TakeTaskList(req, res);
                 break;
+            case "delete":
+                DeleteTask(req, res);
+                break;
+            case "Complete":
+                SetComplete(req, res);
+                break;
+            case "editTask":
+                EditTask(req, res);
+                break;
+            case "SetProgress":
+                SetProgress(req, res);
+                break;
+
 
             default:
                 res.getWriter().println("404 Page not Found");
@@ -60,7 +73,34 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
 
 }
 
+    private void DeleteTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+        String nic="199910910060";
+        String id=req.getParameter("taskid");
+        String result = todoDAO.DeletTask(id);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void SetComplete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String nic="199910910060";
+        String id=req.getParameter("taskid");
+        String result = todoDAO.SetComplete(id);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void EditTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String nic="199910910060";
+        String id=req.getParameter("taskid");
+        String result = todoDAO.EditTask(id);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void SetProgress(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String nic="199910910060";
+        String id=req.getParameter("taskid");
+        String result = todoDAO.SetProgress(id);
+        res.getWriter().println(gson.toJson(result));
+    }
 
 
     private void TakeTaskList(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
