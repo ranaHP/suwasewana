@@ -349,39 +349,68 @@ class SuwasewanaPopup{
         console.log(data)
         data=JSON.parse(data)
         console.log(data)
-        // let appointmentId = data;
-        // data = {data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."}
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
-        // eventDiv.innerHTML=JSON.stringify(data)
         eventDiv.innerHTML = `
-            <div class="popup-title">User Appointment Portal </div>
+<!--            <div class="popup-title">User Appointment Portal </div>-->
 
             <div class="popup-desc">  SUWASEWANA.LK</div>
-            <div class="popup-message-container " style="color: #d9534f!important;">
-                ${data[0].clinicID}!
-                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
-                    <div class="form-group">
-                        <input type="text" value="${data[0].clinicID}"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+            <div class="popup-message-container " style="color: #d9534f!important;padding: 0px;">
+               
+                <div class="row" >
+                    <label>Description</label>
+                    <div class="form-group" style="margin-bottom: 5px">
+                        <textarea  type="text"   id="description" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);height: 50px">${data[0].description}</textarea>
                     </div>
-                    <div class="form-group">
                     <label>Title</label>
-                        <input type="text" value="${data[0].title}"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    <div class="form-group" style="margin-bottom: 5px">
+                    
+                        <input type="text" value="${data[0].title}"  id="clinic-title" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                    <div class="form-group">
-                        <input type="text"  id="delete_input" value="${data[0].datetime}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    <label>DateandTime</label>
+                    <div class="form-group" style="margin-bottom: 5px">
+                        
+                        <input type="text"  id="date-time" value="${data[0].datetime}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                    <div class="form-group">
-                        <input type="text"  id="delete_input" value="${data[0].duration}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    <label>Duration</label>
+                    <div class="form-group" style="margin-bottom: 5px">
+                        
+                        <input type="text"  id="duration" value="${data[0].duration}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                    <div class="form-group">
-                        <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                     <label>Max limit</label>
+                    <div class="form-group" style="margin-bottom: 5px">
+                        
+                        <input type="text"  id="max-patient" value="${data[0].maxpatient}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    <label>Target participants</label>
+                    <div class="form-group" style="margin-bottom: 5px">
+                        
+                        <input type="text" value="${data[0].Target}"  id="patient" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                     <label>Location</label>
+                    <div class="form-group" style="margin-bottom: 5px">
+                        
+                        <input type="text" value="${data[0].location}"  id="location" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    <label>Disease</label>
+                    <div class="form-group" style="margin-bottom: 5px">
+                        
+                        <input type="text" value="${data[0].disease}"  id="disease" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    <label>Conduct by</label>
+                    <div class="form-group" style="margin-bottom: 5px">
+                        
+                        <input type="text" value="${data[0].disease}"  id="conduct" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
 
                 </div>
                  <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
                 <div class="row" >
-                   
+                   <button onclick="updateclinics('`+ data[0].clinicID+`');popup.hidePopup()">update</button>
                 </div>
             </div>`;
         eventsContaier.appendChild(eventDiv);

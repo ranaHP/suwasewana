@@ -202,7 +202,7 @@ import java.util.ArrayList;
                 req.getParameter("description"),
                 req.getParameter("maxpatient"),
                 req.getParameter("conduct"),
-                req.getParameter("targetMOH"),
+                "6",
                 req.getParameter("patient"),
                 req.getParameter("location"),
                 "12"

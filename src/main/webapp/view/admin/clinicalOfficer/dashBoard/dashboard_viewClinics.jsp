@@ -123,32 +123,43 @@
             return false;
     }
 
-    function updateclinics(){
+    function updateclinics(data){
         alert("update")
+        // let id=data;
+        let a=document.getElementById("disease").value;
+        let patient=document.getElementById("patient").value;
+        let maxpatient = document.getElementById("max-patient").value;
+        let duration=document.getElementById("duration").value;
+        let datetime= document.getElementById("date-time").value;
+        let clinictitle=document.getElementById("clinic-title").value;
+        let description=document.getElementById("description").value;
+        let conduct=document.getElementById("conduct").value;
+        let location=document.getElementById("location").value;
+        console.log(a)
         // // alert("update")
         let reqData =
             {
-                clinicID:document.getElementById("clinicID").value,
-                disease:document.getElementById("disease").value,
-                title:document.getElementById("clinic-title").value,
-                location:document.getElementById("location").value,
-                targetMOH:document.getElementById("target-MOH").value,
-                datetime:document.getElementById("date-time").value,
-                duration:document.getElementById("duration").value,
-                maxpatient:document.getElementById("max-patient").value,
-                patient:document.getElementById("patient").value,
-                conduct:document.getElementById("conduct").value,
-                description:document.getElementById("description").value,
+                clinicID:data,
+                disease:a,
+                title:clinictitle,
+                location:location,
+                // targetMOH:document.getElementById("target-MOH").value,
+                datetime:datetime,
+                duration:duration,
+                maxpatient:maxpatient,
+                patient:patient,
+                conduct:conduct,
+                description:description
             };
         console.log(reqData)
-        // $.post("/test_war_exploded/create-clinic-controller/updateclinic",
-        //     reqData,
-        //     function (data,status){
-        //         // alert("wrong")
-        //          alert(data)
-        //     });
-        //
-        // return false;
+        $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                 alert(data)
+            });
+
+        return false;
     }
 
     function checkMOHid(){

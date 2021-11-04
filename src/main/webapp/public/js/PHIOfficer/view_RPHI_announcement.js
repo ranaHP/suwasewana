@@ -54,7 +54,7 @@ class View_RPHI_announcement{
                 </div>
                 <div class="down">
                     <div class="description">${item.description}  <span id="dots">...</span><span id="more" style="display: none;">${item.more}</span></div>
-                    <div class="view-buttion"><button onclick="myFunction()" id="myBtn">View more</button></div>
+                    
                 </div>
             </div>
        </div>

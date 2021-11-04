@@ -71,7 +71,7 @@ public class createClinicDAO {
             preparedStatement.setString(8,updateClinic.getMOH());
             preparedStatement.setString(9,updateClinic.getTarget());
             preparedStatement.setString(10,updateClinic.getLocation());
-            preparedStatement.setString(11,updateClinic.getcNic());
+            preparedStatement.setString(11,updateClinic.getClinicID());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);
