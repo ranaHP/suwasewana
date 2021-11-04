@@ -61,6 +61,13 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
             case "SetProgress":
                 SetProgress(req, res);
                 break;
+            case "UpdateOverdueTaskList":
+                UpdateOverdueTaskList(req, res);
+                break;
+            case "AddTask":
+                AddTask(req, res);
+                break;
+
 
 
             default:
@@ -72,6 +79,23 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
     }
 
 }
+
+    private void AddTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String nic="199910910060";
+        String title=req.getParameter("title");
+        String date=req.getParameter("date");
+
+        String result = todoDAO.AddTask(nic,title,date);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void UpdateOverdueTaskList(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String nic="199910910060";
+
+        String result = todoDAO.UpdateOverdueTaskList(nic);
+        res.getWriter().println(gson.toJson(result));
+    }
 
     private void DeleteTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -91,7 +115,9 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
 
         String nic="199910910060";
         String id=req.getParameter("taskid");
-        String result = todoDAO.EditTask(id);
+        String task=req.getParameter("newTask");
+        String date=req.getParameter("newDate");
+        String result = todoDAO.EditTask(id,task,date);
         res.getWriter().println(gson.toJson(result));
     }
     private void SetProgress(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

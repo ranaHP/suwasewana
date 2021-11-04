@@ -11,6 +11,7 @@ public class TaskModel {
     protected String posted_date;
     protected String expire_date;
     protected String status;
+    protected String from;
 
 
 
@@ -24,7 +25,8 @@ public class TaskModel {
             String phiname,
             String posted_date,
             String expire_date,
-            String status
+            String status,
+            String from
     ){
         super();
          this.Taskid= Taskid;
@@ -35,6 +37,15 @@ public class TaskModel {
          this.posted_date= posted_date;
          this.expire_date= expire_date;
          this.status= status;
+            this.from= from;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
     }
 
     public String getTaskid() {

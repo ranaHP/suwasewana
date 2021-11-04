@@ -497,6 +497,48 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    EditTask(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        let taskid=data.task_Id
+        eventDiv.innerHTML = `
+            <div class="popup-title">Task Managing Portal</div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2> Update Task</h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    <div class="form-group" style="padding: 0 30px;display:flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 24px ">
+                        <label >
+                            Task
+                        </label>
+                        <textarea As="textarea" id="newTask" style="width: 50%;padding: 5px; min-height: 100px; margin-left: 10px; outline: none "  class="textarea" autofocus autocomplete="off" name="app-rr" id="app-rr"
+                          
+                        >`+data.title+`</textarea>
+                        
+                    </div>
+                    <div class="form-group" style="padding: 0 30px;display:flex; align-items: center; justify-content: center; padding-bottom: 20px">
+                        <label >
+                            Date
+                        </label>
+                        <input id="newDate" type="date" style="margin-left: 20px; padding: 0 30px; outline: none" value="`+data.date+`" />
+                        
+                    </div>
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group" style="display: flex; justify-content: space-between">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="updateTask('`+taskid+`'); popup.hidePopup();"> Update</button>
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #2ed573!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
 
 
     viewComplainer(data) {
