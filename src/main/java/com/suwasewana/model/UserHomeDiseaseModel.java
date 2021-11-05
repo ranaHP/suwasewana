@@ -11,7 +11,8 @@ public class UserHomeDiseaseModel {
     protected String recovered_cases;
     protected String date_time;
     protected String isVerified;
-
+    protected String name;
+    protected String description;
     public UserHomeDiseaseModel(
 
             String cases_record_id,
@@ -22,7 +23,9 @@ public class UserHomeDiseaseModel {
             String death_cases,
             String recovered_cases,
             String date_time,
-            String isVerified
+            String isVerified,
+            String name,
+            String description
     ){
         super();
 
@@ -35,6 +38,8 @@ public class UserHomeDiseaseModel {
         this.recovered_cases = recovered_cases;
         this.date_time = date_time;
         this.isVerified = isVerified;
+        this.name = name;
+        this.description = description;
     }
 
     public String getCases_record_id() {
@@ -107,5 +112,21 @@ public class UserHomeDiseaseModel {
 
     public void setIsVeryfied(String isVeryfied) {
         this.isVerified = isVeryfied;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

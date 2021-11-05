@@ -6,6 +6,8 @@ class diseasedetailsList {
             active_cases:" ",
             death_cases:" ",
             recovered_cases:" ",
+            name:"",
+            description:""
 
         }
     ];
@@ -55,13 +57,10 @@ class diseasedetailsList {
                         </div>
                     </div>
                     <div class="main-title">
-                        COVID-19
+                        ${item.name}
                     </div>
                     <div class="desc">
-                        According to researchers in China, these were the most common symptoms among people who
-                        had COVID-19
-                        According to researchers in China, these were the most common symptoms among people who
-                        had COVID-19
+                    ${item.description}
         
                     </div>
                     <div class="syntoms">

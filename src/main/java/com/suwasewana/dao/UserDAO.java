@@ -36,7 +36,7 @@ public class UserDAO {
 
 
     private static final String USER_GET_HOME_ANNOUNCEMENT = "SELECT * FROM `normal_clinic_session` ";
-    private static final String USER_GET_HOME_DISEASE = "SELECT * FROM `disease_cases` ";
+    private static final String USER_GET_HOME_DISEASE = "SELECT * FROM disease_cases LEFT JOIN diseases ON disease_cases.disease_id = diseases.d_id ";
     private static final String USER_GET_HOME_HEALTH_ANNOUNCEMENT = "SELECT * FROM `health_announcement`";
 
     Connection connection;
@@ -528,6 +528,8 @@ public class UserDAO {
                 String recovered_cases = rs.getString("recovered_cases");
                 String date_time = rs.getString("date_time");
                 String isVerified = rs.getString("isVerified");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
 
                 UserHomeDiseaseModel temp = new UserHomeDiseaseModel(
                         cases_record_id,
@@ -538,7 +540,9 @@ public class UserDAO {
                         death_cases,
                         recovered_cases,
                         date_time,
-                        isVerified
+                        isVerified,
+                        name,
+                        description
 
                 );
                 homediseaseList.add(temp);

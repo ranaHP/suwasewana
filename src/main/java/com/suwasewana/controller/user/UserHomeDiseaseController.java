@@ -52,7 +52,9 @@ public class UserHomeDiseaseController extends HttpServlet {
                 req.getParameter("death_cases"),
                 req.getParameter("recovered_cases"),
                 "",
-                ""
+                "",
+                req.getParameter("name"),
+                req.getParameter("description")
 
         );
         ArrayList<UserHomeDiseaseModel> result = userDAO.userGethomedisease(userhomedisease);
