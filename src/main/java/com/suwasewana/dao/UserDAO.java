@@ -2,11 +2,7 @@ package com.suwasewana.dao;
 
 import com.google.gson.Gson;
 import com.suwasewana.core.DB;
-import com.suwasewana.model.AppointmentModel;
-import com.suwasewana.model.AppointmentTypeModel;
-import com.suwasewana.model.ComplainModel;
-import com.suwasewana.model.UserLoginModel;
-import com.suwasewana.model.UserRegistrationModel;
+import com.suwasewana.model.*;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -22,7 +18,9 @@ public class UserDAO {
     private Gson gson = new Gson();
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `user` WHERE `uMobile` = ? and `uPassword` = ?";
     private static final String USER_REGISTRATION = "INSERT INTO `user` VALUES (?,?,?,?,?,?,?,?,?,?,?,current_timestamp());";
-    private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `appointment` VALUES (?, ?, ?, ?, NULL, current_timestamp(), ?, ?, ?, ?, ?, ?, ?,?);";
+    private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `user_appoinmnet` " +
+            "(`app_id`, `aTitle`, `aType`, `aReason`, `status`, `user_nic`, `posted_date_time`, `phi_message`, `aPhi`, `time_slot_1`, `time_slot_2`, `round`, `alocation`, `time_slot_2_end`, `time_slot_1_end`) "
+    + "VALUES (NULL, ?, ?, ?, ?, ?, current_timestamp(), ?, ?,  current_timestamp(),  current_timestamp(), ? , ? ,  current_timestamp(),  current_timestamp());";
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
     private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
 
@@ -45,6 +43,7 @@ public class UserDAO {
 
 //    /fixed
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
+
 
     public UserDAO() {
         DB db = new DB();
@@ -228,19 +227,15 @@ public class UserDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_CREATE_APPOINTMENT)) {
             preparedStatement.setString(1, appointment.getaTitle());
             preparedStatement.setString(2, appointment.getaType());
-            preparedStatement.setString(3, appointment.getaPhi());
-            preparedStatement.setString(4, appointment.getaReason());
-            preparedStatement.setString(5, String.valueOf(1));
+            preparedStatement.setString(3, appointment.getaReason());
+            preparedStatement.setString(4, "pending");
+            preparedStatement.setString(5, appointment.getUser_nic());
             preparedStatement.setString(6, "");
-            preparedStatement.setString(7, "");
-            preparedStatement.setString(8, "");
+            preparedStatement.setString(7, appointment.getaPhi());
+            preparedStatement.setInt(8, 0);
             preparedStatement.setString(9, "");
-            preparedStatement.setString(10, "pending");
-            preparedStatement.setString(11, appointment.getUser_nic());
-            preparedStatement.setString(12, null);
-            int rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
 
+            int rs = preparedStatement.executeUpdate();
             return "success";
         } catch (SQLException throwables) {
             printSQLException(throwables);
@@ -318,6 +313,7 @@ public class UserDAO {
 
         return null;
     }
+
 
     public String UserDeleteAppointment(String appointmentId) throws SQLException {
         boolean rowDeleted;
