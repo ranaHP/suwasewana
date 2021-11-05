@@ -15,9 +15,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script defer src="<c:url value="/public/js/Admin/public_Announcements.js"></c:url> "></script>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
 </head>
 <body id="mainContent" onload="checkP()">
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container">
 
     <div class="header">
@@ -89,7 +92,6 @@
 
                         <button class="publish-button" onclick="return imageUpload()">Publish</button>
                     </div>
-
                 </form>
 
             </div>
@@ -105,11 +107,12 @@
     </div>
 </div>
 <script defer>
+
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var loadFile = function(event) {
         var image = document.getElementById('proof1input');
         image.src = URL.createObjectURL(event.target.files[0]);
     };
-
 
     function imageUpload() {
         console.log("image upload")
@@ -124,7 +127,6 @@
                 $('#proof1input')[0].files[0].name.split(".")[$('#proof1input')[0].files[0].name.split(".").length - 1];
             imageNames.push(url1);
         }
-
         imageNames.map((item, index) => {
             fd.append('ImageName' + (index + 1), item);
         })
@@ -152,39 +154,34 @@
         }
         return false;
     }
-
-
     function PublicAnnouncement(imagearray){
             let reqData={
-                // date:document.getElementById("date").value,
                 title:document.getElementById("title").value,
                 description:document.getElementById("description").value,
                 image:imagearray[0],
-                // moh:checkid()
             };
-            console.log(reqData)
+
             $.post("/test_war_exploded/admin-controller/PublicAnnouncement",
                 reqData,
                 function (data, status) {
                 alert(data)
-                    // if(data.includes("sucsess")){
-                    //     // updateclinics()
-                    //     popup.showCreateClinicSuccessMessage({
-                    //         status: 'success',
-                    //         message: 'Successfully Created!'
-                    //     })
-                    // } else{
-                    //     popup.showCreateClinicSuccessMessage({
-                    //         status: 'fail',
-                    //         message: 'Failed to create !',
-                    //         data: data
-                    //     });
-                    // }
+                    if(data){
+                        popup.showCreateClinicSuccessMessage({
+                            status: 'success',
+                            message: 'Successfully Created!'
+                        })
+                        AddProvince(data)
+                        AddDistricts(data)
+                    } else{
+                        popup.showCreateClinicSuccessMessage({
+                            status: 'fail',
+                            message: 'Failed to create !',
+                            data: data
+                        });
+                    }
             }
             );
-
             return false
-
     }
 </script>
 <script defer>
@@ -197,7 +194,7 @@
             reqData,
             function (data, status) {
                 let PDetails=[];
-                console.log(data);
+                // console.log(data);
                 let rs= JSON.parse(data);
                 this.PDetails=rs;
                 // console.log(data);
@@ -207,7 +204,7 @@
                 rs.map((element,index) => {
                     DNames.innerHTML+= '<option  id="'+element.province_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
                 })
-                console.log("data"+data)
+                // console.log("data"+data)
                 document.querySelector('#PArea').value ="";
                 }
         );
@@ -216,6 +213,7 @@
     }
     let validation = new FormInputValidation();
     function checkP(){
+        // alert("hiiiiiii")
         let PDetails=[];
         $.post("/test_war_exploded/admin-controller/provinceAll",
             function (data, status) {
@@ -238,13 +236,78 @@
         var MTypeObj = document.getElementById('PArea');
         var datalist = document.getElementById(MTypeObj.getAttribute("list"));
         if(datalist.options.namedItem(MTypeObj.value)){
-                console.log("ooption"+ datalist.options.namedItem(MTypeObj.value).id)
+                // console.log("ooption"+ datalist.options.namedItem(MTypeObj.value).id)
                 return (datalist.options.namedItem(MTypeObj.value).id);
         }
         else {
             return  0;
         }
 
+    }
+
+    function takePID(province,data){
+        let id=data;
+        let reqData={
+            PName:province,
+        }
+        console.log(reqData)
+        alert(reqData)
+        $.post("/test_war_exploded/admin-controller/provinceIdSelect",
+            reqData,
+            function (data){
+                let name=JSON.parse(data)
+                name.map(item=>{
+                    let provinceId=item.province_id
+                    let reqData={
+                        provinceId:provinceId,
+                        announcement_id: id
+                    }
+                    console.log(reqData)
+                    $.post("/test_war_exploded/admin-controller/addprovince")
+                         reqData,
+                        function (data){
+                           console.log(data)
+                        }
+                })
+            });
+    }
+
+    function takeDID(district,data){
+        let id=data
+        let reqData={
+            DName:district,
+            announcement_id: id
+        }
+        console.log(reqData)
+        $.post("/test_war_exploded/admin-controller/districtsIdSelect",
+            reqData,
+            function (data){
+             let name=JSON.parse(data)
+                name.map(item=>{
+                    let districtId=item.districtId
+                    let reqData={
+                        provinceId:districtId,
+                        announcement_id: id
+                    }
+                    console.log(reqData)
+                    $.post("/test_war_exploded/admin-controller/adddistrict")
+                    reqData,
+                        function (data){
+                            console.log(data)
+                        }
+                })
+            });
+    }
+
+   function AddDistricts(data){
+       selectedOptionList1.map(i=>{
+               takeDID(i,data)
+       })
+   }
+    function AddProvince(data){
+        selectedOptionList.map(i=>{
+               takePID(i,data)
+        })
     }
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>

@@ -219,12 +219,6 @@ public class RegisterController extends HttpServlet {
         res.getWriter().println(result);
     }
 
-
-
-
-
-
-
     private void uerMakeAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String uNic = "";
         Cookie[] cookies = req.getCookies();

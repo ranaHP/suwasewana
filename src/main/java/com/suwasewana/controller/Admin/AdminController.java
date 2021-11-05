@@ -55,11 +55,16 @@ public class AdminController extends HttpServlet {
                 case "districtsSelect":
                     ViewSelectDisctirct(req,res);
                     break;
+                case "districtsIdSelect":
+                    SelectDisctirct(req,res);
+                    break;
+                case "provinceIdSelect":
+                    SelectProvince(req,res);
+                    break;
                 case "provinceAll":
                     ViewProvinceAll(req,res);
                     break;
                 case "PublicAnnouncement":
-//                    res.getWriter().println("hi");
                     PublicAnnouncement(req,res);
                     break;
                     
@@ -73,6 +78,26 @@ public class AdminController extends HttpServlet {
 
     }
 
+    private void SelectProvince(HttpServletRequest req, HttpServletResponse res) throws IOException {
+      ProvinceModel provinceS= new ProvinceModel(
+              "",
+               req.getParameter("PName")
+      );
+        ArrayList<ProvinceModel> result = provinceDAO.ProvinceNames(provinceS);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void SelectDisctirct(HttpServletRequest req, HttpServletResponse res) throws IOException {
+          DistrictModel districtS=new DistrictModel(
+            "",
+             req.getParameter("DName"),
+             ""
+          );
+        ArrayList<DistrictModel> result = distictDAO.DistrictsNames(districtS);
+        res.getWriter().println(gson.toJson(result));
+
+    }
+
     private void PublicAnnouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {
             PublicAnnouncementModel publicAnnouncement= new PublicAnnouncementModel(
                     "",
@@ -80,7 +105,7 @@ public class AdminController extends HttpServlet {
                  req.getParameter("description")  ,
                  req.getParameter("image")
             );
-        String result = publicAnnouncementsDAO.PublicAnnouncement(publicAnnouncement);
+        int result = publicAnnouncementsDAO.PublicAnnouncement(publicAnnouncement);
         res.getWriter().println(result);
     }
 

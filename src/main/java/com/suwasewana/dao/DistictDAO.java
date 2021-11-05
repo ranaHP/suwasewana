@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class DistictDAO {
     private static final String SELECT_dISTRICTS="SELECT * FROM `district` WHERE `province_id`=?;";
+    private static final String DISTRICTNAME="SELECT * FROM `district` WHERE `name`=?;";
     Connection connection;
 
     public DistictDAO() {
@@ -61,5 +62,30 @@ public class DistictDAO {
                 }
             }
         }
+    }
+
+    public ArrayList<DistrictModel> DistrictsNames(DistrictModel districtS) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DISTRICTNAME)){
+            System.out.println("jjj");
+            preparedStatement.setString(1, districtS.getName());
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<DistrictModel> selectDistrict = new ArrayList<DistrictModel>();
+            while (rs.next()){
+                String district_id=rs.getString("district_id");
+                DistrictModel temp = new DistrictModel(
+                        "",
+                        "",
+                         district_id
+                );
+                selectDistrict.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return selectDistrict;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
     }
 }

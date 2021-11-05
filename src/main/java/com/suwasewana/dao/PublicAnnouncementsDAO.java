@@ -3,9 +3,7 @@ package com.suwasewana.dao;
 import com.suwasewana.core.DB;
 import com.suwasewana.model.PublicAnnouncementModel;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class PublicAnnouncementsDAO {
   private static final String CREATEA="INSERT INTO `health_announcement` VALUES (NULL, ?, ?, ?);";
@@ -14,19 +12,24 @@ public class PublicAnnouncementsDAO {
         DB db = new DB();
         connection = db.getConnection();
     }
-
-    public String PublicAnnouncement(PublicAnnouncementModel publicAnnouncement) {
-       try (PreparedStatement preparedStatement=connection.prepareStatement(CREATEA)){
+    public int PublicAnnouncement(PublicAnnouncementModel publicAnnouncement) {
+        int announcement_id =0;
+        try (PreparedStatement preparedStatement=connection.prepareStatement(CREATEA, Statement.RETURN_GENERATED_KEYS)){
            preparedStatement.setString(1,publicAnnouncement.getTitle());
            preparedStatement.setString(2,publicAnnouncement.getDescription());
            preparedStatement.setString(3,publicAnnouncement.getBanner());
-
            int rs = preparedStatement.executeUpdate();
-           return "sucsess";
+           ResultSet rs1= preparedStatement.getGeneratedKeys();
+           if (rs1.next()) {
+               announcement_id = rs1.getInt(1);
+//               System.out.println(announcement_id);
+           }
+
        } catch (SQLException throwables) {
            throwables.printStackTrace();
        }
-        return null;
+
+        return announcement_id;
     }
 
     private void printSQLException(SQLException ex) {

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class ProvinceDAO {
    private static final String VIEWPROVINCE = "SELECT * FROM `province`;";
+   private static final String PROVINCEID="SELECT * FROM  `province` WHERE `name`=?;";
     Connection connection;
 
     public ProvinceDAO() {
@@ -55,5 +56,28 @@ public class ProvinceDAO {
                 }
             }
         }
+    }
+
+    public ArrayList<ProvinceModel> ProvinceNames(ProvinceModel provinceS) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(PROVINCEID)) {
+            preparedStatement.setString(1, provinceS.getName());
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<ProvinceModel> ProviceS = new ArrayList<ProvinceModel>();
+            while (rs.next()) {
+                String province_id = rs.getString("province_id");
+                ProvinceModel temp = new ProvinceModel(
+                        province_id,
+                        ""
+                );
+//
+                ProviceS.add(temp);
+            }
+            return ProviceS;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
     }
 }
