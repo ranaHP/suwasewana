@@ -109,6 +109,7 @@ import java.util.ArrayList;
                    "",
                    "",
                    ""
+
            );
         ArrayList<VaccineClinicAnnouncementsModel> result= clinicalAnnouncementsDAO.ViewVAnnouncements(viewVAnnouncements);
         res.getWriter().println(gson.toJson(result));

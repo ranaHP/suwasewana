@@ -16,15 +16,15 @@ public class createClinicDAO {
   private  static final String CREATE_CLINIC ="INSERT INTO `normal_clinic_session`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?);";
   private static final String VIEW_CLINICS = "SELECT * FROM `normal_clinic_session`";
   private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
-  private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
+  private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `start_date_time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_moh` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String Clinic_Details="SELECT * FROM `normal_clinic_session`";
 
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session`";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
-  private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
-  private static final String UPDATE_VCLINICS="UPDATE `vaccine_clinic_session` SET `tittle` =? , `start_date_time`= ? , `duration`= ? , `description`= ? , `max_patient`= ? ,`target_people`= ? , `target_age_limit`= ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
+  private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
+  private static final String UPDATE_VCLINICS="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `start_date_time` = ? , `duration` = ? , `description` = ? , `max_patient` = ? ,`target_people` = ? , `target_age_limit` = ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String VClinic_Detail="SELECT * FROM `vaccine_clinic_session`";
   Connection connection;
     public createClinicDAO(){

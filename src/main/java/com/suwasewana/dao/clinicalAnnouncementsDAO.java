@@ -64,7 +64,7 @@ public class clinicalAnnouncementsDAO {
 //            System.out.println(rs.toString());
             ArrayList<CreateClinicAnnouncementsModel> ViewclinicAnnouncements = new ArrayList<CreateClinicAnnouncementsModel>();
             while (rs.next()){
-                String AID=rs.getString("announcement_id");
+                String AID=rs.getString("announcemet_id");
                 String CId= rs.getString("clinic_id");
                 String title = rs.getString("title");
                 String disease =rs.getString("disease");
@@ -151,18 +151,18 @@ public class clinicalAnnouncementsDAO {
 //            System.out.println(rs.toString());
             ArrayList<VaccineClinicAnnouncementsModel> ViewVAnnouncements = new ArrayList<VaccineClinicAnnouncementsModel>();
             while (rs.next()){
-                String title = rs.getString("title");
+                String title = rs.getString("tittle");
                 String Description = rs.getString("description");
                 String banner=rs.getString("banner");
-                String v_ID=rs.getString("vaccine_id");
-                String MaxPatient = rs.getString("max_sheet");
+                String v_ID=rs.getString("v_id");
+                String MaxPatient = rs.getString("max_patient");
                 String location=rs.getString("location");
                 String Target=rs.getString("target_people");
-                String DataTime = rs.getString("date&time");
+                String DataTime = rs.getString("start_date_time");
                 String Duration = rs.getString("duration");
-                String age =rs.getString("age_limit");
+                String age =rs.getString("target_age_limit");
                 String TargetMOH = rs.getString("target_moh");
-                String VClinicID = rs.getString("vaccine_clinic_id");
+                String VClinicID = rs.getString("vcs_id");
                 String cNic = rs.getString("clinical_officer");
                 VaccineClinicAnnouncementsModel temp = new VaccineClinicAnnouncementsModel(
                         title,
