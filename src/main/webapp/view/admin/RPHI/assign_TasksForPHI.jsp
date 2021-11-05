@@ -15,6 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/public/css/RPHI/AssignTask.css "/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="<c:url value="/public/js/PHI/AssignTask.js"/>"></script>
+
 <%--    <script src="<c:url value="/public/js/PHIOfficer/dashboard_todolist.js"/> "></script>--%>
 
     <title>Suwasewana</title>
@@ -73,6 +76,27 @@
 
             </div>
             <hr style="margin-top: 50px; border: none; border-top: 0.1px solid rgba(255, 0, 0, 0.219);">
+            <div class="filter" style="width: 300px;">
+                <div class="date1" >
+                    From
+                    <input type="date" id="date1" style="margin-left: 10px;" onchange="chechDate1_with_Date2();"><br>
+                    <span id="date1error" style="font-size: 12px; color: rgba(255, 0, 0, 0.781);"></span>
+                </div>
+                <div class="date2" style="margin-top: 10px;">
+                    To
+                    <input type="date" id="date2" style="margin-left: 30px;margin-left: 10px;" onchange="chechDate2_with_Date1();" ><br>
+                    <span id="date2error" style="font-size: 12px; color: rgba(255, 0, 0, 0.781);">sssssss</span>
+                </div>
+            </div>
+            <select id="select_taks" >
+                <option>All</option>
+                <option>Complete</option>
+                <option>Pending</option>
+                <option>In Progress</option>
+            </select>
+
+            <button onclick="Tasklist.FilterTask();">filter </button>
+
             <div class="TaskView">
                 <table>
 
@@ -85,47 +109,66 @@
                         <th scope="col">Status</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td data-label="Name">Akila Anjana Dissanayaka</td>
-                        <td data-label="Task">To check somthi about Animal problem</td>
-                        <td data-label="Note">To check somthi about Animal problem</td>
-                        <td data-label="Date">03/01/2016</td>
-                        <td data-label="status">Pending</td>
-                    </tr>
-                    <tr>
-                        <td scope="row" data-label="Account">Visa - 6076</td>
-                        <td data-label="Due Date">03/01/2016</td>
-                        <td data-label="Amount">$2,443</td>
-                        <td data-label="Period">02/01/2016 - 02/29/2016</td>
-                        <td data-label="Period">03/01/2016 - 03/31/2016</td>
-                    </tr>
-                    <tr>
-                        <td scope="row" data-label="Account">Corporate AMEX</td>
-                        <td data-label="Due Date">03/01/2016</td>
-                        <td data-label="Amount">$1,181</td>
-                        <td data-label="Period">02/01/2016 - 02/29/2016</td>
-                        <td data-label="Period">03/01/2016 - 03/31/2016</td>
-                    </tr>
-                    <tr>
-                        <td scope="row" data-label="Acount">Visa - 3412</td>
-                        <td data-label="Due Date">02/01/2016</td>
-                        <td data-label="Amount">$842</td>
-                        <td data-label="Period">01/01/2016 - 01/31/2016</td>
-                        <td data-label="Period">03/01/2016 - 03/31/2016</td>
-                    </tr>
+                    <tbody id="Tablebody">
+                        <tr>
+                            <td data-label="Name">Akila Anjana Dissanayaka</td>
+                            <td data-label="Task">To check somthi about Animal problem</td>
+                            <td data-label="Note">To check somthi about Animal problem</td>
+                            <td data-label="Date">03/01/2016</td>
+                            <td data-label="status">Pending</td>
+                        </tr>
+
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
+<script>
+    function chechDate1_with_Date2(){
+        let date1=document.getElementById("date1").value;
+        let date2=document.getElementById("date2").value;
 
+        let day1=(!date1)? " ":new Date(date1);
+        let day2=(!date2)? " ":new Date(date2);
+
+
+
+
+    }
+    function chechDate2_with_Date1(){
+        let date1=document.getElementById("date1").value;
+        let date2=document.getElementById("date2").value;
+
+        let day1=(!date1)? " ":new Date(date1);
+        let day2=(!date2)? " ":new Date(date2);
+
+
+    }
+</script>
 
 <script defer >
-    let todo = new TodoList("pending-list" , "overdue-list" , "completed-list", "inprogess-list");
 
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+
+
+    let Tasklist= new TodoList('Tablebody');
+    let AssignTasklist=[];
     feather.replace({ width : "22px"})
+    getAssignTask("All");
+    function getAssignTask(item) {
+        let selected_item=item;
+        $.post(myUrl+"/phi-Todo-controller/checkAssignTask",
+            {},
+            function (data, status) {
+                let taskList = JSON.parse(data);
+                AssignTasklist=taskList;
+                Tasklist.setDataForPHI(taskList);
+
+            }
+        );
+    }
 
 
 </script>

@@ -2,6 +2,7 @@ package com.suwasewana.dao;
 
 
 import com.suwasewana.core.DB;
+import com.suwasewana.model.AssignTaskModel;
 import com.suwasewana.model.MOHModel;
 import com.suwasewana.model.TaskModel;
 
@@ -28,12 +29,52 @@ public class TodoDAO {
     private static final String ValidateOverdue="UPDATE `suwasewana_db`.`task_list` SET `status` = 'overdue' WHERE (`task_id` = ?);";
     private static final String Update_Task="UPDATE `suwasewana_db`.`task_list` SET `title` = ?, `expire_date` = ? WHERE (`task_id` = ?);";
     private static final String Add_Task="INSERT INTO `suwasewana_db`.`task_list` (`title`, `status`, `expire_date`, `phi_id`) VALUES (?, 'pending', ?, ?);";
+
+    private static final String Check_Add_Task="SELECT * FROM suwasewana_db.task_assign TA LEFT JOIN suwasewana_db.task_list TL ON TA.Asgtask_id=TL.task_id LEFT JOIN suwasewana_db.phi P ON P.nic=TL.phi_id WHERE P.assignMOH=? and P.phi_post='PHI' ;";
     Connection connection;
 
     public TodoDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
+
+    public ArrayList<AssignTaskModel> CheckAssignTask(String MOH) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Check_Add_Task)) {
+            preparedStatement.setString(1, MOH);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<AssignTaskModel> todoList = new ArrayList<AssignTaskModel>();
+            while (rs.next()) {
+
+                String full_name=rs.getString("full_name");
+                String to_phi=rs.getString("phi_id");
+                String title=rs.getString("title");
+                String expire_date=rs.getString("expire_date");
+                String message=rs.getString("message");
+                String status=rs.getString("status");
+
+
+
+
+                AssignTaskModel temp = new AssignTaskModel(
+                        full_name,
+                        to_phi,
+                        title,
+                        expire_date,
+                        message,
+                        status
+                );
+//
+                todoList.add(temp);
+            }
+            return todoList;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
 
     public String DeletTask( String id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DeleteTask)) {

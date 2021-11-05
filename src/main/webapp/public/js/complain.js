@@ -33,7 +33,6 @@ class Complain {
             return;
         }
 
-
         this.container.innerHTML = " ";
        data.map((item) => {
             this.container.innerHTML += `
@@ -159,7 +158,7 @@ class Complain {
                 if(
                     app.complainModel.CTitle.toLowerCase().includes(title.toLowerCase()) &&
                     app.ComplainType.toLowerCase().includes(type.toLowerCase())&&
-                    ( ((day1.getDay()<=cday.getDay())&&(day2.getDay()>=cday.getDay()))|| day1=="")
+                    ( ((day1<=cday)&&(day2>=cday))|| day1=="")
                 ){
                     return app;
                 }

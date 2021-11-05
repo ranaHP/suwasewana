@@ -2,6 +2,7 @@ package com.suwasewana.controller.phiOfficer.nphi;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.*;
+import com.suwasewana.model.AssignTaskModel;
 import com.suwasewana.model.CommanForCompalinAndUser;
 import com.suwasewana.model.ComplainModel;
 import com.suwasewana.model.TaskModel;
@@ -68,6 +69,10 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
                 AddTask(req, res);
                 break;
 
+            case "checkAssignTask":
+                CheckAssignTask(req, res);
+                break;
+
 
 
             default:
@@ -79,6 +84,11 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
     }
 
 }
+    private void CheckAssignTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String moh="1003";
+        ArrayList<AssignTaskModel> result = todoDAO.CheckAssignTask(moh);
+        res.getWriter().println(gson.toJson(result));
+    }
 
     private void AddTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
