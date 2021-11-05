@@ -30,6 +30,7 @@ public class AppointmentDAO {
 
     private static final String APPOINTMENTS_GIVE_TIME_SLOT = "UPDATE `user_appoinmnet` SET `phi_message` = ? , `user_appoinmnet`.`time_slot_1` = STR_TO_DATE(?, '%Y-%m-%d %T') , `user_appoinmnet`.`time_slot_2` = STR_TO_DATE(?, '%Y-%m-%d %T') , `user_appoinmnet`.`time_slot_1_end` = STR_TO_DATE(?, '%Y-%m-%d %T') ,`user_appoinmnet`.`time_slot_2_end` = STR_TO_DATE(?, '%Y-%m-%d %T'), `user_appoinmnet`.`status` = ? ,`user_appoinmnet`.`alocation` = ? WHERE `user_appoinmnet`.`app_id` = ?";
     private static final String USER_CHOOSE_TIME_SLOT = "UPDATE `user_appoinmnet` SET `status` = ? WHERE `user_appoinmnet`.`app_id` = ?;";
+    private static final String USER_REQUEST_TIME_SLOT_AGAIN = "UPDATE `user_appoinmnet` SET `status` = ? , `round` = ?  WHERE `user_appoinmnet`.`app_id` = ?;";
     private static final String REJECT_APPOINTMENT = "UPDATE `user_appoinmnet` SET `status` = ? , `user_appoinmnet`.`phi_message` = ? WHERE `user_appoinmnet`.`app_id` = ?;";
 
     public ArrayList<AppointmentTypeModel> getAppointmentTypes() {
@@ -139,7 +140,22 @@ public class AppointmentDAO {
             return new ResponseType("error" ,throwables.getMessage());
         }
     }
+    public ResponseType requestTimeSlotAgain(AppointmentModel appointment) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_REQUEST_TIME_SLOT_AGAIN)) {
+            preparedStatement.setString(1, appointment.getStatus());
+            preparedStatement.setString(2, appointment.getRound());
+            preparedStatement.setString(3, appointment.getApp_id());
+            int rs = preparedStatement.executeUpdate();
+            if(rs == 1){
+                return new ResponseType("success" ,"Successful Time Slot Booked");
+            }else{
+                return new ResponseType("error" ,"Time Slot Selection Unsuccessful");
+            }
 
+        } catch (SQLException throwables) {
+            return new ResponseType("error" ,throwables.getMessage());
+        }
+    }
     public ResponseType rejectAppointment(AppointmentModel appointment) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(REJECT_APPOINTMENT)) {
             preparedStatement.setString(1, appointment.getStatus());
