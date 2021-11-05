@@ -138,10 +138,8 @@
             function (data, status) {
                 let taskList = JSON.parse(data);
                 let todo = new TodoList("pending-list" , "overdue-list" , "completed-list", "inprogess-list",taskList);
-
             }
         );
-
     }
 
     function DeleteTask(id){
