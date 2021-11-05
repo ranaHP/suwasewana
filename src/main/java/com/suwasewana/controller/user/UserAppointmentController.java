@@ -47,19 +47,25 @@ public class UserAppointmentController extends HttpServlet {
             RequestDispatcher rd;
             switch (getUrlData[getUrlData.length-1]) {
                 case "create":
-//                    uerMakeAppointment(req, res);
+                    uerMakeAppointment(req, res);
                     break;
                 case "view":
                     userViewAppointment(req, res);
                     break;
                 case "delete":
-//                    userDeleteAppointment(req, res);
+                    userDeleteAppointment(req, res);
                     break;
                 case "type":
-//                    userViewAppointmentType(req, res);
+                    userViewAppointmentType(req, res);
                     break;
                 case "selectTimeSlot":
                     selectTimeSlot(req, res);
+                    break;
+                case "reRequestTimeSlot":
+                    reRequestTimeSlot(req, res);
+                    break;
+                case "phi":
+                    reRequestTimeSlot(req, res);
                     break;
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -155,7 +161,19 @@ public class UserAppointmentController extends HttpServlet {
         ArrayList<AppointmentTypeModel> result = userDAO.userGetAppointmentTypes();
         res.getWriter().println(gson.toJson(result));
     }
-
+    private void userViewPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("unic")) {
+                    uNic = cookie.getValue();
+                }
+            }
+        }
+        ArrayList<AppointmentTypeModel> result = userDAO.userGetAppointmentTypes();
+        res.getWriter().println(gson.toJson(result));
+    }
     private void userDeleteAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
 
         String result = userDAO.UserDeleteAppointment(req.getParameter("appointmentId"));
@@ -182,6 +200,27 @@ public class UserAppointmentController extends HttpServlet {
                 "");
 //        res.getWriter().println(gson.toJson(appointment));
         ResponseType result = appointmentDAO.chooseTimeSlot(appointment);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void reRequestTimeSlot(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
+        AppointmentModel appointment = new AppointmentModel(
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("app_id"),
+                "",
+                req.getParameter("round"),
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("status"),
+                "",
+                "",
+                "");
+//        res.getWriter().println(gson.toJson(appointment));
+        ResponseType result = appointmentDAO.requestTimeSlotAgain(appointment);
         res.getWriter().println(gson.toJson(result));
     }
 }

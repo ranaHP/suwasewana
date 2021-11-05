@@ -183,7 +183,7 @@ class PHIAppointment{
                 </div>
                 <div class="action-center">
                     <div class="app-status">
-                        Status - ` + app.appointment.status + `
+                        Status - ` + app.appointment.status + `  Round - ` + app.appointment.round + `
                     </div>
                     ${(app.appointment.status  === "pending") ?  `<div class="btn-set" >
                         <button class="app-submitBtn btn-success" onclick="popup.giveTimeSlot({ id: '` + app.appointment.app_id +  `',message: 'Give available time slot!' , title: '` + app.appointment.aTitle + `' , round: 1});"> Give Time Solt</button>
