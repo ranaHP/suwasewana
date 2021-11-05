@@ -23,6 +23,7 @@ public class AdminController extends HttpServlet {
     UserDAO userDAO;
     DistictDAO distictDAO;
     ProvinceDAO provinceDAO;
+    PublicAnnouncementsDAO publicAnnouncementsDAO;
     private Gson gson = new Gson();
 
     public void init() {
@@ -32,6 +33,7 @@ public class AdminController extends HttpServlet {
         userDAO = new UserDAO();
         distictDAO=new DistictDAO();
         provinceDAO=new ProvinceDAO();
+        publicAnnouncementsDAO = new PublicAnnouncementsDAO();
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -56,6 +58,10 @@ public class AdminController extends HttpServlet {
                 case "provinceAll":
                     ViewProvinceAll(req,res);
                     break;
+                case "PublicAnnouncement":
+//                    res.getWriter().println("hi");
+                    PublicAnnouncement(req,res);
+                    break;
                     
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -65,6 +71,17 @@ public class AdminController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+
+    private void PublicAnnouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {
+            PublicAnnouncementModel publicAnnouncement= new PublicAnnouncementModel(
+                    "",
+                 req.getParameter("title"),
+                 req.getParameter("description")  ,
+                 req.getParameter("image")
+            );
+        String result = publicAnnouncementsDAO.PublicAnnouncement(publicAnnouncement);
+        res.getWriter().println(result);
     }
 
     private void ViewSelectDisctirct(HttpServletRequest req, HttpServletResponse res) throws IOException {

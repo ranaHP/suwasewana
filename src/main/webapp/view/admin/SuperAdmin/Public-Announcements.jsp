@@ -19,28 +19,18 @@
 <body id="mainContent" onload="checkP()">
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
 <div class="container">
-    <!-- suwasewana header -->
+
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Admin/Dashboard/Make announcements</div>
     </div>
-    <!-- <div class="main-title">Make announcements</div> -->
+<%--        select province and district--%>
     <div class="search-section">
-<%--        <div class="selected-options-container" id="selected-options-container">--%>
-<%--        </div>--%>
-<%--        <div class="down">--%>
-<%--            <input id="SelectColor" type="text" list="AllColors" placeholder="select District">--%>
-<%--            <datalist id="AllColors">--%>
-<%--                <option label="Akuressa" value="Akuressa">--%>
-<%--                <option label="Galgamuwa" value="Galgamuwa">--%>
-<%--                <option label="Ahangama" value="Ahangama">--%>
-<%--                <option label="Matara" value="Matara">--%>
-<%--            </datalist>--%>
+    <div class="selected-options-container" id="selected-options-container">
+    </div>
 
-<%--            <button type="button" class="add-button" onclick="AddValue(document.getElementById('AllColors').value, document.getElementById('AllColors').text);">Add</button>--%>
-<%--        </div>--%>
+<%--        select province--%>
     <div class="down">
-<%--        <label >Province</label> <br>--%>
         <input autocomplete="off" placeholder="Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required
                onclick="document.getElementById('PArea').value='';"
                onblur="validation.SearchSelect(
@@ -51,13 +41,14 @@
         <datalist id="AllPArea">
         </datalist>
         <br>
-       <button onclick="SelectDistricts()">add</button>
+       <button onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>
         <span class="error" id="LPArea" style="margin-left: 5px" ></span>
     </div>
-
-<%--        districts--%>
-
+<%--      select district--%>
+        <div class="selected-options-container" id="selected-options-container1">
+        </div>
     <div class="down">
+
         <%--        <label >Province</label> <br>--%>
         <input autocomplete="off" placeholder="Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required
                onclick="document.getElementById('DArea').value='';"
@@ -66,16 +57,15 @@
                                     'LDArea'
                                 );"
         >
-
         <datalist id="AllDArea">
+            <option label="All" value="All" id="All">All</option>
         </datalist>
         <br>
+            <button onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>
         <span class="error" id="LDArea" style="margin-left: 5px" ></span>
     </div>
-
     </div>
     <div class="make-announcement-container">
-
         <div class="left">
             <!-- form container -->
             <div class="form-container">
@@ -89,9 +79,15 @@
                         <textarea id="description" name="content" rows="10" cols="30" row="5" onkeyup="card()"></textarea>
                     </div>
                     <div class="img-publish-button">
-                        <label for="file" class="upload" style="cursor: pointer;">Upload Image</label>
-                        <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
-                        <button class="publish-button" onclick="SelectDistricts()">Publish</button>
+                        <div class="image-upload-card">
+                            <img id="proof1" width="100%" />
+                            <input type="file" accept="image/*" name="file" id="proof1input"
+                                   onchange="loadFile(event , 'proof1')" style="display: none;">
+
+                            <label for="proof1input" class="upload" style="cursor: pointer;">Upload Image</label>
+                        </div>
+
+                        <button class="publish-button" onclick="return imageUpload()">Publish</button>
                     </div>
 
                 </form>
@@ -108,17 +104,93 @@
         </div>
     </div>
 </div>
-<script>
+<script defer>
     var loadFile = function(event) {
-        var image = document.getElementById('images');
+        var image = document.getElementById('proof1input');
         image.src = URL.createObjectURL(event.target.files[0]);
     };
-</script>
 
+
+    function imageUpload() {
+        console.log("image upload")
+        var fd = new FormData();
+        let imageNames = [];
+
+        if ($('#proof1input')[0].files[0]) {
+            fd.append('file', $('#proof1input')[0].files[0]);
+            let name = new Date().toString().split(" ");
+            let url1 = (name[2] + name[3] + name[4] + name[5]).replaceAll(":", "").replaceAll("+", "") +
+                Math.floor(10000 + Math.random() * 10000) + "." +
+                $('#proof1input')[0].files[0].name.split(".")[$('#proof1input')[0].files[0].name.split(".").length - 1];
+            imageNames.push(url1);
+        }
+
+        imageNames.map((item, index) => {
+            fd.append('ImageName' + (index + 1), item);
+        })
+        console.log("image neames array "+imageNames);
+        if(imageNames.length!=0){
+            $.ajax({
+                url: '/test_war_exploded/fileuploadservlet1',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != 0) {
+                        console.log("successfully image uploadedss ---- " +imageNames )
+                        PublicAnnouncement(imageNames)
+                    } else {
+                        console.log('file not uploaded');
+                    }
+                },
+            });
+        }
+        else {
+            console.log("no image selected")
+            // registerwithoutimage();
+        }
+        return false;
+    }
+
+
+    function PublicAnnouncement(imagearray){
+            let reqData={
+                // date:document.getElementById("date").value,
+                title:document.getElementById("title").value,
+                description:document.getElementById("description").value,
+                image:imagearray[0],
+                // moh:checkid()
+            };
+            console.log(reqData)
+            $.post("/test_war_exploded/admin-controller/PublicAnnouncement",
+                reqData,
+                function (data, status) {
+                alert(data)
+                    // if(data.includes("sucsess")){
+                    //     // updateclinics()
+                    //     popup.showCreateClinicSuccessMessage({
+                    //         status: 'success',
+                    //         message: 'Successfully Created!'
+                    //     })
+                    // } else{
+                    //     popup.showCreateClinicSuccessMessage({
+                    //         status: 'fail',
+                    //         message: 'Failed to create !',
+                    //         data: data
+                    //     });
+                    // }
+            }
+            );
+
+            return false
+
+    }
+</script>
 <script defer>
     function SelectDistricts(){
         let reqData={
-            province_id:checkid()
+            province_id:checkid(),
         };
         console.log(reqData)
         $.post("/test_war_exploded/admin-controller/districtsSelect",
@@ -130,18 +202,18 @@
                 this.PDetails=rs;
                 // console.log(data);
                 let DNames=document.getElementById("AllDArea");
-                DNames.innerHTML="";
+                // DNames.innerHTML="";
+
                 rs.map((element,index) => {
-                    // alert("h")
                     DNames.innerHTML+= '<option  id="'+element.province_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
                 })
                 console.log("data"+data)
+                document.querySelector('#PArea').value ="";
                 }
         );
 
         return false
     }
-
     let validation = new FormInputValidation();
     function checkP(){
         let PDetails=[];
@@ -153,26 +225,27 @@
                 // console.log(data);
                 let PNames=document.getElementById("AllPArea");
                 PNames.innerHTML="";
+                PNames.innerHTML+= '<option  id="'+"777" +'"  name="'+"777"+'" value="' + "All" +  '" option="' + "777"+  '" ></option>'
+
                 rs.map((element,index) => {
                     PNames.innerHTML+= '<option  id="'+element.province_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
                 })
             }
         );
     }
-
     function checkid(){
         // alert("check")
         var MTypeObj = document.getElementById('PArea');
         var datalist = document.getElementById(MTypeObj.getAttribute("list"));
         if(datalist.options.namedItem(MTypeObj.value)){
-            // alert(datalist.options.namedItem(MTypeObj.value).id)
-            return (datalist.options.namedItem(MTypeObj.value).id);
+                console.log("ooption"+ datalist.options.namedItem(MTypeObj.value).id)
+                return (datalist.options.namedItem(MTypeObj.value).id);
         }
         else {
             return  0;
         }
-    }
 
+    }
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

@@ -193,7 +193,7 @@ public class clinicalAnnouncementsDAO {
     public String deleteVAnnouncements(VaccineClinicAnnouncementsModel deleteVAnnouncements) {
         System.out.println("came to dlete dao");
         boolean rowDeleted;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ANNOUNCEMENTS)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_VANNOUNCEMENT)) {
             preparedStatement.setString(1,deleteVAnnouncements.getVaccine_clinic_id());
             rowDeleted = preparedStatement.executeUpdate() > 0;
             System.out.println(rowDeleted);
