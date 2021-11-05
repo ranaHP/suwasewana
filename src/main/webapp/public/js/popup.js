@@ -326,7 +326,7 @@ class SuwasewanaPopup{
 
     requestAnotherTimeSlot(data) {
         let appointmentId = data;
-        data = {data: "If you are unable to accept this time slot. Please click on the \"Request Again Button\" to request another time slot."}
+
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
@@ -334,23 +334,28 @@ class SuwasewanaPopup{
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container " style="color: #2b41bd!important;"> 
-                ${data.data}!
+                If you are unable to accept this time slot. Please click on the "Request Again Button" to request another time slot.
                 <div class="row" style="padding-top: 20px;padding-bottom: 10px">
                     <div class="form-group" style="display: flex;width: 100%;flex-direction: row!important;align-items: center">
                    
                         
-                    <label for="delete_input" style="display: flex;align-items: center;justify-content: center">
-                        <input type="checkbox"  id="delete_input" name="delete_input" 
+                    <label for="delete_input"  style="display: flex;align-items: center;justify-content: center;font-size: .8em!important;">
+                        <input type="checkbox" onchange="popup.testMy()"  id="delete_input" name="delete_input" 
                          style="width: 20px;height: 20px;margin: 0;padding: 0;border: 1px solid rgba(0,0,0,0.92);"> &nbsp; &nbsp; &nbsp;Are you sure
                     </label>
                     </div>
-                   
+                   <script>
+                       // function  asd(){
+                       //     alert('hi hansana')"
+                       // }
+                    </script>
                 </div>  
                  <div class="error-message" id="deleteAuthErrorMessage" style="display: none" >  Your Input is not matched with "Delete" ! </div>
                 <div class="row" >
                     <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="requestAnotherTime('${appointmentId}')"> Delete Appointment</button>
+                     
+                        <button class="submitBtn " id="myBtn"  style="margin: auto;margin-bottom: 20px;background-color: #c1c1c1!important;margin-top: 10px" 
+                        onclick="requestAnotherTime({ app_id: '` + data.app_id +`', round: '` + data.round +`' })" disabled> Delete Appointment</button>
                     </div>
                 </div>
             </div>`;
@@ -359,6 +364,17 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
+    }
+    testMy(){
+        console.log(document.getElementById("delete_input").checked)
+        if(document.getElementById("delete_input").checked){
+            document.getElementById("myBtn").disabled = false;
+            document.getElementById("myBtn").style.backgroundColor = "#c11711";
+        }else{
+            document.getElementById("myBtn").disabled = true;
+            document.getElementById("myBtn").style.backgroundColor = "#c1c1c1";
+        }
+
     }
     approveTime(data) {
         console.log(data);

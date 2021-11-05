@@ -309,8 +309,8 @@
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let appointment = new Appointment("previous-appointment-list");
     getAllAppointment()
-    // getAllAppointmentType()
-    // ViewPHI()
+    getAllAppointmentType()
+    ViewPHI()
     function getAllAppointment() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
@@ -336,7 +336,6 @@
             function (data, status) {
                 appointmentTypeList = JSON.parse(data);
                 appointmentTypeList.map( aType => {
-                    console.log(aType)
                     document.getElementById("allappointmentTypeSearch").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
                     document.getElementById("allappointmentType").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + " | " + aType.typeNumber + "' name='"  + aType.typeName +"'>";
                 })
@@ -458,7 +457,26 @@
         );
     }
     function requestAnotherTime(data){
-        console.log(data)
+        // console.log(data);
+        let reqData =   {
+            app_id: data.app_id,
+            status: "pending",
+            round: data.round
+        };
+        // console.log(reqData)
+        $.post(myUrl+"/user-appointment-controller/reRequestTimeSlot",
+            reqData,
+            function (data, status) {
+                let result = JSON.parse(data);
+                if(result.status.includes('success')){
+                    getAllAppointment();
+                    popup.hidePopup();
+                }else{
+                    popup.appointmentActionFail({data: result.status});
+                }
+
+            }
+        );
     }
 </script>
 </body>

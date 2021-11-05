@@ -312,8 +312,8 @@ public class UserDAO {
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<AppointmentTypeModel> appointmentTypeList = new ArrayList<AppointmentTypeModel>();
             while (rs.next()) {
-                String typeName = rs.getString("name");
-                String typeNumber = rs.getString("appointment_type_no");
+                String typeName = rs.getString("appointment_type");
+                String typeNumber = rs.getString("apponitment_type_id");
 
                 AppointmentTypeModel temp = new AppointmentTypeModel(typeNumber, typeName);
                 appointmentTypeList.add(temp);

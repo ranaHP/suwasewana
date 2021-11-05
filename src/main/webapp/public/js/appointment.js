@@ -37,7 +37,9 @@ class Appointment {
     showCardData(data) {
         if (!data) return;
         this.container.innerHTML = " ";
+        // console.log({ app_id: item.app_id , round:  item.round })
         data.map((item) => {
+            console.log({ app_id: item.app_id , round:  item.round })
             this.container.innerHTML += `
             <div class="appointment-card-container">
                                 <div class="appointment-card">
@@ -84,7 +86,7 @@ class Appointment {
                                         <div style="margin-left: 10px" class="accept-btn bg-success" onclick="popup.approveTime({app_id: '${item.app_id}' ,data: 'Which time slot do you want to choose', ts1: '${item.time_slot_1}',te1: '${item.time_slot_1_end}', ts2: '${item.time_slot_2}',te2: '${item.time_slot_2_end}' });">
                                             Accept
                                         </div>
-                                        <div style="margin-left: 10px" class="accept-btn bg-primary" onclick="popup.requestAnotherTimeSlot('${item.app_id}');">
+                                        <div style="margin-left: 10px" class="accept-btn bg-primary" onclick="popup.requestAnotherTimeSlot({ app_id: '` + item.app_id +`', round: '` + item.round +`' });">
                                             Request Again
                                         </div>
                                         ` : ""}
