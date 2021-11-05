@@ -25,8 +25,8 @@ class Complain {
     showCardData(data) {
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         let url = myUrl+"/public/";
-        console.log("constructor call url "+url);
-        console.log("data      "+data);
+        // console.log("constructor call url "+url);
+        // console.log("data      "+data);
 
         if(data.length ==0){
             this.conatiner.innerHTML += `No data found`
@@ -107,10 +107,10 @@ class Complain {
     // set data for PHI #######################################################################################3
     setDataForPHI(data){
         if (!data) {
-            console.log("set data walinma empty")
+            // console.log("set data walinma empty")
             return;
         }
-        console.log("data come to js to set complain for phi")
+        // console.log("data come to js to set complain for phi")
         this.container.innerHTML = " ";
         this.ComplainArray = data;
         this.showCardDataForPHI(this.ComplainArray);
@@ -181,7 +181,7 @@ class Complain {
     showCardDataForPHI(data) {
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         let url = myUrl+"/public/";
-        console.log("constructor call url "+url);
+        // console.log("constructor call url "+url);
         // console.log("data      "+data);
         if(data.length ==0 || !data){
             this.container.innerHTML = `No data found`

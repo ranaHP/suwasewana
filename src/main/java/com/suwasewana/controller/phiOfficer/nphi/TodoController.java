@@ -72,6 +72,9 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
             case "checkAssignTask":
                 CheckAssignTask(req, res);
                 break;
+            case "assigntask":
+                AssignTask(req, res);
+                break;
 
 
 
@@ -84,6 +87,18 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
     }
 
 }
+
+    private void AssignTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String title=req.getParameter("title");
+        String exp_date=req.getParameter("exp_date");
+        String note=req.getParameter("note");
+        String PId=req.getParameter("PId");
+
+        String result = todoDAO.AssignTask(title,exp_date,note,PId);
+        res.getWriter().println(gson.toJson(result));
+    }
+
     private void CheckAssignTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String moh="1003";
         ArrayList<AssignTaskModel> result = todoDAO.CheckAssignTask(moh);
