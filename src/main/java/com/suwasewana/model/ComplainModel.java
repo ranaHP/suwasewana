@@ -15,9 +15,11 @@ public class ComplainModel {
     protected String img1;
     protected String img2;
     protected String img3;
+    protected String PHIResponse;
+    protected String MOH;
 //
     public ComplainModel
-    (String CTitle,String CType,String UType,String PHIId,String CMessage,String PName ,  String User, String Posted_Date, String Status,String img1 ,String img2, String img3){
+    (String CTitle,String CType,String UType,String PHIId,String CMessage,String PName ,  String User, String Posted_Date, String Status,String img1 ,String img2, String img3,String PHIResponse,String MOH){
         super();
         this.CTitle=CTitle;
         this.CType=CType;
@@ -31,6 +33,24 @@ public class ComplainModel {
         this.img1=img1;
         this.img2=img2;
         this.img3=img3;
+        this.MOH= MOH;
+        this.PHIResponse= PHIResponse;
+    }
+
+    public String getPHIResponse() {
+        return PHIResponse;
+    }
+
+    public void setPHIResponse(String PHIResponse) {
+        this.PHIResponse = PHIResponse;
+    }
+
+    public String getMOH() {
+        return MOH;
+    }
+
+    public void setMOH(String MOH) {
+        this.MOH = MOH;
     }
 
     public String getCType() {
