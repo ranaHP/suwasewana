@@ -1,10 +1,7 @@
 package com.suwasewana.controller.Admin;
 
 import com.google.gson.Gson;
-import com.suwasewana.dao.ComplainDAO;
-import com.suwasewana.dao.MOHDAO;
-import com.suwasewana.dao.PHIDAO;
-import com.suwasewana.dao.UserDAO;
+import com.suwasewana.dao.*;
 import com.suwasewana.model.*;
 
 import javax.servlet.RequestDispatcher;
@@ -24,6 +21,8 @@ public class AdminController extends HttpServlet {
     MOHDAO mohdao;
     PHIDAO phidao;
     UserDAO userDAO;
+    DistictDAO distictDAO;
+    ProvinceDAO provinceDAO;
     private Gson gson = new Gson();
 
     public void init() {
@@ -31,6 +30,8 @@ public class AdminController extends HttpServlet {
         mohdao=new MOHDAO();
         phidao=new PHIDAO();
         userDAO = new UserDAO();
+        distictDAO=new DistictDAO();
+        provinceDAO=new ProvinceDAO();
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -49,7 +50,13 @@ public class AdminController extends HttpServlet {
                 case "mohall":
                     ViewMOHAll(req,res);
                     break;
-
+                case "districtsSelect":
+                    ViewSelectDisctirct(req,res);
+                    break;
+                case "provinceAll":
+                    ViewProvinceAll(req,res);
+                    break;
+                    
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -59,6 +66,25 @@ public class AdminController extends HttpServlet {
         }
 
     }
+
+    private void ViewSelectDisctirct(HttpServletRequest req, HttpServletResponse res) throws IOException {
+         DistrictModel districts=new DistrictModel(
+                 req.getParameter("province_id"),
+                 "",
+                 ""
+         );
+         ArrayList<DistrictModel> result = distictDAO.selectDistricts(districts);
+          res.getWriter().println(gson.toJson(result));
+    }
+
+
+    private void ViewProvinceAll(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("provice");
+        ArrayList<ProvinceModel> result = provinceDAO.getProvinceList();
+        res.getWriter().println(gson.toJson(result));
+    }
+
+
 
 
     private void ViewMOHAll(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{

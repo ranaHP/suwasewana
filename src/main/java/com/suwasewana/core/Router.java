@@ -180,7 +180,7 @@ public class Router extends HttpServlet {
                     rd.forward(request,response);
                     break;
                 case "MakAnnouncementsForPHI":
-                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPHI.jsp");
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPublic.jsp");
                     rd.forward(request,response);
                     break;
                 case "AssignTask":
