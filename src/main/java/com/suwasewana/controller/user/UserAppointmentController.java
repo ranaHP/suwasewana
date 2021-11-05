@@ -3,10 +3,12 @@ package com.suwasewana.controller.user;
 import com.google.gson.Gson;
 import com.suwasewana.core.ResponseType;
 import com.suwasewana.dao.AppointmentDAO;
+import com.suwasewana.dao.PHIDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.dao.ComplainDAO;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
+import com.suwasewana.model.PHIModel;
 import com.suwasewana.model.UserRegistrationModel;
 
 import javax.servlet.RequestDispatcher;
@@ -26,10 +28,12 @@ import java.util.Enumeration;
 @WebServlet("/user-appointment-controller/*")
 public class UserAppointmentController extends HttpServlet {
     UserDAO userDAO;
+    PHIDAO phiDAO;
     AppointmentDAO appointmentDAO;
     private Gson gson = new Gson();
 
     public void init() {
+        phiDAO = new PHIDAO();
         userDAO = new UserDAO();
         appointmentDAO = new AppointmentDAO();
     }
@@ -65,7 +69,7 @@ public class UserAppointmentController extends HttpServlet {
                     reRequestTimeSlot(req, res);
                     break;
                 case "phi":
-                    reRequestTimeSlot(req, res);
+                    userViewPHI(req, res);
                     break;
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -162,16 +166,7 @@ public class UserAppointmentController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void userViewPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
-        Cookie[] cookies = req.getCookies();
-        if(cookies !=null){
-            for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
-                }
-            }
-        }
-        ArrayList<AppointmentTypeModel> result = userDAO.userGetAppointmentTypes();
+        ArrayList<PHIModel> result = phiDAO.getAllPhiData();
         res.getWriter().println(gson.toJson(result));
     }
     private void userDeleteAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
