@@ -7,12 +7,10 @@ import com.suwasewana.model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet("/admin-controller/*")
@@ -64,6 +62,9 @@ public class AdminController extends HttpServlet {
                 case "provinceAll":
                     ViewProvinceAll(req,res);
                     break;
+                case "districtsAll":
+                    ViewDistrictAll(req,res);
+                    break;
                 case "PublicAnnouncement":
                     PublicAnnouncement(req,res);
                     break;
@@ -84,10 +85,16 @@ public class AdminController extends HttpServlet {
 
     }
 
+    private void ViewDistrictAll(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("district");
+        ArrayList<DistrictModel> result =distictDAO.getDistrictList();
+        res.getWriter().println(gson.toJson(result));
+    }
+
     private void addTargetdistrict(HttpServletRequest req, HttpServletResponse res) throws IOException {
       HealthAnnouncementTargetDistrictModel district=new HealthAnnouncementTargetDistrictModel(
                       req.getParameter("id"),
-                      req.getParameter("dID")
+                      req.getParameter("district_id")
                 );
         String result = publicAnnouncementsDAO.addTargetDistricts(district);
         res.getWriter().println(result);
@@ -97,7 +104,7 @@ public class AdminController extends HttpServlet {
     private void AddTargetprovince(HttpServletRequest req, HttpServletResponse res) throws IOException {
     HealthAnnouncementTargetProvinceModel targetProvince=new HealthAnnouncementTargetProvinceModel(
               req.getParameter("id"),
-              req.getParameter("pID")
+              req.getParameter("province_id")
     );
     String result= publicAnnouncementsDAO.addTargetProvince(targetProvince);
     res.getWriter().println(result);

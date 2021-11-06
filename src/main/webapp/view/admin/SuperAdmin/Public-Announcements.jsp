@@ -163,18 +163,63 @@
         }
         return false;
     }
+
     function change() {
         var decider = document.getElementById('switch');
-        var q= document.getElementById("search-section")
-        if(decider.checked){
-            // alert('check');
-            q.innerHTML=""
+        var q= document.getElementById("search-section");
+        let i;
+        console.log("change")
+        if(!decider.checked){
+            q.innerHTML=`
+              <div class="selected-options-container" id="selected-options-container">
+            </div>
 
-            // checkP()
+
+<%--        select province--%>
+    <div class="down">
+        <input autocomplete="off" placeholder="Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required
+               onclick="document.getElementById('PArea').value='';"
+               onblur="validation.SearchSelect(
+                                    document.getElementById('PArea').value,
+                                    'LPArea'
+                                );"
+        >
+        <datalist id="AllPArea">
+            <option label="All" value="All" id=All1></option>
+        </datalist>
+        <br>
+       <button onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>
+        <span class="error" id="LPArea" style="margin-left: 5px" ></span>
+    </div>
+<%--      select district--%>
+        <div class="selected-options-container" id="selected-options-container1">
+        </div>
+    <div class="down">
+
+        <%--        <label >Province</label> <br>--%>
+        <input autocomplete="off" placeholder="Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required
+               onclick="document.getElementById('DArea').value='';"
+               onblur="validation.SearchSelect(
+                                    document.getElementById('DArea').value,
+                                    'LDArea'
+                                );"
+        >
+        <datalist id="AllDArea">
+            <option label="All" value="All" id=All></option>
+        </datalist>
+        <br>
+            <button onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>
+        <span class="error" id="LDArea" style="margin-left: 5px" ></span>
+    </div>
+            `
         } else {
-            alert('unchecked');
+            // alert('unchecked');
+            q.innerHTML=""
+            selectedOptionList.push("all")
+            selectedOptionList1.push("all")
         }
     }
+
     function PublicAnnouncement(imagearray){
             let reqData={
                 title:document.getElementById("title").value,
@@ -205,6 +250,7 @@
             return false
     }
 </script>
+
 <script defer>
     function SelectDistricts(){
         let reqData={
@@ -231,6 +277,57 @@
 
         return false
     }
+    function takeRelevantDID(id,Pid){
+        let id1=id;
+        let Pid1=Pid;
+        let reqData={
+            province_id:Pid1
+        };
+        console.log("d")
+        console.log(reqData)
+        $.post("/test_war_exploded/admin-controller/districtsSelect",
+            reqData,
+            function (data, status) {
+                let PDetails=[];
+                console.log(data);
+                let rs= JSON.parse(data);
+                this.PDetails=rs;
+                rs.map(item=>{
+                    let Did=item.district_id;
+                    addTargetD(id1,Did)
+                });
+            }
+        );
+        return false
+    }
+
+    function takeRelevantPID(j,data){
+        console.log("b")
+        let id=data;
+        let Pname =j;
+        let reqData={
+            PName:Pname
+        };
+        // console.log(reqData)
+        $.post("/test_war_exploded/admin-controller/provinceIdSelect",
+            reqData,
+            function (data, status) {
+                let PDetails=[];
+                // console.log(data);
+                // console.log(data)
+                // console.log("aaaaaaa")
+                let rs= JSON.parse(data);
+                this.PDetails=rs;
+                rs.map(item=>{
+                    let Pid=item.province_id
+                    takeRelevantDID(id,Pid)
+                });
+            }
+        );
+
+        return false
+    }
+
     let validation = new FormInputValidation();
     function checkP(){
         let PDetails=[];
@@ -250,6 +347,7 @@
             }
         );
     }
+
     function checkid(){
         // alert("check")
         var MTypeObj = document.getElementById('PArea');
@@ -263,12 +361,13 @@
         }
 
     }
+
     function addTargetP(id,provinceId){
         let id1 =id;
         let provinceID=provinceId;
         let reqData={
             id:id1,
-            pID:provinceID
+            province_id:provinceID
         }
         console.log(reqData)
         $.post("/test_war_exploded/admin-controller/AddProvince",
@@ -277,12 +376,13 @@
                console.log(data)
             });
     }
+
     function addTargetD(id,districtId){
         let id2=id;
-        let districtID=districtId;
+        let district_id=districtId;
         let reqData={
             id:id2,
-            dID:districtID
+            district_id:district_id
         }
         console.log(reqData)
         $.post("/test_war_exploded/admin-controller/AddDistrict",
@@ -308,6 +408,23 @@
             });
     }
 
+    function takeallPID(data){
+        let id=data;
+        let PDetails=[];
+        $.post("/test_war_exploded/admin-controller/provinceAll",
+            function (data, status) {
+                console.log(data);
+                let rs= JSON.parse(data);
+                this.PDetails=rs;
+
+                rs.map((element,index) => {
+                    let province_id=element.province_id;
+                    addTargetP(id,province_id)
+                })
+            }
+        );
+    }
+
     function takeDID(district,data){
         let id=data
         let reqData={
@@ -324,24 +441,57 @@
             });
     }
 
+    function takeallDID(data){
+        let id=data
+        let DDetails=[];
+        $.post("/test_war_exploded/admin-controller/districtsAll",
+            function (data, status) {
+                console.log(data);
+                let rs= JSON.parse(data);
+                this.DDetails=rs;
+
+                rs.map((element,index) => {
+                    let district_id =element.district_id ;
+                    // addTargetP(id,province_id)
+                    // alert("h")
+
+                    addTargetD(id,district_id)
+                })
+            }
+        );
+    }
+
    function AddDistricts(data){
        selectedOptionList1.map(i=>{
+               if(i=="all"){
+                   console.log("all")
+                   takeallDID(data)
+
+               }
                if(i=="All"){
-                   alert("all")
-               }else {
+                   selectedOptionList.map(j=>{
+                       // takeDID(i,data)
+                       takeRelevantPID(j,data)
+                       // console.log("a")
+                   })
+               }
+               else {
                    takeDID(i,data)
                }
-
        })
    }
     function AddProvince(data){
         selectedOptionList.map(i=>{
-              if (i=="All"){
-                  alert("all")
-              }else {
+              if (i=="all"){
+                  console.log("all")
+                  takeallPID(data)
+              }
+              if(i=="All"){
+                  takeallPID(data)
+              }
+              else {
                   takePID(i,data)
               }
-
         })
     }
 </script>
