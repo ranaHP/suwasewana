@@ -346,18 +346,22 @@
         );
     }
     function makeAppointment(makeAnnouncementData) {
+        var phiObj = document.getElementById("phi");
+        var datalist = document.getElementById(phiObj.getAttribute("list"));
+        if(datalist.options.namedItem(phiObj.value)){
+            PId=(datalist.options.namedItem(phiObj.value).id);
+        }
         let reqData =
             {
                 aTitle: document.getElementById("aTitle").value,
                 aType: Number(document.getElementById("appointmentType").value.split("| ")[1]),
-                aPhi: document.getElementById("phi").value,
+                aPhi: PId,
                 aReason: document.getElementById("reason").value,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/user-appointment-controller/create",
+        $.post(myUrl+"/user-appointment-controller/create",
             reqData,
             function (data, status) {
-                console.log(data.includes("success"))
                 if (data.includes("success")) {
                     popup.showAppointmentSuccessMessage({
                         status: 'success',
@@ -415,16 +419,13 @@
         appointment.setSearch(searchItem);
     }
     function ViewPHI(){
-        $.post(myUrl+"/user-complain-controller/phi",
+        $.post(myUrl+"/user-appointment-controller/phi",
             function (data, status) {
                 let rs= JSON.parse(data);
-                console.log("asdasd");
-                console.log(rs);
-                console.log("asdasd");
                 let PNames=document.getElementById("allphi");
                 PNames.innerHTML="";
                 rs.map((element) => {
-                    PNames.innerHTML+= '<option id="'+element.phi_Id+'" name="'+element.full_name+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'
+                    PNames.innerHTML+= '<option id="'+element.NIC+'" name="'+element.full_name + ' - ' + element.City +'" value="' + element.full_name + ' - ' + element.City +'" option="' + element.full_name + ' - ' + element.City  +  '"></option>'
                 })
             }
         );
