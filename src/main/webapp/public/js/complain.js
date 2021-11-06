@@ -25,14 +25,13 @@ class Complain {
     showCardData(data) {
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         let url = myUrl+"/public/";
-        console.log("constructor call url "+url);
-        console.log("data      "+data);
+        // console.log("constructor call url "+url);
+        // console.log("data      "+data);
 
         if(data.length ==0){
             this.conatiner.innerHTML += `No data found`
             return;
         }
-
 
         this.container.innerHTML = " ";
        data.map((item) => {
@@ -108,10 +107,10 @@ class Complain {
     // set data for PHI #######################################################################################3
     setDataForPHI(data){
         if (!data) {
-            console.log("set data walinma empty")
+            // console.log("set data walinma empty")
             return;
         }
-        console.log("data come to js to set complain for phi")
+        // console.log("data come to js to set complain for phi")
         this.container.innerHTML = " ";
         this.ComplainArray = data;
         this.showCardDataForPHI(this.ComplainArray);
@@ -159,7 +158,7 @@ class Complain {
                 if(
                     app.complainModel.CTitle.toLowerCase().includes(title.toLowerCase()) &&
                     app.ComplainType.toLowerCase().includes(type.toLowerCase())&&
-                    ( ((day1.getDay()<=cday.getDay())&&(day2.getDay()>=cday.getDay()))|| day1=="")
+                    ( ((day1<=cday)&&(day2>=cday))|| day1=="")
                 ){
                     return app;
                 }
@@ -182,7 +181,7 @@ class Complain {
     showCardDataForPHI(data) {
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         let url = myUrl+"/public/";
-        console.log("constructor call url "+url);
+        // console.log("constructor call url "+url);
         // console.log("data      "+data);
         if(data.length ==0 || !data){
             this.container.innerHTML = `No data found`

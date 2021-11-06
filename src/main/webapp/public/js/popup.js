@@ -173,6 +173,7 @@ class SuwasewanaPopup{
         let eventsContaier = document.createElement('div');
         console.log(data.name);
         let eventDiv = document.createElement('div');
+
         if(data.status === "success"){
             eventDiv.innerHTML = `
             <div class="popup-title"> User Appointment Portal </div>
@@ -187,7 +188,8 @@ class SuwasewanaPopup{
                         onclick="popup.hidePopup()"> Close</button>
                     </div>
                 </div>`;
-        }else if(data.status === "fail"){
+        }
+        else if(data.status === "fail"){
             eventDiv.innerHTML = `
             <div class="popup-title">User Appointment Portal </div>
            
@@ -365,6 +367,7 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+
     testMy(){
         console.log(document.getElementById("delete_input").checked)
         if(document.getElementById("delete_input").checked){
@@ -376,6 +379,7 @@ class SuwasewanaPopup{
         }
 
     }
+
     approveTime(data) {
         console.log(data);
         let eventsContaier = document.createElement('div');
@@ -721,4 +725,60 @@ class SuwasewanaPopup{
         this.showPopup()
     }
 
+
+
+
+    // popup for assign task
+    ConformAssign(data) {
+
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">Task Assign Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #2b41bd!important;"> 
+                If you are unable to assign this Task. Please click on the "Close Button" to cancle Assignment
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+                    <div class="form-group" style="display: flex;width: 100%;flex-direction: row!important;align-items: center">
+                   
+                        
+                    <label for="delete_input"  style="display: flex;align-items: center;justify-content: center;font-size: .8em!important;">
+                        <input type="checkbox" onchange="popup.testconformtick()"  id="delete_input" name="delete_input" 
+                         style="width: 20px;height: 20px;margin: 0;padding: 0;border: 1px solid rgba(0,0,0,0.92);"> &nbsp; &nbsp; &nbsp;Are you sure
+                    </label>
+                    </div>
+                   <script>
+                       // function  asd(){
+                       //     alert('hi hansana')"
+                       // }
+                    </script>
+                </div>  
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" >  Pending... </div>
+                <div class="row" >
+                    <div class="form-group">
+                     
+                        <button class="submitBtn " id="myBtn"  style="margin: auto;margin-bottom: 20px; width: 200px;background-color: #c1c1c1!important;margin-top: 10px" 
+                        onclick="conformAndDoneTask();popup.hidePopup()" disabled> Assign Appoinment</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    testconformtick(){
+        console.log(document.getElementById("delete_input").checked)
+        if(document.getElementById("delete_input").checked){
+            document.getElementById("myBtn").disabled = false;
+            document.getElementById("myBtn").style.backgroundColor = "#c11711";
+        }else{
+            document.getElementById("myBtn").disabled = true;
+            document.getElementById("myBtn").style.backgroundColor = "#c1c1c1";
+        }
+
+    }
 }
