@@ -62,6 +62,9 @@ class selectVacClinics {
                 <div class="left_row_left"><span>  Target Peoples</span></div>
                 <div class="left_row_right"><input type="text" id="Target-Peoples" required value="${item.target_people}"></div>
               </div>
+           
+            </div>
+            <div class="basic-right">
               <div class="left_row">
                 <div class="left_row_left"><span> Max limit</span></div>
                 <div class="left_row_right"><input type="text" id="Max-limit" required value="${item.max_patient}"></div>
@@ -76,8 +79,6 @@ class selectVacClinics {
                 <div class="left_row_left"><span> Vaccine name</span></div>
                 <div class="left_row_right"><input type="text" id="Vaccine-name" required value="${item.v_id}"></div>
               </div>
-            </div>
-            <div class="basic-right">
               <div class="image-upload-card-container">
                 <div class="image-upload-card">
                   <img id="proof1" width="100%" />

@@ -93,24 +93,24 @@ import java.util.ArrayList;
     }
 
     private void updatevClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
-          vaccineClinicModel updatevclinic= new vaccineClinicModel(
+          vaccineClinicModel Updatevclinic= new vaccineClinicModel(
                   req.getParameter("vcs_id"),
-                  req.getParameter("tittle"),
-                  req.getParameter("start_date_time"),
+                  req.getParameter("title"),
+                  req.getParameter("datetime"),
                   req.getParameter("duration"),
                   req.getParameter("description"),
-                  req.getParameter("max_patient"),
-                  req.getParameter("6"),
-                  req.getParameter("target_people"),
-                  req.getParameter("target_age_limit"),
+                  req.getParameter("maxpatient"),
+                  "",
+                  req.getParameter("patient"),
+                  req.getParameter("age"),
                   "12",
-                  "6",
+                  "5",
                   req.getParameter("location"),
-                  req.getParameter("dose_count")
+                  req.getParameter("dose")
 
           ) ;
         System.out.println("updateeeeeeeeeee");
-        String result= createClinicDAO.updatevClinic(updatevclinic);
+        String result= createClinicDAO.updatevClinic(Updatevclinic);
         res.getWriter().println(result);
         }
 
@@ -230,13 +230,13 @@ import java.util.ArrayList;
                 req.getParameter("description"),
                 req.getParameter("maxpatient"),
                 req.getParameter("conduct"),
-                "6",
+                "",
                 req.getParameter("patient"),
                 req.getParameter("location"),
                 "12"
 
         );
-        System.out.println("updateeeeeeeeeee");
+//        System.out.println("updateeeeeeeeeee");
         String result= createClinicDAO.updateClinic(updateClinic);
         res.getWriter().println(result);
     }

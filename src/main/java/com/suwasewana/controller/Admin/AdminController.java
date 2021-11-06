@@ -67,6 +67,12 @@ public class AdminController extends HttpServlet {
                 case "PublicAnnouncement":
                     PublicAnnouncement(req,res);
                     break;
+                case "AddProvince":
+                    AddTargetprovince(req,res);
+                    break;
+                case "AddDistrict":
+                    addTargetdistrict(req,res);
+                    break;    
                     
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -76,6 +82,25 @@ public class AdminController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+
+    private void addTargetdistrict(HttpServletRequest req, HttpServletResponse res) throws IOException {
+      HealthAnnouncementTargetDistrictModel district=new HealthAnnouncementTargetDistrictModel(
+                      req.getParameter("id"),
+                      req.getParameter("dID")
+                );
+        String result = publicAnnouncementsDAO.addTargetDistricts(district);
+        res.getWriter().println(result);
+
+    }
+
+    private void AddTargetprovince(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    HealthAnnouncementTargetProvinceModel targetProvince=new HealthAnnouncementTargetProvinceModel(
+              req.getParameter("id"),
+              req.getParameter("pID")
+    );
+    String result= publicAnnouncementsDAO.addTargetProvince(targetProvince);
+    res.getWriter().println(result);
     }
 
     private void SelectProvince(HttpServletRequest req, HttpServletResponse res) throws IOException {

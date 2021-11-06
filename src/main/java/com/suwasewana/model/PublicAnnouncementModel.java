@@ -48,4 +48,5 @@ public class PublicAnnouncementModel {
     public void setBanner(String banner) {
         this.banner = banner;
     }
+
 }

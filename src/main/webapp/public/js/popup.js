@@ -425,53 +425,54 @@ class SuwasewanaPopup{
             <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container " style="color: #d9534f!important;padding: 0px;">
                 <div class="row" >
-                    <label>Description</label>
-                    <div class="form-group" style="margin-bottom: 5px">
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Description</label>
                         <textarea  type="text"   id="description" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);height: 50px">${data[0].description}</textarea>
                     </div>
-                    <label>Title</label>
-                    <div class="form-group" style="margin-bottom: 5px">
                     
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Title</label>
                         <input type="text" value="${data[0].title}"  id="clinic-title" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                    <label>DateandTime</label>
-                    <div class="form-group" style="margin-bottom: 5px">
-                        
+                   
+                    <div style="margin-bottom: 5px;display: flex">
+                         <label style=" width:150px">DateandTime</label>     
                         <input type="text"  id="date-time" value="${data[0].datetime}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                    <label>Duration</label>
-                    <div class="form-group" style="margin-bottom: 5px">
-                        
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Duration</label>
                         <input type="text"  id="duration" value="${data[0].duration}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                     <label>Max limit</label>
-                    <div class="form-group" style="margin-bottom: 5px">
-                        
+                     
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Max limit</label>
                         <input type="text"  id="max-patient" value="${data[0].maxpatient}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
-                    <label>Target participants</label>
-                    <div class="form-group" style="margin-bottom: 5px">
-                        
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Target participants</label>
                         <input type="text" value="${data[0].Target}"  id="patient" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
-                     <label>Location</label>
-                    <div class="form-group" style="margin-bottom: 5px">
-                        
+                     
+                    <div style="margin-bottom: 5px;display: flex">
+                       <label style=" width:150px">Location</label>   
                         <input type="text" value="${data[0].location}"  id="location" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
-                    <label>Disease</label>
-                    <div class="form-group" style="margin-bottom: 5px">
-                        
+                   
+                    <div style="margin-bottom: 5px;display: flex">
+                         <label style=" width:150px">Disease</label>
                         <input type="text" value="${data[0].disease}"  id="disease" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
-                    <label>Conduct by</label>
-                    <div class="form-group" style="margin-bottom: 5px">
-                        
-                        <input type="text" value="${data[0].disease}"  id="conduct" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Conduct by</label>
+                        <input type="text" value="${data[0].conduct}"  id="conduct" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
 
                 </div>

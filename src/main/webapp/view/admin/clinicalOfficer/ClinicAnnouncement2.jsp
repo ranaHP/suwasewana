@@ -10,8 +10,8 @@
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
   <%--    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>--%>
-  <link rel="stylesheet" href="<c:url value="/public/css/Admin/Add-vaccine-details.css"/> "/>
-  <link rel="stylesheet" href="<c:url value="/public/css/Admin/edit-vaccine-details.css"/> "/>
+<%--  <link rel="stylesheet" href="<c:url value="/public/css/Admin/Add-vaccine-details.css"/> "/>--%>
+  <link rel="stylesheet" href="<c:url value="/public/css/Admin/announcements.css"/> "/>
 
   <%--    for popup style--%>
   <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
@@ -114,12 +114,34 @@
                 <div class="left_row_right"><input type="text" name="patient" id="patient" autocomplete="off"
                                                    required/></div>
               </div>
+<%--              <div class="left_row">--%>
+<%--                <div class="left_row_left"><span> Max limit</span></div>--%>
+<%--                <div class="left_row_right"> <input type="text" name="max-patient" id="max-patient" autocomplete="off"--%>
+<%--                                                    required/></div>--%>
+<%--              </div>--%>
+
+<%--              <div class="left_row">--%>
+<%--                <div class="left_row_left"><span> Disease</span></div>--%>
+<%--                <div class="left_row_right"><input type="text" name="disease" id="disease" autocomplete="off"--%>
+<%--                                                   required/></div>--%>
+<%--              </div>--%>
+
+<%--              <div class="left_row">--%>
+<%--                <div class="left_row_left"><span> Conduct by</span></div>--%>
+<%--                <div class="left_row_right"><input type="text" id="conduct" required></div>--%>
+<%--              </div>--%>
+            </div>
+            <div class="basic-right">
+<%--              <div class="left_row">--%>
+<%--                <div class="left_row_left"><span>  Target Peoples</span></div>--%>
+<%--                <div class="left_row_right"><input type="text" name="patient" id="patient" autocomplete="off"--%>
+<%--                                                   required/></div>--%>
+<%--              </div>--%>
               <div class="left_row">
                 <div class="left_row_left"><span> Max limit</span></div>
                 <div class="left_row_right"> <input type="text" name="max-patient" id="max-patient" autocomplete="off"
                                                     required/></div>
               </div>
-
               <div class="left_row">
                 <div class="left_row_left"><span> Disease</span></div>
                 <div class="left_row_right"><input type="text" name="disease" id="disease" autocomplete="off"
@@ -130,8 +152,6 @@
                 <div class="left_row_left"><span> Conduct by</span></div>
                 <div class="left_row_right"><input type="text" id="conduct" required></div>
               </div>
-            </div>
-            <div class="basic-right">
               <div class="image-upload-card-container">
                 <div class="image-upload-card" style="margin-bottom: 220px">
                   <img id="proof1" width="100%" />

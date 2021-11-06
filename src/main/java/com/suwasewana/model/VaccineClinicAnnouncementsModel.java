@@ -14,7 +14,6 @@ public class VaccineClinicAnnouncementsModel {
     public String age_limit;
     public String target_moh;
     public String vaccine_clinic_id ;
-    public String cNic;
 
     public VaccineClinicAnnouncementsModel(
 //             String clinicID,
@@ -29,8 +28,7 @@ public class VaccineClinicAnnouncementsModel {
              String duration,
              String age_limit,
              String target_moh,
-             String vaccine_clinic_id ,
-             String cNic
+             String vaccine_clinic_id
             ){
         super();
 //        this.clinicID=clinicID;
@@ -46,7 +44,6 @@ public class VaccineClinicAnnouncementsModel {
         this.age_limit=age_limit;
         this.target_moh=target_moh;
         this.vaccine_clinic_id=vaccine_clinic_id;
-        this.cNic=cNic;
 
     }
 
@@ -152,14 +149,6 @@ public class VaccineClinicAnnouncementsModel {
 
     public void setVaccine_clinic_id(String vaccine_clinic_id) {
         this.vaccine_clinic_id = vaccine_clinic_id;
-    }
-
-    public String getcNic() {
-        return cNic;
-    }
-
-    public void setcNic(String cNic) {
-        this.cNic = cNic;
     }
 }
 

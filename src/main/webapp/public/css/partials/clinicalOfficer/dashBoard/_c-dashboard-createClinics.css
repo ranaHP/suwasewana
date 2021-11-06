@@ -108,7 +108,8 @@ input[type=time]:focus{
     padding: 8px;
     width: 95%;
     /*background-color: #0D47A1;*/
-    background-color: #006633FF;
+    /*background-color: #006633FF;*/
+    background-color: #5cb85c;
     color: white;
     border-radius: 3px;
     font-family: Arial;
@@ -117,7 +118,8 @@ input[type=time]:focus{
     cursor: pointer;
 }
 .live{
-    background-color: #006633FF;
+    /*background-color: #006633FF;*/
+    background-color: #5cb85c;
     border: none;
     cursor: pointer;
     font-family: Arial;

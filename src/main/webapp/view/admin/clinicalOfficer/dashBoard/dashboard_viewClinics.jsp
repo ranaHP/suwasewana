@@ -124,7 +124,7 @@
     }
 
     function updateclinics(data){
-        alert("update")
+        // alert("update")
         // let id=data;
         let a=document.getElementById("disease").value;
         let patient=document.getElementById("patient").value;

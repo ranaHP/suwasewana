@@ -84,8 +84,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                req.getParameter("clinicID"),
-                ""
+                req.getParameter("clinicID")
         );
         System.out.println("delete");
         String result = clinicalAnnouncementsDAO.deleteVAnnouncements(deleteVAnnouncements);
@@ -96,7 +95,6 @@ import java.util.ArrayList;
 
     private void viewVAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
            VaccineClinicAnnouncementsModel viewVAnnouncements= new VaccineClinicAnnouncementsModel(
-                   "",
                    "",
                    "",
                    "",
@@ -129,8 +127,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                req.getParameter("CId"),
-                req.getParameter("12")
+                req.getParameter("CId")
 
         );
         String result = clinicalAnnouncementsDAO.createVClinicA(vaccineClinicAnnouncement);

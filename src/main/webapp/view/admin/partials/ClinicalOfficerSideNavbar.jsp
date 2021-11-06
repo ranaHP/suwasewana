@@ -39,14 +39,14 @@
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bx-book-alt'></i>
-                    <span class="link_name">Clinic</span>
+                    <span class="link_name">Create Clinic</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">List Clinic</a></li>--%>
-                <li><a href="/test_war_exploded/s/view-clinics">List Clinic </a></li>
-                <li><a href="/test_war_exploded/s/create-clinic">Create Clinic </a></li>
+                <li><a href="/test_war_exploded/s/vaccine_clinics">Create vaccine clinics </a></li>
+                <li><a href="/test_war_exploded/s/create-clinic">Create normal Clinic </a></li>
             </ul>
         </li>
 
@@ -54,26 +54,27 @@
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bxs-bell-plus'></i>
-                    <span class="link_name">Announcement</span>
+                    <span class="link_name">Create Announcements</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="/test_war_exploded/s/viewClinic-announcements">List Announcement </a></li>
-                <li><a href="/test_war_exploded/s/select-announcements">Create Announcement </a></li>
+                <li><a href="/test_war_exploded/s/select-announcements">Create Normal clinic Announcement </a></li>
+                <li><a href="/test_war_exploded/s/vaccine_announcements">Create Vaccine clinic Announcement </a></li>
             </ul>
         </li>
         <li>
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bxs-bell-plus'></i>
-                    <span class="link_name">Vaccine clinics</span>
+                    <span class="link_name">View clinics</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="/test_war_exploded/s/vaccine_clinics">create vaccine clinics </a></li>
-                <li><a href="/test_war_exploded/s/view_vaccine_clinics">view vaccine clinics </a></li>
+                <li><a href="/test_war_exploded/s/view-clinics">View Normal Clinic </a></li>
+                <li><a href="/test_war_exploded/s/view_vaccine_clinics">View Vaccine clinics </a></li>
+
             </ul>
         </li>
 
@@ -81,13 +82,14 @@
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bxs-bell-plus'></i>
-                    <span class="link_name">vaccine Announcement</span>
+                    <span class="link_name">view Announcement</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="/test_war_exploded/s/view_vaccine_announcements">List vaccine clinic Announcement </a></li>
-                <li><a href="/test_war_exploded/s/vaccine_announcements">Create vaccine clinic Announcement </a></li>
+                <li><a href="/test_war_exploded/s/view_vaccine_announcements">View Vaccine clinic Announcement </a></li>
+                <li><a href="/test_war_exploded/s/viewClinic-announcements">View Normal clinic Announcement </a></li>
+
             </ul>
         </li>
 

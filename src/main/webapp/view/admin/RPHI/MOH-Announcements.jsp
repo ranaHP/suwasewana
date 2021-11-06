@@ -90,7 +90,7 @@
 
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var loadFile = function(event) {
-        var image = document.getElementById('proof1input');
+        var image = document.getElementById('images');
         image.src = URL.createObjectURL(event.target.files[0]);
     };
 

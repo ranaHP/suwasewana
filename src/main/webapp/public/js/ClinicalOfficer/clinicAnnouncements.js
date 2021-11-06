@@ -53,7 +53,11 @@ class selectClinics {
                 <div class="left_row_right"><input type="text" name="patient" id="patient" autocomplete="off"
                                                    required value="${item.Target}"/></div>
               </div>
-              <div class="left_row">
+           
+
+            </div>
+            <div class="basic-right">
+               <div class="left_row">
                 <div class="left_row_left"><span> Max limit</span></div>
                 <div class="left_row_right"> <input type="text" name="max-patient" id="max-patient" autocomplete="off"
                                                     required value="${item.maxpatient}"/></div>
@@ -68,9 +72,6 @@ class selectClinics {
                 <div class="left_row_left"><span> Conduct by</span></div>
                 <div class="left_row_right"><input type="text" id="conduct" required value="${item.conduct}"/></div>
               </div>
-
-            </div>
-            <div class="basic-right">
               <div class="image-upload-card-container">
                 <div class="image-upload-card" style="margin-bottom: 220px">
                   <img id="proof1" width="100%" />

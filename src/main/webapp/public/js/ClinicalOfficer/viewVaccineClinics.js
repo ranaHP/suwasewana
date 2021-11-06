@@ -51,7 +51,7 @@ class clinicList {
                         </div>
                         <div class="buttons">
 
-                            <div onclick="popup.showDeleteClinicAlertMessage(${item.clinicID})" class="delete-button">Delete</div>
+                            <div onclick="popup.showDeleteClinicAlertMessage(${item.vcs_id})" class="delete-button">Delete</div>
                             <div class="edit-button" onclick="select(${item.vcs_id})">Edit</div>
 
                         </div>

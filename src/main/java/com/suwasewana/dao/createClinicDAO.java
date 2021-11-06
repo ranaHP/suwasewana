@@ -17,14 +17,14 @@ public class createClinicDAO {
   private static final String VIEW_CLINICS = "SELECT * FROM `normal_clinic_session`";
   private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
-  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `start_date_time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_moh` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
+  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `start_date_time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String Clinic_Details="SELECT * FROM `normal_clinic_session`";
 
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session`";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
-  private static final String UPDATE_VCLINICS="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `start_date_time` = ? , `duration` = ? , `description` = ? , `max_patient` = ? ,`target_people` = ? , `target_age_limit` = ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
+  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `start_date_time` = ? , `duration` = ? , `description` = ? , `max_patient` = ? ,`target_people` = ? , `target_age_limit` = ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String VClinic_Detail="SELECT * FROM `vaccine_clinic_session`";
   Connection connection;
     public createClinicDAO(){
@@ -69,10 +69,10 @@ public class createClinicDAO {
             preparedStatement.setString(5,updateClinic.getDescription());
             preparedStatement.setString(6,updateClinic.getMaxpatient());
             preparedStatement.setString(7,updateClinic.getConduct());
-            preparedStatement.setString(8,updateClinic.getMOH());
-            preparedStatement.setString(9,updateClinic.getTarget());
-            preparedStatement.setString(10,updateClinic.getLocation());
-            preparedStatement.setString(11,updateClinic.getClinicID());
+//            preparedStatement.setString(8,updateClinic.getMOH());
+            preparedStatement.setString(8,updateClinic.getTarget());
+            preparedStatement.setString(9,updateClinic.getLocation());
+            preparedStatement.setString(10,updateClinic.getClinicID());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);
@@ -329,6 +329,7 @@ public class createClinicDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_VCLINICS)) {
             preparedStatement.setString(1,deleteVClinic.getVcs_id());
             rowDeleted = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowDeleted);
             return "success";
         } catch (SQLException throwables) {
             return throwables.getMessage();
@@ -414,23 +415,23 @@ public class createClinicDAO {
         return null;
     }
 
-    public String updatevClinic(vaccineClinicModel updatevclinic) {
+    public String updatevClinic(vaccineClinicModel Updatevclinic) {
         boolean rowUpdate;
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_VCLINICS)) {
             System.out.println("came to update");
 //            preparedStatement.setString(1,"");
-            preparedStatement.setString(1,updatevclinic.getTittle());
-            preparedStatement.setString(2,updatevclinic.getStart_date_time());
-            preparedStatement.setString(3,updatevclinic.getDuration());
-            preparedStatement.setString(4,updatevclinic.getDescription());
-            preparedStatement.setString(5,updatevclinic.getMax_patient());
-//            preparedStatement.setString(6,updatevclinic.getTarget_moh());
-            preparedStatement.setString(6,updatevclinic.getTarget_people());
-            preparedStatement.setString(7,updatevclinic.getTarget_age_limit());
-            preparedStatement.setString(8,updatevclinic.getV_id());
-            preparedStatement.setString(9,updatevclinic.getLocation());
-            preparedStatement.setString(10,updatevclinic.getDose_count());
-            preparedStatement.setString(11,updatevclinic.getVcs_id());
+            preparedStatement.setString(1,Updatevclinic.getTittle());
+            preparedStatement.setString(2,Updatevclinic.getStart_date_time());
+            preparedStatement.setString(3,Updatevclinic.getDuration());
+            preparedStatement.setString(4,Updatevclinic.getDescription());
+            preparedStatement.setString(5,Updatevclinic.getMax_patient());
+//            preparedStatement.setString(6,Updatevclinic.getTarget_moh());
+            preparedStatement.setString(6,Updatevclinic.getTarget_people());
+            preparedStatement.setString(7,Updatevclinic.getTarget_age_limit());
+            preparedStatement.setString(8,Updatevclinic.getV_id());
+            preparedStatement.setString(9,Updatevclinic.getLocation());
+            preparedStatement.setString(10,Updatevclinic.getDose_count());
+            preparedStatement.setString(11,Updatevclinic.getVcs_id());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);

@@ -12,7 +12,8 @@ class clinicList {
             description:" ",
             duration:" ",
             location:" ",
-            maxpatient:" "
+            maxpatient:" ",
+            Target:""
         }
     ];
 
@@ -33,12 +34,12 @@ class clinicList {
                     <div class="clinic-date" id="date">${item.datetime}</div>
                     <div class="clinic-description">${item.description}</div>
                     <div class="clinic-details">
-                        <div class="location" id="clinicID"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> ID :</span> ${item.clinicID}</div>
-                        <div class="location" id="item1"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> Location :</span> ${item.location}</div>
-                        <div class="conduct"  id="item2"><span><span><object data="${Url}/public/images/icons/user.svg" width="8" height="8"> </object></span> Conduct :</span> ${item.conduct}</div>
-                        <div class="max-limit"  id="item3"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Max participant limit :</span>${item.maxpatient}</div>
-                        <div class="moh-area"  id="4"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> MOH Area :</span>${item.MOH}</div>
-                        <div class="target-participants"  id="item5"><span><span><object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object></span> Target participant :</span> ${item.title}</div>
+                        <div class="clinicID" id="clinicID"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> ID :</span> ${item.clinicID}</div>
+                        <div class="location" id="location"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> Location :</span> ${item.location}</div>
+                        <div class="conduct"  id="conduct"><span><span><object data="${Url}/public/images/icons/user.svg" width="8" height="8"> </object></span> Conduct :</span> ${item.conduct}</div>
+                        <div class="max-limit"  id="max-limit"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Max participant limit :</span>${item.maxpatient}</div>
+                        <div class="duration"  id="duration"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> Duration :</span>${item.duration}</div>
+                        <div class="target-participants"  id="target-participants"><span><span><object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object></span> Target participant :</span> ${item.Target}</div>
                     </div>
                     <div class="down-box">
                         <div class="current-participant-count">

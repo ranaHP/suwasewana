@@ -155,7 +155,7 @@
         // // alert("update")
         let reqData =
             {
-                clinicID:data,
+                clinicID:id,
                 age:age,
                 title:clinictitle,
                 location:location,
