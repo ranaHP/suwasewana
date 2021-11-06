@@ -2,11 +2,7 @@ package com.suwasewana.dao;
 
 import com.google.gson.Gson;
 import com.suwasewana.core.DB;
-import com.suwasewana.model.AppointmentModel;
-import com.suwasewana.model.AppointmentTypeModel;
-import com.suwasewana.model.ComplainModel;
-import com.suwasewana.model.UserLoginModel;
-import com.suwasewana.model.UserRegistrationModel;
+import com.suwasewana.model.*;
 
 import java.io.Serializable;
 import java.sql.Connection;
@@ -47,6 +43,10 @@ public class UserDAO {
     private static  final  String INSERT_COMPLAIN="INSERT INTO `suwasewana_db`.`user_complaint` " +
             "(`tittle`, `description`, `user`, `status`, `phi_message`, `phi_id`, `complaint_type_id`, `moh`, `img1`, `img2`, `img3`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
+
+
+    private static final String USER_GET_DISEASE_DETAILS = "SELECT * FROM diseases LEFT JOIN disease_cases ON diseases.d_id = disease_cases.disease_id";
+
     Connection connection;
 
 
@@ -518,7 +518,37 @@ public class UserDAO {
     }
 
 
+    public ArrayList<UserDiseasedetailsModel> userGetdiseasedetails(UserDiseasedetailsModel diseaseDetails) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_DISEASE_DETAILS)) {
 
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<UserDiseasedetailsModel> userdiseaseDetails = new ArrayList<UserDiseasedetailsModel>();
+            while (rs.next()) {
+                String d_id = rs.getString("d_id");
+                String name  = rs.getString("name");
+                String description  = rs.getString("description");
+                String active_cases = rs.getString("active_cases");
+                String death_cases = rs.getString("death_cases");
+                String recovered_cases = rs.getString("recovered_cases");
+
+                UserDiseasedetailsModel temp = new UserDiseasedetailsModel(
+                        d_id,
+                        name ,
+                        description ,
+                        active_cases,
+                        death_cases,
+                        recovered_cases
+
+                );
+                userdiseaseDetails.add(temp);
+            }
+            return userdiseaseDetails;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
 
 
 
