@@ -289,7 +289,6 @@
                                            onblur="validation.selectCheck('uDetailsType','euDetailsType')";
                                            onchange="validation.selectCheck('uDetailsType','euDetailsType')";
                                            onclick="document.getElementById('uDetailsType').value=''";
-
                                     >
                                     <datalist id="alluDetailsType">
                                         <option id="1" name="With Details" value="With Details" option="With Details"></option>

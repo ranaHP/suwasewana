@@ -1,3 +1,4 @@
+
 class selectClinics {
     ClinicArray = [];
     container;
@@ -13,120 +14,76 @@ class selectClinics {
         alert("came")
         this.ClinicArray.map((item) => {
             this.container.innerHTML += `
- <div class="AC_container">
-      <div class="AC_Body_container" id="AC_Body_container">
-        <div class="Container_left">
-          <div class="LRow">
-            <div class="form-item">
-              <input type="text" id="clinicID"  autocomplete="off" required>
-              <label class="name" for="clinicID">Search by Name</label>
-              <span class="error" id="LfullName" onclick="view()"><img src="${this.url}/images/icons/search.svg" width="10px" style="padding-top: 8px"/></span>
-            </div>
-          </div>
-          <div class="LRow">
-            <label>Title</label><br>
-            <input type="text" name="" id="Title">
-          </div>
-          <div class="LRow mt5">
-            <textarea rows='1'>${item.description}</textarea>
-            <label id="Des">Description</label>
+        <div class="basic_left">
+              <div class="left_row">
+                <div class="left_row_left"><span>clinic-title  </span></div>
+                <div class="left_row_right"><input type="text" name="clinic-title" id="clinic-title" autocomplete="off"
+                                                   required value="${item.title}"/></div>
 
-          </div>
-          <div class="LRow">
+              </div>
+              <div class="left_row">
+                <div class="left_row_left"><span> description  </span></div>
+                <div class="left_row_right"><input type="text" placeholder="reason" autocomplete="off" name="description"
+                                                      id="description" value="${item.description}"/></div>
+              </div>
 
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/circle.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label>Location</label>
-                </div>
+              <div class="left_row">
+                <div class="left_row_left"><span> start_date_time  </span></div>
+                <div class="left_row_right"><input type="text" name="date-time" id="date-time" autocomplete="off"
+                                                   required value="${item.datetime}"/></div>
               </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.location}">
-              </div>
-            </div>
 
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/calendar.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label>Date & Time</label>
-                </div>
+              <div class="left_row">
+                <div class="left_row_left"><span> duration  </span></div>
+                <div class="left_row_right"><input type="text" name="duration" id="duration" autocomplete="off"
+                                                   required value="${item.duration}"/></div>
               </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.datetime}">
+              <div class="left_row">
+                <div class="left_row_left"><span>Location</span></div>
+                <div class="left_row_right"> <input type="text" name="location" id="location" autocomplete="off"
+                                                    required value="${item.location}"/></div>
               </div>
-            </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/clock.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label>Duration</label>
-                </div>
+              <div class="left_row">
+                <div class="left_row_left"><span> Target MOH</span></div>
+                <div class="left_row_right"><input type="text" name="target-MOH" id="target-MOH" autocomplete="off"
+                                                   required value="${item.MOH}"/></div>
               </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.duration}">
+              <div class="left_row">
+                <div class="left_row_left"><span>  Target Peoples</span></div>
+                <div class="left_row_right"><input type="text" name="patient" id="patient" autocomplete="off"
+                                                   required value="${item.Target}"/></div>
               </div>
-            </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/user.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label>Conduct By</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.conduct}">
-              </div>
-            </div>
-            <div class="DRow">
-              <div class="DRow_Left">
-                <div class="icon">
-                  <img src="${this.url}/images/icons/triangle.svg" width="8px"/>
-                </div>
-                <div class="row_text">
-                  <label >Max limit</label>
-                </div>
-              </div>
-              <div class="DRow_Right">
-                <input type="text" value="${item.maxpatient}">
-              </div>
-            </div>
+           
 
-          </div>
-        </div>
-        <div class="Container_right">
-          <div class="RRow">
-            <textarea rows='1' id="TargetP" placeholder='Type target patients here...'>${item.disease}</textarea>
-            <label id="target">Target Participant</label>
-          </div>
-          <div class="RRow">
-            <div class="row ">
-              <div class="image-upload-card-list-container">
+            </div>
+            <div class="basic-right">
+               <div class="left_row">
+                <div class="left_row_left"><span> Max limit</span></div>
+                <div class="left_row_right"> <input type="text" name="max-patient" id="max-patient" autocomplete="off"
+                                                    required value="${item.maxpatient}"/></div>
+              </div>
 
-                <div class="image-upload-card-container">
-                  <div class="image-upload-card">
-                    <img id="proof3" width="100%"/>
-                    <input type="file" accept="image/*" name="image" id="proof3input"
-                           onchange="loadFile(event, 'proof3')" style="display: none;">
-                    <label id="upload-btn" for="proof3input" style="cursor: pointer;">Upload Image</label>
-                  </div>
+              <div class="left_row">
+                <div class="left_row_left"><span> Disease</span></div>
+                <div class="left_row_right"><input type="text" name="disease" id="disease" autocomplete="off"
+                                                   required value="${item.disease}"/></div>
+              </div>
+              <div class="left_row">
+                <div class="left_row_left"><span> Conduct by</span></div>
+                <div class="left_row_right"><input type="text" id="conduct" required value="${item.conduct}"/></div>
+              </div>
+              <div class="image-upload-card-container">
+                <div class="image-upload-card" style="margin-bottom: 220px">
+                  <img id="proof1" width="100%" />
+                  <input type="file" accept="image/*" name="file" id="proof1input"
+                         onchange="loadFile(event , 'proof1')" style="display: none;">
+
+                  <label for="proof1input" style="cursor: pointer;">Upload Image</label>
                 </div>
+<!--<%&#45;&#45;                <div><button onclick="imageUpload()">Create announcement</button></div>&#45;&#45;%>-->
+<!--<%&#45;&#45;                                                          <button onclick="imageUpload()">add</button>&#45;&#45;%>-->
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <button id="sybmit">submit</button>
-    </div>
             `;
         })
     }

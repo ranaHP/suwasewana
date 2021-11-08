@@ -12,7 +12,7 @@ function card()
     var conduct=document.getElementById("conduct").value;
     var max=document.getElementById("max-patient").value;
     var target = document.getElementById("patient").value;
-    var MOH=document.getElementById("target-MOH").value;
+    var MOH=document.getElementById("MArea").value;
     var duration = document.getElementById("duration").value;
     console.log(name)
     let clinic = document.getElementById('live-card')

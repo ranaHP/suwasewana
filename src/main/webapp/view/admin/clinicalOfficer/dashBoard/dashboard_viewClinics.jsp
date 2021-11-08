@@ -6,15 +6,19 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-viewClinics.css"/> "/>
+<%--    <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-createClinics.css"/> "/>--%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="<c:url value="/public/js/ClinicalOfficer/viewClinics.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+
 
 </head>
 <body>
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
+<%--<div class="popup-container" id="PopupContainer"></div>--%>
 <div class="containor container" id="mainContent">
     <div class="header">
         <div class="upper-title">SUWASEWANA </div>
@@ -22,15 +26,23 @@
     </div>
 <%--     filter section --%>
     <div class="mypopup" id="popup" style="display: none;"></div>
-    <div class="cardselect">
+    <div class="cardselect" style="padding:45px">
         <div class="searchbar">
-            <input type="text" id ="filter" required autocomplete="off" name="clinic-title" onkeyup="search()" />
-            <button>Search</button>
+            <input type="text" id ="filter" placeholder="Search clinic by name" required autocomplete="off" name="clinic-title" onkeyup="search()" />
+
         </div>
-<%--        <div class="results">--%>
-<%--            <div class="value" id="value"></div>--%>
-<%--            <div class="Results">: Results <i data-feather="layers" width="15px" height="12px"></i></div>--%>
-<%--        </div>--%>
+        <div class="searchbar">
+            <input id="clinicID" placeholder="search by clinic date" list="AllMArea" name="AllMArea" autocomplete="off"
+
+                   onclick="document.getElementById('clinicID').value='';"
+            >
+            <datalist id="AllMArea">
+            </datalist>
+            <br>
+            <span class="error" id="LMArea" style="margin-left: 5px" ></span>
+            <button onclick="searchD()">Search</button>
+        </div>
+
     </div>
     <div class="card-containor" id="card-containor">
 <%--          <div id="option" class="live-card"></div>--%>
@@ -40,17 +52,17 @@
     feather.replace()
 </script>
 <script defer>
+    let validation = new FormInputValidation();
     let clinicList1 = new clinicList("card-containor");
-
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     view();
     function view(){
-
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/view",
             // reqData,
             function(data,status){
                 clinicListArray=JSON.parse(data)
+                // console.log(clinicListArray)
                 clinicList1.setData(clinicListArray);
 
             }
@@ -68,7 +80,6 @@
     }
 
     function deleteClinics(clinicID){
-        // console.log("deleteclinicfunction")
         $.post("/test_war_exploded/create-clinic-controller/delete",
             {
                 clinicID: clinicID
@@ -89,6 +100,100 @@
             }
         );
     }
+
+    function select(id){
+        // let selectClinic = new selectClinics("form");
+            let clinicList=[]
+            let reqData =
+                {
+                    clinicID: id,
+                };
+            console.log(reqData);
+            $.post("/test_war_exploded/create-clinic-controller/select",
+                reqData,
+                function(data,status){
+                    // alert(data)
+                    console.log(data)
+                    clinicList=JSON.parse(data)
+                    // selectClinic.setData(clinicList);
+                   popup.showClinicEditMessage(data)
+
+                }
+            );
+            return false;
+    }
+
+    function updateclinics(data){
+        // alert("update")
+        // let id=data;
+        let a=document.getElementById("disease").value;
+        let patient=document.getElementById("patient").value;
+        let maxpatient = document.getElementById("max-patient").value;
+        let duration=document.getElementById("duration").value;
+        let datetime= document.getElementById("date-time").value;
+        let clinictitle=document.getElementById("clinic-title").value;
+        let description=document.getElementById("description").value;
+        let conduct=document.getElementById("conduct").value;
+        let location=document.getElementById("location").value;
+        console.log(a)
+        // // alert("update")
+        let reqData =
+            {
+                clinicID:data,
+                disease:a,
+                title:clinictitle,
+                location:location,
+                // targetMOH:document.getElementById("target-MOH").value,
+                datetime:datetime,
+                duration:duration,
+                maxpatient:maxpatient,
+                patient:patient,
+                conduct:conduct,
+                description:description
+            };
+        console.log(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                 alert(data)
+            });
+
+        return false;
+    }
+
+    function checkMOHid(){
+        var MTypeObj = document.getElementById('MArea');
+        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(MTypeObj.value)){
+
+            return (datalist.options.namedItem(MTypeObj.value).id);
+        }
+        else {
+            return  0;
+        }
+    }
+
+
+        let Details=[];
+        $.post("/test_war_exploded/create-clinic-controller/all-Clinics",
+        function (data, status) {
+        let rs= JSON.parse(data);
+        this.Details=rs;
+        let MNames=document.getElementById("AllMArea");
+        MNames.innerHTML="";
+        rs.map((element,index) => {
+        // console.log("moh"+element.MName)
+        MNames.innerHTML+= '<option  id="'+element.clinicID+'"  name="'+element.clinicID+'" value="'+element.datetime +  '" option="' +element.clinicID +  '" ></option>'
+    })
+    }
+        );
+
+
+
+
+
+    // let popup1= new verify_reject_popup('PopupContainer' , {task:"This is a demo task" , date:"2018-07-22"})
 
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>

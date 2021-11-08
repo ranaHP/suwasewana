@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-viewAnnouncements.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/ClinicalOfficer/viewAnnouncements.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/ClinicalOfficer/viewAnnouncements.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container" >
     <!-- suwasewana header -->
     <div class="header">
@@ -37,6 +40,59 @@
 </div>
 <script>
     feather.replace(({width:"8px",height:"8px"}))
+</script>
+<script defer>
+    // alert("start")
+    let viewAnnouncementslist = new viewAnnouncements("announcements-container");
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    view();
+    function view(){
+        let announcementArray=[]
+        $.post("/test_war_exploded/clinicAnnouncementController/viewAnnouncements",
+            // reqData,
+            function(data,status){
+                announcementArray=JSON.parse(data)
+                viewAnnouncementslist.setData(announcementArray);
+                // alert(data)
+
+            }
+        );
+
+    }
+    function deleteCheckInputVsUserInput(appointmentId){
+        let userInput = document.getElementById("delete_input").value;
+        if(userInput === "Delete"){
+            document.getElementById("deleteAuthErrorMessage").style.display = "none";
+            deleteAnnouncement(appointmentId);
+            // alert("okay")
+        }else{
+            document.getElementById("deleteAuthErrorMessage").style.display = "block";
+        }
+    }
+
+    function deleteAnnouncement(clinicID){
+        // console.log("deleteclinicfunction")
+        $.post("/test_war_exploded/clinicAnnouncementController/deleteA",
+            {
+                clinicID: clinicID
+            },
+            function (data, status) {
+                alert(data)
+                if (data.includes("success")) {
+                    popup. showAnnouncementDeleteSuccessMessage({
+                        status: 'success',
+                        message: 'Announcement Successfully Deleted!'
+                    });
+                } else {
+                    popup. showAnnouncementDeleteSuccessMessage({
+                        status: 'fail',
+                        message: 'Announcement delete Fails !',
+                        data: data
+                    });
+                }
+            }
+        );
+    }
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

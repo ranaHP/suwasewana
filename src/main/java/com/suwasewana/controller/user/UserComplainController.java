@@ -132,6 +132,9 @@ public class UserComplainController extends HttpServlet {
         ArrayList<MOHModel> result = mohdao.GetMOHDetails();
         res.getWriter().println(gson.toJson(result));
     }
+
+
+
     private void userViewComplainType(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ArrayList<ComplainTypeModel> result = complainDAO.GetComplainTypeDetails();
         res.getWriter().println(gson.toJson(result));

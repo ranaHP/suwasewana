@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_MOH.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>
+<%--    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>--%>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"/>
@@ -45,6 +45,58 @@
     </div>
 
 </div>
+
+<script>
+
+    getAllMOHDetails();
+    let moh_details_list={};
+    function getAllMOHDetails() {
+        let MOHList = [];
+        $.post("/suwasewana_war/admin-controller/mohall",
+            {},
+            function (data, status) {
+                data = JSON.parse(data);
+                console.log("asdasd");
+                console.log(data);
+                console.log("asdasd");
+                var body=document.getElementById("mainContent")
+                var tbl = document.createElement("table");
+                tbl.classList.add("table")
+                var tblBody = document.createElement("tbody");
+                tblBody.innerHTML = "";
+                headers=["MOH name","District","Head","Mobile","update"]
+                var row = document.createElement("tr");
+                headers.map((item=>{
+                    row.classList.add("thead")
+                    var cell = document.createElement("th");
+                    var cellText = document.createTextNode(item);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    tblBody.appendChild(row);
+                }))
+                data.map((item)=>{
+                    tblBody.innerHTML+= `
+    <tr>
+                <td data-label="MOHName">` + item.MName + `</td>
+                <td data-label="Didtrict">` + item.District + `</td>
+                <td data-label="Head">` + item.MOHHead + `</td>
+                <td data-label="Mobile">`+item.TpNo + `</td>
+                <td class="update" data-label="update"><button>Update</button></td>
+    </tr>
+    `
+                    tbl.appendChild(tblBody);
+                    body.appendChild(tbl);
+                })
+
+            }
+        );
+    }
+
+</script>
+
+
+
+
 <script>
     districts=["Galle","Matara","Colombo","Hambanthota","Nuwara","Kegalle","Nuwara Eliya","Jaffna"];
     districts.map(name=>{

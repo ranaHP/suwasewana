@@ -124,7 +124,48 @@ body{
     padding-left: 10%;
     align-items: center;
 }
-
+.cardselect{
+    /*padding:20px 100px;*/
+    margin-left: 190px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--primary-color);
+}
+.searchbar{
+    display: flex;
+}
+.results{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    color: #0606069d;
+    font-size: .9em;
+    max-width: 100px;
+}
+input{
+    width: 100%;
+    /* width: 250px; */
+    border: 0;
+    border-radius: 3px;
+    height: 26px;
+    padding-left: 3px;
+    font-size: .7em;
+    box-shadow: 1px 1px 6px rgba(131, 128, 128, 0.315);
+    outline: none;
+}
+button{
+    border: none;
+    width: 100px;
+    height:26px;
+    margin-left: 5px;
+    background-color: #0D47A1;
+    color: white;
+    border-radius: 3px;
+    font-family: Segoe UI;
+    font-size: .9em;
+    letter-spacing: .1em;
+    cursor: pointer;
+}
 /* responsive */
 
 @media screen and (max-width: 1200px){
