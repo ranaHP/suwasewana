@@ -28,55 +28,67 @@
         <div class="dashboard-name">Admin/Dashboard/Make announcements</div>
     </div>
 <%--        select province and district--%>
-    <div style="padding-left: 30px">
-        <label for="switch">
-            All island
-            <input type="checkbox" id="switch" onclick="change()">
-        </label>
-<%--        <button id="btn">Submit</button>--%>
+<%--    <div style="margin: auto">--%>
+<%--        <label for="switch">--%>
+<%--            All island--%>
+<%--            <input type="checkbox" id="switch" onclick="change()">--%>
+<%--        </label>--%>
+<%--&lt;%&ndash;        <button id="btn">Submit</button>&ndash;%&gt;--%>
 
-    </div>
+<%--    </div>--%>
     <div class="search-section" id="search-section">
-    <div class="selected-options-container" id="selected-options-container">
-    </div>
+        <div class="down">
+            <label for="switch">
+                All island
+                <input type="checkbox" id="switch" onclick="change()">
+            </label>
+            <%--        <button id="btn">Submit</button>--%>
+
+        </div>
+    <div>
+        <div class="selected-options-container" id="selected-options-container">
+        </div>
 
 
-<%--        select province--%>
-    <div class="down">
-        <input autocomplete="off" placeholder="Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required
-               onclick="document.getElementById('PArea').value='';"
-               onblur="validation.SearchSelect(
+        <%--        select province--%>
+        <div class="down">
+            <input class="a" autocomplete="off" placeholder="Select Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required
+                   onclick="document.getElementById('PArea').value='';"
+                   onblur="validation.SearchSelect(
                                     document.getElementById('PArea').value,
                                     'LPArea'
                                 );"
-        >
-        <datalist id="AllPArea">
-            <option label="All" value="All" id=All1></option>
-        </datalist>
-        <br>
-       <button onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>
-        <span class="error" id="LPArea" style="margin-left: 5px" ></span>
+            >
+            <datalist id="AllPArea">
+                <option label="All" value="All" id=All1></option>
+            </datalist>
+            <br>
+            <button class="publish-button1" onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>
+            <span class="error" id="LPArea" style="margin-left: 5px" ></span>
+        </div>
     </div>
 <%--      select district--%>
-        <div class="selected-options-container" id="selected-options-container1">
-        </div>
-    <div class="down">
+      <div>
+          <div class="selected-options-container" id="selected-options-container1">
+          </div>
+          <div class="down">
 
-        <%--        <label >Province</label> <br>--%>
-        <input autocomplete="off" placeholder="Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required
-               onclick="document.getElementById('DArea').value='';"
-               onblur="validation.SearchSelect(
+              <%--        <label >Province</label> <br>--%>
+              <input class="a" autocomplete="off" placeholder="Select Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required
+                     onclick="document.getElementById('DArea').value='';"
+                     onblur="validation.SearchSelect(
                                     document.getElementById('DArea').value,
                                     'LDArea'
                                 );"
-        >
-        <datalist id="AllDArea">
-            <option label="All" value="All" id=All></option>
-        </datalist>
-        <br>
-            <button onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>
-        <span class="error" id="LDArea" style="margin-left: 5px" ></span>
-    </div>
+              >
+              <datalist id="AllDArea">
+                  <option label="All" value="All" id=All></option>
+              </datalist>
+              <br>
+              <button class="publish-button1" onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>
+              <span class="error" id="LDArea" style="margin-left: 5px" ></span>
+          </div>
+      </div>
     </div>
     <div class="make-announcement-container">
         <div class="left">
@@ -170,51 +182,51 @@
         let i;
         console.log("change")
         if(!decider.checked){
-            q.innerHTML=`
-              <div class="selected-options-container" id="selected-options-container">
-            </div>
+<%--            q.innerHTML=`--%>
+<%--              <div class="selected-options-container" id="selected-options-container">--%>
+<%--            </div>--%>
 
 
-<%--        select province--%>
-    <div class="down">
-        <input autocomplete="off" placeholder="Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required
-               onclick="document.getElementById('PArea').value='';"
-               onblur="validation.SearchSelect(
-                                    document.getElementById('PArea').value,
-                                    'LPArea'
-                                );"
-        >
-        <datalist id="AllPArea">
-            <option label="All" value="All" id=All1></option>
-        </datalist>
-        <br>
-       <button onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>
-        <span class="error" id="LPArea" style="margin-left: 5px" ></span>
-    </div>
-<%--      select district--%>
-        <div class="selected-options-container" id="selected-options-container1">
-        </div>
-    <div class="down">
+<%--&lt;%&ndash;        select province&ndash;%&gt;--%>
+<%--    <div class="down">--%>
+<%--        <input autocomplete="off" placeholder="Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required--%>
+<%--               onclick="document.getElementById('PArea').value='';"--%>
+<%--               onblur="validation.SearchSelect(--%>
+<%--                                    document.getElementById('PArea').value,--%>
+<%--                                    'LPArea'--%>
+<%--                                );"--%>
+<%--        >--%>
+<%--        <datalist id="AllPArea">--%>
+<%--            <option label="All" value="All" id=All1></option>--%>
+<%--        </datalist>--%>
+<%--        <br>--%>
+<%--       <button onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>--%>
+<%--        <span class="error" id="LPArea" style="margin-left: 5px" ></span>--%>
+<%--    </div>--%>
+<%--&lt;%&ndash;      select district&ndash;%&gt;--%>
+<%--        <div class="selected-options-container" id="selected-options-container1">--%>
+<%--        </div>--%>
+<%--    <div class="down">--%>
 
-        <%--        <label >Province</label> <br>--%>
-        <input autocomplete="off" placeholder="Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required
-               onclick="document.getElementById('DArea').value='';"
-               onblur="validation.SearchSelect(
-                                    document.getElementById('DArea').value,
-                                    'LDArea'
-                                );"
-        >
-        <datalist id="AllDArea">
-            <option label="All" value="All" id=All></option>
-        </datalist>
-        <br>
-            <button onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>
-        <span class="error" id="LDArea" style="margin-left: 5px" ></span>
-    </div>
-            `
+<%--        &lt;%&ndash;        <label >Province</label> <br>&ndash;%&gt;--%>
+<%--        <input autocomplete="off" placeholder="Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required--%>
+<%--               onclick="document.getElementById('DArea').value='';"--%>
+<%--               onblur="validation.SearchSelect(--%>
+<%--                                    document.getElementById('DArea').value,--%>
+<%--                                    'LDArea'--%>
+<%--                                );"--%>
+<%--        >--%>
+<%--        <datalist id="AllDArea">--%>
+<%--            <option label="All" value="All" id=All></option>--%>
+<%--        </datalist>--%>
+<%--        <br>--%>
+<%--            <button onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>--%>
+<%--        <span class="error" id="LDArea" style="margin-left: 5px" ></span>--%>
+<%--    </div>--%>
+<%--            `--%>
         } else {
             // alert('unchecked');
-            q.innerHTML=""
+            // q.innerHTML=""
             selectedOptionList.push("all")
             selectedOptionList1.push("all")
         }
@@ -252,13 +264,8 @@
 </script>
 
 <script defer>
-    function SelectDistricts(){
-        let reqData={
-            province_id:checkid(),
-        };
-        console.log(reqData)
-        $.post("/test_war_exploded/admin-controller/districtsSelect",
-            reqData,
+    function addAllDistrictList(){
+        $.post("/test_war_exploded/admin-controller/districtsAll",
             function (data, status) {
                 let PDetails=[];
                 // console.log(data);
@@ -272,10 +279,41 @@
                     DNames.innerHTML+= '<option  id="'+element.province_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
                 })
                 document.querySelector('#PArea').value ="";
-                }
+            }
         );
+    }
+    function SelectDistricts(){
+        if(selectedOptionList.map(item=>{
+            if(item=="All"){
+              addAllDistrictList()
+            }
+            else {
+                let reqData={
+                    province_id:checkid(),
+                };
+                console.log(reqData)
+                $.post("/test_war_exploded/admin-controller/districtsSelect",
+                    reqData,
+                    function (data, status) {
+                        let PDetails=[];
+                        // console.log(data);
+                        let rs= JSON.parse(data);
+                        this.PDetails=rs;
+                        // console.log(data);
+                        let DNames=document.getElementById("AllDArea");
+                        // DNames.innerHTML="";
 
-        return false
+                        rs.map((element,index) => {
+                            DNames.innerHTML+= '<option  id="'+element.province_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
+                        })
+                        document.querySelector('#PArea').value ="";
+                    }
+                );
+
+                return false
+            }
+        }));
+
     }
     function takeRelevantDID(id,Pid){
         let id1=id;
@@ -459,6 +497,7 @@
                 })
             }
         );
+        return false
     }
 
    function AddDistricts(data){

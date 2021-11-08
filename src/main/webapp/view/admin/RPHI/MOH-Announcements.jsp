@@ -32,7 +32,7 @@
         <div class="down">
 
 <%--        <label >MOH Area</label> <br>--%>
-        <input autocomplete="off" class="SelectColordiv" placeholder="select the MOH" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea" required
+        <input autocomplete="off" class="a" class="SelectColordiv" placeholder="select the MOH" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea" required
                onclick="document.getElementById('MArea').value='';"
                onblur="validation.SearchSelect(
                                     document.getElementById('MArea').value,
