@@ -27,15 +27,6 @@
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Admin/Dashboard/Make announcements</div>
     </div>
-<%--        select province and district--%>
-<%--    <div style="margin: auto">--%>
-<%--        <label for="switch">--%>
-<%--            All island--%>
-<%--            <input type="checkbox" id="switch" onclick="change()">--%>
-<%--        </label>--%>
-<%--&lt;%&ndash;        <button id="btn">Submit</button>&ndash;%&gt;--%>
-
-<%--    </div>--%>
     <div class="search-section" id="search-section">
         <div class="down">
             <label for="switch">
@@ -283,14 +274,15 @@
         );
     }
     function SelectDistricts(){
-        if(selectedOptionList.map(item=>{
-            if(item=="All"){
-              addAllDistrictList()
+        selectedOptionList.map(item=> {
+            if (item == "All") {
+                addAllDistrictList()
             }
-            else {
+        });
                 let reqData={
                     province_id:checkid(),
                 };
+                console.log("a")
                 console.log(reqData)
                 $.post("/test_war_exploded/admin-controller/districtsSelect",
                     reqData,
@@ -311,8 +303,7 @@
                 );
 
                 return false
-            }
-        }));
+
 
     }
     function takeRelevantDID(id,Pid){
