@@ -1,0 +1,87 @@
+
+
+.vaccination_container{
+    /* background-color: blue; */
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
+
+}
+.vaccine_card{
+    background-color: #FFFFFF;
+    border-radius: 15px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.158);
+    width: 267px;
+    height: fit-content;
+    margin: 20px;
+    padding: 0 10px;
+    padding-bottom: 10px;
+    /* border: 1px solid black; */
+}
+.title{
+    /* background-color: aqua; */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title span{
+    font-size: 1.8em;
+    letter-spacing: 1.5px;
+}
+.vaccin_image{
+    /* background-color: rgb(98, 98, 184); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.vaccin_image img{
+    width: 100%;
+    height: 160px;
+}
+.vaccin_detail_row{
+    /* background-color: aqua; */
+}
+.vaccin_detail_row{
+    display: flex;
+    font-size: 1.2em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* background-color: chartreuse; */
+    margin-bottom: 10px;
+}
+.vaccination_detail_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.vaccination_detail_icon img{
+    width: 10px;
+    margin-right: 4px;
+    margin-bottom: -1px;
+
+}
+.vaccine_row_details{
+    color: rgba(0, 0, 0, 0.795);
+}
+.V_row_detail{
+    margin-left: 5px;
+    color: rgba(0, 0, 0, 0.623);
+}
+.V_card_btnrow{
+    /* background-color: red; */
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+.V_card_btn{
+    border: none;
+    padding: 6px;
+    border-radius: 4px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    background-color: #9B0CDE;
+}

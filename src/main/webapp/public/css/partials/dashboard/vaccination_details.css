@@ -1,0 +1,31 @@
+
+.dashboard-page-sub-title{
+    /* background-color: aqua; */
+}
+
+.ref_row{
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+.ref_row div{
+    /* background-color: red; */
+}
+.vaccin_image{
+    width: 500px;
+    margin-top: 50px;
+}
+.recomanded_for_main_text , .recomanded_for{
+    color: #E74C3C;
+    font-size: 1.5em;
+}
+.v_description_title{
+    font-size: 1.2em;
+}
+.vaccination_setails_rows p{
+    color: rgba(0, 0, 0, 0.678);
+}
+.ref_row{
+    cursor: pointer;
+}

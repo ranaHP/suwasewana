@@ -184,7 +184,22 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/RPHI/assign_TasksForPHI.jsp");
                     rd.forward(request,response);
                     break;
-
+                case "AddvaccineType":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Add-vaccin.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "editvaccineType":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/edit-vaccin.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "ViewVaccinesForUser":
+                    rd = request.getRequestDispatcher("/view/user/user-Vaccine_types_view.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "vaccine-details":
+                    rd = request.getRequestDispatcher("/view/user/user-Vaccine_detail_view.jsp");
+                    rd.forward(request,response);
+                    break;
 
                 default:
                     response.getWriter().println("404 Page not Found");
