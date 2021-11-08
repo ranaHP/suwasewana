@@ -15,7 +15,7 @@
 .popup{
     width: 50vw;
     height: fit-content;
-    max-width: 400px;
+    max-width: 450px;
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 0 10px  rgba(2, 92, 104, 0.192);
@@ -174,4 +174,18 @@
     50% {
     opacity: 1;
     }
-    } 
+    }
+
+    .select_item{
+       border: 1px solid #dbdbdb;
+        box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
+        padding: 10px;
+        color: #424242;
+        margin: 10px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .select_item:hover{
+        border: 1px solid #1e3274;
+        box-shadow: 3px 5px 8px rgba(0, 0, 0, 0.16);
+    }

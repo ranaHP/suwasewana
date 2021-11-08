@@ -68,6 +68,7 @@ public class RegisterController extends HttpServlet {
                 case "vaccineunhide":
                     vaccineunhide(req, res);
                     break;
+
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -77,8 +78,6 @@ public class RegisterController extends HttpServlet {
         }
 
     }
-
-
     private void AllVaccineDetails(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ArrayList<VaccineModel> result = adminDAO.GetVaccineDetail();
         res.getWriter().println(gson.toJson(result));
@@ -157,7 +156,6 @@ public class RegisterController extends HttpServlet {
         String result = adminDAO.AddnewVaccine(vaccineModel) ;
         res.getWriter().println(result);
     }
-
     private void RegMOH(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         MOHRegModel mohRegModel= new MOHRegModel(
                 req.getParameter("uname"),
@@ -219,6 +217,12 @@ public class RegisterController extends HttpServlet {
         res.getWriter().println(result);
     }
 
+
+
+
+
+
+
     private void uerMakeAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String uNic = "";
         Cookie[] cookies = req.getCookies();
@@ -245,7 +249,6 @@ public class RegisterController extends HttpServlet {
                 uNic,
                 "",
                 ""
-
         );
         String result = userDAO.UserMakeAppointment(userAppointmentDetails);
         res.getWriter().println(result);

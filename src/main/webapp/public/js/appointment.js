@@ -26,44 +26,48 @@ class Appointment {
         // console.log(this.AppointmentArray);
         this.container = document.getElementById(container);
     }
-    setData(data){
+
+    setData(data) {
         if (!data) return;
         this.container.innerHTML = " ";
         this.AppointmentArray = data;
         this.showCardData(this.AppointmentArray);
     }
+
     showCardData(data) {
         if (!data) return;
         this.container.innerHTML = " ";
-       data.map((item) => {
+        // console.log({ app_id: item.app_id , round:  item.round })
+        data.map((item) => {
+            console.log({ app_id: item.app_id , round:  item.round })
             this.container.innerHTML += `
             <div class="appointment-card-container">
                                 <div class="appointment-card">
                                     <div class="atitle" >
                                         ${item.aTitle}
-                                        <p style="font-size: .6em">Posted : ${item.posted_data}</p>
+                                        <p style="font-size: .6em">Posted : ${item.posted_date_time}</p>
                                        
                                     </div>
                                     <div class="desc">
-                                        ${item.reason}
+                                        ${item.aReason}
                                     </div>
                                     <div class="properties">    
                                         <ul>
                                             <li>
                                                 <img src="${this.url}images/icons/map-pin.svg" width="22px" />
-                                                Location : ${item.location === "" ? "Pending..." : item.location}
+                                                Location : ${item.location === "" ? "Pending..." : item.alocation}
                                             </li>
                                             <li>
                                                 <img src="${this.url}images/icons/list.svg" width="22px" />
-                                                Time Slot 1 :  ${item.time_slot1 === "" ? "Pending..." : item.time_slot1}
+                                                Time Slot 1 :  ${item.time_slot_1 === "" ? "Pending..." : item.time_slot_1 + " - " + item.time_slot_1_end.split(" ")[1]}
                                             </li>
                                             <li>
                                                 <img src="${this.url}images/icons/list.svg" width="22px" />
-                                                Time Slot 2 :  ${item.time_slot2 === "" ? "Pending..." : item.time_slot2}
+                                                Time Slot 2 :  ${item.time_slot_2 === "" ? "Pending..." : item.time_slot_2 + " - " + item.time_slot_2_end.split(" ")[1]}
                                             </li>
                                             <li>
                                                 <img src="${this.url}images/icons/list.svg" width="22px" />
-                                                Special Notice:  ${item.special_notice === "" ? "Pending..." : item.special_notice}
+                                                Special Notice:  ${item.phi_message === "" ? "Pending..." : item.phi_message}
                                             </li>
                                           
                                         </ul>
@@ -71,26 +75,34 @@ class Appointment {
                                     <div class="footer">
                                         <div class="current-registered-count">
                                             <img src="${this.url}images/icons/user.svg" width="25px" />
-                                            Mr  ${item.phi}
+                                            Mr  ${item.aPhi}
                                         </div>
                                         <div class="pending-btn">
                                             status : <span> ${item.status}</span>
                                         </div>
                                     </div>
                                     <div class="footer d-flex-j-c-flex-end"> 
-                                        <div class="accept-btn bg-danger" onclick="popup.showDeleteAlertMessage('${item.appointmentId}');">
+                                        ${(item.status === "pending_citizen_action") ? `
+                                        <div style="margin-left: 10px" class="accept-btn bg-success" onclick="popup.approveTime({app_id: '${item.app_id}' ,data: 'Which time slot do you want to choose', ts1: '${item.time_slot_1}',te1: '${item.time_slot_1_end}', ts2: '${item.time_slot_2}',te2: '${item.time_slot_2_end}' });">
+                                            Accept
+                                        </div>
+                                        <div style="margin-left: 10px" class="accept-btn bg-primary" onclick="popup.requestAnotherTimeSlot({ app_id: '` + item.app_id +`', round: '` + item.round +`' });">
+                                            Request Again
+                                        </div>
+                                        ` : ""}
+                                        <div style="margin-left: 10px" class="accept-btn bg-danger" onclick="popup.showDeleteAlertMessage('${item.app_id}');">
                                             Cancel
                                         </div>
                                     </div>
-                                     <p style="font-size: .8em;font-family: 'Nunito', sans-serif;color: rgba(0,0,0,0.84);text-align: center">Ref no : ${item.appointmentId}</p>
+                                     <p style="font-size: .8em;font-family: 'Nunito', sans-serif;color: rgba(0,0,0,0.84);text-align: center">Ref no : ${item.app_id}</p>
                                 </div>
                             </div>
             `;
         })
     }
 
-    setSearch(data){
-        console.log(data.phiSearch ,data.appointmentTypeSearch)
+    setSearch(data) {
+        console.log(data.phiSearch, data.appointmentTypeSearch)
         let filteredData = this.AppointmentArray.filter((item, index) => {
             // console.log(item)
             console.log(item.appointmentType + "  - " + data.appointmentTypeSearch);
@@ -101,7 +113,7 @@ class Appointment {
         this.showCardData(filteredData);
     }
 
-    setAllData(){
+    setAllData() {
         this.setData(this.AppointmentArray);
     }
 }

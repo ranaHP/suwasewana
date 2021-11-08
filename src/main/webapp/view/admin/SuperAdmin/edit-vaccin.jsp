@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
-<%--    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>--%>
+    <%--    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>--%>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/Add-vaccine-details.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/edit-vaccine-details.css"/> "/>
 
@@ -40,7 +40,7 @@
             <div class="seach_by_name" style="margin: 50px 0;">
                 <form onsubmit="return LoadData();">
                     <input style="padding: 5px;" list="AllVaccineslist" name="AllVaccineslist" type="text" id="Search_V_input" placeholder="Search by vaccine name"
-                    onclick="document.getElementById('Search_V_input').value='';  ";
+                           onclick="document.getElementById('Search_V_input').value='';  ";
                     >
                     <datalist id="AllVaccineslist">
 
@@ -49,85 +49,85 @@
                 </form>
 
             </div>
-<%--            <form >--%>
-                <div class="body_container">
-                    <div class="basic_content">
-                        <div class="basic-title">1. Basic Infromation</div>
+            <%--            <form >--%>
+            <div class="body_container">
+                <div class="basic_content">
+                    <div class="basic-title">1. Basic Infromation</div>
 
-                        <div class="basic_body_contetnt">
-                            <div class="basic_left">
-                                <div class="left_row">
-                                    <div class="left_row_left"><span>Name of the vaccine  </span></div>
-                                    <div class="left_row_right"><input type="text" required  id="Name"></div>
+                    <div class="basic_body_contetnt">
+                        <div class="basic_left">
+                            <div class="left_row">
+                                <div class="left_row_left"><span>Name of the vaccine  </span></div>
+                                <div class="left_row_right"><input type="text" required  id="Name"></div>
 
-                                </div>
-                                <div class="left_row">
-                                    <div class="left_row_left"><span> Country  </span></div>
-                                    <div class="left_row_right"><input type="text" required id="country"></div>
-                                </div>
-                                <div class="left_row">
-                                    <div class="left_row_left"><span>Recommended for</span></div>
-                                    <div class="left_row_right"><input type="text" id="recomanded_for" required></div>
-                                </div>
-                                <div class="left_row">
-                                    <div class="left_row_left"><span>Date of issue</span></div>
-                                    <div class="left_row_right"><input type="text" id="date" required></div>
-                                </div>
                             </div>
-                            <div class="basic-right">
-                                <div class="image-upload-card-container">
-                                    <div class="image-upload-card">
-                                        <img id="proof1" width="100%"  />
-                                        <input type="file" accept="image/*" name="file" id="proof1input"
-                                               onchange="loadFile(event , 'proof1')" style="display: none;">
-
-                                        <label for="proof1input" style="cursor: pointer;">Upload New one</label>
-                                        <span class="error" id="upload_empty"></span>
-                                    </div>
-
-                                </div>
+                            <div class="left_row">
+                                <div class="left_row_left"><span> Country  </span></div>
+                                <div class="left_row_right"><input type="text" required id="country"></div>
+                            </div>
+                            <div class="left_row">
+                                <div class="left_row_left"><span>Recommended for</span></div>
+                                <div class="left_row_right"><input type="text" id="recomanded_for" required></div>
+                            </div>
+                            <div class="left_row">
+                                <div class="left_row_left"><span>Date of issue</span></div>
+                                <div class="left_row_right"><input type="text" id="date" required></div>
                             </div>
                         </div>
+                        <div class="basic-right">
+                            <div class="image-upload-card-container">
+                                <div class="image-upload-card">
+                                    <img id="proof1" width="100%"  />
+                                    <input type="file" accept="image/*" name="file" id="proof1input"
+                                           onchange="loadFile(event , 'proof1')" style="display: none;">
 
+                                    <label for="proof1input" style="cursor: pointer;">Upload New one</label>
+                                    <span class="error" id="upload_empty"></span>
+                                </div>
 
-
-
+                            </div>
+                        </div>
                     </div>
-                    <div class="advance_content">
-                        <div class="basic-title"> 2. Advance Information</div>
-                        <div class="advance_row">
-                            <span>Status : </span><br>
-                            <div class="row_textarea" contenteditable="true" id="status"></div>
-                        </div>
-                        <div class="advance_row">
-                            <span>Dosage : </span><br>
-                            <div class="row_textarea" contenteditable="true" id="dosage"></div>
-                        </div>
-                        <div class="advance_row">
-                            <span>Common side effects : </span><br>
-                            <div class="row_textarea" contenteditable="true" id="side_effects" ></div>
-                        </div>
-                        <div class="advance_row">
-                            <span>How it works : </span><br>
-                            <div class="row_textarea" contenteditable="true" id="How_work"></div>
-                        </div>
-                        <div class="advance_row">
-                            <span>How well it works : </span><br>
-                            <div class="row_textarea" contenteditable="true" id="How_well_work"></div>
-                        </div>
-                        <div class="btn_row">
-                            <button class="btn_done_all" style="background-color: #f0ad4e;"
-                            onclick="imageUpload();"
-                            >Update</button>
-                            <button class="btn_done_all" style="background-color: #d9534f;"
+
+
+
+
+                </div>
+                <div class="advance_content">
+                    <div class="basic-title"> 2. Advance Information</div>
+                    <div class="advance_row">
+                        <span>Status : </span><br>
+                        <div class="row_textarea" contenteditable="true" id="status"></div>
+                    </div>
+                    <div class="advance_row">
+                        <span>Dosage : </span><br>
+                        <div class="row_textarea" contenteditable="true" id="dosage"></div>
+                    </div>
+                    <div class="advance_row">
+                        <span>Common side effects : </span><br>
+                        <div class="row_textarea" contenteditable="true" id="side_effects" ></div>
+                    </div>
+                    <div class="advance_row">
+                        <span>How it works : </span><br>
+                        <div class="row_textarea" contenteditable="true" id="How_work"></div>
+                    </div>
+                    <div class="advance_row">
+                        <span>How well it works : </span><br>
+                        <div class="row_textarea" contenteditable="true" id="How_well_work"></div>
+                    </div>
+                    <div class="btn_row">
+                        <button class="btn_done_all" style="background-color: #f0ad4e;"
+                                onclick="imageUpload();"
+                        >Update</button>
+                        <button class="btn_done_all" style="background-color: #d9534f;"
                                 onclick="DelVaccine();"
-                            >Delete</button>
-                            <button class="btn_done_all" id="hide" onclick="sethide();" style="background-color: #ff7675;">Temporary Hide</button>
-                            <button class="btn_done_all" id="unhide" onclick="setunhide();">Unhide</button>
-                        </div>
+                        >Delete</button>
+                        <button class="btn_done_all" id="hide" onclick="sethide();" style="background-color: #ff7675;">Temporary Hide</button>
+                        <button class="btn_done_all" id="unhide" onclick="setunhide();">Unhide</button>
                     </div>
                 </div>
-<%--            </form>--%>
+            </div>
+            <%--            </form>--%>
 
         </div>
     </div>
@@ -314,18 +314,18 @@
 </script>
 <script>
     function clearData(){
-            document.getElementById("Name").value="";
-            document.getElementById("country").value="";
-            document.getElementById("recomanded_for").value="";
-            document.getElementById("date").value="";
-            document.getElementById("status").innerText="";
-            document.getElementById("dosage").innerText="";
-            document.getElementById("side_effects").innerText="";
-            document.getElementById("How_work").innerText="";
-            document.getElementById("How_well_work").innerText="";
-            document.getElementById("proof1").src=myUrl+"/public/images/logo/placeholder.png";
-            document.getElementById("upload_empty").innerText="";
-            return false;
+        document.getElementById("Name").value="";
+        document.getElementById("country").value="";
+        document.getElementById("recomanded_for").value="";
+        document.getElementById("date").value="";
+        document.getElementById("status").innerText="";
+        document.getElementById("dosage").innerText="";
+        document.getElementById("side_effects").innerText="";
+        document.getElementById("How_work").innerText="";
+        document.getElementById("How_well_work").innerText="";
+        document.getElementById("proof1").src=myUrl+"/public/images/logo/placeholder.png";
+        document.getElementById("upload_empty").innerText="";
+        return false;
     }
     function UpdateData(imgarray){
 

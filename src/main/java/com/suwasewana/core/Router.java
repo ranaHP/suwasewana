@@ -191,6 +191,15 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/RPHI/MOH-Announcements.jsp");
                     rd.forward(request,response);
                     break;
+
+                case "View-Todo-list":
+                    rd = request.getRequestDispatcher("/view/admin/phiOfficer/dashBoard/dashboard_todolist.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "Assign-task-for-phi":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/assign_TasksForPHI.jsp");
+                    rd.forward(request,response);
+                    break;
                 case "AddvaccineType":
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Add-vaccin.jsp");
                     rd.forward(request,response);
@@ -207,6 +216,7 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/user/user-Vaccine_detail_view.jsp");
                     rd.forward(request,response);
                     break;
+
                 default:
                     response.getWriter().println("404 Page not Found");
                     break;

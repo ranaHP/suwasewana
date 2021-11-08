@@ -305,7 +305,7 @@
     </div>
 </div>
 <script defer>
-    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let appointment = new Appointment("previous-appointment-list");
     getAllAppointment()
@@ -314,7 +314,7 @@
     function getAllAppointment() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
-        $.post("/test_war_exploded/user-appointment-controller/view",
+        $.post(myUrl+"/user-appointment-controller/view",
             {
                 aType: "",
                 aTitle: "",
@@ -331,12 +331,11 @@
     function getAllAppointmentType() {
         // popup.showDeleteAlertMessage({data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."})
         let appointmentCardList = [];
-        $.post("/test_war_exploded/user-appointment-controller/type",
+        $.post(myUrl+"/user-appointment-controller/type",
             {},
             function (data, status) {
                 appointmentTypeList = JSON.parse(data);
                 appointmentTypeList.map( aType => {
-                    console.log(aType)
                     document.getElementById("allappointmentTypeSearch").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
                     document.getElementById("allappointmentType").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + " | " + aType.typeNumber + "' name='"  + aType.typeName +"'>";
                 })
@@ -347,18 +346,22 @@
         );
     }
     function makeAppointment(makeAnnouncementData) {
+        var phiObj = document.getElementById("phi");
+        var datalist = document.getElementById(phiObj.getAttribute("list"));
+        if(datalist.options.namedItem(phiObj.value)){
+            PId=(datalist.options.namedItem(phiObj.value).id);
+        }
         let reqData =
             {
                 aTitle: document.getElementById("aTitle").value,
                 aType: Number(document.getElementById("appointmentType").value.split("| ")[1]),
-                aPhi: document.getElementById("phi").value,
+                aPhi: PId,
                 aReason: document.getElementById("reason").value,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/user-appointment-controller/create",
+        $.post(myUrl+"/user-appointment-controller/create",
             reqData,
             function (data, status) {
-                console.log(data.includes("success"))
                 if (data.includes("success")) {
                     popup.showAppointmentSuccessMessage({
                         status: 'success',
@@ -386,7 +389,7 @@
         }
     }
     function deleteAppointment(appointmentId){
-        $.post("/test_war_exploded/user-appointment-controller/delete",
+        $.post(myUrl+"/user-appointment-controller/delete",
             {
                 appointmentId: appointmentId
             },
@@ -416,17 +419,63 @@
         appointment.setSearch(searchItem);
     }
     function ViewPHI(){
-        $.post(myUrl+"/user-complain-controller/phi",
+        $.post(myUrl+"/user-appointment-controller/phi",
             function (data, status) {
                 let rs= JSON.parse(data);
-                console.log("asdasd");
-                console.log(rs);
-                console.log("asdasd");
                 let PNames=document.getElementById("allphi");
                 PNames.innerHTML="";
                 rs.map((element) => {
-                    PNames.innerHTML+= '<option id="'+element.phi_Id+'" name="'+element.full_name+'" value="' + element.full_name +  '" option="' + element.full_name +  '"></option>'
+                    PNames.innerHTML+= '<option id="'+element.NIC+'" name="'+element.full_name + ' - ' + element.City +'" value="' + element.full_name + ' - ' + element.City +'" option="' + element.full_name + ' - ' + element.City  +  '"></option>'
                 })
+            }
+        );
+    }
+    function chooseTimeSlot(data){
+        let selected_time_slot = "";
+        var radios = document.getElementsByName('timeSlot');
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                selected_time_slot = radios[i].value;
+                break;
+            }
+        }
+        let reqData =   {
+            app_id: data.app_id,
+            status: selected_time_slot+" selected",
+        }
+        $.post(myUrl+"/user-appointment-controller/selectTimeSlot",
+          reqData,
+            function (data, status) {
+                let result = JSON.parse(data);
+                if(result.status.includes('success')){
+                    getAllAppointment();
+                    popup.hidePopup();
+                }else{
+                    popup.appointmentActionFail({data: result.status});
+                }
+
+            }
+        );
+    }
+    function requestAnotherTime(data){
+        // console.log(data);
+        let reqData =   {
+            app_id: data.app_id,
+            status: "pending",
+            round: data.round
+        };
+        // console.log(reqData)
+        $.post(myUrl+"/user-appointment-controller/reRequestTimeSlot",
+            reqData,
+            function (data, status) {
+                let result = JSON.parse(data);
+                if(result.status.includes('success')){
+                    getAllAppointment();
+                    popup.hidePopup();
+                }else{
+                    popup.appointmentActionFail({data: result.status});
+                }
+
             }
         );
     }

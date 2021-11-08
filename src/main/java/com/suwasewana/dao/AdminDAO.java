@@ -24,14 +24,12 @@ public class AdminDAO {
     private static final String Hide_Vaccine_Type="UPDATE `suwasewana_db`.`vaccine` SET `view_status` = '0' WHERE (`v_id` = ?);";
     private static final String unHide_Vaccine_Type="UPDATE `suwasewana_db`.`vaccine` SET `view_status` = '1' WHERE (`v_id` = ?);";
 
-
     Connection connection;
 
     public AdminDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
-
     public String HideVaccine(String v_Id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Hide_Vaccine_Type)) {
             preparedStatement.setString(1, v_Id );

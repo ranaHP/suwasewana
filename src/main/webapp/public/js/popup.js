@@ -173,6 +173,7 @@ class SuwasewanaPopup{
         let eventsContaier = document.createElement('div');
         console.log(data.name);
         let eventDiv = document.createElement('div');
+
         if(data.status === "success"){
             eventDiv.innerHTML = `
             <div class="popup-title"> User Appointment Portal </div>
@@ -187,7 +188,8 @@ class SuwasewanaPopup{
                         onclick="popup.hidePopup()"> Close</button>
                     </div>
                 </div>`;
-        }else if(data.status === "fail"){
+        }
+        else if(data.status === "fail"){
             eventDiv.innerHTML = `
             <div class="popup-title">User Appointment Portal </div>
            
@@ -317,6 +319,132 @@ class SuwasewanaPopup{
                     </div>
                 </div>
             </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    requestAnotherTimeSlot(data) {
+        let appointmentId = data;
+
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">User Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #2b41bd!important;"> 
+                If you are unable to accept this time slot. Please click on the "Request Again Button" to request another time slot.
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+                    <div class="form-group" style="display: flex;width: 100%;flex-direction: row!important;align-items: center">
+                   
+                        
+                    <label for="delete_input"  style="display: flex;align-items: center;justify-content: center;font-size: .8em!important;">
+                        <input type="checkbox" onchange="popup.testMy()"  id="delete_input" name="delete_input" 
+                         style="width: 20px;height: 20px;margin: 0;padding: 0;border: 1px solid rgba(0,0,0,0.92);"> &nbsp; &nbsp; &nbsp;Are you sure
+                    </label>
+                    </div>
+                   <script>
+                       // function  asd(){
+                       //     alert('hi hansana')"
+                       // }
+                    </script>
+                </div>  
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" >  Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                    <div class="form-group">
+                     
+                        <button class="submitBtn " id="myBtn"  style="margin: auto;margin-bottom: 20px;background-color: #c1c1c1!important;margin-top: 10px" 
+                        onclick="requestAnotherTime({ app_id: '` + data.app_id +`', round: '` + data.round +`' })" disabled> Delete Appointment</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    testMy(){
+        console.log(document.getElementById("delete_input").checked)
+        if(document.getElementById("delete_input").checked){
+            document.getElementById("myBtn").disabled = false;
+            document.getElementById("myBtn").style.backgroundColor = "#c11711";
+        }else{
+            document.getElementById("myBtn").disabled = true;
+            document.getElementById("myBtn").style.backgroundColor = "#c1c1c1";
+        }
+
+    }
+
+    approveTime(data) {
+        console.log(data);
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">User Appointment Portal </div>
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;"> 
+                ${data.data}!
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px; display: flex;justify-content: center;flex-direction: column">
+                    <label for="ts1" >   <div class="select_item" >
+                    <input type="radio" id="ts1" value="time_slot_1" name="timeSlot" style="border:2px dotted #00f;display:block;background:#ff0000;margin: 10px auto" />
+                        Time Slot 1  
+                        <br>
+                        ${data.ts1.split(" ")[0]}
+                        <br>
+                        ${data.ts1.split(" ")[1]} - ${data.te1.split(" ")[1]}
+                    </div> </label>
+                   
+                    <label for="ts2" >    <div class="select_item" >
+                        <input type="radio" id="ts2" value="time_slot_2" name="timeSlot" style="border:2px dotted #00f;display:block;background:#ff0000;margin: 10px auto" />
+                             Time Slot 2
+                        <br> 
+                        2021-11-11 
+                        <br>
+                        17:48:00 - 04:47:00                       
+                    </div> </label>
+<!--                   onclick="chooseTimeSlot({timeSlot:'time_slot_1'})"-->
+                </div>  
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #1143c1!important;margin-top: 10px" 
+                       onclick="chooseTimeSlot({timeSlot:'time_slot_1' , app_id: ${data.app_id}})"> Save </button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+    appointmentActionFail(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">   Appointment Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2 style="color: red"> Your Action was not successfully completed !</h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    <div class="form-group" style="padding: 0 30px;">
+                       <br>
+                     <h3>  Please Contant Technical Team !</h3>
+                        <div id="app-rr-error" class="form-field-error"></div>
+                    </div>
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group">
+                        <button class="submitBtn btn-danger " style="margin: auto;margin-bottom: 20px;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Cancel </button>
+                    </div>
+                </div>`;
         eventsContaier.appendChild(eventDiv);
 
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
@@ -698,6 +826,48 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    EditTask(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        let taskid=data.task_Id
+        eventDiv.innerHTML = `
+            <div class="popup-title">Task Managing Portal</div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2> Update Task</h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    <div class="form-group" style="padding: 0 30px;display:flex; align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 24px ">
+                        <label >
+                            Task
+                        </label>
+                        <textarea As="textarea" id="newTask" style="width: 50%;padding: 5px; min-height: 100px; margin-left: 10px; outline: none "  class="textarea" autofocus autocomplete="off" name="app-rr" id="app-rr"
+                          
+                        >`+data.title+`</textarea>
+                        
+                    </div>
+                    <div class="form-group" style="padding: 0 30px;display:flex; align-items: center; justify-content: center; padding-bottom: 20px">
+                        <label >
+                            Date
+                        </label>
+                        <input id="newDate" type="date" style="margin-left: 20px; padding: 0 30px; outline: none" value="`+data.date+`" />
+                        
+                    </div>
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group" style="display: flex; justify-content: space-between">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="updateTask('`+taskid+`'); popup.hidePopup();"> Update</button>
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #2ed573!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
 
 
     viewComplainer(data) {
@@ -756,4 +926,60 @@ class SuwasewanaPopup{
         this.showPopup()
     }
 
+
+
+
+    // popup for assign task
+    ConformAssign(data) {
+
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">Task Assign Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #2b41bd!important;"> 
+                If you are unable to assign this Task. Please click on the "Close Button" to cancle Assignment
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+                    <div class="form-group" style="display: flex;width: 100%;flex-direction: row!important;align-items: center">
+                   
+                        
+                    <label for="delete_input"  style="display: flex;align-items: center;justify-content: center;font-size: .8em!important;">
+                        <input type="checkbox" onchange="popup.testconformtick()"  id="delete_input" name="delete_input" 
+                         style="width: 20px;height: 20px;margin: 0;padding: 0;border: 1px solid rgba(0,0,0,0.92);"> &nbsp; &nbsp; &nbsp;Are you sure
+                    </label>
+                    </div>
+                   <script>
+                       // function  asd(){
+                       //     alert('hi hansana')"
+                       // }
+                    </script>
+                </div>  
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" >  Pending... </div>
+                <div class="row" >
+                    <div class="form-group">
+                     
+                        <button class="submitBtn " id="myBtn"  style="margin: auto;margin-bottom: 20px; width: 200px;background-color: #c1c1c1!important;margin-top: 10px" 
+                        onclick="conformAndDoneTask();popup.hidePopup()" disabled> Assign Appoinment</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    testconformtick(){
+        console.log(document.getElementById("delete_input").checked)
+        if(document.getElementById("delete_input").checked){
+            document.getElementById("myBtn").disabled = false;
+            document.getElementById("myBtn").style.backgroundColor = "#c11711";
+        }else{
+            document.getElementById("myBtn").disabled = true;
+            document.getElementById("myBtn").style.backgroundColor = "#c1c1c1";
+        }
+
+    }
 }

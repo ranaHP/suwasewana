@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
-<%--    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>--%>
+    <%--    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>--%>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/Add-vaccine-details.css"/> "/>
 
     <%--    for popup style--%>
@@ -118,17 +118,17 @@
 </script>
 <script>
     function clearData(){
-            document.getElementById("Name").value="";
-            document.getElementById("country").value="";
-            document.getElementById("recomanded_for").value="";
-            document.getElementById("date").value="";
-            document.getElementById("status").innerText="";
-            document.getElementById("dosage").innerText="";
-            document.getElementById("side_effects").innerText="";
-            document.getElementById("How_work").innerText="";
-            document.getElementById("How_well_work").innerText="";
-            document.getElementById("proof1").src=myUrl+"/public/images/logo/placeholder.png";
-            return false;
+        document.getElementById("Name").value="";
+        document.getElementById("country").value="";
+        document.getElementById("recomanded_for").value="";
+        document.getElementById("date").value="";
+        document.getElementById("status").innerText="";
+        document.getElementById("dosage").innerText="";
+        document.getElementById("side_effects").innerText="";
+        document.getElementById("How_work").innerText="";
+        document.getElementById("How_well_work").innerText="";
+        document.getElementById("proof1").src=myUrl+"/public/images/logo/placeholder.png";
+        return false;
     }
     function Submit_vaccin_data(imgarray){
         let reqData =
@@ -238,4 +238,5 @@
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
+
 </html>

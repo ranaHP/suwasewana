@@ -14,7 +14,7 @@ public class VaccineModel {
     protected String how_work;
     protected String How_Well_work;
     protected String view_status;
-//
+    //
     public VaccineModel
     (String id,String Name,String Country,String Recommended_for,String Date,String image,String status ,  String dosage, String side_effects, String how_work,String How_Well_work, String view_status){
         super();

@@ -200,10 +200,10 @@
         xhttp2.send();
     }
 
-    function giveTimeSolt(app_id){
+    function giveTimeSlot(app_id , round){
 
         let reqData = {
-            status: "pending_for_citizen",
+            status: "pending_citizen_action",
             phi_message: document.getElementById('app-sn').value,
             time_slot_2: document.getElementById('ts2sd').value.split("T")[0] + " " + document.getElementById('ts2sd').value.split("T")[1]+":00",
             time_slot_1: document.getElementById('ts1sd1').value.split("T")[0] + " " +document.getElementById('ts1sd1').value.split("T")[1]+":00",
@@ -217,8 +217,6 @@
             reqData,
             function (data, status) {
                 let result = JSON.parse(data)
-
-
                 console.log(result.status)
                 if (data.includes("success")) {
                     popup.hidePopup();
@@ -231,6 +229,32 @@
                     //     document.getElementById("app-rr-error").innerText = ""
                     //     popup.appointmentActionFail({});
                     // },500)
+
+                }
+
+            }
+        );
+    }
+
+
+    function rejectAppointmentWithReason(data ){
+        console.log(data)
+        console.log(document.getElementById("app-rr").value)
+        let reqData = {
+            status: "rejected",
+            app_id: data.id,
+            phi_message:document.getElementById("app-rr").value
+        }
+        console.log(reqData)
+        $.post(myUrl+"/PHIAppointmentServlet/rejectAppointment",
+            reqData,
+            function (data, status) {
+                let result = JSON.parse(data)
+                console.log(result.status)
+                if (data.includes("success")) {
+                    popup.hidePopup();
+                } else {
+                    popup.appointmentActionFail({data: result.data});
 
                 }
 
