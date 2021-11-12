@@ -14,8 +14,8 @@ class verify_patient_detail_popup{
         popup.appendChild(logo);
         //logo
         let logo_img=document.createElement('img');
-        // logo_img.setAttribute("src","../logo.png")
-        // logo.appendChild(logo_img);
+        logo_img.setAttribute("src","../logo.png")
+        logo.appendChild(logo_img);
 
         //title row
         let title=document.createElement('div');
