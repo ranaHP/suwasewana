@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="<c:url value="/public/css/PHI/PHI_Dashboard.css"/>">
     <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
     <script src="<c:url value="/public/js/popup.js "/>"></script>
@@ -64,10 +66,11 @@
                         <img src="<c:url value="/public/images/PHI_Dashboard/help-question-message.svg "/>" alt="" srcset="">
                     </div>
                     <div class="card-details">
-                        <h5>200</h5>
+                        <h5 id="pending-complain">200</h5>
                         <div class="precentage">
-                            <div class="p-lable"><label >2.345%</label></div>
-                            <div class="arrow"><i data-feather="arrow-up"></i></div>
+                            <div class="p-lable" id="complain-precentage"><label >2.345%</label></div>
+                            <div class="arrow" style="display: none" id="complain-arrow-up"><i data-feather="arrow-up" ></i></div>
+                            <div class="arrow" style="display: none" id="complain-arrow-down"><i data-feather="arrow-down"></i></div>
                         </div>
                     </div>
                 </div>
@@ -164,10 +167,10 @@
                         <ul>
                             <li id="i1">Animal issue</li>
                             <li id="i2">Environment issue</li>
-                            <li id="i3">Animal issue</li>
-                            <li id="i4">Environment issue</li>
-                            <li id="i5">Animal issue</li>
-                            <li id="i6">Environment issue</li>
+                            <li id="i3">Unhealthy food issues</li>
+                            <li id="i4">Land issue</li>
+                            <li id="i5">Noise issue</li>
+                            <li id="i6">Other</li>
                         </ul>
                     </div>
                 </div>
@@ -651,5 +654,94 @@
 </script>
 <script src="<c:url value="/public/js/PHI/PHI_chart_Dashboard.js"/>"></script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
+
+
+
+
+
+<script>
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+
+    getAllComplain();
+    function getAllComplain() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
+            {},
+            function (data, status) {
+                let complainList = JSON.parse(data);
+                complainlist=complainList;
+
+
+                // fill pending done in progress count
+                let pendin=0;
+                let done=0;
+                let progress=0;
+                let today = new Date();
+                // console.log("Today : "+cday)
+                let month= today.getMonth()+1;
+                let premonth=month-1;
+                let date= today.getDate();
+
+                let preMonthComplain=0;
+                let thisMonthCompalin=0;
+                let pending=0;
+                complainList.map((element) => {
+                    console.log("################################");
+                    let cday = new Date(element.complainModel.Posted_Date.split(" ")[0])
+                    let cmonth= cday.getMonth()+1;
+                    let cdate= cday.getDate();
+                    console.log("Date : "+cday)
+                    console.log("cmonth : "+cmonth)
+                    console.log("cdate : "+cdate)
+
+
+                    if(cmonth==month && cdate<=date){
+                        // console.log("this is this month complain");
+                        thisMonthCompalin++;
+                    }
+                    else if(cmonth==premonth && cdate<=date ){
+                        // console.log("this is pre month complain");
+                        preMonthComplain++;
+                    }
+                    else{
+                        console.log("dont care about this compalins")
+                    }
+
+                    if(element.complainModel.Status=="Pending"){
+                        pending++
+                    }
+
+                    console.log("thisMonthCompalin : "+thisMonthCompalin)
+                    console.log("preMonthComplain : "+preMonthComplain)
+                    console.log("pending : "+pending)
+
+
+
+
+
+                })
+                let precentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)/100;
+
+                document.getElementById("pending-complain").innerText=pending;
+                document.getElementById("complain-precentage").innerText=precentage+"%";
+                if(precentage<0){
+                    document.getElementById("complain-arrow-down").style.display="block";
+                }
+                else{
+                    document.getElementById("complain-arrow-up").style.display="block";
+                }
+
+            }
+        );
+
+    }
+</script>
+
+
+
+
+
+
 </body>
 </html>
