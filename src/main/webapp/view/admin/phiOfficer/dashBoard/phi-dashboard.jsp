@@ -724,6 +724,7 @@
                 let complainprecentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)*100;
                 let ComPre=Math.abs(Math.round(complainprecentage));
 
+
                 document.getElementById("pending-complain").innerText=pending;
                 document.getElementById("complain-precentage").innerText=ComPre+"%";
                 if(complainprecentage<0){
