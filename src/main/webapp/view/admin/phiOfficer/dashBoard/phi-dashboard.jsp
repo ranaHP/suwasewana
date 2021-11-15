@@ -51,10 +51,11 @@
                         <img  src="<c:url value="/public/images/PHI_Dashboard/time-clock-circle.svg "/>" srcset="">
                     </div>
                     <div class="card-details">
-                        <h5>200</h5>
+                        <h5 id="appoinment-count">200</h5>
                         <div class="precentage">
-                            <div class="p-lable"><label >2.345%</label></div>
-                            <div class="arrow"><i data-feather="arrow-up"></i></div>
+                            <div class="p-lable" id="appoinment-precentage"><label >2.345%</label></div>
+                            <div class="arrow" style="display: none" id="app-complain-arrow-up"><i data-feather="arrow-up" ></i></div>
+                            <div class="arrow" style="display: none" id="app-complain-arrow-down"><i data-feather="arrow-down"></i></div>
                         </div>
                     </div>
                 </div>
@@ -691,9 +692,7 @@
                     let cday = new Date(element.complainModel.Posted_Date.split(" ")[0])
                     let cmonth= cday.getMonth()+1;
                     let cdate= cday.getDate();
-                    console.log("Date : "+cday)
-                    console.log("cmonth : "+cmonth)
-                    console.log("cdate : "+cdate)
+
 
 
                     if(cmonth==month && cdate<=date){
@@ -712,20 +711,23 @@
                         pending++
                     }
 
-                    console.log("thisMonthCompalin : "+thisMonthCompalin)
-                    console.log("preMonthComplain : "+preMonthComplain)
-                    console.log("pending : "+pending)
+
 
 
 
 
 
                 })
-                let precentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)/100;
+                console.log("thisMonthCompalin : "+thisMonthCompalin)
+                console.log("preMonthComplain : "+preMonthComplain)
+                console.log("pending : "+pending)
+                let complainprecentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)*100;
+                let ComPre=Math.abs(Math.round(complainprecentage));
+
 
                 document.getElementById("pending-complain").innerText=pending;
-                document.getElementById("complain-precentage").innerText=precentage+"%";
-                if(precentage<0){
+                document.getElementById("complain-precentage").innerText=ComPre+"%";
+                if(complainprecentage<0){
                     document.getElementById("complain-arrow-down").style.display="block";
                 }
                 else{
@@ -736,11 +738,74 @@
         );
 
     }
+    getAllAppoinment();
+    let appoinmenlist=[];
+    function getAllAppoinment() {
+        $.post(myUrl+"/PHIAppointmentServlet/appointment_for_phi",
+            {},
+            function (data, status) {
+
+                let AppoinmentList = JSON.parse(data);
+                appoinmenlist=AppoinmentList;
+
+                // fill pending done in progress count
+                let pendin=0;
+                let done=0;
+                let progress=0;
+                let today = new Date();
+                // console.log("Today : "+cday)
+                let month= today.getMonth()+1;
+                let premonth=month-1;
+                let date= today.getDate();
+
+                let preMonthAppoinmen=0;
+                let thisMonthAppoinmen=0;
+                let pending=0;
+                AppoinmentList.map((element) => {
+                    console.log("################################");
+                    let cday = new Date(element.appointment.posted_date_time.split(" ")[0])
+                    let cmonth= cday.getMonth()+1;
+                    let cdate= cday.getDate();
+
+
+
+                    if(cmonth==month && cdate<=date){
+                        thisMonthAppoinmen++;
+                    }
+                    else if(cmonth==premonth && cdate<=date ){
+                        preMonthAppoinmen++;
+                    }
+                    else{
+                        console.log("dont care about this compalins")
+                    }
+
+                    if(element.appointment.status=="pending"){
+                        pending++
+                    }
+
+
+
+                })
+                console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
+                console.log("ApppreMonthComplain : "+preMonthAppoinmen)
+                console.log("pending : "+pending)
+                let appprecentage=((thisMonthAppoinmen-preMonthAppoinmen)/preMonthAppoinmen)*100;
+                let AppPre=Math.abs(Math.round(appprecentage));
+
+                document.getElementById("appoinment-count").innerText=pending;
+                document.getElementById("appoinment-precentage").innerText=AppPre+"%";
+                if(appprecentage<0){
+                    document.getElementById("app-complain-arrow-down").style.display="block";
+                }
+                else{
+                    document.getElementById("app-complain-arrow-up").style.display="block";
+                }
+
+            }
+        );
+
+    }
 </script>
-
-
-
-
 
 
 </body>
