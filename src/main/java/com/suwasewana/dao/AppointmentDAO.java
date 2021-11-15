@@ -25,13 +25,14 @@ public class AppointmentDAO {
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `user` WHERE `uMobile` = ? and `uPassword` = ?";
     private static final String APPOINTMENTS_TYPES = "SELECT * FROM `appointment_type` ;";
     private static final String ADD_APPOINTMENTS_TYPES = "INSERT INTO `appointment_type` (`apponitment_type_id`, `appointment_type`, `description`) VALUES (NULL, 'Grade 5 Scholarship', NULL),(NULL, 'To Discuss Complaint', NULL) , (NULL, 'Other', NULL)";
-    private static final String GET_APPOINTMENTS_FOR_PHI = "SELECT * FROM (SELECT * FROM (SELECT * FROM `user_appoinmnet` WHERE `user_appoinmnet`.`aPhi` = '980703223V')  AS phi_appointment\n" +
+    private static final String GET_APPOINTMENTS_FOR_PHI = "SELECT * FROM (SELECT * FROM (SELECT * FROM `user_appoinmnet` WHERE `user_appoinmnet`.`aPhi` = '199910910060')  AS phi_appointment\n" +
             "LEFT JOIN `user` ON `user`.`uNic` = `phi_appointment`.`user_nic`) AS user_appointment LEFT JOIN `appointment_type`\t ON `appointment_type`.`apponitment_type_id` = `user_appointment`.`aType`";
 
     private static final String APPOINTMENTS_GIVE_TIME_SLOT = "UPDATE `user_appoinmnet` SET `phi_message` = ? , `user_appoinmnet`.`time_slot_1` = STR_TO_DATE(?, '%Y-%m-%d %T') , `user_appoinmnet`.`time_slot_2` = STR_TO_DATE(?, '%Y-%m-%d %T') , `user_appoinmnet`.`time_slot_1_end` = STR_TO_DATE(?, '%Y-%m-%d %T') ,`user_appoinmnet`.`time_slot_2_end` = STR_TO_DATE(?, '%Y-%m-%d %T'), `user_appoinmnet`.`status` = ? ,`user_appoinmnet`.`alocation` = ? WHERE `user_appoinmnet`.`app_id` = ?";
     private static final String USER_CHOOSE_TIME_SLOT = "UPDATE `user_appoinmnet` SET `status` = ? WHERE `user_appoinmnet`.`app_id` = ?;";
     private static final String USER_REQUEST_TIME_SLOT_AGAIN = "UPDATE `user_appoinmnet` SET `status` = ? , `round` = ?  WHERE `user_appoinmnet`.`app_id` = ?;";
     private static final String REJECT_APPOINTMENT = "UPDATE `user_appoinmnet` SET `status` = ? , `user_appoinmnet`.`phi_message` = ? WHERE `user_appoinmnet`.`app_id` = ?;";
+
 
     public ArrayList<AppointmentTypeModel> getAppointmentTypes() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(APPOINTMENTS_TYPES)) {
@@ -103,6 +104,7 @@ public class AppointmentDAO {
         }
         return null;
     }
+
 
     public ResponseType appointmentChangeTimeSlot(AppointmentModel appointment) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(APPOINTMENTS_GIVE_TIME_SLOT)) {
