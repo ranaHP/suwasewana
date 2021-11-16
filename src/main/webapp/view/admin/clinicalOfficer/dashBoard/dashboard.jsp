@@ -34,6 +34,52 @@
 
             <div class="clinic-list">
 
+                <%--                <i class="icon" data-feather="arrow-left"></i>--%>
+                <div class="clinic-card">
+                    <div class="card-left">
+                        <h5>Covid 19 Awareness Session</h5>
+                        <div class="card-date">2020/08/28</div>
+                        <div class="amount">56</div>
+                        <div class="nop">No of patients</div>
+                        <button class="reschdulebtn">Reschdule</button>
+                    </div>
+                    <div class="card-right">
+                        <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
+                             width=100% height=100%>
+                    </div>
+                </div>
+                <div class="clinic-card">
+                    <div class="card-left">
+                        <h5>Covid 19 Awareness Session</h5>
+                        <div class="card-date">2020/08/28</div>
+                        <div class="amount">56</div>
+                        <div class="nop">No of patients</div>
+                        <button class="reschdulebtn">Reschdule</button>
+                    </div>
+                    <div class="card-right">
+                        <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
+                             width=100% height=100%/>
+                    </div>
+                </div>
+
+                    <div class="clinic-card">
+                        <div class="card-left">
+                            <h5>Covid 19 Awareness Session</h5>
+                            <div class="card-date">2020/08/28</div>
+                            <div class="amount">56</div>
+                            <div class="nop">No of patients</div>
+                            <button class="reschdulebtn">Reschdule</button>
+                        </div>
+                        <div class="card-right">
+                            <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
+                                 width=100% height=100%/>
+                        </div>
+                    </div>
+                <%--                <i class="icon" data-feather="arrow-right"></i>--%>
+            </div>
+            <h4>Up-Coming vaccine Clinics</h4>
+            <div class="clinic-list">
+
 <%--                <i class="icon" data-feather="arrow-left"></i>--%>
                 <div class="clinic-card">
                     <div class="card-left">
@@ -93,6 +139,17 @@
     <div class="c-container-right">
         <h4>Summary Clinic Programmes</h4>
         <div class="c-right-container">
+            <div class="noclinic">
+                <div class="ncimg">
+                    <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
+                         width=100% height=100%>
+                </div>
+                <div class="nc-amount">
+                    <span class="nc-count">18000</span><br>
+                    <span>No. of vaccine clinics</span>
+                </div>
+            </div>
+
             <div class="noclinic">
                 <div class="ncimg">
                     <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
