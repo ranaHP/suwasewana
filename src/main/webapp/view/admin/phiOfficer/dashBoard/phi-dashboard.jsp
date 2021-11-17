@@ -805,6 +805,24 @@
         );
 
     }
+    getAllAnnouncement();
+    function getAllAnnouncement() {
+
+        $.post(myUrl+"/PHIAppointmentServlet/appointment_for_phi",
+            {},
+            function (data, status) {
+                let newannouncemt
+                let AnnouncementList = JSON.parse(data);
+                AnnouncementList.map((element) => {
+
+
+                })
+
+
+            }
+        );
+
+    }
 </script>
 
 
