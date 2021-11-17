@@ -43,6 +43,9 @@ public class RPHIAnnouncementController extends HttpServlet {
 //                    res.getWriter().println("selectA");
                     selectA(req,res);
                     break;
+                case "selectmohAnnouncemnt":
+                    selectmohAnnouncemnt(req,res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -51,7 +54,20 @@ public class RPHIAnnouncementController extends HttpServlet {
             throw new ServletException(error);
         }
     }
-
+    private void selectmohAnnouncemnt(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("select");
+        RPHIAnnouncementsModel selectA= new RPHIAnnouncementsModel(
+                "",
+                "",
+                "",
+                "",
+                "1002",
+                "",
+                ""
+        );
+        ArrayList<RPHIAnnouncementsModel> result= rphiAnnouncementsDAO.ViewMOHAnnouncement(selectA);
+        res.getWriter().println(gson.toJson(result));
+    }
     private void selectA(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("select");
         RPHIAnnouncementsModel selectA= new RPHIAnnouncementsModel(

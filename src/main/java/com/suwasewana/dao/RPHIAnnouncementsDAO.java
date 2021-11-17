@@ -14,11 +14,43 @@ import java.util.ArrayList;
 public class RPHIAnnouncementsDAO {
    private static final String CREATEA="INSERT INTO `staff_announcement`  VALUES (NULL ,?,?,?,?,NULL,?);";
    private static final String SELECTA="SELECT * FROM `staff_announcement` ";
+    private static final String SELECTMOHAnnouncement="SELECT * FROM `staff_announcement` where target_moh=?";
    Connection connection;
     public RPHIAnnouncementsDAO() {
         DB db = new DB();
         connection = db.getConnection();
     }
+    public ArrayList<RPHIAnnouncementsModel> ViewMOHAnnouncement(RPHIAnnouncementsModel selectA) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECTMOHAnnouncement)){
+            preparedStatement.setString(1,selectA.getTarget_moh() );
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<RPHIAnnouncementsModel> ViewVAnnouncements = new ArrayList<RPHIAnnouncementsModel>();
+            while (rs.next()){
+                String announcement_id=rs.getString("announcement_id");
+                String title=rs.getString("title");
+                String description=rs.getString("description");
+                String banner=rs.getString("banner");
+                String target_moh=rs.getString("target_moh");
+
+                RPHIAnnouncementsModel temp= new RPHIAnnouncementsModel(
+                        announcement_id,
+                        title,
+                        description,
+                        banner,
+                        target_moh,
+                        "",
+                        ""
+                );
+                ViewVAnnouncements.add(temp);
+
+            }
+            return ViewVAnnouncements;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
 
     public ArrayList<RPHIAnnouncementsModel> ViewA(RPHIAnnouncementsModel selectA) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECTA)){
