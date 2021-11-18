@@ -46,6 +46,9 @@ public class RPHIAnnouncementController extends HttpServlet {
                 case "selectmohAnnouncemnt":
                     selectmohAnnouncemnt(req,res);
                     break;
+                case "updateAStatus":
+                    updateAStatus(req,res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -54,6 +57,22 @@ public class RPHIAnnouncementController extends HttpServlet {
             throw new ServletException(error);
         }
     }
+
+    private void updateAStatus(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        RPHIAnnouncementsModel updateAstatus = new RPHIAnnouncementsModel(
+                "",
+                "",
+                "",
+                "",
+                "1002",
+                "",
+                "",
+                ""
+        );
+        String result = rphiAnnouncementsDAO.updateAnnstatus(updateAstatus);
+        res.getWriter().println(gson.toJson(result));
+    }
+
     private void selectmohAnnouncemnt(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("select");
         RPHIAnnouncementsModel selectA= new RPHIAnnouncementsModel(
@@ -62,6 +81,7 @@ public class RPHIAnnouncementController extends HttpServlet {
                 "",
                 "",
                 "1002",
+                "",
                 "",
                 ""
         );
@@ -72,6 +92,7 @@ public class RPHIAnnouncementController extends HttpServlet {
         System.out.println("select");
         RPHIAnnouncementsModel selectA= new RPHIAnnouncementsModel(
                "",
+                "",
                 "",
                 "",
                 "",
@@ -93,7 +114,8 @@ public class RPHIAnnouncementController extends HttpServlet {
                 req.getParameter("image"),
                 req.getParameter("moh"),
                 "",
-                "12"
+                "12",
+                req.getParameter("expire_date")
         );
         System.out.println("before");
         String result= rphiAnnouncementsDAO.createA(RPHIAnnouncements);

@@ -8,6 +8,7 @@ public class RPHIAnnouncementsModel {
     String target_moh;
     String posted_date;
     String phi_officer;
+    String expire_date;
     public RPHIAnnouncementsModel(
         String announcement_id,
         String title,
@@ -15,7 +16,8 @@ public class RPHIAnnouncementsModel {
         String banner,
         String target_moh,
         String posted_date,
-        String phi_officer
+        String phi_officer,
+        String expire_date
     ){
         this.announcement_id=announcement_id;
         this.title=title;
@@ -24,6 +26,7 @@ public class RPHIAnnouncementsModel {
         this.target_moh=target_moh;
         this.posted_date=posted_date;
         this.phi_officer=phi_officer;
+        this.expire_date=expire_date;
     }
 
     public String getAnnouncement_id() {
@@ -80,5 +83,13 @@ public class RPHIAnnouncementsModel {
 
     public void setPhi_officer(String phi_officer) {
         this.phi_officer = phi_officer;
+    }
+
+    public String getExpire_date() {
+        return expire_date;
+    }
+
+    public void setExpire_date(String expire_date) {
+        this.expire_date = expire_date;
     }
 }

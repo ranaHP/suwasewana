@@ -43,8 +43,8 @@
         </datalist>
         <br>
         <span class="error" id="LMArea" style="margin-left: 5px" ></span>
-
-        </div></div>
+        </div>
+    </div>
     <div class="make-announcement-container">
 
         <div class="left">
@@ -55,6 +55,11 @@
                         <input type="text" id="title" autocomplete="off" onkeyup="card()" required>
                         <label for="title">Title</label>
                     </div>
+                    <div class="form-item1" id="input-title">
+                        <label for="title">Expire date</label>
+                        <input style="font-size: .7em" type="date" id="expire_date"></input>
+                    </div>
+
 <%--                    <div class="post-date" id="date">posted date -:${today} </div>--%>
                     <div class="form-item">
                         <label for="description" >Description</label>
@@ -143,7 +148,8 @@
             title:document.getElementById("title").value,
             description:document.getElementById("description").value,
             image:imagearray[0],
-            moh:checkid()
+            moh:checkid(),
+            expire_date:document.getElementById("expire_date").value
         };
         // console.log(reqData)
         $.post("/test_war_exploded/createRPHI_Announcements/createA",
