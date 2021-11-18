@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="inputs">
                                     <label> Data & Time</label>
-                                    <input type="text"  required autocomplete="off" name="date-time" id="date-time" value="09/08/2021"/>
+                                    <input type="datetime-local"  required autocomplete="off" name="date-time" id="date-time" value="09/08/2021"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Duration (hours)</label>

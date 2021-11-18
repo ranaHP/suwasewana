@@ -71,14 +71,14 @@ body{
 
 .upcomin-clinic{
     /* background-color: blueviolet; */
-    height: 28%;
+    /*height: 28%;*/
     margin-bottom: 20px;
 
 
 }
 .growth-calander{
     /* background-color: blue; */
-    height: 72%;
+    /*height: 72%;*/
 
 }
 .charts{
@@ -131,21 +131,28 @@ body{
 /* clinic card */
 .clinic-list{
     display: flex;
-    height: 86%;
-    justify-content: space-around;
+    /*height: 86%;*/
+    /*justify-content: space-around;*/
     /*padding-right: 20px;*/
     align-items: center;
+    margin: 10px 0;
+    overflow-x: scroll;
+    max-width: 800px;
     /* background-color: aqua; */
 }
-
 .clinic-card{
     height: 150px;
-    width: 400px;
+    min-width: 400px;
+    margin-left: 8px;
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     box-shadow:  0 3px 6px rgba(0, 0, 0, 0.1);
     background-color: white;
+    cursor: pointer;
 }
+/*::-webkit-scrollbar {*/
+/*    width: 10px;*/
+/*}*/
 .card-arraw{
     display: flex;
     align-items: center;

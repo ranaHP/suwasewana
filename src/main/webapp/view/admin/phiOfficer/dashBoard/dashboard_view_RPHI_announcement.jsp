@@ -48,25 +48,28 @@
 </div>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 <script defer>
-    let selectA = new View_RPHI_announcement("announcements-container");
+  function selectA(){
+      let selectA = new View_RPHI_announcement("announcements-container");
 
-    let AListArray=[]
+      let AListArray=[]
 
-    // console.log(reqData)
-    $.post("/test_war_exploded/createRPHI_Announcements/selectA",
-        // reqData,
-        function(data1,status){
-            // alert(data1)
-            AListArray=JSON.parse(data1)
-            // console.log(clinicListArray)
-            selectA.setData(AListArray);
+      // console.log(reqData)
+      $.post("/test_war_exploded/createRPHI_Announcements/selectmohAnnouncemnt",
+          // reqData,
+          function(data1,status){
+              // alert(data1)
+              AListArray=JSON.parse(data1)
+              // console.log(clinicListArray)
+              selectA.setData(AListArray);
 
-        }
-    );
+          }
+      );
+  }
 
 
 </script>
 <script defer>
+
     let mohDetails=[];
     $.post("/test_war_exploded/createRPHI_Announcements/selectA",
         function (data, status) {
@@ -83,6 +86,18 @@
             })
         }
     );
+
+    updateAStatus();
+    function updateAStatus(){
+        $.post("/test_war_exploded/createRPHI_Announcements/updateAStatus",
+            {},
+            function (data, status) {
+               if(data.includes("sucsess")){
+                   selectA()
+               }
+            }
+        );
+    }
 </script>
 </body>
 </html>

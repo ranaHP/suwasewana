@@ -9,12 +9,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class RPHIAnnouncementsDAO {
-   private static final String CREATEA="INSERT INTO `staff_announcement`  VALUES (NULL ,?,?,?,?,NULL,?);";
+   private static final String CREATEA="INSERT INTO `staff_announcement`  VALUES (NULL ,?,?,?,?,NULL,?,?);";
    private static final String SELECTA="SELECT * FROM `staff_announcement` ";
     private static final String SELECTMOHAnnouncement="SELECT * FROM `staff_announcement` where target_moh=?";
+    private static final String DeleteA = "DELETE FROM `staff_announcement` where announcement_id=?";
    Connection connection;
     public RPHIAnnouncementsDAO() {
         DB db = new DB();
@@ -31,6 +37,7 @@ public class RPHIAnnouncementsDAO {
                 String description=rs.getString("description");
                 String banner=rs.getString("banner");
                 String target_moh=rs.getString("target_moh");
+                String posted_date=rs.getString("posted_date");
 
                 RPHIAnnouncementsModel temp= new RPHIAnnouncementsModel(
                         announcement_id,
@@ -38,6 +45,7 @@ public class RPHIAnnouncementsDAO {
                         description,
                         banner,
                         target_moh,
+                        posted_date,
                         "",
                         ""
                 );
@@ -72,7 +80,8 @@ public class RPHIAnnouncementsDAO {
                         banner,
                         target_moh,
                         posted_date,
-                        phi_officer
+                        phi_officer,
+                        ""
                 );
                 ViewVAnnouncements.add(temp);
 
@@ -93,6 +102,7 @@ public class RPHIAnnouncementsDAO {
          preparedStatement.setString(3,RPHIAnnouncements.getBanner());
          preparedStatement.setString(4,RPHIAnnouncements.getTarget_moh());
          preparedStatement.setString(5,"12");
+         preparedStatement.setString(6,RPHIAnnouncements.getExpire_date());
 
          int rs = preparedStatement.executeUpdate();
          System.out.println(rs);
@@ -118,5 +128,44 @@ public class RPHIAnnouncementsDAO {
                 }
             }
         }
+    }
+
+    public String updateAnnstatus(RPHIAnnouncementsModel updateAstatus) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECTMOHAnnouncement)){
+            preparedStatement.setString(1,updateAstatus.getTarget_moh() );
+            ResultSet rs = preparedStatement.executeQuery();
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDateTime now = LocalDateTime.now();
+            String today=dtf.format(now);
+
+            SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
+            Date d1 = sdformat.parse(today);
+            while (rs.next()){
+                String announcement_id=rs.getString("announcement_id");
+                String expire_date= rs.getString("expire_date");
+                String date2=expire_date;
+                Date d2 = sdformat.parse(date2);
+
+//                System.out.println("The date 1 is: " + sdformat.format(d1));
+//                System.out.println("The date 2 is: " + sdformat.format(d2));
+
+                if(d1.compareTo(d2) > 0) {
+                    System.out.println("Task id "+announcement_id+ " Overdue");
+                    try (PreparedStatement preparedStatementforupdate = connection.prepareStatement(DeleteA)){
+                        preparedStatementforupdate.setString(1, announcement_id);
+                        int response = preparedStatementforupdate.executeUpdate();
+                    }
+                    catch (SQLException throwables) {
+                        printSQLException(throwables);
+                    }
+                }
+
+            }
+        } catch (SQLException | ParseException throwables) {
+            throwables.printStackTrace();
+        }
+        return "sucsess";
     }
 }
