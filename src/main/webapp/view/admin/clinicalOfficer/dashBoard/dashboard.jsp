@@ -13,6 +13,8 @@
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <%--    for side navbar style--%>
+    <script src="<c:url value="/public/js/ClinicalOfficer/dashboard_clinic_summary.js"/>"></script>
+    <script src="<c:url value="/public/js/ClinicalOfficer/dashboard_Vclinic_summary.js"/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
@@ -33,83 +35,12 @@
         <div class="upcomin-clinic">
             <h4>This month normal Clinics</h4>
 
-            <div class="clinic-list">
+            <div class="clinic-list" id="clinic-list">
 
-                <%--                <i class="icon" data-feather="arrow-left"></i>--%>
-                <div class="clinic-card">
-                    <div class="card-left">
-                        <h5>Covid 19 Awareness Session</h5>
-                        <div class="card-date">2020/08/28</div>
-                        <div class="amount">56</div>
-                        <div class="nop">No of patients</div>
-                        <button class="reschdulebtn">Reschdule</button>
-                    </div>
-                    <div class="card-right">
-                        <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
-                             width=100% height=100%>
-                    </div>
-                </div>
-                <div class="clinic-card">
-                    <div class="card-left">
-                        <h5>Covid 19 Awareness Session</h5>
-                        <div class="card-date">2020/08/28</div>
-                        <div class="amount">56</div>
-                        <div class="nop">No of patients</div>
-                        <button class="reschdulebtn">Reschdule</button>
-                    </div>
-                    <div class="card-right">
-                        <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
-                             width=100% height=100%/>
-                    </div>
-                </div>
-
-                    <div class="clinic-card">
-                        <div class="card-left">
-                            <h5>Covid 19 Awareness Session</h5>
-                            <div class="card-date">2020/08/28</div>
-                            <div class="amount">56</div>
-                            <div class="nop">No of patients</div>
-                            <button class="reschdulebtn">Reschdule</button>
-                        </div>
-                        <div class="card-right">
-                            <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
-                                 width=100% height=100%/>
-                        </div>
-                    </div>
-                <%--                <i class="icon" data-feather="arrow-right"></i>--%>
             </div>
             <h4>This month vaccine Clinics</h4>
-            <div class="clinic-list">
+            <div class="clinic-list" id="clinic-list1">
 
-<%--                <i class="icon" data-feather="arrow-left"></i>--%>
-                <div class="clinic-card">
-                    <div class="card-left">
-
-                        <h5>Covid 19 Awareness Session</h5>
-                        <div class="card-date">2020/08/28</div>
-                        <div class="amount">56</div>
-                        <div class="nop">No of patients</div>
-                        <button class="reschdulebtn">Reschdule</button>
-                    </div>
-                    <div class="card-right">
-                        <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
-                             width=100% height=100%>
-                    </div>
-                </div>
-                <div class="clinic-card">
-                    <div class="card-left">
-                        <h5>Covid 19 Awareness Session</h5>
-                        <div class="card-date">2020/08/28</div>
-                        <div class="amount">56</div>
-                        <div class="nop">No of patients</div>
-                        <button class="reschdulebtn">Reschdule</button>
-                    </div>
-                    <div class="card-right">
-                        <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
-                             width=100% height=100%/>
-                    </div>
-                </div>
-<%--                <i class="icon" data-feather="arrow-right"></i>--%>
             </div>
 
 
@@ -201,6 +132,8 @@
     let calender = new Calender("calender");
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     // calender.reangeSelect(2021, 9, 10, 6, 8);
+    let clinicList2 = new clinicList("clinic-list");
+
     view();
     viewV()
 
@@ -213,8 +146,9 @@
                  let dengue=0;
                  let maleria=0;
                 clinicListArray=JSON.parse(data)
+                clinicList2.setData(clinicListArray);
                 console.log(clinicListArray.length)
-                 document.getElementById("nc-count").innerHTML=clinicListArray.length;
+                document.getElementById("nc-count").innerHTML=clinicListArray.length;
                 clinicListArray.map(elemet=>{
                     if(elemet.disease=="Covid 19"){
                        corona++;
@@ -222,7 +156,7 @@
                     if(elemet.disease=="Dengue"){
                         dengue++;
                     }
-                    if(elemet.disease=="Maleria"){
+                    if(elemet.disease=="maleria"){
                         maleria++;
                     }
                 })
@@ -232,17 +166,143 @@
             }
         );
     }
-
+    let clinicList3 = new clinicListv("clinic-list1");
     function viewV(){
-        let clinicListArray=[]
+        let clinicListArray1=[]
         $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
             // reqData,
             function(data,status){
-                clinicListArray=JSON.parse(data)
-                document.getElementById("vc-count").innerHTML=clinicListArray.length;
+                clinicListArray1=JSON.parse(data)
+                clinicList3.setData(clinicListArray1);
+                document.getElementById("vc-count").innerHTML=clinicListArray1.length;
 
             }
         );
+    }
+
+    function select(id){
+        // let selectClinic = new selectClinics("form");
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/select",
+            reqData,
+            function(data,status){
+                // alert(data)
+                console.log(data)
+                clinicList=JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showClinicEditMessage(data)
+
+            }
+        );
+        return false;
+    }
+    function selectv(id){
+        // let selectClinic = new selectClinics("form");
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+            reqData,
+            function(data,status){
+                // alert(data)
+                console.log(data)
+                // alert(data)
+                clinicList=JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showVaccineClinicEditMessage(data)
+
+            }
+        );
+        return false;
+    }
+
+
+    function updatevclinics(data){
+        alert("update")
+        let id=data;
+        let age=document.getElementById("target_age_limit").value;
+        let patient=document.getElementById("target_people").value;
+        let maxpatient = document.getElementById("max_patient").value;
+        let duration=document.getElementById("duration").value;
+        let datetime= document.getElementById("start_date_time").value;
+        let clinictitle=document.getElementById("tittle").value;
+        let description=document.getElementById("description").value;
+        let dose=document.getElementById("dose_count").value;
+        let location=document.getElementById("location").value;
+        // console.log(a)
+        // // alert("update")
+        let reqData =
+            {
+                clinicID:id,
+                age:age,
+                title:clinictitle,
+                location:location,
+                // targetMOH:document.getElementById("target-MOH").value,
+                datetime:datetime,
+                duration:duration,
+                maxpatient:maxpatient,
+                patient:patient,
+                dose:dose,
+                description:description
+            };
+        console.log(reqData)
+        alert(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/updatevclinic",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                alert(data)
+            });
+
+        return false;
+    }
+
+
+    function updateclinics(data){
+        // alert("update")
+        // let id=data;
+        let a=document.getElementById("disease").value;
+        let patient=document.getElementById("patient").value;
+        let maxpatient = document.getElementById("max-patient").value;
+        let duration=document.getElementById("duration").value;
+        let datetime= document.getElementById("date-time").value;
+        let clinictitle=document.getElementById("clinic-title").value;
+        let description=document.getElementById("description").value;
+        let conduct=document.getElementById("conduct").value;
+        let location=document.getElementById("location").value;
+        console.log(a)
+        // // alert("update")
+        let reqData =
+            {
+                clinicID:data,
+                disease:a,
+                title:clinictitle,
+                location:location,
+                // targetMOH:document.getElementById("target-MOH").value,
+                datetime:datetime,
+                duration:duration,
+                maxpatient:maxpatient,
+                patient:patient,
+                conduct:conduct,
+                description:description
+            };
+        console.log(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                alert(data)
+            });
+
+        return false;
     }
 </script>
 <script src="<c:url value="/public/js/ClinicalOfficer/Dashboard.js"/>"></script>
