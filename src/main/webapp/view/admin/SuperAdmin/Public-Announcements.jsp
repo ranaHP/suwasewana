@@ -90,6 +90,10 @@
                         <input type="text" id="title" autocomplete="off" onkeyup="card()" required>
                         <label for="title">Title</label>
                     </div>
+                    <div class="form-item1" id="inputtitle">
+                        <label for="title">Expire date</label>
+                        <input style="font-size: .7em" type="date" id="expire_date"></input>
+                    </div>
                     <div class="form-item">
                         <label for="description" >Description</label>
                         <textarea id="description" name="content" rows="10" cols="30" row="5" onkeyup="card()"></textarea>
@@ -228,6 +232,7 @@
                 title:document.getElementById("title").value,
                 description:document.getElementById("description").value,
                 image:imagearray[0],
+                expire_date:document.getElementById("expire_date").value
             };
 
             $.post("/test_war_exploded/admin-controller/PublicAnnouncement",

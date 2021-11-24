@@ -6,6 +6,7 @@
     <title>Suwasewana</title>
     <script src="<c:url value="/public/js/popup.js"></c:url> "></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/c-dashboard.css "/>">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
             integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q=="
@@ -30,7 +31,7 @@
 <div  class="c-db-container ">
     <div class="c-container-left">
         <div class="upcomin-clinic">
-            <h4>Up-Coming Clinic</h4>
+            <h4>This month normal Clinics</h4>
 
             <div class="clinic-list">
 
@@ -77,12 +78,13 @@
                     </div>
                 <%--                <i class="icon" data-feather="arrow-right"></i>--%>
             </div>
-            <h4>Up-Coming vaccine Clinics</h4>
+            <h4>This month vaccine Clinics</h4>
             <div class="clinic-list">
 
 <%--                <i class="icon" data-feather="arrow-left"></i>--%>
                 <div class="clinic-card">
                     <div class="card-left">
+
                         <h5>Covid 19 Awareness Session</h5>
                         <div class="card-date">2020/08/28</div>
                         <div class="amount">56</div>
@@ -137,7 +139,7 @@
         </div>
     </div>
     <div class="c-container-right">
-        <h4>Summary Clinic Programmes</h4>
+        <h4>Summary Clinic Programmes up to now</h4>
         <div class="c-right-container">
             <div class="noclinic">
                 <div class="ncimg">
@@ -145,7 +147,7 @@
                          width=100% height=100%>
                 </div>
                 <div class="nc-amount">
-                    <span class="nc-count">18000</span><br>
+                    <span class="nc-count" id="vc-count">0</span><br>
                     <span>No. of vaccine clinics</span>
                 </div>
             </div>
@@ -156,40 +158,37 @@
                          width=100% height=100%>
                 </div>
                 <div class="nc-amount">
-                    <span class="nc-count">18000</span><br>
-                    <span>No. of clinics</span>
+                    <span class="nc-count" id="nc-count">0</span><br>
+                    <span>No. of normal clinics</span>
                 </div>
             </div>
             <div class="pendingclinc">
-                <div class="pctitle">No of clinics</div>
+                <div class="pctitle">No of clinics according to diseases</div>
 
                 <div class="diseases">
                     <div class="diseas">
                         <div class="disleft">
                             <h2>Corona</h2>
-                            <p>2021/02/03</p>
                         </div>
-                        <div class="disright">
+                        <div class="disright" id="Covid 19">
                             34
                         </div>
                     </div>
 
                     <div class="diseas">
                         <div class="disleft">
-                            <h2>Corona</h2>
-                            <p>2021/02/03</p>
+                            <h2>Dengue</h2>
                         </div>
-                        <div class="disright">
+                        <div class="disright" id="dengue">
                             34
                         </div>
                     </div>
 
                     <div class="diseas">
                         <div class="disleft">
-                            <h2>Corona</h2>
-                            <p>2021/02/03</p>
+                            <h2>Maleria</h2>
                         </div>
-                        <div class="disright">
+                        <div class="disright" id="maleria">
                             34
                         </div>
                     </div>
@@ -202,7 +201,49 @@
     let calender = new Calender("calender");
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     // calender.reangeSelect(2021, 9, 10, 6, 8);
+    view();
+    viewV()
 
+    function view(){
+        let clinicListArray=[]
+        $.post("/test_war_exploded/create-clinic-controller/view",
+            // reqData,
+            function(data,status){
+                 let corona=0;
+                 let dengue=0;
+                 let maleria=0;
+                clinicListArray=JSON.parse(data)
+                console.log(clinicListArray.length)
+                 document.getElementById("nc-count").innerHTML=clinicListArray.length;
+                clinicListArray.map(elemet=>{
+                    if(elemet.disease=="Covid 19"){
+                       corona++;
+                    }
+                    if(elemet.disease=="Dengue"){
+                        dengue++;
+                    }
+                    if(elemet.disease=="Maleria"){
+                        maleria++;
+                    }
+                })
+                document.getElementById("dengue").innerHTML=dengue;
+                document.getElementById("maleria").innerHTML=maleria;
+                document.getElementById("Covid 19").innerHTML=corona;
+            }
+        );
+    }
+
+    function viewV(){
+        let clinicListArray=[]
+        $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
+            // reqData,
+            function(data,status){
+                clinicListArray=JSON.parse(data)
+                document.getElementById("vc-count").innerHTML=clinicListArray.length;
+
+            }
+        );
+    }
 </script>
 <script src="<c:url value="/public/js/ClinicalOfficer/Dashboard.js"/>"></script>
 <script>
