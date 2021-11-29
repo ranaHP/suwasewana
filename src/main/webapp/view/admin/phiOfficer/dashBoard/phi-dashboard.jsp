@@ -13,6 +13,7 @@
 
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
     <script src="<c:url value="/public/js/popup.js "/>"></script>
+    <script src="<c:url value="/public/js/PHIOfficer/todolistForDashboard.js"/>"></script>
 
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
@@ -214,7 +215,7 @@
     <div class="todoList-apponment" style="padding: 20px">
         <div class="todo-list">
             <label class="topic">Today Evets</label>
-            <div class="todo-container ">
+            <div class="todo-container " id="task_list">
 
                 <div class="TodoListItem Complin">
                     <div class="Tapp-left">
@@ -238,153 +239,7 @@
 
                 </div>
 
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
 
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
 
 
             </div>
@@ -858,6 +713,28 @@
                 let complainList = JSON.parse(data);
 
                 complain.setDataForPHI(complainList);
+
+
+
+            }
+        );
+
+    }
+
+
+
+
+    getAlltask();
+    let tasklist= new TaskList('task_list');
+    function getAlltask() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-Todo-controller/TakeTaskList",
+            {},
+            function (data, status) {
+                let TodayTaskList = JSON.parse(data);
+
+                tasklist.setDataForPHI(TodayTaskList);
 
 
 
