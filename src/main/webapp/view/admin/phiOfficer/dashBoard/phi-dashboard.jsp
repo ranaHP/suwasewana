@@ -98,10 +98,10 @@
                         <img src="<c:url value="/public/images/PHI_Dashboard/share-mega-phone.svg "/>" alt="" srcset="">
                     </div>
                     <div class="card-details">
-                        <h5>200</h5>
+                        <h5 id="announcemtPre" style="margin-left: 20px; margin-top: 10px"></h5>
                         <div class="precentage">
-                            <div class="p-lable"><label >2.345%</label></div>
-                            <div class="arrow"><i data-feather="arrow-up"></i></div>
+<%--                            <div class="p-lable"><label >2.345%</label></div>--%>
+<%--                            <div class="arrow"><i data-feather="arrow-up"></i></div>--%>
                         </div>
                     </div>
                 </div>
@@ -625,7 +625,7 @@
 <script defer>
     let calender = new Calender("calender");
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
-    calender.reangeSelect(2021, 9, 10, 6, 8);
+    // calender.reangeSelect(2021, 9, 10, 6, 8);
 </script>
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiaGFuc2FuYTg3NiIsImEiOiJja3UwMWtrb3ExNjd2Mm9xaDh2MjdjM2FoIn0.6rDLn-mL41GbBUIW3B8MIA';
@@ -688,12 +688,10 @@
                 let thisMonthCompalin=0;
                 let pending=0;
                 complainList.map((element) => {
-                    console.log("################################");
+                    // console.log("################################");
                     let cday = new Date(element.complainModel.Posted_Date.split(" ")[0])
                     let cmonth= cday.getMonth()+1;
                     let cdate= cday.getDate();
-
-
 
                     if(cmonth==month && cdate<=date){
                         // console.log("this is this month complain");
@@ -704,7 +702,7 @@
                         preMonthComplain++;
                     }
                     else{
-                        console.log("dont care about this compalins")
+                        // console.log("dont care about this compalins")
                     }
 
                     if(element.complainModel.Status=="Pending"){
@@ -712,15 +710,10 @@
                     }
 
 
-
-
-
-
-
                 })
-                console.log("thisMonthCompalin : "+thisMonthCompalin)
-                console.log("preMonthComplain : "+preMonthComplain)
-                console.log("pending : "+pending)
+                // console.log("thisMonthCompalin : "+thisMonthCompalin)
+                // console.log("preMonthComplain : "+preMonthComplain)
+                // console.log("pending : "+pending)
                 let complainprecentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)*100;
                 let ComPre=Math.abs(Math.round(complainprecentage));
 
@@ -762,7 +755,7 @@
                 let thisMonthAppoinmen=0;
                 let pending=0;
                 AppoinmentList.map((element) => {
-                    console.log("################################");
+                    // console.log("################################");
                     let cday = new Date(element.appointment.posted_date_time.split(" ")[0])
                     let cmonth= cday.getMonth()+1;
                     let cdate= cday.getDate();
@@ -776,7 +769,7 @@
                         preMonthAppoinmen++;
                     }
                     else{
-                        console.log("dont care about this compalins")
+                        // console.log("dont care about this compalins")
                     }
 
                     if(element.appointment.status=="pending"){
@@ -786,9 +779,9 @@
 
 
                 })
-                console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
-                console.log("ApppreMonthComplain : "+preMonthAppoinmen)
-                console.log("pending : "+pending)
+                // console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
+                // console.log("ApppreMonthComplain : "+preMonthAppoinmen)
+                // console.log("pending : "+pending)
                 let appprecentage=((thisMonthAppoinmen-preMonthAppoinmen)/preMonthAppoinmen)*100;
                 let AppPre=Math.abs(Math.round(appprecentage));
 
@@ -805,20 +798,28 @@
         );
 
     }
+
     getAllAnnouncement();
     function getAllAnnouncement() {
 
-        $.post(myUrl+"/PHIAppointmentServlet/appointment_for_phi",
+        $.post(myUrl+"/createRPHI_Announcements/selectmohAnnouncemnt",
             {},
             function (data, status) {
-                let newannouncemt
+                let newannouncemt=0;
                 let AnnouncementList = JSON.parse(data);
+                // console.log("AnnouncementList ")
                 AnnouncementList.map((element) => {
-
+                    // console.log("announcement_id: "+element.expire_date);
+                    let expday = new Date(element.expire_date)
+                    let current_day=new Date();
+                    // console.log("today : "+current_day+" "+"exp_day : "+expday);
+                    if(current_day<=expday){
+                        newannouncemt++;
+                    }
 
                 })
-
-
+                console.log("Announcemt count : "+newannouncemt);
+                document.getElementById("announcemtPre").innerText=newannouncemt;
             }
         );
 
