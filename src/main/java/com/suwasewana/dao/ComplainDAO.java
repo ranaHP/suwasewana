@@ -21,6 +21,7 @@ public class ComplainDAO {
     private static final String Change_Status="UPDATE `suwasewana_db`.`user_complaint` SET `status` = 'Done' WHERE (`comp_id` = ?);";
     private static final String Change_Status_to_progress="UPDATE `suwasewana_db`.`user_complaint` SET `status` = 'In Progress' WHERE (`comp_id` = ?);";
     private static final String Change_Complain_Response="UPDATE `suwasewana_db`.`user_complaint` SET `phi_message` = ? WHERE (`comp_id` = ?);\n";
+    private static final String Complain_For_MOH="SELECT * FROM suwasewana_db.user_complaint uc LEFT JOIN suwasewana_db.user u ON u.uNic = uc.user LEFT JOIN suwasewana_db.complaint_type ct ON uc.complaint_type_id = ct.complaint_type_id WHERE moh=?;";
 
 
 
@@ -315,6 +316,81 @@ public class ComplainDAO {
     public ArrayList<CommanForCompalinAndUser> userGetComplainDetailsForPHI(String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Complain_For_PHI)) {
             preparedStatement.setString(1, nic );
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<CommanForCompalinAndUser> complainListForPHI = new ArrayList<CommanForCompalinAndUser>();
+            while (rs.next()) {
+                String comp_id=rs.getString("comp_id");
+                String CType=rs.getString("complaint_type_id");
+                String User=rs.getString("user");
+                String Posted_Date=rs.getString("posted_date_time");
+                String CTitle=rs.getString("tittle");
+                String CMessage=rs.getString("description");
+                String PHIId=rs.getString("phi_id");
+                String Status=rs.getString("status");
+                String img1=rs.getString("img1");
+                String img2=rs.getString("img2");
+                String img3=rs.getString("img3");
+                String PHIResponse=rs.getString("phi_message");
+
+                String uname=rs.getString("uname");
+                String uNic=rs.getString("uNic");
+                String uMobile=rs.getString("uMobile");
+                String address_line1=rs.getString("address_line1");
+                String street_nou=rs.getString("street_no");
+                String City=rs.getString("uCity");
+
+                String ComplainType=rs.getString("ctittle");
+
+                ComplainModel complaintemp = new ComplainModel(
+                        CTitle,
+                        CType,
+                        comp_id,
+                        PHIId,
+                        CMessage,
+                        "",
+                        User,
+                        Posted_Date,
+                        Status,
+                        img1,
+                        img2,
+                        img3,
+                        PHIResponse,
+                        ""
+
+                );
+
+                User usertemp = new User(
+                        uMobile,
+                        uname,
+                        "",
+                        uNic,
+                        "",
+                        "",
+                        City,
+                        "",
+                        "",
+                        "",
+                        "",
+                        street_nou,
+                        address_line1,
+                        ""
+                );
+
+                CommanForCompalinAndUser commanForCompalinAndUsertemp=new CommanForCompalinAndUser(complaintemp,usertemp,ComplainType);
+
+//
+                complainListForPHI.add(commanForCompalinAndUsertemp);
+            }
+            return complainListForPHI;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+    public ArrayList<CommanForCompalinAndUser> userGetComplainDetailsForMOH(String moh) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Complain_For_MOH)) {
+            preparedStatement.setString(1, moh );
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<CommanForCompalinAndUser> complainListForPHI = new ArrayList<CommanForCompalinAndUser>();
             while (rs.next()) {

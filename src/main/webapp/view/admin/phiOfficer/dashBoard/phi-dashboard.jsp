@@ -824,8 +824,111 @@
         );
 
     }
-</script>
 
+
+    getAllComplinMOH();
+    function getAllComplinMOH() {
+        let Animal_issue=0;
+        let Environment_issues=0;
+        let Food_issues=0;
+        let Land_issues=0;
+        let Noise_issue=0;
+        let other=0;
+        $.post(myUrl+"/phi-complain-controller1/complain_for_moh",
+            {},
+            function (data, status) {
+                let ComplainList = JSON.parse(data);
+                ComplainList.map((element) => {
+                    if(element.complainModel.CType=="100"){
+                        Animal_issue++;
+                    }
+                    if(element.complainModel.CType=="101"){
+                        Environment_issues++;
+                    }
+                    if(element.complainModel.CType=="102"){
+                        Food_issues++;
+                    }
+                    if(element.complainModel.CType=="103"){
+                        Land_issues++;
+                    }
+                    if(element.complainModel.CType=="104"){
+                        Noise_issue++;
+                    }
+                    if(element.complainModel.CType=="105"){
+                        other++;
+                    }
+
+                })
+                console.log("Animal_issue "+Animal_issue);
+                console.log("Environment_issues "+Environment_issues);
+                console.log("Food_issues "+Food_issues);
+                console.log("Land_issues "+Land_issues);
+                console.log("other "+other);
+
+                complain_distribution_chart(Animal_issue,Environment_issues,Food_issues,Land_issues,Noise_issue,other);
+
+
+                let all=Animal_issue+Environment_issues+Food_issues+Land_issues+other;
+                let animal_pre=(Animal_issue/all)*100;
+                let Environment_pre=(Environment_issues/all)*100;
+                let Food_pre=(Food_issues/all)*100;
+                let Land_pre=(Land_issues/all)*100;
+                let other_pre=(other/all)*100;
+
+                console.log("Animal_issue_pre "+animal_pre);
+                console.log("Environment_issues_pre "+Environment_pre);
+                console.log("Food_issues_pre "+Food_pre);
+                console.log("Land_issues_pre "+Land_pre);
+                console.log("other_pre "+other_pre);
+
+
+
+            }
+        );
+
+    }
+</script>
+<%--chart for complain distribution--%>
+<script>
+
+    function complain_distribution_chart( type1, type2, type3, type4 ,type5,type6){
+        var ctx = document.getElementById('donat-chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                //  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '',
+                    data: [type1, type2, type3, type4, type5,type6],
+                    backgroundColor: [
+                        '#c0392b',
+                        '#3498db',
+                        '#f1c40f',
+                        '#2ecc71',
+                        '#8e44ad',
+                        '#273c75'
+                    ],
+                    borderColor: [
+                        '#ecf0f1'
+                    ],
+                    // borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        // text: 'Chart.js Doughnut Chart'
+                    }
+                }
+            },
+        });
+    }
+</script>
 
 </body>
 </html>
