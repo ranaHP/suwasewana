@@ -4,7 +4,7 @@
 <head>
     <title>Suwasewana</title>
 
-
+    <script src="<c:url value="/public/js/PHI/complainForDashboard.js"/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/PHI/PHI_Dashboard.css"/>">
     <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
@@ -194,7 +194,7 @@
 
     <div class="complains" style="padding: 20px">
         <label class="topic">New Complains</label>
-        <div class="complain-body">
+        <div class="complain-body" id="previous_complain_list">
             <div class="complain">
                 <div class="color-circle">
                     <div class="circle"></div>
@@ -204,81 +204,8 @@
                     <label > today</label>
                 </div>
             </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
+
+
         </div>
         <div class="viewmore">
             <span>view more(34)</span>
@@ -662,7 +589,7 @@
 
 <script>
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-
+    let complain= new Complain('previous_complain_list');
     getAllComplain();
     function getAllComplain() {
         let complainCardList = [];
@@ -824,8 +751,121 @@
         );
 
     }
+
+
+    getAllComplinMOH();
+    function getAllComplinMOH() {
+        let Animal_issue=0;
+        let Environment_issues=0;
+        let Food_issues=0;
+        let Land_issues=0;
+        let Noise_issue=0;
+        let other=0;
+        $.post(myUrl+"/phi-complain-controller1/complain_for_moh",
+            {},
+            function (data, status) {
+                let ComplainList = JSON.parse(data);
+                ComplainList.map((element) => {
+                    if(element.complainModel.CType=="100"){
+                        Animal_issue++;
+                    }
+                    if(element.complainModel.CType=="101"){
+                        Environment_issues++;
+                    }
+                    if(element.complainModel.CType=="102"){
+                        Food_issues++;
+                    }
+                    if(element.complainModel.CType=="103"){
+                        Land_issues++;
+                    }
+                    if(element.complainModel.CType=="104"){
+                        Noise_issue++;
+                    }
+                    if(element.complainModel.CType=="105"){
+                        other++;
+                    }
+
+                })
+                // console.log("Animal_issue "+Animal_issue);
+                // console.log("Environment_issues "+Environment_issues);
+                // console.log("Food_issues "+Food_issues);
+                // console.log("Land_issues "+Land_issues);
+                // console.log("other "+other);
+
+                complain_distribution_chart(Animal_issue,Environment_issues,Food_issues,Land_issues,Noise_issue,other);
+
+
+
+
+
+
+
+            }
+        );
+
+    }
+</script>
+<%--chart for complain distribution--%>
+<script>
+
+    function complain_distribution_chart( type1, type2, type3, type4 ,type5,type6){
+        var ctx = document.getElementById('donat-chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                //  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '',
+                    data: [type1, type2, type3, type4, type5,type6],
+                    backgroundColor: [
+                        '#c0392b',
+                        '#3498db',
+                        '#f1c40f',
+                        '#2ecc71',
+                        '#8e44ad',
+                        '#273c75'
+                    ],
+                    borderColor: [
+                        '#ecf0f1'
+                    ],
+                    // borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        // text: 'Chart.js Doughnut Chart'
+                    }
+                }
+            },
+        });
+    }
 </script>
 
+<script>
+    getAllComplain();
+    function getAllComplain() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
+            {},
+            function (data, status) {
+                let complainList = JSON.parse(data);
+
+                complain.setDataForPHI(complainList);
+
+
+
+            }
+        );
+
+    }
+</script>
 
 </body>
 </html>
