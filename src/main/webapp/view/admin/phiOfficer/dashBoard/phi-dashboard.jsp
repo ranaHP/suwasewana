@@ -4,7 +4,7 @@
 <head>
     <title>Suwasewana</title>
 
-
+    <script src="<c:url value="/public/js/PHI/complainForDashboard.js"/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/PHI/PHI_Dashboard.css"/>">
     <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
@@ -194,7 +194,7 @@
 
     <div class="complains" style="padding: 20px">
         <label class="topic">New Complains</label>
-        <div class="complain-body">
+        <div class="complain-body" id="previous_complain_list">
             <div class="complain">
                 <div class="color-circle">
                     <div class="circle"></div>
@@ -204,81 +204,8 @@
                     <label > today</label>
                 </div>
             </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
+
+
         </div>
         <div class="viewmore">
             <span>view more(34)</span>
@@ -662,7 +589,7 @@
 
 <script>
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-
+    let complain= new Complain('previous_complain_list');
     getAllComplain();
     function getAllComplain() {
         let complainCardList = [];
@@ -859,27 +786,17 @@
                     }
 
                 })
-                console.log("Animal_issue "+Animal_issue);
-                console.log("Environment_issues "+Environment_issues);
-                console.log("Food_issues "+Food_issues);
-                console.log("Land_issues "+Land_issues);
-                console.log("other "+other);
+                // console.log("Animal_issue "+Animal_issue);
+                // console.log("Environment_issues "+Environment_issues);
+                // console.log("Food_issues "+Food_issues);
+                // console.log("Land_issues "+Land_issues);
+                // console.log("other "+other);
 
                 complain_distribution_chart(Animal_issue,Environment_issues,Food_issues,Land_issues,Noise_issue,other);
 
 
-                let all=Animal_issue+Environment_issues+Food_issues+Land_issues+other;
-                let animal_pre=(Animal_issue/all)*100;
-                let Environment_pre=(Environment_issues/all)*100;
-                let Food_pre=(Food_issues/all)*100;
-                let Land_pre=(Land_issues/all)*100;
-                let other_pre=(other/all)*100;
 
-                console.log("Animal_issue_pre "+animal_pre);
-                console.log("Environment_issues_pre "+Environment_pre);
-                console.log("Food_issues_pre "+Food_pre);
-                console.log("Land_issues_pre "+Land_pre);
-                console.log("other_pre "+other_pre);
+
 
 
 
@@ -927,6 +844,26 @@
                 }
             },
         });
+    }
+</script>
+
+<script>
+    getAllComplain();
+    function getAllComplain() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
+            {},
+            function (data, status) {
+                let complainList = JSON.parse(data);
+
+                complain.setDataForPHI(complainList);
+
+
+
+            }
+        );
+
     }
 </script>
 
