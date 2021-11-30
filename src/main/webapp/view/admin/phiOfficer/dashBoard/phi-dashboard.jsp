@@ -246,7 +246,7 @@
         </div>
         <div class="Appoinment" style="padding: 20px">
             <label class="topic">New Appoinments</label>
-            <div class="appinment-container">
+            <div class="appinment-container" id="apponmentList">
 
                 <div class="appoinment-list">
                     <div class="app-left">
@@ -261,136 +261,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
             <div class="viewmore">
@@ -741,6 +612,19 @@
             }
         );
 
+    }
+    getAllAppointment();
+    let Appointment= new Appointment('apponmentList');
+    function getAllAppointment() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/PHIAppointmentServlet/selectAppointmentForPHI",
+            {},
+            function (data, status) {
+                let AppointmentList = JSON.parse(data);
+                Appointment.setDataForPHI(AppointmentList);
+            }
+        );
     }
 </script>
 
