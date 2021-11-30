@@ -33,6 +33,9 @@ public class PHIAppointmentServlet extends HttpServlet {
         try {
             RequestDispatcher rd;
             switch (getUrlData[getUrlData.length-1]) {
+                    case "selectAppointmentForPHI":
+                        selectAppointmentForPHI(request, response);
+                        break;
                     case "appointment_type":
                         getAppointmentType(request, response);
                         break;
@@ -58,7 +61,11 @@ public class PHIAppointmentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
-
+    private void selectAppointmentForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uNic = "199910910060";
+        ArrayList<AppointmentForPHIModel> result = appointmentDAO.GetAppoinment_For_PHI_Dashboard(uNic);
+        res.getWriter().println(gson.toJson(result));
+    }
 
     private void getAppointmentType(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ArrayList<AppointmentTypeModel> result = appointmentDAO.getAppointmentTypes();
