@@ -127,7 +127,22 @@ body{
     background-color: white;
 }
 
-
+button {
+    border: none;
+    width: 100px;
+    height: 20px;
+    margin-left: 5px;
+    background-color: #0D47A1;
+    color: white;
+    border-radius: 3px;
+    font-family: Segoe UI;
+    font-size: .7em;
+    letter-spacing: .1em;
+    cursor: pointer;
+}
+label{
+    font-size: .7em;
+}
 /* clinic card */
 .clinic-list{
     display: flex;
@@ -170,7 +185,7 @@ body{
     font-size: 1.1em;
 }
 .card-date,.nop{
-    font-size: 0.5em;
+    font-size: 0.7em;
     color: rgb(160, 148, 148);
 }
 .amount{
