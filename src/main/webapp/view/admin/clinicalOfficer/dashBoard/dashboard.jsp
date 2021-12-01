@@ -49,13 +49,13 @@
         <div class="growth-calander">
             <div class="charts">
                 <div class="chart" id="chart1">
-                    <h4>Patient growth</h4>
+                    <h4>Clinic growth</h4>
                     <div class="g-chart" style="width: 100%;">
                         <canvas id="myChart" height="50" width="100" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
                 <div class="chart" id="chart2">
-                    <h4>Clinic growth</h4>
+                    <h4>Patient growth</h4>
                     <div class="g-chart" style="width: 100%">
                         <canvas id="myChart2" height="50" width="100" style="margin-left: 20px"></canvas>
                     </div>
@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="c-container-right">
-        <h4>Summary Clinic Programmes up to now</h4>
+        <h4>All Scheduled Clinic Summary</h4>
         <div class="c-right-container">
             <div class="noclinic">
                 <div class="ncimg">
@@ -113,6 +113,7 @@
     view();
     viewV()
     viewd()
+    let today = new Date();
     let clinicList4 = new clinicListd("diseases");
     function viewd(){
         let clinicListArray=[]
@@ -121,6 +122,7 @@
             function(data,status){
                 console.log(data)
                 clinicListArray=JSON.parse(data)
+                chart(clinicListArray,today)
                 clinicList4.setData(clinicListArray);
             }
         );

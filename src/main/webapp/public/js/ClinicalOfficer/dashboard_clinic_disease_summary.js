@@ -19,6 +19,7 @@ class clinicListd {
         this.clinicListArray = data;
         console.log(data);
         this.clinicListArray.map((item) => {
+               // chart(item.disease,item.clinicID)
                 this.container.innerHTML += `
                   <div class="diseas">
                         <div class="disleft">
