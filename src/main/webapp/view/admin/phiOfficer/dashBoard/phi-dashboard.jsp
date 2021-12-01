@@ -4,7 +4,7 @@
 <head>
     <title>Suwasewana</title>
 
-
+    <script src="<c:url value="/public/js/PHI/complainForDashboard.js"/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/PHI/PHI_Dashboard.css"/>">
     <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
@@ -13,6 +13,7 @@
 
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
     <script src="<c:url value="/public/js/popup.js "/>"></script>
+    <script src="<c:url value="/public/js/PHIOfficer/todolistForDashboard.js"/>"></script>
 
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"
@@ -98,10 +99,10 @@
                         <img src="<c:url value="/public/images/PHI_Dashboard/share-mega-phone.svg "/>" alt="" srcset="">
                     </div>
                     <div class="card-details">
-                        <h5>200</h5>
+                        <h5 id="announcemtPre" style="margin-left: 20px; margin-top: 10px"></h5>
                         <div class="precentage">
-                            <div class="p-lable"><label >2.345%</label></div>
-                            <div class="arrow"><i data-feather="arrow-up"></i></div>
+<%--                            <div class="p-lable"><label >2.345%</label></div>--%>
+<%--                            <div class="arrow"><i data-feather="arrow-up"></i></div>--%>
                         </div>
                     </div>
                 </div>
@@ -194,7 +195,7 @@
 
     <div class="complains" style="padding: 20px">
         <label class="topic">New Complains</label>
-        <div class="complain-body">
+        <div class="complain-body" id="previous_complain_list">
             <div class="complain">
                 <div class="color-circle">
                     <div class="circle"></div>
@@ -204,81 +205,8 @@
                     <label > today</label>
                 </div>
             </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle">
-                    <div class="circle"></div>
-                </div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
-            <div class="complain">
-                <div class="color-circle"></div>
-                <div class="content">
-                    <span>keeping an ear open to feedback can help to curb issues of quality and save an establishment from early death</span>
-                    <label > today</label>
-                </div>
-            </div>
+
+
         </div>
         <div class="viewmore">
             <span>view more(34)</span>
@@ -287,7 +215,7 @@
     <div class="todoList-apponment" style="padding: 20px">
         <div class="todo-list">
             <label class="topic">Today Evets</label>
-            <div class="todo-container ">
+            <div class="todo-container " id="task_list">
 
                 <div class="TodoListItem Complin">
                     <div class="Tapp-left">
@@ -311,160 +239,14 @@
 
                 </div>
 
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
 
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="TodoListItem Complin">
-                    <div class="Tapp-left">
-                        <label>Need to go Weerasinghe hardware to inform about new rules(Thekka wood
-                            complain)</label>
-                        <br>
-                        <div>
-                            <span class="Tdate" style="margin-top: 100px;">10/13/2021</span>
-                        </div>
-
-                    </div>
-                    <div class="Tapp-right">
-                        <div class="todo_from">
-                            <span>From - You</span>
-                        </div>
-
-                        <div class="contact_no">
-                            <button class="todoDone">Done</button>
-                        </div>
-                    </div>
-
-                </div>
 
 
             </div>
         </div>
         <div class="Appoinment" style="padding: 20px">
             <label class="topic">New Appoinments</label>
-            <div class="appinment-container">
+            <div class="appinment-container" id="apponmentList">
 
                 <div class="appoinment-list">
                     <div class="app-left">
@@ -479,136 +261,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="appoinment-list">
-                    <div class="app-left">
-                        <h3>Akila anajan</h3>
-                        <span>today</span>
-                    </div>
-                    <div class="app-right">
-                        <span>asdas fasfas fasf sfa</span>
-                        <div class="contactno">
-                            <i data-feather="phone" class="phone-icon"></i>
-                            <span >0713805000</span>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
             <div class="viewmore">
@@ -625,7 +278,7 @@
 <script defer>
     let calender = new Calender("calender");
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
-    calender.reangeSelect(2021, 9, 10, 6, 8);
+    // calender.reangeSelect(2021, 9, 10, 6, 8);
 </script>
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiaGFuc2FuYTg3NiIsImEiOiJja3UwMWtrb3ExNjd2Mm9xaDh2MjdjM2FoIn0.6rDLn-mL41GbBUIW3B8MIA';
@@ -662,7 +315,7 @@
 
 <script>
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-
+    let complain= new Complain('previous_complain_list');
     getAllComplain();
     function getAllComplain() {
         let complainCardList = [];
@@ -688,12 +341,10 @@
                 let thisMonthCompalin=0;
                 let pending=0;
                 complainList.map((element) => {
-                    console.log("################################");
+                    // console.log("################################");
                     let cday = new Date(element.complainModel.Posted_Date.split(" ")[0])
                     let cmonth= cday.getMonth()+1;
                     let cdate= cday.getDate();
-
-
 
                     if(cmonth==month && cdate<=date){
                         // console.log("this is this month complain");
@@ -704,7 +355,7 @@
                         preMonthComplain++;
                     }
                     else{
-                        console.log("dont care about this compalins")
+                        // console.log("dont care about this compalins")
                     }
 
                     if(element.complainModel.Status=="Pending"){
@@ -712,15 +363,10 @@
                     }
 
 
-
-
-
-
-
                 })
-                console.log("thisMonthCompalin : "+thisMonthCompalin)
-                console.log("preMonthComplain : "+preMonthComplain)
-                console.log("pending : "+pending)
+                // console.log("thisMonthCompalin : "+thisMonthCompalin)
+                // console.log("preMonthComplain : "+preMonthComplain)
+                // console.log("pending : "+pending)
                 let complainprecentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)*100;
                 let ComPre=Math.abs(Math.round(complainprecentage));
 
@@ -762,7 +408,7 @@
                 let thisMonthAppoinmen=0;
                 let pending=0;
                 AppoinmentList.map((element) => {
-                    console.log("################################");
+                    // console.log("################################");
                     let cday = new Date(element.appointment.posted_date_time.split(" ")[0])
                     let cmonth= cday.getMonth()+1;
                     let cdate= cday.getDate();
@@ -776,7 +422,7 @@
                         preMonthAppoinmen++;
                     }
                     else{
-                        console.log("dont care about this compalins")
+                        // console.log("dont care about this compalins")
                     }
 
                     if(element.appointment.status=="pending"){
@@ -786,9 +432,9 @@
 
 
                 })
-                console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
-                console.log("ApppreMonthComplain : "+preMonthAppoinmen)
-                console.log("pending : "+pending)
+                // console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
+                // console.log("ApppreMonthComplain : "+preMonthAppoinmen)
+                // console.log("pending : "+pending)
                 let appprecentage=((thisMonthAppoinmen-preMonthAppoinmen)/preMonthAppoinmen)*100;
                 let AppPre=Math.abs(Math.round(appprecentage));
 
@@ -805,18 +451,79 @@
         );
 
     }
+
     getAllAnnouncement();
     function getAllAnnouncement() {
 
-        $.post(myUrl+"/PHIAppointmentServlet/appointment_for_phi",
+        $.post(myUrl+"/createRPHI_Announcements/selectmohAnnouncemnt",
             {},
             function (data, status) {
-                let newannouncemt
+                let newannouncemt=0;
                 let AnnouncementList = JSON.parse(data);
+                // console.log("AnnouncementList ")
                 AnnouncementList.map((element) => {
-
+                    // console.log("announcement_id: "+element.expire_date);
+                    let expday = new Date(element.expire_date)
+                    let current_day=new Date();
+                    // console.log("today : "+current_day+" "+"exp_day : "+expday);
+                    if(current_day<=expday){
+                        newannouncemt++;
+                    }
 
                 })
+                console.log("Announcemt count : "+newannouncemt);
+                document.getElementById("announcemtPre").innerText=newannouncemt;
+            }
+        );
+
+    }
+
+
+    getAllComplinMOH();
+    function getAllComplinMOH() {
+        let Animal_issue=0;
+        let Environment_issues=0;
+        let Food_issues=0;
+        let Land_issues=0;
+        let Noise_issue=0;
+        let other=0;
+        $.post(myUrl+"/phi-complain-controller1/complain_for_moh",
+            {},
+            function (data, status) {
+                let ComplainList = JSON.parse(data);
+                ComplainList.map((element) => {
+                    if(element.complainModel.CType=="100"){
+                        Animal_issue++;
+                    }
+                    if(element.complainModel.CType=="101"){
+                        Environment_issues++;
+                    }
+                    if(element.complainModel.CType=="102"){
+                        Food_issues++;
+                    }
+                    if(element.complainModel.CType=="103"){
+                        Land_issues++;
+                    }
+                    if(element.complainModel.CType=="104"){
+                        Noise_issue++;
+                    }
+                    if(element.complainModel.CType=="105"){
+                        other++;
+                    }
+
+                })
+                // console.log("Animal_issue "+Animal_issue);
+                // console.log("Environment_issues "+Environment_issues);
+                // console.log("Food_issues "+Food_issues);
+                // console.log("Land_issues "+Land_issues);
+                // console.log("other "+other);
+
+                complain_distribution_chart(Animal_issue,Environment_issues,Food_issues,Land_issues,Noise_issue,other);
+
+
+
+
+
 
 
             }
@@ -824,7 +531,102 @@
 
     }
 </script>
+<%--chart for complain distribution--%>
+<script>
 
+    function complain_distribution_chart( type1, type2, type3, type4 ,type5,type6){
+        var ctx = document.getElementById('donat-chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                //  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '',
+                    data: [type1, type2, type3, type4, type5,type6],
+                    backgroundColor: [
+                        '#c0392b',
+                        '#3498db',
+                        '#f1c40f',
+                        '#2ecc71',
+                        '#8e44ad',
+                        '#273c75'
+                    ],
+                    borderColor: [
+                        '#ecf0f1'
+                    ],
+                    // borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        // text: 'Chart.js Doughnut Chart'
+                    }
+                }
+            },
+        });
+    }
+</script>
+
+<script>
+    getAllComplain();
+    function getAllComplain() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
+            {},
+            function (data, status) {
+                let complainList = JSON.parse(data);
+
+                complain.setDataForPHI(complainList);
+
+
+
+            }
+        );
+
+    }
+
+
+
+
+    getAlltask();
+    let tasklist= new TaskList('task_list');
+    function getAlltask() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-Todo-controller/TakeTaskList",
+            {},
+            function (data, status) {
+                let TodayTaskList = JSON.parse(data);
+
+                tasklist.setDataForPHI(TodayTaskList);
+
+
+
+            }
+        );
+
+    }
+    getAllAppointment();
+    let Appointment= new Appointment('apponmentList');
+    function getAllAppointment() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/PHIAppointmentServlet/selectAppointmentForPHI",
+            {},
+            function (data, status) {
+                let AppointmentList = JSON.parse(data);
+                Appointment.setDataForPHI(AppointmentList);
+            }
+        );
+    }
+</script>
 
 </body>
 </html>

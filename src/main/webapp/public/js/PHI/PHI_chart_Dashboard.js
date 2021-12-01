@@ -108,37 +108,37 @@ var myChart = new Chart(ctx, {
 // });
 //
 
-var ctx = document.getElementById('donat-chart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        //  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '',
-            data: [12, 19, 3, 5, 6],
-            backgroundColor: [
-                '#c0392b',
-                '#3498db',
-                '#f1c40f',
-                '#2ecc71',
-                '#8e44ad'
-            ],
-            borderColor: [
-                '#ecf0f1'
-            ],
-            // borderWidth: 1
-        }]
-    },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'top',
-            },
-            title: {
-                display: true,
-                // text: 'Chart.js Doughnut Chart'
-            }
-        }
-    },
-});
+// var ctx = document.getElementById('donat-chart').getContext('2d');
+// var myChart = new Chart(ctx, {
+//     type: 'doughnut',
+//     data: {
+//         //  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//         datasets: [{
+//             label: '',
+//             data: [12, 19, 3, 5, 6],
+//             backgroundColor: [
+//                 '#c0392b',
+//                 '#3498db',
+//                 '#f1c40f',
+//                 '#2ecc71',
+//                 '#8e44ad'
+//             ],
+//             borderColor: [
+//                 '#ecf0f1'
+//             ],
+//             // borderWidth: 1
+//         }]
+//     },
+//     options: {
+//         responsive: true,
+//         plugins: {
+//             legend: {
+//                 position: 'top',
+//             },
+//             title: {
+//                 display: true,
+//                 // text: 'Chart.js Doughnut Chart'
+//             }
+//         }
+//     },
+// });

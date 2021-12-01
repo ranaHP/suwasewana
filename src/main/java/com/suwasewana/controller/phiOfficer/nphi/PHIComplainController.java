@@ -63,6 +63,9 @@ public class PHIComplainController extends HttpServlet {
                 case "setResponse":
                     setResponse(req, res);
                     break;
+                case "complain_for_moh":
+                    ComplainForMOH(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -177,6 +180,40 @@ public class PHIComplainController extends HttpServlet {
         ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHI(nic);
         res.getWriter().println(gson.toJson(result));
     }
+
+        private void ComplainForMOH(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+            String uNic = "";
+            String  moh = "1003";
+            Cookie[] cookies = req.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("unic")) {
+                        uNic = cookie.getValue();
+                    }
+                }
+            }
+            ComplainModel complainModeldetail = new ComplainModel(
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+
+            );
+            String nic="199910910062";
+            ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForMOH(moh);
+            res.getWriter().println(gson.toJson(result));
+        }
 
 
 
