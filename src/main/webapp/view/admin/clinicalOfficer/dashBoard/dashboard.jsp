@@ -15,6 +15,7 @@
     <%--    for side navbar style--%>
     <script src="<c:url value="/public/js/ClinicalOfficer/dashboard_clinic_summary.js"/>"></script>
     <script src="<c:url value="/public/js/ClinicalOfficer/dashboard_Vclinic_summary.js"/>"></script>
+    <script src="<c:url value="/public/js/ClinicalOfficer/dashboard_clinic_disease_summary.js"/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
@@ -96,33 +97,7 @@
             <div class="pendingclinc">
                 <div class="pctitle">No of clinics according to diseases</div>
 
-                <div class="diseases">
-                    <div class="diseas">
-                        <div class="disleft">
-                            <h2>Corona</h2>
-                        </div>
-                        <div class="disright" id="Covid 19">
-                            34
-                        </div>
-                    </div>
-
-                    <div class="diseas">
-                        <div class="disleft">
-                            <h2>Dengue</h2>
-                        </div>
-                        <div class="disright" id="dengue">
-                            34
-                        </div>
-                    </div>
-
-                    <div class="diseas">
-                        <div class="disleft">
-                            <h2>Maleria</h2>
-                        </div>
-                        <div class="disright" id="maleria">
-                            34
-                        </div>
-                    </div>
+                <div class="diseases" id="diseases">
                 </div>
             </div>
         </div>
@@ -132,37 +107,35 @@
     let calender = new Calender("calender");
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     // calender.reangeSelect(2021, 9, 10, 6, 8);
-    let clinicList2 = new clinicList("clinic-list");
+
+
 
     view();
     viewV()
-
+    viewd()
+    let clinicList4 = new clinicListd("diseases");
+    function viewd(){
+        let clinicListArray=[]
+        $.post("/test_war_exploded/create-clinic-controller/viewdisease",
+            // reqData,
+            function(data,status){
+                console.log(data)
+                clinicListArray=JSON.parse(data)
+                clinicList4.setData(clinicListArray);
+            }
+        );
+    }
+    let clinicList2 = new clinicList("clinic-list");
     function view(){
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/view",
             // reqData,
             function(data,status){
-                 let corona=0;
-                 let dengue=0;
-                 let maleria=0;
+            console.log(data)
                 clinicListArray=JSON.parse(data)
                 clinicList2.setData(clinicListArray);
                 console.log(clinicListArray.length)
                 document.getElementById("nc-count").innerHTML=clinicListArray.length;
-                clinicListArray.map(elemet=>{
-                    if(elemet.disease=="Covid 19"){
-                       corona++;
-                    }
-                    if(elemet.disease=="Dengue"){
-                        dengue++;
-                    }
-                    if(elemet.disease=="maleria"){
-                        maleria++;
-                    }
-                })
-                document.getElementById("dengue").innerHTML=dengue;
-                document.getElementById("maleria").innerHTML=maleria;
-                document.getElementById("Covid 19").innerHTML=corona;
             }
         );
     }

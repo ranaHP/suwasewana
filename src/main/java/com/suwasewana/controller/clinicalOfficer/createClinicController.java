@@ -83,6 +83,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     AllClinics(req, res);
                     break;
+                case "viewdisease":
+//                    res.getWriter().println("select-V-Clinics");
+                    viewdisease(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -288,6 +292,25 @@ import java.util.ArrayList;
 
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void viewdisease(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
+        CreateClinicModel viewdisease = new CreateClinicModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "12"
+
+        );
+        ArrayList<CreateClinicModel> result= createClinicDAO.Viewdisease(viewdisease);
         res.getWriter().println(gson.toJson(result));
     }
 

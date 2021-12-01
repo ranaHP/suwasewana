@@ -24,6 +24,7 @@ public class createClinicDAO {
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `start_date_time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String Clinic_Details="SELECT * FROM `normal_clinic_session`";
+  private static final String disease_clinic_count="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease ";
 
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`clinical_officer` = ?";
@@ -449,6 +450,43 @@ public class createClinicDAO {
             printSQLException(throwables);
             return throwables.getMessage();
         }
+    }
+
+    public ArrayList<CreateClinicModel> Viewdisease(CreateClinicModel viewdisease) throws ParseException {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(disease_clinic_count)){
+            System.out.println("came to dao");
+            preparedStatement.setString(1,viewdisease.getcNic());
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> viewdList = new ArrayList<CreateClinicModel>();
+            while (rs.next()){
+                String clinicID =rs.getString("COUNT(ncs_id)");
+                String disease = rs.getString("disease");
+                CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
+                        "",
+                        "",
+                        "",
+                        disease,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+//                }
+                viewdList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return viewdList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
     }
 //
 //    public ArrayList<vaccineClinicModel> selectVClinics(vaccineClinicModel vaccineClinicselet) {
