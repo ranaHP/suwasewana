@@ -8,7 +8,7 @@ public class DB {
 //    private final String jdbcURL = "Mysql@127.0.0.1:3306/suwasewana_db";
 
     private String jdbcUsername = "root";
-    private String jdbcPassword = "1234@Akila";
+    private String jdbcPassword = "";
 
 //    private String jdbcUsername = "root";
 //    private String jdbcPassword = "";
