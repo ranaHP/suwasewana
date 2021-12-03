@@ -3,15 +3,15 @@ package com.suwasewana.core;
 import java.sql.*;
 public class DB {
     private final String jdbcURL = "jdbc:mysql://localhost:3306/suwasewana_db?allowMultiQueries=true";
-//    private String jdbcUsername = "root";
+    //   private String jdbcUsername = "root";
     //    private String jdbcPassword = "cybertcc123";
-//    private final String jdbcURL = "Mysql@127.0.0.1:3306/suwasewana_db";
-
-//    private String jdbcUsername = "root";
-//    private String jdbcPassword = "1234@Akila";
+    //    private final String jdbcURL = "Mysql@127.0.0.1:3306/suwasewana_db";
 
     private String jdbcUsername = "root";
-    private String jdbcPassword = "";
+    private String jdbcPassword = "1234@Akila";
+
+//    private String jdbcUsername = "root";
+//    private String jdbcPassword = "";
 
     public Connection getConnection() {
         Connection connection = null;
