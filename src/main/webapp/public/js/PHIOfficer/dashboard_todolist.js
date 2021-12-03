@@ -101,11 +101,13 @@ class TodoList{
                 case 'overdue':
                     item_container = document.getElementById(this.overdue_id);
                     break;
-                case 'inprogess':
+                case 'inprogress':
                     item_container = document.getElementById(this.inprogess_id);
                     break;
+                default:
+                    console.log("not found status");
             }
-
+            console.log("task title: "+task.title);
             item_container.innerHTML += `
                         <div class="todo-item ${task.status} " >
                             <div class="row1">
