@@ -59,7 +59,6 @@
                 clinicListArray=JSON.parse(data)
                 clinicList1.setData(clinicListArray);
                 console.log(data)
-
             }
         );
     }

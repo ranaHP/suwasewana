@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.annotation.Target;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 @WebServlet("/create-clinic-controller/*")
@@ -82,6 +83,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     AllClinics(req, res);
                     break;
+                case "viewdisease":
+//                    res.getWriter().println("select-V-Clinics");
+                    viewdisease(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -116,7 +121,8 @@ import java.util.ArrayList;
 
 
     private void AllClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        ArrayList<CreateClinicModel> result = createClinicDAO.allClinics();
+
+            ArrayList<CreateClinicModel> result = createClinicDAO.allClinics();
         res.getWriter().println(gson.toJson(result));
     }
 
@@ -185,7 +191,7 @@ import java.util.ArrayList;
                     "",
                     "",
                     "",
-                    "",
+                    "12",
                     "",
                     "",
                     ""
@@ -269,7 +275,7 @@ import java.util.ArrayList;
         String result= createClinicDAO.createClinic(createClinic);
         res.getWriter().println(result);
     }
-    private void viewClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    private void viewClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
         CreateClinicModel viewClinic = new CreateClinicModel(
                 "",
                 "",
@@ -282,10 +288,29 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                ""
+                "12"
 
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void viewdisease(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
+        CreateClinicModel viewdisease = new CreateClinicModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "12"
+
+        );
+        ArrayList<CreateClinicModel> result= createClinicDAO.Viewdisease(viewdisease);
         res.getWriter().println(gson.toJson(result));
     }
 
@@ -302,8 +327,8 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                "12",
-                ""
+                "",
+                "12"
 
 
         );
@@ -324,8 +349,8 @@ import java.util.ArrayList;
                   "",
                   "",
                   "",
-                  "12",
-                  ""
+                  "",
+                  "12"
           );
           System.out.println("delete");
           String result = createClinicDAO.deleteClinic(deleteClinic);

@@ -8,7 +8,7 @@ import com.suwasewana.model.PublicAnnouncementModel;
 import java.sql.*;
 
 public class PublicAnnouncementsDAO {
-  private static final String CREATEA="INSERT INTO `health_announcement` VALUES (NULL, ?, ?, ?);";
+  private static final String CREATEA="INSERT INTO `health_announcement` VALUES (NULL, ?, ?, ?,?);";
   private static final String AddTargetP="INSERT INTO `health_announcement_target_province` VALUES (?,?)";
   private static final String AddTargetD="INSERT INTO `health_announcement_target_districts` VALUES (?,?)";
   Connection connection;
@@ -22,6 +22,7 @@ public class PublicAnnouncementsDAO {
            preparedStatement.setString(1,publicAnnouncement.getTitle());
            preparedStatement.setString(2,publicAnnouncement.getDescription());
            preparedStatement.setString(3,publicAnnouncement.getBanner());
+           preparedStatement.setString(4,publicAnnouncement.getExpire_date());
            int rs = preparedStatement.executeUpdate();
            ResultSet rs1= preparedStatement.getGeneratedKeys();
            if (rs1.next()) {

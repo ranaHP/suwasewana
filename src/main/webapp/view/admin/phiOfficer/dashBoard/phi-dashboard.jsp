@@ -5,6 +5,7 @@
     <title>Suwasewana</title>
 
     <script src="<c:url value="/public/js/PHI/complainForDashboard.js"/>"></script>
+    <script src="<c:url value="/public/js/PHI/appoinmentForDashboard.js "/>"></script>
     <link rel="stylesheet" href="<c:url value="/public/css/PHI/PHI_Dashboard.css"/>">
     <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
@@ -12,7 +13,6 @@
 
 
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
-    <script src="<c:url value="/public/js/popup.js "/>"></script>
     <script src="<c:url value="/public/js/PHIOfficer/todolistForDashboard.js"/>"></script>
 
     <script src="https://unpkg.com/feather-icons"></script>
@@ -33,11 +33,19 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 
+
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/popup/Appintmentpopup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
+
 </head>
 
 <body id="mainContent">
 <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
 <%--    <div class="main-container">--%>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="header">
     <div class="upper-title">SUWASEWANA</div>
     <div class="dashboard-name">PHI/Dashboard/Home</div>
@@ -185,7 +193,6 @@
             <div class="calanderbody">
 
                 <div class="calender-container" id="calender"></div>
-                <div class="mypopup" id="popup" style="display: none;position: fixed; top: 0; left: 0;"></div>
 
             </div>
         </div>
@@ -471,7 +478,7 @@
                     }
 
                 })
-                console.log("Announcemt count : "+newannouncemt);
+                // console.log("Announcemt count : "+newannouncemt);
                 document.getElementById("announcemtPre").innerText=newannouncemt;
             }
         );
@@ -530,6 +537,7 @@
         );
 
     }
+
 </script>
 <%--chart for complain distribution--%>
 <script>
@@ -582,16 +590,24 @@
             {},
             function (data, status) {
                 let complainList = JSON.parse(data);
-
                 complain.setDataForPHI(complainList);
-
-
-
             }
         );
 
     }
+    function viewComplainDetail(title,ctype,pdate,message,user,mobile,uname){
 
+        let data={
+            title:title,
+            ctype:ctype,
+            pdate:pdate,
+            message:message,
+            user:user,
+            mobile:mobile,
+            uname:uname
+        }
+        popup.dashboardComplain(data);
+    }
 
 
 
@@ -613,8 +629,20 @@
         );
 
     }
+
+    function CompleteTask(taskid){
+        let reqdata={
+            taskid:taskid
+        }
+        $.post(myUrl+"/phi-Todo-controller/Complete",
+            reqdata,
+            function (data, status) {
+                getAlltask();
+            }
+        );
+    }
     getAllAppointment();
-    let Appointment= new Appointment('apponmentList');
+    let appointment= new Appointment('apponmentList');
     function getAllAppointment() {
         let complainCardList = [];
         let typedatalist=[]
@@ -622,7 +650,7 @@
             {},
             function (data, status) {
                 let AppointmentList = JSON.parse(data);
-                Appointment.setDataForPHI(AppointmentList);
+                appointment.setDataForPHI(AppointmentList);
             }
         );
     }

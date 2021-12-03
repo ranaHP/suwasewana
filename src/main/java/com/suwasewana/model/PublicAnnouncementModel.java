@@ -5,16 +5,19 @@ public class PublicAnnouncementModel {
     String title;
     String description;
     String banner;
+    String expire_date;
     public PublicAnnouncementModel(
         String announcement_id,
         String title,
         String description,
-        String banner
+        String banner,
+        String expire_date
     ){
         this.announcement_id=announcement_id;
         this.title=title;
         this.description=description;
         this.banner=banner;
+        this.expire_date=expire_date;
     }
 
     public String getAnnouncement_id() {
@@ -49,4 +52,11 @@ public class PublicAnnouncementModel {
         this.banner = banner;
     }
 
+    public String getExpire_date() {
+        return expire_date;
+    }
+
+    public void setExpire_date(String expire_date) {
+        this.expire_date = expire_date;
+    }
 }

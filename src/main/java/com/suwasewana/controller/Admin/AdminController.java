@@ -135,7 +135,8 @@ public class AdminController extends HttpServlet {
                     "",
                  req.getParameter("title"),
                  req.getParameter("description")  ,
-                 req.getParameter("image")
+                 req.getParameter("image"),
+                    req.getParameter("expire_date")
             );
         int result = publicAnnouncementsDAO.PublicAnnouncement(publicAnnouncement);
         res.getWriter().println(result);
