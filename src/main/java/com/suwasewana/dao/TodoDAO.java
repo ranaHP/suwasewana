@@ -24,7 +24,7 @@ public class TodoDAO {
     private static final String TakeTasklist="SELECT * FROM suwasewana_db.task_list tl LEFT JOIN suwasewana_db.task_assign TAL ON tl.task_id = TAL.Asgtask_id LEFT JOIN suwasewana_db.phi p ON p.nic = tl.phi_id WHERE tl.phi_id=? ;";
     private static final String DeleteTask="DELETE FROM `suwasewana_db`.`task_list` WHERE (`task_id` = ?);";
     private static final String CompleteTask="UPDATE `suwasewana_db`.`task_list` SET `status` = 'complete' WHERE (`task_id` = ?);";
-    private static final String ProgressTask="UPDATE `suwasewana_db`.`task_list` SET `status` = 'inprogess' WHERE (`task_id` = ?);";
+    private static final String ProgressTask="UPDATE `suwasewana_db`.`task_list` SET `status` = 'inprogress' WHERE (`task_id` = ?);";
     private static final String PendingTask="UPDATE `suwasewana_db`.`task_list` SET `status` = 'pending' WHERE (`task_id` = ?);";
     private static final String Select_Task_of_phi="SELECT * FROM suwasewana_db.task_list WHERE phi_id=?;";
     private static final String ValidateOverdue="UPDATE `suwasewana_db`.`task_list` SET `status` = 'overdue' WHERE (`task_id` = ?);";
