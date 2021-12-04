@@ -75,14 +75,6 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     VaccineClinicsSelect(req, res);
                     break;
-                case "all-V-Clinics":
-//                    res.getWriter().println("select-V-Clinics");
-                    AllVaccineClinics(req, res);
-                    break;
-                case "all-Clinics":
-//                    res.getWriter().println("select-V-Clinics");
-                    AllClinics(req, res);
-                    break;
                 case "viewdisease":
 //                    res.getWriter().println("select-V-Clinics");
                     viewdisease(req, res);
@@ -117,20 +109,6 @@ import java.util.ArrayList;
         System.out.println("updateeeeeeeeeee");
         String result= createClinicDAO.updatevClinic(Updatevclinic);
         res.getWriter().println(result);
-        }
-
-
-    private void AllClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
-            ArrayList<CreateClinicModel> result = createClinicDAO.allClinics();
-        res.getWriter().println(gson.toJson(result));
-    }
-
-    private void AllVaccineClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
-        System.out.println("Come to view moh controller");
-        ArrayList<vaccineClinicModel> result1 = createClinicDAO.allvClinics();
-        res.getWriter().println(gson.toJson(result1));
         }
 
     private void VaccineClinicsdelete(HttpServletRequest req, HttpServletResponse res) throws IOException {

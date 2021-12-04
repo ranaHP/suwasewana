@@ -104,8 +104,36 @@
     </div>
 </div>
 <script defer>
-    let calender = new Calender("calender");
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let calender = new Calender("calender");
+
+    calender.setEventData([
+        {
+            year: 2021,
+            month: 12,
+            date: 1,
+            events: [
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                }
+            ]
+        }
+        ])
+
     // calender.reangeSelect(2021, 9, 10, 6, 8);
 
 
@@ -138,6 +166,12 @@
                 clinicList2.setData(clinicListArray);
                 console.log(clinicListArray.length)
                 document.getElementById("nc-count").innerHTML=clinicListArray.length;
+                clinicListArray.map(item=>{
+                    let cday = new Date(item.datetime.split(" ")[0])
+                    let cmonth= cday.getMonth()+1;
+                    console.log(cmonth)
+                })
+
             }
         );
     }
