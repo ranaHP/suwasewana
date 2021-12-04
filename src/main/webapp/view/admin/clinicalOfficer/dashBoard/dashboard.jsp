@@ -106,41 +106,46 @@
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let calender = new Calender("calender");
-
-    calender.setEventData([
-        {
-            year: 2021,
-            month: 12,
-            date: 1,
-            events: [
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                }
-            ]
-        }
-        ])
-
     // calender.reangeSelect(2021, 9, 10, 6, 8);
-
-
-
     view();
     viewV()
     viewd()
+    choose()
+    let eventA=[]
+    let event=[]
+
+    function choose(){
+        let clinicListArray=[]
+        $.post("/test_war_exploded/create-clinic-controller/viewcount",
+            // reqData,
+            function(data,status){
+                clinicListArray=JSON.parse(data)
+                clinicListArray.map(item=>{
+                    let date=item.datetime
+                    let cday = new Date(item.datetime.split(" ")[0])
+                    let cmonth= cday.getMonth()+1;
+                    let cyear=cday.getFullYear()
+                    let cdata=cday.getDate()
+                    let reqData={
+                          datetime:date
+                    };
+                    $.post("/test_war_exploded/create-clinic-controller/clinicsEvents",
+                         reqData,
+                        function (data,status){
+                            let EventArray =JSON.parse(data)
+                            event.push(EventArray)
+                            let object2 = { year: cyear, month: cmonth, date: cdata ,events: event[0]};
+                            eventA.push(object2)
+                            event=[]
+                            calender.setEventData(eventA)
+                        });
+                })
+            }
+        );
+    }
+
+
+
     let today = new Date();
     let clinicList4 = new clinicListd("diseases");
     function viewd(){
@@ -169,7 +174,12 @@
                 clinicListArray.map(item=>{
                     let cday = new Date(item.datetime.split(" ")[0])
                     let cmonth= cday.getMonth()+1;
+                    let cyear=cday.getFullYear()
+                    let cdata=cday.getDate()
+                    let time=cday.getHours()+" "+cday.getMinutes()
+                    console.log(cyear)
                     console.log(cmonth)
+                    console.log(time)
                 })
 
             }

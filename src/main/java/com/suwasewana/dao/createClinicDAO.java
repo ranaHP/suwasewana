@@ -1,21 +1,14 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
-import com.suwasewana.model.CreateClinicModel;
-import com.suwasewana.model.MOHModel;
-import com.suwasewana.model.vaccineClinicModel;
+import com.suwasewana.model.*;
 
-import java.lang.annotation.Target;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class createClinicDAO {
   private  static final String CREATE_CLINIC ="INSERT INTO `normal_clinic_session`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?);";
@@ -24,13 +17,14 @@ public class createClinicDAO {
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `start_date_time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String disease_clinic_count="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease ";
+  private static final String SELECT_events="SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`start_date_time` = ?";
 
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`clinical_officer` = ?";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `start_date_time` = ? , `duration` = ? , `description` = ? , `max_patient` = ? ,`target_people` = ? , `target_age_limit` = ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
-
+  private static final String ClinicCount="SELECT COUNT(ncs_id), start_date_time FROM `normal_clinic_session` GROUP BY `start_date_time`;";
   Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -404,6 +398,134 @@ public class createClinicDAO {
 //                System.out.println(title+"--"+disease+"--"+Location);
             };
             return viewdList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public ArrayList<ClinicCalenderEventModel> chooseClinic(String date) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ClinicCount)){
+            System.out.println("came to dao");
+            preparedStatement.setString(1,date);
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<ClinicCalenderEventModel> viewList = new ArrayList<ClinicCalenderEventModel>();
+            while (rs.next()){
+                String title = rs.getString("title");
+                String Location = rs.getString("location");
+                CreateClinicModel temp = new CreateClinicModel(
+                        "",
+                        title,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        Location,
+                        ""
+
+                );
+                String vtitle= rs.getString("tittle");
+                String vlocation= rs.getString("location");
+                vaccineClinicModel temp1 = new vaccineClinicModel(
+                        "",
+                        vtitle,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                         "",
+                        "",
+                        "",
+                        "",
+                        vlocation,
+                        ""
+                );
+//                }
+                ClinicCalenderEventModel tempc=new ClinicCalenderEventModel(temp,temp1,date);
+                viewList.add(tempc);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return viewList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public ArrayList<CreateClinicModel> ViewCount(CreateClinicModel viewC) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ClinicCount)){
+            System.out.println("came to dao");
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> viewList = new ArrayList<>();
+            while (rs.next()){
+                String count = rs.getString("COUNT(ncs_id)");
+                String date_time = rs.getString("start_date_time");
+                CreateClinicModel temp = new CreateClinicModel(
+                        count,
+                        "",
+                        date_time,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+//                }
+                viewList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return viewList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public ArrayList<CreateClinicModel> Viewevents(CreateClinicModel cEvents) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_events)){
+            System.out.println("jjj");
+            preparedStatement.setString(1, cEvents.getDatetime());
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> EventList = new ArrayList<CreateClinicModel>();
+            while (rs.next()){
+                String title = rs.getString("title");
+                String Location = rs.getString("Location");
+                CreateClinicModel temp = new CreateClinicModel(
+                       "",
+                        title,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        Location,
+                        ""
+
+
+                );
+                EventList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return EventList;
         } catch (SQLException throwables) {
             printSQLException(throwables);
 //            return throwables.getMessage();
