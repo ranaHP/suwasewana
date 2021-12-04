@@ -23,7 +23,6 @@ public class createClinicDAO {
   private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `start_date_time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
-  private static final String Clinic_Details="SELECT * FROM `normal_clinic_session`";
   private static final String disease_clinic_count="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease ";
 
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -31,7 +30,7 @@ public class createClinicDAO {
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `start_date_time` = ? , `duration` = ? , `description` = ? , `max_patient` = ? ,`target_people` = ? , `target_age_limit` = ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
-  private static final String VClinic_Detail="SELECT * FROM `vaccine_clinic_session`";
+
   Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -345,83 +344,6 @@ public class createClinicDAO {
         }
     }
 
-    public ArrayList<vaccineClinicModel> allvClinics() {
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(VClinic_Detail)) {
-
-            ResultSet rs = preparedStatement.executeQuery();
-            ArrayList<vaccineClinicModel> allvClinics = new ArrayList<vaccineClinicModel>();
-            while (rs.next()) {
-
-                String vcs_id = rs.getString("vcs_id");
-                String title = rs.getString("tittle");
-                String dateTime= rs.getString("start_date_time");
-
-                vaccineClinicModel temp = new vaccineClinicModel(
-                        vcs_id,
-                        title,
-                        dateTime,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
-
-                );
-//
-                allvClinics.add(temp);
-            }
-            return allvClinics;
-
-        } catch (SQLException throwables) {
-            printSQLException(throwables);
-        }
-
-        return null;
-    }
-
-    public ArrayList<CreateClinicModel> allClinics() {
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(Clinic_Details)) {
-            ResultSet rs = preparedStatement.executeQuery();
-            ArrayList<CreateClinicModel> allClinics = new ArrayList<CreateClinicModel>();
-            while (rs.next()) {
-
-                String clinicID = rs.getString("ncs_id");
-                String title = rs.getString("title");
-                String datetime=rs.getString("start_date_time");
-
-                CreateClinicModel temp = new CreateClinicModel(
-                        clinicID,
-                        title,
-                        datetime,
-                       "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
-
-                );
-//
-                allClinics.add(temp);
-            }
-            return allClinics;
-
-        } catch (SQLException throwables) {
-            printSQLException(throwables);
-        }
-
-        return null;
-    }
 
     public String updatevClinic(vaccineClinicModel Updatevclinic) {
         boolean rowUpdate;
@@ -488,45 +410,6 @@ public class createClinicDAO {
         }
         return null;
     }
-//
-//    public ArrayList<vaccineClinicModel> selectVClinics(vaccineClinicModel vaccineClinicselet) {
-//        try (PreparedStatement preparedStatement = connection.prepareStatement(VClinic_Detail)) {
-//
-//            ResultSet rs = preparedStatement.executeQuery();
-//            ArrayList<vaccineClinicModel> allvClinics = new ArrayList<vaccineClinicModel>();
-//            while (rs.next()) {
-//
-//                String vcs_id = rs.getString("vcs_id");
-//                String title = rs.getString("tittle");
-//                String dateTime= rs.getString("start_date_time");
-//
-//                vaccineClinicModel temp = new vaccineClinicModel(
-//                        vcs_id,
-//                        title,
-//                        dateTime,
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        ""
-//
-//                );
-////
-//                allvClinics.add(temp);
-//            }
-//            return allvClinics;
-//
-//        } catch (SQLException throwables) {
-//            printSQLException(throwables);
-//        }
-//
-//        return null;
-//    }
 }
 
 

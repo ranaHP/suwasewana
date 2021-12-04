@@ -11,7 +11,8 @@ h4{
 body{
     /*margin-left: 4vw;*/
     /*margin-top: 8vh;*/
-    background-color: #f6f4f4;
+    /*background-color: #f6f4f4;*/
+    background-color: #Fff;
     max-width: calc(100vw - 78px);
     margin-left: 78px;
 
@@ -40,6 +41,7 @@ body{
 .c-db-container{
     display: flex;
     min-height: 100vh;
+    /*background-color: red;*/
     padding: 40px;
     transition: 0.2s ease;
     /*padding: 50px;*/

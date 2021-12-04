@@ -315,7 +315,7 @@ function view(){
 <script>
 function check(){
   let mohDetails=[];
-  $.post("/test_war_exploded/create-clinic-controller/all-Clinics",
+  $.post("/test_war_exploded/create-clinic-controller/view",
           function (data, status) {
             console.log(data);
             let rs= JSON.parse(data);

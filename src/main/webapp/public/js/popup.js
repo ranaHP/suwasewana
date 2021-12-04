@@ -83,7 +83,7 @@ class SuwasewanaPopup{
 
     showPatientDetails(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = "<br><h4> Patient Details </h4>";
         eventDiv.innerHTML += "<h5> Name -  " + data.name + " </h5>";
@@ -98,7 +98,7 @@ class SuwasewanaPopup{
 
     showRegistrationSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if (data.status === "success") {
             eventDiv.innerHTML = `
@@ -130,7 +130,7 @@ class SuwasewanaPopup{
     // PHI succesfully change status
     ChangeComplainStatusSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -171,7 +171,7 @@ class SuwasewanaPopup{
 
     showAppointmentSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
 
         if(data.status === "success"){
@@ -214,7 +214,7 @@ class SuwasewanaPopup{
 
     Register(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -255,7 +255,7 @@ class SuwasewanaPopup{
 
     RegisterMOH(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -369,7 +369,7 @@ class SuwasewanaPopup{
     }
 
     testMy(){
-        console.log(document.getElementById("delete_input").checked)
+        // console.log(document.getElementById("delete_input").checked)
         if(document.getElementById("delete_input").checked){
             document.getElementById("myBtn").disabled = false;
             document.getElementById("myBtn").style.backgroundColor = "#c11711";
@@ -381,7 +381,7 @@ class SuwasewanaPopup{
     }
 
     approveTime(data) {
-        console.log(data);
+        // console.log(data);
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
@@ -474,7 +474,7 @@ class SuwasewanaPopup{
 
     showVaccineClinicEditMessage(data) {
         data=JSON.parse(data)
-        console.log(data)
+        // console.log(data)
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
@@ -546,7 +546,7 @@ class SuwasewanaPopup{
 
     showClinicEditMessage(data) {
         data=JSON.parse(data)
-        console.log(data)
+        // console.log(data)
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
@@ -645,7 +645,7 @@ class SuwasewanaPopup{
     // }
     showClinicDeleteSuccessMessage(data){
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -705,7 +705,7 @@ class SuwasewanaPopup{
     }
     showCreateClinicSuccessMessage(data){
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -981,5 +981,107 @@ class SuwasewanaPopup{
             document.getElementById("myBtn").style.backgroundColor = "#c1c1c1";
         }
 
+    }
+    dashboardComplain(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        if(data.user === "empty"){
+            eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+           
+            
+            <div class="popup-message-container"> 
+                <h3 style="margin-top:-5px;margin-bottom: 20px;">${data.title}</h3>
+                <p style=" color: rgba(0, 0, 0, 0.473);">complain type : ${data.ctype}</p>
+                <span style=" color: rgba(0, 0, 0, 0.473)">Posted date : ${data.pdate} </span>
+            </div>
+            
+            <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px;">
+                ${data.message}
+                </span>
+                </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        else {
+            eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+           
+            
+            <div class="popup-message-container"> 
+                <h3 style="margin-top:-5px; margin-bottom: 20px;">${data.title}</h3>
+                <p style=" color: rgba(0, 0, 0, 0.473);">complain type : ${data.ctype}</p>
+                <span style=" color: rgba(0, 0, 0, 0.473)">Posted date : ${data.pdate} </span>
+            </div>
+            
+            <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px;">
+                ${data.message}
+                </span>
+                </div>
+
+                <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px; text-align:right; color: rgba(0, 0, 0, 0.473) ;width:100%">
+                Complainer: ${data.uname} <br>
+                Mobile: ${data.mobile}
+                </span>
+                </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    dashboardAppoinmnet(data) {
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+
+        eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+           
+            
+            <div class="popup-message-container"> 
+                <h3 style="margin-top:-5px">${data.title}</h3>
+                <span style=" color: rgba(0, 0, 0, 0.473); margin-top:-10px">Posted date : ${data.pdate} </span>
+            </div>
+            
+            <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px;">
+                ${data.message}
+                </span>
+                </div>
+
+                <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px; text-align:right; color: rgba(0, 0, 0, 0.473) ;width:100%">
+                Complainer: <br>
+                Mobile: 0713805000
+                </span>
+                </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
     }
 }
