@@ -176,7 +176,7 @@
 
 
         let Details=[];
-        $.post("/test_war_exploded/create-clinic-controller/all-Clinics",
+        $.post("/test_war_exploded/create-clinic-controller/view",
         function (data, status) {
         let rs= JSON.parse(data);
         this.Details=rs;
