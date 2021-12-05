@@ -50,6 +50,8 @@ public class UserDAO {
     private static final  String CheckVaccineRegistration = "SELECT * FROM suwasewana_db.user_vaccine where nic=? and clinic_id=?; ";
     private static final  String UpdateVAccineClinicData="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ?, `next_Available_time_slote` = ? WHERE (`vcs_id` = ?);\n";
     private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`) VALUES (?, ?, ?, ?); COMMIT;";
+    private static final  String selectRegisterdVaccineClinic="SELECT * FROM suwasewana_db.user_vaccine uv left join suwasewana_db.vaccine v on uv.vaccine_id=v.v_id left join suwasewana_db.vaccine_clinic_session vc on vc.vcs_id=uv.clinic_id where nic=?;";
+    private static final  String CancleClinic="DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ;";
 
     Connection connection;
 
@@ -106,6 +108,19 @@ public class UserDAO {
         }
         return "";
     }
+//cancle registerd clinics
+public String CancleRegisterdVaccineClinic(String Regno) {
+    try (PreparedStatement preparedStatement = connection.prepareStatement(CancleClinic)) {
+        preparedStatement.setString(1, Regno );
+        int  rs = preparedStatement.executeUpdate();
+
+        return  "success";
+    }  catch (SQLException throwables) {
+        printSQLException(throwables);
+    }
+    return "";
+
+}
 
     //Register for vaccine clinic - user
 
@@ -123,9 +138,7 @@ public class UserDAO {
             preparedStatement.setString(1, avalabel_seats );
             preparedStatement.setString(2, new_next_sloat );
             preparedStatement.setString(3, vaccine_clinic_id );
-
-//            System.out.println("SQL "+preparedStatement);
-//            int  rs = preparedStatement.executeUpdate();
+            int rs = preparedStatement.executeUpdate();
             updateUserVaccineDetails(nic,vaccine_id,date,Set_sloat,vaccine_clinic_id);
 
             return  "success";
@@ -137,9 +150,8 @@ public class UserDAO {
     }
 //update vaccine details of user
 public String updateUserVaccineDetails(String nic,String vaccine_id,String date,String Set_sloat,String vaccine_clinic_id) throws ParseException {
-//    System.out.println("data come to updateUserVaccineDetails date "+date);
-    String dateFoVaccination=date+" "+Set_sloat;
 
+    String dateFoVaccination=date+" "+Set_sloat;
 
     try (PreparedStatement preparedStatement = connection.prepareStatement(Insert_Vaccine_User_Registreation)) {
         preparedStatement.setString(1, nic);
@@ -157,6 +169,50 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
 
 
 }
+
+    public ArrayList<VaccineClinicAnnouncementsModelForUser> GetRegisterdVaccineClinicDetail(String nic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectRegisterdVaccineClinic)) {
+
+            preparedStatement.setString(1, nic);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<VaccineClinicAnnouncementsModelForUser> VaccineClinictList = new ArrayList<VaccineClinicAnnouncementsModelForUser>();
+            while (rs.next()) {
+
+                String regno=rs.getString("reg_No");
+
+                String vaccine_name=rs.getString("name");
+                String allocate_date_time=rs.getString("allocate_date_time");
+                String max_sheet=rs.getString("max_patient");
+                String location=rs.getString("location");
+
+
+                VaccineClinicAnnouncementsModelForUser temp = new VaccineClinicAnnouncementsModelForUser(
+                        regno,
+                        "",
+                        vaccine_name,
+                        max_sheet,
+                        location,
+                        allocate_date_time,
+                        allocate_date_time,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+                VaccineClinictList.add(temp);
+            }
+            return VaccineClinictList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
 //    get vaccine clinic details for user to view available vaccine clinic
     public ArrayList<VaccineClinicAnnouncementsModelForUser> GetVaccineClinicDetail(String mohid,String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_Vaccine_clinic_Details)) {

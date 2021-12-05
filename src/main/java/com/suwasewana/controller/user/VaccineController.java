@@ -45,6 +45,12 @@ public class VaccineController extends HttpServlet {
                 case "updateVaccineNextSloat_Maxseet":
                     updateVaccineNextSloat_Maxseet(req, res);
                     break;
+                case "GetRegisterdVaccineClinicDetail":
+                    GetRegisterdVaccineClinicDetail(req, res);
+                    break;
+                case "CancleVaccineClinic":
+                    CancleVaccineClinic(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -54,6 +60,20 @@ public class VaccineController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+    private void CancleVaccineClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String regNo=req.getParameter("regNo");
+
+        String result = userDAO.CancleRegisterdVaccineClinic(regNo);
+        res.getWriter().println(result);
+    }
+
+    private void GetRegisterdVaccineClinicDetail(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String nic="199910910064";
+        ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetRegisterdVaccineClinicDetail(nic);
+        res.getWriter().println(gson.toJson(result));
     }
     private void ViewVaccineclinicForUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String mohid="1002";

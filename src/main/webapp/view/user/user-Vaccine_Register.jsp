@@ -177,7 +177,7 @@
                   <caption>Registered Vaccine Clinics</caption>
                   <thead>
                   <tr>
-                      <th scope="col">Registration number</th>
+
                       <th scope="col">Vaccine</th>
                       <th scope="col">Date</th>
                       <th scope="col">Time</th>
@@ -186,9 +186,9 @@
                       <th scope="col"></th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="registeredClinicList">
                   <tr>
-                      <td data-label="Registration number">19000383</td>
+
                       <td data-label="Vaccine">Sinopharm</td>
                       <td data-label="Date">04/01/2016</td>
                       <td data-label="Time">6.34am</td>
@@ -418,18 +418,10 @@
 
     function RegisterForclinic(vaccine_clinic_id,vaccine_id,year,month,day,max_sheet,Next_sloat){
 
-        // console.log("vaccine_clinic_id = "+vaccine_clinic_id);
-        // console.log("vaccine_id = "+vaccine_id);
-        let date=year+"-"+month+"-"+day
-        console.log("##################Date = "+date);
-        // console.log("Next_sloat = "+Next_sloat.toFixed( 2 ));
-        // // console.log("avalble slot  = "+Next_sloat.replace("_",":"));
-        // console.log("max_sheet = "+max_sheet);
-        let sloat=(Next_sloat.toFixed( 2 )).toString().replace(".",":")
-        // console.log("sloat = "+sloat);
+        let date=year+"-"+month+"-"+day;
+        let sloat=(Next_sloat.toFixed( 2 )).toString().replace(".",":");
 
         let new_next_sloat=addTimes(sloat, '00:05:00');
-        // console.log("new_next_sloat = "+new_next_sloat);
 
         let avalabel_seats=--max_sheet;
         let reqData =
@@ -443,7 +435,6 @@
 
             };
 
-        // console.log("reqDatadate "+reqData.Date)
 
 
 
@@ -461,6 +452,7 @@
                         Set_sloat:sloat
                     });
                     LoadVaccineclinic();
+                    ViewRegisterdClinics();
                 } else {
                     console.log("unsuccesssss brooo")
                     popup.showUserVaccineRegisterSuccessMessage({
@@ -497,7 +489,7 @@
                 // console.log("avlable_time_slot "+ avlable_time_slot);
 
 
-                    if(age<= parseInt(element.Upper_Age) && age> parseInt(element.Lower_Age) && (element.Status!="alreadyHave")){
+                    if(age<= parseInt(element.Upper_Age) && age> parseInt(element.Lower_Age) && (element.Status!="alreadyHave") &&(element.max_sheet>0)){
                         available_clinic_list.innerHTML+= `
                        <tr>
                           <td data-label="Vaccine">`+element.vaccine_name+`</td>
@@ -533,6 +525,61 @@
     );
   }
 
+  function CancleClinic(regno){
+      console.log("reg no "+regno);
+      let reqData={
+          regNo:regno
+      }
+      $.post(myUrl+"/Vaccine-controller/CancleVaccineClinic",
+          reqData,
+          function (data, status) {
+
+              if (data.includes("success")) {
+                  console.log("successsss brooo")
+                  popup.CancleClinicSuccessMessage({
+                      status: 'success',
+                      message: 'Successfully Cancled!',
+
+                  });
+                  LoadVaccineclinic();
+                  ViewRegisterdClinics();
+              } else {
+                  console.log("unsuccesssss brooo")
+                  popup.CancleClinicSuccessMessage({
+                      status: 'fail',
+                      message: 'Please try again',
+
+                  });
+              }
+          }
+      );
+  }
+
+  ViewRegisterdClinics();
+  function ViewRegisterdClinics(){
+      $.post(myUrl+"/Vaccine-controller/GetRegisterdVaccineClinicDetail/",
+          function (data, status) {
+              rs= JSON.parse(data);
+              let registered_clinic_list=document.getElementById("registeredClinicList");
+              registered_clinic_list.innerHTML='';
+              rs.map((element) => {
+                  let date=((element.date).split(" ")[0]) ;
+                  let time=((element.date).split(" ")[1]).split(":")[0]+"."+((element.date).split(" ")[1]).split(":")[1];
+
+                     registered_clinic_list.innerHTML+= `
+                       <tr>
+                          <td data-label="Vaccine">`+element.vaccine_name+`</td>
+                          <td data-label="Date">`+date+`</td>
+                          <td data-label="Time">`+time+`</td>
+                          <td data-label="Available seats">`+element.max_sheet+`</td>
+                          <td data-label="Location">`+element.location+`</td>
+                          <td data-label=""> <button class="btn-register cancle" onclick="CancleClinic(`+element.vaccine_clinic_id+`)"> Cancle</button> </td>
+                        </tr>`
+
+              })
+          }
+      );
+  }
 
 </script>
 </body>
