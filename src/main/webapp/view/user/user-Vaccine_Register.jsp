@@ -12,7 +12,8 @@
   <title>Vaccine view</title>
 
   <!-- for style sheet link  -->
-  <link href="<c:url value="/public/css/user/_dashboard-vaccine-type.css "/>" rel="stylesheet" />
+    <link href="<c:url value="/public/css/user/_dashboard-vaccine-type.css "/>" rel="stylesheet" />
+  <link href="<c:url value="/public/css/user/register_for_vaccine.css "/>" rel="stylesheet" />
   <!-- for commen style  sheet link  -->
   <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/>"/>
 
@@ -161,71 +162,93 @@
         </div>
       </div>
       <div class="right-dashboard">
-        <div class="dashboard-page-title">
-          Vaccines Approved for Use in Sri Lanka
-          <div class="dashboard-sub-title">
-            SUWASEWANA/vaccines
+
+          <div style="margin-right: 78px; margin-top: 100px">
+
+              <table>
+                  <caption>Available Vaccine Clinics</caption>
+                  <thead>
+                  <tr>
+                      <th scope="col">Registration number</th>
+                      <th scope="col">Vaccine</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+                      <th scope="col">Available seats</th>
+                      <th scope="col">Location</th>
+                      <th scope="col"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td data-label="Registration number">19000383</td>
+                      <td data-label="Vaccine">Sinopharm</td>
+                      <td data-label="Date">04/01/2016</td>
+                      <td data-label="Time">6.34am</td>
+                      <td data-label="Available seats">100</td>
+                      <td data-label="Location">Galgamuwa</td>
+                      <td data-label=""> <button class="btn-register cancle"> Cancle</button> </td>
+                  </tr>
+
+
+
+                  </tbody>
+              </table>
+
+              <hr class="hr-1">
+
+              <table>
+                  <caption>Registered Vaccine Clinics</caption>
+                  <thead>
+                  <tr>
+                      <th scope="col">Vaccine</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+                      <th scope="col">Available seats</th>
+                      <th scope="col">Age limit</th>
+                      <th scope="col">Location</th>
+                      <th scope="col">Dosage</th>
+                      <th scope="col"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                      <td data-label="Vaccine">Sinopharm</td>
+                      <td data-label="Date">04/01/2016</td>
+                      <td data-label="Time">6.34am</td>
+                      <td data-label="Available seats">100</td>
+                      <td data-label="Age limit">20-30</td>
+                      <td data-label="Location">Galgamuwa</td>
+                      <td data-label="Dosage">all</td>
+                      <td data-label=""> <button class="btn-register"> Register</button> </td>
+                  </tr>
+
+                  <tr>
+                      <td data-label="Vaccine">Sinopharm</td>
+                      <td data-label="Date">04/01/2016</td>
+                      <td data-label="Time">6.34am</td>
+                      <td data-label="Available seats">100</td>
+                      <td data-label="Age limit">20-30</td>
+                      <td data-label="Location">Galgamuwa</td>
+                      <td data-label="Dosage">all</td>
+                      <td data-label=""> <button class="btn-register"> Register</button> </td>
+                  </tr>
+                  <tr>
+                      <td data-label="Vaccine">Sinopharm</td>
+                      <td data-label="Date">04/01/2016</td>
+                      <td data-label="Time">6.34am</td>
+                      <td data-label="Available seats">100</td>
+                      <td data-label="Age limit">20-30</td>
+                      <td data-label="Location">Galgamuwa</td>
+                      <td data-label="Dosage">all</td>
+                      <td data-label=""> <button class="btn-register"> Register</button> </td>
+                  </tr>
+
+                  </tbody>
+              </table>
+
+
+
           </div>
-        </div>
-
-        <div class="dashboard-container">
-
-          <div class="vaccination_container" id="Vaccin_container">
-
-            <div class="vaccine_card">
-              <div class="title">
-                <span>Pfizer-BioNTech </span>
-              </div>
-              <div class="vaccin_image">
-                <img src="<c:url value="/public/images/vaccine/pfizer.png"/>" alt="" >
-              </div>
-              <div class="vaccin_detail_row">
-                <div class="vaccination_detail_icon">
-                  <img src="<c:url value="/public/images/icons/vaccination/map-pin.svg "/>" alt="" srcset="">
-                </div>
-                <div class="vaccine_row_details">
-                  <span> country  :  </span>
-                  <span class="V_row_detail">United States</span>
-                </div>
-              </div>
-
-              <div class="vaccin_detail_row">
-                <div class="vaccination_detail_icon">
-                  <img src="<c:url value="/public/images/icons/vaccination/thumbs-up.svg "/>" alt="" srcset="">
-                </div>
-                <div class="vaccine_row_details">
-                  <span> Recommended for :    </span>
-                  <span class="V_row_detail">Anyone 12 or older </span>
-                </div>
-              </div>
-              <div class="vaccin_detail_row">
-                <div class="vaccination_detail_icon">
-                  <img src="<c:url value="/public/images/icons/vaccination/streamline-icon-health-medical-syringe@55x55.svg "/>" alt="" srcset="">
-                </div>
-                <div class="vaccine_row_details">
-                  <span> Dosage :    </span>
-                  <span class="V_row_detail">Two shots, 21 days apart</span>
-                </div>
-              </div>
-              <div class="vaccin_detail_row" style="margin-bottom: 0px;">
-                <div class="vaccination_detail_icon">
-                  <img src="<c:url value="/public/images/icons/vaccination/calendar%20(1).svg "/>" alt="" srcset="">
-                </div>
-                <div class="vaccine_row_details" >
-                  <span> Date :    </span>
-                  <span class="V_row_detail"> Augast 2021</span>
-                </div>
-              </div>
-              <div class="V_card_btnrow">
-                <button class="V_card_btn">View more</button>
-              </div>
-
-            </div>
-
-
-          </div>
-        </div>
-
 
       </div>
     </div>
@@ -292,7 +315,7 @@
 </script>
 <script defer>
   let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-  LoadVaccine();
+ // LoadVaccine();
   let rs;
   console.log("url - "+ myUrl+"/admin-register-controller/All_vaccine_details/");
   function LoadVaccine(){

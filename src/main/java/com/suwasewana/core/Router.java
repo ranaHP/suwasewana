@@ -216,6 +216,10 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/user/user-Vaccine_detail_view.jsp");
                     rd.forward(request,response);
                     break;
+                case "Register-for-vaccine":
+                    rd = request.getRequestDispatcher("/view/user/user-Vaccine_Register.jsp");
+                    rd.forward(request,response);
+                    break;
 
                 default:
                     response.getWriter().println("404 Page not Found");

@@ -1,0 +1,180 @@
+/*Button Two*/
+.btn-register {
+    border: none;
+    border: 1px solid #2ecc7081;
+    background-color: #fff;
+    border-radius: 3px;
+    color: #2ecc71;
+    font-weight: 500;
+    padding: 2px 6px;
+
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+
+    /* width: 130px;
+    height: 40px; */
+    /* color: #fff; */
+    border-radius: 5px;
+    padding: 2px 5px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+
+    outline: none;
+
+}
+.cancle{
+    border: 1px solid rgba(255, 0, 0, 0.76);
+    color: rgba(255, 0, 0, 0.596);
+    padding: 3px 12px;
+}
+.btn-register:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    direction: rtl;
+    z-index: -1;
+    box-shadow:
+            -7px -7px 20px 0px #fff9,
+            -4px -4px 5px 0px #fff9,
+            7px 7px 20px 0px #0002,
+            4px 4px 5px 0px #0001;
+    transition: all 0.3s ease;
+}
+.btn-register:hover {
+    color: #1e8348;
+    box-shadow:inset 2px 2px 2px 0px rgba(255, 255, 255, 0.74),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.034),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+}
+.cancle:hover {
+    color: rgba(146, 17, 17, 0.596);
+}
+.btn-register:hover:after {
+    left: auto;
+    right: 0;
+    width: 100%;
+}
+.btn-register:active {
+    top: 2px;
+}
+
+
+
+table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    color: black;
+    font-family: 'Nunito', sans-serif;
+}
+
+table caption {
+    font-size: 1.15em;
+    margin: .5em 0 .75em;
+}
+
+table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+}
+
+table th,
+table td {
+    padding: .625em;
+    text-align: center;
+}
+
+table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 800px) {
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* general styling */
+
+
+hr {
+    background-color: #fff;
+    padding: 0;
+    margin: 80px auto;
+    width: 80%;
+}
+
+hr.hr-1 {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
