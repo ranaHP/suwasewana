@@ -64,12 +64,13 @@ public class VaccineController extends HttpServlet {
     private void updateVaccineNextSloat_Maxseet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String new_next_sloat=req.getParameter("new_next_sloat");
+        String Set_sloat=req.getParameter("Set_sloat");
         String avalabel_seats=req.getParameter("avalabel_seats");
         String vaccine_clinic_id=req.getParameter("vaccine_clinic_id");
-        String date=req.getParameter("date");
+        String date=req.getParameter("Date");
         String vaccine_id=req.getParameter("vaccine_id");
         String nic="199910910064";
-        String result = userDAO.UserRegisterForVaccineClinic(new_next_sloat,
+        String result = userDAO.UserRegisterForVaccineClinic(new_next_sloat,Set_sloat,
                 avalabel_seats,
                 vaccine_clinic_id,
                 date,

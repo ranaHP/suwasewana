@@ -27,9 +27,17 @@
   <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
 </head>
 <body>
 <!-- main container -->
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container"
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
   <!-- hero banner -->
@@ -278,6 +286,7 @@
 </script>
 <script defer>
   let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+  let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 
   let rs;
   console.log("url - "+ myUrl+"/admin-register-controller/All_vaccine_details/");
@@ -407,61 +416,61 @@
       return timeFromMins(timeToMins(time0) + timeToMins(time1));
   };
 
-    function RegisterForclinic(vaccine_clinic_id,vaccine_id,Date,max_sheet,Next_sloat){
+    function RegisterForclinic(vaccine_clinic_id,vaccine_id,year,month,day,max_sheet,Next_sloat){
 
-        console.log("vaccine_clinic_id = "+vaccine_clinic_id);
-        console.log("vaccine_id = "+vaccine_id);
-        console.log("Date = "+Date);
-        console.log("Next_sloat = "+Next_sloat.toFixed( 2 ));
-        // console.log("avalble slot  = "+Next_sloat.replace("_",":"));
-        console.log("max_sheet = "+max_sheet);
-        let sloat=toString(Next_sloat.toFixed( 2 )).replace(".",":")
-        console.log("sloat = "+sloat);
+        // console.log("vaccine_clinic_id = "+vaccine_clinic_id);
+        // console.log("vaccine_id = "+vaccine_id);
+        let date=year+"-"+month+"-"+day
+        console.log("##################Date = "+date);
+        // console.log("Next_sloat = "+Next_sloat.toFixed( 2 ));
+        // // console.log("avalble slot  = "+Next_sloat.replace("_",":"));
+        // console.log("max_sheet = "+max_sheet);
+        let sloat=(Next_sloat.toFixed( 2 )).toString().replace(".",":")
+        // console.log("sloat = "+sloat);
 
-        // let new_next_sloat=addTimes(Next_sloat.replace("_",":"), '00:05:00');
+        let new_next_sloat=addTimes(sloat, '00:05:00');
         // console.log("new_next_sloat = "+new_next_sloat);
-        // let new_next_sloat="temp time sloat";
-        //
-        // let avalabel_seats=max_sheet;
-        // let reqData =
-        //     {
-        //         new_next_sloat:new_next_sloat,
-        //         avalabel_seats:avalabel_seats,
-        //         vaccine_clinic_id:vaccine_clinic_id,
-        //         date:date,
-        //         vaccine_id:vaccine_id
-        //
-        //     };
-        // console.log("new_next_sloat "+new_next_sloat)
-        // console.log("avalabel_seats "+avalabel_seats)
-        // console.log("vaccine_clinic_id "+vaccine_clinic_id)
-        // console.log("date "+date)
-        // console.log("vaccine_id "+vaccine_id)
+
+        let avalabel_seats=--max_sheet;
+        let reqData =
+            {
+                Set_sloat:sloat,
+                new_next_sloat:new_next_sloat,
+                avalabel_seats:avalabel_seats,
+                vaccine_clinic_id:vaccine_clinic_id,
+                Date:date,
+                vaccine_id:vaccine_id
+
+            };
+
+        // console.log("reqDatadate "+reqData.Date)
 
 
 
 
-        // $.post(myUrl+"/Vaccine-controller/updateVaccineNextSloat_Maxseet",
-        //     reqData,
-        //     function (data, status) {
-        //
-        //         if (data.includes("success")) {
-        //             console.log("successsss brooo")
-        //             // popup.showAppointmentSuccessMessage({
-        //             //     status: 'success',
-        //             //     message: 'Complain Successfully Added!'
-        //             // });
-        //             // getAllComplain();
-        //         } else {
-        //             console.log("unsuccesssss brooo")
-        //             // popup.showAppointmentSuccessMessage({
-        //             //     status: 'fail',
-        //             //     message: 'Complain Send Fail !',
-        //             //     data: data
-        //             // });
-        //         }
-        //     }
-        // );
+        $.post(myUrl+"/Vaccine-controller/updateVaccineNextSloat_Maxseet",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    console.log("successsss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'success',
+                        message: 'Successfully Registerd!',
+                        data: date,
+                        Set_sloat:sloat
+                    });
+                    LoadVaccineclinic();
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'fail',
+                        message: 'Complain Send Fail !',
+
+                    });
+                }
+            }
+        );
 
 
     }
@@ -474,12 +483,18 @@
               let available_clinic_list=document.getElementById("available_clinic_list");
                 available_clinic_list.innerHTML='';
               rs.map((element) => {
-                  let date=(element.date).split(" ")[0] ;
-                // console.log("date "+date);
+                  console.log("element.date "+element.date);
+                  let date=((element.date).split(" ")[0]) ;
+
+                  let x=new Date(element.date);
+                  let year=x.getFullYear();
+                  let month=x.getMonth()+1;
+                  let day=x.getDate();
+
 
 
                 let avlable_time_slot=element.Next_sloat.replace(":",".");
-                console.log("avlable_time_slot "+ avlable_time_slot);
+                // console.log("avlable_time_slot "+ avlable_time_slot);
 
 
                     if(age<= parseInt(element.Upper_Age) && age> parseInt(element.Lower_Age) && (element.Status!="alreadyHave")){
@@ -492,7 +507,7 @@
                           <td data-label="Age limit">`+element.Lower_Age+`-`+element.Upper_Age+`</td>
                           <td data-label="Location">`+element.location+`</td>
                           <td data-label="Dosage">`+element.Dosage+`</td>
-                          <td data-label=""> <button class="btn-register" onclick="RegisterForclinic(`+element.vaccine_clinic_id+`,`+element.vaccine_id+`,`+date+`,`+element.max_sheet+`,`+avlable_time_slot+`);"> Register</button> </td>
+                          <td data-label=""> <button class="btn-register" onclick="RegisterForclinic(`+element.vaccine_clinic_id+`,`+element.vaccine_id+`,`+year+`,`+month+`,`+day+`,`+element.max_sheet+`,`+avlable_time_slot+`);"> Register</button> </td>
                       </tr>`
                     }
               //,`+element.Next_sloat+`,`+element.max_sheet+`

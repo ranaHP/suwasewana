@@ -4,14 +4,14 @@ import com.google.gson.Gson;
 import com.suwasewana.core.DB;
 import com.suwasewana.model.*;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import com.google.gson.Gson;
+import java.util.Date;
 
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
@@ -49,7 +49,7 @@ public class UserDAO {
     private static final  String USER_GET_Vaccine_clinic_Details = "SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.target_moh=?; ";
     private static final  String CheckVaccineRegistration = "SELECT * FROM suwasewana_db.user_vaccine where nic=? and clinic_id=?; ";
     private static final  String UpdateVAccineClinicData="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ?, `next_Available_time_slote` = ? WHERE (`vcs_id` = ?);\n";
-
+    private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`) VALUES (?, ?, ?, ?); COMMIT;";
 
     Connection connection;
 
@@ -112,6 +112,7 @@ public class UserDAO {
 
 
     public String UserRegisterForVaccineClinic(String new_next_sloat,
+                                               String Set_sloat,
                                                String avalabel_seats,
                                                String vaccine_clinic_id,
                                                String date,
@@ -123,20 +124,39 @@ public class UserDAO {
             preparedStatement.setString(2, new_next_sloat );
             preparedStatement.setString(3, vaccine_clinic_id );
 
-            System.out.println("SQL "+preparedStatement);
-            int  rs = preparedStatement.executeUpdate();
-
+//            System.out.println("SQL "+preparedStatement);
+//            int  rs = preparedStatement.executeUpdate();
+            updateUserVaccineDetails(nic,vaccine_id,date,Set_sloat,vaccine_clinic_id);
 
             return  "success";
-        } catch (SQLException throwables) {
-            printSQLException(throwables);;
-            return throwables.getMessage();
+        } catch (SQLException | ParseException throwables) {
+            printSQLException((SQLException) throwables);
         }
+        return "";
+
+    }
+//update vaccine details of user
+public String updateUserVaccineDetails(String nic,String vaccine_id,String date,String Set_sloat,String vaccine_clinic_id) throws ParseException {
+//    System.out.println("data come to updateUserVaccineDetails date "+date);
+    String dateFoVaccination=date+" "+Set_sloat;
 
 
+    try (PreparedStatement preparedStatement = connection.prepareStatement(Insert_Vaccine_User_Registreation)) {
+        preparedStatement.setString(1, nic);
+        preparedStatement.setString(2, vaccine_id);
+        preparedStatement.setString(3, vaccine_clinic_id);
+        preparedStatement.setString(4, (dateFoVaccination));
+
+        System.out.println(preparedStatement);
+        int rs = preparedStatement.executeUpdate();
+        return "success";
+    } catch (SQLException throwables) {
+        printSQLException(throwables);
+        return throwables.getMessage();
     }
 
 
+}
 //    get vaccine clinic details for user to view available vaccine clinic
     public ArrayList<VaccineClinicAnnouncementsModelForUser> GetVaccineClinicDetail(String mohid,String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_Vaccine_clinic_Details)) {
