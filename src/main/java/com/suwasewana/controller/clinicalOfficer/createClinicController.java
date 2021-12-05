@@ -2,6 +2,7 @@ package com.suwasewana.controller.clinicalOfficer;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.createClinicDAO;
+import com.suwasewana.model.ClinicCalenderEventModel;
 import com.suwasewana.model.CreateClinicModel;
 import com.suwasewana.model.MOHModel;
 import com.suwasewana.model.vaccineClinicModel;
@@ -79,6 +80,18 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     viewdisease(req, res);
                     break;
+                case "choose":
+//                    res.getWriter().println("select-V-Clinics");
+                    choose(req, res);
+                    break;
+                case "viewcount":
+//                    res.getWriter().println("select-V-Clinics");
+                    viewcount(req, res);
+                    break;
+                case "clinicsEvents":
+//                    res.getWriter().println("select-V-Clinics");
+                    clinicsEvents(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -88,6 +101,54 @@ import java.util.ArrayList;
             throw new ServletException(error);
         }
     }
+
+    private void clinicsEvents(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        CreateClinicModel cEvents =new CreateClinicModel(
+                "",
+                "",
+                req.getParameter("date"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        ArrayList<CreateClinicModel> result= createClinicDAO.Viewevents(cEvents);
+        res.getWriter().println(gson.toJson(result));
+        }
+
+    private void viewcount(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        CreateClinicModel viewC = new CreateClinicModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "12"
+
+        );
+        ArrayList<CreateClinicModel> result= createClinicDAO.ViewCount(viewC);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void choose(HttpServletRequest req, HttpServletResponse res) throws IOException {
+            String date=req.getParameter("datetime");
+        ArrayList<ClinicCalenderEventModel> result=createClinicDAO.chooseClinic(date);
+        res.getWriter().println(gson.toJson(result));
+
+        }
 
     private void updatevClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
           vaccineClinicModel Updatevclinic= new vaccineClinicModel(
@@ -208,7 +269,8 @@ import java.util.ArrayList;
 
                 req.getParameter("clinicID"),
                 req.getParameter("title"),
-                req.getParameter("datetime"),
+                req.getParameter("date"),
+                req.getParameter("time"),
                 req.getParameter("duration"),
                 req.getParameter("disease"),
                 req.getParameter("description"),
@@ -238,7 +300,8 @@ import java.util.ArrayList;
             CreateClinicModel createClinic = new CreateClinicModel(
                     req.getParameter(""),
                     req.getParameter("title"),
-                    req.getParameter("datetime"),
+                    req.getParameter("date"),
+                    req.getParameter("time"),
                     req.getParameter("duration"),
                     req.getParameter("disease"),
                     req.getParameter("description"),
@@ -266,7 +329,9 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
+                "",
                 "12"
+
 
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
@@ -285,7 +350,8 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                "12"
+                "",
+                ""
 
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.Viewdisease(viewdisease);
@@ -306,7 +372,8 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                "12"
+                "",
+                ""
 
 
         );
@@ -319,6 +386,7 @@ import java.util.ArrayList;
           CreateClinicModel deleteClinic = new CreateClinicModel(
                   req.getParameter("clinicID"),
                   req.getParameter("title"),
+                  "",
                   "",
                   "",
                   "",

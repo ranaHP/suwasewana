@@ -70,7 +70,7 @@ public class clinicalAnnouncementsDAO {
                 String disease =rs.getString("disease");
                 String location=rs.getString("location");
                 String TargetMOH = rs.getString("target_moh");
-                String DataTime = rs.getString("start_date_time");
+                String DataTime = rs.getString("date");
                 String Duration = rs.getString("duration");
                 String MaxPatient = rs.getString("max_sheet");
                 String Target=rs.getString("target_people");
