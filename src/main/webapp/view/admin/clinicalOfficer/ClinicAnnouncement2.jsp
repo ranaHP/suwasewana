@@ -89,7 +89,7 @@
               </div>
 
               <div class="left_row">
-                <div class="left_row_left"><span> start_date_time  </span></div>
+                <div class="left_row_left"><span> date  </span></div>
                 <div class="left_row_right"><input type="text" name="date-time" id="date-time" autocomplete="off"
                                                    required/></div>
               </div>
@@ -256,7 +256,7 @@ function updateclinics(){
             title:document.getElementById("clinic-title").value,
             location:document.getElementById("location").value,
             targetMOH:document.getElementById("target-MOH").value,
-            datetime:document.getElementById("date-time").value,
+            date:document.getElementById("date-time").value,
             duration:document.getElementById("duration").value,
             maxpatient:document.getElementById("max-patient").value,
             patient:document.getElementById("patient").value,

@@ -69,8 +69,8 @@
                                     <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                                 </div>
                                 <div class="inputs">
-                                    <label> Data & Time</label>
-                                    <input type="datetime-local"  required autocomplete="off" name="date-time" id="date-time" value="09/08/2021"/>
+                                    <label> Date</label>
+                                    <input type="Date"  required autocomplete="off" name="date" id="date"/>
                                 </div>
                                 <div class="inputs">
                                     <label>Duration (hours)</label>
@@ -78,6 +78,10 @@
                                 </div>
                             </div>
                             <div class="right-inputs">
+                                <div class="inputs">
+                                    <label> Time</label>
+                                    <input type="time" required autocomplete="off" name="time" id="time"/>
+                                </div>
                                 <div class="inputs">
                                     <label> Max Patient</label>
                                     <input type="number" required autocomplete="off" name="max-patient" id="max-patient" value="50"/>
@@ -153,7 +157,8 @@
                 title:document.getElementById("clinic-title").value,
                 location:data.target.elements.location.value,
                 MOH:checkMOHid(),
-                datetime: document.getElementById("date-time").value,
+                date: document.getElementById("date").value,
+                time:document.getElementById("time").value,
                 duration: data.target.elements.duration.value,
                 maxpatient:document.getElementById("max-patient").value,
                 Target: data.target.elements.patient.value,
