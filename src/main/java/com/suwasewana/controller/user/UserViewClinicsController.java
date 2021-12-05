@@ -6,6 +6,7 @@ import com.suwasewana.dao.PHIDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.dao.clinicalAnnouncementsDAO;
 import com.suwasewana.model.CreateClinicAnnouncementsModel;
+import com.suwasewana.model.UserViewClinicsModel;
 import com.suwasewana.model.VaccineClinicAnnouncementsModel;
 
 import javax.servlet.RequestDispatcher;
@@ -24,7 +25,6 @@ public class UserViewClinicsController extends HttpServlet {
     private Gson gson = new Gson();
 
     public void init() {
-        cilinicalannouncementsDAO = new clinicalAnnouncementsDAO();
         userDAO = new UserDAO();
     }
 
@@ -39,7 +39,7 @@ public class UserViewClinicsController extends HttpServlet {
         try {
             RequestDispatcher rd;
             switch (getUrlData[getUrlData.length-1]) {
-                case "create":
+                case "view":
                     userViewclinics(req, res);
                     break;
 //                case "view":
@@ -62,20 +62,18 @@ public class UserViewClinicsController extends HttpServlet {
 //        }
 //        if(uNic == null) res.sendRedirect("login.html");
 //        res.getWriter().println(uNic);
-
+//
     }
 
     private void  userViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.getWriter().println("announcement view");
         System.out.println("data come to controller");
-        CreateClinicAnnouncementsModel viewclinic = new CreateClinicAnnouncementsModel(
+        UserViewClinicsModel viewclinic = new UserViewClinicsModel(
+                
                 "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
+                req.getParameter("title"),
+                req.getParameter("location"),
+                req.getParameter("MOH"),
                 "",
                 "",
                 "",
@@ -84,7 +82,7 @@ public class UserViewClinicsController extends HttpServlet {
                 "",
                 ""
         );
-        ArrayList<CreateClinicAnnouncementsModel> result= cilinicalannouncementsDAO.ViewclinicAnnouncements(viewclinic);
+        ArrayList<UserViewClinicsModel> result= userDAO.UserViewclinic(viewclinic);
         res.getWriter().println(gson.toJson(result));
     }
 

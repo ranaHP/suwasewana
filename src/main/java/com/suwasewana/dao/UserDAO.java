@@ -52,6 +52,7 @@ public class UserDAO {
 //    /fixed
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
 
+    private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session`";
 
     public UserDAO() {
         DB db = new DB();
@@ -514,7 +515,50 @@ public class UserDAO {
     }
 
 
+    public ArrayList<UserViewClinicsModel> UserViewclinic(UserViewClinicsModel viewAnnouncement) {
 
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_ANNOUNCEMENTS)){
+            System.out.println("came to dao");
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();
+            while (rs.next()){
+                String title = rs.getString("title");
+                String disease =rs.getString("disease");
+                String location=rs.getString("location");
+                String TargetMOH = rs.getString("target_moh");
+                String DataTime = rs.getString("start_date_time");
+                String Duration = rs.getString("duration");
+                String MaxPatient = rs.getString("max_sheet");
+                String Target=rs.getString("target_people");
+                String Conduct = rs.getString("conduct_by");
+                String Description = rs.getString("description");
+                String cNic = rs.getString("clinical_officer");
+                UserViewClinicsModel temp = new UserViewClinicsModel(
+
+                        title,
+                        disease,
+                        location,
+                        TargetMOH,
+                        DataTime,
+                        Duration,
+                        MaxPatient,
+                        Target,
+                        Conduct,
+                        Description,
+                        cNic
+
+                );
+                ViewclinicAnnouncements.add(temp);
+                System.out.println(title+"--"+disease+"--"+location);
+            };
+            return ViewclinicAnnouncements;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
 
 
 
