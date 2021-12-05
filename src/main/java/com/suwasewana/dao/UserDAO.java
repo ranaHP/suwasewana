@@ -95,12 +95,12 @@ public class UserDAO {
             preparedStatement.setString(1, nic);
             preparedStatement.setString(2, cId);
             ResultSet rs = preparedStatement.executeQuery();
-            System.out.println(preparedStatement);
+
             if(rs.next()){
-                System.out.println(rs.getString("clinic_id"));
+
                 return "alreadyHave";
             }else{
-                System.out.println("notyet");
+
                 return "notyet";
             }
         } catch (SQLException throwables) {
