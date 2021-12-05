@@ -27,9 +27,17 @@
   <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
 </head>
 <body>
 <!-- main container -->
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container"
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
   <!-- hero banner -->
@@ -166,10 +174,10 @@
           <div style="margin-right: 78px; margin-top: 100px">
 
               <table>
-                  <caption>Available Vaccine Clinics</caption>
+                  <caption>Registered Vaccine Clinics</caption>
                   <thead>
                   <tr>
-                      <th scope="col">Registration number</th>
+
                       <th scope="col">Vaccine</th>
                       <th scope="col">Date</th>
                       <th scope="col">Time</th>
@@ -178,9 +186,9 @@
                       <th scope="col"></th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="registeredClinicList">
                   <tr>
-                      <td data-label="Registration number">19000383</td>
+
                       <td data-label="Vaccine">Sinopharm</td>
                       <td data-label="Date">04/01/2016</td>
                       <td data-label="Time">6.34am</td>
@@ -197,7 +205,7 @@
               <hr class="hr-1">
 
               <table>
-                  <caption>Registered Vaccine Clinics</caption>
+                  <caption>Available Vaccine Clinics</caption>
                   <thead>
                   <tr>
                       <th scope="col">Vaccine</th>
@@ -210,7 +218,7 @@
                       <th scope="col"></th>
                   </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="available_clinic_list">
                   <tr>
                       <td data-label="Vaccine">Sinopharm</td>
                       <td data-label="Date">04/01/2016</td>
@@ -272,119 +280,307 @@
     </div>
   </div>
 </div>
-<script defer>
-  // let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity");
-  // document.getElementById('province').addEventListener('input', function (evt) {
-  //     locationgenarator.provinceSelect(this.value)
-  // });
-  let moh = new MOHSelectGenarate('allmoh');
-  mapInit();
-  function mapInit() {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaGFuc2FuYTg3NiIsImEiOiJja3UwMWtrb3ExNjd2Mm9xaDh2MjdjM2FoIn0.6rDLn-mL41GbBUIW3B8MIA';
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [80.4771, 6.0994334],
-      zoom: 8
-    });
 
-    map.addControl(
-            new MapboxGeocoder({
-              accessToken: mapboxgl.accessToken,
-              mapboxgl: mapboxgl
-            })
-    );
-
-    const marker = new mapboxgl.Marker({
-      draggable: true
-    })
-            .setLngLat([80.4771, 6.0994334])
-            .addTo(map);
-
-    function onDragEnd() {
-      const lngLat = marker.getLngLat();
-      coordinates.style.display = 'block';
-      coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
-    }
-
-    marker.on('dragend', onDragEnd);
-  }
-</script>
 <script>
   feather.replace({ width: "20px" })
 </script>
 <script defer>
   let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
- // LoadVaccine();
+  let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+
   let rs;
   console.log("url - "+ myUrl+"/admin-register-controller/All_vaccine_details/");
-  function LoadVaccine(){
-    $.post(myUrl+"/admin-register-controller/All_vaccine_details/",
 
+
+  function calculateage(name) {
+      let NICNo = name;
+      let isValida = true;
+      var dayText = 0;
+      var year = "";
+      var month = "";
+      var day = "";
+      var gender = "";
+      if (NICNo.length != 10 && NICNo.length != 12) {
+          // console.log("if")
+          isValida = false;
+
+      } else if (NICNo.length == 10 && !this.$.isNumeric(NICNo.substr(0, 9))) {
+          // console.log("else if")
+
+          isValida = false;
+      } else {
+
+          isValida = true;
+          // Year
+          if (NICNo.length == 10) {
+              year = "19" + NICNo.substr(0, 2);
+              dayText = parseInt(NICNo.substr(2, 3));
+          } else {
+              year = NICNo.substr(0, 4);
+              dayText = parseInt(NICNo.substr(4, 3));
+          }
+
+          // Gender
+          if (dayText > 500) {
+              gender = "Female";
+              dayText = dayText - 500;
+          } else {
+              gender = "Male";
+          }
+
+          // Day Digit Validation
+          if (dayText < 1 && dayText > 366) {
+              $("#error").html("Invalid NIC NO");
+          } else {
+
+              //Month
+              if (dayText > 335) {
+                  day = dayText - 335;
+                  month = "12";
+              } else if (dayText > 305) {
+                  day = dayText - 305;
+                  month = "11";
+              } else if (dayText > 274) {
+                  day = dayText - 274;
+                  month = "10";
+              } else if (dayText > 244) {
+                  day = dayText - 244;
+                  month = "9";
+              } else if (dayText > 213) {
+                  day = dayText - 213;
+                  month = "8";
+              } else if (dayText > 182) {
+                  day = dayText - 182;
+                  month = "7";
+              } else if (dayText > 152) {
+                  day = dayText - 152;
+                  month = "6";
+              } else if (dayText > 121) {
+                  day = dayText - 121;
+                  month = "5";
+              } else if (dayText > 91) {
+                  day = dayText - 91;
+                  month = "4";
+              } else if (dayText > 60) {
+                  day = dayText - 60;
+                  month = "3";
+              } else if (dayText < 32) {
+                  month = "1";
+                  day = dayText;
+              } else if (dayText > 31) {
+                  day = dayText - 31;
+                  month = "2";
+              }
+
+              // Show Details
+              // console.log("Gender : " + gender)
+              // console.log("Year : " + year)
+              // console.log("Month : " + month)
+              // console.log("Day :" + day)
+
+              let birthday=year+"/"+month+"/"+day;
+              let age =getAge(birthday);
+              return age;
+          }
+      }
+  }
+  function getAge(dateString) {
+      var today = new Date();
+      var birthDate = new Date(dateString);
+      var age = today.getFullYear() - birthDate.getFullYear();
+      var m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+      }
+      return age;
+  }
+
+  // function list for add two times
+  function timeToMins(time) {
+      var b = time.split(':');
+      return b[0] * 60 + +b[1];
+  };
+
+  function timeFromMins(mins) {
+      function z(n) {
+          if (n < 0) return ('-0' + (n).toString().slice(1));
+          return (n < 10 ? '0' : '') + n;
+      };
+
+      var h = (mins / 60 | 0);
+      var m = mins % 60;
+      return z(h) + ':' + z(m);
+  };
+
+  function addTimes(time0, time1) {
+      return timeFromMins(timeToMins(time0) + timeToMins(time1));
+  };
+
+    function RegisterForclinic(vaccine_clinic_id,vaccine_id,year,month,day,max_sheet,Next_sloat){
+
+        let date=year+"-"+month+"-"+day;
+        let sloat=(Next_sloat.toFixed( 2 )).toString().replace(".",":");
+
+        let new_next_sloat=addTimes(sloat, '00:05:00');
+
+        let avalabel_seats=--max_sheet;
+        let reqData =
+            {
+                Set_sloat:sloat,
+                new_next_sloat:new_next_sloat,
+                avalabel_seats:avalabel_seats,
+                vaccine_clinic_id:vaccine_clinic_id,
+                Date:date,
+                vaccine_id:vaccine_id
+
+            };
+
+
+
+
+
+        $.post(myUrl+"/Vaccine-controller/updateVaccineNextSloat_Maxseet",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    console.log("successsss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'success',
+                        message: 'Successfully Registerd!',
+                        data: date,
+                        Set_sloat:sloat
+                    });
+                    LoadVaccineclinic();
+                    ViewRegisterdClinics();
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'fail',
+                        message: 'Complain Send Fail !',
+
+                    });
+                }
+            }
+        );
+
+
+    }
+  LoadVaccineclinic();
+  let age=calculateage("199910910064");
+  function LoadVaccineclinic(){
+    $.post(myUrl+"/Vaccine-controller/viewVaccineClinicdetail/",
             function (data, status) {
               rs= JSON.parse(data);
-              let vaccineType=document.getElementById("Vaccin_container");
-              vaccineType.innerHTML='';
+              let available_clinic_list=document.getElementById("available_clinic_list");
+                available_clinic_list.innerHTML='';
               rs.map((element) => {
-                console.log("vaccine view : "+element.view_status);
-                if(element.view_status==1){
-                  vaccineType.innerHTML+= `<div class="vaccine_card">
-                                <div class="title">
-                                    <span> `+element.Name+` </span>
-                                </div>
-                                <div class="vaccin_image">
-                                    <img src="`+myUrl+`/public/images/vaccine/`+element.image+`" alt="" srcset="">
-                                </div>
-                                <div class="vaccin_detail_row">
-                                    <div class="vaccination_detail_icon">
-                                        <img src="<c:url value="/public/images/icons/vaccination/map-pin.svg "/>" alt="" srcset="">
-                                    </div>
-                                    <div class="vaccine_row_details">
-                                        <span> country  :  </span>
-                                        <span class="V_row_detail">`+element.Country+` </span>
-                                    </div>
-                                </div>
+                  console.log("element.date "+element.date);
+                  let date=((element.date).split(" ")[0]) ;
 
-                                <div class="vaccin_detail_row">
-                                    <div class="vaccination_detail_icon">
-                                         <img src="<c:url value="/public/images/icons/vaccination/thumbs-up.svg "/>" alt="" srcset="">
-                                    </div>
-                                    <div class="vaccine_row_details">
-                                        <span> Recommended for :    </span>
-                                        <span class="V_row_detail">`+element.Recommended_for+`  </span>
-                                    </div>
-                                </div>
-                                <div class="vaccin_detail_row">
-                                    <div class="vaccination_detail_icon">
-                                        <img src="<c:url value="/public/images/icons/vaccination/streamline-icon-health-medical-syringe@55x55.svg "/>" alt="" srcset="">
-                                    </div>
-                                    <div class="vaccine_row_details">
-                                        <span> Dosage :    </span>
-                                        <span class="V_row_detail"> `+element.dosage+` </span>
-                                    </div>
-                                </div>
-                                <div class="vaccin_detail_row" style="margin-bottom: 0px;">
-                                    <div class="vaccination_detail_icon">
-                                        <img src="<c:url value="/public/images/icons/vaccination/calendar%20(1).svg "/>" alt="" srcset="">
-                                    </div>
-                                    <div class="vaccine_row_details" >
-                                        <span> Date :    </span>
-                                        <span class="V_row_detail"> `+element.Date+` </span>
-                                    </div>
-                                </div>
-                                <div class="V_card_btnrow">
-                                    <button class="V_card_btn" onclick="loadPAge(`+element.ID+`);" >View more</button>
-                                </div>
-                            </div>`
-                }
+                  let x=new Date(element.date);
+                  let year=x.getFullYear();
+                  let month=x.getMonth()+1;
+                  let day=x.getDate();
+
+
+
+                let avlable_time_slot=element.Next_sloat.replace(":",".");
+                // console.log("avlable_time_slot "+ avlable_time_slot);
+
+
+                    if(age<= parseInt(element.Upper_Age) && age> parseInt(element.Lower_Age) && (element.Status!="alreadyHave") &&(element.max_sheet>0)){
+                        available_clinic_list.innerHTML+= `
+                       <tr>
+                          <td data-label="Vaccine">`+element.vaccine_name+`</td>
+                          <td data-label="Date">`+date+`</td>
+                          <td data-label="Time">`+element.Next_sloat+`</td>
+                          <td data-label="Available seats">`+element.max_sheet+`</td>
+                          <td data-label="Age limit">`+element.Lower_Age+`-`+element.Upper_Age+`</td>
+                          <td data-label="Location">`+element.location+`</td>
+                          <td data-label="Dosage">`+element.Dosage+`</td>
+                          <td data-label=""> <button class="btn-register" onclick="RegisterForclinic(`+element.vaccine_clinic_id+`,`+element.vaccine_id+`,`+year+`,`+month+`,`+day+`,`+element.max_sheet+`,`+avlable_time_slot+`);"> Register</button> </td>
+                      </tr>`
+                    }
+              //,`+element.Next_sloat+`,`+element.max_sheet+`
+                    else{
+                        available_clinic_list.innerHTML+= `
+                       <tr>
+                          <td data-label="Vaccine">`+element.vaccine_name+`</td>
+                          <td data-label="Date">`+date+`</td>
+                          <td data-label="Time">`+element.Next_sloat+`</td>
+                          <td data-label="Available seats">`+element.max_sheet+`</td>
+                          <td data-label="Age limit">`+element.Lower_Age+`-`+element.Upper_Age+`</td>
+                          <td data-label="Location">`+element.location+`</td>
+                          <td data-label="Dosage">`+element.Dosage+`</td>
+                          <td data-label=""> <button class="btn-register" style="display: none"> Register</button> </td>
+                      </tr>`
+                    }
+
+
+
+
               })
             }
     );
   }
 
-  function loadPAge(v_id){
-    window.location='http://localhost:8080/suwasewana_war/s/'+v_id+'/vaccine-details';
+  function CancleClinic(regno){
+      console.log("reg no "+regno);
+      let reqData={
+          regNo:regno
+      }
+      $.post(myUrl+"/Vaccine-controller/CancleVaccineClinic",
+          reqData,
+          function (data, status) {
+
+              if (data.includes("success")) {
+                  console.log("successsss brooo")
+                  popup.CancleClinicSuccessMessage({
+                      status: 'success',
+                      message: 'Successfully Cancled!',
+
+                  });
+                  LoadVaccineclinic();
+                  ViewRegisterdClinics();
+              } else {
+                  console.log("unsuccesssss brooo")
+                  popup.CancleClinicSuccessMessage({
+                      status: 'fail',
+                      message: 'Please try again',
+
+                  });
+              }
+          }
+      );
   }
+
+  ViewRegisterdClinics();
+  function ViewRegisterdClinics(){
+      $.post(myUrl+"/Vaccine-controller/GetRegisterdVaccineClinicDetail/",
+          function (data, status) {
+              rs= JSON.parse(data);
+              let registered_clinic_list=document.getElementById("registeredClinicList");
+              registered_clinic_list.innerHTML='';
+              rs.map((element) => {
+                  let date=((element.date).split(" ")[0]) ;
+                  let time=((element.date).split(" ")[1]).split(":")[0]+"."+((element.date).split(" ")[1]).split(":")[1];
+
+                     registered_clinic_list.innerHTML+= `
+                       <tr>
+                          <td data-label="Vaccine">`+element.vaccine_name+`</td>
+                          <td data-label="Date">`+date+`</td>
+                          <td data-label="Time">`+time+`</td>
+                          <td data-label="Available seats">`+element.max_sheet+`</td>
+                          <td data-label="Location">`+element.location+`</td>
+                          <td data-label=""> <button class="btn-register cancle" onclick="CancleClinic(`+element.vaccine_clinic_id+`)"> Cancle</button> </td>
+                        </tr>`
+
+              })
+          }
+      );
+  }
+
 </script>
 </body>
 </html>
