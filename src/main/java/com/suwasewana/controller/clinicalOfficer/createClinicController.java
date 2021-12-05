@@ -351,7 +351,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                ""
+                "12"
 
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.Viewdisease(viewdisease);

@@ -48,6 +48,7 @@
 </div>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 <script defer>
+    selectA()
   function selectA(){
       let selectA = new View_RPHI_announcement("announcements-container");
 
@@ -87,17 +88,17 @@
         }
     );
 
-    updateAStatus();
-    function updateAStatus(){
-        $.post("/test_war_exploded/createRPHI_Announcements/updateAStatus",
-            {},
-            function (data, status) {
-               if(data.includes("sucsess")){
-                   selectA()
-               }
-            }
-        );
-    }
+    // updateAStatus();
+    // function updateAStatus(){
+    //     $.post("/test_war_exploded/createRPHI_Announcements/updateAStatus",
+    //         {},
+    //         function (data, status) {
+    //            if(data.includes("sucsess")){
+    //                selectA()
+    //            }
+    //         }
+    //     );
+    // }
 </script>
 </body>
 </html>

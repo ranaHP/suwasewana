@@ -114,7 +114,7 @@ public class RPHIAnnouncementController extends HttpServlet {
                 req.getParameter("image"),
                 req.getParameter("moh"),
                 "",
-                "12",
+                "199910910061",
                 req.getParameter("expire_date")
         );
         System.out.println("before");
