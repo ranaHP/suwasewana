@@ -8,7 +8,7 @@ class clinicList {
             title:" ",
             MOH:" ",
             conduct:" ",
-            datetime:" ",
+            date:" ",
             description:" ",
             duration:" ",
             location:" ",
@@ -30,14 +30,14 @@ class clinicList {
         this.clinicListArray = data;
         console.log(data);
         this.clinicListArray.map((item) => {
-            let cday = new Date(item.datetime.split(" ")[0])
+            let cday = new Date(item.date)
             let cmonth= cday.getMonth()+1;
             if(cmonth==month){
                 this.container.innerHTML += `
                       <div class="clinic-card">
                     <div class="card-left">
-                        <h5>${item.title}</h5>
-                        <div class="card-date">${item.datetime}</div>
+                        <p class="h5">${item.title}</p>
+                        <div class="card-date">${item.date}</div>
                         <div class="amount"></div>
                         <div class="nop">No of patients</div>
                         <button class="reschdulebtn" onclick="select(${item.clinicID})">Reschdule</button>

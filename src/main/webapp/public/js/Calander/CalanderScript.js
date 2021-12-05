@@ -25,9 +25,10 @@ class Calender {
         this.init();
 
     }
-    setEventData( events ){
+    setEventData(events){
         this.event=events;
         this.addCalenderEvents();
+
     }
 
     init() {
@@ -160,7 +161,7 @@ class Calender {
 
     addCalenderEvents() {
         this.event.map(eventItem => {
-            console.log(this.current_month);
+            console.log(eventItem.month);
             if (this.current_month == eventItem.month && this.current_year == eventItem.year) {
                 let day = document.getElementById("date" + eventItem.date);
                 // console.log(JSON.stringify([eventItem]))

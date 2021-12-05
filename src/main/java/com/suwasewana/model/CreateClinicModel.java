@@ -5,7 +5,8 @@ import java.sql.Blob;
 public class CreateClinicModel {
     public String clinicID;
     public String title;
-    public String datetime;
+    public String date;
+    public String time;
     public String duration;
     public String disease;
     public String description;
@@ -19,7 +20,8 @@ public class CreateClinicModel {
     public CreateClinicModel(
             String clinicID,
             String title,
-            String datetime,
+            String date,
+            String time,
             String duration,
             String disease,
             String description,
@@ -34,7 +36,8 @@ public class CreateClinicModel {
         super();
         this.clinicID=clinicID;
         this.title= title;
-        this.datetime= datetime;
+        this.date= date;
+        this.time=time;
         this.duration= duration;
         this.disease= disease;
         this.description= description;
@@ -63,12 +66,20 @@ public class CreateClinicModel {
         this.title = title;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public String getDate() {
+        return date;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getDuration() {
