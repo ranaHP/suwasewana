@@ -2,9 +2,7 @@ package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.UserDAO;
-import com.suwasewana.model.AppointmentModel;
-import com.suwasewana.model.AppointmentTypeModel;
-import com.suwasewana.model.VaccineModel;
+import com.suwasewana.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,7 +37,13 @@ public class VaccineController extends HttpServlet {
             RequestDispatcher rd;
             switch (getUrlData[getUrlData.length-1]) {
                 case "viewVaccinedetail":
-//                    ViewVaccine(req, res);
+                    ViewVaccine(req, res);
+                    break;
+                case "viewVaccineClinicdetail":
+                    ViewVaccineclinicForUser(req, res);
+                    break;
+                case "updateVaccineNextSloat_Maxseet":
+                    updateVaccineNextSloat_Maxseet(req, res);
                     break;
 
                 default:
@@ -50,6 +54,28 @@ public class VaccineController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+    private void ViewVaccineclinicForUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String mohid="1002";
+        String nic="199910910064";
+        ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetVaccineClinicDetail(mohid,nic);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void updateVaccineNextSloat_Maxseet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String new_next_sloat=req.getParameter("new_next_sloat");
+        String avalabel_seats=req.getParameter("avalabel_seats");
+        String vaccine_clinic_id=req.getParameter("vaccine_clinic_id");
+        String date=req.getParameter("date");
+        String vaccine_id=req.getParameter("vaccine_id");
+        String nic="199910910064";
+        String result = userDAO.UserRegisterForVaccineClinic(new_next_sloat,
+                avalabel_seats,
+                vaccine_clinic_id,
+                date,
+                vaccine_id,
+                nic);
+        res.getWriter().println(result);
     }
 
     private void ViewVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

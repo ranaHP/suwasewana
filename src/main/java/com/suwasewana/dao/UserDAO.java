@@ -45,6 +45,12 @@ public class UserDAO {
     private static  final  String INSERT_COMPLAIN="INSERT INTO `suwasewana_db`.`user_complaint` " +
             "(`tittle`, `description`, `user`, `status`, `phi_message`, `phi_id`, `complaint_type_id`, `moh`, `img1`, `img2`, `img3`) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
+
+    private static final  String USER_GET_Vaccine_clinic_Details = "SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.target_moh=?; ";
+    private static final  String CheckVaccineRegistration = "SELECT * FROM suwasewana_db.user_vaccine where nic=? and clinic_id=?; ";
+    private static final  String UpdateVAccineClinicData="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ?, `next_Available_time_slote` = ? WHERE (`vcs_id` = ?);\n";
+
+
     Connection connection;
 
 
@@ -80,6 +86,107 @@ public class UserDAO {
             printSQLException(throwables);
         }
         return "";
+    }
+
+    public String checkVacccinRegstration(String nic, String cId) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CheckVaccineRegistration)) {
+            preparedStatement.setString(1, nic);
+            preparedStatement.setString(2, cId);
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(preparedStatement);
+            if(rs.next()){
+                System.out.println(rs.getString("clinic_id"));
+                return "alreadyHave";
+            }else{
+                System.out.println("notyet");
+                return "notyet";
+            }
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        return "";
+    }
+
+    //Register for vaccine clinic - user
+
+
+
+    public String UserRegisterForVaccineClinic(String new_next_sloat,
+                                               String avalabel_seats,
+                                               String vaccine_clinic_id,
+                                               String date,
+                                               String vaccine_id,
+                                               String nic) {
+        System.out.println("data come to create complain dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateVAccineClinicData)) {
+            preparedStatement.setString(1, avalabel_seats );
+            preparedStatement.setString(2, new_next_sloat );
+            preparedStatement.setString(3, vaccine_clinic_id );
+
+            System.out.println("SQL "+preparedStatement);
+            int  rs = preparedStatement.executeUpdate();
+
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);;
+            return throwables.getMessage();
+        }
+
+
+    }
+
+
+//    get vaccine clinic details for user to view available vaccine clinic
+    public ArrayList<VaccineClinicAnnouncementsModelForUser> GetVaccineClinicDetail(String mohid,String nic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_Vaccine_clinic_Details)) {
+
+
+            preparedStatement.setString(1, mohid);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<VaccineClinicAnnouncementsModelForUser> VaccineClinictList = new ArrayList<VaccineClinicAnnouncementsModelForUser>();
+            while (rs.next()) {
+
+                String vaccine_clinic_id=rs.getString("vcs_id");
+                String vaccine_id=rs.getString("v_id");
+                String vaccine_name=rs.getString("name");
+                String max_sheet=rs.getString("max_patient");
+                String location=rs.getString("location");
+                String date=rs.getString("Start_date_time");
+                String time=rs.getString("Start_date_time");
+                String Low_age=rs.getString("lower_age_limit");
+                String upper_age=rs.getString("upper_age_limit");
+                String Dosage=rs.getString("dose_count");
+                String Next_sloat=rs.getString("next_Available_time_slote");
+
+                String status=checkVacccinRegstration(nic,vaccine_clinic_id);
+
+
+                VaccineClinicAnnouncementsModelForUser temp = new VaccineClinicAnnouncementsModelForUser(
+                        vaccine_clinic_id,
+                        vaccine_id,
+                        vaccine_name,
+                        max_sheet,
+                        location,
+                        date,
+                        time,
+                        Low_age,
+                        upper_age,
+                        "",
+                        "",
+                        Dosage,
+                        Next_sloat,
+                        status
+
+                );
+                VaccineClinictList.add(temp);
+            }
+            return VaccineClinictList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
     }
 
     public UserLoginModel GetLoginAttemptChange(UserLoginModel userLogin , String attempt) {
