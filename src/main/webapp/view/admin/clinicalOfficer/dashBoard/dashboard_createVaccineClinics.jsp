@@ -47,10 +47,6 @@
                                     <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" value="for covid vaccination" />
                                 </div>
                                 <div class="inputs">
-                                    <label> Dose count</label>
-                                    <input type="number" required autocomplete="off" name=" Dose-count" id="Dose-count" value="4"/>
-                                </div>
-                                <div class="inputs">
                                     <label> Location</label>
                                     <input type="text"  required autocomplete="off" name=" location" id="location" value="at moh"/>
                                 </div>
@@ -82,9 +78,13 @@
                                     <label> Max Patient</label>
                                     <input type="number" required autocomplete="off" name="max-patient" id="max-patient" value="40"/>
                                 </div>
+<%--                                <div class="inputs">--%>
+<%--                                    <label>Target participants </label>--%>
+<%--                                    <input type="text" required autocomplete="off" name="patient" id="patient" value="for public"/>--%>
+<%--                                </div>--%>
                                 <div class="inputs">
-                                    <label>Target participants </label>
-                                    <input type="text" required autocomplete="off" name="patient" id="patient" value="for public"/>
+                                    <label> Dose count</label>
+                                    <input type="number" required autocomplete="off" name=" Dose-count" id="Dose-count" value="4"/>
                                 </div>
                                 <div class="inputs">
                                     <label >Vaccine name</label> <br>
@@ -99,12 +99,16 @@
                                 </div>
                                 <div class="inputs">
                                     <label> Age limit</label>
-                                    <input type="text" required autocomplete="off" name="Age-limit" id="Age-limit" value="between 10-50"/>
+                                    <input type="number" required autocomplete="off" name="Age-limit" id="LAge-limit" value="89"/>
                                 </div>
                                 <div class="inputs">
-                                    <label>Description</label>
-                                    <textarea type="text"  id="description" required autocomplete="off" name="description">every one should come at time</textarea>
+                                    <label> Age limit</label>
+                                    <input type="number" required autocomplete="off" name="Age-limit" id="UAge-limit" value="100"/>
                                 </div>
+<%--                                <div class="inputs">--%>
+<%--                                    <label>Description</label>--%>
+<%--                                    <textarea type="text"  id="description" required autocomplete="off" name="description">every one should come at time</textarea>--%>
+<%--                                </div>--%>
 
                             </div>
                         </div>
@@ -190,15 +194,13 @@
             clinictitle: document.getElementById("clinic-title").value,
             Dosecount: document.getElementById("Dose-count").value,
             location: document.getElementById("location").value,
-            // MArea: document.getElementById("MArea").value,
             MArea:checkMOHid(),
             datetime: document.getElementById("date-time").value,
             duration: document.getElementById("duration").value,
             maxpatient: document.getElementById("max-patient").value,
-            patient: document.getElementById("patient").value,
             vaccine: checkVaccineid(),
-            Agelimit: document.getElementById("Age-limit").value,
-            description: document.getElementById("description").value
+            LAgelimit: document.getElementById("LAge-limit").value,
+            UAgelimit: document.getElementById("UAge-limit").value,
         };
          $.post("/test_war_exploded/create-clinic-controller/vaccineCLinic",
              reqData,

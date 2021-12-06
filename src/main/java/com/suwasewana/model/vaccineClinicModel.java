@@ -5,13 +5,13 @@ public class vaccineClinicModel {
     public String tittle;
     public String start_date_time;
     public String duration;
-    public String description;
     public String max_patient;
     public String 	target_moh;
-    public String target_people;
-    public String target_age_limit;
+    public String Lower_Age;
+    public String Upper_Age;
     public String clinical_officer ;
     public String 	v_id ;
+    public String vaccine_name;
     public String location;
     public String dose_count;
 
@@ -20,13 +20,13 @@ public class vaccineClinicModel {
              String tittle,
              String start_date_time,
              String duration,
-             String description,
              String max_patient,
              String target_moh,
-             String target_people,
-             String target_age_limit,
+             String Lower_Age,
+             String Upper_Age,
              String clinical_officer ,
              String v_id ,
+             String vaccine_name,
              String location,
              String dose_count
     ){
@@ -35,13 +35,13 @@ public class vaccineClinicModel {
         this.tittle=tittle;
         this.start_date_time=start_date_time;
         this.duration=duration;
-        this.description=description;
         this.max_patient=max_patient;
         this.target_moh=target_moh;
-        this.target_people=target_people;
-        this.target_age_limit=target_age_limit;
+        this.Lower_Age=Lower_Age;
+        this.Upper_Age=Upper_Age;
         this.clinical_officer=clinical_officer;
         this.v_id=v_id;
+        this.vaccine_name=vaccine_name;
         this.location=location;
         this.dose_count=dose_count;
 
@@ -79,14 +79,6 @@ public class vaccineClinicModel {
         this.duration = duration;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public String getMax_patient() {
         return max_patient;
     }
@@ -103,20 +95,20 @@ public class vaccineClinicModel {
         this.target_moh = target_moh;
     }
 
-    public String getTarget_people() {
-        return target_people;
+    public String getLower_Age() {
+        return Lower_Age;
     }
 
-    public void setTarget_people(String target_people) {
-        this.target_people = target_people;
+    public void setLower_Age(String lower_Age) {
+        Lower_Age = lower_Age;
     }
 
-    public String getTarget_age_limit() {
-        return target_age_limit;
+    public String getUpper_Age() {
+        return Upper_Age;
     }
 
-    public void setTarget_age_limit(String target_age_limit) {
-        this.target_age_limit = target_age_limit;
+    public void setUpper_Age(String upper_Age) {
+        Upper_Age = upper_Age;
     }
 
     public String getClinical_officer() {
@@ -133,6 +125,14 @@ public class vaccineClinicModel {
 
     public void setV_id(String v_id) {
         this.v_id = v_id;
+    }
+
+    public String getVaccine_name() {
+        return vaccine_name;
+    }
+
+    public void setVaccine_name(String vaccine_name) {
+        this.vaccine_name = vaccine_name;
     }
 
     public String getLocation() {

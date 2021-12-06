@@ -152,17 +152,17 @@ import java.util.ArrayList;
 
     private void updatevClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
           vaccineClinicModel Updatevclinic= new vaccineClinicModel(
-                  req.getParameter("vcs_id"),
+                req.getParameter("clinicID"),
                   req.getParameter("title"),
                   req.getParameter("datetime"),
                   req.getParameter("duration"),
-                  req.getParameter("description"),
                   req.getParameter("maxpatient"),
                   "",
-                  req.getParameter("patient"),
-                  req.getParameter("age"),
-                  "12",
-                  "5",
+                  req.getParameter("Lage"),
+                  req.getParameter("Uage"),
+                  "",
+                  "",
+                  "",
                   req.getParameter("location"),
                   req.getParameter("dose")
 
@@ -229,8 +229,8 @@ import java.util.ArrayList;
                     "",
                     "",
                     "",
+                    "199910910064",
                     "",
-                    "12",
                     "",
                     "",
                     ""
@@ -246,13 +246,13 @@ import java.util.ArrayList;
                 req.getParameter("clinictitle"),
                 req.getParameter("datetime"),
                 req.getParameter("duration"),
-                req.getParameter("description"),
                 req.getParameter("maxpatient"),
                 req.getParameter("MArea"),
-                req.getParameter("patient"),
-                req.getParameter("Agelimit"),
-                req.getParameter("12"),
+                req.getParameter("LAgelimit"),
+                req.getParameter("UAgelimit"),
+                "199910910064",
                 req.getParameter("vaccine"),
+                "",
                 req.getParameter("location"),
                 req.getParameter("Dosecount")
 
@@ -351,7 +351,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                ""
+                "12"
 
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.Viewdisease(viewdisease);
@@ -373,7 +373,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                ""
+                "12"
 
 
         );

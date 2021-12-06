@@ -162,6 +162,7 @@
         $.post("/test_war_exploded/create-clinic-controller/viewdisease",
             // reqData,
             function(data,status){
+                console.log("disease")
                 console.log(data)
                 clinicListArray=JSON.parse(data)
                 chart(clinicListArray,today)

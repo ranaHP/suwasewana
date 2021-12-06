@@ -6,7 +6,8 @@ function card()
 {
     var name=document.getElementById("disease").value;
     var title=document.getElementById("clinic-title").value;
-    var date=document.getElementById("date-time").value;
+    var time=document.getElementById("time").value;
+    var date=document.getElementById("date").value;
     var des=document.getElementById("description").value;
     var location=document.getElementById("location").value;
     var conduct=document.getElementById("conduct").value;
@@ -19,6 +20,7 @@ function card()
     clinic.innerHTML=" "
     clinic.innerHTML =`
                             <div class="clinic-title"  id="clinic-title">${title} </div>
+                            <div class="clinic-date">${time}</div>
                             <div class="clinic-date">${date}</div>
                             <div class="clinic-description">${des}</div>
                             <div class="clinic-details">

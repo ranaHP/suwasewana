@@ -54,6 +54,21 @@
                                     <label> Location</label>
                                     <input type="text"  required autocomplete="off" name=" location" id="location" value="At moh"/>
                                 </div>
+
+                                <div class="inputs">
+                                    <label> Date</label>
+                                    <input type="Date"  required autocomplete="off" name="date" id="date"/>
+                                </div>
+                                <div class="inputs">
+                                    <label> Time</label>
+                                    <input type="time" required autocomplete="off" name="time" id="time"/>
+                                </div>
+                                <div class="inputs">
+                                    <label>Duration (hours)</label>
+                                    <input type="text" required autocomplete="off" name="duration" id="duration" value="5 hours"/>
+                                </div>
+                            </div>
+                            <div class="right-inputs">
                                 <div class="inputs">
                                     <label >MOH Area</label> <br>
                                     <input autocomplete="off" class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
@@ -67,20 +82,6 @@
                                     </datalist>
                                     <br>
                                     <span class="error" id="LMArea" style="margin-left: 5px" ></span>
-                                </div>
-                                <div class="inputs">
-                                    <label> Date</label>
-                                    <input type="Date"  required autocomplete="off" name="date" id="date"/>
-                                </div>
-                                <div class="inputs">
-                                    <label>Duration (hours)</label>
-                                    <input type="text" required autocomplete="off" name="duration" id="duration" value="5 hours"/>
-                                </div>
-                            </div>
-                            <div class="right-inputs">
-                                <div class="inputs">
-                                    <label> Time</label>
-                                    <input type="time" required autocomplete="off" name="time" id="time"/>
                                 </div>
                                 <div class="inputs">
                                     <label> Max Patient</label>

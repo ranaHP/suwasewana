@@ -570,8 +570,8 @@ class SuwasewanaPopup{
                 <div class="row" >
                     
                     <div style="margin-bottom: 5px;display: flex">
-                        <label style= "width:150px" >Description</label>
-                        <textarea  type="text"   id="description" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);height: 50px">${data[0].description}</textarea>
+                        <label style= "width:150px" >Vaccine name</label>
+                        <textarea  type="text"   id="description" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);height: 50px">${data[0].vaccine_name}</textarea>
                     </div>
                     
                     <div style="margin-bottom: 5px;display: flex">
@@ -595,11 +595,7 @@ class SuwasewanaPopup{
                     </div>
                     
                     
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style=" width:150px">Target participants</label>    
-                        <input type="text" value="${data[0].target_people}"  id="target_people" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
+                  
                      
                     <div style="margin-bottom: 5px;display: flex">
                         <label style="width:150px">Location</label>
@@ -608,8 +604,13 @@ class SuwasewanaPopup{
                     
                     
                     <div style="margin-bottom: 5px;display: flex">
-                        <label style="width:150px">Target age limit</label>
-                        <input type="text" value="${data[0].target_age_limit}"  id="target_age_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                        <label style="width:150px">Upper age limit</label>
+                        <input type="text" value="${data[0].Lower_Age}"  id="Lage_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style="width:150px">Lower age limit</label>
+                        <input type="text" value="${data[0].Upper_Age}"  id="Uage_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
                     
@@ -652,8 +653,13 @@ class SuwasewanaPopup{
                     </div>
                    
                     <div style="margin-bottom: 5px;display: flex">
-                         <label style=" width:150px">DateandTime</label>     
-                        <input type="text"  id="date-time" value="${data[0].datetime}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                         <label style=" width:150px">Date</label>     
+                        <input type="text"  id="date" value="${data[0].date}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                     <div style="margin-bottom: 5px;display: flex">
+                         <label style=" width:150px">Date</label>     
+                        <input type="text"  id="time" value="${data[0].time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
                     <div style="margin-bottom: 5px;display: flex">

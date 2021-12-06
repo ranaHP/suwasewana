@@ -472,6 +472,7 @@
                     // console.log("announcement_id: "+element.expire_date);
                     let expday = new Date(element.expire_date)
                     let current_day=new Date();
+
                     // console.log("today : "+current_day+" "+"exp_day : "+expday);
                     if(current_day<=expday){
                         newannouncemt++;

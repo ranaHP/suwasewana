@@ -260,6 +260,42 @@
 </script>
 
 <script defer>
+
+    function AddDistricts(data){
+        selectedOptionList1.map(i=>{
+            if(i=="all"){
+                console.log("all")
+                takeallDID(data)
+
+            }
+            if(i=="All"){
+                selectedOptionList.map(j=>{
+                    // takeDID(i,data)
+                    takeRelevantPID(j,data)
+                    // console.log("a")
+                })
+            }
+            else {
+                takeDID(i,data)
+            }
+        })
+    }
+
+    function AddProvince(data){
+        selectedOptionList.map(i=>{
+            if (i=="all"){
+                console.log("all")
+                takeallPID(data)
+            }
+            if(i=="All"){
+                takeallPID(data)
+            }
+            else {
+                takePID(i,data)
+            }
+        })
+    }
+
     function addAllDistrictList(){
         $.post("/test_war_exploded/admin-controller/districtsAll",
             function (data, status) {
@@ -278,6 +314,7 @@
             }
         );
     }
+
     function SelectDistricts(){
         selectedOptionList.map(item=> {
             if (item == "All") {
@@ -311,6 +348,7 @@
 
 
     }
+
     function takeRelevantDID(id,Pid){
         let id1=id;
         let Pid1=Pid;
@@ -496,39 +534,6 @@
         return false
     }
 
-   function AddDistricts(data){
-       selectedOptionList1.map(i=>{
-               if(i=="all"){
-                   console.log("all")
-                   takeallDID(data)
-
-               }
-               if(i=="All"){
-                   selectedOptionList.map(j=>{
-                       // takeDID(i,data)
-                       takeRelevantPID(j,data)
-                       // console.log("a")
-                   })
-               }
-               else {
-                   takeDID(i,data)
-               }
-       })
-   }
-    function AddProvince(data){
-        selectedOptionList.map(i=>{
-              if (i=="all"){
-                  console.log("all")
-                  takeallPID(data)
-              }
-              if(i=="All"){
-                  takeallPID(data)
-              }
-              else {
-                  takePID(i,data)
-              }
-        })
-    }
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
