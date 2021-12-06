@@ -71,7 +71,7 @@ public class UserViewClinicsController extends HttpServlet {
         UserViewClinicsModel viewclinic = new UserViewClinicsModel(
                 
                 req.getParameter("disease"),
-                "",
+                req.getParameter("title"),
                 req.getParameter("location"),
                 req.getParameter("MOH"),
                 req.getParameter("datetime"),

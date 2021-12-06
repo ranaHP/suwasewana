@@ -3,8 +3,8 @@ package com.suwasewana.model;
 public class UserViewClinicsModel {
 
 
-        public String disease;
         public String title;
+        public String disease;
         public String location;
         public String MOH;
         public String datetime;
@@ -17,8 +17,8 @@ public class UserViewClinicsModel {
 
         public UserViewClinicsModel(
 
-                String disease,
                 String title,
+                String disease,
                 String location,
                 String MOH,
                 String datetime,
@@ -31,8 +31,8 @@ public class UserViewClinicsModel {
         ){
             super();
 
-            this.disease= disease;
             this.title= title;
+            this.disease= disease;
             this.location= location;
             this.MOH= MOH;
             this.datetime= datetime;

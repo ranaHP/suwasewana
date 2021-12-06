@@ -41,7 +41,7 @@
 
     <title>Complain</title>
 </head>
-<body onload="view()">
+<body>
 <!-- main container -->
 <div class="container"
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
@@ -246,7 +246,7 @@
                     </div>
                     <div class="search-container">
                         <div class="form-group">
-                            <input id="diseases" type="text" list="alldiseases" name="moh" autocomplete="off" placeholder="search by dieases">
+                            <input id="diseases" type="text" list="alldiseases" name="moh" autocomplete="off" placeholder="search by dieases" onkeyup="search()">
                             <datalist id="alldiseases">
                                 <option value="Covid19" label="Covid19"  > </option>
                             </datalist>
@@ -529,7 +529,6 @@
     view();
     function view(){
         let clinicListArray=[]
-        console.log("before")
         $.post("/test_war_exploded/user-view-clinic-controller/view",
             // reqData,
             function(data,status){
