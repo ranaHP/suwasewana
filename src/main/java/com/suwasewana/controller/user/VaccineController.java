@@ -2,6 +2,7 @@ package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.UserDAO;
+import com.suwasewana.dao.VaccineDAO;
 import com.suwasewana.model.*;
 
 import javax.servlet.RequestDispatcher;
@@ -18,10 +19,13 @@ import java.util.ArrayList;
 @WebServlet("/Vaccine-controller/*")
 public class VaccineController extends HttpServlet {
     UserDAO userDAO;
+    VaccineDAO vaccineDAO;
     private Gson gson = new Gson();
 
     public void init() {
+
         userDAO = new UserDAO();
+        vaccineDAO= new VaccineDAO();
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -32,7 +36,6 @@ public class VaccineController extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         res.setCharacterEncoding("UTF-8");
         String getUrlData [] = req.getRequestURI().split("/");
-//        res.getWriter().println(" request uri"  + req.getRequestURI() + "  data -: " +  getUrlData[getUrlData.length-1] );
         try {
             RequestDispatcher rd;
             switch (getUrlData[getUrlData.length-1]) {
@@ -51,6 +54,9 @@ public class VaccineController extends HttpServlet {
                 case "CancleVaccineClinic":
                     CancleVaccineClinic(req, res);
                     break;
+                case "GetuserVaccineDetail":
+                    GetuserVaccineDetail(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -60,6 +66,11 @@ public class VaccineController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+    private void GetuserVaccineDetail(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        ArrayList<VaccineForHospitalModel> result = vaccineDAO.GetuserVaccineDetail();
+        res.getWriter().println(gson.toJson(result));
     }
     private void CancleVaccineClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
@@ -101,7 +112,6 @@ public class VaccineController extends HttpServlet {
 
     private void ViewVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-//        res.getWriter().println(result);
     }
 
 
