@@ -12,6 +12,72 @@ body{
     background-color: #dfe4ea59;
     max-width: calc(100vw - 78px);
 }
+.summary-card {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card {
+    min-height: 110px;
+    min-width: 220px;
+    margin: 20px auto 20px auto;
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.08);
+    background-color: #ffffffc0;
+}
+
+.calanderbody {
+    /*height: 53vh;*/
+}
+
+.card-content {
+    width: 120px;
+    height: 40px;
+    margin-top: 26px;
+    display: flex;
+}
+
+.card label {
+    font-size: 0.8em;
+    letter-spacing: 1px;
+}
+
+.card-icon {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-icon img {
+    height: 35px;
+    filter: invert(.25);
+}
+
+.card-details {
+    width: 60%;
+}
+.precentage {
+    display: flex;
+    color: #FA8231;
+}
+
+.card-details h5 {
+    font-size: 1.5em;
+    color: #34495e;
+}
+
+.precentage {
+    display: flex;
+    color: #FA8231;
+}
+
+
 .container{
     display: flex;
     flex-direction: column;
@@ -76,7 +142,6 @@ body{
     display: flex;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.096);
-    padding: 15px;
     justify-content: space-around;
 }
 .complain-distribution div{
@@ -89,57 +154,62 @@ body{
 .complain-des{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
     font-size: 1.2em;
-    color: rgba(0, 0, 0, 0.589);
+    /*color: rgba(0, 0, 0, 0.589);*/
 }
-.complain-des p{
+.complain-des li{
     display: flex;
     align-items: center;
+    margin: 15px 0;
 }
+/*.diff-types {*/
+/*    width: 80%;*/
+/*}*/
 .progress-boxes{
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
-.card{
-    min-height: 100px;
-    min-width: 220px;
-    margin: 20px auto 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.08);
-    background-color: white;
-}
-.card-content{
-    width: 40%;
-    height: 80%;
-    display: flex;
-    justify-content: space-around;
-}
-.card label{
-    font-size: 0.9em;
-    height: 25%;
-    padding-bottom:7px;
-}
-.precentage{
-    display: flex;
-    color: #FA8231;
-}
-.count{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.add-com-type{
-    width: 100%;
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);
-    height: 180px;
-    background-color: white;
-}
+/*.card{*/
+/*    min-height: 100px;*/
+/*    min-width: 220px;*/
+/*    margin: 20px auto 20px auto;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.08);*/
+/*    background-color: white;*/
+/*}*/
+/*.card-content{*/
+/*    width: 40%;*/
+/*    height: 80%;*/
+/*    display: flex;*/
+/*    justify-content: space-around;*/
+/*}*/
+/*.card label{*/
+/*    font-size: 0.9em;*/
+/*    height: 25%;*/
+/*    padding-bottom:7px;*/
+/*}*/
+/*.precentage{*/
+/*    display: flex;*/
+/*    color: #FA8231;*/
+/*}*/
+/*.count{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    justify-content: space-between;*/
+/*}*/
+/*.add-com-type{*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    justify-content:space-around;*/
+/*    align-items: center;*/
+/*    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096);*/
+/*    height: 180px;*/
+/*    background-color: white;*/
+/*}*/
 input{
     border: 0;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.082);
@@ -178,6 +248,38 @@ button{
 .right p{
     display: flex;
     align-items: center;
+}
+
+.diff-types ul {
+    list-style: none;
+}
+ .diff-types ul li::before {
+    content: "\2022";
+    color: red;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+#i1::before {
+    color: #c0392b;
+}
+
+#i2::before {
+    color: #3498db;
+}
+
+#i3::before {
+    color: #f1c40f;
+}
+
+#i4::before {
+    color: #2ecc71;
+}
+
+#i5::before {
+    color: #8e44ad;
 }
 @media screen and (max-width: 1000px) {
     .mychart{

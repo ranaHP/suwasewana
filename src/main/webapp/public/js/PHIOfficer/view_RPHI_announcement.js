@@ -39,7 +39,6 @@ class View_RPHI_announcement{
         this.announcementArray = data;
         this.container.innerHTML=" ";
 
-        alert("came")
         this.announcementArray.map((item) => {
             let expday = new Date(item.exp_date)
             let current_day=new Date();
