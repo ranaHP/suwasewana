@@ -20,6 +20,7 @@ public class MohAnnouncementsModel {
       String expire_date
     ){
         this.announcement_id=announcement_id;
+        this.title=title;
         this.description=description;
         this.banner=banner;
         this.target_moh=target_moh;

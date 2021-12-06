@@ -161,7 +161,7 @@ import java.util.ArrayList;
                   "",
                   req.getParameter("patient"),
                   req.getParameter("age"),
-                  "12",
+                  "199910910064",
                   "5",
                   req.getParameter("location"),
                   req.getParameter("dose")
@@ -229,8 +229,8 @@ import java.util.ArrayList;
                     "",
                     "",
                     "",
+                    "199910910064",
                     "",
-                    "12",
                     "",
                     "",
                     ""
@@ -246,13 +246,13 @@ import java.util.ArrayList;
                 req.getParameter("clinictitle"),
                 req.getParameter("datetime"),
                 req.getParameter("duration"),
-                req.getParameter("description"),
                 req.getParameter("maxpatient"),
                 req.getParameter("MArea"),
-                req.getParameter("patient"),
-                req.getParameter("Agelimit"),
-                req.getParameter("12"),
+                req.getParameter("LAgelimit"),
+                req.getParameter("UAgelimit"),
+                "199910910064",
                 req.getParameter("vaccine"),
+                "",
                 req.getParameter("location"),
                 req.getParameter("Dosecount")
 

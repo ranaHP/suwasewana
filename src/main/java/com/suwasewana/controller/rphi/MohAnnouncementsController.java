@@ -8,12 +8,13 @@ import com.suwasewana.model.RPHIAnnouncementsModel;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/createMoh_Announcements/*")
-public class MohAnnouncementsController {
+public class MohAnnouncementsController extends HttpServlet{
     RPHIAnnouncementsDAO rphiAnnouncementsDAO;
     private Gson gson = new Gson();
     public void init(){
@@ -23,7 +24,7 @@ public class MohAnnouncementsController {
         doGet(req, res);
     }
 
-    private void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException {
 //          createClinic(req, res);
             res.setCharacterEncoding("UTF-8");
             String getUrlData [] = req.getRequestURI().split("/");
@@ -33,6 +34,7 @@ public class MohAnnouncementsController {
                 switch (getUrlData[getUrlData.length-1]) {
                     case "createMA":
                         createA(req,res);
+                        break;
                     default:
                         res.getWriter().println("404 Page not Found");
                         break;
@@ -54,7 +56,6 @@ public class MohAnnouncementsController {
                 "199910910061",
                 req.getParameter("expire_date")
         );
-        System.out.println("before");
         String result= rphiAnnouncementsDAO.createMohA(MohAnnouncements);
         res.getWriter().println(result);
 //        System.out.println(result);

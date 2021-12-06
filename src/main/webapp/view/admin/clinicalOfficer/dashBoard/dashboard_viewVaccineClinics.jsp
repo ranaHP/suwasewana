@@ -116,6 +116,7 @@
 
     function select(id){
         // let selectClinic = new selectClinics("form");
+        console.log("update")
         let clinicList=[]
         let reqData =
             {

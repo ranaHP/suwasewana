@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/RPHI/MakeAnnouncementForPHI.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<%--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/announcementCard.css"/> "/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script defer src="<c:url value="/public/js/RPHI/makeAnnouncementForPHI.js"></c:url> "></script>
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
@@ -17,6 +18,7 @@
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp"></c:import>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container">
     <!-- suwasewana header -->
     <div class="header">
@@ -39,7 +41,7 @@
 <%--            <button type="button" class="add-button" onclick="AddValue(document.getElementById('AllColors').value, document.getElementById('AllColors').text);">Add</button>--%>
 <%--        </div>--%>
     </div>
-    <div class="make-announcement-container">
+    <div class="make-announcement-container" style="margin: 30px 0">
 
         <div class="left">
             <!-- form container -->
@@ -85,7 +87,7 @@
     </div>
 </div>
 <script defer>
-    // let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var loadFile = function(event) {
         var image = document.getElementById('images');
         image.src = URL.createObjectURL(event.target.files[0]);
@@ -123,12 +125,15 @@
                         MohAnnouncement(imageNames)
                     } else {
                         console.log('file not uploaded');
+
                     }
                 },
             });
         }
         else {
-            console.log("no image selected")
+            MohAnnouncement(imageNames)
+            // console.log("no image selected")
+
             // registerwithoutimage();
         }
         return false;
@@ -142,10 +147,10 @@
             // moh:checkid(),
             expire_date:document.getElementById("expire_date").value
         };
-        console.log(reqData)
         $.post("/test_war_exploded/createMoh_Announcements/createMA",
-            reqData,
+           reqData,
             function (data, status) {
+            console.log(data)
                 if(data.includes("sucsess")){
                     // updateclinics()
                     popup.showCreateClinicSuccessMessage({
@@ -158,7 +163,8 @@
                         message: 'Failed to create !',
                         data: data
                     });
-                }}
+                }
+            }
         );
 
         return false
