@@ -63,7 +63,7 @@
 }
 
 table {
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     color: rgba(0, 0, 0, 0.747);
     border-collapse: collapse;
     margin: 0;
