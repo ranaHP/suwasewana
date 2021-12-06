@@ -112,7 +112,6 @@ public class VaccineController extends HttpServlet {
 
     private void ViewVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-//        res.getWriter().println(result);
     }
 
 
