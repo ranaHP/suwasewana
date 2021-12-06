@@ -566,7 +566,11 @@
                   let date=((element.date).split(" ")[0]) ;
                   let time=((element.date).split(" ")[1]).split(":")[0]+"."+((element.date).split(" ")[1]).split(":")[1];
 
-                     registered_clinic_list.innerHTML+= `
+                  let expdate=new Date(element.date);
+                  let currentDate=new Date();
+
+                  if(currentDate<=expdate){
+                      registered_clinic_list.innerHTML+= `
                        <tr>
                           <td data-label="Vaccine">`+element.vaccine_name+`</td>
                           <td data-label="Date">`+date+`</td>
@@ -575,6 +579,19 @@
                           <td data-label="Location">`+element.location+`</td>
                           <td data-label=""> <button class="btn-register cancle" onclick="CancleClinic(`+element.vaccine_clinic_id+`)"> Cancle</button> </td>
                         </tr>`
+                  }
+                  else {
+                      registered_clinic_list.innerHTML+= `
+                       <tr>
+                          <td data-label="Vaccine">`+element.vaccine_name+`</td>
+                          <td data-label="Date">`+date+`</td>
+                          <td data-label="Time">`+time+`</td>
+                          <td data-label="Available seats">`+element.max_sheet+`</td>
+                          <td data-label="Location">`+element.location+`</td>
+                          <td data-label=""> <button class="btn-register cancle" style="display: none" "> Cancle</button> </td>
+                        </tr>`
+                  }
+
 
               })
           }
