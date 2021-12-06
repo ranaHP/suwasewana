@@ -2,73 +2,55 @@ package com.suwasewana.model;
 
 public class VaccineClinicAnnouncementsModel {
 //    public String clinicID;
-    public String title;
-    public String description;
     public String banner;
-    public String vaccine_id;
-    public String max_sheet;
-    public String location;
-    public String target_people;
-    public String datetime;
+    public String vcs_id;
+    public String tittle;
+    public String start_date_time;
     public String duration;
-    public String age_limit;
-    public String target_moh;
-    public String vaccine_clinic_id ;
+    public String max_patient;
+    public String 	target_moh;
+    public String Lower_Age;
+    public String Upper_Age;
+    public String clinical_officer ;
+    public String 	v_id ;
+    public String vaccine_name;
+    public String location;
+    public String dose_count;
 
     public VaccineClinicAnnouncementsModel(
 //             String clinicID,
-             String title,
-             String description,
-             String banner,
-             String vaccine_id,
-             String max_sheet,
-             String location,
-             String target_people,
-             String datetime,
-             String duration,
-             String age_limit,
-             String target_moh,
-             String vaccine_clinic_id
+            String banner,
+            String vcs_id,
+            String tittle,
+            String start_date_time,
+            String duration,
+            String max_patient,
+            String target_moh,
+            String Lower_Age,
+            String Upper_Age,
+            String clinical_officer ,
+            String v_id ,
+            String vaccine_name,
+            String location,
+            String dose_count
             ){
         super();
 //        this.clinicID=clinicID;
-        this.title=title;
-        this.description=description;
         this.banner=banner;
-        this.vaccine_id=vaccine_id;
-        this.max_sheet=max_sheet;
-        this.location=location;
-        this.target_people=target_people;
-        this.datetime=datetime;
+        this.vcs_id=vcs_id;
+        this.tittle=tittle;
+        this.start_date_time=start_date_time;
         this.duration=duration;
-        this.age_limit=age_limit;
+        this.max_patient=max_patient;
         this.target_moh=target_moh;
-        this.vaccine_clinic_id=vaccine_clinic_id;
+        this.Lower_Age=Lower_Age;
+        this.Upper_Age=Upper_Age;
+        this.clinical_officer=clinical_officer;
+        this.v_id=v_id;
+        this.vaccine_name=vaccine_name;
+        this.location=location;
+        this.dose_count=dose_count;
 
-    }
-
-//    public String getClinicID() {
-//        return clinicID;
-//    }
-//
-//    public void setClinicID(String clinicID) {
-//        this.clinicID = clinicID;
-//    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getBanner() {
@@ -79,44 +61,28 @@ public class VaccineClinicAnnouncementsModel {
         this.banner = banner;
     }
 
-    public String getVaccine_id() {
-        return vaccine_id;
+    public String getVcs_id() {
+        return vcs_id;
     }
 
-    public void setVaccine_id(String vaccine_id) {
-        this.vaccine_id = vaccine_id;
+    public void setVcs_id(String vcs_id) {
+        this.vcs_id = vcs_id;
     }
 
-    public String getMax_sheet() {
-        return max_sheet;
+    public String getTittle() {
+        return tittle;
     }
 
-    public void setMax_sheet(String max_sheet) {
-        this.max_sheet = max_sheet;
+    public void setTittle(String tittle) {
+        this.tittle = tittle;
     }
 
-    public String getLocation() {
-        return location;
+    public String getStart_date_time() {
+        return start_date_time;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getTarget_people() {
-        return target_people;
-    }
-
-    public void setTarget_people(String target_people) {
-        this.target_people = target_people;
-    }
-
-    public String getDatetime() {
-        return datetime;
-    }
-
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setStart_date_time(String start_date_time) {
+        this.start_date_time = start_date_time;
     }
 
     public String getDuration() {
@@ -127,12 +93,12 @@ public class VaccineClinicAnnouncementsModel {
         this.duration = duration;
     }
 
-    public String getAge_limit() {
-        return age_limit;
+    public String getMax_patient() {
+        return max_patient;
     }
 
-    public void setAge_limit(String age_limit) {
-        this.age_limit = age_limit;
+    public void setMax_patient(String max_patient) {
+        this.max_patient = max_patient;
     }
 
     public String getTarget_moh() {
@@ -143,12 +109,60 @@ public class VaccineClinicAnnouncementsModel {
         this.target_moh = target_moh;
     }
 
-    public String getVaccine_clinic_id() {
-        return vaccine_clinic_id;
+    public String getLower_Age() {
+        return Lower_Age;
     }
 
-    public void setVaccine_clinic_id(String vaccine_clinic_id) {
-        this.vaccine_clinic_id = vaccine_clinic_id;
+    public void setLower_Age(String lower_Age) {
+        Lower_Age = lower_Age;
+    }
+
+    public String getUpper_Age() {
+        return Upper_Age;
+    }
+
+    public void setUpper_Age(String upper_Age) {
+        Upper_Age = upper_Age;
+    }
+
+    public String getClinical_officer() {
+        return clinical_officer;
+    }
+
+    public void setClinical_officer(String clinical_officer) {
+        this.clinical_officer = clinical_officer;
+    }
+
+    public String getV_id() {
+        return v_id;
+    }
+
+    public void setV_id(String v_id) {
+        this.v_id = v_id;
+    }
+
+    public String getVaccine_name() {
+        return vaccine_name;
+    }
+
+    public void setVaccine_name(String vaccine_name) {
+        this.vaccine_name = vaccine_name;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDose_count() {
+        return dose_count;
+    }
+
+    public void setDose_count(String dose_count) {
+        this.dose_count = dose_count;
     }
 }
 

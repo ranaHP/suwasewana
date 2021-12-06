@@ -653,8 +653,13 @@ class SuwasewanaPopup{
                     </div>
                    
                     <div style="margin-bottom: 5px;display: flex">
-                         <label style=" width:150px">DateandTime</label>     
-                        <input type="text"  id="date-time" value="${data[0].datetime}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                         <label style=" width:150px">Date</label>     
+                        <input type="text"  id="date" value="${data[0].date}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                     <div style="margin-bottom: 5px;display: flex">
+                         <label style=" width:150px">Date</label>     
+                        <input type="text"  id="time" value="${data[0].time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
                     <div style="margin-bottom: 5px;display: flex">

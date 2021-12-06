@@ -13,9 +13,9 @@ import java.util.ArrayList;
 public class createClinicDAO {
   private  static final String CREATE_CLINIC ="INSERT INTO `normal_clinic_session`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?,?);";
   private static final String VIEW_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ?";
-  private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
+  private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` cs left join moh m on cs.target_moh=m.moh_id WHERE cs.ncs_id = ? AND cs.clinical_officer = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
-  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `date` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
+  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `date` = ? , `time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String disease_clinic_count="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease ";
   private static final String SELECT_events="SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`date` = ?";
 
@@ -23,7 +23,7 @@ public class createClinicDAO {
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=?; ";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.vcs_id=?;";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
-  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `start_date_time` = ? , `duration` = ? , `description` = ? , `max_patient` = ? ,`target_people` = ? , `target_age_limit` = ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
+  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `duration` = ? , `max_patient` = ? ,`lower_age_limit`=? ,`upper_age_limit`=?  ,`location`= ?  , `dose_count`= ? ,`start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String ClinicCount="SELECT COUNT(ncs_id), date FROM `normal_clinic_session` GROUP BY `date`;";
   Connection connection;
     public createClinicDAO(){
@@ -138,6 +138,7 @@ public class createClinicDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
             System.out.println("jjj");
             preparedStatement.setString(1, viewClinic.getClinicID());
+            preparedStatement.setString(2, "12");
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> selectClinicList = new ArrayList<CreateClinicModel>();
@@ -151,7 +152,7 @@ public class createClinicDAO {
                 String description = rs.getString("description");
                 String max_sheet = rs.getString("max_sheet");
                 String conduct_by = rs.getString("conduct_by");
-                String target_moh=rs.getString("target_moh");
+                String target_moh=rs.getString("name");
                 String target_people = rs.getString("target_people");
                 String location = rs.getString("location");
                 String cNic = rs.getString("clinical_officer");
@@ -353,12 +354,12 @@ public class createClinicDAO {
             preparedStatement.setString(3,Updatevclinic.getMax_patient());
             preparedStatement.setString(4,Updatevclinic.getLower_Age());
             preparedStatement.setString(4,Updatevclinic.getUpper_Age());
-            preparedStatement.setString(5,Updatevclinic.getV_id());
-            preparedStatement.setString(6,Updatevclinic.getLocation());
-            preparedStatement.setString(7,Updatevclinic.getDose_count());
-            preparedStatement.setString(8,Updatevclinic.getStart_date_time());
+//            preparedStatement.setString(5,Updatevclinic.getV_id());
+            preparedStatement.setString(5,Updatevclinic.getLocation());
+            preparedStatement.setString(6,Updatevclinic.getDose_count());
+            preparedStatement.setString(7,Updatevclinic.getStart_date_time());
 //            preparedStatement.setString(6,Updatevclinic.getTarget_moh());
-            preparedStatement.setString(9,Updatevclinic.getVcs_id());
+            preparedStatement.setString(8,Updatevclinic.getVcs_id());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);

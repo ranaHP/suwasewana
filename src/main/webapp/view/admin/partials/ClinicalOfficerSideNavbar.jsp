@@ -60,7 +60,7 @@
             </div>
             <ul class="sub-menu">
                 <li><a href="/test_war_exploded/s/select-announcements">Create Normal clinic Announcement </a></li>
-                <li><a href="/test_war_exploded/s/vaccine_announcements">Create Vaccine clinic Announcement </a></li>
+<%--                <li><a href="/test_war_exploded/s/vaccine_announcements">Create Vaccine clinic Announcement </a></li>--%>
             </ul>
         </li>
         <li>
@@ -87,7 +87,7 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="/test_war_exploded/s/view_vaccine_announcements">View Vaccine clinic Announcement </a></li>
+<%--                <li><a href="/test_war_exploded/s/view_vaccine_announcements">View Vaccine clinic Announcement </a></li>--%>
                 <li><a href="/test_war_exploded/s/viewClinic-announcements">View Normal clinic Announcement </a></li>
 
             </ul>
