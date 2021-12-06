@@ -66,20 +66,20 @@ public class UserViewClinicsController extends HttpServlet {
     }
 
     private void  userViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.getWriter().println("announcement view");
+//        res.getWriter().println("announcement view");
         System.out.println("data come to controller");
         UserViewClinicsModel viewclinic = new UserViewClinicsModel(
                 
+                req.getParameter("disease"),
                 "",
-                req.getParameter("title"),
                 req.getParameter("location"),
                 req.getParameter("MOH"),
+                req.getParameter("datetime"),
                 "",
-                "",
-                "",
-                "",
-                "",
-                "",
+                req.getParameter("maxpatient"),
+                req.getParameter("Target"),
+                req.getParameter("conduct"),
+                req.getParameter("description"),
                 ""
         );
         ArrayList<UserViewClinicsModel> result= userDAO.UserViewclinic(viewclinic);
