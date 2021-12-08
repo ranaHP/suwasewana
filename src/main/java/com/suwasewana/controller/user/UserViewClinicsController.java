@@ -5,13 +5,12 @@ import com.suwasewana.dao.AppointmentDAO;
 import com.suwasewana.dao.PHIDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.dao.clinicalAnnouncementsDAO;
-import com.suwasewana.model.CreateClinicAnnouncementsModel;
-import com.suwasewana.model.UserViewClinicsModel;
-import com.suwasewana.model.VaccineClinicAnnouncementsModel;
+import com.suwasewana.model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,9 +41,9 @@ public class UserViewClinicsController extends HttpServlet {
                 case "view":
                     userViewclinics(req, res);
                     break;
-//                case "view":
-//                    userViewAppointment(req, res);
-//                    break;
+                case "registerview":
+                    userViewregisteredclinics(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -61,8 +60,9 @@ public class UserViewClinicsController extends HttpServlet {
 //            }
 //        }
 //        if(uNic == null) res.sendRedirect("login.html");
-//        res.getWriter().println(uNic);
-//
+////        res.getWriter().println(uNic);
+//        System.out.println(uNic);
+
     }
 
     private void  userViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -83,6 +83,35 @@ public class UserViewClinicsController extends HttpServlet {
                 ""
         );
         ArrayList<UserViewClinicsModel> result= userDAO.UserViewclinic(viewclinic);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void userViewregisteredclinics(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+        UserViewRegisteredclinicsModel userviewregisterclinics  = new UserViewRegisteredclinicsModel(
+//                "980930416v",
+                req.getParameter("disease"),
+                req.getParameter("title"),
+                req.getParameter("location"),
+                req.getParameter("MOH"),
+                req.getParameter("datetime"),
+                "",
+                req.getParameter("maxpatient"),
+                req.getParameter("Target"),
+                req.getParameter("conduct"),
+                req.getParameter("description")
+
+        );
+        String nic = "980930416v";
+        ArrayList<UserViewRegisteredclinicsModel> result = userDAO.userViewregisteredclinics(userviewregisterclinics,nic);
         res.getWriter().println(gson.toJson(result));
     }
 

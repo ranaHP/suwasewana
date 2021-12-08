@@ -79,7 +79,6 @@ class clinicList {
             `
             ;
             console.log("map")
-            console.log("finish")
         })
     }
 

@@ -54,6 +54,8 @@ public class UserDAO {
 
     private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session`";
 
+    private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM clinic_registered_patient INNER JOIN normal_clinic_session ON clinic_registered_patient.ncs_id=normal_clinic_session.ncs_id WHERE u_nic= ?";
+
     public UserDAO() {
         DB db = new DB();
         connection = db.getConnection();
@@ -559,6 +561,55 @@ public class UserDAO {
         }
         return null;
     }
+
+    public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics ,String nic) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_REGISTERED_CLINICS)){
+            System.out.println("came to dao");
+            preparedStatement.setString(1, nic);
+            System.out.println(nic);
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<UserViewRegisteredclinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewRegisteredclinicsModel>();
+            while (rs.next()){
+//                String UNic = rs.getString("u_nic");
+                String title = rs.getString("title");
+                String disease =rs.getString("disease");
+                String location=rs.getString("location");
+                String TargetMOH = rs.getString("target_moh");
+                String DataTime = rs.getString("start_date_time");
+                String Duration = rs.getString("duration");
+                String MaxPatient = rs.getString("max_sheet");
+                String Target=rs.getString("target_people");
+                String Conduct = rs.getString("conduct_by");
+                String Description = rs.getString("description");
+                UserViewRegisteredclinicsModel temp = new UserViewRegisteredclinicsModel(
+
+//                        UNic,
+                        title,
+                        disease,
+                        location,
+                        TargetMOH,
+                        DataTime,
+                        Duration,
+                        MaxPatient,
+                        Target,
+                        Conduct,
+                        Description
+
+
+                );
+                ViewclinicAnnouncements.add(temp);
+                System.out.println(title+"--"+disease+"--"+location);
+            };
+            return ViewclinicAnnouncements;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
 
 
 
