@@ -38,6 +38,7 @@
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
     <script src="<c:url value="/public/js/citizen/userViewclinics.js"></c:url> "></script>
+    <script src="<c:url value="/public/js/citizen/userViewRegisteredclinics.js"></c:url> "></script>
 
     <title>Complain</title>
 </head>
@@ -181,62 +182,62 @@
                         Clinic Programs
                     </div>
 
-                    <div class="clinic-card-list">
-                        <div class="clinic-card-container">
-                            <div class="clinic-card">
-                                <div class="title">
-                                    Covid19 Awareness Session
-                                    <p> 2021/01/10</p>
-                                </div>
-                                <div class="desc">
-                                    he process of writing a job description requires
-                                    having a clear understanding of the job’s duties
-                                    and responsibilities. The job posting should also
-                                    include a concise picture of the skills required
-                                    Organize the job
-                                </div>
-                                <div class="properties">
-                                    <ul>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="15px" />
-                                            Location : Eluketiya Manduni's home
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
-                                            Conduct : Dr Akila Lulakshi
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
-                                            Max participant limit : 1000
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
-                                            MOH Area :Akuressa
-                                        </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
-                                            Target participant :Dr Akila Lulakshi
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- <div class="row">
-                                    <div class="special-note">
-                                        Special note: <div id="special-note">
-                                            There are no speacific messages
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="footer">
-                                    <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/users.svg"/>" width="18px" />
-                                        120,22
-                                    </div>
-                                    <div class="register-btn">
-                                        Registered
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="clinic-card-list" id="clinic-card-list-registred">
+<%--                        <div class="clinic-card-container">--%>
+<%--                            <div class="clinic-card">--%>
+<%--                                <div class="title">--%>
+<%--                                    Covid19 Awareness Session--%>
+<%--                                    <p> 2021/01/10</p>--%>
+<%--                                </div>--%>
+<%--                                <div class="desc">--%>
+<%--                                    he process of writing a job description requires--%>
+<%--                                    having a clear understanding of the job’s duties--%>
+<%--                                    and responsibilities. The job posting should also--%>
+<%--                                    include a concise picture of the skills required--%>
+<%--                                    Organize the job--%>
+<%--                                </div>--%>
+<%--                                <div class="properties">--%>
+<%--                                    <ul>--%>
+<%--                                        <li>--%>
+<%--                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="15px" />--%>
+<%--                                            Location : Eluketiya Manduni's home--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />--%>
+<%--                                            Conduct : Dr Akila Lulakshi--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />--%>
+<%--                                            Max participant limit : 1000--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />--%>
+<%--                                            MOH Area :Akuressa--%>
+<%--                                        </li>--%>
+<%--                                        <li>--%>
+<%--                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />--%>
+<%--                                            Target participant :Dr Akila Lulakshi--%>
+<%--                                        </li>--%>
+<%--                                    </ul>--%>
+<%--                                </div>--%>
+<%--                                <!-- <div class="row">--%>
+<%--                                    <div class="special-note">--%>
+<%--                                        Special note: <div id="special-note">--%>
+<%--                                            There are no speacific messages--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div> -->--%>
+<%--                                <div class="footer">--%>
+<%--                                    <div class="current-registered-count">--%>
+<%--                                        <img src="<c:url value="/public/images/icons/users.svg"/>" width="18px" />--%>
+<%--                                        120,22--%>
+<%--                                    </div>--%>
+<%--                                    <div class="register-btn">--%>
+<%--                                        Registered--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
 
@@ -539,6 +540,28 @@
             }
         );
         console.log("after")
+    }
+
+
+</script>
+<script defer>
+
+    let registeredclinicList1 = new registeredclinicList("clinic-card-list-registred");
+    // let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    viewregisteredclinic();
+    function viewregisteredclinic(){
+        let clinicListArray=[]
+        console.log("noice")
+        $.post("/test_war_exploded/user-view-clinic-controller/registerview",
+            // reqData,
+            function(data,status){
+                clinicListArray=JSON.parse(data)
+                // console.log(clinicListArray)
+                registeredclinicList1.setData(clinicListArray);
+
+            }
+        );
+
     }
 </script>
 <script>

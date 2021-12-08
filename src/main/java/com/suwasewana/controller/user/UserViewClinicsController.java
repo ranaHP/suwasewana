@@ -110,7 +110,7 @@ public class UserViewClinicsController extends HttpServlet {
                 req.getParameter("description")
 
         );
-        String nic = "980930416v";
+        String nic = "980936416v";
         ArrayList<UserViewRegisteredclinicsModel> result = userDAO.userViewregisteredclinics(userviewregisterclinics,nic);
         res.getWriter().println(gson.toJson(result));
     }
