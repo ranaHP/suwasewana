@@ -8,6 +8,7 @@ class registeredclinicList {
             location:" ",
             MOH:" ",
             datetime:" ",
+            time:" ",
             // duration:" ",
             maxpatient:" ",
             Target:"",
@@ -36,6 +37,7 @@ class registeredclinicList {
                                 <div class="title">
                                     ${item.disease} Awareness Session
                                     <p> ${item.datetime}</p>
+                                    <p> ${item.time}</p>
                                 </div>
                                 <div class="desc">
                                     ${item.description}
@@ -43,23 +45,25 @@ class registeredclinicList {
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/map-pin.svg"/>" width="15px" />
+                                           
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
+              
                                             Location : ${item.location}
                                         </li>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
+                                           <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Conduct : ${item.conduct}
                                         </li>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Max participant limit : ${item.maxpatient}
                                         </li>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
-                                            MOH Area :${item.MOH}
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
+                                            Disease :${item.disease}
                                         </li>
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Target participant :${item.Target}
                                         </li>
                                     </ul>
@@ -73,11 +77,10 @@ class registeredclinicList {
                                 </div> -->
                                 <div class="footer">
                                     <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/users.svg"/>" width="18px" />
-                                        120,22
+                                      
                                     </div>
-                                    <div class="register-btn">
-                                        Registered
+                                    <div class="register-btn" style="background-color: #EB3B5AFF">
+                                        Cancel
                                     </div>
                                 </div>
                             </div>

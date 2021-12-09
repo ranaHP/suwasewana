@@ -8,8 +8,10 @@ public class UserViewClinicsModel {
         public String location;
         public String MOH;
         public String datetime;
+        public String time;
         public String duration;
         public String maxpatient;
+        public String 	Avail_seats;
         public String Target;
         public String conduct;
         public String description;
@@ -22,8 +24,10 @@ public class UserViewClinicsModel {
                 String location,
                 String MOH,
                 String datetime,
+                String time,
                 String duration,
                 String maxpatient,
+                String 	Avail_seats,
                 String Target,
                 String conduct,
                 String description,
@@ -36,8 +40,10 @@ public class UserViewClinicsModel {
             this.location= location;
             this.MOH= MOH;
             this.datetime= datetime;
+            this.time=time;
             this.duration= duration;
             this.maxpatient= maxpatient;
+            this.Avail_seats=Avail_seats;
             this.Target=Target;
             this.conduct= conduct;
             this.description= description;
@@ -82,7 +88,15 @@ public class UserViewClinicsModel {
             this.datetime = datetime;
         }
 
-        public String getDuration() {
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDuration() {
             return duration;
         }
 
@@ -98,7 +112,15 @@ public class UserViewClinicsModel {
             this.maxpatient = maxpatient;
         }
 
-        public String getTarget() {
+    public String getAvail_seats() {
+        return Avail_seats;
+    }
+
+    public void setAvail_seats(String avail_seats) {
+        Avail_seats = avail_seats;
+    }
+
+    public String getTarget() {
             return Target;
         }
 

@@ -8,8 +8,10 @@ class clinicList {
             location:" ",
             MOH:" ",
             datetime:" ",
+            time:" ",
             // duration:" ",
             maxpatient:" ",
+            Avail_seats:" ",
             Target:"",
             conduct:" ",
             description:" "
@@ -28,13 +30,22 @@ class clinicList {
         this.clinicListArray = data;
         console.log("set data");
         console.log(data);
+
+        // console.log("today : "+current_day+" "+"exp_day : "+expday);
+
         this.clinicListArray.map((item) => {
+            let expday = new Date(item.datetime)
+            let current_day=new Date();
+            console.log(current_day)
+            if(current_day<=expday){
             this.container.innerHTML += `
                 <div class="clinic-card-container">
                             <div class="clinic-card">
                                 <div class="title" id="moh">
                                     ${item.disease} Awareness Session
                                     <p> ${item.datetime}</p>
+                                     <p> ${item.time}</p>
+                                    
                                 </div>
                                 <div class="desc">
                                    ${item.description}
@@ -43,32 +54,38 @@ class clinicList {
                                     <ul>
                                         <li>
                                             <span></span>
-                                            <object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object>
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
+                                            Available seats : ${item.Avail_seats}
+                                        </li>
+                                    
+                                        <li>
+                                            <span></span>
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Location : ${item.location}
                                         </li>
                                         <li>
                                       
-                                           <object data="${Url}/public/images/icons/user.svg" width="8" height="8"> </object>
+                                           <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Conduct : ${item.conduct}
                                         </li>
                                         <li>
-                                            <object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object>
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Max participant limit : ${item.maxpatient}
                                         </li>
-                                        <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
-                                            MOH Area :${item.MOH}
+                                         <li>
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
+                                            Disease :${item.disease}
                                         </li>
+                                      
                                         <li>
-                                            <img src="<c:url value="/public/images/icons/list.svg"/>" width="15px" />
+                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Target participant :${item.Target}
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="footer">
                                     <div class="current-registered-count">
-                                        <img src="<c:url value="/public/images/icons/users.svg"/>" width="18px" />
-                                        120,22
+                                       
                                     </div>
                                     <div class="register-btn">
                                         Register
@@ -76,7 +93,7 @@ class clinicList {
                                 </div>
                             </div>
                       </div>
-            `
+            `}
             ;
             console.log("map")
         })

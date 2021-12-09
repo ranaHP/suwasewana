@@ -73,10 +73,12 @@ public class UserViewClinicsController extends HttpServlet {
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),
-                req.getParameter("MOH"),
+                "1004",
                 req.getParameter("datetime"),
                 "",
+                "",
                 req.getParameter("maxpatient"),
+                "",
                 req.getParameter("Target"),
                 req.getParameter("conduct"),
                 req.getParameter("description"),
@@ -97,12 +99,13 @@ public class UserViewClinicsController extends HttpServlet {
             }
         }
         UserViewRegisteredclinicsModel userviewregisterclinics  = new UserViewRegisteredclinicsModel(
-//                "980930416v",
+                "199910910035",
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),
                 req.getParameter("MOH"),
                 req.getParameter("datetime"),
+                "",
                 "",
                 req.getParameter("maxpatient"),
                 req.getParameter("Target"),

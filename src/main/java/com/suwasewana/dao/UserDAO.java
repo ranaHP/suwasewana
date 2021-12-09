@@ -60,7 +60,7 @@ public class UserDAO {
 //    /fixed
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
 
-    private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session`";
+    private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` where target_moh= ?";
 
     private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM clinic_registered_patient INNER JOIN normal_clinic_session ON clinic_registered_patient.ncs_id=normal_clinic_session.ncs_id WHERE u_nic= ?";
 
@@ -704,6 +704,7 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_ANNOUNCEMENTS)){
             System.out.println("came to dao");
+            preparedStatement.setString(1,viewAnnouncement.getMOH());
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println(rs.toString());
             ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();
@@ -711,10 +712,12 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
                 String title = rs.getString("title");
                 String disease =rs.getString("disease");
                 String location=rs.getString("location");
-                String TargetMOH = rs.getString("target_moh");
-                String DataTime = rs.getString("start_date_time");
+//                String TargetMOH = rs.getString("name");
+                String DataTime = rs.getString("date");
+                String time=rs.getString("time");
                 String Duration = rs.getString("duration");
                 String MaxPatient = rs.getString("max_sheet");
+                String 	Avail_seats=rs.getString("Avail_seats");
                 String Target=rs.getString("target_people");
                 String Conduct = rs.getString("conduct_by");
                 String Description = rs.getString("description");
@@ -724,10 +727,12 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
                         title,
                         disease,
                         location,
-                        TargetMOH,
+                        "",
                         DataTime,
+                        time,
                         Duration,
                         MaxPatient,
+                        Avail_seats,
                         Target,
                         Conduct,
                         Description,
@@ -749,18 +754,19 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_REGISTERED_CLINICS)){
             System.out.println("came to dao");
-            preparedStatement.setString(1, nic);
+            preparedStatement.setString(1,viewregisteredclinics.getUNic());
             System.out.println(nic);
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println(rs.toString());
             ArrayList<UserViewRegisteredclinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewRegisteredclinicsModel>();
             while (rs.next()){
-//                String UNic = rs.getString("u_nic");
+                String UNic = rs.getString("u_nic");
                 String title = rs.getString("title");
                 String disease =rs.getString("disease");
                 String location=rs.getString("location");
                 String TargetMOH = rs.getString("target_moh");
-                String DataTime = rs.getString("start_date_time");
+                String DataTime = rs.getString("date");
+                String time=rs.getString("time");
                 String Duration = rs.getString("duration");
                 String MaxPatient = rs.getString("max_sheet");
                 String Target=rs.getString("target_people");
@@ -768,12 +774,13 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
                 String Description = rs.getString("description");
                 UserViewRegisteredclinicsModel temp = new UserViewRegisteredclinicsModel(
 
-//                        UNic,
+                        UNic,
                         title,
                         disease,
                         location,
                         TargetMOH,
                         DataTime,
+                        time,
                         Duration,
                         MaxPatient,
                         Target,
