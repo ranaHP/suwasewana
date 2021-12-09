@@ -42,7 +42,9 @@
 
     <title>Complain</title>
 </head>
+
 <body>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <!-- main container -->
 <div class="container"
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
@@ -519,6 +521,7 @@
 
 </div>
 <script defer>
+    popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var loadFile = function (event, imgContainerId) {
         var image = document.getElementById(imgContainerId);
         image.src = URL.createObjectURL(event.target.files[0]);
@@ -564,6 +567,53 @@
 
     }
 
+
+    function RegisterForclinic(clinic_id,max_sheet){
+
+        let x=new Date();
+         let year =x.getFullYear();
+         let month =x.getMonth()+1;
+         let day =x.getDate();
+
+        clinic_id = clinic_id;
+        let date=year+"-"+month+"-"+day;
+
+        let avalabel_seats=--max_sheet;
+        let reqData =
+            {
+
+
+            };
+
+        $.post(myUrl+"/Vaccine-controller/",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    console.log("successsss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'success',
+                        message: 'Successfully Registerd!',
+                        data: date,
+                        Set_sloat:sloat
+                    });
+                      updateAvailableseats(avalabel_seats,clinic_id)
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'fail',
+                        message: 'Complain Send Fail !',
+
+                    });
+                }
+            }
+        );
+
+
+    }
+   function updateAvailableseats(avalabel_seats,clinic_id){
+
+   }
 </script>
 <script>
     feather.replace({ width: "20px" })

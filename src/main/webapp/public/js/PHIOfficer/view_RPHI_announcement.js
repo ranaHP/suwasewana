@@ -14,8 +14,10 @@
 //         moreText.style.display = "inline";
 //     }
 // }
+
 let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class View_RPHI_announcement{
+
     announcementArray=[
         {
             announcement_id:"",
@@ -25,9 +27,10 @@ class View_RPHI_announcement{
             target_moh:"",
             posted_date:"",
             phi_officer:"",
-            exp_date:""
+            expire_date:""
         }
     ];
+
 
     container;
     url = "http://localhost:8080/test_war_exploded/public/";
@@ -38,21 +41,22 @@ class View_RPHI_announcement{
         if(!data) return;
         this.announcementArray = data;
         this.container.innerHTML=" ";
+        console.log("hi")
+        console.log(data)
 
         this.announcementArray.map((item) => {
-            let expday = new Date(item.exp_date)
+            let expday = new Date(item.expire_date)
             let current_day=new Date();
             console.log(current_day)
+            console.log(expday)
             // console.log("today : "+current_day+" "+"exp_day : "+expday);
             if(current_day<=expday){
-                console.log("bi");
-
 
             this.container.innerHTML += `
        <div class="announcement">
                          <div class="left">
                 <div class="image-container">
-<!--                    <img src="${Url}/images/upoadimage/${item.banner}" width="250px" height="150px">-->
+     <img src="${this.url}images/uploadimage/${item.banner}" width="80px" height="80px" />
                 </div>
             </div>
             <div class="right">
