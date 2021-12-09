@@ -15,30 +15,22 @@ class View_RPHI_announcement{
     ];
 
     container;
-    url = "http://localhost:8080/test_war_exploded/public/";
+
     constructor(container) {
         this.container = document.getElementById(container);
     }
     setData(data) {
         if(!data) return;
-        this.announcementArray = data;
-        this.container.innerHTML=" ";
-
-        this.announcementArray.map((item) => {
-            let expday = new Date(item.exp_date)
-            let current_day=new Date();
-            console.log(current_day)
-            // console.log("today : "+current_day+" "+"exp_day : "+expday);
-            if(current_day<=expday){
-                console.log("bi");
-
-
-                this.container.innerHTML += `
+        this. announcementArray = data;
+        console.log(data);
+        this. announcementArray.map((item) => {
+            this.container.innerHTML += `
 
                               <div class="latest-announstment-cards-container">
                             <div class="latest-announstment-card">
                                 <div class="image-container">
-                                    <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>
+                           
+<!--                                    <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>-->
                                     <div class="read-more-btn">
                                         Read More
                                     </div>
@@ -49,7 +41,7 @@ class View_RPHI_announcement{
                                 <div class="suwasaewana">
                                     SUWASEWANA.LK
                                 </div>
-                                <div class="posted-time">
+                                <div class="posted-time" id="posted-time">
                                     ${item.posted_date}
                                 </div>
                                 <div class="desc">
@@ -58,13 +50,26 @@ class View_RPHI_announcement{
 
                             </div>
                         </div>
-            `;}
+            `
+            ;
+            console.log("map")
         })
-
-        // alert("hi")
     }
 
-
-
-
 }
+
+function searchD(){
+    let count=0
+    const input = document.getElementById('diseasesSearch2').value;
+    const cardContainor = document.getElementById('announcetment-list-card-container2');
+    const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
+    for(let i=0 ; i<card.length ;i++){
+        let title = card[i].querySelector('#posted-time');
+        // alert(title)
+
+        if(title.innerHTML.indexOf(input) > -1){
+            card[i].style.display=""
+        }else{
+            card[i].style.display="none"
+        }
+    }}

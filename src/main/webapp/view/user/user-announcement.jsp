@@ -294,12 +294,13 @@
                     <div class="search-container">
                         <div class="form-group">
                             <input id="diseasesSearch2" type="text" list="alldiseasesSearch2" name="moh"
-                                   autocomplete="off" placeholder="search by dieases">
+                                   autocomplete="off" placeholder="search by date"
+                                   >
                             <datalist id="alldiseasesSearch2">
                                 <option value="Covid19" label="Covid19"></option>
                             </datalist>
                         </div>
-                        <button class="search-btn"> Search</button>
+                        <button class="search-btn" onclick="searchD()"> Search</button>
                     </div>
                     <div class="announcetment-list-card-container" id="announcetment-list-card-container2">
 
@@ -561,16 +562,16 @@
     function announcement(){
         let selectA = new View_RPHI_announcement("announcetment-list-card-container2");
 
-        let AListArray=[]
+        let announcementArray=[]
 
         // console.log(reqData)
         $.post("/test_war_exploded/user-announcement-controller/createMA",
             // reqData,
             function(data1,status){
                 // alert(data1)
-                AListArray=JSON.parse(data1)
+                announcementArray=JSON.parse(data1)
                 // console.log(clinicListArray)
-                selectA.setData(AListArray);
+                selectA.setData(announcementArray);
 
             }
         );
