@@ -85,7 +85,8 @@ body{
     /* background-color: rgba(128, 128, 128, 0.445); */
     align-content: center;
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: "Segoe UI";
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
@@ -123,7 +124,8 @@ body{
     margin-bottom: 2px;
     box-shadow: 0 3px 3px #0a0a0a1c;
     background-color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: "Segoe UI";
     width: 100%;
 }
 .header .upper-title{

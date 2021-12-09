@@ -158,7 +158,7 @@
             reqData,
             function (data,status){
                 // alert("wrong")
-                 alert(data)
+                //  alert(data)
             });
 
         return false;

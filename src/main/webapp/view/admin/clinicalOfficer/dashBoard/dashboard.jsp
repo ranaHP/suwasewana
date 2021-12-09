@@ -142,7 +142,8 @@
                         function (data,status){
                             let EventArray =JSON.parse(data)
                             event.push(EventArray)
-                            let object2 = { year: cyear, month: cmonth, date: cdata ,events: event[0]};
+                            let object2 = { year: cyear
+                                , month: cmonth, date: cdata ,events: event[0]};
                             eventA.push(object2)
                             event=[]
                             calender.setEventData(eventA)
@@ -255,15 +256,14 @@
 
 
     function updatevclinics(data){
-        alert("update")
+        // alert("update")
         let id=data;
-        let age=document.getElementById("target_age_limit").value;
-        let patient=document.getElementById("target_people").value;
+        let Lage=document.getElementById("Lage_limit").value;
+        let Uage=document.getElementById("Uage_limit").value;
         let maxpatient = document.getElementById("max_patient").value;
         let duration=document.getElementById("duration").value;
         let datetime= document.getElementById("start_date_time").value;
         let clinictitle=document.getElementById("tittle").value;
-        let description=document.getElementById("description").value;
         let dose=document.getElementById("dose_count").value;
         let location=document.getElementById("location").value;
         // console.log(a)
@@ -271,16 +271,15 @@
         let reqData =
             {
                 clinicID:id,
-                age:age,
+                Lage:Lage,
+                Uage:Uage,
                 title:clinictitle,
                 location:location,
                 // targetMOH:document.getElementById("target-MOH").value,
                 datetime:datetime,
                 duration:duration,
                 maxpatient:maxpatient,
-                patient:patient,
                 dose:dose,
-                description:description
             };
         console.log(reqData)
         alert(reqData)
@@ -288,7 +287,8 @@
             reqData,
             function (data,status){
                 // alert("wrong")
-                alert(data)
+                // alert(data)
+                popup.hidePopup()
             });
 
         return false;

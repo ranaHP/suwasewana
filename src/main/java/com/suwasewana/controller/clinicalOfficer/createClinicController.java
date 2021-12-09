@@ -156,6 +156,7 @@ import java.util.ArrayList;
                   req.getParameter("title"),
                   req.getParameter("datetime"),
                   req.getParameter("duration"),
+                  "",
                   req.getParameter("maxpatient"),
                   "",
                   req.getParameter("Lage"),
@@ -176,6 +177,7 @@ import java.util.ArrayList;
         System.out.println("Deleteeeeeeeeee");
         vaccineClinicModel deleteVClinic = new vaccineClinicModel(
                 req.getParameter("clinicID"),
+                "",
                 "",
                 "",
                 "",
@@ -211,6 +213,7 @@ import java.util.ArrayList;
                     "",
                     "",
                     "",
+                    "",
                     ""
             );
 
@@ -221,6 +224,7 @@ import java.util.ArrayList;
     private void VaccineClinicsView(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //            res.getWriter().println("vaccine");
             vaccineClinicModel vaccineClinicView = new vaccineClinicModel(
+                    "",
                     "",
                     "",
                     "",
@@ -246,6 +250,7 @@ import java.util.ArrayList;
                 req.getParameter("clinictitle"),
                 req.getParameter("datetime"),
                 req.getParameter("duration"),
+                "",
                 req.getParameter("maxpatient"),
                 req.getParameter("MArea"),
                 req.getParameter("LAgelimit"),

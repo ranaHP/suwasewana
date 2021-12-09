@@ -32,7 +32,7 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-icon">
-                        <img  src="<c:url value="/public/images/PHI_Dashboard/time-clock-circle.svg "/>" srcset="">
+                        <img  src="<c:url value="/public/images/icons/View%20complain/mail.svg "/>" alt="" srcset="">
                     </div>
                     <div class="card-details">
                         <h5 id="new">200</h5>
@@ -48,7 +48,7 @@
             <div class="card" style="display: flex">
                 <div class="card-content">
                     <div class="card-icon">
-                        <img  src="<c:url value="/public/images/PHI_Dashboard/time-clock-circle.svg "/>" srcset="">
+                        <img  src="<c:url value="/public/images/icons/View%20complain/loader.svg "/>" alt="" srcset="">
                     </div>
                     <div class="card-details">
                         <h5 id="progress">200</h5>
@@ -64,7 +64,7 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-icon">
-                        <img  src="<c:url value="/public/images/PHI_Dashboard/time-clock-circle.svg "/>" srcset="">
+                        <img  src="<c:url value="/public/images/icons/View%20complain/check-circle.svg "/>" alt="" srcset="">
                     </div>
                     <div class="card-details">
                         <h5 id="done">200</h5>

@@ -6,6 +6,7 @@ public class vaccineClinicModel {
     public String start_date_time;
     public String duration;
     public String max_patient;
+    public String limit_sheats;
     public String 	target_moh;
     public String Lower_Age;
     public String Upper_Age;
@@ -21,6 +22,7 @@ public class vaccineClinicModel {
              String start_date_time,
              String duration,
              String max_patient,
+             String limit_sheats,
              String target_moh,
              String Lower_Age,
              String Upper_Age,
@@ -36,6 +38,7 @@ public class vaccineClinicModel {
         this.start_date_time=start_date_time;
         this.duration=duration;
         this.max_patient=max_patient;
+        this.limit_sheats=limit_sheats;
         this.target_moh=target_moh;
         this.Lower_Age=Lower_Age;
         this.Upper_Age=Upper_Age;
@@ -85,6 +88,14 @@ public class vaccineClinicModel {
 
     public void setMax_patient(String max_patient) {
         this.max_patient = max_patient;
+    }
+
+    public String getLimit_sheats() {
+        return limit_sheats;
+    }
+
+    public void setLimit_sheats(String limit_sheats) {
+        this.limit_sheats = limit_sheats;
     }
 
     public String getTarget_moh() {

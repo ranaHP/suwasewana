@@ -119,7 +119,7 @@ function charts(){
 
     var ctx = document.getElementById('myChart3');
     var myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'line',
 
         data: {
             labels: [ 'Fever','Eye diseases'],
@@ -158,7 +158,7 @@ function charts(){
 
     var ctx = document.getElementById('myChart4');
     var myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'line',
         data: {
             labels: [ 'Fever','Eye diseases'],
             datasets: [{
@@ -196,7 +196,7 @@ function charts(){
 
     var ctx = document.getElementById('myChart5');
     var myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'line',
         data: {
             labels: [ 'Fever','Eye diseases'],
             datasets: [{
@@ -235,7 +235,7 @@ function charts(){
 
     var ctx = document.getElementById('myChart6');
     var myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'line',
         data: {
             labels: [ 'Fever','Eye diseases'],
             datasets: [{
@@ -273,7 +273,7 @@ function charts(){
 
     var ctx = document.getElementById('myChart7');
     var myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'line',
         data: {
             labels: [ 'Fever','Eye diseases'],
             datasets: [{
@@ -311,9 +311,9 @@ function charts(){
 
     var ctx = document.getElementById('myChart8');
     var myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'line',
         data: {
-            labels: [ 'Fever','Eye diseases'],
+            labels: [ 'previous month','this month'],
             datasets: [{
                 label: '# of Votes',
                 data: [2, 3],
@@ -350,9 +350,9 @@ function charts(){
 
     var ctx = document.getElementById('myChart10');
     var myChart = new Chart(ctx, {
-        type: 'doughnut',
+        type: 'line',
         data: {
-            labels: [ 'Fever','Eye diseases'],
+            labels: [ 'previous month','this month'],
             datasets: [{
                 label: '# of Votes',
                 data: [2, 3],
