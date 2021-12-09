@@ -1,10 +1,7 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
-import com.suwasewana.model.CreateClinicAnnouncementsModel;
-import com.suwasewana.model.MohAnnouncementsModel;
-import com.suwasewana.model.RPHIAnnouncementsModel;
-import com.suwasewana.model.VaccineClinicAnnouncementsModel;
+import com.suwasewana.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +19,8 @@ public class RPHIAnnouncementsDAO {
     private static final String SELECTA="SELECT * FROM `staff_announcement` ";
     private static final String SELECTMOHAnnouncement="SELECT * FROM `staff_announcement` where target_moh=?";
     private static final String DeleteA = "DELETE FROM `staff_announcement` where announcement_id=?";
+
+    private static final String USERVIEWMOHANNOUNCEMENT="SELECT * FROM `moh_announcement` where target_moh=?";
 
     private static final String CREATEMA="INSERT INTO `moh_announcement`  VALUES (NULL ,?,?,?,?,NULL,?,?);";
     Connection connection;
@@ -191,5 +190,39 @@ public class RPHIAnnouncementsDAO {
             printSQLException(throwables);
             return throwables.getMessage();
         }
+    }
+
+    public ArrayList<UserVIewRPHIAnnouncementModel> UserviewrphiAnnouncemet(UserVIewRPHIAnnouncementModel selectA) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USERVIEWMOHANNOUNCEMENT)){
+            preparedStatement.setString(1,selectA.getTarget_moh() );
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<UserVIewRPHIAnnouncementModel> ViewVAnnouncements = new ArrayList<UserVIewRPHIAnnouncementModel>();
+            while (rs.next()){
+                String announcement_id=rs.getString("announcement_id");
+                String title=rs.getString("title");
+                String description=rs.getString("description");
+                String banner=rs.getString("banner");
+                String target_moh=rs.getString("target_moh");
+                String posted_date=rs.getString("posted_date");
+                String exp_date=rs.getString("expire_date");
+
+                UserVIewRPHIAnnouncementModel temp= new UserVIewRPHIAnnouncementModel(
+                        announcement_id,
+                        title,
+                        description,
+                        banner,
+                        target_moh,
+                        posted_date,
+                        "",
+                        exp_date
+                );
+                ViewVAnnouncements.add(temp);
+
+            }
+            return ViewVAnnouncements;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 }
