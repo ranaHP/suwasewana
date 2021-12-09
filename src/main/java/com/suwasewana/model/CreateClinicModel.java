@@ -11,6 +11,7 @@ public class CreateClinicModel {
     public String disease;
     public String description;
     public String maxpatient;
+    public String 	Avail_seats;
     public String conduct;
     public String MOH;
     public String Target;
@@ -26,6 +27,7 @@ public class CreateClinicModel {
             String disease,
             String description,
             String maxpatient,
+            String 	Avail_seats,
             String conduct,
             String MOH,
             String Target,
@@ -42,6 +44,7 @@ public class CreateClinicModel {
         this.disease= disease;
         this.description= description;
         this.maxpatient= maxpatient;
+        this.Avail_seats=Avail_seats;
         this.conduct= conduct;
         this.MOH= MOH;
         this.Target=Target;
@@ -112,6 +115,14 @@ public class CreateClinicModel {
 
     public void setMaxpatient(String maxpatient) {
         this.maxpatient = maxpatient;
+    }
+
+    public String getAvail_seats() {
+        return Avail_seats;
+    }
+
+    public void setAvail_seats(String avail_seats) {
+        Avail_seats = avail_seats;
     }
 
     public String getConduct() {

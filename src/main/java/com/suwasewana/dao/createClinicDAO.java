@@ -11,7 +11,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class createClinicDAO {
-  private  static final String CREATE_CLINIC ="INSERT INTO `normal_clinic_session`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?,?);";
+  private  static final String CREATE_CLINIC ="INSERT INTO `normal_clinic_session`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?,?,?);";
   private static final String VIEW_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ?";
   private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` cs left join moh m on cs.target_moh=m.moh_id WHERE cs.ncs_id = ? AND cs.clinical_officer = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
@@ -40,11 +40,12 @@ public class createClinicDAO {
             preparedStatement.setString(5,createClinic.getDisease());
             preparedStatement.setString(6,createClinic.getDescription());
             preparedStatement.setString(7,createClinic.getMaxpatient());
-            preparedStatement.setString(8,createClinic.getConduct());
-            preparedStatement.setString(9,createClinic.getMOH());
-            preparedStatement.setString(10,createClinic.getTarget());
-            preparedStatement.setString(11,createClinic.getLocation());
-            preparedStatement.setString(12,"12");
+            preparedStatement.setString(8,createClinic.getMaxpatient());
+            preparedStatement.setString(9,createClinic.getConduct());
+            preparedStatement.setString(10,createClinic.getMOH());
+            preparedStatement.setString(11,createClinic.getTarget());
+            preparedStatement.setString(12,createClinic.getLocation());
+            preparedStatement.setString(13,"12");
 
             int rs = preparedStatement.executeUpdate();
             return "sucsess";
@@ -102,6 +103,7 @@ public class createClinicDAO {
                 String disease = rs.getString("disease");
                 String description = rs.getString("description");
                 String max_sheet = rs.getString("max_sheet");
+                String 	Avail_seats = rs.getString("Avail_seats");
                 String conduct_by = rs.getString("conduct_by");
                 String target_moh=rs.getString("target_moh");
                 String target_people = rs.getString("target_people");
@@ -116,6 +118,7 @@ public class createClinicDAO {
                         disease,
                         description,
                         max_sheet,
+                        Avail_seats,
                         conduct_by,
                         target_moh,
                         target_people,
@@ -151,6 +154,7 @@ public class createClinicDAO {
                 String disease = rs.getString("disease");
                 String description = rs.getString("description");
                 String max_sheet = rs.getString("max_sheet");
+                String Avail_seats=rs.getString("Avail_seats");
                 String conduct_by = rs.getString("conduct_by");
                 String target_moh=rs.getString("name");
                 String target_people = rs.getString("target_people");
@@ -165,6 +169,7 @@ public class createClinicDAO {
                         disease,
                         description,
                         max_sheet,
+                        Avail_seats,
                         conduct_by,
                         target_moh,
                         target_people,
@@ -400,6 +405,7 @@ public class createClinicDAO {
                         "",
                         "",
                         "",
+                        "",
                         ""
 
                 );
@@ -436,8 +442,9 @@ public class createClinicDAO {
                         "",
                         "",
                         "",
-                        Location,
                         "",
+                        "",
+                        Location,
                         ""
 
                 );
@@ -494,6 +501,7 @@ public class createClinicDAO {
                         "",
                         "",
                         "",
+                        "",
                         ""
 
                 );
@@ -530,8 +538,9 @@ public class createClinicDAO {
                         "",
                         "",
                         "",
-                        Location,
                         "",
+                        "",
+                        Location,
                         ""
 
 
