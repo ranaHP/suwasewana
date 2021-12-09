@@ -116,7 +116,8 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                ""
+                "",
+                "12"
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.Viewevents(cEvents);
         res.getWriter().println(gson.toJson(result));
@@ -124,6 +125,7 @@ import java.util.ArrayList;
 
     private void viewcount(HttpServletRequest req, HttpServletResponse res) throws IOException {
         CreateClinicModel viewC = new CreateClinicModel(
+                "",
                 "",
                 "",
                 "",
@@ -156,6 +158,7 @@ import java.util.ArrayList;
                   req.getParameter("title"),
                   req.getParameter("datetime"),
                   req.getParameter("duration"),
+                  "",
                   req.getParameter("maxpatient"),
                   "",
                   req.getParameter("Lage"),
@@ -176,6 +179,7 @@ import java.util.ArrayList;
         System.out.println("Deleteeeeeeeeee");
         vaccineClinicModel deleteVClinic = new vaccineClinicModel(
                 req.getParameter("clinicID"),
+                "",
                 "",
                 "",
                 "",
@@ -211,6 +215,7 @@ import java.util.ArrayList;
                     "",
                     "",
                     "",
+                    "",
                     ""
             );
 
@@ -221,6 +226,7 @@ import java.util.ArrayList;
     private void VaccineClinicsView(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //            res.getWriter().println("vaccine");
             vaccineClinicModel vaccineClinicView = new vaccineClinicModel(
+                    "",
                     "",
                     "",
                     "",
@@ -246,6 +252,7 @@ import java.util.ArrayList;
                 req.getParameter("clinictitle"),
                 req.getParameter("datetime"),
                 req.getParameter("duration"),
+                "",
                 req.getParameter("maxpatient"),
                 req.getParameter("MArea"),
                 req.getParameter("LAgelimit"),
@@ -275,11 +282,12 @@ import java.util.ArrayList;
                 req.getParameter("disease"),
                 req.getParameter("description"),
                 req.getParameter("maxpatient"),
+                "",
                 req.getParameter("conduct"),
                 "",
                 req.getParameter("patient"),
                 req.getParameter("location"),
-                "12"
+                ""
 
         );
 //        System.out.println("updateeeeeeeeeee");
@@ -306,6 +314,7 @@ import java.util.ArrayList;
                     req.getParameter("disease"),
                     req.getParameter("description"),
                     req.getParameter("maxpatient"),
+                    req.getParameter("maxpatient"),
                     req.getParameter("conduct"),
                     req.getParameter("MOH"),
                     req.getParameter("Target"),
@@ -330,15 +339,15 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
+                "",
                 "12"
-
-
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
         res.getWriter().println(gson.toJson(result));
     }
     private void viewdisease(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
         CreateClinicModel viewdisease = new CreateClinicModel(
+                "",
                 "",
                 "",
                 "",
@@ -373,7 +382,8 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                "12"
+                "",
+                ""
 
 
         );
@@ -386,6 +396,7 @@ import java.util.ArrayList;
           CreateClinicModel deleteClinic = new CreateClinicModel(
                   req.getParameter("clinicID"),
                   req.getParameter("title"),
+                  "",
                   "",
                   "",
                   "",

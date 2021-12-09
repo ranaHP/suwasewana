@@ -12,7 +12,8 @@ body{
 .container{
     display: flex;
     flex-direction: column;
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    font-family: "Segoe UI";
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);

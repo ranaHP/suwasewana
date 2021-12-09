@@ -39,7 +39,6 @@ class View_RPHI_announcement{
         this.announcementArray = data;
         this.container.innerHTML=" ";
 
-        alert("came")
         this.announcementArray.map((item) => {
             let expday = new Date(item.exp_date)
             let current_day=new Date();
@@ -47,7 +46,7 @@ class View_RPHI_announcement{
             // console.log("today : "+current_day+" "+"exp_day : "+expday);
             if(current_day<=expday){
                 console.log("bi");
-            }
+
 
             this.container.innerHTML += `
        <div class="announcement">
@@ -67,10 +66,12 @@ class View_RPHI_announcement{
                 </div>
             </div>
        </div>
-            `;
+            `;}
         })
+
         // alert("hi")
     }
+
 
 
 
