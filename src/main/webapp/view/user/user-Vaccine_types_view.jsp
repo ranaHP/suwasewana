@@ -303,6 +303,7 @@
               let vaccineType=document.getElementById("Vaccin_container");
               vaccineType.innerHTML='';
               rs.map((element) => {
+                console.log("vaccine view : "+element.view_status);
                 if(element.view_status==1){
                   vaccineType.innerHTML+= `<div class="vaccine_card">
                                 <div class="title">

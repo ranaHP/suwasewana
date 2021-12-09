@@ -5,11 +5,13 @@ import java.sql.Blob;
 public class CreateClinicModel {
     public String clinicID;
     public String title;
-    public String datetime;
+    public String date;
+    public String time;
     public String duration;
     public String disease;
     public String description;
     public String maxpatient;
+    public String 	Avail_seats;
     public String conduct;
     public String MOH;
     public String Target;
@@ -19,11 +21,13 @@ public class CreateClinicModel {
     public CreateClinicModel(
             String clinicID,
             String title,
-            String datetime,
+            String date,
+            String time,
             String duration,
             String disease,
             String description,
             String maxpatient,
+            String 	Avail_seats,
             String conduct,
             String MOH,
             String Target,
@@ -34,11 +38,13 @@ public class CreateClinicModel {
         super();
         this.clinicID=clinicID;
         this.title= title;
-        this.datetime= datetime;
+        this.date= date;
+        this.time=time;
         this.duration= duration;
         this.disease= disease;
         this.description= description;
         this.maxpatient= maxpatient;
+        this.Avail_seats=Avail_seats;
         this.conduct= conduct;
         this.MOH= MOH;
         this.Target=Target;
@@ -63,12 +69,20 @@ public class CreateClinicModel {
         this.title = title;
     }
 
-    public String getDatetime() {
-        return datetime;
+    public String getDate() {
+        return date;
     }
 
-    public void setDatetime(String datetime) {
-        this.datetime = datetime;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String getDuration() {
@@ -101,6 +115,14 @@ public class CreateClinicModel {
 
     public void setMaxpatient(String maxpatient) {
         this.maxpatient = maxpatient;
+    }
+
+    public String getAvail_seats() {
+        return Avail_seats;
+    }
+
+    public void setAvail_seats(String avail_seats) {
+        Avail_seats = avail_seats;
     }
 
     public String getConduct() {

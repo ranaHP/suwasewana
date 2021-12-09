@@ -12,6 +12,11 @@
     transition: 5s;
     z-index: 500;
 }
+-webkit-datetime-edit-year-field:not([aria-valuenow]),
+-webkit-datetime-edit-month-field:not([aria-valuenow]),
+-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+}
 .popup{
     width: 50vw;
     height: fit-content;

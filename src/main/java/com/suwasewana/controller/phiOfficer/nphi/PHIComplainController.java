@@ -208,7 +208,6 @@ public class PHIComplainController extends HttpServlet {
                     "",
                     "",
                     ""
-
             );
             String nic="199910910062";
             ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForMOH(moh);

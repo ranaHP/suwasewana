@@ -2,6 +2,7 @@ package com.suwasewana.controller.clinicalOfficer;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.createClinicDAO;
+import com.suwasewana.model.ClinicCalenderEventModel;
 import com.suwasewana.model.CreateClinicModel;
 import com.suwasewana.model.MOHModel;
 import com.suwasewana.model.vaccineClinicModel;
@@ -75,17 +76,21 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     VaccineClinicsSelect(req, res);
                     break;
-                case "all-V-Clinics":
-//                    res.getWriter().println("select-V-Clinics");
-                    AllVaccineClinics(req, res);
-                    break;
-                case "all-Clinics":
-//                    res.getWriter().println("select-V-Clinics");
-                    AllClinics(req, res);
-                    break;
                 case "viewdisease":
 //                    res.getWriter().println("select-V-Clinics");
                     viewdisease(req, res);
+                    break;
+                case "choose":
+//                    res.getWriter().println("select-V-Clinics");
+                    choose(req, res);
+                    break;
+                case "viewcount":
+//                    res.getWriter().println("select-V-Clinics");
+                    viewcount(req, res);
+                    break;
+                case "clinicsEvents":
+//                    res.getWriter().println("select-V-Clinics");
+                    clinicsEvents(req, res);
                     break;
 
                 default:
@@ -97,19 +102,70 @@ import java.util.ArrayList;
         }
     }
 
+    private void clinicsEvents(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        CreateClinicModel cEvents =new CreateClinicModel(
+                "",
+                "",
+                req.getParameter("date"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "12"
+        );
+        ArrayList<CreateClinicModel> result= createClinicDAO.Viewevents(cEvents);
+        res.getWriter().println(gson.toJson(result));
+        }
+
+    private void viewcount(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        CreateClinicModel viewC = new CreateClinicModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "12"
+
+        );
+        ArrayList<CreateClinicModel> result= createClinicDAO.ViewCount(viewC);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void choose(HttpServletRequest req, HttpServletResponse res) throws IOException {
+            String date=req.getParameter("datetime");
+        ArrayList<ClinicCalenderEventModel> result=createClinicDAO.chooseClinic(date);
+        res.getWriter().println(gson.toJson(result));
+
+        }
+
     private void updatevClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
           vaccineClinicModel Updatevclinic= new vaccineClinicModel(
-                  req.getParameter("vcs_id"),
+                req.getParameter("clinicID"),
                   req.getParameter("title"),
                   req.getParameter("datetime"),
                   req.getParameter("duration"),
-                  req.getParameter("description"),
+                  "",
                   req.getParameter("maxpatient"),
                   "",
-                  req.getParameter("patient"),
-                  req.getParameter("age"),
-                  "12",
-                  "5",
+                  req.getParameter("Lage"),
+                  req.getParameter("Uage"),
+                  "",
+                  "",
+                  "",
                   req.getParameter("location"),
                   req.getParameter("dose")
 
@@ -119,24 +175,11 @@ import java.util.ArrayList;
         res.getWriter().println(result);
         }
 
-
-    private void AllClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
-            ArrayList<CreateClinicModel> result = createClinicDAO.allClinics();
-        res.getWriter().println(gson.toJson(result));
-    }
-
-    private void AllVaccineClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
-        System.out.println("Come to view moh controller");
-        ArrayList<vaccineClinicModel> result1 = createClinicDAO.allvClinics();
-        res.getWriter().println(gson.toJson(result1));
-        }
-
     private void VaccineClinicsdelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("Deleteeeeeeeeee");
         vaccineClinicModel deleteVClinic = new vaccineClinicModel(
                 req.getParameter("clinicID"),
+                "",
                 "",
                 "",
                 "",
@@ -172,6 +215,7 @@ import java.util.ArrayList;
                     "",
                     "",
                     "",
+                    "",
                     ""
             );
 
@@ -191,7 +235,8 @@ import java.util.ArrayList;
                     "",
                     "",
                     "",
-                    "12",
+                    "199910910064",
+                    "",
                     "",
                     "",
                     ""
@@ -207,13 +252,14 @@ import java.util.ArrayList;
                 req.getParameter("clinictitle"),
                 req.getParameter("datetime"),
                 req.getParameter("duration"),
-                req.getParameter("description"),
+                "",
                 req.getParameter("maxpatient"),
                 req.getParameter("MArea"),
-                req.getParameter("patient"),
-                req.getParameter("Agelimit"),
-                req.getParameter("12"),
+                req.getParameter("LAgelimit"),
+                req.getParameter("UAgelimit"),
+                "199910910064",
                 req.getParameter("vaccine"),
+                "",
                 req.getParameter("location"),
                 req.getParameter("Dosecount")
 
@@ -230,16 +276,18 @@ import java.util.ArrayList;
 
                 req.getParameter("clinicID"),
                 req.getParameter("title"),
-                req.getParameter("datetime"),
+                req.getParameter("date"),
+                req.getParameter("time"),
                 req.getParameter("duration"),
                 req.getParameter("disease"),
                 req.getParameter("description"),
                 req.getParameter("maxpatient"),
+                "",
                 req.getParameter("conduct"),
                 "",
                 req.getParameter("patient"),
                 req.getParameter("location"),
-                "12"
+                ""
 
         );
 //        System.out.println("updateeeeeeeeeee");
@@ -260,10 +308,12 @@ import java.util.ArrayList;
             CreateClinicModel createClinic = new CreateClinicModel(
                     req.getParameter(""),
                     req.getParameter("title"),
-                    req.getParameter("datetime"),
+                    req.getParameter("date"),
+                    req.getParameter("time"),
                     req.getParameter("duration"),
                     req.getParameter("disease"),
                     req.getParameter("description"),
+                    req.getParameter("maxpatient"),
                     req.getParameter("maxpatient"),
                     req.getParameter("conduct"),
                     req.getParameter("MOH"),
@@ -288,14 +338,17 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
+                "",
+                "",
                 "12"
-
         );
         ArrayList<CreateClinicModel> result= createClinicDAO.ViewClinics(viewClinic);
         res.getWriter().println(gson.toJson(result));
     }
     private void viewdisease(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
         CreateClinicModel viewdisease = new CreateClinicModel(
+                "",
+                "",
                 "",
                 "",
                 "",
@@ -328,7 +381,9 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                "12"
+                "",
+                "",
+                ""
 
 
         );
@@ -341,6 +396,8 @@ import java.util.ArrayList;
           CreateClinicModel deleteClinic = new CreateClinicModel(
                   req.getParameter("clinicID"),
                   req.getParameter("title"),
+                  "",
+                  "",
                   "",
                   "",
                   "",
