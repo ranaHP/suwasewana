@@ -3,6 +3,7 @@ class clinicList {
 
     clinicListArray = [
         {
+            ncs_id:"",
             title:" ",
             disease:"",
             location:" ",
@@ -87,7 +88,7 @@ class clinicList {
                                     <div class="current-registered-count">
                                        
                                     </div>
-                                    <div class="register-btn">
+                                    <div class="register-btn" onclick="RegisterForclinic(`+item.ncs_id+`,`+item.max_sheet+`)">
                                         Register
                                     </div>
                                 </div>

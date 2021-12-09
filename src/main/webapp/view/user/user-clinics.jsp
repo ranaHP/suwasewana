@@ -522,6 +522,7 @@
 </div>
 <script defer>
     popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     var loadFile = function (event, imgContainerId) {
         var image = document.getElementById(imgContainerId);
         image.src = URL.createObjectURL(event.target.files[0]);
@@ -575,17 +576,21 @@
          let month =x.getMonth()+1;
          let day =x.getDate();
 
+
+
         clinic_id = clinic_id;
         let date=year+"-"+month+"-"+day;
-
+        console.log(clinic_id)
+        console.log(max_sheet)
         let avalabel_seats=--max_sheet;
         let reqData =
             {
-
+                Date:date,
+                clinic_id: clinic_id
 
             };
 
-        $.post(myUrl+"/Vaccine-controller/",
+        $.post("/test_war_exploded/user-view-clinic-controller/register",
             reqData,
             function (data, status) {
 
@@ -594,8 +599,7 @@
                     popup.showUserVaccineRegisterSuccessMessage({
                         status: 'success',
                         message: 'Successfully Registerd!',
-                        data: date,
-                        Set_sloat:sloat
+
                     });
                       updateAvailableseats(avalabel_seats,clinic_id)
                 } else {

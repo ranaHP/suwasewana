@@ -9,9 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
@@ -52,6 +50,8 @@ public class UserDAO {
     private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`) VALUES (?, ?, ?, ?); COMMIT;";
     private static final  String selectRegisterdVaccineClinic="SELECT * FROM suwasewana_db.user_vaccine uv left join suwasewana_db.vaccine v on uv.vaccine_id=v.v_id left join suwasewana_db.vaccine_clinic_session vc on vc.vcs_id=uv.clinic_id where nic=?;";
     private static final  String CancleClinic="DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ;";
+
+    private static final String  USERREGISTERCLINC ="INSERT INTO `clinic_registered_patient`  VALUES (?,?,?,NULL);";
 
     Connection connection;
 
@@ -709,6 +709,7 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
 //            System.out.println(rs.toString());
             ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();
             while (rs.next()){
+                String ncs_id = rs.getString("ncs_id");
                 String title = rs.getString("title");
                 String disease =rs.getString("disease");
                 String location=rs.getString("location");
@@ -724,6 +725,7 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
                 String cNic = rs.getString("clinical_officer");
                 UserViewClinicsModel temp = new UserViewClinicsModel(
 
+                        ncs_id,
                         title,
                         disease,
                         location,
@@ -818,4 +820,27 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
             }
         }
     }
+
+
+
+    public String Userregisterclinic(UserViewRegisteredclinicsModel registerclinic, String ncs_id) {
+
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(USERREGISTERCLINC)) {
+                preparedStatement.setString(2, ncs_id );
+                preparedStatement.setString(3, registerclinic.getDatetime());
+                preparedStatement.setString(1, registerclinic.getUNic());
+                int rs = preparedStatement.executeUpdate();
+
+
+                return  "success";
+            } catch (SQLException throwables) {
+                printSQLException((SQLException) throwables);
+            }
+
+            return null;
+        }
+
+
+
 }

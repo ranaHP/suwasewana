@@ -2,7 +2,7 @@ package com.suwasewana.model;
 
 public class UserViewClinicsModel {
 
-
+        public String ncs_id;
         public String title;
         public String disease;
         public String location;
@@ -19,6 +19,7 @@ public class UserViewClinicsModel {
 
         public UserViewClinicsModel(
 
+                String ncs_id,
                 String title,
                 String disease,
                 String location,
@@ -35,6 +36,7 @@ public class UserViewClinicsModel {
         ){
             super();
 
+            this.ncs_id= ncs_id;
             this.title= title;
             this.disease= disease;
             this.location= location;
@@ -72,7 +74,15 @@ public class UserViewClinicsModel {
             this.location = location;
         }
 
-        public String getMOH() {
+    public String getNcs_id() {
+        return ncs_id;
+    }
+
+    public void setNcs_id(String ncs_id) {
+        this.ncs_id = ncs_id;
+    }
+
+    public String getMOH() {
             return MOH;
         }
 
