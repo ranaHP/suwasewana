@@ -38,6 +38,7 @@ class clinicList {
             let expday = new Date(item.datetime)
             let current_day=new Date();
             console.log(current_day)
+            let a = document.getElementById("register-btn");
             if(current_day<=expday){
             this.container.innerHTML += `
                 <div class="clinic-card-container">
@@ -88,16 +89,23 @@ class clinicList {
                                     <div class="current-registered-count">
                                        
                                     </div>
-                                    <div class="register-btn" onclick="RegisterForclinic(`+item.ncs_id+`,`+item.max_sheet+`)">
+                                    <div class="register-btn" id="register-btn" onclick="checkAvailbale(`+item.ncs_id+`,`+item.maxpatient+`,`+item.Avail_seats+`)">
                                         Register
                                     </div>
+                             
+                                   
+                                  
                                 </div>
                             </div>
                       </div>
-            `}
+            `
+            }
+
             ;
             console.log("map")
+
         })
+
     }
 
 }

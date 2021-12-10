@@ -94,6 +94,7 @@ public class UserViewClinicsController extends HttpServlet {
     private void  userViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        res.getWriter().println("announcement view");
         System.out.println("data come to controller");
+        String Unic="199910910035";
         UserViewClinicsModel viewclinic = new UserViewClinicsModel(
                 "",
                 req.getParameter("disease"),
@@ -110,7 +111,7 @@ public class UserViewClinicsController extends HttpServlet {
                 req.getParameter("description"),
                 ""
         );
-        ArrayList<UserViewClinicsModel> result= userDAO.UserViewclinic(viewclinic);
+        ArrayList<UserViewClinicsModel> result= userDAO.UserViewclinic(Unic,viewclinic);
         res.getWriter().println(gson.toJson(result));
     }
 

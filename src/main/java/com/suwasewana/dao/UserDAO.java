@@ -60,9 +60,9 @@ public class UserDAO {
 //    /fixed
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
 
-    private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` where target_moh= ?";
+    private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=?;";
 
-    private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM clinic_registered_patient INNER JOIN normal_clinic_session ON clinic_registered_patient.ncs_id=normal_clinic_session.ncs_id WHERE u_nic= ?";
+    private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
 
     public UserDAO() {
         DB db = new DB();
@@ -700,11 +700,12 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
     }
 
 
-    public ArrayList<UserViewClinicsModel> UserViewclinic(UserViewClinicsModel viewAnnouncement) {
+    public ArrayList<UserViewClinicsModel> UserViewclinic(String unic, UserViewClinicsModel viewAnnouncement) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_ANNOUNCEMENTS)){
             System.out.println("came to dao");
-            preparedStatement.setString(1,viewAnnouncement.getMOH());
+            preparedStatement.setString(2,viewAnnouncement.getMOH());
+            preparedStatement.setString(1,unic);
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println(rs.toString());
             ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();

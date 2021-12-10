@@ -11,6 +11,7 @@ class registeredclinicList {
             time:" ",
             // duration:" ",
             maxpatient:" ",
+            Avail_seats:" ",
             Target:"",
             conduct:" ",
             description:" "
@@ -50,6 +51,7 @@ class registeredclinicList {
               
                                             Location : ${item.location}
                                         </li>
+                                       
                                         <li>
                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Conduct : ${item.conduct}

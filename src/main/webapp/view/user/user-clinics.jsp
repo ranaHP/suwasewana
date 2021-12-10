@@ -567,7 +567,22 @@
         );
 
     }
+    function checkAvailbale(clinic_id,max_sheet,Avail_seats){
+        Avail_seats=Avail_seats
+        max_sheet=max_sheet
+        clinic_id = clinic_id;
+        if(Avail_seats==0){
+            popup.showUserVaccineRegisterSuccessMessage({
+                status: 'fail',
+                message: 'limit exceed !',
 
+            });
+        }
+        else {
+            RegisterForclinic(clinic_id,max_sheet)
+        }
+
+    }
 
     function RegisterForclinic(clinic_id,max_sheet){
 
@@ -577,7 +592,7 @@
          let day =x.getDate();
 
 
-
+        max_sheet=max_sheet
         clinic_id = clinic_id;
         let date=year+"-"+month+"-"+day;
         console.log(clinic_id)
@@ -595,12 +610,6 @@
             function (data, status) {
 
                 if (data.includes("success")) {
-                    console.log("successsss brooo")
-                    popup.showUserVaccineRegisterSuccessMessage({
-                        status: 'success',
-                        message: 'Successfully Registerd!',
-
-                    });
                       updateAvailableseats(avalabel_seats,clinic_id)
                 } else {
                     console.log("unsuccesssss brooo")
@@ -616,6 +625,38 @@
 
     }
    function updateAvailableseats(avalabel_seats,clinic_id){
+         avalabel_seats=avalabel_seats;
+         clinic_id=clinic_id
+
+       let reqData =
+           {
+               avalabel_seats:avalabel_seats,
+               clinic_id: clinic_id
+
+           };
+         console.log("a")
+       console.log(reqData);
+       $.post("/test_war_exploded/create-clinic-controller/updateAvailSheats",
+           reqData,
+           function (data, status) {
+               if (data.includes("success")) {
+                   console.log("successsss brooo")
+                   popup.showUserVaccineRegisterSuccessMessage({
+                       status: 'success',
+                       message: 'Successfully Registerd!',
+
+                   });
+                   view()
+               } else {
+                   console.log("unsuccesssss brooo")
+                   popup.showUserVaccineRegisterSuccessMessage({
+                       status: 'fail',
+                       message: 'Complain Send Fail !',
+
+                   });
+               }
+           }
+       );
 
    }
 </script>

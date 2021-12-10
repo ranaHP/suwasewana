@@ -92,6 +92,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     clinicsEvents(req, res);
                     break;
+                case "updateAvailSheats":
+//                    res.getWriter().println("select-V-Clinics");
+                    updateAvailSheats(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -101,6 +105,27 @@ import java.util.ArrayList;
             throw new ServletException(error);
         }
     }
+
+    private void updateAvailSheats(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        CreateClinicModel updateAvailSheats =new CreateClinicModel(
+                req.getParameter("clinic_id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("avalabel_seats"),
+                "",
+                "",
+                "",
+                "",
+                "12"
+        );
+        String result= createClinicDAO.updateAvailSheats(updateAvailSheats);
+        res.getWriter().println(gson.toJson(result));
+        }
 
     private void clinicsEvents(HttpServletRequest req, HttpServletResponse res) throws IOException {
         CreateClinicModel cEvents =new CreateClinicModel(
