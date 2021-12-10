@@ -1,8 +1,6 @@
 package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
-import com.suwasewana.dao.AppointmentDAO;
-import com.suwasewana.dao.PHIDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.dao.clinicalAnnouncementsDAO;
 import com.suwasewana.model.*;
@@ -47,6 +45,11 @@ public class UserViewClinicsController extends HttpServlet {
                 case "register":
                     userregister(req, res);
                     break;
+
+                case "cancel":
+                    usercancelclinic(req, res);
+                    break;
+
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -66,6 +69,31 @@ public class UserViewClinicsController extends HttpServlet {
 ////        res.getWriter().println(uNic);
 //        System.out.println(uNic);
 
+    }
+
+    private void usercancelclinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("data come to controller");
+        String Unic="199910910035";
+        UserViewClinicsModel cancelclinic = new UserViewClinicsModel(
+
+                req.getParameter("ncs_id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+
+        );
+        String result= userDAO.Usercancellinic(Unic,cancelclinic);
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void userregister(HttpServletRequest req, HttpServletResponse res) throws IOException {

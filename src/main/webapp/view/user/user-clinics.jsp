@@ -621,8 +621,6 @@
                 }
             }
         );
-
-
     }
    function updateAvailableseats(avalabel_seats,clinic_id){
          avalabel_seats=avalabel_seats;
@@ -657,8 +655,43 @@
                }
            }
        );
+   }
+
+   function cancel(ncs_id){
+
+        ncs_id = ncs_id;
+       let reqData =
+           {
+               ncs_id: ncs_id
+
+           };
+       console.log("no")
+       console.log(reqData)
+       $.post("/test_war_exploded/user-view-clinic-controller/cancel",
+           reqData,
+           function (data, status) {
+               if (data.includes("success")) {
+                   console.log("successsss brooo")
+                   popup.showUserVaccineRegisterSuccessMessage({
+                       status: 'success',
+                       message: 'Successfully Registerd!',
+
+                   });
+
+               } else {
+                   console.log("unsuccesssss brooo")
+                   popup.showUserVaccineRegisterSuccessMessage({
+                       status: 'fail',
+                       message: 'Complain Send Fail !',
+
+                   });
+               }
+           }
+       );
 
    }
+
+
 </script>
 <script>
     feather.replace({ width: "20px" })

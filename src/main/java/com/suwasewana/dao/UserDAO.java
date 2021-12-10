@@ -53,6 +53,8 @@ public class UserDAO {
 
     private static final String  USERREGISTERCLINC ="INSERT INTO `clinic_registered_patient`  VALUES (?,?,?,NULL);";
 
+    private static final String  USER_CANCEL_REGISTER_CLINIC ="DELETE FROM `suwasewana_db`.`clinic_registered_patient` WHERE `u_nic`  = ? AND `ncs_id` = ?;";
+
     Connection connection;
 
 
@@ -763,7 +765,7 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
 //            System.out.println(rs.toString());
             ArrayList<UserViewRegisteredclinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewRegisteredclinicsModel>();
             while (rs.next()){
-                String UNic = rs.getString("u_nic");
+                String ncs_id = rs.getString("ncs_id");
                 String title = rs.getString("title");
                 String disease =rs.getString("disease");
                 String location=rs.getString("location");
@@ -777,7 +779,7 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
                 String Description = rs.getString("description");
                 UserViewRegisteredclinicsModel temp = new UserViewRegisteredclinicsModel(
 
-                        UNic,
+                        ncs_id,
                         title,
                         disease,
                         location,
@@ -843,5 +845,20 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
         }
 
 
+    public String Usercancellinic(String unic, UserViewClinicsModel cancelclinic) {
 
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_CANCEL_REGISTER_CLINIC)) {
+            preparedStatement.setString(2, cancelclinic.ncs_id );
+            preparedStatement.setString(1, unic);
+            int rs = preparedStatement.executeUpdate();
+
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException((SQLException) throwables);
+        }
+
+        return null;
+    }
 }
