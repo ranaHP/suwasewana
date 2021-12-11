@@ -60,12 +60,13 @@ public class UserAnnouncementController extends HttpServlet {
     private void UserviewclinicAnnouncemet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         System.out.println("clinic");
-//        String moh_id = moh_id;
+
         UserVIewClinicAnnouncementModel clinicannouncement= new UserVIewClinicAnnouncementModel(
                 "",
                 "",
                 "",
-                ""
+                "",
+                "1003"
         );
         ArrayList<UserVIewClinicAnnouncementModel> result= userDAO.UserviewrclinicAnnouncemet(clinicannouncement);
         res.getWriter().println(gson.toJson(result));

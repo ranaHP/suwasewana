@@ -5,13 +5,15 @@ public class UserVIewClinicAnnouncementModel {
     public String tittle;
     public String date;
     public String descrition;
+    public String moh_id;
 
     public UserVIewClinicAnnouncementModel(
 
             String banner,
             String tittle,
             String date,
-            String descrition
+            String descrition,
+            String moh_id
 
     ){
         super();
@@ -20,6 +22,7 @@ public class UserVIewClinicAnnouncementModel {
         this.tittle=tittle;
         this.date=date;
         this.descrition=descrition;
+        this.moh_id=moh_id;
 
     }
 
@@ -53,6 +56,14 @@ public class UserVIewClinicAnnouncementModel {
 
     public void setDescrition(String descrition) {
         this.descrition = descrition;
+    }
+
+    public String getMoh_id() {
+        return moh_id;
+    }
+
+    public void setMoh_id(String moh_id) {
+        this.moh_id = moh_id;
     }
 }
 
