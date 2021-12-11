@@ -1,12 +1,10 @@
 package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
-import com.suwasewana.dao.AppointmentDAO;
-import com.suwasewana.dao.RPHIAnnouncementsDAO;
-import com.suwasewana.dao.clinicalAnnouncementsDAO;
-import com.suwasewana.dao.createClinicDAO;
+import com.suwasewana.dao.*;
 import com.suwasewana.model.CreateClinicModel;
 import com.suwasewana.model.RPHIAnnouncementsModel;
+import com.suwasewana.model.UserVIewClinicAnnouncementModel;
 import com.suwasewana.model.UserVIewRPHIAnnouncementModel;
 
 import javax.servlet.RequestDispatcher;
@@ -22,9 +20,12 @@ import java.util.ArrayList;
 public class UserAnnouncementController extends HttpServlet {
 
         RPHIAnnouncementsDAO rphiAnnouncementsDAO;
+        UserDAO userDAO;
         private Gson gson = new Gson();
         public void init(){
+
             rphiAnnouncementsDAO =new RPHIAnnouncementsDAO();
+            userDAO = new UserDAO();
         }
 
         public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -42,6 +43,11 @@ public class UserAnnouncementController extends HttpServlet {
                     case "createMA":
                         UserviewrphiAnnouncemet(req,res);
                         break;
+
+                    case "clinic":
+                        UserviewclinicAnnouncemet(req,res);
+                        break;
+
                     default:
                         res.getWriter().println("404 Page not Found");
                         break;
@@ -50,6 +56,20 @@ public class UserAnnouncementController extends HttpServlet {
                 throw new ServletException(error);
             }
         }
+
+    private void UserviewclinicAnnouncemet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+
+        System.out.println("clinic");
+//        String moh_id = moh_id;
+        UserVIewClinicAnnouncementModel clinicannouncement= new UserVIewClinicAnnouncementModel(
+                "",
+                "",
+                "",
+                ""
+        );
+        ArrayList<UserVIewClinicAnnouncementModel> result= userDAO.UserviewrclinicAnnouncemet(clinicannouncement);
+        res.getWriter().println(gson.toJson(result));
+    }
 
     private void  UserviewrphiAnnouncemet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("select");

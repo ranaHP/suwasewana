@@ -53,6 +53,8 @@ public class UserDAO {
     private static final  String selectRegisterdVaccineClinic="SELECT * FROM suwasewana_db.user_vaccine uv left join suwasewana_db.vaccine v on uv.vaccine_id=v.v_id left join suwasewana_db.vaccine_clinic_session vc on vc.vcs_id=uv.clinic_id where nic=?;";
     private static final  String CancleClinic="DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ;";
 
+    private static final  String USER_VIEW_CLINIC_ANNOUNCEMENT = "SELECT * FROM clinic_announcement vc left join normal_clinic_session v on v.ncs_id=vc.clinic_id; ";
+
     Connection connection;
 
 
@@ -715,5 +717,35 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
                 }
             }
         }
+    }
+
+    public ArrayList<UserVIewClinicAnnouncementModel> UserviewrclinicAnnouncemet(UserVIewClinicAnnouncementModel clinicannouncement) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_CLINIC_ANNOUNCEMENT)){
+//            preparedStatement.setString(1,selectA.getTarget_moh() );
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<UserVIewClinicAnnouncementModel> ViewVAnnouncements = new ArrayList<UserVIewClinicAnnouncementModel>();
+            while (rs.next()){
+                String banner=rs.getString("banner");
+                String title=rs.getString("title");
+                String date=rs.getString("date");
+                String description=rs.getString("description");
+
+                UserVIewClinicAnnouncementModel temp= new UserVIewClinicAnnouncementModel(
+                        banner,
+                        title,
+                        date,
+                        description
+
+                );
+                ViewVAnnouncements.add(temp);
+
+            }
+            return ViewVAnnouncements;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
     }
 }

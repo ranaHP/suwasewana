@@ -1,3 +1,4 @@
+let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
 let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class View_RPHI_announcement{
@@ -29,7 +30,9 @@ class View_RPHI_announcement{
                               <div class="latest-announstment-cards-container">
                             <div class="latest-announstment-card">
                                 <div class="image-container">
-                           
+                                
+                                <img src="${myUrl}/public/images/nature.jpg" width="80%" height="50%">
+
 <!--                                    <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>-->
                                     <div class="read-more-btn">
                                         Read More
