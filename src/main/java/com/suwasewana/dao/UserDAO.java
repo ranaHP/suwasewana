@@ -9,9 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class UserDAO {
     @SuppressWarnings("SqlResolve")
@@ -55,6 +53,10 @@ public class UserDAO {
 
     private static final  String USER_VIEW_CLINIC_ANNOUNCEMENT = "SELECT * FROM clinic_announcement ca left join normal_clinic_session ncs on ncs.ncs_id=ca.clinic_id where ncs.target_moh=?; ";
 
+    private static final String  USERREGISTERCLINC ="INSERT INTO `clinic_registered_patient`  VALUES (?,?,?,NULL);";
+
+    private static final String  USER_CANCEL_REGISTER_CLINIC ="DELETE FROM `suwasewana_db`.`clinic_registered_patient` WHERE `u_nic`  = ? AND `ncs_id` = ?;";
+
     Connection connection;
 
 
@@ -62,6 +64,9 @@ public class UserDAO {
 //    /fixed
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
 
+    private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=?;";
+
+    private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
 
     public UserDAO() {
         DB db = new DB();
@@ -699,6 +704,108 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
     }
 
 
+    public ArrayList<UserViewClinicsModel> UserViewclinic(String unic, UserViewClinicsModel viewAnnouncement) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_ANNOUNCEMENTS)){
+            System.out.println("came to dao");
+            preparedStatement.setString(2,viewAnnouncement.getMOH());
+            preparedStatement.setString(1,unic);
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();
+            while (rs.next()){
+                String ncs_id = rs.getString("ncs_id");
+                String title = rs.getString("title");
+                String disease =rs.getString("disease");
+                String location=rs.getString("location");
+//                String TargetMOH = rs.getString("name");
+                String DataTime = rs.getString("date");
+                String time=rs.getString("time");
+                String Duration = rs.getString("duration");
+                String MaxPatient = rs.getString("max_sheet");
+                String 	Avail_seats=rs.getString("Avail_seats");
+                String Target=rs.getString("target_people");
+                String Conduct = rs.getString("conduct_by");
+                String Description = rs.getString("description");
+                String cNic = rs.getString("clinical_officer");
+                UserViewClinicsModel temp = new UserViewClinicsModel(
+
+                        ncs_id,
+                        title,
+                        disease,
+                        location,
+                        "",
+                        DataTime,
+                        time,
+                        Duration,
+                        MaxPatient,
+                        Avail_seats,
+                        Target,
+                        Conduct,
+                        Description,
+                        cNic
+
+                );
+                ViewclinicAnnouncements.add(temp);
+                System.out.println(title+"--"+disease+"--"+location);
+            };
+            return ViewclinicAnnouncements;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics ,String nic) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_REGISTERED_CLINICS)){
+            System.out.println("came to dao");
+            preparedStatement.setString(1,viewregisteredclinics.getUNic());
+            System.out.println(nic);
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<UserViewRegisteredclinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewRegisteredclinicsModel>();
+            while (rs.next()){
+                String ncs_id = rs.getString("ncs_id");
+                String title = rs.getString("title");
+                String disease =rs.getString("disease");
+                String location=rs.getString("location");
+                String TargetMOH = rs.getString("avail_seats");
+                String DataTime = rs.getString("date");
+                String time=rs.getString("time");
+                String Duration = rs.getString("duration");
+                String MaxPatient = rs.getString("max_sheet");
+                String Target=rs.getString("target_people");
+                String Conduct = rs.getString("conduct_by");
+                String Description = rs.getString("description");
+                UserViewRegisteredclinicsModel temp = new UserViewRegisteredclinicsModel(
+
+                        ncs_id,
+                        title,
+                        disease,
+                        location,
+                        TargetMOH,
+                        DataTime,
+                        time,
+                        Duration,
+                        MaxPatient,
+                        Target,
+                        Conduct,
+                        Description
+
+
+                );
+                ViewclinicAnnouncements.add(temp);
+                System.out.println(title+"--"+disease+"--"+location);
+            };
+            return ViewclinicAnnouncements;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
 
 
 
@@ -746,6 +853,44 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
             return ViewVAnnouncements;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
+
+
+    public String Userregisterclinic(UserViewRegisteredclinicsModel registerclinic, String ncs_id) {
+
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(USERREGISTERCLINC)) {
+                preparedStatement.setString(2, ncs_id );
+                preparedStatement.setString(3, registerclinic.getDatetime());
+                preparedStatement.setString(1, registerclinic.getUNic());
+                int rs = preparedStatement.executeUpdate();
+
+
+                return  "success";
+            } catch (SQLException throwables) {
+                printSQLException((SQLException) throwables);
+            }
+
+            return null;
+        }
+
+
+    public String Usercancellinic(String unic, UserViewClinicsModel cancelclinic) {
+
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_CANCEL_REGISTER_CLINIC)) {
+            preparedStatement.setString(2, cancelclinic.ncs_id );
+            preparedStatement.setString(1, unic);
+            int rs = preparedStatement.executeUpdate();
+
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException((SQLException) throwables);
         }
 
         return null;
