@@ -29,6 +29,7 @@
     <script src="<c:url value="/public/js/disease-details.js"/>"></script>
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
+    <script src="<c:url value="/public/js/citizen/userHomeViewClinic.js"/>"></script>
 </head>
 <body>
 <!-- main container -->
@@ -637,106 +638,106 @@
             </div>
         </div>
         <div class="upcoming-clinic">
-            <div class="left-col">
+            <div class="left-col" id="left-col">
                 <img src="<c:url value="/public/images/icons/arrow-left-circle.svg"/>" class="clinic-arrow" width="25px"/>
-                <div class="clinic-card-container">
-                    <div class="clinic-card">
-                        <div class="header">
-                            Covid19 Awareness Session
-                            <p> 2021/01/10</p>
-                        </div>
-                        <div class="desc">
-                            he process of writing a job description requires
-                            having a clear understanding of the job’s duties
-                            and responsibilities. The job posting should also
-                            include a concise picture of the skills required
-                            Organize the job
-                        </div>
-                        <div class="properties">
-                            <ul>
-                                <li>
-                                    <img src="images/icons/map-pin.svg" width="15px"/>
-                                    Location : Eluketiya Manduni's home
-                                </li>
-                                <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
-                                    Conduct : Dr Akila Lulakshi
-                                </li>
-                                <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
-                                    Max participant limit : 1000
-                                </li>
-                                <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
-                                    MOH Area :Akuressa
-                                </li>
-                                <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
-                                    Target participant :Dr Akila Lulakshi
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="footer">
-                            <div class="current-registered-count">
-                                <img src="images/icons/users.svg" width="18px"/>
-                                120,22
-                            </div>
-                            <div class="register-btn">
-                                Register
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                <div class="clinic-card-container">--%>
+<%--                    <div class="clinic-card">--%>
+<%--                        <div class="header">--%>
+<%--                            Covid19 Awareness Session--%>
+<%--                            <p> 2021/01/10</p>--%>
+<%--                        </div>--%>
+<%--                        <div class="desc">--%>
+<%--                            he process of writing a job description requires--%>
+<%--                            having a clear understanding of the job’s duties--%>
+<%--                            and responsibilities. The job posting should also--%>
+<%--                            include a concise picture of the skills required--%>
+<%--                            Organize the job--%>
+<%--                        </div>--%>
+<%--                        <div class="properties">--%>
+<%--                            <ul>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/map-pin.svg" width="15px"/>--%>
+<%--                                    Location : Eluketiya Manduni's home--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+<%--                                    Conduct : Dr Akila Lulakshi--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+<%--                                    Max participant limit : 1000--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+<%--                                    MOH Area :Akuressa--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+<%--                                    Target participant :Dr Akila Lulakshi--%>
+<%--                                </li>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                        <div class="footer">--%>
+<%--                            <div class="current-registered-count">--%>
+<%--                                <img src="images/icons/users.svg" width="18px"/>--%>
+<%--                                120,22--%>
+<%--                            </div>--%>
+<%--                            <div class="register-btn">--%>
+<%--                                Register--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
 
-                <div class="clinic-card-container">
-                    <div class="clinic-card">
-                        <div class="header">
-                            Covid19 Awareness Session
-                            <p> 2021/01/10</p>
-                        </div>
-                        <div class="desc">
-                            he process of writing a job description requires
-                            having a clear understanding of the job’s duties
-                            and responsibilities. The job posting should also
-                            include a concise picture of the skills required
-                            Organize the job
-                        </div>
-                        <div class="properties">
-                            <ul>
-                                <li>
-                                    <img src="images/icons/map-pin.svg" width="15px"/>
-                                    Location : Eluketiya Manduni's home
-                                </li>
-                                <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
-                                    Conduct : Dr Akila Lulakshi
-                                </li>
-                                <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
-                                    Max participant limit : 1000
-                                </li>
-                                <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
-                                    MOH Area :Akuressa
-                                </li>
-                                <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
-                                    Target participant :Dr Akila Lulakshi
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="footer">
-                            <div class="current-registered-count">
-                                <img src="images/icons/users.svg" width="18px"/>
-                                120,22
-                            </div>
-                            <div class="register-btn">
-                                Register
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<%--                <div class="clinic-card-container">--%>
+<%--                    <div class="clinic-card">--%>
+<%--                        <div class="header">--%>
+<%--                            Covid19 Awareness Session--%>
+<%--                            <p> 2021/01/10</p>--%>
+<%--                        </div>--%>
+<%--                        <div class="desc">--%>
+<%--                            he process of writing a job description requires--%>
+<%--                            having a clear understanding of the job’s duties--%>
+<%--                            and responsibilities. The job posting should also--%>
+<%--                            include a concise picture of the skills required--%>
+<%--                            Organize the job--%>
+<%--                        </div>--%>
+<%--                        <div class="properties">--%>
+<%--                            <ul>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/map-pin.svg" width="15px"/>--%>
+<%--                                    Location : Eluketiya Manduni's home--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+<%--                                    Conduct : Dr Akila Lulakshi--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+<%--                                    Max participant limit : 1000--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+<%--                                    MOH Area :Akuressa--%>
+<%--                                </li>--%>
+<%--                                <li>--%>
+<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+<%--                                    Target participant :Dr Akila Lulakshi--%>
+<%--                                </li>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                        <div class="footer">--%>
+<%--                            <div class="current-registered-count">--%>
+<%--                                <img src="images/icons/users.svg" width="18px"/>--%>
+<%--                                120,22--%>
+<%--                            </div>--%>
+<%--                            <div class="register-btn">--%>
+<%--                                Register--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
                 <img src="<c:url value="/public/images/icons/arrow-right-circle.svg"/>" width="25px" class="clinic-arrow"/>
 
             </div>
@@ -821,6 +822,25 @@
             },
         });
         return false;
+    }
+</script>
+
+<script defer>
+    let clinicList1 = new clinicList("left-col");
+    // let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    clinic();
+    function clinic(){
+        let clinicListArray=[]
+        $.post("/test_war_exploded/user-view-home-controller/clinic",
+            // reqData,
+            function(data,status){
+                clinicListArray=JSON.parse(data)
+                // console.log(clinicListArray)
+                clinicList1.setData(clinicListArray);
+
+            }
+        );
+        console.log("after")
     }
 </script>
 <script>
