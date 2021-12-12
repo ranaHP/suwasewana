@@ -44,9 +44,9 @@ public class UserHomeController extends HttpServlet {
 //                case "registerview":
 //                    userViewregisteredclinics(req, res);
 //                    break;
-//                case "register":
-//                    userregister(req, res);
-//                    break;
+                case "register":
+                    userregister(req, res);
+                    break;
 
 //                case "cancel":
 //                    usercancelclinic(req, res);
@@ -73,6 +73,28 @@ public class UserHomeController extends HttpServlet {
 
     }
 
+    private void userregister(HttpServletRequest req, HttpServletResponse res) throws IOException {
+
+        System.out.println("data come to controller");
+        String ncs_id = req.getParameter("clinic_id");
+        UserViewRegisteredclinicsModel registerclinic = new UserViewRegisteredclinicsModel (
+
+                "199910910035",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("Date"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        String result= userDAO.Userregisterclinic(registerclinic,ncs_id);
+        res.getWriter().println(gson.toJson(result));
+    }
 
 
     private void  userHomeViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {

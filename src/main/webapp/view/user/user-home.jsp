@@ -842,6 +842,65 @@
         );
         console.log("after")
     }
+
+
+    function checkAvailbale(clinic_id,max_sheet,Avail_seats){
+        Avail_seats=Avail_seats
+        max_sheet=max_sheet
+        clinic_id = clinic_id;
+        if(Avail_seats==0){
+            popup.showUserVaccineRegisterSuccessMessage({
+                status: 'fail',
+                message: 'limit exceed !',
+
+            });
+        }
+        else {
+            RegisterForclinic(clinic_id,max_sheet)
+        }
+
+    }
+
+    function RegisterForclinic(clinic_id,max_sheet){
+
+        let x=new Date();
+        let year =x.getFullYear();
+        let month =x.getMonth()+1;
+        let day =x.getDate();
+
+
+        max_sheet=max_sheet
+        clinic_id = clinic_id;
+        let date=year+"-"+month+"-"+day;
+        console.log(clinic_id)
+        console.log(max_sheet)
+        let avalabel_seats=--max_sheet;
+        let reqData =
+            {
+                Date:date,
+                clinic_id: clinic_id
+
+            };
+
+        $.post("/test_war_exploded/user-view-clinic-controller/register",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    updateAvailableseats(avalabel_seats,clinic_id)
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'fail',
+                        message: 'Complain Send Fail !',
+
+                    });
+                }
+            }
+        );
+    }
+
+
 </script>
 <script>
     feather.replace({width: "16px"})

@@ -80,7 +80,7 @@ class clinicList {
                                 <img src="images/icons/users.svg" width="18px"/>
                                 120,22
                             </div>
-                            <div class="register-btn">
+                            <div class="register-btn" onclick="checkAvailbale(`+item.ncs_id+`,`+item.maxpatient+`,`+item.Avail_seats+`)">
                                 Register
                             </div>
                         </div>
