@@ -861,6 +861,7 @@
 
     }
 
+
     function RegisterForclinic(clinic_id,max_sheet){
 
         let x=new Date();
