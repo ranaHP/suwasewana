@@ -622,7 +622,7 @@
             }
         );
     }
-   function updateAvailableseats(avalabel_seats,clinic_id){
+   function updateAvailableseats(clinic_id,avalabel_seats){
          avalabel_seats=avalabel_seats;
          clinic_id=clinic_id
 
@@ -644,7 +644,7 @@
                        message: 'Successfully Registerd!',
 
                    });
-                   view()
+                   // view()
                } else {
                    console.log("unsuccesssss brooo")
                    popup.showUserVaccineRegisterSuccessMessage({
@@ -657,9 +657,11 @@
        );
    }
 
-   function cancel(ncs_id){
+   function cancel(ncs_id,avail_seats){
 
         ncs_id = ncs_id;
+        avail_seats=avail_seats
+       console.log(avail_seats)
        let reqData =
            {
                ncs_id: ncs_id
@@ -677,6 +679,10 @@
                        message: 'Successfully Registerd!',
 
                    });
+                   ++avail_seats
+                   console.log("b")
+                   console.log(avail_seats)
+                  updateAvailableseats(ncs_id,avail_seats)
 
                } else {
                    console.log("unsuccesssss brooo")

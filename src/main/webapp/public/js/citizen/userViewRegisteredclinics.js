@@ -82,7 +82,7 @@ class registeredclinicList {
                                     <div class="current-registered-count">
                                       
                                     </div>
-                                    <div class="register-btn" style="background-color: #EB3B5AFF" onclick="cancel(`+item.UNic+`)">
+                                    <div class="register-btn" style="background-color: #EB3B5AFF" onclick="cancel(`+item.UNic+`,+`+item.MOH+`)">
                                         Cancel
                                     </div>
                                 </div>

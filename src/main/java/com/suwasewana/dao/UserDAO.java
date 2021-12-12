@@ -769,7 +769,7 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
                 String title = rs.getString("title");
                 String disease =rs.getString("disease");
                 String location=rs.getString("location");
-                String TargetMOH = rs.getString("target_moh");
+                String TargetMOH = rs.getString("avail_seats");
                 String DataTime = rs.getString("date");
                 String time=rs.getString("time");
                 String Duration = rs.getString("duration");
