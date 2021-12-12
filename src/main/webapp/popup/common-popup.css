@@ -4,11 +4,6 @@
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
 }
--webkit-datetime-edit-year-field:not([aria-valuenow]),
--webkit-datetime-edit-month-field:not([aria-valuenow]),
--webkit-datetime-edit-day-field:not([aria-valuenow]) {
-    color: transparent;
-}
 .popup-container{
     width: 100vw;
     height: 100vh;
