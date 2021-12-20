@@ -289,7 +289,7 @@
   let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 
   let rs;
-  console.log("url - "+ myUrl+"/admin-register-controller/All_vaccine_details/");
+  // console.log("url - "+ myUrl+"/admin-register-controller/All_vaccine_details/");
 
 
   function calculateage(name) {
@@ -372,11 +372,7 @@
                   month = "2";
               }
 
-              // Show Details
-              // console.log("Gender : " + gender)
-              // console.log("Year : " + year)
-              // console.log("Month : " + month)
-              // console.log("Day :" + day)
+
 
               let birthday=year+"/"+month+"/"+day;
               let age =getAge(birthday);
@@ -416,13 +412,9 @@
       return timeFromMins(timeToMins(time0) + timeToMins(time1));
   };
 
-    function RegisterForclinic(vaccine_clinic_id,vaccine_id,year,month,day,max_sheet,Next_sloat){
-
-        let date=year+"-"+month+"-"+day;
-        let sloat=(Next_sloat.toFixed( 2 )).toString().replace(".",":");
+    function RegisterForclinic(vaccine_clinic_id,vaccine_id,max_sheet,date,sloat){
 
         let new_next_sloat=addTimes(sloat, '00:05:00');
-
         let avalabel_seats=--max_sheet;
         let reqData =
             {
@@ -432,19 +424,13 @@
                 vaccine_clinic_id:vaccine_clinic_id,
                 Date:date,
                 vaccine_id:vaccine_id
-
             };
-
-
-
-
 
         $.post(myUrl+"/Vaccine-controller/updateVaccineNextSloat_Maxseet",
             reqData,
             function (data, status) {
 
                 if (data.includes("success")) {
-                    console.log("successsss brooo")
                     popup.showUserVaccineRegisterSuccessMessage({
                         status: 'success',
                         message: 'Successfully Registerd!',
@@ -454,18 +440,29 @@
                     LoadVaccineclinic();
                     ViewRegisterdClinics();
                 } else {
-                    console.log("unsuccesssss brooo")
                     popup.showUserVaccineRegisterSuccessMessage({
                         status: 'fail',
                         message: 'Complain Send Fail !',
-
                     });
                 }
             }
         );
-
-
     }
+  function sendmsg() {
+      numbers.map(i => {
+              var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                      document.getElementById("demo").innerHTML =
+                          this.responseText;
+                  }
+              };
+              xhttp.open("GET", "https://app.notify.lk/api/v1/send?user_id=15170&api_key=JxIvVwu5Ww2TF7aYeFx0&sender_id=NotifyDEMO&to=+94" + i + "&message=good night", true);
+              xhttp.send();
+          }
+      )
+  }
+
   LoadVaccineclinic();
   let age=calculateage("199910910064");
   function LoadVaccineclinic(){
@@ -475,20 +472,7 @@
               let available_clinic_list=document.getElementById("available_clinic_list");
                 available_clinic_list.innerHTML='';
               rs.map((element) => {
-                  console.log("element.date "+element.date);
                   let date=((element.date).split(" ")[0]) ;
-
-                  let x=new Date(element.date);
-                  let year=x.getFullYear();
-                  let month=x.getMonth()+1;
-                  let day=x.getDate();
-
-
-
-                let avlable_time_slot=element.Next_sloat.replace(":",".");
-                // console.log("avlable_time_slot "+ avlable_time_slot);
-
-
                     if(age<= parseInt(element.Upper_Age) && age> parseInt(element.Lower_Age) && (element.Status!="alreadyHave") &&(element.max_sheet>0)){
                         available_clinic_list.innerHTML+= `
                        <tr>
@@ -499,10 +483,12 @@
                           <td data-label="Age limit">`+element.Lower_Age+`-`+element.Upper_Age+`</td>
                           <td data-label="Location">`+element.location+`</td>
                           <td data-label="Dosage">`+element.Dosage+`</td>
-                          <td data-label=""> <button class="btn-register" onclick="RegisterForclinic(`+element.vaccine_clinic_id+`,`+element.vaccine_id+`,`+year+`,`+month+`,`+day+`,`+element.max_sheet+`,`+avlable_time_slot+`);"> Register</button> </td>
+                          <td data-label=""> <button class="btn-register" onclick="RegisterForclinic(`+element.vaccine_clinic_id+`,`+element.vaccine_id+`,`+element.max_sheet+`,'`+date+`','`+element.Next_sloat+`');"> Register</button> </td>
                       </tr>`
+
+
+
                     }
-              //,`+element.Next_sloat+`,`+element.max_sheet+`
                     else{
                         available_clinic_list.innerHTML+= `
                        <tr>
@@ -516,17 +502,12 @@
                           <td data-label=""> <button class="btn-register" style="display: none"> Register</button> </td>
                       </tr>`
                     }
-
-
-
-
               })
             }
     );
   }
 
   function CancleClinic(regno){
-      console.log("reg no "+regno);
       let reqData={
           regNo:regno
       }
@@ -535,20 +516,16 @@
           function (data, status) {
 
               if (data.includes("success")) {
-                  console.log("successsss brooo")
                   popup.CancleClinicSuccessMessage({
                       status: 'success',
                       message: 'Successfully Cancled!',
-
                   });
                   LoadVaccineclinic();
                   ViewRegisterdClinics();
               } else {
-                  console.log("unsuccesssss brooo")
                   popup.CancleClinicSuccessMessage({
                       status: 'fail',
                       message: 'Please try again',
-
                   });
               }
           }
@@ -565,10 +542,8 @@
               rs.map((element) => {
                   let date=((element.date).split(" ")[0]) ;
                   let time=((element.date).split(" ")[1]).split(":")[0]+"."+((element.date).split(" ")[1]).split(":")[1];
-
                   let expdate=new Date(element.date);
                   let currentDate=new Date();
-
                   if(currentDate<=expdate){
                       registered_clinic_list.innerHTML+= `
                        <tr>
@@ -591,8 +566,6 @@
                           <td data-label=""> <button class="btn-register cancle" style="display: none" "> Cancle</button> </td>
                         </tr>`
                   }
-
-
               })
           }
       );
