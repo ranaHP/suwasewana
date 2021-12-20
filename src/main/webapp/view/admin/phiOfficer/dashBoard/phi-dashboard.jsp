@@ -118,6 +118,7 @@
             </div>
         </div>
     </div>
+<%--    <hr class="seperateline">--%>
     <div class="chart-map">
         <div class="Chart-side">
             <div class="chart-container" style="padding: 25px">
@@ -251,7 +252,7 @@
 
             </div>
         </div>
-        <div class="Appoinment" style="padding: 20px">
+        <div class="Appoinment" style="margin-top: 20px">
             <label class="topic">New Appoinments</label>
             <div class="appinment-container" id="apponmentList">
 

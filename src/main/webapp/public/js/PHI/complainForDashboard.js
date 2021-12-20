@@ -50,9 +50,7 @@ class Complain {
                 let uname=item.user.uname
                 this.container.innerHTML += `
                     <div class="complain" onclick="viewComplainDetail('`+title+`','`+ctype+`','`+pdate+`','`+cmessage+`','`+user+`','`+mobile+`','`+uname+`')">
-                        <div class="color-circle">
-                            <div class="circle"></div>
-                        </div>
+                        
                         <div class="content">
                             <span>${item.complainModel.CTitle}</span>
                             <label >${item.complainModel.Posted_Date.split(" ")[0]}</label>
