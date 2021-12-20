@@ -19,6 +19,9 @@
     <!-- for commen style  sheet link  -->
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
 
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+
     <!-- for feather icon -->
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -30,8 +33,11 @@
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
     <script src="<c:url value="/public/js/citizen/userHomeViewClinic.js"/>"></script>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
+
 </head>
 <body>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <!-- main container -->
 <div class="container">
     <!-- hero banner -->
@@ -768,6 +774,13 @@
 <script defer>
     function imageUpload() {
 
+        popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+        let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+        var loadFile = function (event, imgContainerId) {
+            var image = document.getElementById(imgContainerId);
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+
         var fd = new FormData();
 
         let imageNames = [];
@@ -856,13 +869,13 @@
             });
         }
         else {
-            RegisterForclinic(clinic_id,max_sheet)
+            RegisterForclinic(clinic_id,max_sheet,Avail_seats)
         }
 
     }
 
 
-    function RegisterForclinic(clinic_id,max_sheet){
+    function RegisterForclinic(clinic_id,max_sheet,Avail_seats){
 
         let x=new Date();
         let year =x.getFullYear();
@@ -871,15 +884,19 @@
 
 
         max_sheet=max_sheet
-        clinic_id = clinic_id;
+        clinic_id = clinic_id
+        Avail_seats = Avail_seats;
         let date=year+"-"+month+"-"+day;
         console.log(clinic_id)
         console.log(max_sheet)
-        let avalabel_seats=--max_sheet;
+        Avail_seats= --Avail_seats;
+        console.log(Avail_seats)
+        console.log(max_sheet)
         let reqData =
             {
                 Date:date,
-                clinic_id: clinic_id
+                clinic_id: clinic_id,
+                Avail_seats:Avail_seats
 
             };
 
@@ -888,7 +905,7 @@
             function (data, status) {
 
                 if (data.includes("success")) {
-                    updateAvailableseats(avalabel_seats,clinic_id)
+                    updateAvailableseats(Avail_seats,clinic_id)
                 } else {
                     console.log("unsuccesssss brooo")
                     popup.showUserVaccineRegisterSuccessMessage({
@@ -900,6 +917,42 @@
             }
         );
     }
+
+    function updateAvailableseats(clinic_id,avalabel_seats){
+        avalabel_seats=avalabel_seats;
+        clinic_id=clinic_id
+
+        let reqData =
+            {
+                avalabel_seats:avalabel_seats,
+                clinic_id: clinic_id
+
+            };
+        console.log("right")
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/updateAvailSheats",
+            reqData,
+            function (data, status) {
+                if (data.includes("success")) {
+                    console.log("successsss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'success',
+                        message: 'Successfully Registerd!',
+
+                    });
+                    // view()
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'fail',
+                        message: 'Complain Send Fail !',
+
+                    });
+                }
+            }
+        );
+    }
+
 
 
 </script>

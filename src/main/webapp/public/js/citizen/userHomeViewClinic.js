@@ -57,6 +57,11 @@ class clinicList {
                                     <img src="images/icons/map-pin.svg" width="15px"/>
                                     Location :  ${item.location}
                                 </li>
+                                           
+                                <li>
+                                    <img src="images/icons/map-pin.svg" width="15px"/>
+                                    Available seats :  ${item.Avail_seats}
+                                </li>
                                 <li>
                                     <img src="images/icons/list.svg" width="15px"/>
                                     Conduct :  ${item.conduct}
