@@ -35,7 +35,7 @@
     <div class="body-content">
         <div class="MR_container">
             <div class="title">
-                New Vaccine Type
+                Vaccine Type
             </div>
             <div class="seach_by_name" style="margin: 50px 0;">
                 <form onsubmit="return LoadData();">
