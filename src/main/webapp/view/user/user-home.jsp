@@ -905,7 +905,7 @@
             function (data, status) {
 
                 if (data.includes("success")) {
-                    updateAvailableseats(Avail_seats,clinic_id)
+                    updateAvailableseats(clinic_id,Avail_seats)
                 } else {
                     console.log("unsuccesssss brooo")
                     popup.showUserVaccineRegisterSuccessMessage({
@@ -918,17 +918,18 @@
         );
     }
 
-    function updateAvailableseats(clinic_id,avalabel_seats){
-        avalabel_seats=avalabel_seats;
+    function updateAvailableseats(clinic_id,Avail_seats){
+        Avail_seats=Avail_seats;
         clinic_id=clinic_id
 
         let reqData =
             {
-                avalabel_seats:avalabel_seats,
+                Avail_seats:Avail_seats,
                 clinic_id: clinic_id
 
             };
         console.log("right")
+        console.log(Avail_seats)
         console.log(reqData);
         $.post("/test_war_exploded/create-clinic-controller/updateAvailSheats",
             reqData,
