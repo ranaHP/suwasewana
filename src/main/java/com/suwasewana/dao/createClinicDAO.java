@@ -25,6 +25,7 @@ public class createClinicDAO {
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `duration` = ? , `limit_sheats` = ? ,`lower_age_limit`=? ,`upper_age_limit`=?  ,`location`= ?  , `dose_count`= ? ,`start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String ClinicCount="SELECT COUNT(ncs_id), date FROM `normal_clinic_session` GROUP BY `date`;";
+  private static final String UpdateAvailSheats="UPDATE `normal_clinic_session` SET `Avail_seats` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
   Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -75,6 +76,26 @@ public class createClinicDAO {
             preparedStatement.setString(9,updateClinic.getTarget());
             preparedStatement.setString(10,updateClinic.getLocation());
             preparedStatement.setString(11,updateClinic.getClinicID());
+
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
+
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+    }
+
+    public String updateAvailSheats(CreateClinicModel updatesheats) {
+        boolean rowUpdate;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateAvailSheats)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+            preparedStatement.setString(1,updatesheats.getAvail_seats());
+            preparedStatement.setString(2,updatesheats.getClinicID());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);
