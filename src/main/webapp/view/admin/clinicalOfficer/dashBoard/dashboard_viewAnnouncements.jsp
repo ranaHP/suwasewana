@@ -30,7 +30,7 @@
     </div>
     <div class="search-section">
         <div class="searchbar">
-            <input type="text" id ="filter" required autocomplete="false" name="clinic-title" onkeyup="search()"/>
+            <input type="text" id ="filter" aria-autocomplete="off" placeholder="Search by name" required autocomplete="false" name="clinic-title" onkeyup="search()"/>
             <button>Search</button>
         </div>
     </div>

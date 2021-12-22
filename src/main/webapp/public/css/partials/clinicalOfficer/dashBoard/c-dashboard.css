@@ -165,6 +165,7 @@ label{
     margin: 10px 0;
     overflow-x: scroll;
     max-width: 800px;
+    cursor: grab;
     /* background-color: aqua; */
 }
 .clinic-card{
@@ -178,7 +179,7 @@ label{
     box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.151);
     /*background-color: white;*/
     background-color: rgb(255, 255, 255);
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 /*::-webkit-scrollbar {*/
 /*    width: 10px;*/
