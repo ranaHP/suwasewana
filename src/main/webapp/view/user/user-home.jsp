@@ -774,7 +774,7 @@
 <script defer>
     function imageUpload() {
 
-        popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+       let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         var loadFile = function (event, imgContainerId) {
             var image = document.getElementById(imgContainerId);
@@ -919,17 +919,17 @@
     }
 
     function updateAvailableseats(clinic_id,Avail_seats){
-        Avail_seats=Avail_seats;
+        avalabel_seats=Avail_seats;
         clinic_id=clinic_id
 
         let reqData =
             {
-                Avail_seats:Avail_seats,
+                avalabel_seats:avalabel_seats,
                 clinic_id: clinic_id
 
             };
         console.log("right")
-        console.log(Avail_seats)
+        console.log(avalabel_seats)
         console.log(reqData);
         $.post("/test_war_exploded/create-clinic-controller/updateAvailSheats",
             reqData,

@@ -116,7 +116,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                req.getParameter("Avail_seats"),
+                req.getParameter("avalabel_seats"),
                 "",
                 "",
                 "",
