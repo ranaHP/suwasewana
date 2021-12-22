@@ -61,6 +61,9 @@ public class UserDAO {
     Connection connection;
 
 
+    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement`";
+
+
 
 //    /fixed
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
@@ -950,5 +953,39 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
         }
         return null;
 
+    }
+
+    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(UserGovermentAnnouncementModel govermentAnnouncement) {
+
+        System.out.println("data come to goverment 2 dao");
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_GOVERMENT_ANNOUNCEMENT)){
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println("data come to goverment dao");
+            ArrayList<UserGovermentAnnouncementModel> ViewVAnnouncements = new ArrayList<UserGovermentAnnouncementModel>();
+            while (rs.next()){
+                String announcement_id=rs.getString("announcement_id");
+                String title=rs.getString("title");
+                String description=rs.getString("description");
+                String banner=rs.getString("banner");
+                String expire_date =rs.getString("expire_date");
+
+                UserGovermentAnnouncementModel temp= new UserGovermentAnnouncementModel(
+                        announcement_id,
+                        title,
+                        description,
+                        banner,
+                        expire_date
+
+                );
+                ViewVAnnouncements.add(temp);
+
+            }
+            return ViewVAnnouncements;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
     }
 }
