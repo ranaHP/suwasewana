@@ -38,15 +38,16 @@ class View_RPHI_announcement{
         if(!data) return;
         this.announcementArray = data;
         this.container.innerHTML=" ";
+        console.log("hi")
+        console.log(data)
 
         this.announcementArray.map((item) => {
-            let expday = new Date(item.exp_date)
+            let expday = new Date(item.expire_date)
             let current_day=new Date();
             console.log(current_day)
+            console.log(expday)
             // console.log("today : "+current_day+" "+"exp_day : "+expday);
-            // if(current_day<=expday){
-            //     console.log("bi");
-
+            if(current_day<=expday){
 
             this.container.innerHTML += `
        <div class="announcement">
