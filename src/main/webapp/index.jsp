@@ -21,6 +21,7 @@
     <a href="s/PHI-dashboard" > <h1> phi</h1></a>
     <a href="s/admin-dashboard" > <h1> admin</h1></a>
     <a href="s/add-disease" > <h1> add disease</h1></a>
+    <a href="s/manage-disease" > <h1> Manage disease</h1></a>
 <%--<form action="servlet1">--%>
 <%--    Name:<input type="text" name="name"/><br/>--%>
 <%--    Password:<input type="password" name="password"/><br/>--%>
