@@ -3,6 +3,8 @@ package com.suwasewana.controller.user;
 import com.google.gson.Gson;
 import com.suwasewana.core.ResponseType;
 import com.suwasewana.dao.UserDAO;
+import com.suwasewana.model.ComplainTypeModel;
+import com.suwasewana.model.User;
 import com.suwasewana.model.UserLoginModel;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+
 @WebServlet("/user-login-controller/*")
 public class LoginController extends HttpServlet {
     UserDAO userDAO;
@@ -40,6 +44,9 @@ public class LoginController extends HttpServlet {
                 case "logout":
                     userLogout(req, res);
                     break;
+                case "UserMOHIdTpno":
+                    UserMOHIdTpno(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -49,7 +56,11 @@ public class LoginController extends HttpServlet {
         }
 
     }
-
+    private void UserMOHIdTpno(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String nic="199910910035";
+        ArrayList<User> result = userDAO.GetUserMOHIdTpno(nic);
+        res.getWriter().println(gson.toJson(result));
+    }
     private void checkUserLogin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String mobile = req.getParameter("user-mobile");
         String password = req.getParameter("user-password");
