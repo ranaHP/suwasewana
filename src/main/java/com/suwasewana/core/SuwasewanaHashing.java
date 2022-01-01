@@ -1,5 +1,6 @@
 package com.suwasewana.core;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -11,31 +12,33 @@ public class SuwasewanaHashing {
     }
 
     public String getHashValue(){
-        try
-        {
-            /* MessageDigest instance for MD5. */
-            MessageDigest m = MessageDigest.getInstance("MD5");
+        try {
+            // getInstance() method is called with algorithm SHA-512
+            MessageDigest md = MessageDigest.getInstance("SHA-512");
 
-            /* Add plain-text password bytes to digest using MD5 update() method. */
-            m.update(password.getBytes());
+            // digest() method is called
+            // to calculate message digest of the input string
+            // returned as array of byte
+            byte[] messageDigest = md.digest(this.password.getBytes());
 
-            /* Convert the hash value into bytes */
-            byte[] bytes = m.digest();
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
 
-            /* The bytes array has bytes in decimal form. Converting it into hexadecimal format. */
-            StringBuilder s = new StringBuilder();
-            for(int i=0; i< bytes.length ;i++)
-            {
-                s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+
+            // Add preceding 0s to make it 32 bit
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
             }
 
-            /* Complete hashed password in hexadecimal format */
-            this.encryptedpassword = s.toString();
+            // return the HashText
+            return hashtext;
         }
-        catch (NoSuchAlgorithmException e)
-        {
-            e.printStackTrace();
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
-        return this.encryptedpassword;
     }
 }

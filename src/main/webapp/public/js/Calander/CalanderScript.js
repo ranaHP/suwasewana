@@ -17,75 +17,80 @@ class Calender {
         "November",
         "December"
     ];
-    event = [
-        {
-            year: 2021,
-            month: 10,
-            date: 1,
-            events: [
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                }
-            ]
-        },
-        {
-            year: 2021,
-            month: 10,
-            date: 5,
-            events: [
-                {
-                    title: 'D clinic',
-                    desc: ' ABCD ',
-                },
-
-                {
-                    title: 'E clinic',
-                    desc: ' ABCD ',
-                }
-            ]
-        },
-        {
-            year: 2020,
-            month: 10,
-            date: 27,
-            events: [
-                {
-                    title: 'D clinic',
-                    desc: ' ABCD ',
-                },
-
-                {
-                    title: 'D clinic',
-                    desc: ' ABCD ',
-                },
-
-                {
-                    title: 'E clinic',
-                    desc: ' ABCD ',
-                }
-            ]
-        }
-    ]
+    // event = [
+    //     {
+    //         year: 2021,
+    //         month: 10,
+    //         date: 1,
+    //         events: [
+    //             {
+    //                 title: 'Corona clinic',
+    //                 desc: ' ABCD ',
+    //             },
+    //             {
+    //                 title: 'Corona clinic',
+    //                 desc: ' ABCD ',
+    //             },
+    //             {
+    //                 title: 'Corona clinic',
+    //                 desc: ' ABCD ',
+    //             },
+    //
+    //             {
+    //                 title: 'Corona clinic',
+    //                 desc: ' ABCD ',
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         year: 2021,
+    //         month: 10,
+    //         date: 5,
+    //         events: [
+    //             {
+    //                 title: 'D clinic',
+    //                 desc: ' ABCD ',
+    //             },
+    //
+    //             {
+    //                 title: 'E clinic',
+    //                 desc: ' ABCD ',
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         year: 2020,
+    //         month: 10,
+    //         date: 27,
+    //         events: [
+    //             {
+    //                 title: 'D clinic',
+    //                 desc: ' ABCD ',
+    //             },
+    //
+    //             {
+    //                 title: 'D clinic',
+    //                 desc: ' ABCD ',
+    //             },
+    //
+    //             {
+    //                 title: 'E clinic',
+    //                 desc: ' ABCD ',
+    //             }
+    //         ]
+    //     }
+    // ]
+    event = []
 
     constructor(contaienrName) {
         this.container = document.getElementById(contaienrName);
         this.container_name = contaienrName;
         this.init();
+    }
 
+    setEventData( events ){
+        this.event = events;
+        this.addCalenderEvents();
     }
 
     init() {

@@ -151,10 +151,10 @@
             </div>
         </div>
     </div>
-<button onclick="popup.showAppointmentSuccessMessage({
-                        status: 'success',
-                        message: 'Appointment Successfully Requested!'
-                    });"> asdasdasdasd</button>
+<%--<button onclick="popup.showAppointmentSuccessMessage({--%>
+<%--                        status: 'success',--%>
+<%--                        message: 'Appointment Successfully Requested!'--%>
+<%--                    });"> asdasdasdasd</button>--%>
 </div>
 </body>
 
@@ -191,7 +191,7 @@
         const xhttp2 = new XMLHttpRequest();
         xhttp2.onload = function () {
             let result = JSON.parse([this.response]);
-
+            console.log(this.response);
             appointmentObj.setData(result);
             // appointmentObj.makeAppointmnetCard(result);
 

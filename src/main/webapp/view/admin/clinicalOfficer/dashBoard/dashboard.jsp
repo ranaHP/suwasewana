@@ -105,6 +105,48 @@
 </div>
 <script defer>
     let calender = new Calender("calender");
+    calender.setEventData([
+        {
+            year: 2021,
+            month: 12,
+            date: 5,
+            events: [
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+
+            ]
+        },
+        {
+            year: 2021,
+            month: 12,
+            date: 3,
+            events: [
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+                {
+                    title: 'Corona clinic',
+                    desc: ' ABCD ',
+                },
+
+            ]
+        }
+    ])
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     // calender.reangeSelect(2021, 9, 10, 6, 8);
 
