@@ -23,13 +23,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
-    <link href="<c:url value="/public/css/Admin/add-diseases.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/Admin/diseases.css"/>" rel="stylesheet"/>
 
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"/>
 <div class="mypopup" id="popup" style="display: none;"></div>
-<div class="add_disease_main_Container">
+<div class="manage_disease_main_Container">
 
     <div class="header">
         <div class="upper-title">SUWASEWANA</div>
@@ -38,12 +38,62 @@
     <div class="add-disease">
         <div class="body-content">
             <div class="MR_container">
-                <div class="title">
-                    New Vaccine Type
-                </div>
-                <form onsubmit="return imageUpload();">
+                <div class="manage-diseases-container">
+                    <div class="form-header">
+                        <div class="form-header-title">
+                            Current Comment Disease in Sri lanka
+                        </div>
+                        <div class="primary-outline-btn ">
+                            Add New Disease
+                        </div>
+                    </div>
+                    <div class="disease-table-container">
+                        <div class="container">
 
-                </form>
+                            <div class="table">
+                                <div class="table-header">
+                                    <div class="header__item">Rank</div>
+                                    <div class="header__item">Disease</div>
+                                    <div class="header__item">Registered</div>
+                                    <div class="header__item">Clinics</div>
+                                    <div class="header__item " >Action</div>
+                                </div>
+                                <div class="table-content">
+                                    <div class="table-row">
+                                        <div class="table-data">1</div>
+                                        <div class="table-data"><a>Covid 19</a></div>
+                                        <div class="table-data">352,212,222</div>
+                                        <div class="table-data">120</div>
+                                        <div class="table-data disease-action-btn-container"  >
+                                            <div class="warnig-outline-btn"> Edit</div>
+                                            <div  class="danger-outline-btn"> Block For Pepols </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-data">1</div>
+                                        <div class="table-data"><a>Covid 19</a></div>
+                                        <div class="table-data">352,212,222</div>
+                                        <div class="table-data">120</div>
+                                        <div class="table-data disease-action-btn-container"  >
+                                            <div class="warnig-outline-btn"> Edit</div>
+                                            <div  class="danger-outline-btn"> Block For Pepols </div>
+                                        </div>
+                                    </div>
+                                    <div class="table-row">
+                                        <div class="table-data">1</div>
+                                        <div class="table-data"><a>Covid 19</a></div>
+                                        <div class="table-data">352,212,222</div>
+                                        <div class="table-data">120</div>
+                                        <div class="table-data disease-action-btn-container"  >
+                                            <div class="warnig-outline-btn"> Edit</div>
+                                            <div  class="danger-outline-btn"> Block For Pepols </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
