@@ -13,14 +13,15 @@ function chart(data,today){
     console.log("a")
     console.log(data)
     var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: lables,
             datasets: [{
                 label:"up to " + today.getFullYear()+" / "+ (today.getMonth()+1) +" / "+ today.getDate(),
                 data: count,
                 backgroundColor: [
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(64,255,204,0.2)'
                 ],
                 borderColor: [
                     'rgba(54, 162, 235, 1)',

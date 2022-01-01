@@ -47,9 +47,9 @@ class View_RPHI_announcement{
             console.log(current_day)
             console.log(expday)
             // console.log("today : "+current_day+" "+"exp_day : "+expday);
-            if(current_day<=expday){
+            // if(current_day<=expday) {
 
-            this.container.innerHTML += `
+                this.container.innerHTML += `
        <div class="announcement">
                          <div class="left">
                 <div class="image-container">
@@ -68,7 +68,7 @@ class View_RPHI_announcement{
             </div>
        </div>
             `;
-        })
+            })
 
         // alert("hi")
     }

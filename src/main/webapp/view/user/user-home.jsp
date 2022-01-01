@@ -840,7 +840,7 @@
 
 <script defer>
     let clinicList1 = new clinicList("left-col");
-    // let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     clinic();
     function clinic(){
         let clinicListArray=[]
