@@ -30,7 +30,7 @@ class selectClinics {
               <div class="left_row">
                 <div class="left_row_left"><span> start_date_time  </span></div>
                 <div class="left_row_right"><input type="text" name="date-time" id="date-time" autocomplete="off"
-                                                   required value="${item.datetime}"/></div>
+                                                   required value="${item.date}"/></div>
               </div>
 
               <div class="left_row">

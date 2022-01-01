@@ -17,80 +17,18 @@ class Calender {
         "November",
         "December"
     ];
-    // event = [
-    //     {
-    //         year: 2021,
-    //         month: 10,
-    //         date: 1,
-    //         events: [
-    //             {
-    //                 title: 'Corona clinic',
-    //                 desc: ' ABCD ',
-    //             },
-    //             {
-    //                 title: 'Corona clinic',
-    //                 desc: ' ABCD ',
-    //             },
-    //             {
-    //                 title: 'Corona clinic',
-    //                 desc: ' ABCD ',
-    //             },
-    //
-    //             {
-    //                 title: 'Corona clinic',
-    //                 desc: ' ABCD ',
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         year: 2021,
-    //         month: 10,
-    //         date: 5,
-    //         events: [
-    //             {
-    //                 title: 'D clinic',
-    //                 desc: ' ABCD ',
-    //             },
-    //
-    //             {
-    //                 title: 'E clinic',
-    //                 desc: ' ABCD ',
-    //             }
-    //         ]
-    //     },
-    //     {
-    //         year: 2020,
-    //         month: 10,
-    //         date: 27,
-    //         events: [
-    //             {
-    //                 title: 'D clinic',
-    //                 desc: ' ABCD ',
-    //             },
-    //
-    //             {
-    //                 title: 'D clinic',
-    //                 desc: ' ABCD ',
-    //             },
-    //
-    //             {
-    //                 title: 'E clinic',
-    //                 desc: ' ABCD ',
-    //             }
-    //         ]
-    //     }
-    // ]
     event = []
 
     constructor(contaienrName) {
         this.container = document.getElementById(contaienrName);
         this.container_name = contaienrName;
         this.init();
-    }
 
-    setEventData( events ){
-        this.event = events;
+    }
+    setEventData(events){
+        this.event=events;
         this.addCalenderEvents();
+
     }
 
     init() {
@@ -102,6 +40,7 @@ class Calender {
         this.container.appendChild(calender);
         this.addCalenderEvents();
     }
+
 
     getDateCount(year, month) {
         return 32 - new Date(year, month - 1, 32).getDate();
@@ -222,7 +161,7 @@ class Calender {
 
     addCalenderEvents() {
         this.event.map(eventItem => {
-            console.log(this.current_month);
+            console.log(eventItem.month);
             if (this.current_month == eventItem.month && this.current_year == eventItem.year) {
                 let day = document.getElementById("date" + eventItem.date);
                 // console.log(JSON.stringify([eventItem]))

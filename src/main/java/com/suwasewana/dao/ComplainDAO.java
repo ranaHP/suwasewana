@@ -331,9 +331,9 @@ public class ComplainDAO {
                 String img2=rs.getString("img2");
                 String img3=rs.getString("img3");
                 String PHIResponse=rs.getString("phi_message");
-
                 String uname=rs.getString("uname");
                 String uNic=rs.getString("uNic");
+                System.out.println("user nic : "+uNic);
                 String uMobile=rs.getString("uMobile");
                 String address_line1=rs.getString("address_line1");
                 String street_nou=rs.getString("street_no");

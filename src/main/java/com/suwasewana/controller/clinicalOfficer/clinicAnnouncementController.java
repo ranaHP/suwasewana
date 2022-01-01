@@ -74,6 +74,7 @@ import java.util.ArrayList;
         System.out.println("Deleteeeeeeeeee");
         VaccineClinicAnnouncementsModel deleteVAnnouncements = new VaccineClinicAnnouncementsModel(
                 "",
+                req.getParameter("clinicID"),
                 "",
                 "",
                 "",
@@ -84,7 +85,8 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                req.getParameter("clinicID")
+                "",
+                ""
         );
         System.out.println("delete");
         String result = clinicalAnnouncementsDAO.deleteVAnnouncements(deleteVAnnouncements);
@@ -95,6 +97,8 @@ import java.util.ArrayList;
 
     private void viewVAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
            VaccineClinicAnnouncementsModel viewVAnnouncements= new VaccineClinicAnnouncementsModel(
+                 "",
+                   "",
                    "",
                    "",
                    "",
@@ -116,9 +120,8 @@ import java.util.ArrayList;
     private void createVClinicA(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //       res.getWriter().println("vaccine announcement");
         VaccineClinicAnnouncementsModel vaccineClinicAnnouncement= new VaccineClinicAnnouncementsModel(
-                "",
-                "",
                 req.getParameter("image"),
+                req.getParameter("CId"),
                 "",
                 "",
                 "",
@@ -127,7 +130,10 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                req.getParameter("CId")
+                "",
+                "",
+                "",
+                ""
 
         );
         String result = clinicalAnnouncementsDAO.createVClinicA(vaccineClinicAnnouncement);

@@ -188,7 +188,7 @@ public class Router extends HttpServlet {
                     rd.forward(request,response);
                     break;
                 case "MOHAnnouncements":
-                    rd = request.getRequestDispatcher("/view/admin/RPHI/MOH-Announcements.jsp");
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForRPHI.jsp");
                     rd.forward(request,response);
                     break;
 
@@ -214,6 +214,14 @@ public class Router extends HttpServlet {
                     break;
                 case "vaccine-details":
                     rd = request.getRequestDispatcher("/view/user/user-Vaccine_detail_view.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "Register-for-vaccine":
+                    rd = request.getRequestDispatcher("/view/user/user-Vaccine_Register.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "HospitalView":
+                    rd = request.getRequestDispatcher("/view/admin/Hospital/HospitalVaccinationDetailView.jsp");
                     rd.forward(request,response);
                     break;
 

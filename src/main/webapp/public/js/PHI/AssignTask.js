@@ -9,7 +9,6 @@ class TodoList {
 
    setDataForPHI(data){
         if (!data) {
-
             return;
         }
         this.container.innerHTML = " ";

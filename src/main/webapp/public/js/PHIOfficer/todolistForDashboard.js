@@ -42,8 +42,7 @@ class TaskList {
         data.map((item) => {
             let today=new Date();
             let exp_date = new Date(item.expire_date);
-
-            if(today.getDate()===exp_date.getDate()){
+            if(today.getDate()===exp_date.getDate() &&(item.status!='complete')){
                 this.container.innerHTML += `
                     <div class="TodoListItem Complin">
                     <div class="Tapp-left">
@@ -60,7 +59,7 @@ class TaskList {
                         </div>
 
                         <div class="contact_no">
-                            <button class="todoDone">Done</button>
+                            <button class="todoDone" onclick="CompleteTask('`+item.Taskid+`')">Done</button>
                         </div>
                     </div>
 

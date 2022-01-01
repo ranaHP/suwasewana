@@ -1,37 +1,30 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
-import com.suwasewana.model.CreateClinicModel;
-import com.suwasewana.model.MOHModel;
-import com.suwasewana.model.vaccineClinicModel;
+import com.suwasewana.model.*;
 
-import java.lang.annotation.Target;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class createClinicDAO {
-  private  static final String CREATE_CLINIC ="INSERT INTO `normal_clinic_session`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?);";
+  private  static final String CREATE_CLINIC ="INSERT INTO `normal_clinic_session`  VALUES (NULL ,?,?,?,?,?,?,?,?,?,?,?,?,?);";
   private static final String VIEW_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ?";
-  private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?";
+  private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` cs left join moh m on cs.target_moh=m.moh_id WHERE cs.ncs_id = ? AND cs.clinical_officer = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
-  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `start_date_time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
-  private static final String Clinic_Details="SELECT * FROM `normal_clinic_session`";
+  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `date` = ? , `time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String disease_clinic_count="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease ";
+  private static final String SELECT_events="SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`date` = ?";
 
-  private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-  private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`clinical_officer` = ?";
-  private static final String SELECT_VACCINE_CLINICS="SELECT * FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?";
+  private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?,NULL);";
+  private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=?; ";
+  private static final String SELECT_VACCINE_CLINICS="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.vcs_id=?;";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
-  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `start_date_time` = ? , `duration` = ? , `description` = ? , `max_patient` = ? ,`target_people` = ? , `target_age_limit` = ? ,`v_id` = ? ,`location`= ? , `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
-  private static final String VClinic_Detail="SELECT * FROM `vaccine_clinic_session`";
+  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `duration` = ? , `limit_sheats` = ? ,`lower_age_limit`=? ,`upper_age_limit`=?  ,`location`= ?  , `dose_count`= ? ,`start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
+  private static final String ClinicCount="SELECT COUNT(ncs_id), date FROM `normal_clinic_session` GROUP BY `date`;";
   Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -41,16 +34,18 @@ public class createClinicDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CLINIC)) {
 //            preparedStatement.setString(1,"");
             preparedStatement.setString(1,createClinic.getTitle());
-            preparedStatement.setString(2,createClinic.getDatetime());
-            preparedStatement.setString(3,createClinic.getDuration());
-            preparedStatement.setString(4,createClinic.getDisease());
-            preparedStatement.setString(5,createClinic.getDescription());
-            preparedStatement.setString(6,createClinic.getMaxpatient());
-            preparedStatement.setString(7,createClinic.getConduct());
-            preparedStatement.setString(8,createClinic.getMOH());
-            preparedStatement.setString(9,createClinic.getTarget());
-            preparedStatement.setString(10,createClinic.getLocation());
-            preparedStatement.setString(11,"12");
+            preparedStatement.setString(2,createClinic.getDate());
+            preparedStatement.setString(3,createClinic.getTime());
+            preparedStatement.setString(4,createClinic.getDuration());
+            preparedStatement.setString(5,createClinic.getDisease());
+            preparedStatement.setString(6,createClinic.getDescription());
+            preparedStatement.setString(7,createClinic.getMaxpatient());
+            preparedStatement.setString(8,createClinic.getMaxpatient());
+            preparedStatement.setString(9,createClinic.getConduct());
+            preparedStatement.setString(10,createClinic.getMOH());
+            preparedStatement.setString(11,createClinic.getTarget());
+            preparedStatement.setString(12,createClinic.getLocation());
+            preparedStatement.setString(13,"12");
 
             int rs = preparedStatement.executeUpdate();
             return "sucsess";
@@ -69,16 +64,17 @@ public class createClinicDAO {
             System.out.println("came to update");
 //            preparedStatement.setString(1,"");
             preparedStatement.setString(1,updateClinic.getTitle());
-            preparedStatement.setString(2,updateClinic.getDatetime());
-            preparedStatement.setString(3,updateClinic.getDuration());
-            preparedStatement.setString(4,updateClinic.getDisease());
-            preparedStatement.setString(5,updateClinic.getDescription());
-            preparedStatement.setString(6,updateClinic.getMaxpatient());
-            preparedStatement.setString(7,updateClinic.getConduct());
+            preparedStatement.setString(2,updateClinic.getDate());
+            preparedStatement.setString(3,updateClinic.getTime());
+            preparedStatement.setString(4,updateClinic.getDuration());
+            preparedStatement.setString(5,updateClinic.getDisease());
+            preparedStatement.setString(6,updateClinic.getDescription());
+            preparedStatement.setString(7,updateClinic.getMaxpatient());
+            preparedStatement.setString(8,updateClinic.getConduct());
 //            preparedStatement.setString(8,updateClinic.getMOH());
-            preparedStatement.setString(8,updateClinic.getTarget());
-            preparedStatement.setString(9,updateClinic.getLocation());
-            preparedStatement.setString(10,updateClinic.getClinicID());
+            preparedStatement.setString(9,updateClinic.getTarget());
+            preparedStatement.setString(10,updateClinic.getLocation());
+            preparedStatement.setString(11,updateClinic.getClinicID());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);
@@ -100,29 +96,33 @@ public class createClinicDAO {
             ArrayList<CreateClinicModel> viewClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
                 String clinicID =rs.getString("ncs_id");
-                String disease =rs.getString("title");
-                String title = rs.getString("start_date_time");
-                String Location = rs.getString("duration");
-                String TargetMOH = rs.getString("disease");
-                String DataTime = rs.getString("description");
-                String Duration = rs.getString("max_sheet");
-                String MaxPatient = rs.getString("conduct_by");
-                String Target=rs.getString("target_moh");
-                String Conduct = rs.getString("target_people");
-                String Description = rs.getString("location");
+                String title =rs.getString("title");
+                String date = rs.getString("date");
+                String time=rs.getString("time");
+                String duration = rs.getString("duration");
+                String disease = rs.getString("disease");
+                String description = rs.getString("description");
+                String max_sheet = rs.getString("max_sheet");
+                String 	Avail_seats = rs.getString("Avail_seats");
+                String conduct_by = rs.getString("conduct_by");
+                String target_moh=rs.getString("target_moh");
+                String target_people = rs.getString("target_people");
+                String location = rs.getString("location");
                 String cNic = rs.getString("clinical_officer");
                 CreateClinicModel temp = new CreateClinicModel(
                         clinicID,
-                        disease,
                         title,
-                        Location,
-                        TargetMOH,
-                        DataTime,
-                        Duration,
-                        MaxPatient,
-                        Target,
-                        Conduct,
-                        Description,
+                        date,
+                        time,
+                        duration,
+                        disease,
+                        description,
+                        max_sheet,
+                        Avail_seats,
+                        conduct_by,
+                        target_moh,
+                        target_people,
+                        location,
                         cNic
                 );
 //                }
@@ -141,34 +141,39 @@ public class createClinicDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
             System.out.println("jjj");
             preparedStatement.setString(1, viewClinic.getClinicID());
+            preparedStatement.setString(2, "12");
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> selectClinicList = new ArrayList<CreateClinicModel>();
             while (rs.next()){
                 String clinicID =rs.getString("ncs_id");
-                String disease =rs.getString("title");
-                String title = rs.getString("start_date_time");
-                String Location = rs.getString("duration");
-                String TargetMOH = rs.getString("disease");
-                String DataTime = rs.getString("description");
-                String Duration = rs.getString("max_sheet");
-                String MaxPatient = rs.getString("conduct_by");
-                String Target=rs.getString("target_moh");
-                String Conduct = rs.getString("target_people");
-                String Description = rs.getString("location");
+                String title =rs.getString("title");
+                String date = rs.getString("date");
+                String time = rs.getString("time");
+                String duration = rs.getString("duration");
+                String disease = rs.getString("disease");
+                String description = rs.getString("description");
+                String max_sheet = rs.getString("max_sheet");
+                String Avail_seats=rs.getString("Avail_seats");
+                String conduct_by = rs.getString("conduct_by");
+                String target_moh=rs.getString("name");
+                String target_people = rs.getString("target_people");
+                String location = rs.getString("location");
                 String cNic = rs.getString("clinical_officer");
                 CreateClinicModel temp = new CreateClinicModel(
                         clinicID,
-                        disease,
                         title,
-                        Location,
-                        TargetMOH,
-                        DataTime,
-                        Duration,
-                        MaxPatient,
-                        Target,
-                        Conduct,
-                        Description,
+                        date,
+                        time,
+                        duration,
+                        disease,
+                        description,
+                        max_sheet,
+                        Avail_seats,
+                        conduct_by,
+                        target_moh,
+                        target_people,
+                        location,
                         cNic
 
 
@@ -215,17 +220,18 @@ public class createClinicDAO {
     public String vaccineClinic(vaccineClinicModel vaccineclinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_VACCINE_CLINIC)) {
             preparedStatement.setString(1,vaccineclinic.getTittle());
-            preparedStatement.setString(2,vaccineclinic.getStart_date_time());
-            preparedStatement.setString(3,vaccineclinic.getDuration());
-            preparedStatement.setString(4,vaccineclinic.getDescription());
-            preparedStatement.setString(5,vaccineclinic.getMax_patient());
-            preparedStatement.setString(6,vaccineclinic.getTarget_moh());
-            preparedStatement.setString(7,vaccineclinic.getTarget_people());
-            preparedStatement.setString(8,vaccineclinic.getTarget_age_limit());
-            preparedStatement.setString(9,"12");
-            preparedStatement.setString(10,vaccineclinic.getV_id());
-            preparedStatement.setString(11,vaccineclinic.getLocation());
-            preparedStatement.setString(12,vaccineclinic.getDose_count());
+            preparedStatement.setString(2,vaccineclinic.getDuration());
+            preparedStatement.setString(3,vaccineclinic.getLimit_sheats());
+            preparedStatement.setString(4,vaccineclinic.getLimit_sheats());
+            preparedStatement.setString(5,vaccineclinic.getTarget_moh());
+            preparedStatement.setString(6,vaccineclinic.getLower_Age());
+            preparedStatement.setString(7,vaccineclinic.getUpper_Age());
+            preparedStatement.setString(8,"199910910064");
+            preparedStatement.setString(9,vaccineclinic.getV_id());
+            preparedStatement.setString(10,vaccineclinic.getLocation());
+            preparedStatement.setString(11,vaccineclinic.getDose_count());
+            preparedStatement.setString(12,vaccineclinic.getStart_date_time());
+
 
             int rs = preparedStatement.executeUpdate();
             return "sucsess";
@@ -249,13 +255,13 @@ public class createClinicDAO {
                 String title =rs.getString("tittle");
                 String DataTime = rs.getString("start_date_time");
                 String Duration = rs.getString("duration");
-                String Description = rs.getString("description");
                 String MaxPatient = rs.getString("max_patient");
+                String limit_sheats = rs.getString("limit_sheats");
                 String TargetMOH = rs.getString("target_moh");
-                String Target = rs.getString("target_people");
-                String age_limit=rs.getString("target_age_limit");
+                String Lage_limit=rs.getString("lower_age_limit");
+                String Uage_limit=rs.getString("upper_age_limit");
                 String clinical_officer = rs.getString("clinical_officer");
-                String v_id = rs.getString("v_id");
+                String vname = rs.getString("name");
                 String location = rs.getString("location");
                 String dose_count = rs.getString("dose_count");
                 vaccineClinicModel temp = new vaccineClinicModel(
@@ -263,13 +269,14 @@ public class createClinicDAO {
                         title,
                         DataTime,
                         Duration,
-                        Description,
                         MaxPatient,
+                        limit_sheats,
                         TargetMOH,
-                        Target,
-                        age_limit,
+                        Lage_limit,
+                        Uage_limit,
                         clinical_officer,
-                        v_id,
+                        "",
+                        vname,
                         location,
                         dose_count
                 );
@@ -297,13 +304,13 @@ public class createClinicDAO {
                 String title =rs.getString("tittle");
                 String DataTime = rs.getString("start_date_time");
                 String Duration = rs.getString("duration");
-                String Description = rs.getString("description");
-                String MaxPatient = rs.getString("max_patient");
+                String max_patients=rs.getString("max_patient");
+                String limit_sheats = rs.getString("limit_sheats");
                 String TargetMOH = rs.getString("target_moh");
-                String Target = rs.getString("target_people");
-                String age_limit=rs.getString("target_age_limit");
+                String Lage_limit=rs.getString("lower_age_limit");
+                String Uage_limit=rs.getString("upper_age_limit");
                 String clinical_officer = rs.getString("clinical_officer");
-                String v_id = rs.getString("v_id");
+                String vname = rs.getString("name");
                 String location = rs.getString("location");
                 String dose_count = rs.getString("dose_count");
                 vaccineClinicModel temp = new vaccineClinicModel(
@@ -311,13 +318,14 @@ public class createClinicDAO {
                         title,
                         DataTime,
                         Duration,
-                        Description,
-                        MaxPatient,
+                        max_patients,
+                        limit_sheats,
                         TargetMOH,
-                        Target,
-                        age_limit,
+                        Lage_limit,
+                        Uage_limit,
                         clinical_officer,
-                        v_id,
+                        "",
+                        vname,
                         location,
                         dose_count
                 );
@@ -345,83 +353,6 @@ public class createClinicDAO {
         }
     }
 
-    public ArrayList<vaccineClinicModel> allvClinics() {
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(VClinic_Detail)) {
-
-            ResultSet rs = preparedStatement.executeQuery();
-            ArrayList<vaccineClinicModel> allvClinics = new ArrayList<vaccineClinicModel>();
-            while (rs.next()) {
-
-                String vcs_id = rs.getString("vcs_id");
-                String title = rs.getString("tittle");
-                String dateTime= rs.getString("start_date_time");
-
-                vaccineClinicModel temp = new vaccineClinicModel(
-                        vcs_id,
-                        title,
-                        dateTime,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
-
-                );
-//
-                allvClinics.add(temp);
-            }
-            return allvClinics;
-
-        } catch (SQLException throwables) {
-            printSQLException(throwables);
-        }
-
-        return null;
-    }
-
-    public ArrayList<CreateClinicModel> allClinics() {
-
-        try (PreparedStatement preparedStatement = connection.prepareStatement(Clinic_Details)) {
-            ResultSet rs = preparedStatement.executeQuery();
-            ArrayList<CreateClinicModel> allClinics = new ArrayList<CreateClinicModel>();
-            while (rs.next()) {
-
-                String clinicID = rs.getString("ncs_id");
-                String title = rs.getString("title");
-                String datetime=rs.getString("start_date_time");
-
-                CreateClinicModel temp = new CreateClinicModel(
-                        clinicID,
-                        title,
-                        datetime,
-                       "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
-
-                );
-//
-                allClinics.add(temp);
-            }
-            return allClinics;
-
-        } catch (SQLException throwables) {
-            printSQLException(throwables);
-        }
-
-        return null;
-    }
 
     public String updatevClinic(vaccineClinicModel Updatevclinic) {
         boolean rowUpdate;
@@ -429,17 +360,16 @@ public class createClinicDAO {
             System.out.println("came to update");
 //            preparedStatement.setString(1,"");
             preparedStatement.setString(1,Updatevclinic.getTittle());
-            preparedStatement.setString(2,Updatevclinic.getStart_date_time());
-            preparedStatement.setString(3,Updatevclinic.getDuration());
-            preparedStatement.setString(4,Updatevclinic.getDescription());
-            preparedStatement.setString(5,Updatevclinic.getMax_patient());
+            preparedStatement.setString(2,Updatevclinic.getDuration());
+            preparedStatement.setString(3,Updatevclinic.getLimit_sheats());
+            preparedStatement.setString(4,Updatevclinic.getLower_Age());
+            preparedStatement.setString(5,Updatevclinic.getUpper_Age());
+//            preparedStatement.setString(5,Updatevclinic.getV_id());
+            preparedStatement.setString(6,Updatevclinic.getLocation());
+            preparedStatement.setString(7,Updatevclinic.getDose_count());
+            preparedStatement.setString(8,Updatevclinic.getStart_date_time());
 //            preparedStatement.setString(6,Updatevclinic.getTarget_moh());
-            preparedStatement.setString(6,Updatevclinic.getTarget_people());
-            preparedStatement.setString(7,Updatevclinic.getTarget_age_limit());
-            preparedStatement.setString(8,Updatevclinic.getV_id());
-            preparedStatement.setString(9,Updatevclinic.getLocation());
-            preparedStatement.setString(10,Updatevclinic.getDose_count());
-            preparedStatement.setString(11,Updatevclinic.getVcs_id());
+            preparedStatement.setString(9,Updatevclinic.getVcs_id());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);
@@ -467,7 +397,9 @@ public class createClinicDAO {
                         "",
                         "",
                         "",
+                        "",
                         disease,
+                        "",
                         "",
                         "",
                         "",
@@ -488,45 +420,141 @@ public class createClinicDAO {
         }
         return null;
     }
-//
-//    public ArrayList<vaccineClinicModel> selectVClinics(vaccineClinicModel vaccineClinicselet) {
-//        try (PreparedStatement preparedStatement = connection.prepareStatement(VClinic_Detail)) {
-//
-//            ResultSet rs = preparedStatement.executeQuery();
-//            ArrayList<vaccineClinicModel> allvClinics = new ArrayList<vaccineClinicModel>();
-//            while (rs.next()) {
-//
-//                String vcs_id = rs.getString("vcs_id");
-//                String title = rs.getString("tittle");
-//                String dateTime= rs.getString("start_date_time");
-//
-//                vaccineClinicModel temp = new vaccineClinicModel(
-//                        vcs_id,
-//                        title,
-//                        dateTime,
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        "",
-//                        ""
-//
-//                );
-////
-//                allvClinics.add(temp);
-//            }
-//            return allvClinics;
-//
-//        } catch (SQLException throwables) {
-//            printSQLException(throwables);
-//        }
-//
-//        return null;
-//    }
+
+    public ArrayList<ClinicCalenderEventModel> chooseClinic(String date) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ClinicCount)){
+            System.out.println("came to dao");
+            preparedStatement.setString(1,date);
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<ClinicCalenderEventModel> viewList = new ArrayList<ClinicCalenderEventModel>();
+            while (rs.next()){
+                String title = rs.getString("title");
+                String Location = rs.getString("location");
+                CreateClinicModel temp = new CreateClinicModel(
+                        "",
+                        title,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        Location,
+                        ""
+
+                );
+                String vtitle= rs.getString("tittle");
+                String vlocation= rs.getString("location");
+                vaccineClinicModel temp1 = new vaccineClinicModel(
+                        "",
+                        vtitle,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                         "",
+                        "",
+                        "",
+                        "",
+                        vlocation,
+                        ""
+                );
+//                }
+                ClinicCalenderEventModel tempc=new ClinicCalenderEventModel(temp,temp1,date);
+                viewList.add(tempc);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return viewList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public ArrayList<CreateClinicModel> ViewCount(CreateClinicModel viewC) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(ClinicCount)){
+            System.out.println("came to dao");
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> viewList = new ArrayList<>();
+            while (rs.next()){
+                String count = rs.getString("COUNT(ncs_id)");
+                String date = rs.getString("date");
+                CreateClinicModel temp = new CreateClinicModel(
+                        count,
+                        "",
+                        date,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+//                }
+                viewList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return viewList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public ArrayList<CreateClinicModel> Viewevents(CreateClinicModel cEvents) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_events)){
+            System.out.println("jjj");
+            preparedStatement.setString(1, cEvents.getDate());
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> EventList = new ArrayList<CreateClinicModel>();
+            while (rs.next()){
+                String title = rs.getString("title");
+                String Location = rs.getString("Location");
+                CreateClinicModel temp = new CreateClinicModel(
+                       "",
+                        title,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        Location,
+                        ""
+
+
+                );
+                EventList.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return EventList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
 }
 
 

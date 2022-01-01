@@ -34,12 +34,12 @@
 <div  class="c-db-container ">
     <div class="c-container-left">
         <div class="upcomin-clinic">
-            <h4>This month normal Clinics</h4>
+            <p class="h4">This Month Normal Clinics</p>
 
             <div class="clinic-list" id="clinic-list">
 
             </div>
-            <h4>This month vaccine Clinics</h4>
+            <p class="h4">This Month Vaccine Clinics</p>
             <div class="clinic-list" id="clinic-list1">
 
             </div>
@@ -49,20 +49,20 @@
         <div class="growth-calander">
             <div class="charts">
                 <div class="chart" id="chart1">
-                    <h4>Clinic growth</h4>
+                    <p class="h4">Clinic growth</p>
                     <div class="g-chart" style="width: 100%;">
                         <canvas id="myChart" height="50" width="100" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
                 <div class="chart" id="chart2">
-                    <h4>Patient growth</h4>
+                    <p class="h4">Patient growth</p>
                     <div class="g-chart" style="width: 100%">
                         <canvas id="myChart2" height="50" width="100" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
             </div>
             <div class="calander">
-                <h4>Calander</h4>
+                <p class="h4">Calander</p>
                 <div class="calander-body">
                     <div class="calender-container" id="calender" ></div>
                     <div class="mypopup" id="popup" style="display: none;position: fixed; top: 0; left: 0;"></div>
@@ -71,29 +71,34 @@
         </div>
     </div>
     <div class="c-container-right">
-        <h4>All Scheduled Clinic Summary</h4>
+        <p class="h4">All Scheduled Clinic Summary</p>
         <div class="c-right-container">
             <div class="noclinic">
                 <div class="ncimg">
-                    <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
-                         width=100% height=100%>
+                    <img src="<c:url value="/public/images/Image 5.png"/>" alt="" srcset="" width="70%">
                 </div>
-                <div class="nc-amount">
-                    <span class="nc-count" id="vc-count">0</span><br>
-                    <span>No. of vaccine clinics</span>
-                </div>
+               <div style="display: flex">
+                   <div class="nc-amount">
+                       <span class="nc-count" id="vc-count">0</span><br>
+                       <span>Vaccine clinics</span>
+                   </div>
+                   <div class="nc-amount">
+                       <span class="nc-count" id="nc-count">0</span><br>
+                       <span>Normal clinics</span>
+                   </div>
+               </div>
             </div>
 
-            <div class="noclinic">
-                <div class="ncimg">
-                    <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""
-                         width=100% height=100%>
-                </div>
-                <div class="nc-amount">
-                    <span class="nc-count" id="nc-count">0</span><br>
-                    <span>No. of normal clinics</span>
-                </div>
-            </div>
+<%--            <div class="noclinic">--%>
+<%--                <div class="ncimg">--%>
+<%--                    <img src="<c:url value="/public/images/svg/login/image1.svg "/>" alt="" srcset=""--%>
+<%--                         width=100% height=100%>--%>
+<%--                </div>--%>
+<%--&lt;%&ndash;                <div class="nc-amount">&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <span class="nc-count" id="nc-count">0</span><br>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                    <span>No. of normal clinics</span>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                </div>&ndash;%&gt;--%>
+<%--            </div>--%>
             <div class="pendingclinc">
                 <div class="pctitle">No of clinics according to diseases</div>
 
@@ -104,57 +109,53 @@
     </div>
 </div>
 <script defer>
-    let calender = new Calender("calender");
-    calender.setEventData([
-        {
-            year: 2021,
-            month: 12,
-            date: 5,
-            events: [
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-
-            ]
-        },
-        {
-            year: 2021,
-            month: 12,
-            date: 3,
-            events: [
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-                {
-                    title: 'Corona clinic',
-                    desc: ' ABCD ',
-                },
-
-            ]
-        }
-    ])
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let calender = new Calender("calender");
     // calender.reangeSelect(2021, 9, 10, 6, 8);
-
-
-
     view();
     viewV()
     viewd()
+    choose()
+    let eventA=[]
+    let event=[]
+
+    function choose(){
+        let clinicListArray=[]
+        $.post("/test_war_exploded/create-clinic-controller/viewcount",
+            // reqData,
+            function(data,status){
+            console.log(data)
+                clinicListArray=JSON.parse(data)
+                clinicListArray.map(item=>{
+                    let date=item.date
+                    console.log("date")
+                    console.log(date)
+                    let cday = new Date(item.date)
+                    let cmonth= cday.getMonth()+1;
+                    let cyear=cday.getFullYear()
+                    let cdata=cday.getDate()
+                    let reqData={
+                          date:date
+                    };
+                    $.post("/test_war_exploded/create-clinic-controller/clinicsEvents",
+                         reqData,
+                        function (data,status){
+                            let EventArray =JSON.parse(data)
+                            event.push(EventArray)
+                            let object2 = { year: cyear
+                                , month: cmonth, date: cdata ,events: event[0]};
+                            eventA.push(object2)
+                            event=[]
+                            calender.setEventData(eventA)
+                            console.log(eventA)
+                        });
+                })
+            }
+        );
+    }
+
+
+
     let today = new Date();
     let clinicList4 = new clinicListd("diseases");
     function viewd(){
@@ -162,6 +163,7 @@
         $.post("/test_war_exploded/create-clinic-controller/viewdisease",
             // reqData,
             function(data,status){
+                console.log("disease")
                 console.log(data)
                 clinicListArray=JSON.parse(data)
                 chart(clinicListArray,today)
@@ -180,6 +182,17 @@
                 clinicList2.setData(clinicListArray);
                 console.log(clinicListArray.length)
                 document.getElementById("nc-count").innerHTML=clinicListArray.length;
+                clinicListArray.map(item=>{
+                    let cday = new Date(item.date)
+                    let cmonth= cday.getMonth()+1;
+                    let cyear=cday.getFullYear()
+                    let cdata=cday.getDate()
+                    let time=cday.getHours()+" "+cday.getMinutes()
+                    console.log(cyear)
+                    console.log(cmonth)
+                    console.log(time)
+                })
+
             }
         );
     }
@@ -243,15 +256,14 @@
 
 
     function updatevclinics(data){
-        alert("update")
+        // alert("update")
         let id=data;
-        let age=document.getElementById("target_age_limit").value;
-        let patient=document.getElementById("target_people").value;
+        let Lage=document.getElementById("Lage_limit").value;
+        let Uage=document.getElementById("Uage_limit").value;
         let maxpatient = document.getElementById("max_patient").value;
         let duration=document.getElementById("duration").value;
         let datetime= document.getElementById("start_date_time").value;
         let clinictitle=document.getElementById("tittle").value;
-        let description=document.getElementById("description").value;
         let dose=document.getElementById("dose_count").value;
         let location=document.getElementById("location").value;
         // console.log(a)
@@ -259,16 +271,15 @@
         let reqData =
             {
                 clinicID:id,
-                age:age,
+                Lage:Lage,
+                Uage:Uage,
                 title:clinictitle,
                 location:location,
                 // targetMOH:document.getElementById("target-MOH").value,
                 datetime:datetime,
                 duration:duration,
                 maxpatient:maxpatient,
-                patient:patient,
                 dose:dose,
-                description:description
             };
         console.log(reqData)
         alert(reqData)
@@ -276,7 +287,8 @@
             reqData,
             function (data,status){
                 // alert("wrong")
-                alert(data)
+                // alert(data)
+                popup.hidePopup()
             });
 
         return false;

@@ -262,6 +262,7 @@ class PHIAppointment{
         this.getSummaryCount();
     }
 
+
     searchAppointment(){
         let nic = document.getElementById('user-nic').value;
         let type = document.getElementById('app-type').value;

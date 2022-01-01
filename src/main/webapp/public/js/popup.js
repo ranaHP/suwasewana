@@ -83,7 +83,7 @@ class SuwasewanaPopup{
 
     showPatientDetails(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = "<br><h4> Patient Details </h4>";
         eventDiv.innerHTML += "<h5> Name -  " + data.name + " </h5>";
@@ -98,7 +98,7 @@ class SuwasewanaPopup{
 
     showRegistrationSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if (data.status === "success") {
             eventDiv.innerHTML = `
@@ -126,11 +126,54 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    //for vaccine register
+    showRegistrationSuccessMessageForVaccine(data) {
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> Vaccine Register Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Vaccine Register Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
 
     // PHI succesfully change status
     ChangeComplainStatusSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -171,7 +214,7 @@ class SuwasewanaPopup{
 
     showAppointmentSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
 
         if(data.status === "success"){
@@ -211,10 +254,97 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    CancleClinicSuccessMessage(data) {
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> Vaccination Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Vaccination Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    showUserVaccineRegisterSuccessMessage(data) {
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> Vaccination Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <br><span>See you on ${data.data} at ${data.Set_sloat} </span>
+                <br><span>Have a nice day! </span>
+            </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Vaccination Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
 
     Register(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -255,7 +385,7 @@ class SuwasewanaPopup{
 
     RegisterMOH(data) {
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -369,7 +499,7 @@ class SuwasewanaPopup{
     }
 
     testMy(){
-        console.log(document.getElementById("delete_input").checked)
+        // console.log(document.getElementById("delete_input").checked)
         if(document.getElementById("delete_input").checked){
             document.getElementById("myBtn").disabled = false;
             document.getElementById("myBtn").style.backgroundColor = "#c11711";
@@ -381,7 +511,7 @@ class SuwasewanaPopup{
     }
 
     approveTime(data) {
-        console.log(data);
+        // console.log(data);
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
@@ -474,18 +604,14 @@ class SuwasewanaPopup{
 
     showVaccineClinicEditMessage(data) {
         data=JSON.parse(data)
-        console.log(data)
+        // console.log(data)
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
             <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container " style="color: #d9534f!important;padding: 0px;">
                 <div class="row" >
-                    
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style= "width:150px" >Description</label>
-                        <textarea  type="text"   id="description" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);height: 50px">${data[0].description}</textarea>
-                    </div>
+                 
                     
                     <div style="margin-bottom: 5px;display: flex">
                         <label style=" width:150px">Title</label>
@@ -494,23 +620,21 @@ class SuwasewanaPopup{
                     
                     <div style="margin-bottom: 5px;display: flex">
                         <label style=" width:150px">DateandTime</label>
-                        <input type="text"  id="start_date_time" value="${data[0].start_date_time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                        <input type="datetime-local"  id="start_date_time" value="${data[0].start_date_time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
                     <div style="margin-bottom: 5px;display: flex">
                         <label style=" width:150px">Duration</label>
                         <input type="text"  id="duration" value="${data[0].duration}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
+                     <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Limit sheats</label>   
+                        <input type="text"  id="max_patient" value="${data[0].limit_sheats}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
                      
                     <div style="margin-bottom: 5px;display: flex">
-                        <label style=" width:150px">Max limit</label>   
+                        <label style=" width:150px">Available sheats</label>   
                         <input type="text"  id="max_patient" value="${data[0].max_patient}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
-                    
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style=" width:150px">Target participants</label>    
-                        <input type="text" value="${data[0].target_people}"  id="target_people" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
                      
@@ -521,8 +645,13 @@ class SuwasewanaPopup{
                     
                     
                     <div style="margin-bottom: 5px;display: flex">
-                        <label style="width:150px">Target age limit</label>
-                        <input type="text" value="${data[0].target_age_limit}"  id="target_age_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                        <label style="width:150px">Upper age limit</label>
+                        <input type="text" value="${data[0].Lower_Age}"  id="Lage_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style="width:150px">Lower age limit</label>
+                        <input type="text" value="${data[0].Upper_Age}"  id="Uage_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
                     
@@ -546,7 +675,7 @@ class SuwasewanaPopup{
 
     showClinicEditMessage(data) {
         data=JSON.parse(data)
-        console.log(data)
+        // console.log(data)
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
@@ -565,8 +694,13 @@ class SuwasewanaPopup{
                     </div>
                    
                     <div style="margin-bottom: 5px;display: flex">
-                         <label style=" width:150px">DateandTime</label>     
-                        <input type="text"  id="date-time" value="${data[0].datetime}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                         <label style=" width:150px">Date</label>     
+                        <input type="text"  id="date" value="${data[0].date}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                     <div style="margin-bottom: 5px;display: flex">
+                         <label style=" width:150px">Date</label>     
+                        <input type="text"  id="time" value="${data[0].time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
                     
                     <div style="margin-bottom: 5px;display: flex">
@@ -645,7 +779,7 @@ class SuwasewanaPopup{
     // }
     showClinicDeleteSuccessMessage(data){
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -705,7 +839,7 @@ class SuwasewanaPopup{
     }
     showCreateClinicSuccessMessage(data){
         let eventsContaier = document.createElement('div');
-        console.log(data.name);
+        // console.log(data.name);
         let eventDiv = document.createElement('div');
         if(data.status === "success"){
             eventDiv.innerHTML = `
@@ -981,5 +1115,107 @@ class SuwasewanaPopup{
             document.getElementById("myBtn").style.backgroundColor = "#c1c1c1";
         }
 
+    }
+    dashboardComplain(data) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        if(data.user === "empty"){
+            eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+           
+            
+            <div class="popup-message-container"> 
+                <h3 style="margin-top:-5px;margin-bottom: 20px;">${data.title}</h3>
+                <p style=" color: rgba(0, 0, 0, 0.473);">complain type : ${data.ctype}</p>
+                <span style=" color: rgba(0, 0, 0, 0.473)">Posted date : ${data.pdate} </span>
+            </div>
+            
+            <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px;">
+                ${data.message}
+                </span>
+                </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        else {
+            eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+           
+            
+            <div class="popup-message-container"> 
+                <h3 style="margin-top:-5px; margin-bottom: 20px;">${data.title}</h3>
+                <p style=" color: rgba(0, 0, 0, 0.473);">complain type : ${data.ctype}</p>
+                <span style=" color: rgba(0, 0, 0, 0.473)">Posted date : ${data.pdate} </span>
+            </div>
+            
+            <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px;">
+                ${data.message}
+                </span>
+                </div>
+
+                <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px; text-align:right; color: rgba(0, 0, 0, 0.473) ;width:100%">
+                Complainer: ${data.uname} <br>
+                Mobile: ${data.mobile}
+                </span>
+                </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    dashboardAppoinmnet(data) {
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+
+        eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+           
+            
+            <div class="popup-message-container"> 
+                <h3 style="margin-top:-5px">${data.title}</h3>
+                <span style=" color: rgba(0, 0, 0, 0.473); margin-top:-10px">Posted date : ${data.pdate} </span>
+            </div>
+            
+            <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px;">
+                ${data.message}
+                </span>
+                </div>
+
+                <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
+                <span style="font-size: 13px; text-align:right; color: rgba(0, 0, 0, 0.473) ;width:100%">
+                Complainer: <br>
+                Mobile: 0713805000
+                </span>
+                </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
     }
 }

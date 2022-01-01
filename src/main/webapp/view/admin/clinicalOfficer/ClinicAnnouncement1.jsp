@@ -285,7 +285,7 @@
 
  function check(){
    let mohDetails=[];
-   $.post("/test_war_exploded/create-clinic-controller/all-V-Clinics",
+   $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
            function (data, status) {
              // console.log(data);
              let rs= JSON.parse(data);

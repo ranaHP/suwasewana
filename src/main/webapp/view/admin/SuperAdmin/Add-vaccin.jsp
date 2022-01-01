@@ -127,6 +127,7 @@
         document.getElementById("side_effects").innerText="";
         document.getElementById("How_work").innerText="";
         document.getElementById("How_well_work").innerText="";
+        document.getElementById("upload_empty").innerText="";
         document.getElementById("proof1").src=myUrl+"/public/images/logo/placeholder.png";
         return false;
     }
@@ -153,14 +154,14 @@
 
                 if (data.includes("success")) {
 
-                    popup.RegisterVaccine({
+                    popup.showRegistrationSuccessMessageForVaccine({
                         status: 'success',
                         message: 'Successfully Added!'
                     });
                     clearData();
                 } else {
 
-                    popup.RegisterVaccine({
+                    popup.showRegistrationSuccessMessageForVaccine({
                         status: 'fail',
                         message: 'Vaccine insertion Fails !',
                         data: data

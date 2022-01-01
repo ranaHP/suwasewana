@@ -36,7 +36,7 @@ class clinicListv {
             this.container.innerHTML += `
                       <div class="clinic-card">
                     <div class="card-left">
-                        <h5>${item.tittle}</h5>
+                        <p class="h5">${item.tittle}</p>
                         <div class="card-date">${item.start_date_time}</div>
                         <div class="amount"></div>
                         <div class="nop">No of patients</div>

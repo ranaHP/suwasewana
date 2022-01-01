@@ -2,6 +2,7 @@ package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
 import com.suwasewana.model.CreateClinicAnnouncementsModel;
+import com.suwasewana.model.MohAnnouncementsModel;
 import com.suwasewana.model.RPHIAnnouncementsModel;
 import com.suwasewana.model.VaccineClinicAnnouncementsModel;
 
@@ -17,11 +18,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class RPHIAnnouncementsDAO {
-   private static final String CREATEA="INSERT INTO `staff_announcement`  VALUES (NULL ,?,?,?,?,NULL,?,?);";
-   private static final String SELECTA="SELECT * FROM `staff_announcement` ";
+    private static final String CREATEA="INSERT INTO `staff_announcement`  VALUES (NULL ,?,?,?,?,NULL,?,?);";
+    private static final String SELECTA="SELECT * FROM `staff_announcement` ";
     private static final String SELECTMOHAnnouncement="SELECT * FROM `staff_announcement` where target_moh=?";
     private static final String DeleteA = "DELETE FROM `staff_announcement` where announcement_id=?";
-   Connection connection;
+
+    private static final String CREATEMA="INSERT INTO `moh_announcement`  VALUES (NULL ,?,?,?,?,NULL,?,?);";
+    Connection connection;
     public RPHIAnnouncementsDAO() {
         DB db = new DB();
         connection = db.getConnection();
@@ -102,7 +105,7 @@ public class RPHIAnnouncementsDAO {
          preparedStatement.setString(2,RPHIAnnouncements.getDescription());
          preparedStatement.setString(3,RPHIAnnouncements.getBanner());
          preparedStatement.setString(4,RPHIAnnouncements.getTarget_moh());
-         preparedStatement.setString(5,"12");
+         preparedStatement.setString(5,"199910910061");
          preparedStatement.setString(6,RPHIAnnouncements.getExpire_date());
 
          int rs = preparedStatement.executeUpdate();
@@ -168,5 +171,25 @@ public class RPHIAnnouncementsDAO {
             throwables.printStackTrace();
         }
         return "sucsess";
+    }
+
+    public String createMohA(MohAnnouncementsModel mohAnnouncements) {
+        System.out.println("came to dao");
+        try (PreparedStatement preparedStatement=connection.prepareStatement(CREATEMA)) {
+            preparedStatement.setString(1,mohAnnouncements.getTitle());
+            preparedStatement.setString(2,mohAnnouncements.getDescription());
+            preparedStatement.setString(3,mohAnnouncements.getBanner());
+            preparedStatement.setString(4,"1002");
+            preparedStatement.setString(5,"199910910061");
+            preparedStatement.setString(6,mohAnnouncements.getExpire_date());
+
+            int rs = preparedStatement.executeUpdate();
+            System.out.println(rs);
+            return "sucsess";
+
+        }catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
     }
 }

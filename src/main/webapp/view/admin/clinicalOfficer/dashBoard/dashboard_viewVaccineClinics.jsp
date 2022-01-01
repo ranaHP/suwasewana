@@ -97,7 +97,7 @@
     }
 
     let mohDetails=[];
-    $.post("/test_war_exploded/create-clinic-controller/all-V-Clinics",
+    $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
         function (data, status) {
             // console.log(data);
             let rs= JSON.parse(data);
@@ -116,6 +116,7 @@
 
     function select(id){
         // let selectClinic = new selectClinics("form");
+        console.log("update")
         let clinicList=[]
         let reqData =
             {
@@ -141,13 +142,12 @@
     function updatevclinics(data){
         alert("update")
         let id=data;
-        let age=document.getElementById("target_age_limit").value;
-        let patient=document.getElementById("target_people").value;
+        let Lage=document.getElementById("Lage_limit").value;
+        let Uage=document.getElementById("Uage_limit").value;
         let maxpatient = document.getElementById("max_patient").value;
         let duration=document.getElementById("duration").value;
         let datetime= document.getElementById("start_date_time").value;
         let clinictitle=document.getElementById("tittle").value;
-        let description=document.getElementById("description").value;
         let dose=document.getElementById("dose_count").value;
         let location=document.getElementById("location").value;
         // console.log(a)
@@ -155,16 +155,15 @@
         let reqData =
             {
                 clinicID:id,
-                age:age,
+                Lage:Lage,
+                Uage:Uage,
                 title:clinictitle,
                 location:location,
                 // targetMOH:document.getElementById("target-MOH").value,
                 datetime:datetime,
                 duration:duration,
                 maxpatient:maxpatient,
-                patient:patient,
                 dose:dose,
-                description:description
             };
         console.log(reqData)
         alert(reqData)

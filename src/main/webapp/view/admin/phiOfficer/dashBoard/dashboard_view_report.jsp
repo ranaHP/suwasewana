@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/phiOfficer/dashBoard/_phi_dashboard-view_report.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/> "/>
     <script src="https://unpkg.com/feather-icons"></script>
+<%--    <link rel="stylesheet" href="<c:url value="/public/css/PHI/PHI_Dashboard.css"/>">--%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="<c:url value="/public/js/PHIOfficer/view_report.js"/> "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <%--    side-nav-bar--%>
@@ -29,75 +31,71 @@
         <div class="progress-boxes">
             <div class="card">
                 <div class="card-content">
-                    <div class="icon">
-                        <i data-feather="message-square"  class="icon1"></i>
+                    <div class="card-icon">
+                        <img  src="<c:url value="/public/images/icons/View%20complain/mail.svg "/>" alt="" srcset="">
                     </div>
-                    <div class="count">
-                        <p class="f-2"  style="font-size: 1.2em";>200</p>
-                        <p class="f-4"  style="color: #FA8231;">3.78% <i data-feather="arrow-down"></i></p>
+                    <div class="card-details">
+                        <h5 id="new">200</h5>
+                        <div class="precentage">
+                            <div class="p-lable" id="precentage"><label >2.345%</label></div>
+                            <div class="arrow" style="display: none" id="complain-arrow-up"><i data-feather="arrow-up" ></i></div>
+                            <div class="arrow" style="display: none" id="complain-arrow-down"><i data-feather="arrow-down"></i></div>
+                        </div>
                     </div>
                 </div>
-                <label>New </label>
+                <label>New</label>
             </div>
-
+            <div class="card" style="display: flex">
+                <div class="card-content">
+                    <div class="card-icon">
+                        <img  src="<c:url value="/public/images/icons/View%20complain/loader.svg "/>" alt="" srcset="">
+                    </div>
+                    <div class="card-details">
+                        <h5 id="progress">200</h5>
+                        <div class="precentage">
+<%--                            <div class="p-lable" id="appoinment-precentage"><label >2.345%</label></div>--%>
+<%--                            <div class="arrow" style="display: none" id="app-complain-arrow-up"><i data-feather="arrow-up" ></i></div>--%>
+<%--                            <div class="arrow" style="display: none" id="app-complain-arrow-down"><i data-feather="arrow-down"></i></div>--%>
+                        </div>
+                    </div>
+                </div>
+                <label>In progress</label>
+            </div>
             <div class="card">
                 <div class="card-content">
-                    <div class="icon">
-                        <i data-feather="clock"  class="icon1"></i>
+                    <div class="card-icon">
+                        <img  src="<c:url value="/public/images/icons/View%20complain/check-circle.svg "/>" alt="" srcset="">
                     </div>
-                    <div class="count">
-                        <p class="f-2"  style="font-size: 1.2em";>200</p>
-                        <p class="f-4"  style="color: #FA8231;">3.78% <i data-feather="arrow-down"></i></p>
-                    </div>
-                </div>
-                <label>IN progress </label>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                    <div class="icon">
-                        <i data-feather="send"  class="icon1"></i>
-                    </div>
-                    <div class="count">
-                        <p class="f-2" style="font-size: 1.2em;">200</p>
-                        <p class="f-4"  style="color: #FA8231;">3.78% <i data-feather="arrow-down"></i></p>
+                    <div class="card-details">
+                        <h5 id="done">200</h5>
+                        <div class="precentage">
+<%--                            <div class="p-lable" id="appoinment-precentage"><label >2.345%</label></div>--%>
+<%--                            <div class="arrow" style="display: none" id="app-complain-arrow-up"><i data-feather="arrow-up" ></i></div>--%>
+<%--                            <div class="arrow" style="display: none" id="app-complain-arrow-down"><i data-feather="arrow-down"></i></div>--%>
+                        </div>
                     </div>
                 </div>
-                <label>Messages </label>
+                <label>Done</label>
             </div>
         </div>
         <!-- show complain distribution -->
         <div class="complain-distribution f-3">
             <div class="complain-chart">
-                <canvas id="myChart10" class="mychart" width="250" height="250"></canvas>
+                <canvas id="donat-chart" class="mychart" width="250" height="250"></canvas>
             </div>
             <div class="complain-des" id="complain-des">
+                <div class="diff-types">
+                    <ul>
+                        <li id="i1">Animal issue - <span id="one"></span> <span> %</span></li>
+                        <li id="i2">Environment issue - <span id="two"></span> <span> %</span></li>
+                        <li id="i3">Unhealthy food issues - <span id="three"></span> <span> %</span></li>
+                        <li id="i4">Land issue - <span id="four"></span> <span> %</span></li>
+                        <li id="i5">Noise issue - <span id="five"></span> <span> %</span></li>
+                        <li id="i6">Other - <span id="six"></span> <span> %</span></li>
+                    </ul>
+                </div>
 
-                <div ><p id="com-type1"><i data-feather="alert-octagon" style="color: rgb(230, 19, 149)"></i> </p><p class="f-2">10%<i data-feather="arrow-up"></i></p></div>
-                <div><p id="com-type2"><i data-feather="alert-octagon"  style="color: rgb(223, 245, 28)"></i> </p><p class="f-2">10%<i data-feather="arrow-up"></i></p></div>
-                <div><p id="com-type3"><i data-feather="alert-octagon"  style="color: rgb(23, 27, 241)"></i></p><p class="f-2">10%<i data-feather="arrow-down"></i></p></div>
-                <div><p id="com-type4"><i data-feather="alert-octagon"  style="color: rgb(22, 212, 38)"></i></p><p class="f-2">10%<i data-feather="arrow-up"></i></p></div>
-                <div><p id="com-type5"><i data-feather="alert-octagon"  style="color: rgb(196, 9, 253)"></i></p><p class="f-2">10%<i data-feather="arrow-down"></i></p></div>
-                <div><p id="com-type6"><i data-feather="alert-octagon"  style="color: rgb(43, 109, 5)"></i> </p><p class="f-2">10%<i data-feather="arrow-up"></i></p></div>
 
-            </div>
-        </div>
-        <!-- show overall process -->
-        <div class="overall">
-            <div class="f-2">Overall progress</div>
-            <div class="c-charts">
-                <div class="c-chart f-3">
-                    <canvas id="myChart" class="mychart" width="250" height="250"></canvas>
-                    <div>No action <span  class="f1-green"> 43%</span></div>
-                </div>
-                <div class="c-chart f-3">
-                    <canvas id="myChart1" class="mychart" width="250" height="250"></canvas>
-                    <div>In progress<span  class="f1-green"> 43%</span></div>
-                </div>
-                <div class="c-chart f-3">
-                    <canvas id="myChart2" class="mychart" width="250" height="250"></canvas>
-                    <div>Finish <span  class="f1-green"> 43%</span></div>
-                </div>
             </div>
         </div>
         <!-- complaint variations -->
@@ -149,40 +147,235 @@
             </div>
         </div>
         <hr>
-        <!-- add complaint type -->
-        <%--        <div class="add-com-type f-3">--%>
-        <%--            <div class="left">--%>
-        <%--                <p>Add complain type</p>--%>
-        <%--                <div class="add">--%>
-        <%--                    <input></input>--%>
-        <%--                    <button class="f-4">add</button>--%>
-        <%--                </div>--%>
-        <%--            </div>--%>
-        <%--            <div class="right">--%>
-        <%--                <p class="f-4">Types</p>--%>
-        <%--                <div class="types">--%>
-        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Environmental Issues</p>--%>
-        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Animal Issues</p>--%>
-        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Animal Issues</p>--%>
-        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Water Related Issues</p>--%>
-        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Unhealthy Foods Related</p>--%>
-        <%--                    <p> <i data-feather="check-square"  style="color: rgb(22, 212, 38)"></i>  Land Issues</p>--%>
-        <%--                </div>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
     </div>
 </div>
 <script>
     feather.replace(({width:"12px",height:"12px"}))
-    complaints=["Land Issues","Unhealthy Foods Related","Water Related Issues","Animal Issues","Environmental Issues","others"];
-    let j=1
-    complaints.map(name=>{
-        let type= document.createElement('p')
-        type.innerText=name
-        document.getElementById('com-type'+j).appendChild(type)
-        // console.log('com-type'+i)
-        j++
-    })
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+
+    let complainlist=[];
+    getAllComplain();
+    function getAllComplain() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
+            {},
+            function (data, status) {
+                let complainList = JSON.parse(data);
+                complainlist=complainList;
+
+
+                // fill pending done in progress count
+                let pendin=0;
+                let done=0;
+                let progress=0;
+                complainList.map((element) => {
+                    // console.log("status " +element.complainModel.Status);
+
+                    if(element.complainModel.Status=="Pending"){
+                        pendin++;
+                    }
+                    else if(element.complainModel.Status=="Done"){
+                        done++;
+                    }
+                    else if(element.complainModel.Status=="In Progress"){
+                        progress++;
+                    }
+                    else {
+                        console.log("Incorrect complain model status check ur database")
+                    }
+
+                })
+
+                document.getElementById("new").innerText=pendin;
+                document.getElementById("progress").innerText=progress;
+                document.getElementById("done").innerText=done;
+
+
+                // complain.setDataForPHI(complainList);
+
+                // fill compalain details
+
+
+            }
+        );
+
+    }
+
+
+    getComplaintprecentage();
+    function getComplaintprecentage() {
+        let complainCardList = [];
+        let typedatalist=[]
+        $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
+            {},
+            function (data, status) {
+                let complainList = JSON.parse(data);
+                complainlist=complainList;
+
+
+                // fill pending done in progress count
+                let pendin=0;
+                let done=0;
+                let progress=0;
+                let today = new Date();
+                // console.log("Today : "+cday)
+                let month= today.getMonth()+1;
+                let premonth=month-1;
+                let date= today.getDate();
+
+                let preMonthComplain=0;
+                let thisMonthCompalin=0;
+                let pending=0;
+                complainList.map((element) => {
+                    // console.log("################################");
+                    let cday = new Date(element.complainModel.Posted_Date.split(" ")[0])
+                    let cmonth= cday.getMonth()+1;
+                    let cdate= cday.getDate();
+
+                    if(cmonth==month && cdate<=date){
+                        // console.log("this is this month complain");
+                        thisMonthCompalin++;
+                    }
+                    else if(cmonth==premonth && cdate<=date ){
+                        // console.log("this is pre month complain");
+                        preMonthComplain++;
+                    }
+                    else{
+                        // console.log("dont care about this compalins")
+                    }
+
+                    if(element.complainModel.Status=="Pending"){
+                        pending++
+                    }
+
+
+                })
+                // console.log("thisMonthCompalin : "+thisMonthCompalin)
+                // console.log("preMonthComplain : "+preMonthComplain)
+                // console.log("pending : "+pending)
+                let complainprecentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)*100;
+                let ComPre=Math.abs(Math.round(complainprecentage));
+
+
+                document.getElementById("new").innerText=pending;
+                document.getElementById("precentage").innerText=ComPre+"%";
+                console.log(ComPre)
+                if(complainprecentage<0){
+                    document.getElementById("complain-arrow-down").style.display="block";
+                }
+                else{
+                    document.getElementById("complain-arrow-up").style.display="block";
+                }
+
+            }
+        );
+
+    }
+
+    getAllComplinMOH();
+    function getAllComplinMOH() {
+        let all=0
+        let Animal_issue=0;
+        let Environment_issues=0;
+        let Food_issues=0;
+        let Land_issues=0;
+        let Noise_issue=0;
+        let other=0;
+        $.post(myUrl+"/phi-complain-controller1/complain_for_moh",
+            {},
+            function (data, status) {
+                let ComplainList = JSON.parse(data);
+                ComplainList.map((element) => {
+                    if(element.complainModel.CType=="100"){
+                        Animal_issue++;
+                    }
+                    if(element.complainModel.CType=="101"){
+                        Environment_issues++;
+                    }
+                    if(element.complainModel.CType=="102"){
+                        Food_issues++;
+                    }
+                    if(element.complainModel.CType=="103"){
+                        Land_issues++;
+                    }
+                    if(element.complainModel.CType=="104"){
+                        Noise_issue++;
+                    }
+                    if(element.complainModel.CType=="105"){
+                        other++;
+                    }
+
+                })
+                all=Animal_issue+Environment_issues+Food_issues+Land_issues+Noise_issue;
+
+                let pAnimalissue=Animal_issue/all*100
+                let pEnvironmentissue=Environment_issues/all*100
+                let pFoodissue=Food_issues/all*100
+                let pLandissue=Land_issues/all*100
+                let pNoiseissue=Noise_issue/all*100
+                let pother=other/all*100
+                document.getElementById("one").innerText=pAnimalissue
+                document.getElementById("two").innerText=pEnvironmentissue
+                document.getElementById("three").innerText=pFoodissue
+                document.getElementById("four").innerText=pLandissue
+                document.getElementById("five").innerText=pNoiseissue
+                document.getElementById("six").innerText=pother
+
+
+
+                complain_distribution_chart(Animal_issue,Environment_issues,Food_issues,Land_issues,Noise_issue,other);
+
+
+
+
+
+
+
+            }
+        );
+
+    }
+
+    function complain_distribution_chart( type1, type2, type3, type4 ,type5,type6){
+        var ctx = document.getElementById('donat-chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                //  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '',
+                    data: [type1, type2, type3, type4, type5,type6],
+                    backgroundColor: [
+                        '#c0392b',
+                        '#3498db',
+                        '#f1c40f',
+                        '#2ecc71',
+                        '#8e44ad',
+                        '#273c75'
+                    ],
+                    borderColor: [
+                        '#ecf0f1'
+                    ],
+                    // borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        // text: 'Chart.js Doughnut Chart'
+                    }
+                }
+            },
+        });
+    }
+</script>
+
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
