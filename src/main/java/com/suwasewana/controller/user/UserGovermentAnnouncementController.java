@@ -36,6 +36,7 @@ public class UserGovermentAnnouncementController extends HttpServlet {
             switch (getUrlData[getUrlData.length-1]) {
                 case "view":
                     userGovermentAnnouncement(req, res);
+                    break;
 //            case "register":
 //                    userregister(req, res);
 //                    break;
@@ -51,7 +52,7 @@ public class UserGovermentAnnouncementController extends HttpServlet {
     }
 
     private void userGovermentAnnouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        System.out.println("data come to goverment controller");
+//        System.out.println("data come to goverment controller");
         UserGovermentAnnouncementModel govermentAnnouncement = new UserGovermentAnnouncementModel(
 
                 "",
