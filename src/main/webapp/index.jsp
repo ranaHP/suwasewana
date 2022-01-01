@@ -18,9 +18,9 @@
 <%--<a href="view/user/Login.jsp" > <h1> login </h1></a>--%>
     <a href="s/login" > <h1> home </h1></a>
     <a href="s/clinic-dashboard" > <h1> clinic</h1></a>
-<a href="s/PHI-dashboard" > <h1> phi</h1></a>
-<a href="s/admin-dashboard" > <h1> admin</h1></a>
-
+    <a href="s/PHI-dashboard" > <h1> phi</h1></a>
+    <a href="s/admin-dashboard" > <h1> admin</h1></a>
+    <a href="s/add-disease" > <h1> add disease</h1></a>
 <%--<form action="servlet1">--%>
 <%--    Name:<input type="text" name="name"/><br/>--%>
 <%--    Password:<input type="password" name="password"/><br/>--%>
