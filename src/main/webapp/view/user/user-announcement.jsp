@@ -205,7 +205,7 @@
                     <div class="search-container">
                         <div class="form-group">
                             <input id="diseasesSearch" type="text" list="alldiseasesSearch" name="moh"
-                                   autocomplete="off" placeholder="search by dieases">
+                                   autocomplete="off" placeholder="search by dieases" onkeyup="search()">
                             <datalist id="alldiseasesSearch">
                                 <option value="Covid19" label="Covid19"></option>
                             </datalist>

@@ -37,7 +37,7 @@ class View_goverment_announcement{
                                         Read More
                                     </div>
                                 </div>
-                                <div class="title">
+                                <div class="title" id="moh">
                                     ${item.title}
                                 </div>
                                 <div class="suwasaewana">
@@ -47,7 +47,7 @@ class View_goverment_announcement{
                                     ${item.expire_date}
                                 </div>
                                 <div class="desc">
-                                    ${item.descrition}
+                                    ${item.description}
                                 </div>
 
                             </div>
@@ -60,18 +60,18 @@ class View_goverment_announcement{
 
 }
 
-// function searchD(){
-//     let count=0
-//     const input = document.getElementById('diseases').value;
-//     const cardContainor = document.getElementById('announcetment-list-card-container');
-//     const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
-//     for(let i=0 ; i<card.length ;i++){
-//         let title = card[i].querySelector('#date');
-//         // alert(title)
-//
-//         if(title.innerHTML.indexOf(input) > -1){
-//             card[i].style.display=""
-//         }else{
-//             card[i].style.display="none"
-//         }
-//     }}
+function search(){
+    let count=0
+    const input = document.getElementById('diseasesSearch').value.toUpperCase();
+    const cardContainor = document.getElementById('announcetment-list-card-container1');
+    const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
+    for(let i=0 ; i<card.length ;i++){
+        let title = card[i].querySelector('#moh');
+
+        if(title.innerHTML.toUpperCase().indexOf(input) > -1){
+            card[i].style.display=""
+        }else{
+            card[i].style.display="none"
+        }
+    }
+}
