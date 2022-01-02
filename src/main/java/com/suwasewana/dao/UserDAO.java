@@ -61,7 +61,7 @@ public class UserDAO {
     Connection connection;
 
 
-    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement`";
+    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `Unic`=?;";
 
 
 
@@ -955,13 +955,15 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
 
     }
 
-    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(UserGovermentAnnouncementModel govermentAnnouncement) {
+    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String Unic, UserGovermentAnnouncementModel govermentAnnouncement) {
 
 //        System.out.println("data come to goverment 2 dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_GOVERMENT_ANNOUNCEMENT)){
+            preparedStatement.setString(1,Unic);
             ResultSet rs = preparedStatement.executeQuery();
             System.out.println("data come to goverment dao");
+
             ArrayList<UserGovermentAnnouncementModel> ViewVAnnouncements = new ArrayList<UserGovermentAnnouncementModel>();
             while (rs.next()){
                 String announcement_id=rs.getString("announcement_id");

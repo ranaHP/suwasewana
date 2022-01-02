@@ -53,6 +53,7 @@ public class UserGovermentAnnouncementController extends HttpServlet {
 
     private void userGovermentAnnouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        System.out.println("data come to goverment controller");
+        String Unic = "199910910035";
         UserGovermentAnnouncementModel govermentAnnouncement = new UserGovermentAnnouncementModel(
 
                 "",
@@ -61,7 +62,7 @@ public class UserGovermentAnnouncementController extends HttpServlet {
                 "",
                 ""
         );
-        ArrayList<UserGovermentAnnouncementModel> result= userDAO.UserGovermentannouncement(govermentAnnouncement);
+        ArrayList<UserGovermentAnnouncementModel> result= userDAO.UserGovermentannouncement(Unic,govermentAnnouncement);
         res.getWriter().println(gson.toJson(result));
 
     }
