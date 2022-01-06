@@ -25,7 +25,8 @@ class Complain {
     showCardData(data) {
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         let url = myUrl+"/public/";
-        // console.log("constructor call url "+url);
+        console.log("complain constructor call myurl "+myUrl);
+        console.log("complain constructor call url "+url);
         // console.log("data      "+data);
 
         if(data.length ==0){
@@ -35,6 +36,13 @@ class Complain {
 
         this.container.innerHTML = " ";
        data.map((item) => {
+           let img1=item.img1!=" "? url+"/images/uploadimage/"+item.img1 : " "
+           let img2=item.img2!=" "? url+"/images/uploadimage/"+item.img2 : " "
+           let img3=item.img3!=" "? url+"/images/uploadimage/"+item.img3 : " "
+           console.log("img1 "+img1)
+           console.log("img2 "+img2)
+           console.log("img3 "+img3)
+
             this.container.innerHTML += `
             <div class="complaint-card-container" style="margin-top: 5px; margin-right: 4px">
                             <div class="complaint-card">
@@ -46,7 +54,7 @@ class Complain {
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="${this.url}images/icons/usertype.svg" width="22px" />
+                                            <img src="${url}images/icons/usertype.svg" width="22px" />
                                             PHI Response : ${item.PHIResponse==""? "No action":item.PHIResponse }
                                         </li>
                                     </ul>
@@ -57,25 +65,25 @@ class Complain {
                                 <div class="properties">
                                     <ul>
                                         <li>
-                                            <img src="${this.url}images/icons/status.svg" width="22px" />
+                                            <img src="${url}images/icons/status.svg" width="22px" />
                                             Status : ${item.Status}
                                         </li>
                                         <li>
-                                            <img src="${this.url}images/icons/proof.svg" width="22px" />
+                                            <img src="${url}images/icons/proof.svg" width="22px" />
                                             proofs :
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="row">
+                                <div class="row" >
                                     <div class="proofs-images " style="justify-content: unset; margin-left: 3px">
                                     ${item.img1!=" "?
-                                        `<img src=\"${this.url}images/uploadimage/${item.img1}\" width=\"80px\" height=\"80px\" />`:""
+                                        `<img  onclick="viewImg('`+img1+`')" src=\"${url}images/uploadimage/${item.img1}\" width=\"80px\" height=\"80px\" />`:""
                                         }
                                     ${item.img2!=" "?
-                                        `<img src=\"${this.url}images/uploadimage/${item.img2}\" width=\"80px\" height=\"80px\"/>`:""
+                                        `<img onclick="viewImg('`+img2+`')" src=\"${url}images/uploadimage/${item.img2}\" width=\"80px\" height=\"80px\"/>`:""
                                         }
                                     ${item.img3!=" "?
-                                        `<img src=\"${this.url}images/uploadimage/${item.img3}\" width=\"80px\" height=\"80px\"/>`:""
+                                        `<img onclick="viewImg('`+img3+`')" src=\"${url}images/uploadimage/${item.img3}\" width=\"80px\" height=\"80px\"/>`:""
                                     }
                                     
                                 
@@ -83,23 +91,23 @@ class Complain {
                                 </div>
                                 <div class="footer">
                                     <div class="current-registered-count">
-                                        <img src="${this.url}images/icons/user.svg" width="25px"  />
+                                        <img src="${url}images/icons/user.svg" width="25px"  />
                                         ${item.PHIName}
                                     </div>
                                 </div>
-                                <div class="footer d-flex-j-c-flex-end">
-
-                                    <div class="accept-btn bg-danger">
-                                        Cancel
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
             `;
         })
     }
 
-
+// <div className="footer d-flex-j-c-flex-end">
+//
+// <div className="accept-btn bg-danger">
+// Cancel
+// </div>
+// </div>
 
 
 

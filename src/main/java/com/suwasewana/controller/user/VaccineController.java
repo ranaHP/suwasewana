@@ -82,17 +82,54 @@ public class VaccineController extends HttpServlet {
 
     private void GetRegisterdVaccineClinicDetail(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+
+
         String nic="199910910064";
         ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetRegisterdVaccineClinicDetail(nic);
         res.getWriter().println(gson.toJson(result));
     }
     private void ViewVaccineclinicForUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uNic = "";
+        String UMoh= "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                    UMoh= cookie.getValue().split("/")[3];
+                }
+            }
+        }
+
         String mohid="1002";
         String nic="199910910064";
         ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetVaccineClinicDetail(mohid,nic);
         res.getWriter().println(gson.toJson(result));
     }
     private void updateVaccineNextSloat_Maxseet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String uNic = "";
+        String UTp= "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                    UTp= cookie.getValue().split("/")[2];
+                }
+            }
+        }
+
+
 
         String new_next_sloat=req.getParameter("new_next_sloat");
         String Set_sloat=req.getParameter("Set_sloat");
@@ -112,6 +149,16 @@ public class VaccineController extends HttpServlet {
         res.getWriter().println(result);
     }
     private void UserMOHIdTpno(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+
         String nic="199910910035";
         ArrayList<User> result = userDAO.GetUserMOHIdTpno(nic);
         res.getWriter().println(gson.toJson(result));
@@ -119,9 +166,6 @@ public class VaccineController extends HttpServlet {
     private void ViewVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
     }
-
-
-
 
 
 }

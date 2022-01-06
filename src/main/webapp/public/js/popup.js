@@ -95,7 +95,23 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    viewImg(url){
+        let eventsContaier = document.createElement('div');
+        console.log("url in js "+url);
+        let eventDiv = document.createElement('div');
 
+            eventDiv.innerHTML = `
+            
+            <div class="popup-message-container"> 
+                <img src="${url}" style="width:100% ; height:70% " 
+            </div>`;
+
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
     showRegistrationSuccessMessage(data) {
         let eventsContaier = document.createElement('div');
         // console.log(data.name);
