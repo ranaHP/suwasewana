@@ -382,6 +382,9 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
         try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_LOGIN_VALIDATION)) {
             preparedStatement.setString(1, userLogin.getMobile());
             preparedStatement.setString(2, userLogin.getPassword());
+            System.out.print("preparedStatement");
+            System.out.print(preparedStatement);
+            System.out.print("preparedStatement");
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
                 String mobile = rs.getString("uMobile");
