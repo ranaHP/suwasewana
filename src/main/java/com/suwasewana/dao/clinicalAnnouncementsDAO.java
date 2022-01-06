@@ -59,7 +59,7 @@ public class clinicalAnnouncementsDAO {
     public ArrayList<CreateClinicAnnouncementsModel> ViewclinicAnnouncements(CreateClinicAnnouncementsModel viewAnnouncement) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(VIEW_ANNOUNCEMENTS)){
-//            System.out.println("came to dao");
+            System.out.println("came to dao");
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println(rs.toString());
             ArrayList<CreateClinicAnnouncementsModel> ViewclinicAnnouncements = new ArrayList<CreateClinicAnnouncementsModel>();
