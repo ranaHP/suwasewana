@@ -17,14 +17,21 @@ class View_goverment_announcement{
 
     constructor(container) {
         this.container = document.getElementById(container);
-        console.log("data js")
+        // console.log("data js")
     }
     setData(data) {
         if(!data) return;
-        this. gannouncementArray = data;
+        this.gannouncementArray = data;
         console.log(data);
-        this. gannouncementArray.map((item) => {
-            this.container.innerHTML += `
+        this.gannouncementArray.map((item) => {
+
+            let expday = new Date(item.expire_date);
+            let current_day= new Date();
+
+            console.log(current_day)
+            console.log(expday)
+            if(current_day<=expday) {
+                this.container.innerHTML += `
 
                       <div class="latest-announstment-cards-container">
                             <div class="latest-announstment-card">
@@ -53,6 +60,8 @@ class View_goverment_announcement{
                             </div>
                         </div>
             `
+            }
+
             ;
             console.log("map")
         })

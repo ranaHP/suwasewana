@@ -23,7 +23,16 @@ class View_clinic_announcement{
         this. announcementArray = data;
         console.log(data);
         this. announcementArray.map((item) => {
-            this.container.innerHTML += `
+
+
+            let expday = new Date(item.date)
+            let current_day=new Date();
+            console.log(expday)
+            console.log(current_day)
+
+            if(current_day<=expday) {
+
+                this.container.innerHTML += `
 
                               <div class="latest-announstment-cards-container">
                             <div class="latest-announstment-card">
@@ -52,6 +61,7 @@ class View_clinic_announcement{
                             </div>
                         </div>
             `
+            }
             ;
             console.log("map")
         })
