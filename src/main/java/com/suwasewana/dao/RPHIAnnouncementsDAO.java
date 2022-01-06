@@ -204,6 +204,7 @@ public class RPHIAnnouncementsDAO {
                 String banner=rs.getString("banner");
                 String target_moh=rs.getString("target_moh");
                 String posted_date=rs.getString("posted_date");
+                String phi_officer = rs.getString("phi_officer");
                 String exp_date=rs.getString("expire_date");
 
                 UserVIewRPHIAnnouncementModel temp= new UserVIewRPHIAnnouncementModel(
@@ -213,7 +214,7 @@ public class RPHIAnnouncementsDAO {
                         banner,
                         target_moh,
                         posted_date,
-                        "",
+                        phi_officer,
                         exp_date
                 );
                 ViewVAnnouncements.add(temp);

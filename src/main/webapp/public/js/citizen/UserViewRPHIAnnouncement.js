@@ -11,7 +11,7 @@ class View_RPHI_announcement{
             target_moh:"",
             posted_date:"",
             phi_officer:"",
-            exp_date:""
+            expire_date:""
         }
     ];
 
@@ -25,7 +25,14 @@ class View_RPHI_announcement{
         this. announcementArray = data;
         console.log(data);
         this. announcementArray.map((item) => {
-            this.container.innerHTML += `
+
+            let expday = new Date(item.expire_date)
+            let current_day=new Date();
+            console.log(expday)
+            console.log(current_day)
+
+            if(current_day<=expday) {
+                this.container.innerHTML += `
 
                               <div class="latest-announstment-cards-container">
                             <div class="latest-announstment-card">
@@ -45,7 +52,7 @@ class View_RPHI_announcement{
                                     SUWASEWANA.LK
                                 </div>
                                 <div class="posted-time" id="posted-time">
-                                    ${item.posted_date}
+                                    ${item.expire_date}
                                 </div>
                                 <div class="desc">
                                     ${item.description}
@@ -54,6 +61,7 @@ class View_RPHI_announcement{
                             </div>
                         </div>
             `
+            }
             ;
             console.log("map")
         })

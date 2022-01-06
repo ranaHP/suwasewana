@@ -1,14 +1,14 @@
 // let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
 // let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-class View_clinic_announcement{
-    announcementArray=[
+class View_goverment_announcement{
+    gannouncementArray=[
         {
+            announcement_id:"",
+            title:"",
+            description:"",
             banner:"",
-            date:"",
-            descrition:"",
-            moh_id:"",
-            tittle:"",
+            expire_date:"",
 
         }
     ];
@@ -17,24 +17,23 @@ class View_clinic_announcement{
 
     constructor(container) {
         this.container = document.getElementById(container);
+        // console.log("data js")
     }
     setData(data) {
         if(!data) return;
-        this. announcementArray = data;
+        this.gannouncementArray = data;
         console.log(data);
-        this. announcementArray.map((item) => {
+        this.gannouncementArray.map((item) => {
 
+            let expday = new Date(item.expire_date);
+            let current_day= new Date();
 
-            let expday = new Date(item.date)
-            let current_day=new Date();
-            console.log(expday)
             console.log(current_day)
-
+            console.log(expday)
             if(current_day<=expday) {
-
                 this.container.innerHTML += `
 
-                              <div class="latest-announstment-cards-container">
+                      <div class="latest-announstment-cards-container">
                             <div class="latest-announstment-card">
                                 <div class="image-container">
                                 
@@ -45,23 +44,24 @@ class View_clinic_announcement{
                                         Read More
                                     </div>
                                 </div>
-                                <div class="title">
-                                    ${item.tittle}
+                                <div class="title" id="moh">
+                                    ${item.title}
                                 </div>
                                 <div class="suwasaewana">
                                     SUWASEWANA.LK
                                 </div>
                                 <div class="posted-time" id="date">
-                                    ${item.date}
+                                    ${item.expire_date}
                                 </div>
                                 <div class="desc">
-                                    ${item.descrition}
+                                    ${item.description}
                                 </div>
 
                             </div>
                         </div>
             `
             }
+
             ;
             console.log("map")
         })
@@ -69,18 +69,18 @@ class View_clinic_announcement{
 
 }
 
-function searchD(){
+function search(){
     let count=0
-    const input = document.getElementById('diseases').value;
-    const cardContainor = document.getElementById('announcetment-list-card-container');
+    const input = document.getElementById('diseasesSearch').value.toUpperCase();
+    const cardContainor = document.getElementById('announcetment-list-card-container1');
     const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
     for(let i=0 ; i<card.length ;i++){
-        let title = card[i].querySelector('#date');
-        // alert(title)
+        let title = card[i].querySelector('#moh');
 
-        if(title.innerHTML.indexOf(input) > -1){
+        if(title.innerHTML.toUpperCase().indexOf(input) > -1){
             card[i].style.display=""
         }else{
             card[i].style.display="none"
         }
-    }}
+    }
+}

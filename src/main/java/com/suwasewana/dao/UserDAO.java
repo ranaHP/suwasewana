@@ -51,6 +51,8 @@ public class UserDAO {
     private static final  String selectRegisterdVaccineClinic="SELECT * FROM suwasewana_db.user_vaccine uv left join suwasewana_db.vaccine v on uv.vaccine_id=v.v_id left join suwasewana_db.vaccine_clinic_session vc on vc.vcs_id=uv.clinic_id where nic=?;";
     private static final  String CancleClinic="DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ;";
 
+    private static final  String getUserTpMohIt="SELECT uMobile,uMoh FROM suwasewana_db.user where uNic=?;";
+
     private static final  String USER_VIEW_CLINIC_ANNOUNCEMENT = "SELECT * FROM clinic_announcement ca left join normal_clinic_session ncs on ncs.ncs_id=ca.clinic_id where ncs.target_moh=?; ";
 
     private static final String  USERREGISTERCLINC ="INSERT INTO `clinic_registered_patient`  VALUES (?,?,?,NULL);";
@@ -61,6 +63,9 @@ public class UserDAO {
     private static final  String getUserTpMohIt="SELECT uMobile,uMoh FROM suwasewana_db.user where uNic=?;";
 
     Connection connection;
+
+
+    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `Unic`=?;";
 
 
 
@@ -261,7 +266,6 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
     }
 
 //    get vaccine clinic details for user to view available vaccine clinic
-
     public ArrayList<VaccineClinicAnnouncementsModelForUser> GetVaccineClinicDetail(String mohid,String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_Vaccine_clinic_Details)) {
 
@@ -990,5 +994,41 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
         }
         return null;
 
+    }
+
+    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String Unic, UserGovermentAnnouncementModel govermentAnnouncement) {
+
+//        System.out.println("data come to goverment 2 dao");
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_GOVERMENT_ANNOUNCEMENT)){
+            preparedStatement.setString(1,Unic);
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println("data come to goverment dao");
+
+            ArrayList<UserGovermentAnnouncementModel> ViewVAnnouncements = new ArrayList<UserGovermentAnnouncementModel>();
+            while (rs.next()){
+                String announcement_id=rs.getString("announcement_id");
+                String title=rs.getString("title");
+                String description=rs.getString("description");
+                String banner=rs.getString("banner");
+                String expire_date =rs.getString("expire_date");
+
+                UserGovermentAnnouncementModel temp= new UserGovermentAnnouncementModel(
+                        announcement_id,
+                        title,
+                        description,
+                        banner,
+                        expire_date
+
+                );
+                ViewVAnnouncements.add(temp);
+
+            }
+            return ViewVAnnouncements;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
     }
 }
