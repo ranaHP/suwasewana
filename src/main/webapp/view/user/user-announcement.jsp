@@ -564,6 +564,7 @@
 </script>
 <script defer>
 
+
     announcement()
     function announcement(){
         let selectA = new View_RPHI_announcement("announcetment-list-card-container2");
