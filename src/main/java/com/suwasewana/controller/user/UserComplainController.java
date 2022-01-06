@@ -140,7 +140,16 @@ public class UserComplainController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void uerMakeComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+        System.out.println("User nic = "+uNic);
         ComplainModel usercomplainDetails = new ComplainModel(
                 req.getParameter("cTitle"),
                 req.getParameter("cType"),
@@ -148,7 +157,7 @@ public class UserComplainController extends HttpServlet {
                 req.getParameter("cPhi"),
                 req.getParameter("cReason"),
                 "",
-                "199910910064",
+                uNic,
                 "",
                 "pending",
                 req.getParameter("img1"),

@@ -246,7 +246,7 @@
                         Make a Complaints
                     </div>
                     <div class="make-complaint-form">
-                        <form onsubmit="return checkValidation();" method="post">
+                        <form id="New_Complain" onsubmit="return checkValidation();" method="post">
                             <div class="row">
                                 <div class="form-group">
                                     <label for="cTitle">
@@ -434,7 +434,7 @@
             validation.checklength(document.getElementById('reason').value,'ereason',10)&&
             PId!=0
         ){
-            console.log("correct");
+            // console.log("correct");
             imageUpload();
         }
         else {
@@ -447,10 +447,10 @@
             if(PId==0){
                 document.getElementById('ephi').innerText="Pleace select Another near MOH Area";
             }
-            console.log("incorrect");
+            // console.log("incorrect");
 
 
-            alert();
+            // alert();
 
         }
 
@@ -496,12 +496,12 @@
         })
 
 
-        console.log("image neames array "+imageNames);
-        console.log("image neames length "+imageNames.length);
-        alert();
+        // console.log("image neames array "+imageNames);
+        // console.log("image neames length "+imageNames.length);
+        // alert();
         if(imageNames.length!=0){
-            console.log("inside upload img if")
-            alert();
+            // console.log("inside upload img if")
+            // alert();
             $.ajax({
                 url: myUrl+'/fileuploadservlet',
                 type: 'post',
@@ -510,17 +510,17 @@
                 processData: false,
                 success: function (response) {
                     if (response != 0) {
-                        console.log("successfully image uploadedss ---- " +imageNames )
+                        // console.log("successfully image uploadedss ---- " +imageNames )
                         makeComplainwithimg(imageNames);
                     } else {
-                        console.log('file not uploaded');
+                        // console.log('file not uploaded');
 
                     }
                 },
             });
         }
         else {
-            console.log("inside upload img else")
+            // console.log("inside upload img else")
             makeComplains();
         }
 
@@ -530,9 +530,9 @@
 
 <%--make complain--%>
     function makeComplains(){
-        console.log("without images")
-        console.log("make complain call");
-        alert()
+        // console.log("without images")
+        // console.log("make complain call");
+        // alert()
         // let url1 = (imageNames[0]==null ? " ":imageNames[0] );
         // let url2 = (imageNames[1]==null ? " ":imageNames[1] );
         // let url3 = (imageNames[2]==null ? " ":imageNames[2] );
@@ -587,20 +587,21 @@
                 img3:url3,
                 MOH:MOHId
             };
-        console.log("phi id "+reqData.cPhi)
+        // console.log("phi id "+reqData.cPhi)
         $.post(myUrl+"/user-complain-controller/create",
             reqData,
             function (data, status) {
-                console.log(data.includes("success"))
+                // console.log(data.includes("success"))
                 if (data.includes("success")) {
-                    console.log("successsss brooo")
+                    // console.log("successsss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'success',
                         message: 'Complain Successfully Added!'
                     });
-                    // getAllComplain();
+                    getAllComplain();
+                    document.getElementById('New_Complain').reset();
                 } else {
-                    console.log("unsuccesssss brooo")
+                    // console.log("unsuccesssss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'fail',
                         message: 'Complain Send Fail !',
@@ -612,7 +613,7 @@
         return false;
     }
     function makeComplainwithimg(imageNames) {
-        console.log("make complain call");
+        // console.log("make complain call");
 
         let url1 = (imageNames[0]==null ? " ":imageNames[0] );
         let url2 = (imageNames[1]==null ? " ":imageNames[1] );
@@ -667,22 +668,22 @@
                 img3:url3,
                 MOH:MOHId
             };
-        console.log("reqData MOH id- "+reqData.MOH);
+        // console.log("reqData MOH id- "+reqData.MOH);
 
 
         $.post(myUrl+"/user-complain-controller/create",
             reqData,
             function (data, status) {
-                console.log(data.includes("success"))
+                // console.log(data.includes("success"))
                 if (data.includes("success")) {
-                    console.log("successsss brooo")
+                    // console.log("successsss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'success',
                         message: 'Complain Successfully Added!'
                     });
-                    // getAllComplain();
+                    getAllComplain();
                 } else {
-                    console.log("unsuccesssss brooo")
+                    // // console.log("unsuccesssss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'fail',
                         message: 'Complain Send Fail !',
@@ -733,7 +734,7 @@
         $.post(myUrl+"/user-complain-controller/search",
             searchItem,
             function (data, status) {
-                console.log("unsuccesssss brooo "+data)
+                // // console.log("unsuccesssss brooo "+data)
                 complainCardList = JSON.parse(data);
                 typedatalist=complainCardList;
                 document.getElementById("previous-complaint-list").innerHTML = " ";
@@ -746,7 +747,10 @@
 
 
 <script>
-
+    function viewImg(url){
+        console.log("Image can be view "+url)
+        popup.viewImg(url)
+    }
     getAllComplain();
     let typedatalist={};
     function getAllComplain() {
