@@ -1,0 +1,62 @@
+.add_disease_main_Container{
+    margin-left: 78px;
+
+}
+
+*{
+    font-family: 'Montserrat';
+
+}
+.body-content{
+    display: flex;
+    justify-content: center;
+    /* background-color: red; */
+    width: 100%;
+}
+.MR_container{
+    margin-top: 40px;
+    /* background-color: aquamarine; */
+    width: 80%;
+}
+
+
+.add-disease{
+    padding: 20px;
+    min-height: 80vh;
+    width: 100%;
+}
+.add-disease-form-title{
+    width: 100%;
+    text-align:center;
+
+    color: rgba(6, 6, 6, 0.91);
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+.header {
+    padding: 10px 15px 10px 34px;
+    min-height: 40px;
+    margin-bottom: 2px;
+    box-shadow: 0 3px 3px #0a0a0a1c;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header .upper-title {
+    font-weight: bold;
+    color: #060606a4;
+    font-size: 1.2em;
+    letter-spacing: .15em;
+}
+
+.header .dashboard-name {
+    font-size: .6em;
+    letter-spacing: .1em;
+    color: rgba(0, 0, 0, 0.527);
+    margin-top: 3px;
+}
+.title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    font-size: 1.2em;
+}

@@ -101,15 +101,21 @@ public class VaccineController extends HttpServlet {
         String date=req.getParameter("Date");
         String vaccine_id=req.getParameter("vaccine_id");
         String nic="199910910064";
+        String Tp="071380500";
         String result = userDAO.UserRegisterForVaccineClinic(new_next_sloat,Set_sloat,
                 avalabel_seats,
                 vaccine_clinic_id,
                 date,
                 vaccine_id,
-                nic);
+                nic,
+                Tp);
         res.getWriter().println(result);
     }
-
+    private void UserMOHIdTpno(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String nic="199910910035";
+        ArrayList<User> result = userDAO.GetUserMOHIdTpno(nic);
+        res.getWriter().println(gson.toJson(result));
+    }
     private void ViewVaccine(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
     }

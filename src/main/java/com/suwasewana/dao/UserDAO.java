@@ -47,9 +47,11 @@ public class UserDAO {
     private static final  String USER_GET_Vaccine_clinic_Details = "SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.target_moh=?; ";
     private static final  String CheckVaccineRegistration = "SELECT * FROM suwasewana_db.user_vaccine where nic=? and clinic_id=?; ";
     private static final  String UpdateVAccineClinicData="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ?, `next_Available_time_slote` = ? WHERE (`vcs_id` = ?);\n";
-    private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`) VALUES (?, ?, ?, ?); COMMIT;";
+    private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`,`Tpno`) VALUES (?, ?, ?, ?,?); COMMIT;";
     private static final  String selectRegisterdVaccineClinic="SELECT * FROM suwasewana_db.user_vaccine uv left join suwasewana_db.vaccine v on uv.vaccine_id=v.v_id left join suwasewana_db.vaccine_clinic_session vc on vc.vcs_id=uv.clinic_id where nic=?;";
     private static final  String CancleClinic="DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ;";
+
+    private static final  String getUserTpMohIt="SELECT uMobile,uMoh FROM suwasewana_db.user where uNic=?;";
 
     private static final  String USER_VIEW_CLINIC_ANNOUNCEMENT = "SELECT * FROM clinic_announcement ca left join normal_clinic_session ncs on ncs.ncs_id=ca.clinic_id where ncs.target_moh=?; ";
 
@@ -143,14 +145,16 @@ public String CancleRegisterdVaccineClinic(String Regno) {
                                                String vaccine_clinic_id,
                                                String date,
                                                String vaccine_id,
-                                               String nic) {
+                                               String nic,
+                                               String Tp
+                                               ) {
         System.out.println("data come to create complain dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateVAccineClinicData)) {
             preparedStatement.setString(1, avalabel_seats );
             preparedStatement.setString(2, new_next_sloat );
             preparedStatement.setString(3, vaccine_clinic_id );
             int rs = preparedStatement.executeUpdate();
-            updateUserVaccineDetails(nic,vaccine_id,date,Set_sloat,vaccine_clinic_id);
+            updateUserVaccineDetails(nic,vaccine_id,date,Set_sloat,vaccine_clinic_id,Tp);
 
             return  "success";
         } catch (SQLException | ParseException throwables) {
@@ -160,7 +164,7 @@ public String CancleRegisterdVaccineClinic(String Regno) {
 
     }
 //update vaccine details of user
-public String updateUserVaccineDetails(String nic,String vaccine_id,String date,String Set_sloat,String vaccine_clinic_id) throws ParseException {
+public String updateUserVaccineDetails(String nic,String vaccine_id,String date,String Set_sloat,String vaccine_clinic_id, String Tp) throws ParseException {
 
     String dateFoVaccination=date+" "+Set_sloat;
 
@@ -169,6 +173,7 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
         preparedStatement.setString(2, vaccine_id);
         preparedStatement.setString(3, vaccine_clinic_id);
         preparedStatement.setString(4, (dateFoVaccination));
+        preparedStatement.setString(5, (Tp));
 
         System.out.println(preparedStatement);
         int rs = preparedStatement.executeUpdate();
@@ -221,6 +226,40 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
             printSQLException(throwables);
         }
 
+        return null;
+    }
+
+    public ArrayList<User> GetUserMOHIdTpno(String nic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(getUserTpMohIt)) {
+            preparedStatement.setString(1, nic);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<User> UserDetails = new ArrayList<User>();
+            while (rs.next()) {
+                String mobile=rs.getString("uMobile");
+                String mohid=rs.getString("uMoh");
+                User temp = new User(
+                        mobile,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        mohid,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+                UserDetails.add(temp);
+            }
+            return UserDetails;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
         return null;
     }
 
