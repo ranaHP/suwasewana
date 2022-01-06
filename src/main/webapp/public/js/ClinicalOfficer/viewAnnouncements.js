@@ -7,6 +7,7 @@ class viewAnnouncements{
             maxpatient:"",
             location:"",
             duration:"",
+            image:" ",
             disease:"",
             description:"",
             datetime:"",
@@ -46,7 +47,7 @@ class viewAnnouncements{
 </div>
 <div class="right">
     <div class="image">
-        <img src="${myUrl}/public/images/disease-banner.png" width="80%">
+        <img src="${this.url}images/uploadimage/${item.image}" width="80px" height="80px" />
     </div>
     <div class="button-section">
         <div class="delete">
