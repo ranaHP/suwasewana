@@ -80,16 +80,20 @@
     }
 
     function deleteClinics(clinicID){
+        let id=clinicID
+        cancelClinicmsg(parseInt(id))
         $.post("/test_war_exploded/create-clinic-controller/delete",
             {
                 clinicID: clinicID
             },
             function (data, status) {
                 if (data.includes("success")) {
+
                     popup. showClinicDeleteSuccessMessage({
                         status: 'success',
                         message: 'Clinic Successfully Deleted!'
                     });
+
                 } else {
                     popup. showClinicDeleteSuccessMessage({
                         status: 'fail',
@@ -97,30 +101,31 @@
                         data: data
                     });
                 }
+
             }
         );
     }
 
     function select(id){
+        console.log("came to select function")
         // let selectClinic = new selectClinics("form");
-            let clinicList=[]
-            let reqData =
-                {
-                    clinicID: id,
-                };
-            console.log(reqData);
-            $.post("/test_war_exploded/create-clinic-controller/select",
-                reqData,
-                function(data,status){
-                    // alert(data)
-                    console.log(data)
-                    clinicList=JSON.parse(data)
-                    // selectClinic.setData(clinicList);
-                   popup.showClinicEditMessage(data)
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        $.post("/test_war_exploded/create-clinic-controller/select",
+            reqData,
+            function(data,status){
+                // alert(data)
+                console.log(data)
+                clinicList=JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showClinicEditMessage(data)
 
-                }
-            );
-            return false;
+            }
+        );
+        return false;
     }
 
     function updateclinics(data){
@@ -192,7 +197,55 @@
         );
 
 
+    // }
+    function cancelClinicmsg(id){
+        console.log("came to select function")
+        // let selectClinic = new selectClinics("form");
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        $.post("/test_war_exploded/create-clinic-controller/message",
+            reqData,
+            function(data,status){
+                console.log(data)
+                clinicList=JSON.parse(data)
+                let disease=clinicList[0].disease
+                let date=clinicList[0].date
+                console.log(disease)
+                let message="The awareness clinic for" +" "+ disease + " "+"to be held on"+" "
+                    +date+"."+" "+"is cancelled. visit suwasewana for more details";
+                msgdelivers(disease,message)
+                console.log(message)
+            }
+        );
+        return false;
+    }
+    function msgdelivers(disease,message){
+        //find number list who register for the disease
+        let Nlist=[];
+        // sendmsg(Nlist,message)
+        return false;
+    }
 
+    function sendmsg(Nlist,msg) {
+        let msgs=msg;
+        let reqData =
+            {
+                message:msgs,
+                // to:"+94775836281",
+            };
+        // console.log(reqData)
+        $.post("https://app.notify.lk/api/v1/send?user_id=15253&api_key=ewCDvSx6ifsOuxLUztfM&sender_id=NotifyDEMO&to=+94775836281&message=good",
+            reqData,
+            function(data,status){
+               // console.log("data")
+
+            }
+        );
+        return false;
+    }
 
 
     // let popup1= new verify_reject_popup('PopupContainer' , {task:"This is a demo task" , date:"2018-07-22"})

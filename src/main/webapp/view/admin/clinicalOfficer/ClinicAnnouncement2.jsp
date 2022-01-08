@@ -65,6 +65,7 @@
          <div style="margin-top: 15px">
            <button type="submit" onclick="return view() ">Search the clinic</button>
            <button type="submit" onclick="return imageUpload() ">Create announcement</button>
+           <button type="submit" onclick="return msg()" style="background-color: rgba(220,66,66,0.85)">Send the message</button>
          </div>
         </form>
 
@@ -169,6 +170,7 @@
       </div>
 </body>
 <script defer>
+
 <%--  let validation = new FormInputValidation();--%>
   let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
   var loadFile = function (event, imgContainerId) {
@@ -177,7 +179,7 @@
     image.src = URL.createObjectURL(event.target.files[0]);
   };
 
-  function imageUpload() {
+function imageUpload() {
     console.log("image upload")
     var fd = new FormData();
     let imageNames = [];
@@ -293,10 +295,36 @@ function view(){
   );
   return false;
 }
+function msg(){
+  let clinicList=[]
+  let reqData =
+          {
+            clinicID: document.getElementById("clinicID").value,
+          };
+  console.log(reqData);
+  $.post("/test_war_exploded/create-clinic-controller/select",
+          reqData,
+          function(data,status){
+            clinicList=JSON.parse(data)
+            let disease=clinicList[0].disease
+            let message="An awareness clinic for" +" "+ clinicList[0].disease + " "+"will be held on"+" "
+                    +clinicList[0].date+"."+" "+"visit suwasewana.lk for more details";
+            msgdelivers(disease,message)
 
+          }
+  );
+  return false;
+}
+function msgdelivers(disease,message){
+  //find number list who register for the disease
+  console.log("msg")
+  console.log(message)
+  let Nlist=[];
+  sendmsg(Nlist,message)
+  return false;
+}
 
-
-  function checkMOHid(){
+function checkMOHid(){
     // alert("check")
     var MTypeObj = document.getElementById('clinicID');
     var datalist = document.getElementById(MTypeObj.getAttribute("list"));
@@ -309,10 +337,26 @@ function view(){
     }
   }
 
-
+function sendmsg(Nlist,msg) {
+   let msgs=msg;
+  Nlist.map(i => {
+  // let i="775836281";
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("demo").innerHTML =
+                        this.responseText;
+              }
+            };
+            xhttp.open("GET", "https://app.notify.lk/api/v1/send?user_id=15170&api_key=JxIvVwu5Ww2TF7aYeFx0&sender_id=NotifyDEMO&to=+94" + i + "&message=msgs", true);
+            xhttp.send();
+          }
+  )
+}
 
 </script>
 <script>
+
 function check(){
   let mohDetails=[];
   $.post("/test_war_exploded/create-clinic-controller/view",

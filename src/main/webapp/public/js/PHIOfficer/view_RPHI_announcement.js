@@ -14,10 +14,8 @@
 //         moreText.style.display = "inline";
 //     }
 // }
-
 let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class View_RPHI_announcement{
-
     announcementArray=[
         {
             announcement_id:"",
@@ -27,10 +25,9 @@ class View_RPHI_announcement{
             target_moh:"",
             posted_date:"",
             phi_officer:"",
-            expire_date:""
+            exp_date:""
         }
     ];
-
 
     container;
     url = "http://localhost:8080/test_war_exploded/public/";
@@ -50,13 +47,13 @@ class View_RPHI_announcement{
             console.log(current_day)
             console.log(expday)
             // console.log("today : "+current_day+" "+"exp_day : "+expday);
-            if(current_day<=expday){
+            // if(current_day<=expday) {
 
-            this.container.innerHTML += `
+                this.container.innerHTML += `
        <div class="announcement">
                          <div class="left">
                 <div class="image-container">
-     <img src="${this.url}images/uploadimage/${item.banner}" width="80px" height="80px" />
+                    <img src="${Url}/images/upoadimage/${item.banner}" width="250px" height="150px">
                 </div>
             </div>
             <div class="right">
@@ -70,8 +67,8 @@ class View_RPHI_announcement{
                 </div>
             </div>
        </div>
-            `;}
-        })
+            `;
+            })
 
         // alert("hi")
     }

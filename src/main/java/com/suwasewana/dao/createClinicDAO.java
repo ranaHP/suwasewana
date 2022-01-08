@@ -158,16 +158,18 @@ public class createClinicDAO {
         return null;
 }
 
-    public ArrayList<CreateClinicModel> selectClinics(CreateClinicModel viewClinic) {
+    public ArrayList<CreateClinicModel> selectClinics(CreateClinicModel selectClinic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
-            System.out.println("jjj");
-            preparedStatement.setString(1, viewClinic.getClinicID());
+            System.out.println("select clinics");
+            preparedStatement.setString(1, selectClinic.getClinicID());
             preparedStatement.setString(2, "12");
             ResultSet rs = preparedStatement.executeQuery();
-//            System.out.println(rs.toString());
+            System.out.println(rs.toString());
             ArrayList<CreateClinicModel> selectClinicList = new ArrayList<CreateClinicModel>();
+            System.out.println(rs);
             while (rs.next()){
                 String clinicID =rs.getString("ncs_id");
+                System.out.println(clinicID);
                 String title =rs.getString("title");
                 String date = rs.getString("date");
                 String time = rs.getString("time");
@@ -570,6 +572,61 @@ public class createClinicDAO {
 //                System.out.println(title+"--"+disease+"--"+Location);
             };
             return EventList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public ArrayList<CreateClinicModel> selectFormsgsend(CreateClinicModel selectFormsg) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
+            System.out.println("select for msg");
+            preparedStatement.setString(1, selectFormsg.getClinicID());
+            preparedStatement.setString(2, "12");
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> selectFormsgs = new ArrayList<CreateClinicModel>();
+            System.out.println(rs);
+            while (rs.next()){
+                String clinicID =rs.getString("ncs_id");
+                System.out.println(clinicID);
+                String title =rs.getString("title");
+                String date = rs.getString("date");
+                String time = rs.getString("time");
+                String duration = rs.getString("duration");
+                String disease = rs.getString("disease");
+                String description = rs.getString("description");
+                String max_sheet = rs.getString("max_sheet");
+                String Avail_seats=rs.getString("Avail_seats");
+                String conduct_by = rs.getString("conduct_by");
+                String target_moh=rs.getString("name");
+                String target_people = rs.getString("target_people");
+                String location = rs.getString("location");
+                String cNic = rs.getString("clinical_officer");
+                CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
+                        title,
+                        date,
+                        time,
+                        duration,
+                        disease,
+                        description,
+                        max_sheet,
+                        Avail_seats,
+                        conduct_by,
+                        target_moh,
+                        target_people,
+                        location,
+                        cNic
+
+
+                );
+                selectFormsgs.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return selectFormsgs;
         } catch (SQLException throwables) {
             printSQLException(throwables);
 //            return throwables.getMessage();
