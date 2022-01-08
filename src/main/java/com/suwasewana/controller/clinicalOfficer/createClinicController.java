@@ -96,6 +96,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     updateAvailSheats(req, res);
                     break;
+                case "message":
+//                    res.getWriter().println("select-V-Clinics");
+                    selectFormsg(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -104,6 +108,31 @@ import java.util.ArrayList;
         } catch (Exception error) {
             throw new ServletException(error);
         }
+    }
+
+    private void selectFormsg(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("message");
+        CreateClinicModel selectFormsg = new CreateClinicModel(
+                req.getParameter("clinicID"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "12"
+
+
+        );
+        System.out.println("select");
+        ArrayList<CreateClinicModel> result= createClinicDAO.selectFormsgsend(selectFormsg);
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void updateAvailSheats(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -408,7 +437,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                ""
+                "12"
 
 
         );

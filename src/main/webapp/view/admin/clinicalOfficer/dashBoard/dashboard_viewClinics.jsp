@@ -80,6 +80,8 @@
     }
 
     function deleteClinics(clinicID){
+        let id=clinicID
+        cancelClinicmsg(parseInt(id))
         $.post("/test_war_exploded/create-clinic-controller/delete",
             {
                 clinicID: clinicID
@@ -91,7 +93,7 @@
                         status: 'success',
                         message: 'Clinic Successfully Deleted!'
                     });
-                    msg(clinicID)
+
                 } else {
                     popup. showClinicDeleteSuccessMessage({
                         status: 'fail',
@@ -99,30 +101,31 @@
                         data: data
                     });
                 }
+
             }
         );
     }
 
     function select(id){
+        console.log("came to select function")
         // let selectClinic = new selectClinics("form");
-            let clinicList=[]
-            let reqData =
-                {
-                    clinicID: id,
-                };
-            console.log(reqData);
-            $.post("/test_war_exploded/create-clinic-controller/select",
-                reqData,
-                function(data,status){
-                    // alert(data)
-                    console.log(data)
-                    clinicList=JSON.parse(data)
-                    // selectClinic.setData(clinicList);
-                   popup.showClinicEditMessage(data)
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        $.post("/test_war_exploded/create-clinic-controller/select",
+            reqData,
+            function(data,status){
+                // alert(data)
+                console.log(data)
+                clinicList=JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showClinicEditMessage(data)
 
-                }
-            );
-            return false;
+            }
+        );
+        return false;
     }
 
     function updateclinics(data){
@@ -194,56 +197,54 @@
         );
 
 
-    function msg(data){
-        console.log("came")
-        console.log(data)
-        let clinicId=data;
+    // }
+    function cancelClinicmsg(id){
+        console.log("came to select function")
+        // let selectClinic = new selectClinics("form");
         let clinicList=[]
         let reqData =
             {
-                clinicID: clinicId,
+                clinicID: id,
             };
-        console.log(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/select",
+        $.post("/test_war_exploded/create-clinic-controller/message",
             reqData,
             function(data,status){
+                console.log(data)
                 clinicList=JSON.parse(data)
-                let disease=clinicList.disease
-
-                let message="The awareness clinic for" +" "+ clinicList.disease + " "+"to be held on"+" "
-                    +clinicList.date+"."+" "+"is cancelled. visit suwasewana.lk for more details";
+                let disease=clinicList[0].disease
+                let date=clinicList[0].date
+                console.log(disease)
+                let message="The awareness clinic for" +" "+ disease + " "+"to be held on"+" "
+                    +date+"."+" "+"is cancelled. visit suwasewana for more details";
                 msgdelivers(disease,message)
                 console.log(message)
-
             }
         );
         return false;
     }
     function msgdelivers(disease,message){
         //find number list who register for the disease
-        console.log("msg")
-        console.log(message)
         let Nlist=[];
-        sendmsg(Nlist,message)
+        // sendmsg(Nlist,message)
         return false;
     }
 
     function sendmsg(Nlist,msg) {
         let msgs=msg;
-        console.log("came to final")
-        // Nlist.map(i => {
-        //         let i="775836281";
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("demo").innerHTML =
-                            this.responseText;
-                    }
-                };
-                xhttp.open("GET", "https://app.notify.lk/api/v1/send?user_id=15253&api_key=ewCDvSx6ifsOuxLUztfM&sender_id=NotifyDEMO&to=+94"+ i +"&message=$(msgs)", true);
-                xhttp.send();
-        //     }
-        // )
+        let reqData =
+            {
+                message:msgs,
+                // to:"+94775836281",
+            };
+        // console.log(reqData)
+        $.post("https://app.notify.lk/api/v1/send?user_id=15253&api_key=ewCDvSx6ifsOuxLUztfM&sender_id=NotifyDEMO&to=+94775836281&message=good",
+            reqData,
+            function(data,status){
+               // console.log("data")
+
+            }
+        );
+        return false;
     }
 
 
