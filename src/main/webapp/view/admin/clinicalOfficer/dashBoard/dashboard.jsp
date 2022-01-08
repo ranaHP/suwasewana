@@ -302,7 +302,8 @@
         let patient=document.getElementById("patient").value;
         let maxpatient = document.getElementById("max-patient").value;
         let duration=document.getElementById("duration").value;
-        let datetime= document.getElementById("date-time").value;
+        let datetime= document.getElementById("date").value;
+        let time= document.getElementById("time").value;
         let clinictitle=document.getElementById("clinic-title").value;
         let description=document.getElementById("description").value;
         let conduct=document.getElementById("conduct").value;
@@ -316,7 +317,8 @@
                 title:clinictitle,
                 location:location,
                 // targetMOH:document.getElementById("target-MOH").value,
-                datetime:datetime,
+                date:datetime,
+                time:time,
                 duration:duration,
                 maxpatient:maxpatient,
                 patient:patient,
@@ -328,7 +330,7 @@
             reqData,
             function (data,status){
                 // alert("wrong")
-                alert(data)
+                // alert(data)
             });
 
         return false;

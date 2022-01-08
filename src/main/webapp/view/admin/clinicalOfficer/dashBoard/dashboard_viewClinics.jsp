@@ -86,10 +86,12 @@
             },
             function (data, status) {
                 if (data.includes("success")) {
+
                     popup. showClinicDeleteSuccessMessage({
                         status: 'success',
                         message: 'Clinic Successfully Deleted!'
                     });
+                    msg(clinicID)
                 } else {
                     popup. showClinicDeleteSuccessMessage({
                         status: 'fail',
@@ -192,7 +194,57 @@
         );
 
 
+    function msg(data){
+        console.log("came")
+        console.log(data)
+        let clinicId=data;
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: clinicId,
+            };
+        console.log(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/select",
+            reqData,
+            function(data,status){
+                clinicList=JSON.parse(data)
+                let disease=clinicList.disease
 
+                let message="The awareness clinic for" +" "+ clinicList.disease + " "+"to be held on"+" "
+                    +clinicList.date+"."+" "+"is cancelled. visit suwasewana.lk for more details";
+                msgdelivers(disease,message)
+                console.log(message)
+
+            }
+        );
+        return false;
+    }
+    function msgdelivers(disease,message){
+        //find number list who register for the disease
+        console.log("msg")
+        console.log(message)
+        let Nlist=[];
+        sendmsg(Nlist,message)
+        return false;
+    }
+
+    function sendmsg(Nlist,msg) {
+        let msgs=msg;
+        console.log("came to final")
+        // Nlist.map(i => {
+        //         let i="775836281";
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("demo").innerHTML =
+                            this.responseText;
+                    }
+                };
+                xhttp.open("GET", "https://app.notify.lk/api/v1/send?user_id=15253&api_key=ewCDvSx6ifsOuxLUztfM&sender_id=NotifyDEMO&to=+94"+ i +"&message=$(msgs)", true);
+                xhttp.send();
+        //     }
+        // )
+    }
 
 
     // let popup1= new verify_reject_popup('PopupContainer' , {task:"This is a demo task" , date:"2018-07-22"})
