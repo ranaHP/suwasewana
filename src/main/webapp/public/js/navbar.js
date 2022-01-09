@@ -18,6 +18,9 @@ class Navbar{
                         <a href="${this.myUrl}/s/appointment">
                             <li class="nav-item"> Appointment</li>
                         </a>
+                         <a href="${this.myUrl}/s/Register-for-vaccine">
+                            <li class="nav-item"> Vaccine</li>
+                        </a>
                         <a href="${this.myUrl}/s/complain">
                             <li class="nav-item special-nav"> Complain</li>
                         </a>`
