@@ -80,6 +80,7 @@ public class UserComplainController extends HttpServlet {
     private void searchComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
 //        System.out.println("title"+req.getParameter("Title"));
 //        System.out.println("type"+req.getParameter("complaintype"));
+        //        System.out.println("type"+req.getParameter("complaintype"));
         String title=req.getParameter("Title");
         String type=req.getParameter("complaintype");
         ArrayList<ComplainModel> result = userDAO.SearchComplainDetails(title,type);
