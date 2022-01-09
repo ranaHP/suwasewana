@@ -93,7 +93,7 @@ public class VaccineController extends HttpServlet {
         }
 
 
-        String nic="199910910064";
+        String nic=uNic;
         ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetRegisterdVaccineClinicDetail(nic);
         res.getWriter().println(gson.toJson(result));
     }
@@ -110,8 +110,8 @@ public class VaccineController extends HttpServlet {
             }
         }
 
-        String mohid="1002";
-        String nic="199910910064";
+        String mohid=UMoh;
+        String nic=uNic;
         ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetVaccineClinicDetail(mohid,nic);
         res.getWriter().println(gson.toJson(result));
     }
@@ -137,8 +137,8 @@ public class VaccineController extends HttpServlet {
         String vaccine_clinic_id=req.getParameter("vaccine_clinic_id");
         String date=req.getParameter("Date");
         String vaccine_id=req.getParameter("vaccine_id");
-        String nic="199910910064";
-        String Tp="071380500";
+        String nic=uNic;
+        String Tp=UTp;
         String result = userDAO.UserRegisterForVaccineClinic(new_next_sloat,Set_sloat,
                 avalabel_seats,
                 vaccine_clinic_id,
@@ -159,7 +159,7 @@ public class VaccineController extends HttpServlet {
             }
         }
 
-        String nic="199910910035";
+        String nic=uNic;
         ArrayList<User> result = userDAO.GetUserMOHIdTpno(nic);
         res.getWriter().println(gson.toJson(result));
     }
