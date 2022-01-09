@@ -111,7 +111,7 @@ public class UserComplainController extends HttpServlet {
     }
 
 
-//    search complain
+    //    search complain
     private void searchComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
 //        System.out.println("title"+req.getParameter("Title"));
 //        System.out.println("type"+req.getParameter("complaintype"));
@@ -197,8 +197,8 @@ public class UserComplainController extends HttpServlet {
                 ""
 
         );
-        String nic="199910910064";
-        ArrayList<ComplainModel> result = userDAO.userGetComplainDetails(complainModeldetail,nic);
+//        String nic="199910910064";
+        ArrayList<ComplainModel> result = userDAO.userGetComplainDetails(complainModeldetail,uNic);
         res.getWriter().println(gson.toJson(result));
     }
 
