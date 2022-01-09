@@ -181,7 +181,6 @@
                             <th scope="col">Vaccine</th>
                             <th scope="col">Date</th>
                             <th scope="col">Time</th>
-                            <th scope="col">Available seats</th>
                             <th scope="col">Location</th>
                             <th scope="col"></th>
                         </tr>
@@ -192,7 +191,6 @@
                             <td data-label="Vaccine">Sinopharm</td>
                             <td data-label="Date">04/01/2016</td>
                             <td data-label="Time">6.34am</td>
-                            <td data-label="Available seats">100</td>
                             <td data-label="Location">Galgamuwa</td>
                             <td data-label=""> <button class="btn-register cancle"> Cancle</button> </td>
                         </tr>
@@ -484,7 +482,7 @@
     let nic = getCookie("uDetails").split("/")[1]
     let age=calculateage(nic);
     function LoadVaccineclinic(){
-        console.log("Nic in js "+getCookie("uDetails").split("/")[0])
+        // console.log("Nic in js "+getCookie("uDetails").split("/")[0])
         $.post(myUrl+"/Vaccine-controller/viewVaccineClinicdetail/",
             function (data, status) {
                 rs= JSON.parse(data);
@@ -532,10 +530,52 @@
         );
     }
 
-    function CancleClinic(regno){
+
+    async function Takedosecount(regno) {
+        let availableDose = 0;
+        await $.post(myUrl + "/Vaccine-controller/GetRegisterdVaccineClinicDetail/",
+            function (data, status) {
+                rs = JSON.parse(data);
+                rs.map((element) => {
+
+                    let clinic_id = element.vaccine_clinic_id;
+                    if (clinic_id == regno) {
+                        availableDose = parseInt(element.max_sheet) + 1
+                    }
+                })
+
+            }
+        );
+       return availableDose;
+    }
+    async function Take_clinic_id(regno) {
+        let clinicid = 0;
+        await $.post(myUrl + "/Vaccine-controller/GetRegisterdVaccineClinicDetail/",
+            function (data, status) {
+                rs = JSON.parse(data);
+                rs.map((element) => {
+
+                    let clinic_id = element.vaccine_clinic_id;
+                    if (clinic_id == regno) {
+                        clinicid = element.Regno
+                    }
+                })
+
+            }
+        );
+        return clinicid;
+
+    }
+    async function CancleClinic(regno){
+
+        let availableDose=await Takedosecount(regno);
+        let clinicid=await Take_clinic_id(regno);
         let reqData={
-            regNo:regno
+            regNo:regno,
+            availableDose:availableDose,
+            clinicid:clinicid
         }
+
         $.post(myUrl+"/Vaccine-controller/CancleVaccineClinic",
             reqData,
             function (data, status) {
@@ -566,7 +606,6 @@
                 registered_clinic_list.innerHTML='';
                 rs.map((element) => {
                     let date=((element.date).split(" ")[0]) ;
-                    console.log("date in reisterd clinic : "+date+"  of  "+element.date)
                     let time=((element.date).split(" ")[1]).split(":")[0]+"."+((element.date).split(" ")[1]).split(":")[1];
                     let expdate=new Date(element.date);
                     let currentDate=new Date();
@@ -576,7 +615,6 @@
                           <td data-label="Vaccine">`+element.vaccine_name+`</td>
                           <td data-label="Date">`+date+`</td>
                           <td data-label="Time">`+time+`</td>
-                          <td data-label="Available seats">`+element.max_sheet+`</td>
                           <td data-label="Location">`+element.location+`</td>
                           <td data-label=""> <button class="btn-register cancle" onclick="CancleClinic(`+element.vaccine_clinic_id+`)"> Cancle</button> </td>
                         </tr>`
@@ -587,7 +625,6 @@
                           <td data-label="Vaccine">`+element.vaccine_name+`</td>
                           <td data-label="Date">`+date+`</td>
                           <td data-label="Time">`+time+`</td>
-                          <td data-label="Available seats">`+element.max_sheet+`</td>
                           <td data-label="Location">`+element.location+`</td>
                           <td data-label=""> <button class="btn-register cancle" style="display: none" "> Cancle</button> </td>
                         </tr>`

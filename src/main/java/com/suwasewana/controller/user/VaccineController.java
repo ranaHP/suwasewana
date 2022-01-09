@@ -75,8 +75,13 @@ public class VaccineController extends HttpServlet {
     private void CancleVaccineClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String regNo=req.getParameter("regNo");
+        String availableDose=req.getParameter("availableDose");
+        String clinicid=req.getParameter("clinicid");
+        System.out.println("data in controller");
+        System.out.println("regNo : "+regNo);
+        System.out.println("availableDose : "+availableDose);
 
-        String result = userDAO.CancleRegisterdVaccineClinic(regNo);
+        String result = userDAO.CancleRegisterdVaccineClinic(regNo,availableDose,clinicid);
         res.getWriter().println(result);
     }
 

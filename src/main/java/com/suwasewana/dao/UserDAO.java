@@ -50,7 +50,8 @@ public class UserDAO {
     private static final  String UpdateVAccineClinicData="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ?, `next_Available_time_slote` = ? WHERE (`vcs_id` = ?);\n";
     private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`,`Tpno`) VALUES (?, ?, ?, ?,?); COMMIT;";
     private static final  String selectRegisterdVaccineClinic="SELECT * FROM suwasewana_db.user_vaccine uv left join suwasewana_db.vaccine v on uv.vaccine_id=v.v_id left join suwasewana_db.vaccine_clinic_session vc on vc.vcs_id=uv.clinic_id where nic=?;";
-    private static final  String CancleClinic="DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ;";
+    private static final  String CancleClinic="BEGIN;DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ; UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ? WHERE (`vcs_id` = ?); COMMIT;";
+//    private static final  String updateClinicdosge = "UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ? WHERE (`vcs_id` = ?);\n";
 
     private static final  String getUserTpMohIt="SELECT uMobile,uMoh FROM suwasewana_db.user where uNic=?;";
 
@@ -76,6 +77,8 @@ public class UserDAO {
     private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=?;";
 
     private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
+
+
 
     public UserDAO() {
         DB db = new DB();
@@ -125,10 +128,18 @@ public class UserDAO {
         return "";
     }
     //cancle registerd clinics
-    public String CancleRegisterdVaccineClinic(String Regno) {
+
+
+    public String CancleRegisterdVaccineClinic(String Regno,String availabledose,String clinicid) {
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(CancleClinic)) {
             preparedStatement.setString(1, Regno );
+            preparedStatement.setString(2, availabledose );
+            preparedStatement.setString(3, clinicid );
+
             int  rs = preparedStatement.executeUpdate();
+            System.out.println("Prepare statment in cancle cilic: "+preparedStatement);
+
 
             return  "success";
         }  catch (SQLException throwables) {
@@ -203,7 +214,7 @@ public class UserDAO {
                 String allocate_date_time=rs.getString("allocate_date_time");
                 String max_sheet=rs.getString("max_patient");
                 String location=rs.getString("location");
-
+                String clinicid=rs.getString("clinic_id");
 
                 VaccineClinicAnnouncementsModelForUser temp = new VaccineClinicAnnouncementsModelForUser(
                         regno,
@@ -216,7 +227,7 @@ public class UserDAO {
                         "",
                         "",
                         "",
-                        "",
+                        clinicid,
                         "",
                         "",
                         ""
