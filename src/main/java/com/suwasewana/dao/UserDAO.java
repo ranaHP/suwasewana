@@ -1,3 +1,4 @@
+
 package com.suwasewana.dao;
 
 import com.google.gson.Gson;
@@ -18,7 +19,7 @@ public class UserDAO {
     private static final String USER_REGISTRATION = "INSERT INTO `user` VALUES (?,?,?,?,?,?,?,?,?,?,?,current_timestamp());";
     private static final String USER_CREATE_APPOINTMENT = "INSERT INTO `user_appoinmnet` " +
             "(`app_id`, `aTitle`, `aType`, `aReason`, `status`, `user_nic`, `posted_date_time`, `phi_message`, `aPhi`, `time_slot_1`, `time_slot_2`, `round`, `alocation`, `time_slot_2_end`, `time_slot_1_end`) "
-    + "VALUES (NULL, ?, ?, ?, ?, ?, current_timestamp(), ?, ?,  current_timestamp(),  current_timestamp(), ? , ? ,  current_timestamp(),  current_timestamp());";
+            + "VALUES (NULL, ?, ?, ?, ?, ?, current_timestamp(), ?, ?,  current_timestamp(),  current_timestamp(), ? , ? ,  current_timestamp(),  current_timestamp());";
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
     private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
 
@@ -28,11 +29,11 @@ public class UserDAO {
     //    private static final String SEARCH_COMPLAIN_both = "SELECT * FROM user_complains left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id  where CType=? and CTitle like ?;";
     private static final String SEARCH_COMPLAIN_both = "SELECT * FROM suwasewana_db.user_complaint left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic  where complaint_type_id=? and tittle like ? and user=?;";
 
-//    private static final String SEARCH_COMPLAIN_type="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CType = ?;";
+    //    private static final String SEARCH_COMPLAIN_type="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CType = ?;";
     private static final String SEARCH_COMPLAIN_type="SELECT * FROM suwasewana_db.user_complaint  left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic where complaint_type_id = ? and user=?;";
 
 
-//    private static final String SEARCH_COMPLAIN_title="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CTitle like ?;";
+    //    private static final String SEARCH_COMPLAIN_title="SELECT * FROM user_complains  left JOIN (SELECT phi_Id,full_name FROM phi_officer) AS PT ON user_complains.PHIId=PT.phi_Id where CTitle like ?;";
     private static final String SEARCH_COMPLAIN_title="SELECT * FROM suwasewana_db.user_complaint  left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic where tittle like ? and user=?;";
 
 
@@ -69,7 +70,7 @@ public class UserDAO {
 
 
 
-//    /fixed
+    //    /fixed
     private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
 
     private static final String USER_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=?;";
@@ -123,19 +124,19 @@ public class UserDAO {
         }
         return "";
     }
-//cancle registerd clinics
-public String CancleRegisterdVaccineClinic(String Regno) {
-    try (PreparedStatement preparedStatement = connection.prepareStatement(CancleClinic)) {
-        preparedStatement.setString(1, Regno );
-        int  rs = preparedStatement.executeUpdate();
+    //cancle registerd clinics
+    public String CancleRegisterdVaccineClinic(String Regno) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(CancleClinic)) {
+            preparedStatement.setString(1, Regno );
+            int  rs = preparedStatement.executeUpdate();
 
-        return  "success";
-    }  catch (SQLException throwables) {
-        printSQLException(throwables);
+            return  "success";
+        }  catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        return "";
+
     }
-    return "";
-
-}
 
     //Register for vaccine clinic - user
 
@@ -149,7 +150,7 @@ public String CancleRegisterdVaccineClinic(String Regno) {
                                                String vaccine_id,
                                                String nic,
                                                String Tp
-                                               ) {
+    ) {
         System.out.println("data come to create complain dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateVAccineClinicData)) {
             preparedStatement.setString(1, avalabel_seats );
@@ -165,28 +166,28 @@ public String CancleRegisterdVaccineClinic(String Regno) {
         return "";
 
     }
-//update vaccine details of user
-public String updateUserVaccineDetails(String nic,String vaccine_id,String date,String Set_sloat,String vaccine_clinic_id, String Tp) throws ParseException {
+    //update vaccine details of user
+    public String updateUserVaccineDetails(String nic,String vaccine_id,String date,String Set_sloat,String vaccine_clinic_id, String Tp) throws ParseException {
 
-    String dateFoVaccination=date+" "+Set_sloat;
+        String dateFoVaccination=date+" "+Set_sloat;
 
-    try (PreparedStatement preparedStatement = connection.prepareStatement(Insert_Vaccine_User_Registreation)) {
-        preparedStatement.setString(1, nic);
-        preparedStatement.setString(2, vaccine_id);
-        preparedStatement.setString(3, vaccine_clinic_id);
-        preparedStatement.setString(4, (dateFoVaccination));
-        preparedStatement.setString(5, (Tp));
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Insert_Vaccine_User_Registreation)) {
+            preparedStatement.setString(1, nic);
+            preparedStatement.setString(2, vaccine_id);
+            preparedStatement.setString(3, vaccine_clinic_id);
+            preparedStatement.setString(4, (dateFoVaccination));
+            preparedStatement.setString(5, (Tp));
 
-        System.out.println(preparedStatement);
-        int rs = preparedStatement.executeUpdate();
-        return "success";
-    } catch (SQLException throwables) {
-        printSQLException(throwables);
-        return throwables.getMessage();
+            System.out.println(preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            return "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+
     }
-
-
-}
 
     public ArrayList<VaccineClinicAnnouncementsModelForUser> GetRegisterdVaccineClinicDetail(String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectRegisterdVaccineClinic)) {
@@ -265,7 +266,7 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
         return null;
     }
 
-//    get vaccine clinic details for user to view available vaccine clinic
+    //    get vaccine clinic details for user to view available vaccine clinic
     public ArrayList<VaccineClinicAnnouncementsModelForUser> GetVaccineClinicDetail(String mohid,String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_Vaccine_clinic_Details)) {
 
@@ -908,20 +909,20 @@ public String updateUserVaccineDetails(String nic,String vaccine_id,String date,
     public String Userregisterclinic(UserViewRegisteredclinicsModel registerclinic, String ncs_id) {
 
 
-            try (PreparedStatement preparedStatement = connection.prepareStatement(USERREGISTERCLINC)) {
-                preparedStatement.setString(2, ncs_id );
-                preparedStatement.setString(3, registerclinic.getDatetime());
-                preparedStatement.setString(1, registerclinic.getUNic());
-                int rs = preparedStatement.executeUpdate();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USERREGISTERCLINC)) {
+            preparedStatement.setString(2, ncs_id );
+            preparedStatement.setString(3, registerclinic.getDatetime());
+            preparedStatement.setString(1, registerclinic.getUNic());
+            int rs = preparedStatement.executeUpdate();
 
 
-                return  "success";
-            } catch (SQLException throwables) {
-                printSQLException((SQLException) throwables);
-            }
-
-            return null;
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException((SQLException) throwables);
         }
+
+        return null;
+    }
 
 
     public String Usercancellinic(String unic, UserViewClinicsModel cancelclinic) {
