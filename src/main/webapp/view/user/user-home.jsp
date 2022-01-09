@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Akila
@@ -51,7 +52,7 @@
                 </div>
                 <div class="navbar-container">
                     <ul class="navbar">
-                    <script> let navs =  new Navbar(); navs.showHeaderNavItems("navbar"); </script>
+                        <script> let navs =  new Navbar(); navs.showHeaderNavItems("navbar"); </script>
                     </ul>
                 </div>
                 <div class="login-register-container">
@@ -124,206 +125,206 @@
             <img src="<c:url value="/public/images/icons/arrow-left-circle.svg "/>" class="latest-announstment-arrow"
                  width="25px"/>
             <div class="announcetment-list-card-container" id="announcetment-list-card-container">
-<%--                <div class="latest-announstment-cards-container">--%>
-<%--                    <div class="latest-announstment-card">--%>
-<%--                        <div class="image-container">--%>
-<%--                            <img src="images//announcetment_banner.png" width="100%"/>--%>
-<%--                            <div class="read-more-btn">--%>
-<%--                                Read More--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="header">--%>
-<%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
-<%--                        </div>--%>
-<%--                        <div class="suwasaewana">--%>
-<%--                            SUWASEWANA.LK--%>
-<%--                        </div>--%>
-<%--                        <div class="posted-time">--%>
-<%--                            15/21/2021--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
-<%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
-<%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
-<%--                        </div>--%>
+                <%--                <div class="latest-announstment-cards-container">--%>
+                <%--                    <div class="latest-announstment-card">--%>
+                <%--                        <div class="image-container">--%>
+                <%--                            <img src="images//announcetment_banner.png" width="100%"/>--%>
+                <%--                            <div class="read-more-btn">--%>
+                <%--                                Read More--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="header">--%>
+                <%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
+                <%--                        </div>--%>
+                <%--                        <div class="suwasaewana">--%>
+                <%--                            SUWASEWANA.LK--%>
+                <%--                        </div>--%>
+                <%--                        <div class="posted-time">--%>
+                <%--                            15/21/2021--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
+                <%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
+                <%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
+                <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="latest-announstment-cards-container">--%>
-<%--                    <div class="latest-announstment-card">--%>
-<%--                        <div class="image-container">--%>
-<%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
-<%--                            <div class="read-more-btn">--%>
-<%--                                Read More--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="header">--%>
-<%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
-<%--                        </div>--%>
-<%--                        <div class="suwasaewana">--%>
-<%--                            SUWASEWANA.LK--%>
-<%--                        </div>--%>
-<%--                        <div class="posted-time">--%>
-<%--                            15/21/2021--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
-<%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
-<%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
-<%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--                <div class="latest-announstment-cards-container">--%>
+                <%--                    <div class="latest-announstment-card">--%>
+                <%--                        <div class="image-container">--%>
+                <%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
+                <%--                            <div class="read-more-btn">--%>
+                <%--                                Read More--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="header">--%>
+                <%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
+                <%--                        </div>--%>
+                <%--                        <div class="suwasaewana">--%>
+                <%--                            SUWASEWANA.LK--%>
+                <%--                        </div>--%>
+                <%--                        <div class="posted-time">--%>
+                <%--                            15/21/2021--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
+                <%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
+                <%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
+                <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="latest-announstment-cards-container">--%>
-<%--                    <div class="latest-announstment-card">--%>
-<%--                        <div class="image-container">--%>
-<%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
-<%--                            <div class="read-more-btn">--%>
-<%--                                Read More--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="header">--%>
-<%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
-<%--                        </div>--%>
-<%--                        <div class="suwasaewana">--%>
-<%--                            SUWASEWANA.LK--%>
-<%--                        </div>--%>
-<%--                        <div class="posted-time">--%>
-<%--                            15/21/2021--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
-<%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
-<%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
-<%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--                <div class="latest-announstment-cards-container">--%>
+                <%--                    <div class="latest-announstment-card">--%>
+                <%--                        <div class="image-container">--%>
+                <%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
+                <%--                            <div class="read-more-btn">--%>
+                <%--                                Read More--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="header">--%>
+                <%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
+                <%--                        </div>--%>
+                <%--                        <div class="suwasaewana">--%>
+                <%--                            SUWASEWANA.LK--%>
+                <%--                        </div>--%>
+                <%--                        <div class="posted-time">--%>
+                <%--                            15/21/2021--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
+                <%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
+                <%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
+                <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="latest-announstment-cards-container">--%>
-<%--                    <div class="latest-announstment-card">--%>
-<%--                        <div class="image-container">--%>
-<%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
-<%--                            <div class="read-more-btn">--%>
-<%--                                Read More--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="header">--%>
-<%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
-<%--                        </div>--%>
-<%--                        <div class="suwasaewana">--%>
-<%--                            SUWASEWANA.LK--%>
-<%--                        </div>--%>
-<%--                        <div class="posted-time">--%>
-<%--                            15/21/2021--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
-<%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
-<%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
-<%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--                <div class="latest-announstment-cards-container">--%>
+                <%--                    <div class="latest-announstment-card">--%>
+                <%--                        <div class="image-container">--%>
+                <%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
+                <%--                            <div class="read-more-btn">--%>
+                <%--                                Read More--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="header">--%>
+                <%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
+                <%--                        </div>--%>
+                <%--                        <div class="suwasaewana">--%>
+                <%--                            SUWASEWANA.LK--%>
+                <%--                        </div>--%>
+                <%--                        <div class="posted-time">--%>
+                <%--                            15/21/2021--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
+                <%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
+                <%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
+                <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="latest-announstment-cards-container">--%>
-<%--                    <div class="latest-announstment-card">--%>
-<%--                        <div class="image-container">--%>
-<%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
-<%--                            <div class="read-more-btn">--%>
-<%--                                Read More--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="header">--%>
-<%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
-<%--                        </div>--%>
-<%--                        <div class="suwasaewana">--%>
-<%--                            SUWASEWANA.LK--%>
-<%--                        </div>--%>
-<%--                        <div class="posted-time">--%>
-<%--                            15/21/2021--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
-<%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
-<%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
-<%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--                <div class="latest-announstment-cards-container">--%>
+                <%--                    <div class="latest-announstment-card">--%>
+                <%--                        <div class="image-container">--%>
+                <%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
+                <%--                            <div class="read-more-btn">--%>
+                <%--                                Read More--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="header">--%>
+                <%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
+                <%--                        </div>--%>
+                <%--                        <div class="suwasaewana">--%>
+                <%--                            SUWASEWANA.LK--%>
+                <%--                        </div>--%>
+                <%--                        <div class="posted-time">--%>
+                <%--                            15/21/2021--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
+                <%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
+                <%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
+                <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="latest-announstment-cards-container">--%>
-<%--                    <div class="latest-announstment-card">--%>
-<%--                        <div class="image-container">--%>
-<%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
-<%--                            <div class="read-more-btn">--%>
-<%--                                Read More--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="header">--%>
-<%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
-<%--                        </div>--%>
-<%--                        <div class="suwasaewana">--%>
-<%--                            SUWASEWANA.LK--%>
-<%--                        </div>--%>
-<%--                        <div class="posted-time">--%>
-<%--                            15/21/2021--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
-<%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
-<%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
-<%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--                <div class="latest-announstment-cards-container">--%>
+                <%--                    <div class="latest-announstment-card">--%>
+                <%--                        <div class="image-container">--%>
+                <%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
+                <%--                            <div class="read-more-btn">--%>
+                <%--                                Read More--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="header">--%>
+                <%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
+                <%--                        </div>--%>
+                <%--                        <div class="suwasaewana">--%>
+                <%--                            SUWASEWANA.LK--%>
+                <%--                        </div>--%>
+                <%--                        <div class="posted-time">--%>
+                <%--                            15/21/2021--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
+                <%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
+                <%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
+                <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="latest-announstment-cards-container">--%>
-<%--                    <div class="latest-announstment-card">--%>
-<%--                        <div class="image-container">--%>
-<%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
-<%--                            <div class="read-more-btn">--%>
-<%--                                Read More--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="header">--%>
-<%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
-<%--                        </div>--%>
-<%--                        <div class="suwasaewana">--%>
-<%--                            SUWASEWANA.LK--%>
-<%--                        </div>--%>
-<%--                        <div class="posted-time">--%>
-<%--                            15/21/2021--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
-<%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
-<%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
-<%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--                <div class="latest-announstment-cards-container">--%>
+                <%--                    <div class="latest-announstment-card">--%>
+                <%--                        <div class="image-container">--%>
+                <%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
+                <%--                            <div class="read-more-btn">--%>
+                <%--                                Read More--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="header">--%>
+                <%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
+                <%--                        </div>--%>
+                <%--                        <div class="suwasaewana">--%>
+                <%--                            SUWASEWANA.LK--%>
+                <%--                        </div>--%>
+                <%--                        <div class="posted-time">--%>
+                <%--                            15/21/2021--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
+                <%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
+                <%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
+                <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--                <div class="latest-announstment-cards-container">--%>
-<%--                    <div class="latest-announstment-card">--%>
-<%--                        <div class="image-container">--%>
-<%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
-<%--                            <div class="read-more-btn">--%>
-<%--                                Read More--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                        <div class="header">--%>
-<%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
-<%--                        </div>--%>
-<%--                        <div class="suwasaewana">--%>
-<%--                            SUWASEWANA.LK--%>
-<%--                        </div>--%>
-<%--                        <div class="posted-time">--%>
-<%--                            15/21/2021--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
-<%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
-<%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
-<%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
+                <%--                <div class="latest-announstment-cards-container">--%>
+                <%--                    <div class="latest-announstment-card">--%>
+                <%--                        <div class="image-container">--%>
+                <%--                            <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>--%>
+                <%--                            <div class="read-more-btn">--%>
+                <%--                                Read More--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="header">--%>
+                <%--                            ස්පුට්නික් V එන්නත් මාත්‍රා තොගයක් අද අලුයම කටුනායකට--%>
+                <%--                        </div>--%>
+                <%--                        <div class="suwasaewana">--%>
+                <%--                            SUWASEWANA.LK--%>
+                <%--                        </div>--%>
+                <%--                        <div class="posted-time">--%>
+                <%--                            15/21/2021--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            නිවසේ සිට ප්‍රතිකාර ලබාගන්නා කොවිඩ්--%>
+                <%--                            රෝගියෙකු, වහාම රෝහල්ගත කළ යුතු--%>
+                <%--                            අවස්ථාව ගැන ඔබ දැනුවත්ද?--%>
+                <%--                        </div>--%>
 
-<%--                    </div>--%>
-<%--                </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
             </div>
             <img src="<c:url value="/public/images/icons/arrow-right-circle.svg"/>" width="25px"
                  class="latest-announstment-arrow"/>
@@ -647,104 +648,104 @@
         <div class="upcoming-clinic">
             <div class="left-col" id="left-col">
                 <img src="<c:url value="/public/images/icons/arrow-left-circle.svg"/>" class="clinic-arrow" width="25px"/>
-<%--                <div class="clinic-card-container">--%>
-<%--                    <div class="clinic-card">--%>
-<%--                        <div class="header">--%>
-<%--                            Covid19 Awareness Session--%>
-<%--                            <p> 2021/01/10</p>--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            he process of writing a job description requires--%>
-<%--                            having a clear understanding of the job’s duties--%>
-<%--                            and responsibilities. The job posting should also--%>
-<%--                            include a concise picture of the skills required--%>
-<%--                            Organize the job--%>
-<%--                        </div>--%>
-<%--                        <div class="properties">--%>
-<%--                            <ul>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/map-pin.svg" width="15px"/>--%>
-<%--                                    Location : Eluketiya Manduni's home--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
-<%--                                    Conduct : Dr Akila Lulakshi--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
-<%--                                    Max participant limit : 1000--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
-<%--                                    MOH Area :Akuressa--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
-<%--                                    Target participant :Dr Akila Lulakshi--%>
-<%--                                </li>--%>
-<%--                            </ul>--%>
-<%--                        </div>--%>
-<%--                        <div class="footer">--%>
-<%--                            <div class="current-registered-count">--%>
-<%--                                <img src="images/icons/users.svg" width="18px"/>--%>
-<%--                                120,22--%>
-<%--                            </div>--%>
-<%--                            <div class="register-btn">--%>
-<%--                                Register--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+                <%--                <div class="clinic-card-container">--%>
+                <%--                    <div class="clinic-card">--%>
+                <%--                        <div class="header">--%>
+                <%--                            Covid19 Awareness Session--%>
+                <%--                            <p> 2021/01/10</p>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            he process of writing a job description requires--%>
+                <%--                            having a clear understanding of the job’s duties--%>
+                <%--                            and responsibilities. The job posting should also--%>
+                <%--                            include a concise picture of the skills required--%>
+                <%--                            Organize the job--%>
+                <%--                        </div>--%>
+                <%--                        <div class="properties">--%>
+                <%--                            <ul>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/map-pin.svg" width="15px"/>--%>
+                <%--                                    Location : Eluketiya Manduni's home--%>
+                <%--                                </li>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+                <%--                                    Conduct : Dr Akila Lulakshi--%>
+                <%--                                </li>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+                <%--                                    Max participant limit : 1000--%>
+                <%--                                </li>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+                <%--                                    MOH Area :Akuressa--%>
+                <%--                                </li>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+                <%--                                    Target participant :Dr Akila Lulakshi--%>
+                <%--                                </li>--%>
+                <%--                            </ul>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="footer">--%>
+                <%--                            <div class="current-registered-count">--%>
+                <%--                                <img src="images/icons/users.svg" width="18px"/>--%>
+                <%--                                120,22--%>
+                <%--                            </div>--%>
+                <%--                            <div class="register-btn">--%>
+                <%--                                Register--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
 
 
-<%--                <div class="clinic-card-container">--%>
-<%--                    <div class="clinic-card">--%>
-<%--                        <div class="header">--%>
-<%--                            Covid19 Awareness Session--%>
-<%--                            <p> 2021/01/10</p>--%>
-<%--                        </div>--%>
-<%--                        <div class="desc">--%>
-<%--                            he process of writing a job description requires--%>
-<%--                            having a clear understanding of the job’s duties--%>
-<%--                            and responsibilities. The job posting should also--%>
-<%--                            include a concise picture of the skills required--%>
-<%--                            Organize the job--%>
-<%--                        </div>--%>
-<%--                        <div class="properties">--%>
-<%--                            <ul>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/map-pin.svg" width="15px"/>--%>
-<%--                                    Location : Eluketiya Manduni's home--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
-<%--                                    Conduct : Dr Akila Lulakshi--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
-<%--                                    Max participant limit : 1000--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
-<%--                                    MOH Area :Akuressa--%>
-<%--                                </li>--%>
-<%--                                <li>--%>
-<%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
-<%--                                    Target participant :Dr Akila Lulakshi--%>
-<%--                                </li>--%>
-<%--                            </ul>--%>
-<%--                        </div>--%>
-<%--                        <div class="footer">--%>
-<%--                            <div class="current-registered-count">--%>
-<%--                                <img src="images/icons/users.svg" width="18px"/>--%>
-<%--                                120,22--%>
-<%--                            </div>--%>
-<%--                            <div class="register-btn">--%>
-<%--                                Register--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
+                <%--                <div class="clinic-card-container">--%>
+                <%--                    <div class="clinic-card">--%>
+                <%--                        <div class="header">--%>
+                <%--                            Covid19 Awareness Session--%>
+                <%--                            <p> 2021/01/10</p>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="desc">--%>
+                <%--                            he process of writing a job description requires--%>
+                <%--                            having a clear understanding of the job’s duties--%>
+                <%--                            and responsibilities. The job posting should also--%>
+                <%--                            include a concise picture of the skills required--%>
+                <%--                            Organize the job--%>
+                <%--                        </div>--%>
+                <%--                        <div class="properties">--%>
+                <%--                            <ul>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/map-pin.svg" width="15px"/>--%>
+                <%--                                    Location : Eluketiya Manduni's home--%>
+                <%--                                </li>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+                <%--                                    Conduct : Dr Akila Lulakshi--%>
+                <%--                                </li>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+                <%--                                    Max participant limit : 1000--%>
+                <%--                                </li>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+                <%--                                    MOH Area :Akuressa--%>
+                <%--                                </li>--%>
+                <%--                                <li>--%>
+                <%--                                    <img src="images/icons/list.svg" width="15px"/>--%>
+                <%--                                    Target participant :Dr Akila Lulakshi--%>
+                <%--                                </li>--%>
+                <%--                            </ul>--%>
+                <%--                        </div>--%>
+                <%--                        <div class="footer">--%>
+                <%--                            <div class="current-registered-count">--%>
+                <%--                                <img src="images/icons/users.svg" width="18px"/>--%>
+                <%--                                120,22--%>
+                <%--                            </div>--%>
+                <%--                            <div class="register-btn">--%>
+                <%--                                Register--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </div>--%>
                 <img src="<c:url value="/public/images/icons/arrow-right-circle.svg"/>" width="25px" class="clinic-arrow"/>
 
             </div>
@@ -775,7 +776,7 @@
 <script defer>
     function imageUpload() {
 
-       let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+        let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         var loadFile = function (event, imgContainerId) {
             var image = document.getElementById(imgContainerId);
@@ -809,7 +810,7 @@
             fd.append('file2', $('#imageasd2')[0].files[0]);
             let name = new Date().toString().split(" ");
             let uniqName = (name[2] + name[3] + name[4] +
-                name[5]).replaceAll(":", "").replaceAll("+", "") + Math.floor(15000 + Math.random() * 10000) + "." +
+                    name[5]).replaceAll(":", "").replaceAll("+", "") + Math.floor(15000 + Math.random() * 10000) + "." +
                 $('#imageasd')[0].files[0].name.split(".")[$('#imageasd')[0].files[0].name.split(".").length - 1];
             imageNames.push(uniqName);
 

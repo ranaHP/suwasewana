@@ -1,3 +1,4 @@
+
 package com.suwasewana.core;
 
 import javax.servlet.RequestDispatcher;
@@ -228,6 +229,7 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Add-Disease.jsp");
                     rd.forward(request,response);
                     break;
+
                 case "manage-disease":
                     System.out.println("Hi Hansana");
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Manage-Disease.jsp");
