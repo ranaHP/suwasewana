@@ -466,9 +466,7 @@
             }
         )
     }
-    function reschdule(newslot_Date,newslot_time,clinicid){
 
-    }
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -606,9 +604,9 @@
     }
 
     ViewRegisterdClinics();
-    function ViewRegisterdClinics(){
+    async function ViewRegisterdClinics(){
         $.post(myUrl+"/Vaccine-controller/GetRegisterdVaccineClinicDetail/",
-            function (data, status) {
+            await function (data, status) {
                 rs= JSON.parse(data);
                 let registered_clinic_list=document.getElementById("registeredClinicList");
                 registered_clinic_list.innerHTML='';
@@ -644,6 +642,79 @@
         );
     }
 
+
+    //newslot time should 08:23 format
+    //when reschdule time then update it in vaccine_clinic->next_Available_time_slote also
+    reschdule("2023-12-05", "11:40:00","18")
+    function reschdule(newslot_Date,newslot_time,clinicid){
+        let reqData =
+            {
+                newslot_Date:newslot_Date,
+                newslot_time:newslot_time,
+                clinicid:clinicid
+
+            };
+        $.post(myUrl+"/Vaccine-controller/GetVaccineClinicDetailForReschdule/",
+            reqData,
+            function (data, status) {
+                rs= JSON.parse(data);
+                let registered_clinic_list=document.getElementById("registeredClinicList");
+                registered_clinic_list.innerHTML='';
+                let new_next_sloat=newslot_time
+                rs.map((element) => {
+                    let regno=element.reg_No;
+
+                    new_next_sloat=addTimes(newslot_time, '00:05:00');
+                    UpdateDateAndTimeWhenRechdule(regno,newslot_Date,newslot_time)
+                    newslot_time=new_next_sloat
+
+                })
+                UpdateLastTimeSlot(new_next_sloat,clinicid)
+            }
+        );
+    }
+    function UpdateLastTimeSlot(new_next_sloat,clinicid){
+        let reqData =
+            {
+                clinic_id:clinicid,
+                newslot_Date:new_next_sloat
+            };
+        $.post(myUrl+"/Vaccine-controller/updateTimeSlotsOfClinicTable",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    console.log("success broooooooo")
+
+                } else {
+                    console.log("unsuccess broooooooo")
+                }
+            }
+        );
+    }
+    function UpdateDateAndTimeWhenRechdule(clinic_id,newslot_Date,newslot_time){
+        // console.log("clinic id "+clinic_id+" || newslot_Date "+newslot_Date+" || newslot_time "+newslot_time)
+
+        let reqData =
+            {
+                clinic_id:clinic_id,
+                newslot_Date:newslot_Date,
+                newslot_time:newslot_time
+            };
+
+        $.post(myUrl+"/Vaccine-controller/updateTimeSlotsOfUsers",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    // console.log("success broooooooo")
+
+                } else {
+                    // console.log("unsuccess broooooooo")
+                }
+            }
+        );
+    }
 </script>
 </body>
 </html>
