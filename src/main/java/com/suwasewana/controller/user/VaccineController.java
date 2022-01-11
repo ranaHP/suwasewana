@@ -57,6 +57,15 @@ public class VaccineController extends HttpServlet {
                 case "GetuserVaccineDetail":
                     GetuserVaccineDetail(req, res);
                     break;
+                case "GetVaccineClinicDetailForReschdule":
+                    GetVaccineClinicDetailForReschdule(req, res);
+                    break;
+                case "updateTimeSlotsOfUsers":
+                    updateTimeSlotsOfUsers(req, res);
+                    break;
+                case "updateTimeSlotsOfClinicTable":
+                    updateTimeSlotsOfClinicTable(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -70,6 +79,12 @@ public class VaccineController extends HttpServlet {
     private void GetuserVaccineDetail(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         ArrayList<VaccineForHospitalModel> result = vaccineDAO.GetuserVaccineDetail();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void GetVaccineClinicDetailForReschdule(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        //String clinicid=(req.getParameter("clinicid"));
+        String clinicid="18";
+        ArrayList<ReschduleVaccineUserSlotmodel> result = userDAO.GetRegisterdVaccineClinicTpAndDate(clinicid);
         res.getWriter().println(gson.toJson(result));
     }
     private void CancleVaccineClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -155,6 +170,29 @@ public class VaccineController extends HttpServlet {
                 Que_No);
         res.getWriter().println(result);
     }
+    private void updateTimeSlotsOfUsers(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+
+        String clinic_id=req.getParameter("clinic_id");
+        String newslot_Date=req.getParameter("newslot_Date");
+        String newslot_time=req.getParameter("newslot_time");
+
+
+        String result = userDAO.updateTimeSlotsOfUsers(clinic_id,newslot_Date,newslot_time);
+        res.getWriter().println(result);
+    }
+    private void updateTimeSlotsOfClinicTable(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+
+        String clinic_id=req.getParameter("clinic_id");
+        String newslot_Date=req.getParameter("newslot_Date");
+
+
+        String result = userDAO.updateTimeSlotsInClinicTable(clinic_id,newslot_Date);
+        res.getWriter().println(result);
+    }
+
+
     private void UserMOHIdTpno(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String uNic = "";
         Cookie[] cookies = req.getCookies();

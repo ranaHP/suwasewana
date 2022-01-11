@@ -50,6 +50,10 @@ public class UserDAO {
     private static final  String UpdateVAccineClinicData="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ?, `next_Available_time_slote` = ? , `next_Que_No` = ? WHERE (`vcs_id` = ?);\n";
     private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`,`Tpno`,`Que_No`) VALUES (?, ?, ?, ?,?,?); COMMIT;";
     private static final  String selectRegisterdVaccineClinic="SELECT * FROM suwasewana_db.user_vaccine uv left join suwasewana_db.vaccine v on uv.vaccine_id=v.v_id left join suwasewana_db.vaccine_clinic_session vc on vc.vcs_id=uv.clinic_id where nic=?;";
+    private static final  String selectRegisterdVaccineClinicForReschdule="SELECT * FROM suwasewana_db.user_vaccine where clinic_id=?;";
+    private static final  String UpdateReschduleTimeAndDateOfUser="UPDATE `suwasewana_db`.`user_vaccine` SET `allocate_date_time` = ? WHERE (`reg_No` = ?) ;";
+    private static final  String UpdateReschduleNextSlotInVClinicTable="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `next_Available_time_slote` = ? WHERE (`vcs_id` = ?);";
+
     private static final  String CancleClinic="BEGIN;DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ; UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ? WHERE (`vcs_id` = ?); COMMIT;";
 //    private static final  String updateClinicdosge = "UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ? WHERE (`vcs_id` = ?);\n";
 
@@ -88,21 +92,21 @@ public class UserDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_SUSPENDED_TIME)) {
             preparedStatement.setString(1, userLogin.getMobile());
             ResultSet rs = preparedStatement.executeQuery();
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
 
             if(rs.next()){
-                System.out.println(rs.getString("suspended_time"));
+//                System.out.println(rs.getString("suspended_time"));
                 return rs.getString("suspended_time");
             }else{
-                System.out.println("unblocked");
+//                System.out.println("unblocked");
                 GetLoginAttemptChange(userLogin, "0");
                 return "unblocked";
             }
 //            while (rs.next()) {
 //                String suspended_time = rs.getString("suspended_time");
-//                System.out.println("suspended_time");
+////                System.out.println("suspended_time");
 //            }
-//            System.out.println("unblocked");
+////            System.out.println("unblocked");
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
@@ -138,7 +142,7 @@ public class UserDAO {
             preparedStatement.setString(3, clinicid );
 
             int  rs = preparedStatement.executeUpdate();
-            System.out.println("Prepare statment in cancle cilic: "+preparedStatement);
+//            System.out.println("Prepare statment in cancle cilic: "+preparedStatement);
 
 
             return  "success";
@@ -163,19 +167,62 @@ public class UserDAO {
                                                String Tp,
                                                String Que_No
     ) {
-//        System.out.println("data come to create complain dao");
+////        System.out.println("data come to create complain dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateVAccineClinicData)) {
             preparedStatement.setString(1, avalabel_seats );
             preparedStatement.setString(2, new_next_sloat );
             preparedStatement.setString(3, Que_No );
             preparedStatement.setString(4, vaccine_clinic_id );
             int rs = preparedStatement.executeUpdate();
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
             int Que_no_for_user=Integer.parseInt(Que_No)-1;
             updateUserVaccineDetails(nic,vaccine_id,date,Set_sloat,vaccine_clinic_id,Tp,Que_no_for_user);
 
             return  "success";
         } catch (SQLException | ParseException throwables) {
+            printSQLException((SQLException) throwables);
+        }
+        return "";
+
+    }
+
+
+
+    //For update timme slots when reshcdule
+    public String updateTimeSlotsOfUsers(String clinic_REG_id,String newslot_Date,String newslot_time) {
+////        System.out.println("data come to create complain dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateReschduleTimeAndDateOfUser)) {
+
+            String dateFoVaccination=newslot_Date+" "+newslot_time;
+            preparedStatement.setString(1, dateFoVaccination );
+            preparedStatement.setString(2, clinic_REG_id );
+
+            int rs = preparedStatement.executeUpdate();
+//            System.out.println(preparedStatement);
+
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException((SQLException) throwables);
+        }
+        return "";
+
+    }
+    //For update timme slots when reshcdule
+    public String updateTimeSlotsInClinicTable(String clinic_id,String newslot_Date) {
+////        System.out.println("data come to create complain dao");
+        try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateReschduleNextSlotInVClinicTable)) {
+
+
+            preparedStatement.setString(1, newslot_Date );
+            preparedStatement.setString(2, clinic_id );
+
+            int rs = preparedStatement.executeUpdate();
+//            System.out.println(preparedStatement);
+
+
+            return  "success";
+        } catch (SQLException throwables) {
             printSQLException((SQLException) throwables);
         }
         return "";
@@ -194,7 +241,7 @@ public class UserDAO {
             preparedStatement.setString(5, (Tp));
             preparedStatement.setString(6, String.valueOf((Que_no_for_user)));
 
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
             int rs = preparedStatement.executeUpdate();
             return "success";
         } catch (SQLException throwables) {
@@ -205,6 +252,41 @@ public class UserDAO {
 
     }
 
+    public ArrayList<ReschduleVaccineUserSlotmodel> GetRegisterdVaccineClinicTpAndDate(String clinicId) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectRegisterdVaccineClinicForReschdule)) {
+
+            preparedStatement.setString(1, clinicId);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<ReschduleVaccineUserSlotmodel> VaccineClinictList = new ArrayList<ReschduleVaccineUserSlotmodel>();
+            while (rs.next()) {
+
+
+                String clinicid=rs.getString("clinic_id");
+                String date=rs.getString("allocate_date_time");
+                String time=rs.getString("allocate_date_time");
+                String Tp=rs.getString("Tpno");
+                String Que_No=rs.getString("Que_No");
+                String reg_No=rs.getString("reg_No");
+
+
+                ReschduleVaccineUserSlotmodel temp = new ReschduleVaccineUserSlotmodel(
+                        clinicid,
+                        date,
+                        date,
+                        Que_No,
+                        Tp,
+                        reg_No
+
+                );
+                VaccineClinictList.add(temp);
+            }
+            return VaccineClinictList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
     public ArrayList<VaccineClinicAnnouncementsModelForUser> GetRegisterdVaccineClinicDetail(String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectRegisterdVaccineClinic)) {
 
@@ -342,19 +424,19 @@ public class UserDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_ATTEMPT_CHANGE)) {
             preparedStatement.setString(1, attempt);
             preparedStatement.setString(2, userLogin.getMobile());
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
             Integer rs = preparedStatement.executeUpdate();
             return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
             printSQLException(throwables);
         }
-        System.out.println("in to chnage out");
+//        System.out.println("in to chnage out");
         return new UserLoginModel("", "", "");
     }
 
     public UserLoginModel GetLoginAttemptChangeSupport(UserLoginModel userLogin) {
         String loginStatus = new String(CheckLoginAttempt(userLogin));
-        System.out.println("in to support");
+//        System.out.println("in to support");
         switch(loginStatus){
             case "0":
                 return GetLoginAttemptChange(userLogin, "1");
@@ -432,7 +514,7 @@ public class UserDAO {
                     return userResponse;
                 }
             }
-            System.out.println("in to support to 1");
+//            System.out.println("in to support to 1");
             GetLoginAttemptChangeSupport(userLogin);
             return new UserLoginModel("", "", "");
         } catch (SQLException throwables) {
@@ -445,7 +527,7 @@ public class UserDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGOUT)) {
             preparedStatement.setString(1, userLogin.getUnic());
             Integer rs = preparedStatement.executeUpdate();
-            System.out.println(rs);
+//            System.out.println(rs);
             return rs;
         } catch (SQLException throwables) {
             printSQLException(throwables);
@@ -454,7 +536,7 @@ public class UserDAO {
     }
 
     public String UserRegistration(UserRegistrationModel userRegister) {
-        System.out.println("data come to dao");
+//        System.out.println("data come to dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_REGISTRATION)) {
             preparedStatement.setString(1, userRegister.getuNic());
@@ -468,17 +550,17 @@ public class UserDAO {
             preparedStatement.setString(9, userRegister.getUlocation());
             preparedStatement.setString(10, userRegister.getUaddress());
             preparedStatement.setString(11, "0");
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
             int rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
+//            System.out.println("dao value" + rs);
 
             return "success";
         } catch (SQLException throwables) {
             printSQLException(throwables);
-//            System.out.println(throwables.getErrorCode());
-//            System.out.println(throwables.getSQLState());
-//            System.out.println(throwables.getMessage());
-//            System.out.println(throwables);
+////            System.out.println(throwables.getErrorCode());
+////            System.out.println(throwables.getSQLState());
+////            System.out.println(throwables.getMessage());
+////            System.out.println(throwables);
             return throwables.getMessage();
         }
 
@@ -486,7 +568,7 @@ public class UserDAO {
     }
 
     public String UserMakeAppointment(AppointmentModel appointment) {
-        System.out.println("data come to dao");
+//        System.out.println("data come to dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_CREATE_APPOINTMENT)) {
             preparedStatement.setString(1, appointment.getaTitle());
             preparedStatement.setString(2, appointment.getaType());
@@ -512,7 +594,7 @@ public class UserDAO {
     public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {
             preparedStatement.setString(1, appointmentDetails.getUser_nic());
-            System.out.println(appointmentDetails.getUser_nic());
+//            System.out.println(appointmentDetails.getUser_nic());
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
             while (rs.next()) {
@@ -584,7 +666,7 @@ public class UserDAO {
                 PreparedStatement preparedStatement = connection.prepareStatement(USER_DELETE_APPOINTMENT)) {
             preparedStatement.setString(1, appointmentId);
             rowDeleted = preparedStatement.executeUpdate() > 0;
-            System.out.println(preparedStatement);
+//            System.out.println(preparedStatement);
             return "success";
         } catch (SQLException throwables) {
             return throwables.getMessage();
@@ -594,18 +676,18 @@ public class UserDAO {
 
 
     public String UserMakeComplain(ComplainModel complainModel) {
-        System.out.println("data come to create complain dao");
+//        System.out.println("data come to create complain dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_COMPLAIN)) {
             preparedStatement.setString(1, complainModel.getCTitle() );
             preparedStatement.setString(2, complainModel.getCMessage() );
 
-            System.out.println("user type in dao "+ complainModel.getUType());
+//            System.out.println("user type in dao "+ complainModel.getUType());
             if (complainModel.getUType().equals("0")) {
-                System.out.println("Dont view user detail ");
+//                System.out.println("Dont view user detail ");
                 preparedStatement.setString(3, null);
             }
             else{
-                System.out.println("view user detail ");
+//                System.out.println("view user detail ");
                 preparedStatement.setString(3, complainModel.getUser() );
             }
 
@@ -618,9 +700,9 @@ public class UserDAO {
             preparedStatement.setString(9, complainModel.getImg1() );
             preparedStatement.setString(10, complainModel.getImg2() );
             preparedStatement.setString(11, complainModel.getImg3() );
-            System.out.println("SQL "+preparedStatement);
+//            System.out.println("SQL "+preparedStatement);
             int  rs = preparedStatement.executeUpdate();
-            System.out.println("dao value" + rs);
+//            System.out.println("dao value" + rs);
 
             return  "success";
         } catch (SQLException throwables) {
@@ -644,34 +726,34 @@ public class UserDAO {
                 rs = preparedStatement.executeQuery();
             }
             if(type!=null && title!=""){
-                System.out.println("both have");
+//                System.out.println("both have");
                 preparedStatementboth = connection.prepareStatement(SEARCH_COMPLAIN_both);
                 preparedStatementboth.setString(1, type);
                 preparedStatementboth.setString(2,"%"+ title + "%");
                 preparedStatementboth.setString(3, nic);
-                System.out.println("SQL - "+preparedStatementboth);
+//                System.out.println("SQL - "+preparedStatementboth);
                 rs = preparedStatementboth.executeQuery();
             }
             if(type==null && title!=""){
-                System.out.println("only title");
+//                System.out.println("only title");
                 preparedStatementtitle = connection.prepareStatement(SEARCH_COMPLAIN_title);
                 preparedStatementtitle.setString(1, "%"+title+"%");
                 preparedStatementtitle.setString(2, nic);
-                System.out.println("SQL - "+preparedStatementtitle);
+//                System.out.println("SQL - "+preparedStatementtitle);
                 rs = preparedStatementtitle.executeQuery();
             }
             if(type!=null && title==""){
-                System.out.println("only type");
+//                System.out.println("only type");
                 preparedStatementtype = connection.prepareStatement(SEARCH_COMPLAIN_type);
                 preparedStatementtype.setString(1, type);
                 preparedStatementtype.setString(2, nic);
-                System.out.println("SQL - "+preparedStatementtype);
+//                System.out.println("SQL - "+preparedStatementtype);
                 rs = preparedStatementtype.executeQuery();
             }
 
 
             ArrayList<ComplainModel> ComplainList = new ArrayList<ComplainModel>();
-            System.out.println("come to view detail");
+//            System.out.println("come to view detail");
             while (rs.next()) {
 
 
@@ -722,7 +804,7 @@ public class UserDAO {
             preparedStatement.setString(1, nic );
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<ComplainModel> ComplainList = new ArrayList<ComplainModel>();
-//            System.out.println("come to view detail");
+////            System.out.println("come to view detail");
             while (rs.next()) {
 
 
@@ -773,11 +855,11 @@ public class UserDAO {
     public ArrayList<UserViewClinicsModel> UserViewclinic(String unic, UserViewClinicsModel viewAnnouncement) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_ANNOUNCEMENTS)){
-            System.out.println("came to dao");
+//            System.out.println("came to dao");
             preparedStatement.setString(2,viewAnnouncement.getMOH());
             preparedStatement.setString(1,unic);
             ResultSet rs = preparedStatement.executeQuery();
-//            System.out.println(rs.toString());
+////            System.out.println(rs.toString());
             ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();
             while (rs.next()){
                 String ncs_id = rs.getString("ncs_id");
@@ -813,7 +895,7 @@ public class UserDAO {
 
                 );
                 ViewclinicAnnouncements.add(temp);
-                System.out.println(title+"--"+disease+"--"+location);
+//                System.out.println(title+"--"+disease+"--"+location);
             };
             return ViewclinicAnnouncements;
         } catch (SQLException throwables) {
@@ -826,11 +908,11 @@ public class UserDAO {
     public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics ,String nic) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_REGISTERED_CLINICS)){
-            System.out.println("came to dao");
+//            System.out.println("came to dao");
             preparedStatement.setString(1,viewregisteredclinics.getUNic());
-            System.out.println(nic);
+//            System.out.println(nic);
             ResultSet rs = preparedStatement.executeQuery();
-//            System.out.println(rs.toString());
+////            System.out.println(rs.toString());
             ArrayList<UserViewRegisteredclinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewRegisteredclinicsModel>();
             while (rs.next()){
                 String ncs_id = rs.getString("ncs_id");
@@ -863,7 +945,7 @@ public class UserDAO {
 
                 );
                 ViewclinicAnnouncements.add(temp);
-                System.out.println(title+"--"+disease+"--"+location);
+//                System.out.println(title+"--"+disease+"--"+location);
             };
             return ViewclinicAnnouncements;
         } catch (SQLException throwables) {
@@ -885,7 +967,7 @@ public class UserDAO {
                 System.err.println("Message: " + e.getMessage());
                 Throwable t = ex.getCause();
                 while (t != null) {
-                    System.out.println("Cause: " + t);
+//                    System.out.println("Cause: " + t);
                     t = t.getCause();
                 }
             }
@@ -966,11 +1048,11 @@ public class UserDAO {
     public ArrayList<UserHomeViewClinicModel> UserHomeViewclinic(String unic, UserHomeViewClinicModel viewhomeclinic) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_HOME_VIEW_ANNOUNCEMENTS)){
-            System.out.println("came to dao");
+//            System.out.println("came to dao");
             preparedStatement.setString(2,viewhomeclinic.getMOH());
             preparedStatement.setString(1,unic);
             ResultSet rs = preparedStatement.executeQuery();
-//            System.out.println(rs.toString());
+////            System.out.println(rs.toString());
             ArrayList<UserHomeViewClinicModel> ViewclinicAnnouncements = new ArrayList<UserHomeViewClinicModel>();
             while (rs.next()){
                 String ncs_id = rs.getString("ncs_id");
@@ -1006,7 +1088,7 @@ public class UserDAO {
 
                 );
                 ViewclinicAnnouncements.add(temp);
-                System.out.println(title+"--"+disease+"--"+location);
+//                System.out.println(title+"--"+disease+"--"+location);
             };
             return ViewclinicAnnouncements;
         } catch (SQLException throwables) {
@@ -1019,12 +1101,12 @@ public class UserDAO {
 
     public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String Unic, UserGovermentAnnouncementModel govermentAnnouncement) {
 
-//        System.out.println("data come to goverment 2 dao");
+////        System.out.println("data come to goverment 2 dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_GOVERMENT_ANNOUNCEMENT)){
             preparedStatement.setString(1,Unic);
             ResultSet rs = preparedStatement.executeQuery();
-            System.out.println("data come to goverment dao");
+//            System.out.println("data come to goverment dao");
 
             ArrayList<UserGovermentAnnouncementModel> ViewVAnnouncements = new ArrayList<UserGovermentAnnouncementModel>();
             while (rs.next()){
