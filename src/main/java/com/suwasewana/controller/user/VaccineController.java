@@ -142,6 +142,7 @@ public class VaccineController extends HttpServlet {
         String vaccine_clinic_id=req.getParameter("vaccine_clinic_id");
         String date=req.getParameter("Date");
         String vaccine_id=req.getParameter("vaccine_id");
+        String Que_No=req.getParameter("Next_Que_no");
         String nic=uNic;
         String Tp=UTp;
         String result = userDAO.UserRegisterForVaccineClinic(new_next_sloat,Set_sloat,
@@ -150,7 +151,8 @@ public class VaccineController extends HttpServlet {
                 date,
                 vaccine_id,
                 nic,
-                Tp);
+                Tp,
+                Que_No);
         res.getWriter().println(result);
     }
     private void UserMOHIdTpno(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

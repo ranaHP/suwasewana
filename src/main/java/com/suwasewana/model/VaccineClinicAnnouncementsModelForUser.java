@@ -15,6 +15,7 @@ public class VaccineClinicAnnouncementsModelForUser {
     public String Dosage;
     public String Next_sloat;
     public String Status;
+    public String Que_no;
 
 
 
@@ -33,7 +34,8 @@ public class VaccineClinicAnnouncementsModelForUser {
         String Regno,
         String Dosage,
             String Next_sloat,
-            String Status
+            String Status,
+            String Que_no
             ){
         super();
         this.vaccine_clinic_id=vaccine_clinic_id;
@@ -50,7 +52,16 @@ public class VaccineClinicAnnouncementsModelForUser {
         this.Dosage=Dosage;
         this.Next_sloat=Next_sloat;
         this.Status=Status;
+        this.Que_no=Que_no;
 
+    }
+
+    public String getQue_no() {
+        return Que_no;
+    }
+
+    public void setQue_no(String que_no) {
+        Que_no = que_no;
     }
 
     public String getStatus() {

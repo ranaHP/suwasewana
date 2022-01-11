@@ -47,8 +47,8 @@ public class UserDAO {
 
     private static final  String USER_GET_Vaccine_clinic_Details = "SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.target_moh=?; ";
     private static final  String CheckVaccineRegistration = "SELECT * FROM suwasewana_db.user_vaccine where nic=? and clinic_id=?; ";
-    private static final  String UpdateVAccineClinicData="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ?, `next_Available_time_slote` = ? WHERE (`vcs_id` = ?);\n";
-    private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`,`Tpno`) VALUES (?, ?, ?, ?,?); COMMIT;";
+    private static final  String UpdateVAccineClinicData="UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ?, `next_Available_time_slote` = ? , `next_Que_No` = ? WHERE (`vcs_id` = ?);\n";
+    private static final  String Insert_Vaccine_User_Registreation="BEGIN;INSERT INTO `suwasewana_db`.`user_vaccine` (`nic`, `vaccine_id`, `clinic_id`, `allocate_date_time`,`Tpno`,`Que_No`) VALUES (?, ?, ?, ?,?,?); COMMIT;";
     private static final  String selectRegisterdVaccineClinic="SELECT * FROM suwasewana_db.user_vaccine uv left join suwasewana_db.vaccine v on uv.vaccine_id=v.v_id left join suwasewana_db.vaccine_clinic_session vc on vc.vcs_id=uv.clinic_id where nic=?;";
     private static final  String CancleClinic="BEGIN;DELETE FROM `suwasewana_db`.`user_vaccine` WHERE (`reg_No` = ?) ; UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ? WHERE (`vcs_id` = ?); COMMIT;";
 //    private static final  String updateClinicdosge = "UPDATE `suwasewana_db`.`vaccine_clinic_session` SET `max_patient` = ? WHERE (`vcs_id` = ?);\n";
@@ -160,15 +160,19 @@ public class UserDAO {
                                                String date,
                                                String vaccine_id,
                                                String nic,
-                                               String Tp
+                                               String Tp,
+                                               String Que_No
     ) {
-        System.out.println("data come to create complain dao");
+//        System.out.println("data come to create complain dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateVAccineClinicData)) {
             preparedStatement.setString(1, avalabel_seats );
             preparedStatement.setString(2, new_next_sloat );
-            preparedStatement.setString(3, vaccine_clinic_id );
+            preparedStatement.setString(3, Que_No );
+            preparedStatement.setString(4, vaccine_clinic_id );
             int rs = preparedStatement.executeUpdate();
-            updateUserVaccineDetails(nic,vaccine_id,date,Set_sloat,vaccine_clinic_id,Tp);
+            System.out.println(preparedStatement);
+            int Que_no_for_user=Integer.parseInt(Que_No)-1;
+            updateUserVaccineDetails(nic,vaccine_id,date,Set_sloat,vaccine_clinic_id,Tp,Que_no_for_user);
 
             return  "success";
         } catch (SQLException | ParseException throwables) {
@@ -178,7 +182,7 @@ public class UserDAO {
 
     }
     //update vaccine details of user
-    public String updateUserVaccineDetails(String nic,String vaccine_id,String date,String Set_sloat,String vaccine_clinic_id, String Tp) throws ParseException {
+    public String updateUserVaccineDetails(String nic,String vaccine_id,String date,String Set_sloat,String vaccine_clinic_id, String Tp,Integer Que_no_for_user) throws ParseException {
 
         String dateFoVaccination=date+" "+Set_sloat;
 
@@ -188,6 +192,7 @@ public class UserDAO {
             preparedStatement.setString(3, vaccine_clinic_id);
             preparedStatement.setString(4, (dateFoVaccination));
             preparedStatement.setString(5, (Tp));
+            preparedStatement.setString(6, String.valueOf((Que_no_for_user)));
 
             System.out.println(preparedStatement);
             int rs = preparedStatement.executeUpdate();
@@ -215,6 +220,7 @@ public class UserDAO {
                 String max_sheet=rs.getString("max_patient");
                 String location=rs.getString("location");
                 String clinicid=rs.getString("clinic_id");
+                String Que_No=rs.getString("Que_No");
 
                 VaccineClinicAnnouncementsModelForUser temp = new VaccineClinicAnnouncementsModelForUser(
                         regno,
@@ -230,7 +236,8 @@ public class UserDAO {
                         clinicid,
                         "",
                         "",
-                        ""
+                        "",
+                        Que_No
 
                 );
                 VaccineClinictList.add(temp);
@@ -298,6 +305,7 @@ public class UserDAO {
                 String upper_age=rs.getString("upper_age_limit");
                 String Dosage=rs.getString("dose_count");
                 String Next_sloat=rs.getString("next_Available_time_slote");
+                String Next_Que_no=rs.getString("next_Que_No");
 
                 String status=checkVacccinRegstration(nic,vaccine_clinic_id);
 
@@ -316,7 +324,8 @@ public class UserDAO {
                         "",
                         Dosage,
                         Next_sloat,
-                        status
+                        status,
+                        Next_Que_no
 
                 );
                 VaccineClinictList.add(temp);
