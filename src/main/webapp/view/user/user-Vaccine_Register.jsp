@@ -654,6 +654,8 @@
                 clinicid:clinicid
 
             };
+        let User_Tp_slot=[]
+
         $.post(myUrl+"/Vaccine-controller/GetVaccineClinicDetailForReschdule/",
             reqData,
             function (data, status) {
@@ -661,10 +663,13 @@
                 let registered_clinic_list=document.getElementById("registeredClinicList");
                 registered_clinic_list.innerHTML='';
                 let new_next_sloat=newslot_time
+                let tpno=""
                 rs.map((element) => {
                     let regno=element.reg_No;
 
                     new_next_sloat=addTimes(newslot_time, '00:05:00');
+                    tpno=element.TpNo;
+                    User_Tp_slot.push({tpno:new_next_sloat});       //List of useres mobile no and new slot to send message
                     UpdateDateAndTimeWhenRechdule(regno,newslot_Date,newslot_time)
                     newslot_time=new_next_sloat
 
