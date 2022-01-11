@@ -182,6 +182,7 @@
                             <th scope="col">Date</th>
                             <th scope="col">Time</th>
                             <th scope="col">Location</th>
+                            <th scope="col">Queue No</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -192,6 +193,7 @@
                             <td data-label="Date">04/01/2016</td>
                             <td data-label="Time">6.34am</td>
                             <td data-label="Location">Galgamuwa</td>
+                            <td data-label="Q_No">25</td>
                             <td data-label=""> <button class="btn-register cancle"> Cancle</button> </td>
                         </tr>
 
@@ -410,10 +412,12 @@
         return timeFromMins(timeToMins(time0) + timeToMins(time1));
     };
 
-    function RegisterForclinic(vaccine_clinic_id,vaccine_id,max_sheet,date,sloat){
-
+    function RegisterForclinic(vaccine_clinic_id,vaccine_id,max_sheet,date,sloat,Que_no){
+        console.log("Queue no "+Que_no)
         let new_next_sloat=addTimes(sloat, '00:05:00');
         let avalabel_seats=--max_sheet;
+        let QNo= parseInt(Que_no)+1
+        console.log("Queue no +1 "+QNo)
         let reqData =
             {
                 Set_sloat:sloat,
@@ -421,7 +425,8 @@
                 avalabel_seats:avalabel_seats,
                 vaccine_clinic_id:vaccine_clinic_id,
                 Date:date,
-                vaccine_id:vaccine_id
+                vaccine_id:vaccine_id,
+                Next_Que_no:QNo
             };
 
         $.post(myUrl+"/Vaccine-controller/updateVaccineNextSloat_Maxseet",
@@ -433,7 +438,8 @@
                         status: 'success',
                         message: 'Successfully Registerd!',
                         data: date,
-                        Set_sloat:sloat
+                        Set_sloat:sloat,
+                        Next_Que_no:Que_no
                     });
                     LoadVaccineclinic();
                     ViewRegisterdClinics();
@@ -493,6 +499,8 @@
                     let date=((element.date).split(" ")[0]) ;
                     let expdate=new Date(element.date);
                     let currentDate=new Date();
+                    console.log("Que no = "+element.Que_no)
+                    let QNo=element.Que_no;
                     if(age<= parseInt(element.Upper_Age) && age> parseInt(element.Lower_Age) && (element.Status!="alreadyHave") &&(element.max_sheet>0) && (currentDate<=expdate)){
                         available_clinic_list.innerHTML+= `
                        <tr>
@@ -503,7 +511,7 @@
                           <td data-label="Age limit">`+element.Lower_Age+`-`+element.Upper_Age+`</td>
                           <td data-label="Location">`+element.location+`</td>
                           <td data-label="Dosage">`+element.Dosage+`</td>
-                          <td data-label=""> <button class="btn-register" onclick="RegisterForclinic(`+element.vaccine_clinic_id+`,`+element.vaccine_id+`,`+element.max_sheet+`,'`+date+`','`+element.Next_sloat+`');"> Register</button> </td>
+                          <td data-label=""> <button class="btn-register" onclick="RegisterForclinic(`+element.vaccine_clinic_id+`,`+element.vaccine_id+`,`+element.max_sheet+`,'`+date+`','`+element.Next_sloat+`',`+QNo+`);"> Register</button> </td>
                       </tr>`
 
 
@@ -616,6 +624,7 @@
                           <td data-label="Date">`+date+`</td>
                           <td data-label="Time">`+time+`</td>
                           <td data-label="Location">`+element.location+`</td>
+                          <td data-label="Q_No">`+element.Que_no+`</td>
                           <td data-label=""> <button class="btn-register cancle" onclick="CancleClinic(`+element.vaccine_clinic_id+`)"> Cancle</button> </td>
                         </tr>`
                     }
@@ -626,6 +635,7 @@
                           <td data-label="Date">`+date+`</td>
                           <td data-label="Time">`+time+`</td>
                           <td data-label="Location">`+element.location+`</td>
+                           <td data-label="Q_No">-</td>
                           <td data-label=""> <button class="btn-register cancle" style="display: none" "> Cancle</button> </td>
                         </tr>`
                     }

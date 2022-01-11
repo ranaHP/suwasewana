@@ -326,6 +326,7 @@ class SuwasewanaPopup{
             <div class="popup-message-container"> 
                 ${data.message}!
                 <br><span>See you on ${data.data} at ${data.Set_sloat} </span>
+                <br><span>Your Queue No is ${data.Next_Que_no} </span>
                 <br><span>Have a nice day! </span>
             </div>
                 <div class="row" >
