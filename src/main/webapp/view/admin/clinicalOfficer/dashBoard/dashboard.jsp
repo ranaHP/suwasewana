@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
-    <script src="<c:url value="/public/js/popup.js"/>"></script>
+<%--    <script src="<c:url value="/public/js/popup.js"/>"></script>--%>
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
     <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
 
@@ -225,7 +225,7 @@
                 console.log(data)
                 clinicList=JSON.parse(data)
                 // selectClinic.setData(clinicList);
-                popup.showClinicEditMessage(data)
+                popup.showClinicResheduleMessage(data)
 
             }
         );
@@ -248,6 +248,28 @@
                 clinicList=JSON.parse(data)
                 // selectClinic.setData(clinicList);
                 popup.showVaccineClinicEditMessage(data)
+
+            }
+        );
+        return false;
+    }
+    function selectReV(id) {
+        // let selectClinic = new selectClinics("form");
+        let clinicList = []
+        let reqData =
+            {
+                clinicID: id,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+            reqData,
+            function (data, status) {
+                // alert(data)
+                console.log(data)
+                // alert(data)
+                clinicList = JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showVaccineClinicResheduleMessage(data)
 
             }
         );
@@ -293,8 +315,50 @@
 
         return false;
     }
+    function ResheduleVClinics(data){
+        // alert("update")
+        let id=data;
+        let datetime= document.getElementById("start_date_time").value;
+        let reqData =
+            {
+                clinicID:id,
+                datetime:datetime,
+            };
+        console.log(reqData)
+        alert(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/ResheduleVClinics",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                // alert(data)
+                popup.hidePopup()
+            });
 
+        return false;
+    }
 
+    function resheduleclinics(data){
+        let duration=document.getElementById("duration").value;
+        let datetime= document.getElementById("date").value;
+        let time= document.getElementById("time").value;
+        // // alert("update")
+        let reqData =
+            {
+                clinicID:data,
+                date:datetime,
+                time:time,
+                duration:duration,
+            };
+        console.log(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/resheduleclinic",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                alert(data)
+            });
+
+        return false;
+    }
     function updateclinics(data){
         // alert("update")
         // let id=data;

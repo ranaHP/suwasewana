@@ -40,7 +40,7 @@ class clinicListv {
                         <div class="card-date">${item.start_date_time}</div>
                         <div class="amount"></div>
                         <div class="nop">No of patients</div>
-                        <button class="reschdulebtn" onclick="selectv(${item.vcs_id})">Reschdule</button>
+                        <button class="reschdulebtn" onclick="selectReV(${item.vcs_id})">Reschdule</button>
                     </div>
                     <div class="card-right">
                         <img src="${Url1}/public/images/svg/login/image1.svg" alt="" srcset=""

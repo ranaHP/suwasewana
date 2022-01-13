@@ -176,6 +176,49 @@
 
         return false;
     }
+    function selectReV(id) {
+        // let selectClinic = new selectClinics("form");
+        let clinicList = []
+        let reqData =
+            {
+                clinicID: id,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+            reqData,
+            function (data, status) {
+                // alert(data)
+                console.log(data)
+                // alert(data)
+                clinicList = JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showVaccineClinicResheduleMessage(data)
+
+            }
+        );
+        return false;
+    }
+    function ResheduleVClinics(data){
+        // alert("update")
+        let id=data;
+        let datetime= document.getElementById("start_date_time").value;
+        let reqData =
+            {
+                clinicID:id,
+                datetime:datetime,
+            };
+        console.log(reqData)
+        alert(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/ResheduleVClinics",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                // alert(data)
+                popup.hidePopup()
+            });
+
+        return false;
+    }
 
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
