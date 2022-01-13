@@ -13,7 +13,8 @@ class clinicList {
             duration:" ",
             location:" ",
             maxpatient:" ",
-            Target:""
+            Target:"",
+            time:""
         }
     ];
 
@@ -32,6 +33,7 @@ class clinicList {
                <div class="live-card">
                     <div class="clinic-title"  id="clinic-title">${item.disease} Awareness clinic</div>
                     <div class="clinic-date" id="date">${item.date}</div>
+                    <div class="clinic-date" id="date">${item.time}</div>
                     <div class="clinic-description">${item.description}</div>
                     <div class="clinic-details">
                         <div class="clinicID" id="clinicID"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> ID :</span> ${item.clinicID}</div>
@@ -50,6 +52,7 @@ class clinicList {
 
                             <div onclick="popup.showDeleteClinicAlertMessage(${item.clinicID})" class="delete-button">Delete</div>
                             <div class="edit-button" onclick="select(${item.clinicID})">Edit</div>
+                            <div class="delete-button" style="background-color: #1e8348" onclick="selectRe(${item.clinicID})">Reshedule</div>
 
                         </div>
                     </div>

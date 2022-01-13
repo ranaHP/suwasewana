@@ -100,6 +100,14 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     selectFormsg(req, res);
                     break;
+                case "resheduleclinic":
+//                    res.getWriter().println("select-V-Clinics");
+                    resheduleclinic(req, res);
+                    break;
+                case "ResheduleVClinics":
+//                    res.getWriter().println("select-V-Clinics");
+                    ResheduleVClinics(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -109,6 +117,54 @@ import java.util.ArrayList;
             throw new ServletException(error);
         }
     }
+
+    private void ResheduleVClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        vaccineClinicModel ResheduleVClinics= new vaccineClinicModel(
+                req.getParameter("clinicID"),
+                "",
+                req.getParameter("datetime"),
+               "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+
+        ) ;
+        System.out.println("updateeeeeeeeeee");
+        String result= createClinicDAO.ResheduleVClinics(ResheduleVClinics);
+        res.getWriter().println(result);
+    }
+
+    private void resheduleclinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        res.getWriter().println("update");
+        CreateClinicModel resheduleclinic= new CreateClinicModel(
+
+                req.getParameter("clinicID"),
+                "",
+                req.getParameter("date"),
+                req.getParameter("time"),
+                req.getParameter("duration"),
+                "",
+                "",
+                "",
+                "",
+               "",
+                "",
+                "",
+                "",
+                ""
+
+        );
+//        System.out.println("updateeeeeeeeeee");
+        String result= createClinicDAO.resheduleclinic(resheduleclinic);
+        res.getWriter().println(result);
+        }
 
     private void selectFormsg(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("message");
@@ -330,17 +386,17 @@ import java.util.ArrayList;
 
                 req.getParameter("clinicID"),
                 req.getParameter("title"),
-                req.getParameter("date"),
-                req.getParameter("time"),
-                req.getParameter("duration"),
-                req.getParameter("disease"),
+                "",
+                "",
+                "",
+                "",
                 req.getParameter("description"),
                 req.getParameter("maxpatient"),
                 "",
-                req.getParameter("conduct"),
+                "",
                 "",
                 req.getParameter("patient"),
-                req.getParameter("location"),
+                "",
                 ""
 
         );

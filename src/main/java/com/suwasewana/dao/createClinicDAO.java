@@ -15,15 +15,17 @@ public class createClinicDAO {
   private static final String VIEW_CLINICS = "SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ?";
   private static final String SELECT_CLINICS = "SELECT * FROM `normal_clinic_session` cs left join moh m on cs.target_moh=m.moh_id WHERE cs.ncs_id = ? AND cs.clinical_officer = ?";
   private static final String DELETE_CLINICS ="DELETE FROM `normal_clinic_session` WHERE `normal_clinic_session`.`ncs_id` = ?;";
-  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `date` = ? , `time` = ? , `duration` = ?,  `disease` = ?, `description` = ?,  `max_sheet` = ?,  `conduct_by` = ?, `target_people` = ?, `location` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
+  private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `description` = ?,  `max_sheet` = ?,`target_people` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
+  private static final String RESHEDULE_CLINICS="UPDATE `normal_clinic_session` SET `date` = ? , `time` = ? , `duration` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String disease_clinic_count="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease ";
   private static final String SELECT_events="SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`date` = ?";
 
-  private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?,NULL);";
+  private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?,NULL,NULL ,NULL );";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=?; ";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.vcs_id=?;";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `duration` = ? , `limit_sheats` = ? ,`lower_age_limit`=? ,`upper_age_limit`=?  ,`location`= ?  , `dose_count`= ? ,`start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
+  private static final String RESHEDULE_VCLINICS="UPDATE `vaccine_clinic_session` SET `start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String ClinicCount="SELECT COUNT(ncs_id), date FROM `normal_clinic_session` GROUP BY `date`;";
   private static final String UpdateAvailSheats="UPDATE `normal_clinic_session` SET `Avail_seats` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
   Connection connection;
@@ -65,17 +67,17 @@ public class createClinicDAO {
             System.out.println("came to update");
 //            preparedStatement.setString(1,"");
             preparedStatement.setString(1,updateClinic.getTitle());
-            preparedStatement.setString(2,updateClinic.getDate());
-            preparedStatement.setString(3,updateClinic.getTime());
-            preparedStatement.setString(4,updateClinic.getDuration());
-            preparedStatement.setString(5,updateClinic.getDisease());
-            preparedStatement.setString(6,updateClinic.getDescription());
-            preparedStatement.setString(7,updateClinic.getMaxpatient());
-            preparedStatement.setString(8,updateClinic.getConduct());
+//            preparedStatement.setString(2,updateClinic.getDate());
+//            preparedStatement.setString(3,updateClinic.getTime());
+//            preparedStatement.setString(4,updateClinic.getDuration());
+//            preparedStatement.setString(5,updateClinic.getDisease());
+            preparedStatement.setString(2,updateClinic.getDescription());
+            preparedStatement.setString(3,updateClinic.getMaxpatient());
+//            preparedStatement.setString(8,updateClinic.getConduct());
 //            preparedStatement.setString(8,updateClinic.getMOH());
-            preparedStatement.setString(9,updateClinic.getTarget());
-            preparedStatement.setString(10,updateClinic.getLocation());
-            preparedStatement.setString(11,updateClinic.getClinicID());
+            preparedStatement.setString(4,updateClinic.getTarget());
+//            preparedStatement.setString(10,updateClinic.getLocation());
+            preparedStatement.setString(5,updateClinic.getClinicID());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);
@@ -632,6 +634,47 @@ public class createClinicDAO {
 //            return throwables.getMessage();
         }
         return null;
+    }
+
+    public String resheduleclinic(CreateClinicModel resheduleclinic) {
+        boolean rowUpdate;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(RESHEDULE_CLINICS)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+
+            preparedStatement.setString(1,resheduleclinic.getDate());
+            preparedStatement.setString(2,resheduleclinic.getTime());
+            preparedStatement.setString(3,resheduleclinic.getDuration());
+            preparedStatement.setString(4,resheduleclinic.getClinicID());
+
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
+
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+
+    public String ResheduleVClinics(vaccineClinicModel resheduleVClinics) {
+        boolean rowUpdate;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(RESHEDULE_VCLINICS)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+            preparedStatement.setString(2,resheduleVClinics.getVcs_id());
+            preparedStatement.setString(1,resheduleVClinics.getStart_date_time());
+
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
+
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
     }
 }
 

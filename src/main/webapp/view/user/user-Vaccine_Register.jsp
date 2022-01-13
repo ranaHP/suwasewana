@@ -670,6 +670,8 @@
                     new_next_sloat=addTimes(newslot_time, '00:05:00');
                     tpno=element.TpNo;
                     User_Tp_slot.push({tpno:new_next_sloat});       //List of useres mobile no and new slot to send message
+                    console.log("hi")
+                    console.log(User_Tp_slot)
                     UpdateDateAndTimeWhenRechdule(regno,newslot_Date,newslot_time)
                     newslot_time=new_next_sloat
 
