@@ -335,7 +335,10 @@ label{
 
 }
 @media only screen and (max-width: 987px ){
-
+    .reschdulebtn{
+        margin-bottom: -63px;
+        margin-right: 275px
+    }
     .amount{
         font-size: 0.8em;
     }
@@ -388,6 +391,11 @@ label{
     }
     .c-container-left{
         width: 100%;
+    }
+    .upcomin-clinic div{
+        display: flex;
+        flex-direction: column;
+
     }
 }
 @media only screen and (max-width: 904px ){

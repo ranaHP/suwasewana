@@ -49,6 +49,9 @@ public class UserViewClinicsController extends HttpServlet {
                 case "cancel":
                     usercancelclinic(req, res);
                     break;
+                case "Numberslist":
+                    Numberslist(req, res);
+                    break;
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -69,6 +72,27 @@ public class UserViewClinicsController extends HttpServlet {
 ////        res.getWriter().println(uNic);
 //        System.out.println(uNic);
 
+    }
+
+    private void Numberslist(HttpServletRequest req, HttpServletResponse res) throws IOException {
+          UserViewClinicsModel Numberlist= new UserViewClinicsModel(
+            req.getParameter("clinicID"),
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          );
+        String result= userDAO.Numberlist(Numberlist);
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void usercancelclinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
