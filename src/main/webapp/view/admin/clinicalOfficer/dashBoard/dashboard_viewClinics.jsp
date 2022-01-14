@@ -239,6 +239,7 @@
 
 
     // }
+    //send cancel normal clinic msg
     function cancelClinicmsg(id){
         console.log("came to select function")
         // let selectClinic = new selectClinics("form");
@@ -257,16 +258,26 @@
                 console.log(disease)
                 let message="The awareness clinic for" +" "+ disease + " "+"to be held on"+" "
                     +date+"."+" "+"is cancelled. visit suwasewana for more details";
-                msgdelivers(disease,message)
+                msgdelivers(disease,message,id)
                 console.log(message)
             }
         );
         return false;
     }
-    function msgdelivers(disease,message){
-        //find number list who register for the disease
+    function msgdelivers(disease,message,id){
+        //find number list who register for the clinic
         let Nlist=[];
-        // sendmsg(Nlist,message)
+        let reqData =
+            {
+                clinicID: id,
+            };
+        $.post("/test_war_exploded/user-view-clinic-controller/Numberslist",
+            reqData,
+            function(data,status){
+                console.log(data)
+                Nlist=JSON.parse(data)
+            }
+        );
         return false;
     }
 
