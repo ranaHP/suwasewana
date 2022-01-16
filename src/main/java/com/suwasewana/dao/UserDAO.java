@@ -84,6 +84,8 @@ public class UserDAO {
     private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
 
 
+    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess`";
+
 
     public UserDAO() {
         DB db = new DB();
@@ -1137,6 +1139,32 @@ public class UserDAO {
     }
 
     public String Numberlist(UserViewClinicsModel numberlist) {
+
+        return null;
+    }
+
+    public ArrayList<UserDiseaseModel> UserViewDiseaseDetails(UserDiseaseModel userdisease) {
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_DISEASE_DETAILS)) {
+            ResultSet rs= preparedStatement.executeQuery();
+            ArrayList<UserDiseaseModel> viewdiseasedetails = new ArrayList<UserDiseaseModel>();
+            System.out.println("data dao");
+            while (rs.next()){
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                UserDiseaseModel temp = new UserDiseaseModel(
+                        name,
+                        description
+                );
+                viewdiseasedetails.add(temp);
+                System.out.println("dta get");
+            }
+
+            return viewdiseasedetails;
+
+        }catch (SQLException throwables){
+            printSQLException(throwables);
+        }
 
         return null;
     }
