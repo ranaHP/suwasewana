@@ -652,6 +652,44 @@
         }
     });
 </script>
+<script defer>
+
+    diseasedetails();
+    function diseasedetails(){
+        // let disease = new view_disease_details("");
+
+        let diseasearray=[]
+        let a = []
+        let b = []
+        $.post("/test_war_exploded/user-disease-controller/view",
+
+            function (data,status){
+            diseasearray = JSON.parse(data)
+                console.log("afaf")
+                // console.log(data)
+                console.log(diseasearray)
+                 a = JSON.parse(diseasearray[0].description);
+                 b = JSON.stringify(a.Spread);
+                 // b = JSON.parse(a.Spread);
+            // b = JSON.parse(a[1].EmergencyContact)
+                console.log(a)
+                console.log(a.name)
+                console.log(a.WhatIs)
+                // console.log(a.Spread)
+                console.log(b)
+                console.log(b[0])
+                console.log(desc)
+
+
+                // console.log(diseasearray[0].description[0])
+
+            // disease.setData(diseasearray)
+            }
+
+        )
+    }
+
+</script>
 <script>
     feather.replace({ width: "20px" })
 </script>
