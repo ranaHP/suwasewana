@@ -84,7 +84,7 @@ public class UserDAO {
     private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
 
 
-    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess`";
+    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 2";
 
 
     public UserDAO() {
@@ -1156,9 +1156,11 @@ public class UserDAO {
                         name,
                         description
                 );
+                System.out.println(temp);
                 viewdiseasedetails.add(temp);
                 System.out.println("dta get");
             }
+
 
             return viewdiseasedetails;
 
