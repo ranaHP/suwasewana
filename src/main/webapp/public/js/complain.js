@@ -8,6 +8,7 @@ class Complain {
 
 
     constructor(container) {
+        console.log("container id="+container)
         this.container = document.getElementById(container);
     }
 
@@ -30,7 +31,12 @@ class Complain {
         // console.log("data      "+data);
 
         if(data.length ==0){
-            this.conatiner.innerHTML += `No data found`
+            this.container.innerHTML += `No data found`
+            this.container.style.fontFamily = "'Nunito', sans-serif";
+            this.container.style.fontWeight = "300";
+            this.container.style.fontsize = "4vw";
+            this.container.style.letterSpacing = "0.2vw";
+            this.container.style.color = "#000000ba";
             return;
         }
 

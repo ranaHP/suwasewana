@@ -153,7 +153,7 @@ class FormInputValidation {
         // console.log("check length "+ name+" "+fieldName+" "+length)
         let isValida = true;
         if (name === "") {
-            this.setErrorMessageForField("required*", fieldName, 0)
+            this.setErrorMessageForField("Required*", fieldName, 0)
             isValida = false;
         }
         if(name.length<=length){
@@ -165,7 +165,7 @@ class FormInputValidation {
             isValida = true;
         }
         if (!name) {
-            this.setErrorMessageForField("required*", fieldName, 0)
+            this.setErrorMessageForField("Required*", fieldName, 0)
             isValida = false;
         }
         return isValida;
