@@ -174,12 +174,15 @@ public class UserComplainController extends HttpServlet {
         String uNic = "";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
+            System.out.println("cookies not empty");
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                    //System.out.println("cookie "+cookie.getValue().split("/")[1]);
                 }
             }
         }
+        System.out.println("nic = "+uNic);
         ComplainModel complainModeldetail = new ComplainModel(
                 "",
                 "",
@@ -195,9 +198,9 @@ public class UserComplainController extends HttpServlet {
                 "",
                 "",
                 ""
-
         );
-//        String nic="199910910064";
+        //uNic="199910910064";
+
         ArrayList<ComplainModel> result = userDAO.userGetComplainDetails(complainModeldetail,uNic);
         res.getWriter().println(gson.toJson(result));
     }

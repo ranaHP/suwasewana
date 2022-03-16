@@ -261,7 +261,7 @@
                                            'ecTitle',10);"
                                            onfocus="validation.removeerror('ecTitle');"
                                     />
-                                    <label id="ecTitle"></label>
+                                    <label id="ecTitle" style="color:#e90505ba"></label>
                                 </div>
                             </div>
                             <div class="row">
@@ -279,7 +279,7 @@
                                         <option value="Mahapola" option=" Mahapola"></option>
                                         <option value="Mahapola" option=" Mahapola"></option>
                                     </datalist>
-                                    <label id="eallcomplaintType"></label>
+                                    <label id="eallcomplaintType" style="color:#e90505ba"></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="uDetailsType">
@@ -294,7 +294,7 @@
                                         <option id="1" name="With Details" value="With Details" option="With Details"></option>
                                         <option id="0" name="Anonymous" value="Anonymous" option="Anonymous"></option>
                                     </datalist>
-                                    <label id="euDetailsType"></label>
+                                    <label id="euDetailsType" style="color:#e90505ba"></label>
                                 </div>
                             </div>
                             <div class="row">
@@ -312,7 +312,7 @@
                                      >
                                     <datalist id="allMOHArea">
                                     </datalist>
-                                    <label id="eMOHArea"></label>
+                                    <label id="eMOHArea" style="color:#e90505ba"></label>
                                 </div>
                                 <div class="form-group">
                                     <label for="phi">
@@ -327,7 +327,7 @@
                                     <datalist id="allphi">
 <%--                                        <option value="Plz select Your MOH Area" option="Plz select Your MOH Area" readonly></option>--%>
                                     </datalist>
-                                    <label id="ephi"></label>
+                                    <label id="ephi" style="color:#e90505ba"></label>
                                 </div>
 
                             </div>
@@ -347,7 +347,7 @@
                                            'ereason',10);"
                                               onfocus="validation.removeerror('ereason');"
                                     ></textarea>
-                                    <label id="ereason"></label>
+                                    <label id="ereason" style="color:#e90505ba"></label>
                                 </div>
 
                             </div>
