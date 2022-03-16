@@ -137,7 +137,7 @@ class Complain {
         let date2 =document.getElementById('date2').value;
 
 
-        let  day1;
+        let  day1,day2;
         if(date1==""){
             day1="";
         }
@@ -147,9 +147,12 @@ class Complain {
 
         if(date2==""){
             let today = new Date();
-            date2=today.getDate();
+            day2=today;
         }
-        let day2 = new Date(date2);
+        else {
+            day2 = new Date(date2);
+        }
+
 
         if(type === "All"){
             type = ""
@@ -164,15 +167,32 @@ class Complain {
         let filterdData = this.ComplainArray.filter( (app) => {
             let cday = new Date(app.complainModel.Posted_Date)
 
-            // console.log("data1 "+day1.getDay())
-            // console.log("data2 "+day2.getDay())
-            // console.log("cdata "+cday.getDay())
-            // console.log("data "+((day1.getDay()<=cday.getDay())&&(day2.getDay()>=cday.getDay()))|| day1.getDay()==cday.getDay())
+
+
+            /*if(((day1<=cday)&&(day2>=cday))||
+                (day1.getDay()==cday.getDay()&&
+                    day1.getMonth()==cday.getMonth()&&
+                    day1.getFullYear()==cday.getFullYear())||
+                (day2.getDay()==cday.getDay()&&
+                    day2.getMonth()==cday.getMonth()&&
+                    day2.getFullYear()==cday.getFullYear())){
+                console.log("equal year")
+            }
+            else{
+                console.log("not equal")
+                }*/
+
+            console.log("###############################################")
             if(day1!=""){
                 if(
                     app.complainModel.CTitle.toLowerCase().includes(title.toLowerCase()) &&
                     app.ComplainType.toLowerCase().includes(type.toLowerCase())&&
-                    ( ((day1<=cday)&&(day2>=cday))|| day1=="")
+
+                    ( ((day1<=cday)&&(day2>=cday))|| (day1.getDay()==cday.getDay()&&
+                        day1.getMonth()==cday.getMonth()&&
+                        day1.getFullYear()==cday.getFullYear()) ||(day2.getDay()==cday.getDay()&&
+                        day2.getMonth()==cday.getMonth()&&
+                        day2.getFullYear()==cday.getFullYear()))
                 ){
                     return app;
                 }
@@ -196,7 +216,7 @@ class Complain {
         let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
         let url = myUrl+"/public/";
         // console.log("constructor call url "+url);
-        // console.log("data      "+data);
+         console.log("data      "+data);
         if(data.length ==0 || !data){
             this.container.innerHTML = `No data found`
             return;
