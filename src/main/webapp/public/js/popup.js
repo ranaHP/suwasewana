@@ -689,6 +689,72 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    showVaccineClinicResheduleMessage(data){
+        data=JSON.parse(data)
+        // console.log(data)
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;padding: 0px;">
+                <div class="row" >
+                 
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">DateandTime</label>
+                        <input type="datetime-local"  id="start_date_time" value="${data[0].start_date_time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+       
+                </div>
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                   <button onclick="ResheduleVClinics('`+ data[0].vcs_id+`');popup.hidePopup()">update</button>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+
+    }
+    showClinicResheduleMessage(data){
+        data=JSON.parse(data)
+        // console.log(data)
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;padding: 0px;">
+                <div class="row" >
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                         <label style=" width:150px">Date</label>     
+                        <input type="date"  id="date" value="${data[0].date}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                     <div style="margin-bottom: 5px;display: flex">
+                         <label style=" width:150px">Date</label>     
+                        <input type="time"  id="time" value="${data[0].time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                    
+                    <div style="margin-bottom: 5px;display: flex">
+                        <label style=" width:150px">Duration</label>
+                        <input type="text"  id="duration" value="${data[0].duration}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                    </div>
+                     
+                </div>
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                   <button onclick="resheduleclinics('`+ data[0].clinicID+`');popup.hidePopup()">update</button>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
 
     showClinicEditMessage(data) {
         data=JSON.parse(data)
@@ -709,21 +775,6 @@ class SuwasewanaPopup{
                         <label style=" width:150px">Title</label>
                         <input type="text" value="${data[0].title}"  id="clinic-title" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                   
-                    <div style="margin-bottom: 5px;display: flex">
-                         <label style=" width:150px">Date</label>     
-                        <input type="text"  id="date" value="${data[0].date}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
-                     <div style="margin-bottom: 5px;display: flex">
-                         <label style=" width:150px">Date</label>     
-                        <input type="text"  id="time" value="${data[0].time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style=" width:150px">Duration</label>
-                        <input type="text"  id="duration" value="${data[0].duration}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
                      
                     <div style="margin-bottom: 5px;display: flex">
                         <label style=" width:150px">Max limit</label>
@@ -735,24 +786,7 @@ class SuwasewanaPopup{
                         <label style=" width:150px">Target participants</label>
                         <input type="text" value="${data[0].Target}"  id="patient" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                    
-                     
-                    <div style="margin-bottom: 5px;display: flex">
-                       <label style=" width:150px">Location</label>   
-                        <input type="text" value="${data[0].location}"  id="location" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
                    
-                    <div style="margin-bottom: 5px;display: flex">
-                         <label style=" width:150px">Disease</label>
-                        <input type="text" value="${data[0].disease}"  id="disease" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
-                    
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style=" width:150px">Conduct by</label>
-                        <input type="text" value="${data[0].conduct}"  id="conduct" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
 
                 </div>
                  <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>

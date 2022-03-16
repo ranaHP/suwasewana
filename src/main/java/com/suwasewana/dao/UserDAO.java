@@ -65,6 +65,7 @@ public class UserDAO {
 
     private static final String  USER_CANCEL_REGISTER_CLINIC ="DELETE FROM `suwasewana_db`.`clinic_registered_patient` WHERE `u_nic`  = ? AND `ncs_id` = ?;";
 
+    private static final String GetMobileNumberList="";
     private static final String USER_HOME_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=?;";
 //    private static final  String getUserTpMohIt="SELECT uMobile,uMoh FROM suwasewana_db.user where uNic=?;";
 
@@ -1131,6 +1132,11 @@ public class UserDAO {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
+        return null;
+    }
+
+    public String Numberlist(UserViewClinicsModel numberlist) {
 
         return null;
     }

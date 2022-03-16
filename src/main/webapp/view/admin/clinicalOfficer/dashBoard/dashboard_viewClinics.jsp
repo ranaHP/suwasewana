@@ -131,31 +131,30 @@
     function updateclinics(data){
         // alert("update")
         // let id=data;
-        let a=document.getElementById("disease").value;
         let patient=document.getElementById("patient").value;
         let maxpatient = document.getElementById("max-patient").value;
-        let duration=document.getElementById("duration").value;
-        let date= document.getElementById("date").value;
-        let time= document.getElementById("time").value;
+        // let duration=document.getElementById("duration").value;
+        // let date= document.getElementById("date").value;
+        // let time= document.getElementById("time").value;
         let clinictitle=document.getElementById("clinic-title").value;
         let description=document.getElementById("description").value;
-        let conduct=document.getElementById("conduct").value;
-        let location=document.getElementById("location").value;
-        console.log(a)
+        // let conduct=document.getElementById("conduct").value;
+        // let location=document.getElementById("location").value;
+        // console.log(a)
         // // alert("update")
         let reqData =
             {
                 clinicID:data,
-                disease:a,
+                // disease:a,
                 title:clinictitle,
-                location:location,
+                // location:location,
                 // targetMOH:document.getElementById("target-MOH").value,
-                date:date,
-                time:time,
-                duration:duration,
+                // date:date,
+                // time:time,
+                // duration:duration,
                 maxpatient:maxpatient,
                 patient:patient,
-                conduct:conduct,
+                // conduct:conduct,
                 description:description
             };
         console.log(reqData)
@@ -163,12 +162,54 @@
             reqData,
             function (data,status){
                 // alert("wrong")
-                //  alert(data)
+                 alert(data)
             });
 
         return false;
     }
+    function selectRe(id){
+        // let selectClinic = new selectClinics("form");
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/select",
+            reqData,
+            function(data,status){
+                // alert(data)
+                console.log(data)
+                clinicList=JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showClinicResheduleMessage(data)
 
+            }
+        );
+        return false;
+    }
+    function resheduleclinics(data){
+        let duration=document.getElementById("duration").value;
+        let datetime= document.getElementById("date").value;
+        let time= document.getElementById("time").value;
+        // // alert("update")
+        let reqData =
+            {
+                clinicID:data,
+                date:datetime,
+                time:time,
+                duration:duration,
+            };
+        console.log(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/resheduleclinic",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                alert(data)
+            });
+
+        return false;
+    }
     function checkMOHid(){
         var MTypeObj = document.getElementById('MArea');
         var datalist = document.getElementById(MTypeObj.getAttribute("list"));
@@ -198,6 +239,7 @@
 
 
     // }
+    //send cancel normal clinic msg
     function cancelClinicmsg(id){
         console.log("came to select function")
         // let selectClinic = new selectClinics("form");
@@ -216,16 +258,26 @@
                 console.log(disease)
                 let message="The awareness clinic for" +" "+ disease + " "+"to be held on"+" "
                     +date+"."+" "+"is cancelled. visit suwasewana for more details";
-                msgdelivers(disease,message)
+                msgdelivers(disease,message,id)
                 console.log(message)
             }
         );
         return false;
     }
-    function msgdelivers(disease,message){
-        //find number list who register for the disease
+    function msgdelivers(disease,message,id){
+        //find number list who register for the clinic
         let Nlist=[];
-        // sendmsg(Nlist,message)
+        let reqData =
+            {
+                clinicID: id,
+            };
+        $.post("/test_war_exploded/user-view-clinic-controller/Numberslist",
+            reqData,
+            function(data,status){
+                console.log(data)
+                Nlist=JSON.parse(data)
+            }
+        );
         return false;
     }
 

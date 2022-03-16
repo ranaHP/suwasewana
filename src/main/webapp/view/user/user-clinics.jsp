@@ -594,10 +594,13 @@
 
         max_sheet=max_sheet
         clinic_id = clinic_id;
+        console.log("register")
+        console.log(max_sheet)
         let date=year+"-"+month+"-"+day;
         console.log(clinic_id)
         console.log(max_sheet)
         let avalabel_seats=--max_sheet;
+        console.log(avalabel_seats)
         let reqData =
             {
                 Date:date,
@@ -622,7 +625,7 @@
             }
         );
     }
-   function updateAvailableseats(clinic_id,avalabel_seats){
+   function updateAvailableseats(avalabel_seats,clinic_id){
          avalabel_seats=avalabel_seats;
          clinic_id=clinic_id
 
@@ -682,7 +685,7 @@
                    ++avail_seats
                    console.log("b")
                    console.log(avail_seats)
-                  updateAvailableseats(ncs_id,avail_seats)
+                  updateAvailableseats(avail_seats,ncs_id)
 
                } else {
                    console.log("unsuccesssss brooo")

@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
-    <script src="<c:url value="/public/js/popup.js"/>"></script>
+<%--    <script src="<c:url value="/public/js/popup.js"/>"></script>--%>
     <link rel="stylesheet" href="<c:url value="/public/css/calander/calander.css "/>">
     <link rel="stylesheet" href="<c:url value="/public/css/popup/popup.css "/>">
 
@@ -111,6 +111,7 @@
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let calender = new Calender("calender");
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     // calender.reangeSelect(2021, 9, 10, 6, 8);
     view();
     viewV()
@@ -118,7 +119,7 @@
     choose()
     let eventA=[]
     let event=[]
-
+    //take data for the calendar
     function choose(){
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/viewcount",
@@ -158,6 +159,7 @@
 
     let today = new Date();
     let clinicList4 = new clinicListd("diseases");
+    //categorize clinic according to diseases
     function viewd(){
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/viewdisease",
@@ -197,6 +199,7 @@
         );
     }
     let clinicList3 = new clinicListv("clinic-list1");
+    //count the v clinics
     function viewV(){
         let clinicListArray1=[]
         $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
@@ -209,7 +212,7 @@
             }
         );
     }
-
+    //get pop up for reschedule n clinics
     function select(id){
         // let selectClinic = new selectClinics("form");
         let clinicList=[]
@@ -225,12 +228,13 @@
                 console.log(data)
                 clinicList=JSON.parse(data)
                 // selectClinic.setData(clinicList);
-                popup.showClinicEditMessage(data)
+                popup.showClinicResheduleMessage(data)
 
             }
         );
         return false;
     }
+    //get the pop up for edit v clinics
     function selectv(id){
         // let selectClinic = new selectClinics("form");
         let clinicList=[]
@@ -253,8 +257,31 @@
         );
         return false;
     }
+    //get the pop up for rescedule v clincs
+    function selectReV(id) {
+        // let selectClinic = new selectClinics("form");
+        let clinicList = []
+        let reqData =
+            {
+                clinicID: id,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+            reqData,
+            function (data, status) {
+                // alert(data)
+                console.log(data)
+                // alert(data)
+                clinicList = JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showVaccineClinicResheduleMessage(data)
 
+            }
+        );
+        return false;
+    }
 
+    //update vaccine clinics
     function updatevclinics(data){
         // alert("update")
         let id=data;
@@ -293,8 +320,197 @@
 
         return false;
     }
+    //reschedule vaccine clinics
+    function ResheduleVClinics(data){
+        // alert("update")
+        let id=data;
+        let datetime= document.getElementById("start_date_time").value;
+        let dateN=datetime.split("T")[0]
+        let timeN=datetime.split("T")[1]
+        reschdule(dateN,timeN,id)
+        let reqData =
+            {
+                clinicID:id,
+                datetime:datetime,
+            };
+        console.log(datetime.split("T")[1])
+        alert(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/ResheduleVClinics",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                // alert(data)
+                popup.hidePopup()
+            });
 
+        return false;
+    }
+    function timeToMins(time) {
+        var b = time.split(':');
+        return b[0] * 60 + +b[1];
+    };
 
+    function timeFromMins(mins) {
+        function z(n) {
+            if (n < 0) return ('-0' + (n).toString().slice(1));
+            return (n < 10 ? '0' : '') + n;
+        };
+
+        var h = (mins / 60 | 0);
+        var m = mins % 60;
+        return z(h) + ':' + z(m);
+    };
+    function addTimes(time0, time1) {
+        return timeFromMins(timeToMins(time0) + timeToMins(time1));
+    };
+    //function for send the msg to registered patient in vaccine clinics
+    //newslot time should 08:23 format
+    //when reschdule time then update it in vaccine_clinic->next_Available_time_slote also
+    function reschdule(newslot_Date,newslot_time,clinicid){
+        let reqData =
+            {
+                newslot_Date:newslot_Date,
+                newslot_time:newslot_time,
+                clinicid:clinicid
+
+            };
+        let User_Tp_slot=[]
+        $.post(myUrl+"/Vaccine-controller/GetVaccineClinicDetailForReschdule/",
+            reqData,
+            function (data, status) {
+                rs= JSON.parse(data);
+                // let registered_clinic_list=document.getElementById("registeredClinicList");
+                // registered_clinic_list.innerHTML='';
+                let new_next_sloat=newslot_time
+                let tpno=""
+                rs.map((element) => {
+                    let regno=element.reg_No;
+
+                    new_next_sloat=addTimes(newslot_time, '00:05:00');
+                    tpno=element.TpNo;
+                    User_Tp_slot.push({tpno,new_next_sloat});       //List of useres mobile no and new slot to send message
+
+                    UpdateDateAndTimeWhenRechdule(regno,newslot_Date,newslot_time)
+                    newslot_time=new_next_sloat
+
+                })
+                resheduleMsgdata(User_Tp_slot,clinicid)
+                UpdateLastTimeSlot(new_next_sloat,clinicid)
+            }
+        );
+    }
+    function resheduleMsgdata(User_Tp_slot,clinicid){
+        let clinicList = []
+        let reqData =
+            {
+                clinicID: clinicid,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+            reqData,
+            function (data, status) {
+                clinicList = JSON.parse(data)
+                let vaccine_name =clinicList[0].vaccine_name
+                let date=clinicList[0].start_date_time.split(" ")[0]
+                resheduleMsg(vaccine_name,User_Tp_slot,date)
+            }
+        );
+
+        return false;
+    }
+    //vaccine clinic reschedule msg sending
+    function resheduleMsg(vaccine_name,User_Tp_slot,date){
+        User_Tp_slot.map(element=>{
+            let t=element.tpno
+            TNo=t.substring(1)
+            let TNo11="+94"+TNo
+            let msgs="The"+" "+vaccine_name+" "+"vaccine Clinic session that you registered has rescheduled."+" "+
+                "Your new time slot is"+" "+element.new_next_sloat +" "+"on"+" "+date
+            console.log(msgs)
+            let reqData =
+                {
+                    message:msgs,
+                    to:parseInt(TNo11),
+                };
+            console.log(reqData)
+            $.post("https://app.notify.lk/api/v1/send?user_id=15299&api_key=yjPuiEKMqfq8k8HKA14d&sender_id=NotifyDEMO",
+                reqData,
+
+                function(data,status){
+                    console.log("data")
+
+                }
+            );
+        })
+
+        return false;
+    }
+    function UpdateLastTimeSlot(new_next_sloat,clinicid){
+        let reqData =
+            {
+                clinic_id:clinicid,
+                newslot_Date:new_next_sloat
+            };
+        $.post(myUrl+"/Vaccine-controller/updateTimeSlotsOfClinicTable",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    console.log("success broooooooo")
+
+                } else {
+                    console.log("unsuccess broooooooo")
+                }
+            }
+        );
+    }
+    function UpdateDateAndTimeWhenRechdule(clinic_id,newslot_Date,newslot_time){
+        // console.log("clinic id "+clinic_id+" || newslot_Date "+newslot_Date+" || newslot_time "+newslot_time)
+
+        let reqData =
+            {
+                clinic_id:clinic_id,
+                newslot_Date:newslot_Date,
+                newslot_time:newslot_time
+            };
+
+        $.post(myUrl+"/Vaccine-controller/updateTimeSlotsOfUsers",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    // console.log("success broooooooo")
+
+                } else {
+                    // console.log("unsuccess broooooooo")
+                }
+            }
+        );
+    }
+    //rechedule normal clinics
+    function resheduleclinics(data){
+        let duration=document.getElementById("duration").value;
+        let datetime= document.getElementById("date").value;
+        let time= document.getElementById("time").value;
+        // // alert("update")
+        let reqData =
+            {
+                clinicID:data,
+                date:datetime,
+                time:time,
+                duration:duration,
+            };
+        console.log(reqData)
+        $.post("/test_war_exploded/create-clinic-controller/resheduleclinic",
+            reqData,
+            function (data,status){
+                // alert("wrong")
+                // alert(data)
+            });
+
+        return false;
+    }
+    //function for update normal clinics
     function updateclinics(data){
         // alert("update")
         // let id=data;
