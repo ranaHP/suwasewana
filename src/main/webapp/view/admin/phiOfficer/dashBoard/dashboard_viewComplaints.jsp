@@ -300,6 +300,7 @@
             reqData,
             function (data, status) {
                 if (data.includes("success")) {
+                    console.log("Successsss brooo")
                     getAllComplain();
                 } else {
                     console.log("unsuccesssss brooo")

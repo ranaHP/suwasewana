@@ -212,13 +212,17 @@ datalist {
     width: 30%;
 }
 .card_bottom_row{
-    display: flex;
+    /*display: flex;*/
+    padding-top: 12px
 }
 .card_bottom_row_col{
     width: 30%;
     /* background-color: red; */
     display: flex;
     align-items: flex-end;
+    margin-right: 23px;
+    margin-top: 5px;
+    font-size: 0.95vw
 }
 .card_title{
     font-size: 1.5em;
@@ -227,9 +231,10 @@ datalist {
 .date{
     font-size: 0.8em;
     margin-left: 2px;
+    color: #000000b8;
 }
 .complain_text{
-    color: rgba(0, 0, 0, 0.829);
+    color: #000000b3;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .card_bottom_row{
@@ -288,6 +293,7 @@ datalist {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    font-size: 0.8em;
 }
 .complain_card_right_button_row button{
     border-radius: 3px;
@@ -478,6 +484,7 @@ datalist {
     .card_title{
         font-size: 1.2em;
         font-weight: 500;
+        color: #222020d4;
     }
 }
 @media only screen and (max-width: 401px ){
