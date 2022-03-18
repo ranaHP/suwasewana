@@ -251,8 +251,6 @@
                     document.getElementById("How_work").innerText=element.how_work;
                     document.getElementById("How_well_work").innerText=element.How_Well_work;
                     document.getElementById("proof1").src=myUrl+"/public/images/vaccine/"+element.image;
-                    // console.log("imgName array - "+document.getElementById("proof1").src.split('/')[document.getElementById("proof1").src.split('/').length-1])
-                    // console.log("status "+element.view_status);
                     if(element.view_status==1){
                         document.getElementById("unhide").disabled = true;
                         document.getElementById("hide").disabled = false;

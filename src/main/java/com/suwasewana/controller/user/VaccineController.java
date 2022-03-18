@@ -113,7 +113,8 @@ public class VaccineController extends HttpServlet {
         }
 
 
-        String nic=uNic;
+        //String nic=uNic;
+        String nic="199910910064";
         ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetRegisterdVaccineClinicDetail(nic);
         res.getWriter().println(gson.toJson(result));
     }
@@ -129,9 +130,8 @@ public class VaccineController extends HttpServlet {
                 }
             }
         }
-
-        String mohid=UMoh;
-        String nic=uNic;
+        String mohid="1002";
+        String nic="199910910064";
         ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetVaccineClinicDetail(mohid,nic);
         res.getWriter().println(gson.toJson(result));
     }
@@ -149,8 +149,8 @@ public class VaccineController extends HttpServlet {
             }
         }
 
-
-
+        uNic ="199910910064";
+                UTp="0713805000";
         String new_next_sloat=req.getParameter("new_next_sloat");
         String Set_sloat=req.getParameter("Set_sloat");
         String avalabel_seats=req.getParameter("avalabel_seats");

@@ -289,7 +289,6 @@
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 
     let rs;
-    // console.log("url - "+ myUrl+"/admin-register-controller/All_vaccine_details/");
 
 
     function calculateage(name) {
@@ -408,13 +407,15 @@
         return z(h) + ':' + z(m);
     };
 
-    function addTimes(time0, time1) {
+    function addTimes(time0, time1) {  //require time in _:_:_ format
         return timeFromMins(timeToMins(time0) + timeToMins(time1));
     };
 
     function RegisterForclinic(vaccine_clinic_id,vaccine_id,max_sheet,date,sloat,Que_no){
         console.log("Queue no "+Que_no)
         let new_next_sloat=addTimes(sloat, '00:05:00');
+        console.log("sloat "+sloat)
+        console.log("next slot - "+ new_next_sloat)
         let avalabel_seats=--max_sheet;
         let QNo= parseInt(Que_no)+1
         console.log("Queue no +1 "+QNo)
@@ -446,7 +447,7 @@
                 } else {
                     popup.showUserVaccineRegisterSuccessMessage({
                         status: 'fail',
-                        message: 'Complain Send Fail !',
+                        message: 'Oops! Something Went Wrong',
                     });
                 }
             }
@@ -483,7 +484,8 @@
         return "";
     }
     LoadVaccineclinic();
-    let nic = getCookie("uDetails").split("/")[1]
+    //let nic = getCookie("uDetails").split("/")[1]
+    let nic="199910910064"
     let age=calculateage(nic);
     function LoadVaccineclinic(){
         // console.log("Nic in js "+getCookie("uDetails").split("/")[0])
@@ -498,8 +500,48 @@
                     let expdate=new Date(element.date);
                     let currentDate=new Date();
                     console.log("Que no = "+element.Que_no)
+                    /*console.log("age = "+age)
+                    console.log("element.Upper_Age = "+element.Upper_Age)
+                    console.log("element.Lower_Age = "+element.Lower_Age)
+                    console.log("element.max_sheet= "+element.max_sheet)
+                    console.log("currentDate= "+currentDate)
+                    console.log("expdate = "+expdate)
+
+                    console.log("age<= parseInt(element.Upper_Age ")
+                    if(age<= parseInt(element.Upper_Age))
+                        console.log("True")
+                    else
+                        console.log("False")
+
+                    console.log("age>= parseInt(element.Lower_Age ")
+                    if(age>= parseInt(element.Lower_Age))
+                        console.log("True")
+                    else
+                        console.log("False")
+
+                    console.log("(element.Status!=alreadyHave) =")
+                    if((element.Status!="alreadyHave"))
+                        console.log("True")
+                    else
+                        console.log(element.Status+" -False")
+
+                    console.log("(element.max_sheet>0) = ")
+                    if((element.max_sheet>0))
+                        console.log("True")
+                    else
+                        console.log("False")
+
+                    console.log("(currentDate<=expdate) ")
+                    if((currentDate<=expdate))
+                        console.log("True")
+                    else
+                        console.log("False")
+
+                    console.log("############################################")*/
                     let QNo=element.Que_no;
-                    if(age<= parseInt(element.Upper_Age) && age> parseInt(element.Lower_Age) && (element.Status!="alreadyHave") &&(element.max_sheet>0) && (currentDate<=expdate)){
+                    if(age<= parseInt(element.Upper_Age) && age>= parseInt(element.Lower_Age) && (element.Status!="alreadyHave") &&(element.max_sheet>0) && (currentDate<=expdate)){
+                        /*console.log("True can view")
+                        console.log("======================================================================/n")*/
                         available_clinic_list.innerHTML+= `
                        <tr>
                           <td data-label="Vaccine">`+element.vaccine_name+`</td>
@@ -516,9 +558,13 @@
 
                     }
                     else if (currentDate>=expdate){
+                        // console.log("can't view expired")
+                        // console.log("======================================================================/n")
                         available_clinic_list.innerHTML+= ''
                     }
                     else{
+                        // console.log("False can't register")
+                        // console.log("======================================================================/n")
                         available_clinic_list.innerHTML+= `
                        <tr>
                           <td data-label="Vaccine">`+element.vaccine_name+`</td>
@@ -605,6 +651,7 @@
 
     ViewRegisterdClinics();
     async function ViewRegisterdClinics(){
+        console.log("ViewRegisterdClinics call")
         $.post(myUrl+"/Vaccine-controller/GetRegisterdVaccineClinicDetail/",
             await function (data, status) {
                 rs= JSON.parse(data);
@@ -615,7 +662,12 @@
                     let time=((element.date).split(" ")[1]).split(":")[0]+"."+((element.date).split(" ")[1]).split(":")[1];
                     let expdate=new Date(element.date);
                     let currentDate=new Date();
+                    // console.log("expdate "+expdate)
+                    // console.log("currentDate "+currentDate)
+
                     if(currentDate<=expdate){
+                        console.log("not expired yet")
+
                         registered_clinic_list.innerHTML+= `
                        <tr>
                           <td data-label="Vaccine">`+element.vaccine_name+`</td>
@@ -627,6 +679,7 @@
                         </tr>`
                     }
                     else {
+                        console.log("expired")
                         registered_clinic_list.innerHTML+= `
                        <tr>
                           <td data-label="Vaccine">`+element.vaccine_name+`</td>
@@ -645,7 +698,7 @@
 
     //newslot time should 08:23 format
     //when reschdule time then update it in vaccine_clinic->next_Available_time_slote also
-    reschdule("2023-12-05", "11:40:00","18")
+    //reschdule("2023-12-05", "11:40:00","18")
     function reschdule(newslot_Date,newslot_time,clinicid){
         let reqData =
             {
