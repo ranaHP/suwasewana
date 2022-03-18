@@ -76,6 +76,8 @@
 
     function deleteVClinics(clinicID){
         // console.log("deleteclinicfunction")
+        let id=clinicID
+        cancelClinicmsg(parseInt(id))
         $.post("/test_war_exploded/create-clinic-controller/deleteV",
             {
                 clinicID: clinicID
@@ -97,6 +99,85 @@
         );
     }
 
+    function cancelClinicmsg(id){
+        console.log("came to select function")
+        // let selectClinic = new selectClinics("form");
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+            reqData,
+            function(data,status){
+                console.log(data)
+                clinicList=JSON.parse(data)
+                let location=clinicList[0].location
+                let title=clinicList[0].tittle
+                let date=clinicList[0].start_date_time
+                let vaccine=clinicList[0].vaccine_name
+
+                let message="The vaccine clinic at"+" "+ location + " "+ "on"+" "+ date+" "+"for" +" "+ vaccine + " "+"vaccination,"+" " +"is cancelled. visit suwasewana for more details";
+                cancelClinic_Nlist(message,id)
+                console.log(message)
+            }
+        );
+        return false;
+    }
+
+    //taking vaccine clinic registered numbers list
+    function cancelClinic_Nlist(message,id){
+        //find number list who register for the clinic
+        let Nlist=[];
+        let reqData =
+            {
+                clinicID: id,
+            };
+        $.post("/test_war_exploded/create-clinic-controller/",
+            reqData,
+
+            function(data,status){
+                console.log("yes")
+                Nlist=JSON.parse(data)
+                console.log(Nlist)
+                console.log("message cancellll")
+                let nLIST=[];
+                Nlist.map(element=>{
+                    let t=element.maxpatient
+                    TNo=t.substring(1)
+                    let TNo11="+94"+TNo
+                    nLIST.push(TNo11)
+                })
+                sendmsg(nLIST,message)
+            }
+        );
+
+        return false;
+
+    }
+    //final function for sending sms
+
+    function sendmsg(nLIST,msg) {
+        let msgs=msg;
+        console.log(nLIST)
+        nLIST.map(element=>{
+            let reqData =
+                {
+                    message:msgs,
+                    to:parseInt(element),
+                };
+            console.log(reqData)
+            $.post("https://app.notify.lk/api/v1/send?user_id=15808&api_key=8h4xvxbwtVgXH7dyZnN9&sender_id=NotifyDEMO",
+                reqData,
+                function(data,status){
+                    // console.log("data")
+
+                }
+            );
+        })
+
+        return false;
+    }
     let mohDetails=[];
     $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
         function (data, status) {
