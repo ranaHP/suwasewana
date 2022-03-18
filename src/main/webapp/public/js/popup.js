@@ -66,9 +66,10 @@ class SuwasewanaPopup{
     createCalenderEvent(event){
         let eventsContaier = document.createElement('div');
         event[0].events.map(eventitem => {
+            console.log(eventitem)
             let eventDiv = document.createElement('div');
-            eventDiv.innerHTML = "<br> <br> Event Title : <h2> " + eventitem.title + "</h2>";
-            eventDiv.innerHTML = "Event Desc : <h3> " + eventitem.desc + "</h3>";
+            eventDiv.innerHTML = "Title : <h5> "+ eventitem.title + "<br>" + "Location <h5> :" + eventitem.location  ;
+            // eventDiv.innerHTML = "Event Desc : <h3> " + eventitem.location + "</h3>";
             eventsContaier.appendChild(eventDiv);
             // popupMessage.classList.add('popup-message');
         });
@@ -77,6 +78,8 @@ class SuwasewanaPopup{
     }
 
     showCalenderEnvetPopup(event) {
+        console.log("event des")
+        console.log(event)
         this.createCalenderEvent(event);
         this.container.style.display = "block";
     }

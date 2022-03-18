@@ -289,7 +289,7 @@
                 // to:"+94775836281",
             };
         // console.log(reqData)
-        $.post("https://app.notify.lk/api/v1/send?user_id=15253&api_key=ewCDvSx6ifsOuxLUztfM&sender_id=NotifyDEMO&to=+94775836281&message=good",
+        $.post("https://app.notify.lk/api/v1/send?user_id=15808&api_key=8h4xvxbwtVgXH7dyZnN9&sender_id=NotifyDEMO",
             reqData,
             function(data,status){
                // console.log("data")
