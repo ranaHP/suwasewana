@@ -108,6 +108,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     ResheduleVClinics(req, res);
                     break;
+                case "Numberslist":
+//                    res.getWriter().println("select-V-Clinics");
+                    numberslist(req, res);
+                    break;    
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -117,6 +121,29 @@ import java.util.ArrayList;
             throw new ServletException(error);
         }
     }
+
+    private void numberslist(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        CreateClinicModel numberslist= new CreateClinicModel(
+
+                req.getParameter("clinicID"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "12"
+
+        );
+        ArrayList<CreateClinicModel> result= createClinicDAO.numberslist(numberslist);
+        res.getWriter().println(gson.toJson(result));
+        }
 
     private void ResheduleVClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
         vaccineClinicModel ResheduleVClinics= new vaccineClinicModel(
