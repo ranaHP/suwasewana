@@ -119,7 +119,7 @@ public class UserDAO {
             preparedStatement.setString(1, nic);
             preparedStatement.setString(2, cId);
             ResultSet rs = preparedStatement.executeQuery();
-
+            //System.out.println("Sql qry for status - "+preparedStatement);
             if(rs.next()){
 
                 return "alreadyHave";
