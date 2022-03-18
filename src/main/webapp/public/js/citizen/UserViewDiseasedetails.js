@@ -22,14 +22,14 @@ class view_disease_details{
         this. diseasearrayy = data;
         console.log(data);
         // console.log(this.diseasearrayy.name)
-        data.map((item) => {
+        this.diseasearrayy.map((item) => {
 
 
                 this.container.innerHTML += `
 
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
                         Diseas : ${item.name}
-                        <button class="submitBtn" onclick="RegisterForDisease(`+item.name+`)"> Register as Patient </button>
+                        <button class="submitBtn" onclick="RegisterForDisease(`+ item.name +`)"> Register as Patient </button>
                     </div>
                     <div class="row1">
                         <div class="summary">

@@ -85,7 +85,7 @@ public class UserDAO {
 
 
     private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 2";
-
+    private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?);";
 
     public UserDAO() {
         DB db = new DB();
@@ -1166,6 +1166,21 @@ public class UserDAO {
 
         }catch (SQLException throwables){
             printSQLException(throwables);
+        }
+
+        return null;
+    }
+
+    public String userregisterdisease(String name, String UNic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_REGISTER_DISEASE)) {
+            preparedStatement.setString(2, name );
+            preparedStatement.setString(1, UNic);
+            int rs = preparedStatement.executeUpdate();
+
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException((SQLException) throwables);
         }
 
         return null;

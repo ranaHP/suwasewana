@@ -35,18 +35,32 @@ public class UserDiseaseController extends HttpServlet {
         try{
             RequestDispatcher rd;
             switch (getUrlData[getUrlData.length-1]){
-                case "view":
-                    UserviewDiseasedetails(req,res);
-                    break;
-                default:
-                    res.getWriter().println("404 Page not Found");
-                    break;
+
+                    case "view":
+                        UserviewDiseasedetails(req,res);
+                        break;
+
+                    case "register":
+                        UserregisterDiseasedetails(req,res);
+                        break;
+
+                    default:
+                        res.getWriter().println("404 Page not Found");
+                        break;
             }
 
 
         }catch (Exception error){
             throw new ServletException(error);
         }
+    }
+
+    private void UserregisterDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        String name = req.getParameter("name");
+        String UNic = "980930416v";
+
+        String result = userDAO.userregisterdisease(name,UNic);
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void UserviewDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -59,5 +73,8 @@ public class UserDiseaseController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
 
     }
+
+
+
 
 }

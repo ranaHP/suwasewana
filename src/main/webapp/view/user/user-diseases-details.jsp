@@ -669,13 +669,13 @@
             function (data,status){
             diseasearray = JSON.parse(data)
 
-                diseasearrayy = JSON.parse(diseasearray[0].description);
-
-
-
-                // console.log(diseasearrayy)
-                console.log(diseasearrayy.Symptoms.Less)
-                console.log(diseasearrayy.name)
+                // diseasearrayy = JSON.parse(diseasearray[0].description);
+                //
+                //
+                //
+                // // console.log(diseasearrayy)
+                // console.log(diseasearrayy.Symptoms.Less)
+                // console.log(diseasearrayy.name)
 
 
 
@@ -706,7 +706,7 @@
             function (data, status) {
 
                 if (data.includes("success")) {
-                    updateAvailableseats(avalabel_seats,clinic_id)
+                    // updateAvailableseats(avalabel_seats,clinic_id)
                 } else {
                     console.log("unsuccesssss brooo")
                     popup.showUserVaccineRegisterSuccessMessage({
