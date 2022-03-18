@@ -162,18 +162,18 @@
                 </div>
             </div>
             <div class="right-dashboard">
-                <div class="dashboard-page-title">
+                <div class="dashboard-page-title" id="VName">
                     Pfizer-BioNTech
                 </div>
 
                 <div class="dashboard-container">
                     <div class="dashboard-page-sub-title">
-                        <div class="ref_row">
-                            <div class="ref_cols">Status</div>
-                            <div class="ref_cols">Dosage</div>
-                            <div class="ref_cols">Common side effects</div>
-                            <div class="ref_cols">How it works</div>
-                            <div class="ref_cols">How well it works</div>
+                        <div class="ref_row" >
+                            <a href="#StatusTxt"  style="color: #2f3032e6; text-decoration: none"><div class="ref_cols">Booster Dose</div></a>
+                            <a href="#DosageTxt" style="color: #2f3032e6; text-decoration: none"><div class="ref_cols">Dosage</div></a>
+                            <a href="#SideEffectsTxt" style="color: #2f3032e6; text-decoration: none"><div class="ref_cols">Common side effects</div></a>
+                            <a href="#HowItWorksTxt" style="color: #2f3032e6; text-decoration: none"><div class="ref_cols">How it works</div></a>
+                            <a href="#HowWellItWorksTxt" style="color: #2f3032e6; text-decoration: none"><div class="ref_cols">How well it works</div></a>
                         </div>
                     </div>
                     <div class="dashboard-page-sub-title">
@@ -183,7 +183,7 @@
                         <span class="recomanded_for_main_text">Recommended for:</span> <span class="recomanded_for" id="rec_for"> Anyone 12 or older</span>
                     </div>
                     <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px;">
-                        <span class="v_description_title">Status</span>
+                        <span id="StatusTxt" class="v_description_title">Booster Dose</span>
                         <p style="padding-left: 10px; margin-top: 10px;" id="Status">
                             Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                             specified age groups in other countries, including in the European Union (under the name
@@ -201,7 +201,7 @@
                         </p>
                     </div>
                     <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px;">
-                        <span class="v_description_title">Dosage</span>
+                        <span id="DosageTxt" class="v_description_title">Dosage</span>
                         <p style="padding-left: 10px; margin-top: 10px;" id="Dosage">
                             Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                             specified age groups in other countries, including in the European Union (under the name
@@ -219,8 +219,8 @@
                         </p>
                     </div>
                     <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px;">
-                        <span class="v_description_title">Common side effects</span>
-                        <p style="padding-left: 10px; margin-top: 10px;" id="side_effect">
+                        <span id="SideEffectsTxt" class="v_description_title">Common side effects</span>
+                        <p style="padding-left: 10px; margin-top: 10px; " id="side_effect" >
                             Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                             specified age groups in other countries, including in the European Union (under the name
                             Comirnaty). Pfizer-BioNTech is awaiting final approval of an EUA for children ages 5-11. The CDC
@@ -237,7 +237,7 @@
                         </p>
                     </div>
                     <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px;">
-                        <span class="v_description_title">How it works</span>
+                        <span id="HowItWorksTxt" class="v_description_title">How it works</span>
                         <p style="padding-left: 10px; margin-top: 10px;" id="How_work">
                             Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                             specified age groups in other countries, including in the European Union (under the name
@@ -255,7 +255,7 @@
                         </p>
                     </div>
                     <div class="dashboard-page-sub-title vaccination_setails_rows"  style="margin-top: 30px; margin-bottom: 30px;">
-                        <span class="v_description_title">How well it works</span>
+                        <span id="HowWellItWorksTxt" class="v_description_title">How well it works</span>
                         <p style="padding-left: 10px; margin-top: 10px; padding-right: 10px;" id="How_well_work">
                             Approved for adults ages 16 and older in the U.S., with EUA for ages 12-15, and for
                             specified age groups in other countries, including in the European Union (under the name
@@ -299,7 +299,16 @@
     </div>
 </div>
 
-
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
 <script defer>
 
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
@@ -315,6 +324,7 @@
             rs.map((element) => {
 
                 if(element.ID==vaccineId){
+                    document.getElementById('VName').innerText=element.Name;
                     document.getElementById('rec_for').innerText=element.Recommended_for;
                     document.getElementById('Status').innerText=element.status;
                     document.getElementById('Dosage').innerText=element.dosage;
