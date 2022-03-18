@@ -77,7 +77,7 @@
                 clinicID: clinicID
             },
             function (data, status) {
-                alert(data)
+                // alert(data)
                 if (data.includes("success")) {
                     popup. showAnnouncementDeleteSuccessMessage({
                         status: 'success',

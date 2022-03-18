@@ -573,6 +573,7 @@ public class createClinicDAO {
                 EventList.add(temp);
 //                System.out.println(title+"--"+disease+"--"+Location);
             };
+//            System.out.println(EventList);
             return EventList;
         } catch (SQLException throwables) {
             printSQLException(throwables);
