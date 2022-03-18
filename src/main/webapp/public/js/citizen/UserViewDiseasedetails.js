@@ -29,7 +29,7 @@ class view_disease_details{
 
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
                         Diseas : ${item.name}
-                        <button class="submitBtn"> Register as Patient </button>
+                        <button class="submitBtn" onclick="RegisterForDisease(`+item.name+`)"> Register as Patient </button>
                     </div>
                     <div class="row1">
                         <div class="summary">

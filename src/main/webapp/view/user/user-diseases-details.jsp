@@ -686,6 +686,39 @@
     }
 
 </script>
+<script deffer>
+
+    function RegisterForDisease(name){
+
+
+        name= name;
+        console.log("register")
+        console.log(name)
+
+        let reqData =
+            {
+                name: name
+
+            };
+
+        $.post("/test_war_exploded/user-disease-controller/register",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    updateAvailableseats(avalabel_seats,clinic_id)
+                } else {
+                    console.log("unsuccesssss brooo")
+                    popup.showUserVaccineRegisterSuccessMessage({
+                        status: 'fail',
+                        message: 'Complain Send Fail !',
+
+                    });
+                }
+            }
+        );
+    }
+</script>
 <script>
     feather.replace({ width: "20px" })
 </script>
