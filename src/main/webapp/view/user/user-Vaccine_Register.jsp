@@ -484,9 +484,10 @@
         return "";
     }
     LoadVaccineclinic();
-    //let nic = getCookie("uDetails").split("/")[1]
-    let nic="199910910064"
+    let nic = getCookie("uDetails").split("/")[1]
+    // let nic="199910910064"
     let age=calculateage(nic);
+    console.log("Nic - "+nic)
     function LoadVaccineclinic(){
         // console.log("Nic in js "+getCookie("uDetails").split("/")[0])
         $.post(myUrl+"/Vaccine-controller/viewVaccineClinicdetail/",
