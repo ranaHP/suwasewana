@@ -88,8 +88,8 @@ class TodoList{
             let currentDate=new Date(utc)
             // console.log("##########################################")
 
-
-
+            console.log(" exp date "+expdate)
+            console.log(" task.status "+task.status)
 
             switch( task.status ){
                 case 'pending':
