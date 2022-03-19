@@ -107,8 +107,9 @@
 
     feather.replace({ width : "22px"})
 
-    getAllTask();
+
     updateTaskStatus();
+    getAllTask();
     function updateTaskStatus(){
         $.post(myUrl+"/phi-Todo-controller/UpdateOverdueTaskList",
             {},
@@ -131,7 +132,6 @@
         );
         return false;
     }
-
     function getAllTask() {
         $.post(myUrl+"/phi-Todo-controller/TakeTaskList",
             {},

@@ -83,14 +83,27 @@
             <div class="filter" style="width: 300px; margin-top: 30px">
                 <div class="date1" >
                     From
-                    <input type="date" id="date1" style="margin-left: 10px;" onchange="chechDate1_with_Date2();"><br>
+<%--                    <input type="date" id="date1" style="margin-left: 10px;" onchange="chechDate1_with_Date2();"><br>--%>
+                    <input type="date" id="date1" style="margin-left: 10px;" ><br>
                     <span id="date1error" style="font-size: 12px; color: rgba(255, 0, 0, 0.781);"></span>
                 </div>
                 <div class="date2" style="margin-top: 10px;">
                     To
-                    <input type="date" id="date2" style="margin-left: 30px;margin-left: 10px;" onchange="chechDate2_with_Date1();" ><br>
+<%--                    <input type="date" id="date2" style="margin-left: 30px;margin-left: 10px;" onchange="chechDate2_with_Date1();" ><br>--%>
+                    <input type="date" id="date2" style="margin-left: 30px;margin-left: 10px;"  ><br>
 
                 </div>
+            </div>
+            <div class="taskAssignRowCol" style="height: fit-content">
+
+                PHI
+
+                <input style="margin-left: 20px" class="sSelectPHI" id="sphi" type="text" list="sallphi" name="sallphi" autocomplete="off"
+                       onclick="document.getElementById('sphi').value=''";
+                >
+                <datalist id="sallphi">
+                    <%--                                        <option value="Plz select Your MOH Area" option="Plz select Your MOH Area" readonly></option>--%>
+                </datalist>
             </div>
             <select id="select_taks" >
                 <option>All</option>
@@ -146,23 +159,34 @@
             let exp_date=document.getElementById("expdate").value;
             let note=document.getElementById("specialNote").value;
 
-            console.log("title "+title);
-            console.log("exp_date "+exp_date);
-            console.log("note "+note);
-            console.log("PId "+PId);
+            // console.log("title "+title);
+            // console.log("exp_date "+exp_date);
+            // console.log("note "+note);
+            // console.log("PId "+PId);
 
             popup.ConformAssign();
 
-            console.log("correct");
+            // console.log("correct");
         }
         else {
             validation.selectCheck('phi','ephi');
-            console.log("incorrect");
+            // console.log("incorrect");
         }
 
         return false;
     }
-
+    function searchPHI(){
+        var phiObj = document.getElementById("sphi");
+        var datalist = document.getElementById(phiObj.getAttribute("list"));
+        if(datalist.options.namedItem(phiObj.value)){
+            sPId=(datalist.options.namedItem(phiObj.value).id);
+        }
+        else{
+            sPId=-1;
+        }
+        //console.log("Phi id = "+sPId )
+        return sPId;
+    }
 
     function conformAndDoneTask(){
         let title=document.getElementById("title").value;
@@ -218,12 +242,13 @@
 
 </script>
 <script >
-    ViewPHI('1003');
-    function ViewPHI(mid){
+    ViewPHI('1003',"allphi");
+    ViewPHI('1003',"sallphi");
+    function ViewPHI(mid,blockId){
         $.post(myUrl+"/user-complain-controller/phi",
             function (data, status) {
                 let rs= JSON.parse(data);
-                let PNames=document.getElementById("allphi");
+                let PNames=document.getElementById(blockId);
                 PNames.innerHTML="";
                 let i=0;
                 rs.map((element) => {
