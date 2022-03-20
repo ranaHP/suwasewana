@@ -45,6 +45,7 @@
     <title>Complain</title>
 </head>
 <body>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <!-- main container -->
 <div class="container"
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
@@ -595,6 +596,7 @@
     };
 </script>
 <script defer>
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -707,12 +709,15 @@
 
                 if (data.includes("success")) {
                     // updateAvailableseats(avalabel_seats,clinic_id)
+                    popup.showCreateClinicSuccessMessage({
+                        status: 'success',
+                        message: 'Successfully Registered!'
+                    })
                 } else {
-                    console.log("unsuccesssss brooo")
-                    popup.showUserVaccineRegisterSuccessMessage({
-                        status: 'fail',
-                        message: 'Complain Send Fail !',
-
+                    console.log("unsuccesssss")
+                    popup.showCreateClinicSuccessMessage({
+                        status: 'success',
+                        message: 'Register Failed!'
                     });
                 }
             }
