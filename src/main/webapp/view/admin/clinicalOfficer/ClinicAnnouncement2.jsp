@@ -309,6 +309,7 @@ function msg(){
             let disease=clinicList[0].disease
             let message="An awareness clinic for" +" "+ clinicList[0].disease + " "+"will be held on"+" "
                     +clinicList[0].date+"."+" "+"visit suwasewana.lk for more details";
+            console.log(message)
             msgdelivers(disease,message)
 
           }

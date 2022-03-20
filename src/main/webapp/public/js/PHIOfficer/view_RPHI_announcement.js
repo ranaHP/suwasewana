@@ -47,7 +47,7 @@ class View_RPHI_announcement{
             console.log(current_day)
             console.log(expday)
             // console.log("today : "+current_day+" "+"exp_day : "+expday);
-            // if(current_day<=expday) {
+            if(current_day<=expday) {
 
                 this.container.innerHTML += `
        <div class="announcement">
@@ -59,7 +59,7 @@ class View_RPHI_announcement{
             <div class="right">
                 <div class="up">
                     <div class="announe-title">${item.title}</div>
-                    <div class="post-date" id="post-date">posted date -: ${item.posted_date}</div>
+                    <div class="post-date" id="post-date">posted date -: ${item.posted_date.split(" ")[0]}</div>
                 </div>
                 <div class="down">
                     <div class="description">${item.description}  </div>
@@ -68,8 +68,9 @@ class View_RPHI_announcement{
             </div>
        </div>
             `;
-            })
+            }
 
+        })
         // alert("hi")
     }
 

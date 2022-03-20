@@ -54,7 +54,7 @@ class viewAnnouncements{
             <button onclick="popup.showDeleteAnnouncementAlertMessage(${item.clinicID})" >Delete</button>
         </div>
         <div class="Edit">
-            <button>Edit</button>
+<!--            <button>Edit</button>-->
         </div>
     </div>
 </div>

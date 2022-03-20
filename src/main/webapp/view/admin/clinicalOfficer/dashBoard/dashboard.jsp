@@ -120,7 +120,7 @@
     let eventA=[]
     let event=[]
 
-    //take data for the calendar
+    //take data from database for the calendar
 
     function choose(){
         let clinicListArray=[]
