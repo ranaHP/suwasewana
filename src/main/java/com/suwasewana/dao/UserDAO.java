@@ -85,7 +85,7 @@ public class UserDAO {
 
 
     private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 2";
-    private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?);";
+    private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?,NULL);";
 
     public UserDAO() {
         DB db = new DB();
