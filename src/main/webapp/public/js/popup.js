@@ -406,6 +406,51 @@ class SuwasewanaPopup{
         this.showPopup()
     }
 
+    showUserClinicRegisterSuccessMessage(data) {
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> Clinic Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <br><span>Have a nice day! </span>
+            </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Clinic Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  Exceed seats limit </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+
     Register(data) {
         let eventsContaier = document.createElement('div');
         // console.log(data.name);
