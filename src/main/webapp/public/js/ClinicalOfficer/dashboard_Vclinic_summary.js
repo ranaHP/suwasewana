@@ -37,7 +37,7 @@ class clinicListv {
                       <div class="clinic-card">
                     <div class="card-left">
                         <p class="h5">${item.tittle}</p>
-                        <div class="card-date">${item.start_date_time}</div>
+                        <div class="card-date">${item.start_date_time.split(" ")[0]}</div>
                         <div class="amount"></div>
                         <div class="nop">No of patients</div>
                         <button class="reschdulebtn" onclick="selectReV(${item.vcs_id})">Reschdule</button>

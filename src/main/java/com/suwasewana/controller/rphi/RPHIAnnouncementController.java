@@ -80,7 +80,7 @@ public class RPHIAnnouncementController extends HttpServlet {
                 "",
                 "",
                 "",
-                "1002",
+                "1004",
                 "",
                 "",
                 ""
