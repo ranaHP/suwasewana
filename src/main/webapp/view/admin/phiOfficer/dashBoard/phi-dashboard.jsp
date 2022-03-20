@@ -322,8 +322,56 @@
 
 
 <script>
+
+
+
+
+
+
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let complain= new Complain('previous_complain_list');
+
+
+
+    choose();
+    function choose(){
+        let TodoListArray=[]
+        $.post(myUrl+"/phi-Todo-controller/TakeTaskListcount",
+            // reqData,
+            function(data,status){
+                TodoListArray=JSON.parse(data)
+                TodoListArray.map(item=>{
+                    let date=item.expire_date
+                    console.log("date")
+                    console.log(date)
+                    let cday = new Date(item.expire_date)
+                    let cmonth= cday.getMonth()+1;
+                    let cyear=cday.getFullYear()
+                    let cdata=cday.getDate()
+                    let reqData={
+                        date:date
+                    };
+                    event=[]
+                    eventA=[]
+                    $.post(myUrl+"/phi-Todo-controller/TaskforClander",
+                        reqData,
+                        function (data,status){
+                            let EventArray =JSON.parse(data)
+                            // console.log(EventArray)
+                            // console.log("events")
+                            event.push(EventArray)
+                            let object2 = { year: cyear
+                                , month: cmonth, date: cdata ,events: event[0]};
+                            eventA.push(object2)
+                            event=[]
+                            calender.setTaskDataForCalander(eventA)
+                            // console.log("event arrray")
+                            // console.log(eventA)
+                        });
+                })
+            }
+        );
+    }
     getAllComplain();
     function getAllComplain() {
         let complainCardList = [];

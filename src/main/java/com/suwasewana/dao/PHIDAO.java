@@ -4,6 +4,7 @@ package com.suwasewana.dao;
 import com.suwasewana.core.DB;
 import com.suwasewana.model.ComplainModel;
 import com.suwasewana.model.ComplainTypeModel;
+import com.suwasewana.model.CreateClinicModel;
 import com.suwasewana.model.PHIModel;
 
 import java.sql.Connection;
