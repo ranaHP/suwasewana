@@ -84,6 +84,8 @@ public class UserDAO {
     private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
 
 
+    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 2";
+    private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?,NULL);";
 
     public UserDAO() {
         DB db = new DB();
@@ -1137,6 +1139,49 @@ public class UserDAO {
     }
 
     public String Numberlist(UserViewClinicsModel numberlist) {
+
+        return null;
+    }
+
+    public ArrayList<UserDiseaseModel> UserViewDiseaseDetails(UserDiseaseModel userdisease) {
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_DISEASE_DETAILS)) {
+            ResultSet rs= preparedStatement.executeQuery();
+            ArrayList<UserDiseaseModel> viewdiseasedetails = new ArrayList<UserDiseaseModel>();
+            System.out.println("data dao");
+            while (rs.next()){
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                UserDiseaseModel temp = new UserDiseaseModel(
+                        name,
+                        description
+                );
+                System.out.println(temp);
+                viewdiseasedetails.add(temp);
+                System.out.println("dta get");
+            }
+
+
+            return viewdiseasedetails;
+
+        }catch (SQLException throwables){
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
+    public String userregisterdisease(String name, String UNic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_REGISTER_DISEASE)) {
+            preparedStatement.setString(2, name );
+            preparedStatement.setString(1, UNic);
+            int rs = preparedStatement.executeUpdate();
+
+
+            return  "success";
+        } catch (SQLException throwables) {
+            printSQLException((SQLException) throwables);
+        }
 
         return null;
     }

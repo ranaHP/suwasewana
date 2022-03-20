@@ -37,12 +37,15 @@
     <script src="<c:url value="/public/js/popup.js"/>"></script>
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <script src="<c:url value="/public/js/loginLogout.js"/>"></script>
+    <script src="<c:url value="/public/js/citizen/UserViewDiseasedetails.js"/>"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <title>Complain</title>
 </head>
 <body>
+<div class="mypopup" id="popup" style="display: none;"></div>
 <!-- main container -->
 <div class="container"
      style="display: flex;flex-direction: column; justify-content: space-between;min-height: 100vh;">
@@ -203,369 +206,369 @@
                     </form>
                 </div>
 
-                <div class="dashboard-container">
-                    <div class="dashboard-page-sub-title d-title" id="disease_name">
-                        Diseas : Covid19
-                        <button class="submitBtn"> Register as Patient </button>
-                    </div>
-                    <div class="row1">
-                        <div class="summary">
-                            <img src="<c:url value="/public/images/diseases/covidBanner.jpg"/>" alt="" srcset="" width="100%" />
-                            <div class="summary-desc">
-                                <ul>
-                                    <li>Coronavirus disease (COVID-19) is an
-                                        infectious disease caused by a
-                                        newly discovered coronavirus.</li>
-                                    <li>
-                                        <img src="<c:url value="/public/images/icons/trending-up.svg"/>" width="15px" />
+                <div class="dashboard-container" id="dashboard-container">
+<%--                    <div class="dashboard-page-sub-title d-title" id="disease_name">--%>
+<%--                        Diseas : Covid19--%>
+<%--                        <button class="submitBtn"> Register as Patient </button>--%>
+<%--                    </div>--%>
+<%--                    <div class="row1">--%>
+<%--                        <div class="summary">--%>
+<%--                            <img src="<c:url value="/public/images/diseases/covidBanner.jpg"/>" alt="" srcset="" width="100%" />--%>
+<%--                            <div class="summary-desc">--%>
+<%--                                <ul>--%>
+<%--                                    <li>Coronavirus disease (COVID-19) is an--%>
+<%--                                        infectious disease caused by a--%>
+<%--                                        newly discovered coronavirus.</li>--%>
+<%--                                    <li>--%>
+<%--                                        <img src="<c:url value="/public/images/icons/trending-up.svg"/>" width="15px" />--%>
 
-                                        <div>535,529</div>
-                                        Coronavirus Cases:
-                                    </li>
-                                    <li>
-                                        <img src="<c:url value="/public/images/icons/alert-circle.svg"/>" width="15px" />
-                                        <div> 13,593 </div>
-                                        Deaths:
-                                    </li>
-                                    <li>
-                                        <img src="<c:url value="/public/images/icons/users.svg"/>" width="15px" />
-                                        <div> 503,090 </div>
-                                        Recovered:
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="history-what-is-container">
-                            <div class="history">
-                                <div class="d-s-title">
-                                    History
-                                </div>
-                                Coronavirus disease 2019 (COVID-19) is a contagious disease caused by severe acute
-                                respiratory syndrome coronavirus 2 (SARS-CoV-2). The first known case was identified
-                                in Wuhan, China, in December 2019.[7] The disease has since spread worldwide,
-                                leading to an ongoing pandemic.[8]
+<%--                                        <div>535,529</div>--%>
+<%--                                        Coronavirus Cases:--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <img src="<c:url value="/public/images/icons/alert-circle.svg"/>" width="15px" />--%>
+<%--                                        <div> 13,593 </div>--%>
+<%--                                        Deaths:--%>
+<%--                                    </li>--%>
+<%--                                    <li>--%>
+<%--                                        <img src="<c:url value="/public/images/icons/users.svg"/>" width="15px" />--%>
+<%--                                        <div> 503,090 </div>--%>
+<%--                                        Recovered:--%>
+<%--                                    </li>--%>
+<%--                                </ul>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="history-what-is-container">--%>
+<%--                            <div class="history">--%>
+<%--                                <div class="d-s-title">--%>
+<%--                                    History--%>
+<%--                                </div>--%>
+<%--                                Coronavirus disease 2019 (COVID-19) is a contagious disease caused by severe acute--%>
+<%--                                respiratory syndrome coronavirus 2 (SARS-CoV-2). The first known case was identified--%>
+<%--                                in Wuhan, China, in December 2019.[7] The disease has since spread worldwide,--%>
+<%--                                leading to an ongoing pandemic.[8]--%>
 
-                                Symptoms of COVID-19 are variable, <br />but often include fever,[9] cough,
-                                headache,[10] fatigue, breathing difficulties, and loss of smell and taste.<br />
-                                Symptoms may begin one to fourteen days after exposure to the virus. At least a
-                                third of people who are infected do not develop noticeable symptoms.[14] Of those
-                                people who develop symptoms noticeable enough to be classed as patients, most (81%)
-                                develop mild to moderate symptoms (up to mild pneumonia), while 14% develop severe
-                                symptoms (dyspnea, hypoxia, or more than 50% lung involvement on imaging), and 5%
-                                suffer critical symptoms (respiratory failure, shock, or multiorgan
-                                dysfunction).[15] Older people are at a higher risk of developing severe symptoms.
-                                Some people continue to experience a range of effects (long COVID) for months after
-                                recovery, and damage to organs has been observed.[16] Multi-year studies are
-                                underway to further investigate the long-term effects of the disease.[16]
-                                <br />
-                                COVID-19 transmits when people breathe in air contaminated by droplets and small
-                                airborne particles containing the virus. The risk of breathing these in is highest
-                                when people are in close proximity, but they can be inhaled over longer distances,
-                                particularly indoors. Transmission can also occur if splashed or sprayed with
-                                contaminated fluids in the eyes, nose or mouth, and, rarely, via contaminated
-                                surfaces. People remain contagious for up to 20 days, and can spread the virus even
-                                if they do not develop symptoms.[17][18]
-                                <br />
-                                Several testing methods have been developed to diagnose the disease. The standard
-                                diagnostic method is by detection of the virus' nucleic acid by real-time reverse
-                                transcription polymerase chain reaction (rRT-PCR), transcription-mediated
-                                amplification (TMA), or by reverse transcription loop-mediated isothermal
-                                amplification (RT-LAMP) from a nasopharyngeal swab.
-                            </div>
-                            <div class="what-is">
-                                <div class="d-s-title">
-                                    What Is COVID-19?
-                                </div>
-                                A coronavirus is a kind of common virus that causes an infection in your nose,
-                                sinuses, or upper throat. Most coronaviruses aren't dangerous.
+<%--                                Symptoms of COVID-19 are variable, <br />but often include fever,[9] cough,--%>
+<%--                                headache,[10] fatigue, breathing difficulties, and loss of smell and taste.<br />--%>
+<%--                                Symptoms may begin one to fourteen days after exposure to the virus. At least a--%>
+<%--                                third of people who are infected do not develop noticeable symptoms.[14] Of those--%>
+<%--                                people who develop symptoms noticeable enough to be classed as patients, most (81%)--%>
+<%--                                develop mild to moderate symptoms (up to mild pneumonia), while 14% develop severe--%>
+<%--                                symptoms (dyspnea, hypoxia, or more than 50% lung involvement on imaging), and 5%--%>
+<%--                                suffer critical symptoms (respiratory failure, shock, or multiorgan--%>
+<%--                                dysfunction).[15] Older people are at a higher risk of developing severe symptoms.--%>
+<%--                                Some people continue to experience a range of effects (long COVID) for months after--%>
+<%--                                recovery, and damage to organs has been observed.[16] Multi-year studies are--%>
+<%--                                underway to further investigate the long-term effects of the disease.[16]--%>
+<%--                                <br />--%>
+<%--                                COVID-19 transmits when people breathe in air contaminated by droplets and small--%>
+<%--                                airborne particles containing the virus. The risk of breathing these in is highest--%>
+<%--                                when people are in close proximity, but they can be inhaled over longer distances,--%>
+<%--                                particularly indoors. Transmission can also occur if splashed or sprayed with--%>
+<%--                                contaminated fluids in the eyes, nose or mouth, and, rarely, via contaminated--%>
+<%--                                surfaces. People remain contagious for up to 20 days, and can spread the virus even--%>
+<%--                                if they do not develop symptoms.[17][18]--%>
+<%--                                <br />--%>
+<%--                                Several testing methods have been developed to diagnose the disease. The standard--%>
+<%--                                diagnostic method is by detection of the virus' nucleic acid by real-time reverse--%>
+<%--                                transcription polymerase chain reaction (rRT-PCR), transcription-mediated--%>
+<%--                                amplification (TMA), or by reverse transcription loop-mediated isothermal--%>
+<%--                                amplification (RT-LAMP) from a nasopharyngeal swab.--%>
+<%--                            </div>--%>
+<%--                            <div class="what-is">--%>
+<%--                                <div class="d-s-title">--%>
+<%--                                    What Is COVID-19?--%>
+<%--                                </div>--%>
+<%--                                A coronavirus is a kind of common virus that causes an infection in your nose,--%>
+<%--                                sinuses, or upper throat. Most coronaviruses aren't dangerous.--%>
 
-                                In early 2020, after a December 2019 outbreak in China, the World Health
-                                Organization identified SARS-CoV-2 as a new type of coronavirus. The outbreak
-                                quickly spread around the world.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">
-                        <div class="d-s-title">
-                            How Spread COVID-19
-                        </div>
-                        <div class="row">
-                            <div class="prevention">
+<%--                                In early 2020, after a December 2019 outbreak in China, the World Health--%>
+<%--                                Organization identified SARS-CoV-2 as a new type of coronavirus. The outbreak--%>
+<%--                                quickly spread around the world.--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">--%>
+<%--                        <div class="d-s-title">--%>
+<%--                            How Spread COVID-19--%>
+<%--                        </div>--%>
+<%--                        <div class="row">--%>
+<%--                            <div class="prevention">--%>
 
-                                <div class="desc">
-                                    According to researchers in China, these were the most common symptoms among
-                                    people who had COVID-19:
-                                </div>
-                                <div class="prevention-list">
-                                    <div class="s-item">
-                                        Droplets or aerosols
-                                    </div>
-                                    <div class="s-item">
-                                        Airborne transmission
-                                    </div>
-                                    <div class="s-item">
-                                        Surface transmission
-                                    </div>
-                                    <div class="s-item">
-                                        Fecal-oral
-                                    </div>
+<%--                                <div class="desc">--%>
+<%--                                    According to researchers in China, these were the most common symptoms among--%>
+<%--                                    people who had COVID-19:--%>
+<%--                                </div>--%>
+<%--                                <div class="prevention-list">--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        Droplets or aerosols--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        Airborne transmission--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        Surface transmission--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        Fecal-oral--%>
+<%--                                    </div>--%>
 
-                                </div>
-                            </div>
-                            <div class="banner5">
-                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">
-                        <div class="d-s-title" style="text-align: center;">
-                            Symptoms of COVID-19
-                        </div>
-                        <div class="row1"
-                             style="flex-direction: column;justify-content: center;align-items: center;">
-                            <div class="symptopms">
-                                <div class="desc">
-                                    According to researchers in China, these were the most common symptoms among
-                                    people who had COVID-19:
-                                </div>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="banner5">--%>
+<%--                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">--%>
+<%--                        <div class="d-s-title" style="text-align: center;">--%>
+<%--                            Symptoms of COVID-19--%>
+<%--                        </div>--%>
+<%--                        <div class="row1"--%>
+<%--                             style="flex-direction: column;justify-content: center;align-items: center;">--%>
+<%--                            <div class="symptopms">--%>
+<%--                                <div class="desc">--%>
+<%--                                    According to researchers in China, these were the most common symptoms among--%>
+<%--                                    people who had COVID-19:--%>
+<%--                                </div>--%>
 
-                                <div class="d-s-s-titel">
-                                    Most common symptoms:
-                                </div>
-                                <div class="symptopms-list">
-                                    <div class="s-item">
-                                        Fever
-                                    </div>
-                                    <div class="s-item">
-                                        cough
-                                    </div>
-                                    <div class="s-item">
-                                        tiredness
-                                    </div>
-                                    <div class="s-item">
-                                        loss of taste or smell
-                                    </div>
+<%--                                <div class="d-s-s-titel">--%>
+<%--                                    Most common symptoms:--%>
+<%--                                </div>--%>
+<%--                                <div class="symptopms-list">--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        Fever--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        cough--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        tiredness--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        loss of taste or smell--%>
+<%--                                    </div>--%>
 
-                                </div>
+<%--                                </div>--%>
 
-                                <div class="d-s-s-titel">
-                                    Less common symptoms:
-                                </div>
-                                <div class="symptopms-list">
-                                    <div class="s-item">
-                                        sore throat
-                                    </div>
-                                    <div class="s-item">
-                                        headache
-                                    </div>
-                                    <div class="s-item">
-                                        aches and pains
-                                    </div>
-                                    <div class="s-item">
-                                        diarrhoea
-                                    </div>
-                                    <div class="s-item">
-                                        a rash on skin
-                                    </div>
-                                    <div class="s-item">
-                                        red or irritated eyes
-                                    </div>
-                                </div>
-                            </div>
+<%--                                <div class="d-s-s-titel">--%>
+<%--                                    Less common symptoms:--%>
+<%--                                </div>--%>
+<%--                                <div class="symptopms-list">--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        sore throat--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        headache--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        aches and pains--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        diarrhoea--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        a rash on skin--%>
+<%--                                    </div>--%>
+<%--                                    <div class="s-item">--%>
+<%--                                        red or irritated eyes--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
 
-                            <div class="d-s-s-titel">
-                                Serious symptoms:
-                            </div>
-                            <div class="symptopms-list">
-                                <div class="s-item">
-                                    difficulty breathing or shortness of breath
-                                </div>
-                                <div class="s-item">
-                                    loss of speech or mobility, or confusion
-                                </div>
-                                <div class="s-item">
-                                    chest pain
-                                </div>
-                            </div>
-                            <div class="banner1">
-                                <img src="<c:url value="/public/images/diseases/syntoms.png"/>" width="100%" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">
-                        <div class="d-s-title">
-                            Prevention of COVID-19
-                        </div>
-                        <div class="row">
-                            <div class="prevention">
+<%--                            <div class="d-s-s-titel">--%>
+<%--                                Serious symptoms:--%>
+<%--                            </div>--%>
+<%--                            <div class="symptopms-list">--%>
+<%--                                <div class="s-item">--%>
+<%--                                    difficulty breathing or shortness of breath--%>
+<%--                                </div>--%>
+<%--                                <div class="s-item">--%>
+<%--                                    loss of speech or mobility, or confusion--%>
+<%--                                </div>--%>
+<%--                                <div class="s-item">--%>
+<%--                                    chest pain--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="banner1">--%>
+<%--                                <img src="<c:url value="/public/images/diseases/syntoms.png"/>" width="100%" />--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">--%>
+<%--                        <div class="d-s-title">--%>
+<%--                            Prevention of COVID-19--%>
+<%--                        </div>--%>
+<%--                        <div class="row">--%>
+<%--                            <div class="prevention">--%>
 
-                                <div class="desc">
-                                    According to researchers in China, these were the most common symptoms among
-                                    people who had COVID-19:
-                                </div>
-                                <div class="prevention-list">
-                                    <div class="p-item">
-                                        Wear a mask properly
-                                    </div>
-                                    <div class="p-item">
-                                        Make your environment safer
-                                    </div>
-                                    <div class="p-item">
-                                        Clean your hands frequently with alcohol-based hand rub or soap and water.
-                                    </div>
-                                    <div class="p-item">
-                                        Get vaccinated as soon as it’s your turn and follow local guidance on vaccination.
-                                    </div>
-                                    <div class="p-item">
-                                        Keep physical distance of at least 1 metre from others, even if they don’t appear to be sick. Avoid crowds and close contact.
-                                    </div>
-                                    <div class="p-item">
-                                        Cover your mouth and nose with a bent elbow or tissue when you cough or sneeze. Dispose of used tissues immediately and clean hands regularly.
-                                    </div>
-                                    <div class="p-item">
-                                        If you develop symptoms or test positive for COVID-19, self-isolate until you recover.
-                                    </div>
-                                    <div class="row" style="padding-top: 20px;">
-                                        <div class="image-set">
-                                            <img src="<c:url value="/public/images/diseases/p1.svg"/> " height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p2.svg"/> " height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p5.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p4.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p6.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p7.svg"/>" height="70px" class="m-auto" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="banner2">
-                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">
-                        <div class="d-s-title">
-                            Treatments of COVID-19
-                        </div>
-                        <div class="d-s-s-titel">
-                            Self care
-                        </div>
-                        <div class="row">
-                            <div class="treatments">
+<%--                                <div class="desc">--%>
+<%--                                    According to researchers in China, these were the most common symptoms among--%>
+<%--                                    people who had COVID-19:--%>
+<%--                                </div>--%>
+<%--                                <div class="prevention-list">--%>
+<%--                                    <div class="p-item">--%>
+<%--                                        Wear a mask properly--%>
+<%--                                    </div>--%>
+<%--                                    <div class="p-item">--%>
+<%--                                        Make your environment safer--%>
+<%--                                    </div>--%>
+<%--                                    <div class="p-item">--%>
+<%--                                        Clean your hands frequently with alcohol-based hand rub or soap and water.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="p-item">--%>
+<%--                                        Get vaccinated as soon as it’s your turn and follow local guidance on vaccination.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="p-item">--%>
+<%--                                        Keep physical distance of at least 1 metre from others, even if they don’t appear to be sick. Avoid crowds and close contact.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="p-item">--%>
+<%--                                        Cover your mouth and nose with a bent elbow or tissue when you cough or sneeze. Dispose of used tissues immediately and clean hands regularly.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="p-item">--%>
+<%--                                        If you develop symptoms or test positive for COVID-19, self-isolate until you recover.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="row" style="padding-top: 20px;">--%>
+<%--                                        <div class="image-set">--%>
+<%--                                            <img src="<c:url value="/public/images/diseases/p1.svg"/> " height="70px" class="m-auto" />--%>
+<%--                                            <img src="<c:url value="/public/images/diseases/p2.svg"/> " height="70px" class="m-auto" />--%>
+<%--                                            <img src="<c:url value="/public/images/diseases/p5.svg"/>" height="70px" class="m-auto" />--%>
+<%--                                            <img src="<c:url value="/public/images/diseases/p4.svg"/>" height="70px" class="m-auto" />--%>
+<%--                                            <img src="<c:url value="/public/images/diseases/p6.svg"/>" height="70px" class="m-auto" />--%>
+<%--                                            <img src="<c:url value="/public/images/diseases/p7.svg"/>" height="70px" class="m-auto" />--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="banner2">--%>
+<%--                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">--%>
+<%--                        <div class="d-s-title">--%>
+<%--                            Treatments of COVID-19--%>
+<%--                        </div>--%>
+<%--                        <div class="d-s-s-titel">--%>
+<%--                            Self care--%>
+<%--                        </div>--%>
+<%--                        <div class="row">--%>
+<%--                            <div class="treatments">--%>
 
-                                <div class="desc" style="padding-bottom: 10px;">
-                                    According to researchers in China, these were the most common symptoms among
-                                    people who had COVID-19:
-                                </div>
-                                <div class="treatments-list">
-                                    <div class="t-item">
-                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.
-                                    </div>
-                                    <div class="t-item">
-                                        Cooperate with contact-tracing procedures to stop the spread of the virus.
-                                    </div>
-                                    <div class="t-item">
-                                        If testing is not available, stay home and away from others for 14 days.
-                                    </div>
-                                    <div class="t-item">
-                                        While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.
-                                    </div>
-                                    <div class="t-item">
-                                        Keep at least a 1-metre distance from others, even from your family members.
-                                    </div>
-                                    <div class="t-item">
-                                        Wear a medical mask to protect others, including if/when you need to seek medical care
-                                    </div>
-                                    <div class="t-item">
-                                        Stay in a separate room from other family members, and if not possible, wear a medical mask.
-                                    </div>
+<%--                                <div class="desc" style="padding-bottom: 10px;">--%>
+<%--                                    According to researchers in China, these were the most common symptoms among--%>
+<%--                                    people who had COVID-19:--%>
+<%--                                </div>--%>
+<%--                                <div class="treatments-list">--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        Cooperate with contact-tracing procedures to stop the spread of the virus.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        If testing is not available, stay home and away from others for 14 days.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        Keep at least a 1-metre distance from others, even from your family members.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        Wear a medical mask to protect others, including if/when you need to seek medical care--%>
+<%--                                    </div>--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        Stay in a separate room from other family members, and if not possible, wear a medical mask.--%>
+<%--                                    </div>--%>
 
-                                </div>
-                            </div>
-                            <div class="banner6">
-                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
-                            </div>
-                        </div>
-                        <div class="d-s-s-titel">
-                            Medical treatments
-                        </div>
-                        <div class="row">
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="banner6">--%>
+<%--                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="d-s-s-titel">--%>
+<%--                            Medical treatments--%>
+<%--                        </div>--%>
+<%--                        <div class="row">--%>
 
-                            <div class="treatments">
+<%--                            <div class="treatments">--%>
 
-                                <div class="desc" style="padding-bottom: 10px;">
-                                    According to researchers in China, these were the most common symptoms among
-                                    people who had COVID-19:
-                                </div>
-                                <div class="treatments-list">
-                                    <div class="t-item">
-                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.
-                                    </div>
-                                    <div class="t-item">
-                                        Dexamethasone is a corticosteroid that can help reduce the length of time on a ventilator and save lives of patients with severe and critical illness.
-                                    </div>
+<%--                                <div class="desc" style="padding-bottom: 10px;">--%>
+<%--                                    According to researchers in China, these were the most common symptoms among--%>
+<%--                                    people who had COVID-19:--%>
+<%--                                </div>--%>
+<%--                                <div class="treatments-list">--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.--%>
+<%--                                    </div>--%>
+<%--                                    <div class="t-item">--%>
+<%--                                        Dexamethasone is a corticosteroid that can help reduce the length of time on a ventilator and save lives of patients with severe and critical illness.--%>
+<%--                                    </div>--%>
 
 
-                                </div>
-                            </div>
-                            <div class="banner8">
-                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">
-                        <div class="d-s-title">
-                            Emergency contact number for COVID-19
-                        </div>
-                        <div class="row">
-                            <div class="emergency-contanat-container">
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="banner8">--%>
+<%--                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">--%>
+<%--                        <div class="d-s-title">--%>
+<%--                            Emergency contact number for COVID-19--%>
+<%--                        </div>--%>
+<%--                        <div class="row">--%>
+<%--                            <div class="emergency-contanat-container">--%>
 
-                                <div class="desc">
-                                    According to researchers in China, these were the most common symptoms among
-                                    people who had COVID-19:
-                                </div>
-                                <div class="emergency-contanat-cards">
-                                    <div class="emg-card">
-                                        <div class="emd-card-title">
-                                            Response Alert
-                                        </div>
-                                        <div class="emg-card-number">
-                                            1999
-                                        </div>
-                                    </div>
-                                    <div class="emg-card">
-                                        <div class="emd-card-title">
-                                            Response Alert
-                                        </div>
-                                        <div class="emg-card-number">
-                                            1999
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<%--                                <div class="desc">--%>
+<%--                                    According to researchers in China, these were the most common symptoms among--%>
+<%--                                    people who had COVID-19:--%>
+<%--                                </div>--%>
+<%--                                <div class="emergency-contanat-cards">--%>
+<%--                                    <div class="emg-card">--%>
+<%--                                        <div class="emd-card-title">--%>
+<%--                                            Response Alert--%>
+<%--                                        </div>--%>
+<%--                                        <div class="emg-card-number">--%>
+<%--                                            1999--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="emg-card">--%>
+<%--                                        <div class="emd-card-title">--%>
+<%--                                            Response Alert--%>
+<%--                                        </div>--%>
+<%--                                        <div class="emg-card-number">--%>
+<%--                                            1999--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
 
-                        </div>
-                    </div>
-                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">
-                        <div class="d-s-title">
-                            Current Status of Covid 19
-                        </div>
-                        <div class="row">
-                            <div class="chart-contanat-container">
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">--%>
+<%--                        <div class="d-s-title">--%>
+<%--                            Current Status of Covid 19--%>
+<%--                        </div>--%>
+<%--                        <div class="row">--%>
+<%--                            <div class="chart-contanat-container">--%>
 
-                                <div class="desc">
-                                    According to researchers in China, these were the most common symptoms among
-                                    people who had COVID-19:
-                                </div>
-                                <div class="chart-contanat-cards">
-                                    <div class="chart-card">
-                                        <canvas  id="myChart" width="100" height="30"></canvas>
-                                    </div>
+<%--                                <div class="desc">--%>
+<%--                                    According to researchers in China, these were the most common symptoms among--%>
+<%--                                    people who had COVID-19:--%>
+<%--                                </div>--%>
+<%--                                <div class="chart-contanat-cards">--%>
+<%--                                    <div class="chart-card">--%>
+<%--                                        <canvas  id="myChart" width="100" height="30"></canvas>--%>
+<%--                                    </div>--%>
 
-                                </div>
-                            </div>
-                        </div>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                    </div>
+<%--                    </div>--%>
                 </div>
             </div>
         </div>
@@ -593,6 +596,7 @@
     };
 </script>
 <script defer>
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -651,6 +655,74 @@
             }
         }
     });
+</script>
+
+<script defer>
+
+    diseasedetails();
+    function diseasedetails(){
+        let disease = new view_disease_details("dashboard-container");
+
+        let diseasearray=[]
+        let diseasearrayy = []
+
+        $.post("/test_war_exploded/user-disease-controller/view",
+
+            function (data,status){
+            diseasearray = JSON.parse(data)
+
+                // diseasearrayy = JSON.parse(diseasearray[0].description);
+                //
+                //
+                //
+                // // console.log(diseasearrayy)
+                // console.log(diseasearrayy.Symptoms.Less)
+                // console.log(diseasearrayy.name)
+
+
+
+            disease.setData(diseasearray)
+            }
+
+        )
+    }
+
+</script>
+<script deffer>
+
+    function RegisterForDisease(name){
+
+
+        name= name;
+        console.log("register")
+        console.log(name)
+
+        let reqData =
+            {
+                name: name
+
+            };
+
+        $.post("/test_war_exploded/user-disease-controller/register",
+            reqData,
+            function (data, status) {
+
+                if (data.includes("success")) {
+                    // updateAvailableseats(avalabel_seats,clinic_id)
+                    popup.showRegisterDiseaseSuccessMessage({
+                        status: 'success',
+                        message: 'Successfully Registered!'
+                    })
+                } else {
+                    console.log("unsuccesssss")
+                    popup.showRegisterDiseaseSuccessMessage({
+                        status: 'success',
+                        message: 'Registered Failed!'
+                    });
+                }
+            }
+        );
+    }
 </script>
 <script>
     feather.replace({ width: "20px" })
