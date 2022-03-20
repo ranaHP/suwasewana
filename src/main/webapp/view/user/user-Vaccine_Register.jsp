@@ -419,6 +419,16 @@
         let avalabel_seats=--max_sheet;
         let QNo= parseInt(Que_no)+1
         console.log("Queue no +1 "+QNo)
+
+        let timeWithAmPm=""
+        let AmPm=parseInt(sloat.split(":")[0])
+        if(AmPm<7 || AmPm==12){
+            timeWithAmPm=sloat+" PM"
+        }
+        else{
+            timeWithAmPm=sloat+" Am"
+        }
+
         let reqData =
             {
                 Set_sloat:sloat,
@@ -429,6 +439,15 @@
                 vaccine_id:vaccine_id,
                 Next_Que_no:QNo
             };
+        let TpNo = getCookie("uDetails").split("/")[2]
+        let message= `Covid-19 Vaccination Program.
+        Queue no:`+Que_no +`
+        Time slot: `+timeWithAmPm+`
+        Date : `+date+`
+        We are waiting for you!
+        Stay safe
+        ~SUWASEWANA~
+        `
 
         $.post(myUrl+"/Vaccine-controller/updateVaccineNextSloat_Maxseet",
             reqData,
@@ -439,9 +458,10 @@
                         status: 'success',
                         message: 'Successfully Registerd!',
                         data: date,
-                        Set_sloat:sloat,
+                        Set_sloat:timeWithAmPm,
                         Next_Que_no:Que_no
                     });
+                    sendmsg(TpNo,message)
                     LoadVaccineclinic();
                     ViewRegisterdClinics();
                 } else {
@@ -453,20 +473,20 @@
             }
         );
     }
-    function sendmsg() {
-        numbers.map(i => {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function () {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("demo").innerHTML =
-                            this.responseText;
-                    }
-                };
-                xhttp.open("GET", "https://app.notify.lk/api/v1/send?user_id=15170&api_key=JxIvVwu5Ww2TF7aYeFx0&sender_id=NotifyDEMO&to=+94" + i + "&message=good night", true);
-                xhttp.send();
-            }
-        )
-    }
+    // function sendmsg() {
+    //     numbers.map(i => {
+    //             var xhttp = new XMLHttpRequest();
+    //             xhttp.onreadystatechange = function () {
+    //                 if (this.readyState == 4 && this.status == 200) {
+    //                     document.getElementById("demo").innerHTML =
+    //                         this.responseText;
+    //                 }
+    //             };
+    //             xhttp.open("GET", "https://app.notify.lk/api/v1/send?user_id=15170&api_key=JxIvVwu5Ww2TF7aYeFx0&sender_id=NotifyDEMO&to=+94" + i + "&message=good night", true);
+    //             xhttp.send();
+    //         }
+    //     )
+    // }
 
     function getCookie(cname) {
         let name = cname + "=";
@@ -483,6 +503,28 @@
         }
         return "";
     }
+
+    //final function for sending sms
+    function sendmsg(TNo,msg) {
+        TNo=TNo.substring(1)
+        let FormatedTNo="+94"+TNo
+        console.log("Tp no "+FormatedTNo +"\nMessage "+msg)
+        let reqData =
+            {
+                message:msg,
+                to:parseInt(FormatedTNo),
+            };
+        // $.post("https://app.notify.lk/api/v1/send?user_id=15808&api_key=8h4xvxbwtVgXH7dyZnN9&sender_id=NotifyDEMO",
+        //     reqData,
+        //     function(data,status){
+        //         // console.log("data")
+        //
+        //     }
+        // );
+
+        return false;
+    }
+
     LoadVaccineclinic();
     let nic = getCookie("uDetails").split("/")[1]
     // let nic="199910910064"
