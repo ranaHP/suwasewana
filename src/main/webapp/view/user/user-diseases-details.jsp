@@ -709,15 +709,15 @@
 
                 if (data.includes("success")) {
                     // updateAvailableseats(avalabel_seats,clinic_id)
-                    popup.showCreateClinicSuccessMessage({
+                    popup.showRegisterDiseaseSuccessMessage({
                         status: 'success',
                         message: 'Successfully Registered!'
                     })
                 } else {
                     console.log("unsuccesssss")
-                    popup.showCreateClinicSuccessMessage({
+                    popup.showRegisterDiseaseSuccessMessage({
                         status: 'success',
-                        message: 'Register Failed!'
+                        message: 'Registered Failed!'
                     });
                 }
             }
