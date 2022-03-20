@@ -191,7 +191,7 @@ public class TodoDAO {
                 if(status.equals("pending")){
 
                     if(d1.compareTo(d2) > 0) {
-                        System.out.println("Task id "+Taskid+ " Overdue");
+                        //System.out.println("Task id "+Taskid+ " Overdue");
                         try (PreparedStatement preparedStatementforupdate = connection.prepareStatement(ValidateOverdue)){
                             preparedStatementforupdate.setString(1, Taskid);
                             int response = preparedStatementforupdate.executeUpdate();
