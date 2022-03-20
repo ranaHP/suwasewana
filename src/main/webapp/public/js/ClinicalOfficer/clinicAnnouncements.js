@@ -11,14 +11,14 @@ class selectClinics {
         this.ClinicArray = data;
         this.container.innerHTML=" ";
         console.log(data);
-        alert("came")
+        // alert("came")
         this.ClinicArray.map((item) => {
             this.container.innerHTML += `
         <div class="basic_left">
               <div class="left_row">
                 <div class="left_row_left"><span>clinic-title  </span></div>
                 <div class="left_row_right"><input type="text" name="clinic-title" id="clinic-title" autocomplete="off"
-                                                   required value="${item.title}"/></div>
+                                                   required value="${item.title}" readonly/></div>
 
               </div>
               <div class="left_row">
@@ -30,23 +30,23 @@ class selectClinics {
               <div class="left_row">
                 <div class="left_row_left"><span> start_date_time  </span></div>
                 <div class="left_row_right"><input type="text" name="date-time" id="date-time" autocomplete="off"
-                                                   required value="${item.date}"/></div>
+                                                   required value="${item.date}" readonly/></div>
               </div>
 
               <div class="left_row">
                 <div class="left_row_left"><span> duration  </span></div>
                 <div class="left_row_right"><input type="text" name="duration" id="duration" autocomplete="off"
-                                                   required value="${item.duration}"/></div>
+                                                   required value="${item.duration}" readonly/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span>Location</span></div>
                 <div class="left_row_right"> <input type="text" name="location" id="location" autocomplete="off"
-                                                    required value="${item.location}"/></div>
+                                                    required value="${item.location}" readonly/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span> Target MOH</span></div>
                 <div class="left_row_right"><input type="text" name="target-MOH" id="target-MOH" autocomplete="off"
-                                                   required value="${item.MOH}"/></div>
+                                                   required value="${item.MOH}" readonly/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span>  Target Peoples</span></div>
@@ -59,18 +59,18 @@ class selectClinics {
             <div class="basic-right">
                <div class="left_row">
                 <div class="left_row_left"><span> Max limit</span></div>
-                <div class="left_row_right"> <input type="text" name="max-patient" id="max-patient" autocomplete="off"
+                <div class="left_row_right"> <input type="number" name="max-patient" id="max-patient" autocomplete="off"
                                                     required value="${item.maxpatient}"/></div>
               </div>
 
               <div class="left_row">
                 <div class="left_row_left"><span> Disease</span></div>
                 <div class="left_row_right"><input type="text" name="disease" id="disease" autocomplete="off"
-                                                   required value="${item.disease}"/></div>
+                                                   required value="${item.disease}" readonly/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span> Conduct by</span></div>
-                <div class="left_row_right"><input type="text" id="conduct" required value="${item.conduct}"/></div>
+                <div class="left_row_right"><input type="text" id="conduct"  required value="${item.conduct}" readonly/></div>
               </div>
               <div class="image-upload-card-container">
                 <div class="image-upload-card" style="margin-bottom: 220px">

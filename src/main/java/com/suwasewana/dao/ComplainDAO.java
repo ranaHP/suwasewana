@@ -159,7 +159,7 @@ public class ComplainDAO {
             int  rs = preparedStatement.executeUpdate();
             return  "success";
         } catch (SQLException throwables) {
-            printSQLException(throwables);;
+            printSQLException(throwables);
             return throwables.getMessage();
         }
 

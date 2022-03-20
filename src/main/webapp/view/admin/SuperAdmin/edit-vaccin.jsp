@@ -42,7 +42,7 @@
                     <input style="padding: 5px;" list="AllVaccineslist" name="AllVaccineslist" type="text" id="Search_V_input" placeholder="Search by vaccine name"
                            onclick="document.getElementById('Search_V_input').value='';  ";
                     >
-                    <datalist id="AllVaccineslist">
+                    <datalist id="AllVaccineslist" >
 
                     </datalist>
                     <button type="submit">Search</button>
@@ -139,7 +139,7 @@
 <script defer>
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     // console.log("url   = "+myUrl+"/admin-register-controller/All_vaccine_details/");
-
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let rs;
     LoadVaccine();
     function LoadVaccine(){
@@ -168,11 +168,10 @@
                 reqData,
                 function (data, status) {
                     if (data.includes("success")) {
-                        console.log("successsss brooo");
-                        // popup.showAppointmentSuccessMessage({
-                        //     status: 'success',
-                        //     message: 'Complain Successfully Added!'
-                        // });
+                        popup.showVaccineTypeUpdateSuccessMessage({
+                            status: 'success',
+                            message: 'Successfully Hided!'
+                        });
                         LoadVaccine();
                         LoadData();
 
@@ -182,12 +181,10 @@
                         document.getElementById("unhide").style.background="#27AE60";
 
                     } else {
-                        console.log("unsuccesssss brooo");
-                        // popup.showAppointmentSuccessMessage({
-                        //     status: 'fail',
-                        //     message: 'Complain Send Fail !',
-                        //     data: data
-                        // });
+                        popup.showVaccineTypeUpdateSuccessMessage({
+                            status: 'fail',
+                            message: 'Ooops! Something went wrong.'
+                        });
                     }
                 }
             );
@@ -206,11 +203,11 @@
                 reqData,
                 function (data, status) {
                     if (data.includes("success")) {
-                        console.log("successsss brooo");
-                        // popup.showAppointmentSuccessMessage({
-                        //     status: 'success',
-                        //     message: 'Complain Successfully Added!'
-                        // });
+                        console.log("successfull unhide")
+                        popup.showVaccineTypeUpdateSuccessMessage({
+                            status: 'success',
+                            message: 'Successfully Unhided!'
+                        });
                         LoadVaccine();
                         LoadData();
 
@@ -220,12 +217,11 @@
                         document.getElementById("unhide").style.background="#bdc3c7";
 
                     } else {
-                        console.log("unsuccesssss brooo");
-                        // popup.showAppointmentSuccessMessage({
-                        //     status: 'fail',
-                        //     message: 'Complain Send Fail !',
-                        //     data: data
-                        // });
+                        console.log("unsuccessfull unhide")
+                        popup.showVaccineTypeUpdateSuccessMessage({
+                            status: 'fail',
+                            message: 'Ooops! Something went wrong.'
+                        });
                     }
                 }
             );
@@ -236,13 +232,15 @@
 
     function LoadData(){
         let VType;
+        let flg=0;
         var VTypeObj = document.getElementById("Search_V_input");
         var datalist = document.getElementById(VTypeObj.getAttribute("list"));
         if(datalist.options.namedItem(VTypeObj.value)){
             VType=(datalist.options.namedItem(VTypeObj.value).id);
             rs.map((element) => {
+
                 if(element.ID==VType){
-                    // console.log("go to inside "+ element.Name);
+                    flg=1
                     document.getElementById("Name").value=element.Name;
                     document.getElementById("country").value=element.Country;
                     document.getElementById("recomanded_for").value=element.Recommended_for;
@@ -253,8 +251,6 @@
                     document.getElementById("How_work").innerText=element.how_work;
                     document.getElementById("How_well_work").innerText=element.How_Well_work;
                     document.getElementById("proof1").src=myUrl+"/public/images/vaccine/"+element.image;
-                    // console.log("imgName array - "+document.getElementById("proof1").src.split('/')[document.getElementById("proof1").src.split('/').length-1])
-                    // console.log("status "+element.view_status);
                     if(element.view_status==1){
                         document.getElementById("unhide").disabled = true;
                         document.getElementById("hide").disabled = false;
@@ -268,9 +264,12 @@
                         document.getElementById("unhide").style.background="#27AE60";
                     }
                 }
+
             })
         }
-
+        if(flg==0){
+            clearData();
+        }
         // console.log("vaccine type "+VType);
         return false;
     }
@@ -286,19 +285,17 @@
                 function (data, status) {
                     if (data.includes("success")) {
                         console.log("successsss brooo");
-                        // popup.showAppointmentSuccessMessage({
-                        //     status: 'success',
-                        //     message: 'Complain Successfully Added!'
-                        // });
+                        popup.showVaccineTypeUpdateSuccessMessage({
+                            status: 'success',
+                            message: 'Successfully Deleted!'
+                        });
                         clearData();
                         LoadVaccine();
                     } else {
-                        console.log("unsuccesssss brooo");
-                        // popup.showAppointmentSuccessMessage({
-                        //     status: 'fail',
-                        //     message: 'Complain Send Fail !',
-                        //     data: data
-                        // });
+                        popup.showVaccineTypeUpdateSuccessMessage({
+                            status: 'fail',
+                            message: 'Ooops! Something went wrong.'
+                        });
                     }
                 }
             );
@@ -357,17 +354,16 @@
 
                     if (data.includes("success")) {
 
-                        popup.RegisterVaccine({
+                        popup.showVaccineTypeUpdateSuccessMessage({
                             status: 'success',
                             message: 'Successfully Updated!'
                         });
                         clearData();
                     } else {
 
-                        popup.RegisterVaccine({
+                        popup.showVaccineTypeUpdateSuccessMessage({
                             status: 'fail',
-                            message: 'Vaccine Update Fails !',
-                            data: data
+                            message: 'Ooops! Something went wrong.'
                         });
                     }
                 }
@@ -410,17 +406,16 @@
 
                     if (data.includes("success")) {
 
-                        popup.RegisterVaccine({
+                        popup.showVaccineTypeUpdateSuccessMessage({
                             status: 'success',
-                            message: 'Successfully Updated!'
+                            message: 'Successfully Unhided!'
                         });
                         clearData();
                     } else {
 
-                        popup.RegisterVaccine({
+                        popup.showVaccineTypeUpdateSuccessMessage({
                             status: 'fail',
-                            message: 'Vaccine Update Fails !',
-                            data: data
+                            message: 'Ooops! Something went wrong.'
                         });
                     }
                 }

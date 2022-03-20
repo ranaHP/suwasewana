@@ -119,7 +119,9 @@
     choose()
     let eventA=[]
     let event=[]
-    //take data for the calendar
+
+    //take data from database for the calendar
+
     function choose(){
         let clinicListArray=[]
         $.post("/test_war_exploded/create-clinic-controller/viewcount",
@@ -142,12 +144,15 @@
                          reqData,
                         function (data,status){
                             let EventArray =JSON.parse(data)
+                            console.log(EventArray)
+                            console.log("events")
                             event.push(EventArray)
                             let object2 = { year: cyear
                                 , month: cmonth, date: cdata ,events: event[0]};
                             eventA.push(object2)
                             event=[]
                             calender.setEventData(eventA)
+                            console.log("event arrray")
                             console.log(eventA)
                         });
                 })
@@ -309,7 +314,7 @@
                 dose:dose,
             };
         console.log(reqData)
-        alert(reqData)
+        // alert(reqData)
         $.post("/test_war_exploded/create-clinic-controller/updatevclinic",
             reqData,
             function (data,status){
@@ -334,7 +339,9 @@
                 datetime:datetime,
             };
         console.log(datetime.split("T")[1])
-        alert(reqData)
+        // alert(reqDa
+
+
         $.post("/test_war_exploded/create-clinic-controller/ResheduleVClinics",
             reqData,
             function (data,status){
@@ -433,7 +440,7 @@
                     to:parseInt(TNo11),
                 };
             console.log(reqData)
-            $.post("https://app.notify.lk/api/v1/send?user_id=15299&api_key=yjPuiEKMqfq8k8HKA14d&sender_id=NotifyDEMO",
+            $.post("https://app.notify.lk/api/v1/send?user_id=15808&api_key=8h4xvxbwtVgXH7dyZnN9&sender_id=NotifyDEMO",
                 reqData,
 
                 function(data,status){

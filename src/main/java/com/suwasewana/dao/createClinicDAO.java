@@ -19,6 +19,7 @@ public class createClinicDAO {
   private static final String RESHEDULE_CLINICS="UPDATE `normal_clinic_session` SET `date` = ? , `time` = ? , `duration` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String disease_clinic_count="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease ";
   private static final String SELECT_events="SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`date` = ?";
+  private static final String NormalC_registeredNList="SELECT * FROM `clinic_registered_patient` vc  left join `user` v on v.uNic=vc.u_nic WHERE vc.ncs_id=?  ";
 
   private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?,NULL,NULL ,NULL );";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=?; ";
@@ -573,6 +574,7 @@ public class createClinicDAO {
                 EventList.add(temp);
 //                System.out.println(title+"--"+disease+"--"+Location);
             };
+//            System.out.println(EventList);
             return EventList;
         } catch (SQLException throwables) {
             printSQLException(throwables);
@@ -675,6 +677,48 @@ public class createClinicDAO {
             printSQLException(throwables);
             return throwables.getMessage();
         }
+    }
+
+    public ArrayList<CreateClinicModel> numberslist(CreateClinicModel numberslist) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(NormalC_registeredNList)){
+            System.out.println("select for msg");
+            preparedStatement.setString(1, numberslist.getClinicID());
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> numberlist = new ArrayList<CreateClinicModel>();
+            System.out.println(rs);
+            while (rs.next()){
+                String clinicID =rs.getString("ncs_id");
+                String numbers = rs.getString("uMobile");
+                CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        numbers,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+
+                );
+               numberlist.add(temp);
+//               System.out.println(numberlist);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return numberlist;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
     }
 }
 

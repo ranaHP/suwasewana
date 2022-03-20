@@ -80,7 +80,7 @@
               <div class="left_row">
                 <div class="left_row_left"><span>clinic-title  </span></div>
                 <div class="left_row_right"><input type="text" name="clinic-title" id="clinic-title" autocomplete="off"
-                                                   required/></div>
+                                                   required readonly/></div>
 
               </div>
               <div class="left_row">
@@ -92,23 +92,23 @@
               <div class="left_row">
                 <div class="left_row_left"><span> date  </span></div>
                 <div class="left_row_right"><input type="text" name="date-time" id="date-time" autocomplete="off"
-                                                   required/></div>
+                                                   required readonly/></div>
               </div>
 
               <div class="left_row">
                 <div class="left_row_left"><span> duration  </span></div>
-                <div class="left_row_right"><input type="text" name="duration" id="duration" autocomplete="off"
-                                                   required/></div>
+                <div class="left_row_right"><input type="number" name="duration" id="duration" autocomplete="off"
+                                                   required readonly/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span>Location</span></div>
                 <div class="left_row_right"> <input type="text" name="location" id="location" autocomplete="off"
-                                                    required/></div>
+                                                    required readonly/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span> Target MOH</span></div>
                 <div class="left_row_right"><input type="text" name="target-MOH" id="target-MOH" autocomplete="off"
-                                                   required/></div>
+                                                   required readonly/></div>
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span>  Target Peoples</span></div>
@@ -146,12 +146,12 @@
               <div class="left_row">
                 <div class="left_row_left"><span> Disease</span></div>
                 <div class="left_row_right"><input type="text" name="disease" id="disease" autocomplete="off"
-                                                   required/></div>
+                                                   required readonly/></div>
               </div>
 
               <div class="left_row">
                 <div class="left_row_left"><span> Conduct by</span></div>
-                <div class="left_row_right"><input type="text" id="conduct" required></div>
+                <div class="left_row_right"><input type="text" id="conduct" required readonly></div>
               </div>
               <div class="image-upload-card-container">
                 <div class="image-upload-card" style="margin-bottom: 220px">
@@ -309,6 +309,7 @@ function msg(){
             let disease=clinicList[0].disease
             let message="An awareness clinic for" +" "+ clinicList[0].disease + " "+"will be held on"+" "
                     +clinicList[0].date+"."+" "+"visit suwasewana.lk for more details";
+            console.log(message)
             msgdelivers(disease,message)
 
           }
@@ -329,7 +330,7 @@ function checkMOHid(){
     var MTypeObj = document.getElementById('clinicID');
     var datalist = document.getElementById(MTypeObj.getAttribute("list"));
     if(datalist.options.namedItem(MTypeObj.value)){
-     alert(datalist.options.namedItem(MTypeObj.value).id)
+     // alert(datalist.options.namedItem(MTypeObj.value)
       return (datalist.options.namedItem(MTypeObj.value).id);
     }
     else {

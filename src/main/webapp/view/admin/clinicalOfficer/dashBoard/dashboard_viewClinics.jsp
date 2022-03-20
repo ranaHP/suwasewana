@@ -162,7 +162,7 @@
             reqData,
             function (data,status){
                 // alert("wrong")
-                 alert(data)
+                //  alert(data)
             });
 
         return false;
@@ -205,7 +205,7 @@
             reqData,
             function (data,status){
                 // alert("wrong")
-                alert(data)
+                // alert(data)
             });
 
         return false;
@@ -239,7 +239,7 @@
 
 
     // }
-    //send cancel normal clinic msg
+    //making cancel normal clinic msg- passed through delete clinics function
     function cancelClinicmsg(id){
         console.log("came to select function")
         // let selectClinic = new selectClinics("form");
@@ -256,46 +256,66 @@
                 let disease=clinicList[0].disease
                 let date=clinicList[0].date
                 console.log(disease)
-                let message="The awareness clinic for" +" "+ disease + " "+"to be held on"+" "
+                let message="The awareness clinic for" +" "+ disease + " "+"on"+" "
                     +date+"."+" "+"is cancelled. visit suwasewana for more details";
-                msgdelivers(disease,message,id)
+                cancelClinic_Nlist(message,id)
                 console.log(message)
             }
         );
         return false;
     }
-    function msgdelivers(disease,message,id){
+
+    //taking numbers list for send cancel clinic sms
+    function cancelClinic_Nlist(message,id){
         //find number list who register for the clinic
         let Nlist=[];
         let reqData =
             {
                 clinicID: id,
             };
-        $.post("/test_war_exploded/user-view-clinic-controller/Numberslist",
+        $.post("/test_war_exploded/create-clinic-controller/Numberslist",
             reqData,
+
             function(data,status){
-                console.log(data)
+            console.log("yes")
                 Nlist=JSON.parse(data)
+                console.log(Nlist)
+                console.log("message cancellll")
+                let nLIST=[];
+                Nlist.map(element=>{
+                    let t=element.maxpatient
+                    TNo=t.substring(1)
+                    let TNo11="+94"+TNo
+                    nLIST.push(TNo11)
+                })
+                sendmsg(nLIST,message)
             }
         );
+
         return false;
+
     }
 
-    function sendmsg(Nlist,msg) {
+    //final function for sending sms
+    function sendmsg(nLIST,msg) {
         let msgs=msg;
-        let reqData =
-            {
-                message:msgs,
-                // to:"+94775836281",
-            };
-        // console.log(reqData)
-        $.post("https://app.notify.lk/api/v1/send?user_id=15253&api_key=ewCDvSx6ifsOuxLUztfM&sender_id=NotifyDEMO&to=+94775836281&message=good",
-            reqData,
-            function(data,status){
-               // console.log("data")
+        console.log(nLIST)
+        nLIST.map(element=>{
+            let reqData =
+                {
+                    message:msgs,
+                    to:parseInt(element),
+                };
+            console.log(reqData)
+            $.post("https://app.notify.lk/api/v1/send?user_id=15808&api_key=8h4xvxbwtVgXH7dyZnN9&sender_id=NotifyDEMO",
+                reqData,
+                function(data,status){
+                    // console.log("data")
 
-            }
-        );
+                }
+            );
+        })
+
         return false;
     }
 

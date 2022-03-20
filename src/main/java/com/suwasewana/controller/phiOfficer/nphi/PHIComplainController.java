@@ -90,6 +90,7 @@ public class PHIComplainController extends HttpServlet {
             }
             String complainId=req.getParameter("cid");
             String message=req.getParameter("message");
+            System.out.println("id- "+complainId+"    message - "+message);
             String result = complainDAO.setResponse(complainId,message);
             res.getWriter().println(gson.toJson(result));
         }
@@ -176,7 +177,7 @@ public class PHIComplainController extends HttpServlet {
                 ""
 
         );
-        String nic="199910910062";
+        String nic="199910910064";
         ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHI(nic);
         res.getWriter().println(gson.toJson(result));
     }

@@ -83,7 +83,7 @@
                     <div class="advance_content">
                         <div class="basic-title"> 2. Advance Information</div>
                         <div class="advance_row">
-                            <span>Status : </span><br>
+                            <span>Booster Dose : </span><br>
                             <div class="row_textarea" contenteditable="true" id="status"></div>
                         </div>
                         <div class="advance_row">

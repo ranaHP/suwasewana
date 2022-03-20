@@ -66,9 +66,10 @@ class SuwasewanaPopup{
     createCalenderEvent(event){
         let eventsContaier = document.createElement('div');
         event[0].events.map(eventitem => {
+            console.log(eventitem)
             let eventDiv = document.createElement('div');
-            eventDiv.innerHTML = "<br> <br> Event Title : <h2> " + eventitem.title + "</h2>";
-            eventDiv.innerHTML = "Event Desc : <h3> " + eventitem.desc + "</h3>";
+            eventDiv.innerHTML = "Title : <h5> "+ eventitem.title + "<br>" + "Location <h5> :" + eventitem.location  ;
+            // eventDiv.innerHTML = "Event Desc : <h3> " + eventitem.location + "</h3>";
             eventsContaier.appendChild(eventDiv);
             // popupMessage.classList.add('popup-message');
         });
@@ -77,6 +78,8 @@ class SuwasewanaPopup{
     }
 
     showCalenderEnvetPopup(event) {
+        console.log("event des")
+        console.log(event)
         this.createCalenderEvent(event);
         this.container.style.display = "block";
     }
@@ -263,6 +266,50 @@ class SuwasewanaPopup{
                     </div>
                 </div>
             </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+    showVaccineTypeUpdateSuccessMessage(data) {
+        let eventsContaier = document.createElement('div');
+
+        let eventDiv = document.createElement('div');
+
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title"> User Vaccine Portal </div>
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>`;
+        }
+        else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">User Vaccine Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Please contact System administrator!! </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="popup.hidePopup()"> Close</button>
+                    </div>
+                </div>
+            </div>`;
+        }
+        else{
+
         }
         eventsContaier.appendChild(eventDiv);
 
