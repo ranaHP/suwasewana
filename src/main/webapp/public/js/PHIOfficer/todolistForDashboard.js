@@ -44,7 +44,7 @@ class TaskList {
             let exp_date = new Date(item.expire_date);
             if(today.getDate()===exp_date.getDate() &&(item.status!='complete')){
                 this.container.innerHTML += `
-                    <div class="TodoListItem Complin">
+                    <div class="TodoListItem Complin" onclick="JumpToTasklist()">
                     <div class="Tapp-left">
                         <label>${item.title}</label>
                         <br>

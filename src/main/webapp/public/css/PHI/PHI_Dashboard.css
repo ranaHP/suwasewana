@@ -31,12 +31,11 @@ body {
     margin: 30px auto;
 }
 .topic {
-    /*font-weight: 500;*/
     letter-spacing: 1px;
     margin-bottom: 20px;
     color: #0606068c;
-    font-size: 1.1em;
-    font-family: "Segoe UI";
+    font-size: 1em;
+    color: rgba(17, 17, 17, 0.795);
 }
 
 .header {
@@ -89,6 +88,8 @@ body {
     align-items: center;
     box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.16);
     background-color: #ffffffc0;
+    border-radius: 3px;
+
 }
 
 .calanderbody {
@@ -105,6 +106,7 @@ body {
 .card label {
     font-size: 0.8em;
     letter-spacing: 1px;
+    color: rgba(0, 0, 0, 0.774);
 }
 
 .card-icon {
@@ -117,7 +119,7 @@ body {
 
 .card-icon img {
     height: 35px;
-    filter: invert(.25);
+    filter: invert(.40);
 }
 
 .card-details {
@@ -126,7 +128,7 @@ body {
 
 .card-details h5 {
     font-size: 1.5em;
-    color: #34495e;
+    color: #0000008c;
 }
 
 .precentage {
@@ -316,10 +318,12 @@ body {
 }
 
 .content span {
-    font-size: 0.6em;
+    font-size: 0.8em;
     letter-spacing: 1px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgba(0, 0, 0, 0.637);
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    /*color: rgba(0, 0, 0, 0.637);*/
+    font-family: "Segoe UI";
+    color: #0606068c;
 }
 
 .content label {
@@ -488,6 +492,7 @@ ul {
 .todo_from span {
     font-size: 0.6em;
     float: right;
+    color: #7f8c8d;
 }
 
 .Appo {
@@ -525,9 +530,11 @@ ul {
 }
 
 .Tapp-left label {
-    font-size: 0.7em;
+    font-size: 0.8em;
     /* color: red; */
     margin-bottom: 90px !important;
+    font-family: "Segoe UI";
+    color: #0606068c;
 }
 
 .Tapp-left div {
@@ -536,7 +543,7 @@ ul {
 
 .Tdate {
     font-size: 0.6em;
-    letter-spacing: 1px;
+    /*letter-spacing: 1px;*/
     color: #7f8c8d;
     margin-top: 60px !important;
 }
@@ -544,14 +551,27 @@ ul {
 .todoDone {
     border: none;
     font-size: 0.6em;
-    background-color: rgba(1, 5, 231, 0.897);
     border-radius: 3px;
     padding: 3px 10px;
-    color: white;
     letter-spacing: 1px;
     float: right !important;
+    transition-duration: 0.4s;
+    border: 1px solid #398ee5;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+    border-radius: 3px;
+    color: #398ee5;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.10);
 }
-
+.todoDone:hover {
+    background-color: #398ee5;
+    color: white;
+}
+.app-left span{
+    margin-top: 20px;
+    line-height: 19px;
+}
 .contact_no {
     margin-top: 5px;
 }
@@ -566,7 +586,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding: 0 20px;
     /*border: 1px dashed #7f8c8d;*/
     min-height: 50px;
     margin: 5px 0;
@@ -585,6 +605,7 @@ ul {
 
 .app-left {
     width: 50%;
+    /*height: 40px;*/
 }
 
 .app-right {
@@ -597,6 +618,7 @@ ul {
 
 .app-right span {
     text-align: right;
+    color: #545c5c;
 }
 
 .contactno {
@@ -618,10 +640,17 @@ ul {
 
 .app-left h3, .app-right span {
     font-size: 0.7em;
+    color: #7f8c8d;
 }
+
 
 .app-left span {
     font-size: 0.6em;
+    line-height: 24px;
+    line-height: 24px;
+    font-size: 0.6em;
+    color: #7f8c8d;
+    letter-spacing: 0;
 }
 
 .appinment-container {
@@ -669,7 +698,7 @@ body {
     margin-top: 23px;
 }
 .text__color {
-    background: linear-gradient(to bottom, #0a0f13, #7db7f1);
+    background: linear-gradient(to bottom, #0a0f13, #a3afbbd9);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
@@ -801,10 +830,12 @@ body {
 
     .app-left {
         display: flex;
+        padding-top: 6px;
     }
 
     .app-left h3 {
         width: 80%;
+        color: #7f8c8d;
     }
 
     .type-chart {
