@@ -864,7 +864,7 @@
         max_sheet=max_sheet
         clinic_id = clinic_id;
         if(Avail_seats==0){
-            popup.showUserVaccineRegisterSuccessMessage({
+            popup.showUserClinicRegisterSuccessMessage({
                 status: 'fail',
                 message: 'limit exceed !',
 
@@ -907,10 +907,16 @@
             function (data, status) {
 
                 if (data.includes("success")) {
+
+                    popup.showUserClinicRegisterSuccessMessage({
+                        status: 'success',
+                        message: 'Successfully Registerd!',
+
+                    });
                     updateAvailableseats(clinic_id,Avail_seats)
                 } else {
-                    console.log("unsuccesssss brooo")
-                    popup.showUserVaccineRegisterSuccessMessage({
+                    console.log("unsuccesssss")
+                    popup.showUserClinicRegisterSuccessMessage({
                         status: 'fail',
                         message: 'Complain Send Fail !',
 
@@ -937,20 +943,20 @@
             reqData,
             function (data, status) {
                 if (data.includes("success")) {
-                    console.log("successsss brooo")
-                    popup.showUserVaccineRegisterSuccessMessage({
-                        status: 'success',
-                        message: 'Successfully Registerd!',
-
-                    });
+                    console.log("successsss")
+                    // popup.showUserClinicRegisterSuccessMessage({
+                    //     status: 'success',
+                    //     message: 'Successfully Registerd!',
+                    //
+                    // });
                     // view()
                 } else {
-                    console.log("unsuccesssss brooo")
-                    popup.showUserVaccineRegisterSuccessMessage({
-                        status: 'fail',
-                        message: 'Complain Send Fail !',
-
-                    });
+                    console.log("unsuccesssssv")
+                    // popup.showUserClinicRegisterSuccessMessage({
+                    //     status: 'fail',
+                    //     message: 'Complain Send Fail !',
+                    //
+                    // });
                 }
             }
         );

@@ -66,13 +66,13 @@ public class UserDAO {
     private static final String  USER_CANCEL_REGISTER_CLINIC ="DELETE FROM `suwasewana_db`.`clinic_registered_patient` WHERE `u_nic`  = ? AND `ncs_id` = ?;";
 
     private static final String GetMobileNumberList="";
-    private static final String USER_HOME_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=?;";
+    private static final String USER_HOME_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=? LIMIT 3;";
 //    private static final  String getUserTpMohIt="SELECT uMobile,uMoh FROM suwasewana_db.user where uNic=?;";
 
     Connection connection;
 
 
-    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `Unic`=?;";
+    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `Unic`=? AND `district_id`=?;";
 
 
 
@@ -1102,12 +1102,13 @@ public class UserDAO {
 
     }
 
-    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String Unic, UserGovermentAnnouncementModel govermentAnnouncement) {
+    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String Unic,String district_id, UserGovermentAnnouncementModel govermentAnnouncement) {
 
 ////        System.out.println("data come to goverment 2 dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_GOVERMENT_ANNOUNCEMENT)){
             preparedStatement.setString(1,Unic);
+            preparedStatement.setString(2,district_id);
             ResultSet rs = preparedStatement.executeQuery();
 //            System.out.println("data come to goverment dao");
 

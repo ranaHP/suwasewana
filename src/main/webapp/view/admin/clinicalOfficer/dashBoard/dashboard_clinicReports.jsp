@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/c-common.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/clinicalOfficer/dashBoard/_c-dashboard-clinicReports.css"/> "/>
+    <script src="<c:url value="/public/js/ClinicalOfficer/dashboard_view_clinicReport.js"/>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Suwasewana</title>
     <%--    for side navbar style--%>
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
@@ -16,7 +18,7 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body onload="charts()" id="mainContent">
+<body id="mainContent">
 <c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
 <%--<div class="containor">--%>
     <!-- suwasewana header -->
@@ -25,7 +27,7 @@
         <div class="dashboard-name">Clinic/Dashboard/Clinic reports</div>
     </div>
     <!--report containor  -->
-    <div class="report-containor">
+    <div class="report-containor" id="diseases">
         <div class="row">
             <div class="title">
                 <h4>Clinic Report</h4>
@@ -48,24 +50,27 @@
                     <input type="Date" name="name" id="eDate" autocomplete="off"
                            required/>
                 </div>
-                <div class="form-group">
-                    <label for="diseases_name">
-                        Diseases
-                    </label>
-                    <input type="text" name="name" id="diseases_name" autocomplete="off"
-                           required/>
+<%--                <div class="form-group">--%>
+<%--                    <label for="diseases_name">--%>
+<%--                        Diseases--%>
+<%--                    </label>--%>
+<%--                    <input type="text" name="name" id="diseases_name" autocomplete="off"--%>
+<%--                           required/>--%>
 
-                </div>
+<%--                </div>--%>
                 <div class="form-group" style="display: flex;justify-content: center;align-items: center;">
                     <label> &nbsp;</label>
-                    <button class="submitBtn" type="submit"> Search</button>
+                    <button class="submitBtn" type="submit" onclick="search()"> Search</button>
                 </div>
 
             </div>
+
         </div>
+
         <div class="row">
             <div class="title">
                 <h4>Report</h4>
+
             </div>
         </div>
         <div class="reports">
@@ -151,78 +156,117 @@
     // })
 
     //charts
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Fever','Eye diseases'],
-            datasets: [{
-                label: '',
-                data: [12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(255,99,132)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+    // var ctx = document.getElementById('myChart');
+    // var myChart = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ['Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Fever','Eye diseases'],
+    //         datasets: [{
+    //             label: '',
+    //             data: [12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)',
+    //                 'rgba(75, 192, 192, 0.2)',
+    //                 'rgba(153, 102, 255, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)'
+    //             ],
+    //             borderColor: [
+    //                 'rgb(255,99,132)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)'
+    //             ],
+    //             borderWidth: 0
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true
+    //             }
+    //         }
+    //     }
+    // });
 
 
-    var ctx = document.getElementById('myChart1');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Fever','Eye diseases'],
-            datasets: [{
-                label: '',
-                data: [12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+
+    // var ctx = document.getElementById('myChart1');
+    // var myChart = new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ['Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Corona', 'Dengue', 'Maleria', 'Chicken gunya', 'Thiroxine', 'Fever','Eye diseases'],
+    //         datasets: [{
+    //             label: '',
+    //             data: [12, 19, 3, 5, 2, 3,12, 19, 3, 5, 2, 3],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //                 'rgba(54, 162, 235, 0.2)',
+    //                 'rgba(255, 206, 86, 0.2)',
+    //                 'rgba(75, 192, 192, 0.2)',
+    //                 'rgba(153, 102, 255, 0.2)',
+    //                 'rgba(255, 159, 64, 0.2)'
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255, 99, 132, 1)',
+    //                 'rgba(54, 162, 235, 1)',
+    //                 'rgba(255, 206, 86, 1)',
+    //                 'rgba(75, 192, 192, 1)',
+    //                 'rgba(153, 102, 255, 1)',
+    //                 'rgba(255, 159, 64, 1)'
+    //             ],
+    //             borderWidth: 0
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true
+    //             }
+    //         }
+    //     }
+    // });
+
+    viewd()
+    let today = new Date();
+    // let clinicList4 = new clinicListd("diseases");
+
+    function viewd(){
+        let clinicListArray=[]
+        $.post("/test_war_exploded/create-clinic-controller/viewdisease",
+            // reqData,
+            function(data,status){
+                console.log("disease")
+                console.log(data)
+                clinicListArray=JSON.parse(data)
+                chart(clinicListArray,today)
+                // clinicList4.setData(clinicListArray);
+                let list;
+                clinicListArray.map(element=>{
+                   list.push(element.clinicID)
+                })
+
             }
-        }
-    });
+        );
+    }
+    function search(){
+        let reqData =
+            {
+                sdate: document.getElementById("sDate").value,
+                edate:document.getElementById("eDate").value,
+            };
+        console.log(reqData);
+        $.post("/test_war_exploded/create-clinic-controller/searchFromDate",
+            reqData,
+            function(data,status){
+
+            }
+        );
+        return false;
+    }
 
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
