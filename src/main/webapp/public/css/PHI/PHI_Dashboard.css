@@ -244,9 +244,10 @@ body {
 }
 
 .complain-body {
-    margin: 10px 10px 10px 10px;
+    margin: 10px 16px 10px 15px;
     overflow: auto;
-    max-height: 400px;
+    max-height: 303px;
+    padding-right: 6px;
 }
 
 .complain-body::-webkit-scrollbar {
@@ -463,8 +464,9 @@ ul {
 .todo-container {
     /* background-color: blue; */
     margin: 14px;
-    height: 304px;
+    max-height: 304px;
     overflow: auto;
+    padding-right: 6px;
 }
 
 .todo-container::-webkit-scrollbar {
@@ -480,6 +482,7 @@ ul {
     margin-bottom: 10px;
     min-height: 30px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
 }
 
 .todo_from span {
@@ -624,8 +627,9 @@ ul {
 .appinment-container {
     /*margin: 10px 10px 0 10px;*/
     overflow: auto;
-    height: 290px;
+    max-height: 295px;
     padding: 15px;
+    margin-bottom: 26px;
 }
 
 .appinment-container::-webkit-scrollbar {
@@ -641,6 +645,69 @@ ul {
 .complains{
     margin-top: 40px;
 }
+
+
+/*clock*/
+@font-face {
+    src: url(https://drive.google.com/file/d/184we4e_GM5t7_wrY_gpvGDVp91iYwbEl/view?usp=sharing);
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    /* height: 100vh; */
+    display: grid;
+
+}
+.clock{
+    place-items: center;
+    font-family: Digital-7 Mono;
+    background-color: rgb(255, 255, 255);
+    width: fit-content;
+    margin-top: 23px;
+}
+.text__color {
+    background: linear-gradient(to bottom, #0a0f13, #7db7f1);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+.time__wrapper {
+    position: relative;
+}
+#time {
+    /* text-shadow: 0 0 5px #2980b9; */
+    font-size: 2rem;
+}
+#med {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    font-size: 0.7rem;
+}
+#sec {
+    font-size: 1rem;
+}
+.day__wrapper {
+    width: fit-content;
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+}
+.day__wrapper span {
+    font-size: 2rem;
+    opacity: 0.4;
+    font-weight: 600;
+}
+#full__date {
+    font-size: 1rem;
+}
+
+
+
+
+
 
 @media only screen and (max-width: 1027px ) {
     .chart-map, .calander-complain, .todoList-apponment {
@@ -682,13 +749,24 @@ ul {
     }
 
     .calander {
-        margin-bottom: 200px;
+        /*margin-bottom: 200px;*/
         width: 80%;
         min-height: 500px !important;
+        margin-top: 70px;
     }
 
     .date {
         height: 75px !important;
+    }
+    .complains{
+        width: 80%;
+        margin: auto;
+    }
+    .complain{
+         width: 100%;
+     }
+    .todo-container{
+        max-height: 100px;
     }
 }
 
@@ -739,6 +817,7 @@ ul {
 
     .diff-types {
         width: 80%;
+        margin-top: 80px;
     }
 
     * {
@@ -774,13 +853,21 @@ ul {
     }
 
     .calander {
-        margin-bottom: 130px;
+        margin-bottom: 54px;
+        margin-top: 138px !important;
     }
     .sidebar-main-show{
         max-width: calc(100vw - 0px);
         margin-left: 0px;
         transition: 0.2s ease;
     }
+    .types{
+        height: unset;
+    }
+    .type-container{
+         margin-top: 100px;
+     }
+
 }
 
 @media only screen and (max-width: 640px ) {
@@ -813,6 +900,15 @@ ul {
 
     .mapboxgl-ctrl-geocoder--icon-close {
         margin-top: -7px !important;
+    }
+    .date{
+        height: 30px !important;
+    }
+    .badge{
+        top:-9px !important;
+    }
+    .calander{
+        min-height: 292px !important
     }
 
 }
