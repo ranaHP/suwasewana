@@ -111,7 +111,12 @@ import java.util.ArrayList;
                 case "Numberslist":
 //                    res.getWriter().println("select-V-Clinics");
                     numberslist(req, res);
-                    break;    
+                    break;
+                case "searchFromDate":
+//                    res.getWriter().println("select-V-Clinics");
+                    searchFromDate(req, res);
+                    break;
+
 
                 default:
                     res.getWriter().println("404 Page not Found");
@@ -120,6 +125,9 @@ import java.util.ArrayList;
         } catch (Exception error) {
             throw new ServletException(error);
         }
+    }
+
+    private void searchFromDate(HttpServletRequest req, HttpServletResponse res) {
     }
 
     private void numberslist(HttpServletRequest req, HttpServletResponse res) throws IOException {
