@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
-    <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
+
     <script src="<c:url value="/public/js/PHIOfficer/todolistForDashboard.js"/>"></script>
 
     <script src="https://unpkg.com/feather-icons"></script>
@@ -39,7 +39,7 @@
     <link href="<c:url value="/public/css/popup/Appintmentpopup.css"/>" rel="stylesheet"/>
     <%--    for popup script--%>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
-
+    <script src="<c:url value="/public/js/Calander/CalanderScript.js"/>"></script>
 </head>
 
 <body id="mainContent">
@@ -89,32 +89,33 @@
             <div class="card">
                 <div class="card-content">
                     <div class="card-icon">
-                        <img src="<c:url value="/public/images/PHI_Dashboard/cursor-hand.svg "/>" alt="" srcset="">
-                    </div>
-                    <div class="card-details">
-                        <h5>200</h5>
-                        <div class="precentage">
-                            <div class="p-lable"><label >2.345%</label></div>
-                            <div class="arrow"><i data-feather="arrow-up"></i></div>
-                        </div>
-                    </div>
-                </div>
-                <label>Register Requests</label>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <div class="card-icon">
                         <img src="<c:url value="/public/images/PHI_Dashboard/share-mega-phone.svg "/>" alt="" srcset="">
                     </div>
                     <div class="card-details">
                         <h5 id="announcemtPre" style="margin-left: 20px; margin-top: 10px"></h5>
                         <div class="precentage">
-<%--                            <div class="p-lable"><label >2.345%</label></div>--%>
-<%--                            <div class="arrow"><i data-feather="arrow-up"></i></div>--%>
+                            <%--                            <div class="p-lable"><label >2.345%</label></div>--%>
+                            <%--                            <div class="arrow"><i data-feather="arrow-up"></i></div>--%>
                         </div>
                     </div>
                 </div>
                 <label>RPHI Announcement</label>
+            </div>
+            <div class="card">
+<%--                <div class="card-content">--%>
+                    <div class="clock" >
+                        <div class="wrapper">
+                            <div class="time__wrapper ">
+                                <span class="text__color" id="time"></span>
+                                <span class="text__color" id="sec"></span>
+                                <span class="text__color" id="med"> </span>
+                            </div>
+
+                            <span class="text__color" id="full__date">
+                            </span>
+                        </div>
+<%--                    </div>--%>
+                </div>
             </div>
         </div>
     </div>
@@ -217,7 +218,7 @@
 
         </div>
         <div class="viewmore">
-            <span>view more(34)</span>
+<%--            <span>view more(34)</span>--%>
         </div>
     </div>
     <div class="todoList-apponment" style="padding: 20px">
@@ -273,7 +274,7 @@
 
             </div>
             <div class="viewmore">
-                <span>view more(34)</span>
+<%--                <span>view more(34)</span>--%>
             </div>
         </div>
     </div>
@@ -281,6 +282,62 @@
 <%--    </div>--%>
 <script>
     feather.replace({width: '0.8em', height: '1.1em'})
+</script>
+<script defer >
+    function currentTime() {
+        var date = new Date();
+        var day = date.getDay();
+        var hour = date.getHours();
+        var min = date.getMinutes();
+        var sec = date.getSeconds();
+        var month = date.getMonth();
+        var curr_date = date.getDate();
+        var year = date.getFullYear();
+        var month_name = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+
+        var midday = "AM";
+        midday = hour >= 12 ? "PM" : "AM";
+        hour = hour == 0 ? 12 : hour > 12 ? hour - 12 : hour;
+        hour = updateTime(hour);
+        min = updateTime(min);
+        sec = updateTime(sec);
+        curr_date = updateTime(curr_date);
+        console.log("hour "+hour)
+        console.log("min "+min)
+        console.log("sec "+sec)
+        console.log("curr_date "+curr_date)
+        let x=hour+":"+min
+        document.querySelector("#time").innerHTML = x;
+
+        console.log("{hour}:{min} "+x)
+
+        document.querySelector("#sec").innerHTML = sec;
+        document.querySelector("#med").innerHTML = midday;
+        document.querySelector(
+            "#full__date"
+        ).innerHTML = month_name[month]+" "+curr_date+" "+year;
+    }
+    function updateTime(k) {
+        if (k < 10) {
+            return "0" + k;
+        } else {
+            return k;
+        }
+    }
+    setInterval(currentTime, 1000);
 </script>
 
 <script defer>
@@ -420,15 +477,15 @@
 
 
                 })
-                // console.log("thisMonthCompalin : "+thisMonthCompalin)
-                // console.log("preMonthComplain : "+preMonthComplain)
-                // console.log("pending : "+pending)
-                let complainprecentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)*100;
+                console.log("thisMonthCompalin : "+thisMonthCompalin)
+                console.log("preMonthComplain : "+preMonthComplain)
+                console.log("pending : "+pending)
+                let complainprecentage=((thisMonthCompalin-preMonthComplain));
                 let ComPre=Math.abs(Math.round(complainprecentage));
 
 
                 document.getElementById("pending-complain").innerText=pending;
-                document.getElementById("complain-precentage").innerText=ComPre+"%";
+                document.getElementById("complain-precentage").innerText=ComPre+"";
                 if(complainprecentage<0){
                     document.getElementById("complain-arrow-down").style.display="block";
                 }
@@ -488,14 +545,14 @@
 
 
                 })
-                // console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
-                // console.log("ApppreMonthComplain : "+preMonthAppoinmen)
-                // console.log("pending : "+pending)
-                let appprecentage=((thisMonthAppoinmen-preMonthAppoinmen)/preMonthAppoinmen)*100;
+                console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
+                console.log("ApppreMonthComplain : "+preMonthAppoinmen)
+                console.log("pending : "+pending)
+                let appprecentage=((thisMonthAppoinmen-preMonthAppoinmen));
                 let AppPre=Math.abs(Math.round(appprecentage));
 
                 document.getElementById("appoinment-count").innerText=pending;
-                document.getElementById("appoinment-precentage").innerText=AppPre+"%";
+                document.getElementById("appoinment-precentage").innerText=AppPre+"";
                 if(appprecentage<0){
                     document.getElementById("app-complain-arrow-down").style.display="block";
                 }
