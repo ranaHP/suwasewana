@@ -70,7 +70,7 @@
                 </div>
                 <label>Appoinment</label>
             </div>
-            <div class="card">
+            <div class="card" onclick="JumpToComplain()">
                 <div class="card-content">
                     <div class="card-icon">
                         <img src="<c:url value="/public/images/PHI_Dashboard/help-question-message.svg "/>" alt="" srcset="">
@@ -315,10 +315,10 @@
         min = updateTime(min);
         sec = updateTime(sec);
         curr_date = updateTime(curr_date);
-        console.log("hour "+hour)
-        console.log("min "+min)
-        console.log("sec "+sec)
-        console.log("curr_date "+curr_date)
+        // console.log("hour "+hour)
+        // console.log("min "+min)
+        // console.log("sec "+sec)
+        // console.log("curr_date "+curr_date)
         let x=hour+":"+min
         document.querySelector("#time").innerHTML = x;
 
@@ -389,6 +389,26 @@
     let complain= new Complain('previous_complain_list');
 
 
+    function JumpToComplain(){
+
+        let url=myUrl+"/s/view-complaints"
+        console.log("Url "+url)
+        location.href=(myUrl + "/s/"+"view-complaints");
+    }
+    function JumpToAppoinmnet(){
+
+        let url=myUrl+"/s/view-appointments"
+        console.log("Url "+url)
+        location.href=(url)
+    }
+    function JumpToTasklist(){
+
+        let url=myUrl+"/s/manage-toDO"
+        console.log("Url "+url)
+        location.href=(url)
+    }
+
+
 
     choose();
     function choose(){
@@ -399,8 +419,8 @@
                 TodoListArray=JSON.parse(data)
                 TodoListArray.map(item=>{
                     let date=item.expire_date
-                    console.log("date")
-                    console.log(date)
+                    // console.log("date")
+                    // console.log(date)
                     let cday = new Date(item.expire_date)
                     let cmonth= cday.getMonth()+1;
                     let cyear=cday.getFullYear()
@@ -477,9 +497,9 @@
 
 
                 })
-                console.log("thisMonthCompalin : "+thisMonthCompalin)
-                console.log("preMonthComplain : "+preMonthComplain)
-                console.log("pending : "+pending)
+                // console.log("thisMonthCompalin : "+thisMonthCompalin)
+                // console.log("preMonthComplain : "+preMonthComplain)
+                // console.log("pending : "+pending)
                 let complainprecentage=((thisMonthCompalin-preMonthComplain));
                 let ComPre=Math.abs(Math.round(complainprecentage));
 
@@ -545,9 +565,9 @@
 
 
                 })
-                console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
-                console.log("ApppreMonthComplain : "+preMonthAppoinmen)
-                console.log("pending : "+pending)
+                // console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
+                // console.log("ApppreMonthComplain : "+preMonthAppoinmen)
+                // console.log("pending : "+pending)
                 let appprecentage=((thisMonthAppoinmen-preMonthAppoinmen));
                 let AppPre=Math.abs(Math.round(appprecentage));
 

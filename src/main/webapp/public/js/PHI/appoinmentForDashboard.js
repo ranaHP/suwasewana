@@ -43,7 +43,7 @@ class Appointment {
 
                 this.container.innerHTML += `
 
-                    <div class="appoinment-list">
+                    <div class="appoinment-list" onclick="JumpToAppoinmnet()">
                         <div class="app-left">
                             <h3>${item.user.uname}</h3>
                             <span>${item.appointment.posted_date_time.split(" ")[0]}</span>
