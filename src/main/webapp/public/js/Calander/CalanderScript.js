@@ -19,10 +19,19 @@ class Calender {
     ];
     event = []
 
-    constructor(contaienrName) {
+    constructor(contaienrName, type) {
         this.container = document.getElementById(contaienrName);
         this.container_name = contaienrName;
-        this.init();
+        switch (type){
+            case "clinicEvents" :
+                this.initClinic();
+                break;
+            case "phiEvents":
+                this.initPhi()
+                break;
+            default :
+                console.log("no type match");
+        }
 
     }
     setEventData(events){
@@ -65,7 +74,16 @@ class Calender {
         })
     }
 
-    init() {
+    initClinic() {
+        this.container.innerHTML = '';
+        let calender = document.createElement('div');
+        calender.classList.add('calender');
+        calender.appendChild(this.createMothYear());
+        calender.appendChild(this.createDaysContainer());
+        this.container.appendChild(calender);
+        this.addCalenderEvents();
+    }
+    initPhi() {
         this.container.innerHTML = '';
         let calender = document.createElement('div');
         calender.classList.add('calender');

@@ -596,7 +596,11 @@
             function(data1,status){
                 // alert(data1)
                 announcementArray=JSON.parse(data1)
-                // console.log(clinicListArray)
+
+                console.log("============================================")
+                console.log(announcementArray)
+                console.log("============================================")
+
                 clinic.setData(announcementArray);
 
             }

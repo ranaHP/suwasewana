@@ -110,7 +110,7 @@
 </div>
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
-    let calender = new Calender("calender");
+    let calender = new Calender("calender" ,"clinicEvents");
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     // calender.reangeSelect(2021, 9, 10, 6, 8);
     view();

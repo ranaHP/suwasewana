@@ -28,7 +28,9 @@ class View_clinic_announcement{
             let expday = new Date(item.date)
             let current_day=new Date();
             console.log(expday)
+            console.log("============================================")
             console.log(current_day)
+            console.log("============================================")
 
             if(current_day<=expday) {
 
@@ -38,7 +40,7 @@ class View_clinic_announcement{
                             <div class="latest-announstment-card">
                                 <div class="image-container">
                                 
-                                <img src="${myUrl}/public/images/nature.jpg" width="80%" height="50%">
+                                <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="80%" height="50%">
 
 <!--                                    <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>-->
                                     <div class="read-more-btn">
