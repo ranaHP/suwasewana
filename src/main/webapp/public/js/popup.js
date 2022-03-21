@@ -83,7 +83,24 @@ class SuwasewanaPopup{
         this.createCalenderEvent(event);
         this.container.style.display = "block";
     }
-
+    showCalenderTaskPopup(event) {
+        console.log("showCalenderTaskPopup call in popup.js")
+        this.createCalenderTask(event);
+        this.container.style.display = "block";
+    }
+    createCalenderTask(event){
+        console.log("createCalenderTask")
+        let eventsContaier = document.createElement('div');
+        event[0].events.map(eventitem => {
+            console.log(eventitem)
+            let eventDiv = document.createElement('div');
+            eventDiv.innerHTML = "<h5>Title : </h5> "+ eventitem.title + "<br><hr>"   ;
+            eventsContaier.appendChild(eventDiv);
+            // popupMessage.classList.add('popup-message');
+        });
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+    }
     showPatientDetails(data) {
         let eventsContaier = document.createElement('div');
         // console.log(data.name);

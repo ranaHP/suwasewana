@@ -34,6 +34,11 @@ public class TodoDAO {
 
     private static final String Check_Add_Task="SELECT * FROM suwasewana_db.task_assign TA LEFT JOIN suwasewana_db.task_list TL ON TA.Asgtask_id=TL.task_id LEFT JOIN suwasewana_db.phi P ON P.nic=TL.phi_id WHERE P.assignMOH=? and P.phi_post='PHI' ORDER BY expire_date ASC;";
     private static final String AssignTaskForPHI="BEGIN;INSERT INTO suwasewana_db.task_list ( title,status,expire_date,phi_id) VALUES( 'test titlezzz','pending','2021-11-30','199910910062');INSERT INTO suwasewana_db.task_assign (Asgtask_id , to_phi,message) VALUES(LAST_INSERT_ID(),'199910910060','test message for tahtzzzzzzz'); COMMIT;";
+
+    private static final String TaskCount="SELECT COUNT(task_id), expire_date FROM `task_list` WHERE (phi_id = ?) GROUP BY `expire_date` ";
+    private static final String TaskforCalander="SELECT * FROM `task_list` WHERE (phi_id = ?) & (expire_date=?)  &(status !='complete') ";
+
+
     Connection connection;
 
     public TodoDAO() {
@@ -229,7 +234,87 @@ public class TodoDAO {
 
         return null;
     }
+    public ArrayList<TaskModel> GetAllTaskCount( String nic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(TaskCount)) {
+            preparedStatement.setString(1, nic);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<TaskModel> todoList = new ArrayList<TaskModel>();
+            while (rs.next()) {
+                String Taskid=rs.getString("COUNT(task_id)");
+                String title="";
+                String RPHIMessage="";
+                String phiid="";
+                String phiname="";
+                String posted_date="";
+                String expire_date=rs.getString("expire_date");
+                String status="";
+                String assignTaskid="";
 
+
+
+                TaskModel temp = new TaskModel(
+                        Taskid,
+                        title,
+                        RPHIMessage,
+                        phiid,
+                        phiname,
+                        posted_date,
+                        expire_date,
+                        status,
+                        assignTaskid
+                );
+//
+                todoList.add(temp);
+            }
+            return todoList;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+    public ArrayList<TaskModel> ViewTaskForCalander( String nic,String date) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(TaskforCalander)) {
+            preparedStatement.setString(1, nic);
+            preparedStatement.setString(2, date);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<TaskModel> todoList = new ArrayList<TaskModel>();
+            while (rs.next()) {
+                String Taskid=rs.getString("task_id");
+                String title=rs.getString("title");
+                String RPHIMessage="";
+                String phiid="";
+                String phiname="";
+                String posted_date=rs.getString("posted_date");
+                String expire_date=rs.getString("expire_date");
+                String status="";
+                String assignTaskid="";
+
+
+
+                TaskModel temp = new TaskModel(
+                        Taskid,
+                        title,
+                        RPHIMessage,
+                        phiid,
+                        phiname,
+                        posted_date,
+                        expire_date,
+                        status,
+                        assignTaskid
+                );
+//
+                todoList.add(temp);
+            }
+            return todoList;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
     public ArrayList<TaskModel> GetAllTask( String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(TakeTasklist)) {
             preparedStatement.setString(1, nic);

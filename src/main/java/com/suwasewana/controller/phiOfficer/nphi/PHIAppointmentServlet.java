@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.suwasewana.core.ResponseType;
 import com.suwasewana.dao.AppointmentDAO;
 import com.suwasewana.dao.OfficerDAO;
+import com.suwasewana.dao.PHIDAO;
 import com.suwasewana.model.AppointmentForPHIModel;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.AppointmentTypeModel;
@@ -39,6 +40,7 @@ public class PHIAppointmentServlet extends HttpServlet {
                     case "appointment_type":
                         getAppointmentType(request, response);
                         break;
+
                     case "appointment_for_phi":
                         getAppointmentForPHI(request, response);
                         break;
@@ -96,6 +98,8 @@ public class PHIAppointmentServlet extends HttpServlet {
         ResponseType result = appointmentDAO.appointmentChangeTimeSlot(appointment);
         res.getWriter().println(gson.toJson(result));
     }
+
+
     private void rejectAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
         AppointmentModel appointment = new AppointmentModel(
                 "",

@@ -66,7 +66,7 @@ public class UserAnnouncementController extends HttpServlet {
                 "",
                 "",
                 "",
-                "1002"
+                "1004"
         );
         ArrayList<UserVIewClinicAnnouncementModel> result= userDAO.UserviewrclinicAnnouncemet(clinicannouncement);
         res.getWriter().println(gson.toJson(result));

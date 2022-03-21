@@ -50,6 +50,12 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
             case "TakeTaskList":
                 TakeTaskList(req, res);
                 break;
+            case "TakeTaskListcount":
+                TakeTaskListcount(req, res);
+                break;
+            case "TaskforClander":
+                TaskforClander(req, res);
+                break;
             case "delete":
                 DeleteTask(req, res);
                 break;
@@ -168,6 +174,39 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
 
         String nic="199910910060";
         ArrayList<TaskModel> result = todoDAO.GetAllTask(nic);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void TakeTaskListcount(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("unic")) {
+                    uNic = cookie.getValue();
+                }
+            }
+        }
+
+        String nic="199910910060";
+        ArrayList<TaskModel> result = todoDAO.GetAllTaskCount(nic);
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void TaskforClander(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("unic")) {
+                    uNic = cookie.getValue();
+                }
+            }
+        }
+
+        String nic="199910910060";
+        String date=req.getParameter("date");
+        ArrayList<TaskModel> result = todoDAO.ViewTaskForCalander(nic,date);
         res.getWriter().println(gson.toJson(result));
     }
 

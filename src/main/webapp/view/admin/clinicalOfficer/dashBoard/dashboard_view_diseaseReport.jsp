@@ -151,6 +151,7 @@
 <!-- </div> -->
 <script>
     feather.replace(({width:"20px",height:"20px"}))
+
 </script>
 <script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
