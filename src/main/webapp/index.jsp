@@ -22,11 +22,21 @@
     <a href="s/admin-dashboard" > <h1> admin</h1></a>
     <a href="s/add-disease" > <h1> add disease</h1></a>
     <a href="s/manage-disease" > <h1> Manage disease</h1></a>
-<%--<form action="servlet1">--%>
-<%--    Name:<input type="text" name="name"/><br/>--%>
-<%--    Password:<input type="password" name="password"/><br/>--%>
-<%--    <input type="submit" value="login">--%>
 
-<%--</form>--%>
+<form  action="/test_war_exploded/user-login-controller" method="post">
+    Name:<input type="text" name="name"/><br/>
+    Password:<input type="password" name="password"/><br/>
+
+    <input type="submit" value="login">
+
+</form>
+<form  onsubmit="return checkLoginValidation()">
+    Name:<input type="text" id="user-mobile" name="name"/><br/>
+    Password:<input type="password" name="password"/><br/>
+
+    <input type="submit" value="login">
+
+</form>
+
     </body>
 </html>

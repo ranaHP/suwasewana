@@ -20,9 +20,10 @@ public class UserLoginModel {
 //        System.out.println("\n" + pass + " : " + hashing.getHashValue() );
 //        System.out.println("hashing");
         this.mobile = number;
-        System.out.println(number);
         this.password = hashing.getHashValue();
         this.unic = nic;
+        System.out.println(number + " -- " + pass +  " -- " + nic +  " -- " + this.password );
+
     }
 
     public String getMessage() {
