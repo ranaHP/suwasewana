@@ -21,7 +21,7 @@ class Appointment {
             return;
         }
 
-        console.log("data come to js to set complain for phi")
+        // console.log("data come to js to set complain for phi")
         this.container.innerHTML = " ";
         this.Appointmentarray = data;
         this.showCardDataForPHI(this.Appointmentarray);
