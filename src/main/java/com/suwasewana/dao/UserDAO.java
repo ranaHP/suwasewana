@@ -68,7 +68,7 @@ public class UserDAO {
     private static final String GetMobileNumberList="";
     private static final String USER_HOME_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=? LIMIT 3;";
 //    private static final  String getUserTpMohIt="SELECT uMobile,uMoh FROM suwasewana_db.user where uNic=?;";
-
+    private static final String patient_count="SELECT COUNT(d.UNic), name FROM `user_register_disease` d LEFT JOIN `user` u ON d.UNic=u.uNic  WHERE uMoh = ? GROUP BY name ";
     Connection connection;
 
 
@@ -456,12 +456,15 @@ public class UserDAO {
     }
 
     public String CheckLoginAttempt(UserLoginModel userLogin) {
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_ATTEMPT)) {
+
             preparedStatement.setString(1, userLogin.getMobile());
             ResultSet rs = preparedStatement.executeQuery();
             String mobile = "";
             while (rs.next()) {
                 mobile = rs.getString("login_status");
+
             }
             return mobile;
         } catch (SQLException throwables) {
@@ -472,6 +475,7 @@ public class UserDAO {
 
     public UserLoginModel CheckLoginValidationStatus(UserLoginModel userLogin) {
         String loginStatus = new String(CheckLoginAttempt(userLogin));
+
         switch(loginStatus){
             case "0":
             case "1":
@@ -1186,4 +1190,42 @@ public class UserDAO {
 
         return null;
     }
+
+    public ArrayList<User> patientcount(String moh) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(patient_count)) {
+            preparedStatement.setString(1, moh);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<User> PatientCount = new ArrayList<User>();
+            while (rs.next()) {
+                String count=rs.getString("COUNT(d.UNic)");
+                String name=rs.getString("name");
+                User temp = new User(
+                       count,
+                        name,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+
+                );
+                PatientCount.add(temp);
+            }
+            return PatientCount;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+
 }

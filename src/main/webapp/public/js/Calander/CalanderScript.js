@@ -18,8 +18,10 @@ class Calender {
         "December"
     ];
     event = []
-
+    Type=""
     constructor(contaienrName, type) {
+        this.Type=type
+        // console.log("Constructor is call")
         this.container = document.getElementById(contaienrName);
         this.container_name = contaienrName;
         switch (type){
@@ -61,6 +63,7 @@ class Calender {
         })
     }
     addCalenderTask() {
+        // console.log("call add calander event")
         this.event.map(eventItem => {
             console.log("Add calander task called ");
             if (this.current_month == eventItem.month && this.current_year == eventItem.year) {
@@ -90,7 +93,7 @@ class Calender {
         calender.appendChild(this.createMothYear());
         calender.appendChild(this.createDaysContainer());
         this.container.appendChild(calender);
-        this.addCalenderEvents();
+        this.addCalenderTask();
     }
 
 
@@ -220,7 +223,18 @@ class Calender {
         } else {
             this.current_month++;
         }
-        this.init();
+        // console.log("Type "+this.Type )
+        switch (this.Type){
+            case "clinicEvents" :
+                this.initClinic();
+                break;
+            case "phiEvents":
+                this.initPhi()
+                break;
+            default :
+                console.log("no type match");
+        }
+       // this.init();
     }
 
     previousMonth() {
@@ -230,7 +244,18 @@ class Calender {
         } else {
             this.current_month--;
         }
-        this.init();
+        // console.log("Type "+this.Type )
+        switch (this.Type){
+            case "clinicEvents" :
+                this.initClinic();
+                break;
+            case "phiEvents":
+                this.initPhi()
+                break;
+            default :
+                console.log("no type match");
+        }
+        //this.init();
     }
 
     rangeSelect(year, startMonth, endMonth, startDate, endDate) {

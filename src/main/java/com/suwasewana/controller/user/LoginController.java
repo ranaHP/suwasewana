@@ -28,13 +28,19 @@ public class LoginController extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        doGet(req, res);
+
+        doGet(req,res);
+
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-        res.setCharacterEncoding("UTF-8");
+        System.out.println("Hi Hansana");
+        String user_name = req.getParameter("user_mobile");
+        String user_password = req.getParameter("user_password");
+
+//        res.getWriter().println("<h1>Hello " + user_name +  " " + user_password +  "!</h1>");
         String getUrlData [] = req.getRequestURI().split("/");
-//        res.getWriter().println(" request uri"  + req.getRequestURI() + "  data -: " +  getUrlData[getUrlData.length-1] );
+        System.out.println(" request uri"  + req.getRequestURI() + "  data -: " +  getUrlData[getUrlData.length-1] );
         try {
             RequestDispatcher rd;
             switch (getUrlData[getUrlData.length-1]) {
@@ -62,10 +68,11 @@ public class LoginController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void checkUserLogin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String mobile = req.getParameter("user-mobile");
-        String password = req.getParameter("user-password");
+        String user_name = req.getParameter("user_mobile");
+        String user_password = req.getParameter("user_password");
+//        System.out.println("mobile -: " + user_name + "Password " + user_password);
 
-        UserLoginModel userLoginDetails = new UserLoginModel(mobile, password, "");
+        UserLoginModel userLoginDetails = new UserLoginModel(user_name, user_password, "");
         UserLoginModel userLoginDetailsResponse = userDAO.CheckLoginValidationStatus(userLoginDetails);
 
         PrintWriter out = res.getWriter();
@@ -84,11 +91,19 @@ public class LoginController extends HttpServlet {
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", this.gson.toJson(userLoginDetailsResponse));
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-            String temp = userLoginDetailsResponse.getUname().split(" ")[0] +"/" + userLoginDetailsResponse.getUnic() + '/' + userLoginDetailsResponse.getMobile()+ '/' + userLoginDetailsResponse.getuMoh() + '/' + userLoginDetailsResponse.getuProvince() + '/' + userLoginDetailsResponse.getuDistrict() + '/' + userLoginDetailsResponse.getuCity();
+            String temp = userLoginDetailsResponse.getUname().split(" ")[0] +"/"
+                    + userLoginDetailsResponse.getUnic() + '/'
+                    + "User" + '/'
+                    + userLoginDetailsResponse.getMobile()+ '/'
+                    + userLoginDetailsResponse.getuMoh() + '/'
+                    + userLoginDetailsResponse.getuProvince() + '/'
+                    + userLoginDetailsResponse.getuDistrict() + '/'
+                    + userLoginDetailsResponse.getuCity();
             Cookie loginCookie = new Cookie("uDetails", temp);
             loginCookie.setMaxAge(300*60);
             res.addCookie(loginCookie);
         }
+
         out.print(responseJsonString);
         out.flush();
 

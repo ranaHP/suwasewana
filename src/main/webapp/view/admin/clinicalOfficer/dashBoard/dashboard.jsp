@@ -55,9 +55,9 @@
                     </div>
                 </div>
                 <div class="chart" id="chart2">
-                    <p class="h4">Patient growth</p>
+                    <p class="h4">Patient count </p>
                     <div class="g-chart" style="width: 100%">
-                        <canvas id="myChart2" height="50" width="100" style="margin-left: 20px"></canvas>
+                        <canvas id="myChart2" height="30" width="30" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
             </div>
@@ -175,6 +175,19 @@
                 clinicListArray=JSON.parse(data)
                 chart(clinicListArray,today)
                 clinicList4.setData(clinicListArray);
+            }
+        );
+    }
+patient_growth()
+    function patient_growth(){
+        let clinicListArray1=[]
+        $.post("/test_war_exploded/user-disease-controller/patientG",
+            // reqData,
+            function(data,status){
+                console.log("patient")
+                console.log(data)
+                clinicListArray1=JSON.parse(data)
+                chart1(clinicListArray1,today)
             }
         );
     }

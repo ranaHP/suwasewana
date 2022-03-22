@@ -70,7 +70,7 @@
                 </div>
                 <label>Appoinment</label>
             </div>
-            <div class="card">
+            <div class="card" onclick="JumpToComplain()">
                 <div class="card-content">
                     <div class="card-icon">
                         <img src="<c:url value="/public/images/PHI_Dashboard/help-question-message.svg "/>" alt="" srcset="">
@@ -128,11 +128,11 @@
                     <div class="d-chart-header">
                         <div class="d-chart-header-parts">
                             <label >Patient count</label>
-                            <h3>1200</h3>
+                            <h3 id="PatientCount">1200</h3>
                         </div>
                         <div class="d-chart-header-parts">
                             <label >Disease</label>
-                            <h3>Corona</h3>
+                            <h3 id="MostspreadDiseas">Corona</h3>
                         </div>
                     </div>
                     <div class="d-chart">
@@ -315,14 +315,14 @@
         min = updateTime(min);
         sec = updateTime(sec);
         curr_date = updateTime(curr_date);
-        console.log("hour "+hour)
-        console.log("min "+min)
-        console.log("sec "+sec)
-        console.log("curr_date "+curr_date)
+        // console.log("hour "+hour)
+        // console.log("min "+min)
+        // console.log("sec "+sec)
+        // console.log("curr_date "+curr_date)
         let x=hour+":"+min
         document.querySelector("#time").innerHTML = x;
 
-        console.log("{hour}:{min} "+x)
+        // console.log("{hour}:{min} "+x)
 
         document.querySelector("#sec").innerHTML = sec;
         document.querySelector("#med").innerHTML = midday;
@@ -341,7 +341,7 @@
 </script>
 
 <script defer>
-    let calender = new Calender("calender");
+    let calender = new Calender("calender",'phiEvents');
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     // calender.reangeSelect(2021, 9, 10, 6, 8);
 </script>
@@ -350,8 +350,8 @@
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [80.4771, 6.0994334],
-        zoom: 8
+        center: [80.2879, 7.9865],
+        zoom: 7
     });
     map.addControl(
         new MapboxGeocoder({
@@ -362,7 +362,7 @@
     const marker = new mapboxgl.Marker({
         draggable: true
     })
-        .setLngLat([80.4771, 6.0994334])
+        .setLngLat([80.2879, 7.9865])
         .addTo(map);
     function onDragEnd() {
         const lngLat = marker.getLngLat();
@@ -389,6 +389,26 @@
     let complain= new Complain('previous_complain_list');
 
 
+    function JumpToComplain(){
+
+        let url=myUrl+"/s/view-complaints"
+        console.log("Url "+url)
+        location.href=(myUrl + "/s/"+"view-complaints");
+    }
+    function JumpToAppoinmnet(){
+
+        let url=myUrl+"/s/view-appointments"
+        console.log("Url "+url)
+        location.href=(url)
+    }
+    function JumpToTasklist(){
+
+        let url=myUrl+"/s/manage-toDO"
+        console.log("Url "+url)
+        location.href=(url)
+    }
+
+
 
     choose();
     function choose(){
@@ -399,8 +419,8 @@
                 TodoListArray=JSON.parse(data)
                 TodoListArray.map(item=>{
                     let date=item.expire_date
-                    console.log("date")
-                    console.log(date)
+                    // console.log("date")
+                    // console.log(date)
                     let cday = new Date(item.expire_date)
                     let cmonth= cday.getMonth()+1;
                     let cyear=cday.getFullYear()
@@ -477,9 +497,9 @@
 
 
                 })
-                console.log("thisMonthCompalin : "+thisMonthCompalin)
-                console.log("preMonthComplain : "+preMonthComplain)
-                console.log("pending : "+pending)
+                // console.log("thisMonthCompalin : "+thisMonthCompalin)
+                // console.log("preMonthComplain : "+preMonthComplain)
+                // console.log("pending : "+pending)
                 let complainprecentage=((thisMonthCompalin-preMonthComplain));
                 let ComPre=Math.abs(Math.round(complainprecentage));
 
@@ -545,9 +565,9 @@
 
 
                 })
-                console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
-                console.log("ApppreMonthComplain : "+preMonthAppoinmen)
-                console.log("pending : "+pending)
+                // console.log("AppthisMonthCompalin : "+thisMonthAppoinmen)
+                // console.log("ApppreMonthComplain : "+preMonthAppoinmen)
+                // console.log("pending : "+pending)
                 let appprecentage=((thisMonthAppoinmen-preMonthAppoinmen));
                 let AppPre=Math.abs(Math.round(appprecentage));
 
@@ -716,6 +736,107 @@
         popup.dashboardComplain(data);
     }
 
+
+
+
+    // To get all disease count in this month
+    Getmaxdiseasecount()
+    function createFirstAndLastDay(d){
+        var date = new Date(d), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = (new Date(y, m, 1));
+        var lastDay = (new Date(y, m + 1, 0));
+        let date1=y+"-"+(m+1)+"-"+firstDay.getDate();
+        let date2=y+"-"+(m+1)+"-"+lastDay.getDate();
+        // console.log(date1)
+        // console.log(date2)
+        return{
+            "date1":date1,
+            "date2":date2
+        }
+    }
+
+    function TakePreviousMonth(myVariable){
+
+        var makeDate = new Date(myVariable);
+        makeDate = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
+        return makeDate;
+    }
+    function Getmaxdiseasecount() {
+        var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = (new Date(y, m, 1));
+        var lastDay = (new Date(y, m + 1, 0));
+
+        let date1=y+"-"+m+"-"+firstDay.getDate();
+        let date2=y+"-"+m+"-"+lastDay.getDate();
+
+
+
+
+
+        var CDate = new Date()
+
+        i=5
+        monthArray=[]
+        monthArray.push(createFirstAndLastDay(CDate))
+        while(i>0){
+            CDate=TakePreviousMonth(CDate);
+            monthArray.push(createFirstAndLastDay(CDate))
+            i--;
+        }
+        // for(i=0;i<5;i++){
+        //     console.log("xxx"+monthArray[i].date1)
+        //     console.log("xxx"+monthArray[i].date2)
+        // }
+
+
+        let reqData={
+            m1date1:monthArray[0].date1,
+            m1date2:monthArray[0].date2,
+            m2date1:monthArray[1].date1,
+            m2date2:monthArray[1].date2,
+            m3date1:monthArray[2].date1,
+            m3date2:monthArray[2].date2,
+            m4date1:monthArray[3].date1,
+            m4date2:monthArray[3].date2,
+            m5date1:monthArray[4].date1,
+            m5date2:monthArray[4].date2,
+            m6date1:monthArray[5].date1,
+            m6date2:monthArray[5].date2,
+        };
+        console.log("zzzz "+(new Date(monthArray[1].date1)).getMonth())
+        $.post(myUrl+"/disease-controller/Getmaxdiseasecount",
+            reqData,
+            function (data, status) {
+                let ChartDetails = JSON.parse(data);
+                console.log("ChartDetails "+data);
+                console.log("ChartDetails "+ChartDetails.DiseaseName);
+                console.log("ChartDetails "+ChartDetails.Count1);
+                console.log("ChartDetails "+ChartDetails.Count2);
+                document.getElementById("MostspreadDiseas").innerHTML=ChartDetails.DiseaseName;
+                document.getElementById("PatientCount").innerHTML=ChartDetails.Date2
+
+                var countArray=[ChartDetails.Count6,ChartDetails.Count5,ChartDetails.Count4,
+                    ChartDetails.Count3,
+                    ChartDetails.Count2,
+                    ChartDetails.Count1
+                ]
+                var month_names_short= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                ShortmonthArray=[]
+                for(i=5;i>=0;i--){
+
+                    x=(new Date(monthArray[i].date1)).getMonth()
+                    ShortmonthArray[i]=(month_names_short[x])
+                }
+                ShortmonthArray.reverse();
+                // for(i=0;i<=5;i++){
+                //     console.log("month "+ ShortmonthArray[i]+ " - "+countArray[i])
+                // }
+                let LineChart = new PHILineChart(ShortmonthArray,countArray,'myChart');
+
+            }
+        );
+
+    }
 
 
     getAlltask();

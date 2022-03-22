@@ -40,7 +40,7 @@ public class PHIComplainController extends HttpServlet {
 
         res.setCharacterEncoding("UTF-8");
         String getUrlData [] = req.getRequestURI().split("/");
-        System.out.println("url in controller : "+getUrlData[getUrlData.length-1]);
+//        System.out.println("url in controller : "+getUrlData[getUrlData.length-1]);
 
         try {
             RequestDispatcher rd;
@@ -90,7 +90,7 @@ public class PHIComplainController extends HttpServlet {
             }
             String complainId=req.getParameter("cid");
             String message=req.getParameter("message");
-            System.out.println("id- "+complainId+"    message - "+message);
+//            System.out.println("id- "+complainId+"    message - "+message);
             String result = complainDAO.setResponse(complainId,message);
             res.getWriter().println(gson.toJson(result));
         }
@@ -129,8 +129,8 @@ public class PHIComplainController extends HttpServlet {
 
 
         private void SearchComplainbydate(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
-            System.out.println("date1"+req.getParameter("date1"));
-            System.out.println("date1"+req.getParameter("date2"));
+//            System.out.println("date1"+req.getParameter("date1"));
+//            System.out.println("date1"+req.getParameter("date2"));
             String date1=req.getParameter("date1");
             String date2=req.getParameter("date2");
             String nic=req.getParameter("PHINic");
@@ -139,9 +139,9 @@ public class PHIComplainController extends HttpServlet {
         }
 
         private void SearchComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
-        System.out.println("title"+req.getParameter("title"));
-        System.out.println("type"+req.getParameter("Type"));
-        System.out.println("phi"+req.getParameter("PHINic"));
+//        System.out.println("title"+req.getParameter("title"));
+//        System.out.println("type"+req.getParameter("Type"));
+//        System.out.println("phi"+req.getParameter("PHINic"));
             String title=req.getParameter("title");
             String type=req.getParameter("Type");
             String nic=req.getParameter("PHINic");
