@@ -251,25 +251,32 @@ class view_disease_details{
                                 </div>
                                 <div class="prevention-list">
                                     <div class="p-item">
-                                        Wear a mask properly
+                                    ${JSON.parse(item.description).Prevention.item[0]}
+<!--                                        Wear a mask properly-->
                                     </div>
                                     <div class="p-item">
-                                        Make your environment safer
+                                    ${JSON.parse(item.description).Prevention.item[1]}
+<!--                                        Make your environment safer-->
                                     </div>
                                     <div class="p-item">
-                                        Clean your hands frequently with alcohol-based hand rub or soap and water.
+                                    ${JSON.parse(item.description).Prevention.item[2]}
+<!--                                        Clean your hands frequently with alcohol-based hand rub or soap and water.-->
                                     </div>
                                     <div class="p-item">
-                                        Get vaccinated as soon as it’s your turn and follow local guidance on vaccination.
+                                    ${JSON.parse(item.description).Prevention.item[3]}
+<!--                                        Get vaccinated as soon as it’s your turn and follow local guidance on vaccination.-->
                                     </div>
                                     <div class="p-item">
-                                        Keep physical distance of at least 1 metre from others, even if they don’t appear to be sick. Avoid crowds and close contact.
+                                    ${JSON.parse(item.description).Prevention.item[4]}
+<!--                                        Keep physical distance of at least 1 metre from others, even if they don’t appear to be sick. Avoid crowds and close contact.-->
                                     </div>
                                     <div class="p-item">
-                                        Cover your mouth and nose with a bent elbow or tissue when you cough or sneeze. Dispose of used tissues immediately and clean hands regularly.
+                                    ${JSON.parse(item.description).Prevention.item[5]}
+<!--                                        Cover your mouth and nose with a bent elbow or tissue when you cough or sneeze. Dispose of used tissues immediately and clean hands regularly.-->
                                     </div>
                                     <div class="p-item">
-                                        If you develop symptoms or test positive for COVID-19, self-isolate until you recover.
+                                    ${JSON.parse(item.description).Prevention.item[6]}
+<!--                                        If you develop symptoms or test positive for COVID-19, self-isolate until you recover.-->
                                     </div>
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="image-set">
@@ -300,31 +307,41 @@ class view_disease_details{
 
                                 <div class="desc" style="padding-bottom: 10px;">
                                 
-                                ${JSON.parse(item.description).Treatment.desc}
+                                ${JSON.parse(item.description).Treatment.SelfCare.desc}
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="treatments-list">
                                     <div class="t-item">
-                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.
+                                    ${JSON.parse(item.description).Treatment.SelfCare.item[0]}
+<!--                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.-->
                                     </div>
                                     <div class="t-item">
-                                        Cooperate with contact-tracing procedures to stop the spread of the virus.
+                                    ${JSON.parse(item.description).Treatment.SelfCare.item[1]}
+<!--                                        Cooperate with contact-tracing procedures to stop the spread of the virus.-->
                                     </div>
                                     <div class="t-item">
-                                        If testing is not available, stay home and away from others for 14 days.
+                                    ${JSON.parse(item.description).Treatment.SelfCare.item[2]}
+<!--                                        If testing is not available, stay home and away from others for 14 days.-->
                                     </div>
                                     <div class="t-item">
-                                        While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.
+                                    ${JSON.parse(item.description).Treatment.SelfCare.item[3]}
+                                                                        
+
+                                    
+<!--                                        While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.-->
                                     </div>
                                     <div class="t-item">
-                                        Keep at least a 1-metre distance from others, even from your family members.
+                                    ${JSON.parse(item.description).Treatment.SelfCare.item[4]}
+<!--                                        Keep at least a 1-metre distance from others, even from your family members.-->
                                     </div>
                                     <div class="t-item">
-                                        Wear a medical mask to protect others, including if/when you need to seek medical care
+                                    ${JSON.parse(item.description).Treatment.SelfCare.item[5]}
+<!--                                        Wear a medical mask to protect others, including if/when you need to seek medical care-->
                                     </div>
                                     <div class="t-item">
-                                        Stay in a separate room from other family members, and if not possible, wear a medical mask.
+                                    ${JSON.parse(item.description).Treatment.SelfCare.item[6]}
+<!--                                        Stay in a separate room from other family members, and if not possible, wear a medical mask.-->
                                     </div>
 
                                 </div>
@@ -342,16 +359,20 @@ class view_disease_details{
 
                                 <div class="desc" style="padding-bottom: 10px;">
                                 
+                                ${JSON.parse(item.description).Treatment.MedicalTreatments.desc}
+                                
                    
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="treatments-list">
                                     <div class="t-item">
-                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.
+                                    ${JSON.parse(item.description).Treatment.MedicalTreatments.item[0]}
+<!--                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.-->
                                     </div>
                                     <div class="t-item">
-                                        Dexamethasone is a corticosteroid that can help reduce the length of time on a ventilator and save lives of patients with severe and critical illness.
+                                    ${JSON.parse(item.description).Treatment.MedicalTreatments.item[1]}
+<!--                                        Dexamethasone is a corticosteroid that can help reduce the length of time on a ventilator and save lives of patients with severe and critical illness.-->
                                     </div>
 
 

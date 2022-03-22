@@ -665,6 +665,7 @@
 
         let diseasearray=[]
         let diseasearrayy = []
+        let diseasearrayyy=[]
 
         $.post("/test_war_exploded/user-disease-controller/view",
 
@@ -683,7 +684,9 @@
                 console.log(diseasearrayy.Spread.item[1])
                 console.log("symptoms")
 
-                console.log(diseasearrayy.Symptoms.Less[0])
+                // diseasearrayyy = JSON.parse(diseasearrayy.Treatment)
+
+                console.log(diseasearrayy.Treatment.MedicalTreatments.desc)
 
 
                  // console.log(diseasearray[0].description)
