@@ -1,8 +1,8 @@
 package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
-import com.suwasewana.core.ResponseType;
 import com.suwasewana.dao.UserDAO;
+import com.suwasewana.model.User;
 import com.suwasewana.model.UserDiseaseModel;
 
 import javax.servlet.RequestDispatcher;
@@ -44,6 +44,10 @@ public class UserDiseaseController extends HttpServlet {
                         UserregisterDiseasedetails(req,res);
                         break;
 
+                case "patientG":
+                    patientG(req,res);
+                    break;    
+
                     default:
                         res.getWriter().println("404 Page not Found");
                         break;
@@ -53,6 +57,13 @@ public class UserDiseaseController extends HttpServlet {
         }catch (Exception error){
             throw new ServletException(error);
         }
+    }
+
+    private void patientG(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("dta controllwe");
+        String moh="1004";
+        ArrayList<User> result = userDAO.patientcount(moh);
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void UserregisterDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException {
