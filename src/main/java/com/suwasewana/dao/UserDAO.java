@@ -456,12 +456,15 @@ public class UserDAO {
     }
 
     public String CheckLoginAttempt(UserLoginModel userLogin) {
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_LOGIN_ATTEMPT)) {
+
             preparedStatement.setString(1, userLogin.getMobile());
             ResultSet rs = preparedStatement.executeQuery();
             String mobile = "";
             while (rs.next()) {
                 mobile = rs.getString("login_status");
+
             }
             return mobile;
         } catch (SQLException throwables) {
@@ -472,6 +475,7 @@ public class UserDAO {
 
     public UserLoginModel CheckLoginValidationStatus(UserLoginModel userLogin) {
         String loginStatus = new String(CheckLoginAttempt(userLogin));
+
         switch(loginStatus){
             case "0":
             case "1":

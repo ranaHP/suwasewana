@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/test")
-public class test extends HttpServlet {
+@WebServlet("/test1")
+    public class test extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -23,8 +23,10 @@ public class test extends HttpServlet {
 //        + " - path info - " + request.getServletPath() + " Query string - " + request.getRequestURL() + " "
 //        );
 
-        response.setCharacterEncoding("UTF-8");
-        String getUrlData[] = request.getRequestURI().split("/");
-        response.getWriter().println(" request uri" + request.getRequestURI() + "  data -: " + getUrlData[getUrlData.length - 1]);
+//        response.setCharacterEncoding("UTF-8");
+//        String getUrlData[] = request.getRequestURI().split("/");
+//        response.getWriter().println(" request uri" + request.getRequestURI() + "  data -: " + getUrlData[getUrlData.length - 1]);
+        System.out.print("asdasd");
+        response.getWriter().println("Hii hansana");
     }
 }

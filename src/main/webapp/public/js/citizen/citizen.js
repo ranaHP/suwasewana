@@ -24,25 +24,22 @@ function checkLoginValidation() {
         validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
         validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
     ) {
-        let url = myUrl+"/user-login-controller?user-mobile=" + document.getElementById("user-mobile").value + "&user-password=" + document.getElementById("user-password").value;
+        let url = myUrl+"/user-login-controller?user_mobile=" + document.getElementById("user-mobile").value + "&user_password=" + document.getElementById("user-password").value;
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function () {
-            console.log(this.response)
-
             let result = JSON.parse([this.response]);
-            console.log(result)
-            console.log(this.response)
             if (result.status === "success") {
                 location.replace(myUrl + "/s/");
             } else if (result.status === "error") {
                 document.getElementById('user-form-error').innerText = result.data;
                 document.getElementById('user-form-error').style.color = 'red';
+                document.getElementById('user-form-error').style.fontSize = '1.3em';
                 document.getElementById('user-form-error').style.display = "block";
                 document.getElementById("user-password").value = "";
                 document.getElementById("user-mobile").value = "";
                 setTimeout(() => {
                     document.getElementById('user-form-error').style.display = "none";
-                }, 10000)
+                }, 300000)
             }
         }
         xhttp.open("GET", url, true);

@@ -124,22 +124,22 @@
                             <button class="submitBtn"> Login</button>
                         </div>
                     </div>
-                    <div id="user-form-error" class="d-none form-response-error t-center pt-5">
+                    <div id="user-form-error" class="d-none form-response-error t-center pt-5" >
                         user mobile or password invalid! please try again.
                     </div>
-                    <div class="row" style="justify-content: space-around;">
-                        <div class="item">
-                            <img src="<c:url value="/public/images/google.png"/>" width="15px"/>
-                            Google සමග පිවිසීම
-                        </div>
-                        <div class="item">
-                            හෝ
-                        </div>
-                        <div class="item">
-                            <img src="<c:url value="/public/images/facebook.png"/>" width="15px"/>
-                            Facebook සමග පිවිසීම
-                        </div>
-                    </div>
+<%--                    <div class="row" style="justify-content: space-around;">--%>
+<%--                        <div class="item">--%>
+<%--                            <img src="<c:url value="/public/images/google.png"/>" width="15px"/>--%>
+<%--                            Google සමග පිවිසීම--%>
+<%--                        </div>--%>
+<%--                        <div class="item">--%>
+<%--                            හෝ--%>
+<%--                        </div>--%>
+<%--                        <div class="item">--%>
+<%--                            <img src="<c:url value="/public/images/facebook.png"/>" width="15px"/>--%>
+<%--                            Facebook සමග පිවිසීම--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                     <div class="row login-footer">
                         <div class="login-footer-text">
                             Feather is a collection of simply beautiful open source icons.<br/> Each icon is
