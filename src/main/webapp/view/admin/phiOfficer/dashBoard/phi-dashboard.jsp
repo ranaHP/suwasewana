@@ -128,11 +128,11 @@
                     <div class="d-chart-header">
                         <div class="d-chart-header-parts">
                             <label >Patient count</label>
-                            <h3>1200</h3>
+                            <h3 id="PatientCount">1200</h3>
                         </div>
                         <div class="d-chart-header-parts">
                             <label >Disease</label>
-                            <h3>Corona</h3>
+                            <h3 id="MostspreadDiseas">Corona</h3>
                         </div>
                     </div>
                     <div class="d-chart">
@@ -322,7 +322,7 @@
         let x=hour+":"+min
         document.querySelector("#time").innerHTML = x;
 
-        console.log("{hour}:{min} "+x)
+        // console.log("{hour}:{min} "+x)
 
         document.querySelector("#sec").innerHTML = sec;
         document.querySelector("#med").innerHTML = midday;
@@ -350,8 +350,8 @@
     const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
-        center: [80.4771, 6.0994334],
-        zoom: 8
+        center: [80.2879, 7.9865],
+        zoom: 7
     });
     map.addControl(
         new MapboxGeocoder({
@@ -362,7 +362,7 @@
     const marker = new mapboxgl.Marker({
         draggable: true
     })
-        .setLngLat([80.4771, 6.0994334])
+        .setLngLat([80.2879, 7.9865])
         .addTo(map);
     function onDragEnd() {
         const lngLat = marker.getLngLat();
@@ -783,10 +783,10 @@
             monthArray.push(createFirstAndLastDay(CDate))
             i--;
         }
-        for(i=0;i<5;i++){
-            console.log("xxx"+monthArray[i].date1)
-            console.log("xxx"+monthArray[i].date2)
-        }
+        // for(i=0;i<5;i++){
+        //     console.log("xxx"+monthArray[i].date1)
+        //     console.log("xxx"+monthArray[i].date2)
+        // }
 
 
         let reqData={
@@ -803,17 +803,35 @@
             m6date1:monthArray[5].date1,
             m6date2:monthArray[5].date2,
         };
-        console.log("reqdata "+reqData.m1date1)
-        console.log("reqdata "+reqData.m2date1)
-        console.log("reqdata "+reqData.m3date1)
+        console.log("zzzz "+(new Date(monthArray[1].date1)).getMonth())
         $.post(myUrl+"/disease-controller/Getmaxdiseasecount",
             reqData,
             function (data, status) {
-                // let TodayTaskList = JSON.parse(data);
+                let ChartDetails = JSON.parse(data);
+                console.log("ChartDetails "+data);
+                console.log("ChartDetails "+ChartDetails.DiseaseName);
+                console.log("ChartDetails "+ChartDetails.Count1);
+                console.log("ChartDetails "+ChartDetails.Count2);
+                document.getElementById("MostspreadDiseas").innerHTML=ChartDetails.DiseaseName;
+                document.getElementById("PatientCount").innerHTML=ChartDetails.Date2
 
-                // tasklist.setDataForPHI(TodayTaskList);
+                var countArray=[ChartDetails.Count6,ChartDetails.Count5,ChartDetails.Count4,
+                    ChartDetails.Count3,
+                    ChartDetails.Count2,
+                    ChartDetails.Count1
+                ]
+                var month_names_short= ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                ShortmonthArray=[]
+                for(i=5;i>=0;i--){
 
-
+                    x=(new Date(monthArray[i].date1)).getMonth()
+                    ShortmonthArray[i]=(month_names_short[x])
+                }
+                ShortmonthArray.reverse();
+                // for(i=0;i<=5;i++){
+                //     console.log("month "+ ShortmonthArray[i]+ " - "+countArray[i])
+                // }
+                let LineChart = new PHILineChart(ShortmonthArray,countArray,'myChart');
 
             }
         );

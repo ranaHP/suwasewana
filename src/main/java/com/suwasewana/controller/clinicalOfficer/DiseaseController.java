@@ -39,7 +39,7 @@ import java.util.ArrayList;
             switch (getUrlData[getUrlData.length-1]) {
 
                 case "Getmaxdiseasecount":
-                    res.getWriter().println("select-V-Clinics");
+//                    res.getWriter().println("select-V-Clinics");
                     Getmaxdiseasecount(req, res);
                     break;
 
@@ -97,7 +97,7 @@ import java.util.ArrayList;
 
 
 
-        ArrayList<DiseaseReportModel> result = diseaseDAO.Getmaxdiseasecount(diseaseReportModel);
+        DiseaseReportModel result = diseaseDAO.Getmaxdiseasecount(diseaseReportModel);
         res.getWriter().println(gson.toJson(result));
     }
 
