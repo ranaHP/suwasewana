@@ -204,13 +204,16 @@ class view_disease_details{
 <!--                                        aches and pains-->
                                     </div>
                                     <div class="s-item">
-                                        diarrhoea
+                                    ${JSON.parse(item.description).Symptoms.Less[3]}
+<!--                                        diarrhoea-->
                                     </div>
                                     <div class="s-item">
-                                        a rash on skin
+                                    ${JSON.parse(item.description).Symptoms.Less[4]}
+<!--                                        a rash on skin-->
                                     </div>
                                     <div class="s-item">
-                                        red or irritated eyes
+                                    ${JSON.parse(item.description).Symptoms.Less[5]}
+<!--                                        red or irritated eyes-->
                                     </div>
                                 </div>
                             </div>

@@ -85,7 +85,7 @@ public class UserDAO {
 
 
     private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 2";
-    private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?,NULL);";
+    private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?,NULL,NULL );";
 
     public UserDAO() {
         DB db = new DB();
@@ -169,6 +169,7 @@ public class UserDAO {
                                                String nic,
                                                String Tp,
                                                String Que_No
+
     ) {
 ////        System.out.println("data come to create complain dao");
         try (PreparedStatement preparedStatement = connection.prepareStatement(UpdateVAccineClinicData)) {
@@ -211,6 +212,7 @@ public class UserDAO {
         return "";
 
     }
+
     //For update timme slots when reshcdule
     public String updateTimeSlotsInClinicTable(String clinic_id,String newslot_Date) {
 ////        System.out.println("data come to create complain dao");
