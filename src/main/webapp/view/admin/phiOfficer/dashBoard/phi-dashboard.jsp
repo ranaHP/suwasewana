@@ -341,7 +341,7 @@
 </script>
 
 <script defer>
-    let calender = new Calender("calender");
+    let calender = new Calender("calender",'phiEvents');
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     // calender.reangeSelect(2021, 9, 10, 6, 8);
 </script>
