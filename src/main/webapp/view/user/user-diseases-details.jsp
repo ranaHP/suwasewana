@@ -679,7 +679,11 @@
                 // console.log(diseasearrayy.Symptoms.Less)
                 console.log("description")
                 console.log(diseasearrayy)
-                console.log(diseasearrayy.Treatment)
+                console.log(diseasearrayy.Spread.item[0])
+                console.log(diseasearrayy.Spread.item[1])
+                console.log("symptoms")
+
+                console.log(diseasearrayy.Symptoms.Less[0])
 
 
                  // console.log(diseasearray[0].description)

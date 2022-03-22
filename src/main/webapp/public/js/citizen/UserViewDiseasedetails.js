@@ -128,16 +128,20 @@ class view_disease_details{
                                 </div>
                                 <div class="prevention-list">
                                     <div class="s-item">
-                                        Droplets or aerosols
+<!--                                        Droplets or aerosols-->
+                                    ${JSON.parse(item.description).Spread.item[0]}
                                     </div>
                                     <div class="s-item">
-                                        Airborne transmission
+                                    ${JSON.parse(item.description).Spread.item[1]}
+<!--                                        Airborne transmission-->
                                     </div>
                                     <div class="s-item">
-                                        Surface transmission
+                                    ${JSON.parse(item.description).Spread.item[2]}
+<!--                                        Surface transmission-->
                                     </div>
                                     <div class="s-item">
-                                        Fecal-oral
+                                    ${JSON.parse(item.description).Spread.item[3]}
+<!--                                        Fecal-oral-->
                                     </div>
 
                                 </div>
@@ -165,16 +169,20 @@ class view_disease_details{
                                 </div>
                                 <div class="symptopms-list">
                                     <div class="s-item">
-                                        Fever
+<!--                                        Fever-->
+                                    ${JSON.parse(item.description).Symptoms.Most[0]}
                                     </div>
                                     <div class="s-item">
-                                        cough
+                                    ${JSON.parse(item.description).Symptoms.Most[1]}
+<!--                                        cough-->
                                     </div>
                                     <div class="s-item">
-                                        tiredness
+                                    ${JSON.parse(item.description).Symptoms.Most[2]}
+<!--                                        tiredness-->
                                     </div>
                                     <div class="s-item">
-                                        loss of taste or smell
+                                    ${JSON.parse(item.description).Symptoms.Most[3]}
+<!--                                        loss of taste or smell-->
                                     </div>
 
                                 </div>
@@ -184,13 +192,16 @@ class view_disease_details{
                                 </div>
                                 <div class="symptopms-list">
                                     <div class="s-item">
-                                        sore throat
+                                    ${JSON.parse(item.description).Symptoms.Less[0]}
+<!--                                        sore throat-->
                                     </div>
                                     <div class="s-item">
-                                        headache
+                                    ${JSON.parse(item.description).Symptoms.Less[1]}
+<!--                                        headache-->
                                     </div>
                                     <div class="s-item">
-                                        aches and pains
+                                    ${JSON.parse(item.description).Symptoms.Less[2]}
+<!--                                        aches and pains-->
                                     </div>
                                     <div class="s-item">
                                         diarrhoea
@@ -209,13 +220,16 @@ class view_disease_details{
                             </div>
                             <div class="symptopms-list">
                                 <div class="s-item">
-                                    difficulty breathing or shortness of breath
+                                ${JSON.parse(item.description).Symptoms.Serious[0]}
+<!--                                    difficulty breathing or shortness of breath-->
                                 </div>
                                 <div class="s-item">
-                                    loss of speech or mobility, or confusion
+                                ${JSON.parse(item.description).Symptoms.Serious[1]}
+<!--                                    loss of speech or mobility, or confusion-->
                                 </div>
                                 <div class="s-item">
-                                    chest pain
+                                ${JSON.parse(item.description).Symptoms.Serious[2]}
+<!--                                    chest pain-->
                                 </div>
                             </div>
                             <div class="banner1">
