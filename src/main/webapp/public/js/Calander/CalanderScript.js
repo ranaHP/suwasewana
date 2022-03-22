@@ -223,7 +223,7 @@ class Calender {
         } else {
             this.current_month++;
         }
-        console.log("Type "+this.Type )
+        // console.log("Type "+this.Type )
         switch (this.Type){
             case "clinicEvents" :
                 this.initClinic();
@@ -244,7 +244,7 @@ class Calender {
         } else {
             this.current_month--;
         }
-        console.log("Type "+this.Type )
+        // console.log("Type "+this.Type )
         switch (this.Type){
             case "clinicEvents" :
                 this.initClinic();

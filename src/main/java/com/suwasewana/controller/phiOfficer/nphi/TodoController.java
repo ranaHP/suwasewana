@@ -42,7 +42,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
 
     res.setCharacterEncoding("UTF-8");
     String getUrlData [] = req.getRequestURI().split("/");
-    System.out.println("url in controller : "+getUrlData[getUrlData.length-1]);
+//    System.out.println("url in controller : "+getUrlData[getUrlData.length-1]);
 
     try {
         RequestDispatcher rd;
