@@ -665,20 +665,32 @@
 
         let diseasearray=[]
         let diseasearrayy = []
+        let diseasearrayyy=[]
 
         $.post("/test_war_exploded/user-disease-controller/view",
 
             function (data,status){
             diseasearray = JSON.parse(data)
 
-                // diseasearrayy = JSON.parse(diseasearray[0].description);
+                diseasearrayy = JSON.parse(diseasearray[0].description)
+                // diseasearrayy = JSON.parse(diseasearray)
                 //
                 //
-                //
-                // // console.log(diseasearrayy)
-                // console.log(diseasearrayy.Symptoms.Less)
-                // console.log(diseasearrayy.name)
 
+                // console.log(diseasearrayy.Symptoms.Less)
+                console.log("description")
+                console.log(diseasearrayy)
+                console.log(diseasearrayy.Spread.item[0])
+                console.log(diseasearrayy.Spread.item[1])
+                console.log("symptoms")
+
+                // diseasearrayyy = JSON.parse(diseasearrayy.Treatment)
+
+                console.log(diseasearrayy.Treatment.MedicalTreatments.desc)
+
+
+                 // console.log(diseasearray[0].description)
+                console.log("over")
 
 
             disease.setData(diseasearray)
