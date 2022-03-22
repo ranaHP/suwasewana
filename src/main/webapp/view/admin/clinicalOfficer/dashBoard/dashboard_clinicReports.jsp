@@ -244,10 +244,10 @@
                 clinicListArray=JSON.parse(data)
                 chart(clinicListArray,today)
                 // clinicList4.setData(clinicListArray);
-                let list;
-                clinicListArray.map(element=>{
-                   list.push(element.clinicID)
-                })
+                // let list;
+                // clinicListArray.map(element=>{
+                //    list.push(element.clinicID)
+                // })
 
             }
         );
