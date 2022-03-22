@@ -54,7 +54,7 @@
 <div class="body-content">
     <div class="top-summary">
         <div class="summary-card">
-            <div class="card">
+            <div class="card" onclick="JumpToAppoinmnet();">
                 <div class="card-content">
                     <div class="card-icon">
                         <img  src="<c:url value="/public/images/PHI_Dashboard/time-clock-circle.svg "/>" srcset="">
@@ -342,7 +342,7 @@
 
 <script defer>
     let calender = new Calender("calender",'phiEvents');
-    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message","", "calenderEvent");
     // calender.reangeSelect(2021, 9, 10, 6, 8);
 </script>
 <script>
