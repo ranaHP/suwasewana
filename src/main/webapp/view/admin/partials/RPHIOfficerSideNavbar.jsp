@@ -36,19 +36,19 @@
                 <li><a href="/test_war_exploded/s/AssignTask">Manage to do list</a></li>
             </ul>
         </li>
-        <li>
-            <div class="iocn-link">
-                <a href="#">
-                    <i class='bx bx-plug'></i>
-                    <span class="link_name">Register patients</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow'></i>
-            </div>
-            <ul class="sub-menu">
-                <%--                <li><a class="link_name" href="#">verify-patients</a></li>--%>
-                <li><a href="/test_war_exploded/s/Register-patients">Register patients</a></li>
-            </ul>
-        </li>
+<%--        <li>--%>
+<%--            <div class="iocn-link">--%>
+<%--                <a href="#">--%>
+<%--                    <i class='bx bx-plug'></i>--%>
+<%--                    <span class="link_name">Register patients</span>--%>
+<%--                </a>--%>
+<%--                <i class='bx bxs-chevron-down arrow'></i>--%>
+<%--            </div>--%>
+<%--            <ul class="sub-menu">--%>
+<%--                &lt;%&ndash;                <li><a class="link_name" href="#">verify-patients</a></li>&ndash;%&gt;--%>
+<%--                <li><a href="/test_war_exploded/s/Register-patients">Register patients</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
         <li>
         <li>
             <div class="iocn-link">
@@ -64,19 +64,19 @@
                 <li><a href="/test_war_exploded/s/MOHAnnouncements">For Public </a></li>
             </ul>
         </li>
-        <li>
-            <div class="iocn-link">
-                <a href="#">
-                    <i class='bx bx-plus-medical'></i>
-                    <span class="link_name">Verify patients</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow'></i>
-            </div>
-            <ul class="sub-menu">
-<%--                <li><a class="link_name" href="#">verify-patients</a></li>--%>
-                <li><a href="/test_war_exploded/s/verify-patients">Verify patients</a></li>
-            </ul>
-        </li>
+<%--        <li>--%>
+<%--            <div class="iocn-link">--%>
+<%--                <a href="#">--%>
+<%--                    <i class='bx bx-plus-medical'></i>--%>
+<%--                    <span class="link_name">Verify patients</span>--%>
+<%--                </a>--%>
+<%--                <i class='bx bxs-chevron-down arrow'></i>--%>
+<%--            </div>--%>
+<%--            <ul class="sub-menu">--%>
+<%--&lt;%&ndash;                <li><a class="link_name" href="#">verify-patients</a></li>&ndash;%&gt;--%>
+<%--                <li><a href="/test_war_exploded/s/verify-patients">Verify patients</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
         <li>
             <div class="iocn-link">
                 <a href="#">
