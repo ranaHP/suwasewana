@@ -671,14 +671,19 @@
             function (data,status){
             diseasearray = JSON.parse(data)
 
-                // diseasearrayy = JSON.parse(diseasearray[0].description);
+                diseasearrayy = JSON.parse(diseasearray[0].description)
+                // diseasearrayy = JSON.parse(diseasearray)
                 //
                 //
-                //
-                // // console.log(diseasearrayy)
-                // console.log(diseasearrayy.Symptoms.Less)
-                // console.log(diseasearrayy.name)
 
+                // console.log(diseasearrayy.Symptoms.Less)
+                console.log("description")
+                console.log(diseasearrayy)
+                console.log(diseasearrayy.Treatment)
+
+
+                 // console.log(diseasearray[0].description)
+                console.log("over")
 
 
             disease.setData(diseasearray)
