@@ -21,7 +21,7 @@ class Calender {
     Type=""
     constructor(contaienrName, type) {
         this.Type=type
-        console.log("Constructor is call")
+        // console.log("Constructor is call")
         this.container = document.getElementById(contaienrName);
         this.container_name = contaienrName;
         switch (type){
@@ -63,7 +63,7 @@ class Calender {
         })
     }
     addCalenderTask() {
-        console.log("call add calander event")
+        // console.log("call add calander event")
         this.event.map(eventItem => {
             console.log("Add calander task called ");
             if (this.current_month == eventItem.month && this.current_year == eventItem.year) {

@@ -26,7 +26,7 @@ public class DiseaseDAO {
 
 
 
-    public ArrayList<DiseaseReportModel> Getmaxdiseasecount(DiseaseReportModel DRM) {
+    public DiseaseReportModel Getmaxdiseasecount(DiseaseReportModel DRM) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SelectMaxDiseaseCount)) {
 
             preparedStatement.setString(1, DRM.getMohid());
@@ -63,7 +63,7 @@ public class DiseaseDAO {
 
 
             ResultSet rs = preparedStatement.executeQuery();
-            ArrayList<DiseaseReportModel> diseaseReportModels = new ArrayList<DiseaseReportModel>();
+//            ArrayList<DiseaseReportModel> diseaseReportModels = new ArrayList<DiseaseReportModel>();
             Integer max=0;
             String name="";
             while (rs.next()) {
@@ -84,7 +84,7 @@ public class DiseaseDAO {
                     preparedStatementforCount.setString(3, FirstDayArray[i]);
                     preparedStatementforCount.setString(4, LastDayArray[i]);
                     ResultSet rs2 = preparedStatementforCount.executeQuery();
-                    System.out.println("SQL for day complair "+preparedStatementforCount);
+//                    System.out.println("SQL for day complair "+preparedStatementforCount);
                     Integer count=0;
                     while (rs2.next()) {
                         count = Integer.parseInt((rs2.getString("count(u.UNic)")));
@@ -97,9 +97,24 @@ public class DiseaseDAO {
                 }
             }
 //            System.out.println("Final array");
-//            for (int element: MonthCount) {
-//                System.out.println(element);
-//            }
+            Integer tot=0;
+            for (int element: MonthCount) {
+                tot+=element;
+            }
+            String t=String.valueOf(tot);
+            DiseaseReportModel diseaseReportModels=new DiseaseReportModel(
+                    name,
+                    String.valueOf(MonthCount[0]),
+                    String.valueOf(MonthCount[1]),
+                    String.valueOf(MonthCount[2]),
+                    String.valueOf(MonthCount[3]),
+                    String.valueOf(MonthCount[4]),
+                    String.valueOf(MonthCount[5]),
+                    "",
+                    "",
+                    t
+
+            );
 
             return diseaseReportModels;
         } catch (SQLException throwables) {
