@@ -23,7 +23,7 @@
 
 </head>
 <body id="mainContent">
-<c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"/>
+<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
 <div class="mypopup" id="popup" style="display: none;"></div>
 <div class="Vaccin_main_Container">
 

@@ -78,6 +78,18 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_viewClinics.jsp");
                     rd.forward(request,response);
                     break;
+
+                case "Add-vaccine":
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Add-vaccin.jsp");
+                    rd.forward(request,response);
+                    break;
+
+
+                case "vaccinated-users-view":
+                    rd = request.getRequestDispatcher("/view/admin/Hospital/HospitalVaccinationDetailView.jsp");
+                    rd.forward(request,response);
+                    break;
+
                 case "vaccine_clinics":
                     rd = request.getRequestDispatcher("/view/admin/clinicalOfficer/dashBoard/dashboard_createVaccineClinics.jsp");
                     rd.forward(request,response);
@@ -180,6 +192,13 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Public-Announcements.jsp");
                     rd.forward(request,response);
                     break;
+
+
+                case "RPHI-Dashboard":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/rphi-dashboard.jsp");
+                    rd.forward(request,response);
+                    break;
+
                 case "MakAnnouncementsForPHI":
                     rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPublic.jsp");
                     rd.forward(request,response);

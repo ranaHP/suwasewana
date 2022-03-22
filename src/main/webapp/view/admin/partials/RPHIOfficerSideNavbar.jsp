@@ -20,7 +20,7 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a href="/test_war_exploded/s/PHI-dashboard">Home</a></li>
+                <li><a href="/test_war_exploded/s/RPHI-Dashboard">Home</a></li>
             </ul>
         </li>
         <li>
