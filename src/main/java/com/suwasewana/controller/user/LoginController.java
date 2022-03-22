@@ -91,7 +91,14 @@ public class LoginController extends HttpServlet {
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", this.gson.toJson(userLoginDetailsResponse));
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-            String temp = userLoginDetailsResponse.getUname().split(" ")[0] +"/" + userLoginDetailsResponse.getUnic() + '/' + userLoginDetailsResponse.getMobile()+ '/' + userLoginDetailsResponse.getuMoh() + '/' + userLoginDetailsResponse.getuProvince() + '/' + userLoginDetailsResponse.getuDistrict() + '/' + userLoginDetailsResponse.getuCity();
+            String temp = userLoginDetailsResponse.getUname().split(" ")[0] +"/"
+                    + userLoginDetailsResponse.getUnic() + '/'
+                    + "User" + '/'
+                    + userLoginDetailsResponse.getMobile()+ '/'
+                    + userLoginDetailsResponse.getuMoh() + '/'
+                    + userLoginDetailsResponse.getuProvince() + '/'
+                    + userLoginDetailsResponse.getuDistrict() + '/'
+                    + userLoginDetailsResponse.getuCity();
             Cookie loginCookie = new Cookie("uDetails", temp);
             loginCookie.setMaxAge(300*60);
             res.addCookie(loginCookie);
