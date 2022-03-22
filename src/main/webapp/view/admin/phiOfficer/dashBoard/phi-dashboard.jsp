@@ -738,6 +738,89 @@
 
 
 
+
+    // To get all disease count in this month
+    Getmaxdiseasecount()
+    function createFirstAndLastDay(d){
+        var date = new Date(d), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = (new Date(y, m, 1));
+        var lastDay = (new Date(y, m + 1, 0));
+        let date1=y+"-"+(m+1)+"-"+firstDay.getDate();
+        let date2=y+"-"+(m+1)+"-"+lastDay.getDate();
+        // console.log(date1)
+        // console.log(date2)
+        return{
+            "date1":date1,
+            "date2":date2
+        }
+    }
+
+    function TakePreviousMonth(myVariable){
+
+        var makeDate = new Date(myVariable);
+        makeDate = new Date(makeDate.setMonth(makeDate.getMonth() - 1));
+        return makeDate;
+    }
+    function Getmaxdiseasecount() {
+        var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = (new Date(y, m, 1));
+        var lastDay = (new Date(y, m + 1, 0));
+
+        let date1=y+"-"+m+"-"+firstDay.getDate();
+        let date2=y+"-"+m+"-"+lastDay.getDate();
+
+
+
+
+
+        var CDate = new Date()
+
+        i=5
+        monthArray=[]
+        monthArray.push(createFirstAndLastDay(CDate))
+        while(i>0){
+            CDate=TakePreviousMonth(CDate);
+            monthArray.push(createFirstAndLastDay(CDate))
+            i--;
+        }
+        for(i=0;i<5;i++){
+            console.log("xxx"+monthArray[i].date1)
+            console.log("xxx"+monthArray[i].date2)
+        }
+
+
+        let reqData={
+            m1date1:monthArray[0].date1,
+            m1date2:monthArray[0].date2,
+            m2date1:monthArray[1].date1,
+            m2date2:monthArray[1].date2,
+            m3date1:monthArray[2].date1,
+            m3date2:monthArray[2].date2,
+            m4date1:monthArray[3].date1,
+            m4date2:monthArray[3].date2,
+            m5date1:monthArray[4].date1,
+            m5date2:monthArray[4].date2,
+            m6date1:monthArray[5].date1,
+            m6date2:monthArray[5].date2,
+        };
+        console.log("reqdata "+reqData.m1date1)
+        console.log("reqdata "+reqData.m2date1)
+        console.log("reqdata "+reqData.m3date1)
+        $.post(myUrl+"/disease-controller/Getmaxdiseasecount",
+            reqData,
+            function (data, status) {
+                // let TodayTaskList = JSON.parse(data);
+
+                // tasklist.setDataForPHI(TodayTaskList);
+
+
+
+            }
+        );
+
+    }
+
+
     getAlltask();
     let tasklist= new TaskList('task_list');
     function getAlltask() {

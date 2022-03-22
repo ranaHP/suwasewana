@@ -233,13 +233,11 @@ public class ComplainDAO {
 //                preparedStatementtype = connection.prepareStatement(Complain_For_PHI_type);
 //                preparedStatementtype.setString(2, type);
 //                preparedStatementtype.setString(1, nic);
-//                System.out.println("SQL - "+preparedStatementtype);
 //                rs = preparedStatementtype.executeQuery();
 //            }
 //
 //
 //            ArrayList<ComplainModel> ComplainList = new ArrayList<ComplainModel>();
-//            System.out.println("come to view detail");
 //            ArrayList<CommanForCompalinAndUser> complainListForPHI = new ArrayList<CommanForCompalinAndUser>();
 //            while (rs.next()) {
 //
