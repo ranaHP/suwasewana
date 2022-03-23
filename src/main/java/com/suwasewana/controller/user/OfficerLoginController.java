@@ -31,29 +31,19 @@ public class OfficerLoginController extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
         checkUserLogin(req,res);
 
     }
 
     private void checkUserLogin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String mobile = req.getParameter("user-mobile");
-        String password = req.getParameter("user-password");
+        String mobile = req.getParameter("user_mobile");
+        String password = req.getParameter("user_password");
         String post = req.getParameter("Post");
         String mac="";
-//        System.out.println("Mobile "+mobile);
-//        System.out.println("Pass "+password);
-//        System.out.println("Post "+post);
         mac=GetMaC();
-        OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac);
-
-//        res.getWriter().println("Mobile "+officerLoginModel.getMobile());
-//        res.getWriter().println("Pass "+officerLoginModel.getPassword());
-//        res.getWriter().println("mac "+officerLoginModel.getMAC());
+        OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac ,post);
         OfficerLoginModel officerLoginresponse = officerDAO.CheckLoginValidation(officerLoginModel,post);
-        System.out.println("ControllerMobile new"+officerLoginresponse.getMobile());
-        System.out.println("ControllerMobilePass new "+officerLoginresponse.getPassword());
-        System.out.println("ControllerMobilemac new"+officerLoginresponse.getMAC());
-
         PrintWriter out = res.getWriter();
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
@@ -62,17 +52,25 @@ public class OfficerLoginController extends HttpServlet {
         if (officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("") ) {
             ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-//            res.getWriter().println("Response unsuecc");
+        } else if (
+                !officerLoginresponse.getMobile().equals("") && !officerLoginresponse.getPassword().equals("")
+                 && officerLoginresponse.getMessage().equals("mac is wrong") ) {
+            ResponseType suwasewanaRespose = new ResponseType("error", "your mac is not match");
+            responseJsonString = this.gson.toJson(suwasewanaRespose);
 
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-//            res.getWriter().println("Response suecc");
-//            Cookie loginCookie = new Cookie("cnic","12");
-//            //setting cookie to expiry in 30 mins
-//            loginCookie.setMaxAge(300*60);
-//            res.addCookie(loginCookie);
-//            System.out.println(loginCookie.getValue());
+            String temp = officerLoginresponse.getFull_name().split(" ")[0] +"/"
+                    + officerLoginresponse.getMAC().replaceAll("-" ,"_")  + '/'
+                    + officerLoginresponse.getPost()+ '/'
+                    + officerLoginresponse.getNIC()+ '/'
+                    + officerLoginresponse.getMohId()+ '/'
+                    + officerLoginresponse.getMobile() ;
+            System.out.println(temp);
+            Cookie loginCookie = new Cookie("sDetails",temp);
+            loginCookie.setMaxAge(300*60);
+            res.addCookie(loginCookie);
         }
 
         out.print(responseJsonString);

@@ -1,28 +1,25 @@
 package com.suwasewana.model;
 
+import com.suwasewana.core.SuwasewanaHashing;
+
 public class OfficerLoginModel {
     public String mobile;
     protected String password;
-    protected String phi_Id;
+    protected String officer_Id;
     protected String full_name;
     protected String NIC ;
     protected String Address;
     protected String MAC;
     protected String City;
     protected String District;
-    protected String phi_post;
+    protected String post;
     protected String login_status;
     protected String PostalCode;
     protected String DP ;
     protected String mohId ;
     protected String suspended_time;
+    protected String message;
 
-    public OfficerLoginModel(String mob, String pass, String mac){
-        super();
-        this.mobile=mob;
-        this.password=pass;
-        this.MAC=mac;
-    }
 
     public String getMobile() {
         return mobile;
@@ -40,12 +37,12 @@ public class OfficerLoginModel {
         this.password = password;
     }
 
-    public String getPhi_Id() {
-        return phi_Id;
+    public String getOfficer_Id() {
+        return officer_Id;
     }
 
-    public void setPhi_Id(String phi_Id) {
-        this.phi_Id = phi_Id;
+    public void setOfficer_Id(String officer_Id) {
+        this.officer_Id = officer_Id;
     }
 
     public String getFull_name() {
@@ -96,12 +93,12 @@ public class OfficerLoginModel {
         District = district;
     }
 
-    public String getPhi_post() {
-        return phi_post;
+    public String getPost() {
+        return post;
     }
 
-    public void setPhi_post(String phi_post) {
-        this.phi_post = phi_post;
+    public void setPost(String post) {
+        this.post = post;
     }
 
     public String getLogin_status() {
@@ -142,5 +139,24 @@ public class OfficerLoginModel {
 
     public void setSuspended_time(String suspended_time) {
         this.suspended_time = suspended_time;
+    }
+
+    public OfficerLoginModel(String mob, String pass, String mac , String post){
+        super();
+        SuwasewanaHashing hashing = new SuwasewanaHashing(pass);
+
+        this.mobile=mob;
+        this.password=hashing.getHashValue();
+//        System.out.println("Officer login hash " + this.password);
+        this.MAC=mac;
+        this.post = post;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

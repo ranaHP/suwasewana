@@ -2,7 +2,9 @@ class LoginLogout{
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     showLoginLogoutItems(div){
         // console.log(this.myUrl);
-       console.log( this.getCookie("uDetails"));
+        // console.log( "----------------");
+        // console.log( this.getCookie("uDetails"));
+        // console.log( "----------------");
        if(this.getCookie("uDetails") != ""){
            document.querySelector("."+div).innerHTML +=
            `<div class="register-btn" onclick="window.location='${this.myUrl}/s/register';" >
