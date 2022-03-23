@@ -69,10 +69,11 @@ public class UserDAO {
     private static final String USER_HOME_VIEW_ANNOUNCEMENTS="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=? LIMIT 3;";
 //    private static final  String getUserTpMohIt="SELECT uMobile,uMoh FROM suwasewana_db.user where uNic=?;";
     private static final String patient_count="SELECT COUNT(d.UNic), name FROM `user_register_disease` d LEFT JOIN `user` u ON d.UNic=u.uNic  WHERE uMoh = ? GROUP BY name ";
+    private static final String patient_TP="SELECT u.uMobile  FROM `user_register_disease` d LEFT JOIN `user` u ON d.UNic=u.uNic  WHERE name = ? AND uMoh=? ";
     Connection connection;
 
 
-    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `Unic`=? AND `district_id`=?;";
+    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `Unic`=? AND `district_id`=;";
 
 
 
@@ -1230,4 +1231,39 @@ public class UserDAO {
         return null;
     }
 
+    public ArrayList<User> patientTP(String moh, String disease) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(patient_TP)) {
+            preparedStatement.setString(2, moh);
+            preparedStatement.setString(1, disease);
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<User> PatientTP = new ArrayList<User>();
+            while (rs.next()) {
+                String numbers=rs.getString("uMobile");
+                User temp = new User(
+                        numbers,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+
+                );
+                PatientTP.add(temp);
+            }
+            return PatientTP;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
 }

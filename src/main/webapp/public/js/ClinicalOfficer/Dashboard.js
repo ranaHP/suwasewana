@@ -57,7 +57,7 @@ function chart1(data,today){
     console.log("a")
     console.log(data)
     var myChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'bar',
         data: {
             labels: lables,
             datasets: [{

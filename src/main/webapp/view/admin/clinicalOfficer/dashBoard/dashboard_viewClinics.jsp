@@ -52,13 +52,14 @@
     feather.replace()
 </script>
 <script defer>
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let validation = new FormInputValidation();
     let clinicList1 = new clinicList("card-containor");
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     view();
     function view(){
         let clinicListArray=[]
-        $.post("/test_war_exploded/create-clinic-controller/view",
+        $.post(myUrl+"/create-clinic-controller/view",
             // reqData,
             function(data,status){
                 clinicListArray=JSON.parse(data)
@@ -82,7 +83,7 @@
     function deleteClinics(clinicID){
         let id=clinicID
         cancelClinicmsg(parseInt(id))
-        $.post("/test_war_exploded/create-clinic-controller/delete",
+        $.post(myUrl+"/create-clinic-controller/delete",
             {
                 clinicID: clinicID
             },
@@ -114,7 +115,7 @@
             {
                 clinicID: id,
             };
-        $.post("/test_war_exploded/create-clinic-controller/select",
+        $.post(myUrl+"/create-clinic-controller/select",
             reqData,
             function(data,status){
                 // alert(data)
@@ -158,7 +159,7 @@
                 description:description
             };
         console.log(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+        $.post(myUrl+"/create-clinic-controller/updateclinic",
             reqData,
             function (data,status){
                 // alert("wrong")
@@ -175,7 +176,7 @@
                 clinicID: id,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/select",
+        $.post(myUrl+"/create-clinic-controller/select",
             reqData,
             function(data,status){
                 // alert(data)
@@ -201,7 +202,7 @@
                 duration:duration,
             };
         console.log(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/resheduleclinic",
+        $.post(myUrl+"/create-clinic-controller/resheduleclinic",
             reqData,
             function (data,status){
                 // alert("wrong")
@@ -224,7 +225,7 @@
 
 
         let Details=[];
-        $.post("/test_war_exploded/create-clinic-controller/view",
+        $.post(myUrl+"/create-clinic-controller/view",
         function (data, status) {
         let rs= JSON.parse(data);
         this.Details=rs;
@@ -248,7 +249,7 @@
             {
                 clinicID: id,
             };
-        $.post("/test_war_exploded/create-clinic-controller/message",
+        $.post(myUrl+"/create-clinic-controller/message",
             reqData,
             function(data,status){
                 console.log(data)
@@ -273,7 +274,7 @@
             {
                 clinicID: id,
             };
-        $.post("/test_war_exploded/create-clinic-controller/Numberslist",
+        $.post(myUrl+"/create-clinic-controller/Numberslist",
             reqData,
 
             function(data,status){

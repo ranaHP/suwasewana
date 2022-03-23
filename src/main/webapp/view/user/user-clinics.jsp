@@ -619,6 +619,7 @@
                         message: 'Successfully Registerd!',
 
                     });
+                    viewregisteredclinic();
                       updateAvailableseats(avalabel_seats,clinic_id)
                 } else {
                     console.log("unsuccesssss ")
@@ -692,7 +693,7 @@
                    console.log("b")
                    console.log(avail_seats)
                   updateAvailableseats(avail_seats,ncs_id)
-
+                   viewregisteredclinic();
                } else {
                    console.log("unsuccesssss ")
                    popup.showUserClinicRegisterSuccessMessage({

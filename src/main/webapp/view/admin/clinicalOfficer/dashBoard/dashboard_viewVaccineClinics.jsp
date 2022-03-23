@@ -54,7 +54,7 @@
     view();
     function view(){
         let clinicListArray=[]
-        $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
+        $.post(myUrl+"/create-clinic-controller/VaccineClinicsView",
             // reqData,
             function(data,status){
                 clinicListArray=JSON.parse(data)
@@ -78,7 +78,7 @@
         // console.log("deleteclinicfunction")
         let id=clinicID
         cancelClinicmsg(parseInt(id))
-        $.post("/test_war_exploded/create-clinic-controller/deleteV",
+        $.post(myUrl+"/create-clinic-controller/deleteV",
             {
                 clinicID: clinicID
             },
@@ -107,7 +107,7 @@
             {
                 clinicID: id,
             };
-        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+        $.post(myUrl+"/create-clinic-controller/select-V-Clinics",
             reqData,
             function(data,status){
                 console.log(data)
@@ -133,7 +133,7 @@
             {
                 clinicID: id,
             };
-        $.post("/test_war_exploded/create-clinic-controller/",
+        $.post(myUrl+"/create-clinic-controller/",
             reqData,
 
             function(data,status){
@@ -179,7 +179,7 @@
         return false;
     }
     let mohDetails=[];
-    $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
+    $.post(myUrl+"/create-clinic-controller/VaccineClinicsView",
         function (data, status) {
             // console.log(data);
             let rs= JSON.parse(data);
@@ -205,7 +205,7 @@
                 clinicID: id,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+        $.post(myUrl+"/create-clinic-controller/select-V-Clinics",
             reqData,
             function(data,status){
                 // alert(data)
@@ -249,7 +249,7 @@
             };
         console.log(reqData)
         alert(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/updatevclinic",
+        $.post(myUrl+"/create-clinic-controller/updatevclinic",
             reqData,
             function (data,status){
                 // alert("wrong")
@@ -266,7 +266,7 @@
                 clinicID: id,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+        $.post(myUrl+"/create-clinic-controller/select-V-Clinics",
             reqData,
             function (data, status) {
                 // alert(data)
@@ -293,7 +293,7 @@
             };
         console.log(datetime.split("T")[1])
         alert(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/ResheduleVClinics",
+        $.post(myUrl+"/create-clinic-controller/ResheduleVClinics",
             reqData,
             function (data,status){
                 // alert("wrong")
@@ -366,7 +366,7 @@
                 clinicID: clinicid,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+        $.post(myUrl+"/create-clinic-controller/select-V-Clinics",
             reqData,
             function (data, status) {
                 clinicList = JSON.parse(data)

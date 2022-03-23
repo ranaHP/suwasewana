@@ -29,6 +29,7 @@ class view_disease_details{
 
                 this.container.innerHTML += `
 
+
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
                         Diseas : ${item.name}
                         <button class="submitBtn" onclick="RegisterForDisease('`+item.name +`')"> Register as Patient </button>
@@ -127,22 +128,21 @@ class view_disease_details{
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="prevention-list">
-                                    <div class="s-item">
+                                
+                                 ${createSpreadCard(JSON.parse(item.description).Spread.item)}
+                                
+<!--                                    <div class="s-item">-->
 <!--                                        Droplets or aerosols-->
-                                    ${JSON.parse(item.description).Spread.item[0]}
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Spread.item[1]}
+<!--                                    </div>-->
+<!--                                    <div class="s-item">-->
 <!--                                        Airborne transmission-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Spread.item[2]}
+<!--                                    </div>-->
+<!--                                    <div class="s-item">-->
 <!--                                        Surface transmission-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Spread.item[3]}
+<!--                                    </div>-->
+<!--                                    <div class="s-item">-->
 <!--                                        Fecal-oral-->
-                                    </div>
+<!--                                    </div>-->
 
                                 </div>
                             </div>
@@ -167,74 +167,37 @@ class view_disease_details{
                                 <div class="d-s-s-titel">
                                     Most common symptoms:
                                 </div>
+                                
+                                
                                 <div class="symptopms-list">
-                                    <div class="s-item">
-<!--                                        Fever-->
-                                    ${JSON.parse(item.description).Symptoms.Most[0]}
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Most[1]}
-<!--                                        cough-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Most[2]}
-<!--                                        tiredness-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Most[3]}
-<!--                                        loss of taste or smell-->
-                                    </div>
-
+                                ${createmostcommonSymptomsCard(JSON.parse(item.description).Symptoms.Most)}
                                 </div>
+
 
                                 <div class="d-s-s-titel">
                                     Less common symptoms:
                                 </div>
+                                
+                                
                                 <div class="symptopms-list">
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[0]}
-<!--                                        sore throat-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[1]}
-<!--                                        headache-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[2]}
-<!--                                        aches and pains-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[3]}
-<!--                                        diarrhoea-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[4]}
-<!--                                        a rash on skin-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[5]}
-<!--                                        red or irritated eyes-->
-                                    </div>
+                                
+                                ${createlesscommonSymptomsCard(JSON.parse(item.description).Symptoms.Less)}
+
                                 </div>
+                                
+                                
                             </div>
 
                             <div class="d-s-s-titel">
                                 Serious symptoms:
                             </div>
+                            
+                            
                             <div class="symptopms-list">
-                                <div class="s-item">
-                                ${JSON.parse(item.description).Symptoms.Serious[0]}
-<!--                                    difficulty breathing or shortness of breath-->
-                                </div>
-                                <div class="s-item">
-                                ${JSON.parse(item.description).Symptoms.Serious[1]}
-<!--                                    loss of speech or mobility, or confusion-->
-                                </div>
-                                <div class="s-item">
-                                ${JSON.parse(item.description).Symptoms.Serious[2]}
-<!--                                    chest pain-->
-                                </div>
+                               ${createseriouscommonSymptomsCard(JSON.parse(item.description).Symptoms.Serious)}
                             </div>
+                            
+                            
                             <div class="banner1">
                                 <img src="<c:url value="/public/images/diseases/syntoms.png"/>" width="100%" />
                             </div>
@@ -252,35 +215,17 @@ class view_disease_details{
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
-                                <div class="prevention-list">
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[0]}
-<!--                                        Wear a mask properly-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[1]}
-<!--                                        Make your environment safer-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[2]}
-<!--                                        Clean your hands frequently with alcohol-based hand rub or soap and water.-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[3]}
-<!--                                        Get vaccinated as soon as it’s your turn and follow local guidance on vaccination.-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[4]}
-<!--                                        Keep physical distance of at least 1 metre from others, even if they don’t appear to be sick. Avoid crowds and close contact.-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[5]}
-<!--                                        Cover your mouth and nose with a bent elbow or tissue when you cough or sneeze. Dispose of used tissues immediately and clean hands regularly.-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[6]}
-<!--                                        If you develop symptoms or test positive for COVID-19, self-isolate until you recover.-->
-                                    </div>
+                                
+                                
+                                
+                                <div class="prevention-list" id="prevention-list">
+                                
+                                
+                                    ${createPreventionCard(JSON.parse(item.description).Prevention.item)}
+                                    
+                                    
+                                    
+                                    
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="image-set">
                                             <img src="<c:url value="/public/images/diseases/p1.svg"/> " height="70px" class="m-auto" />
@@ -314,38 +259,11 @@ class view_disease_details{
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
-                                <div class="treatments-list">
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[0]}
-<!--                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[1]}
-<!--                                        Cooperate with contact-tracing procedures to stop the spread of the virus.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[2]}
-<!--                                        If testing is not available, stay home and away from others for 14 days.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[3]}
-                                                                        
+                                <div class="treatments-list" id="treatments-list">
+                                
+                                
+                                    ${createreatmentSelfCareCard(JSON.parse(item.description).Treatment.SelfCare.item)}
 
-                                    
-<!--                                        While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[4]}
-<!--                                        Keep at least a 1-metre distance from others, even from your family members.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[5]}
-<!--                                        Wear a medical mask to protect others, including if/when you need to seek medical care-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[6]}
-<!--                                        Stay in a separate room from other family members, and if not possible, wear a medical mask.-->
-                                    </div>
 
                                 </div>
                             </div>
@@ -369,14 +287,10 @@ class view_disease_details{
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="treatments-list">
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.MedicalTreatments.item[0]}
-<!--                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.MedicalTreatments.item[1]}
-<!--                                        Dexamethasone is a corticosteroid that can help reduce the length of time on a ventilator and save lives of patients with severe and critical illness.-->
-                                    </div>
+                                
+                                
+                                  ${createTreatmentMedicalTreatmentsCard(JSON.parse(item.description).Treatment.MedicalTreatments.item)}
+                                    
 
 
                                 </div>
@@ -399,20 +313,31 @@ class view_disease_details{
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="emergency-contanat-cards">
+                                
+                                
+                         
                                     <div class="emg-card">
+                                    
                                         <div class="emd-card-title">
-                                            Response Alert
+<!--                                            Response Alert-->
+                                            ${JSON.parse(item.description).EmergencyContact.item[0].title}
                                         </div>
+                                        
+                                        
                                         <div class="emg-card-number">
-                                            1999
+<!--                                            1999-->
+                                            ${JSON.parse(item.description).EmergencyContact.item[0].CNumber}
                                         </div>
                                     </div>
                                     <div class="emg-card">
                                         <div class="emd-card-title">
-                                            Response Alert
+<!--                                            Response Alert-->
+                                             ${JSON.parse(item.description).EmergencyContact.item[0].title}
                                         </div>
                                         <div class="emg-card-number">
-                                            1999
+<!--                                            1999-->
+                                            ${JSON.parse(item.description).EmergencyContact.item[0].CNumber}
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -450,4 +375,136 @@ class view_disease_details{
             }
         )
     }
+
 }
+// function card(){
+//
+// }
+
+function createSpreadCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=`    <div class="s-item">
+                                    ${item}    
+                                    </div>`
+    })
+
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+function createmostcommonSymptomsCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=`    <div class="s-item">
+
+                        ${item}
+                     </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+function createlesscommonSymptomsCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=`    <div class="s-item">
+
+                        ${item}
+                     </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+function createseriouscommonSymptomsCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=`    <div class="s-item">
+
+                        ${item}
+                     </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+
+function createPreventionCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=` 
+                   <div class="p-item">
+                    ${item}
+<!--                                        Wear a mask properly-->
+                    </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+function createreatmentSelfCareCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=` 
+                  <div class="t-item" id="t-item">
+                                    ${item}
+<!--                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.-->
+                                    </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+
+function createTreatmentMedicalTreatmentsCard(data){
+    var temp = "";
+    data.forEach( item => {
+
+        temp +=` 
+                   <div class="t-item">
+                                    ${item}
+<!--                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.-->
+                                    </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+
+
+
+
+
+
+
+// function createEmergencyContactCard(data){
+//     var temp = "";
+//     data.forEach( item => {
+//         temp +=`
+//                    <div class="emd-card-title">
+//                       ${item}
+//                    </div>
+//                    <div class="emg-card-number">
+//                        ${item}
+//                     </div>`
+//     })
+//     console.log("temp")
+//     console.log(temp)
+//     console.log("temp")
+//     return temp
+// }

@@ -52,10 +52,10 @@
           <div>
             <input id="clinicID" placeholder="search by clinic ID" list="AllMArea" name="AllMArea" autocomplete="off"
                    onclick="document.getElementById('clinicID').value='';"
-                   onblur="validation.SearchSelect(
-                                    document.getElementById('clinicID').value,
-                                    'LMArea'
-                                );"
+<%--                   onblur="validation.SearchSelect(--%>
+<%--                                    document.getElementById('clinicID').value,--%>
+<%--                                    'LMArea'--%>
+<%--                                );"--%>
             >
             <datalist id="AllMArea">
             </datalist>
@@ -170,6 +170,7 @@
       </div>
 </body>
 <script defer>
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
 <%--  let validation = new FormInputValidation();--%>
   let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
@@ -228,7 +229,7 @@ function announcement(imagearray){
             clinicID:document.getElementById("clinicID").value,
             image:imagearray[0]
           };
-  $.post("/test_war_exploded/clinicAnnouncementController/createA",
+  $.post(myUrl+"/clinicAnnouncementController/createA",
           reqData,
           function(data,status){
             if(data.includes("sucsess")){
@@ -266,7 +267,7 @@ function updateclinics(){
             description:document.getElementById("description").value,
         };
     console.log(reqData)
-    $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+    $.post(myUrl+"/create-clinic-controller/updateclinic",
         reqData,
         function (data,status){
             // alert("wrong")
@@ -285,7 +286,7 @@ function view(){
             clinicID: document.getElementById("clinicID").value,
           };
   console.log(reqData);
-  $.post("/test_war_exploded/create-clinic-controller/select",
+  $.post(myUrl+"/create-clinic-controller/select",
           reqData,
           function(data,status){
             console.log(data)
@@ -302,7 +303,7 @@ function msg(){
             clinicID: document.getElementById("clinicID").value,
           };
   console.log(reqData);
-  $.post("/test_war_exploded/create-clinic-controller/select",
+  $.post(myUrl+"/create-clinic-controller/select",
           reqData,
           function(data,status){
             clinicList=JSON.parse(data)
@@ -318,10 +319,32 @@ function msg(){
 }
 function msgdelivers(disease,message){
   //find number list who register for the disease
-  console.log("msg")
+    let Nlist=[];
+  console.log(disease)
+  console.log("-----------")
   console.log(message)
-  let Nlist=[];
-  sendmsg(Nlist,message)
+    let reqData =
+        {
+           name: disease
+        };
+  $.post(myUrl+"/user-disease-controller/patientTP",
+          reqData,
+          function(data,status){
+            console.log("patient")
+            console.log(data)
+              let array=JSON.parse(data)
+              array.map(element=>{
+                  let t=element.uMobile
+                  TNo=t.substring(1)
+                  let TNo11="+94"+TNo
+                  Nlist.push(TNo11)
+              })
+
+              sendmsg(Nlist,message)
+          }
+  );
+
+
   return false;
 }
 
@@ -339,20 +362,25 @@ function checkMOHid(){
   }
 
 function sendmsg(Nlist,msg) {
-   let msgs=msg;
-  Nlist.map(i => {
-  // let i="775836281";
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-              if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("demo").innerHTML =
-                        this.responseText;
-              }
+    let nLIST=Nlist
+    console.log("hi")
+    console.log(Nlist)
+    let msgs=msg
+    nLIST.map(element=>{
+        let reqData =
+            {
+                message:msgs,
+                to:parseInt(element),
             };
-            xhttp.open("GET", "https://app.notify.lk/api/v1/send?user_id=15170&api_key=JxIvVwu5Ww2TF7aYeFx0&sender_id=NotifyDEMO&to=+94" + i + "&message=msgs", true);
-            xhttp.send();
-          }
-  )
+        console.log(reqData)
+        $.post("https://app.notify.lk/api/v1/send?user_id=15808&api_key=8h4xvxbwtVgXH7dyZnN9&sender_id=NotifyDEMO",
+            reqData,
+            function(data,status){
+                // console.log("data")
+
+            }
+        );
+    })
 }
 
 </script>
@@ -360,7 +388,7 @@ function sendmsg(Nlist,msg) {
 
 function check(){
   let mohDetails=[];
-  $.post("/test_war_exploded/create-clinic-controller/view",
+  $.post(myUrl+"/create-clinic-controller/view",
           function (data, status) {
             console.log(data);
             let rs= JSON.parse(data);
