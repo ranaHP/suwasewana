@@ -111,10 +111,11 @@
     updateTaskStatus();
     getAllTask();
     function updateTaskStatus(){
+        console.log(updateTaskStatus)
         $.post(myUrl+"/phi-Todo-controller/UpdateOverdueTaskList",
             {},
             function (data, status) {
-
+                getAllTask();
             }
         );
     }
@@ -133,6 +134,7 @@
         return false;
     }
     function getAllTask() {
+        console.log("getAllTask")
         $.post(myUrl+"/phi-Todo-controller/TakeTaskList",
             {},
             function (data, status) {
