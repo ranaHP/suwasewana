@@ -31,7 +31,7 @@ class view_disease_details{
 
 
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
-                        Diseas : ${item.name}
+                        <div class="dd-name" id="dd-name">Diseas : ${item.name}</div>
                         <button class="submitBtn" onclick="RegisterForDisease('`+item.name +`')"> Register as Patient </button>
                     </div>
                     <div class="row1">
@@ -486,6 +486,24 @@ function createTreatmentMedicalTreatmentsCard(data){
 }
 
 
+function serach(){
+
+    const input = document.getElementById('appointmentType').value.toUpperCase();
+
+    const cardContainor = document.getElementById('dashboard-container');
+    const card = cardContainor.getElementsByClassName('dashboard-page-sub-title')
+
+    for(let i=0 ; i<card.length ;i++){
+        let title = card[i].querySelector('#dd-name');
+
+        if(title.innerHTML.toUpperCase().indexOf(input) > -1){
+            card[i].style.display=""
+        }else{
+            card[i].style.display="none"
+        }
+    }
+
+}
 
 
 

@@ -85,7 +85,7 @@ public class UserDAO {
     private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
 
 
-    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 2";
+    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 1";
     private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?,NULL,NULL );";
 
     public UserDAO() {

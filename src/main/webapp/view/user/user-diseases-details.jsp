@@ -191,7 +191,7 @@
                                 Diseases Name
                             </label>
                             <input id="appointmentType" type="text" list="allappointmentType" name="appointmentType"
-                                   autocomplete="off">
+                                   autocomplete="off" onkeyup="serach()">
                             <datalist id="allappointmentType">
                                 <option value="Mahapola" option=" Mahapola"></option>
                             </datalist>
