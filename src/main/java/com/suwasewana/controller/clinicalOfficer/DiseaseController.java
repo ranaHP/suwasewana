@@ -9,6 +9,7 @@ import com.suwasewana.model.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -72,15 +73,15 @@ import java.util.ArrayList;
 
 
     private void Getmaxdiseasecount(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
-//        Cookie[] cookies = req.getCookies();
-//        if(cookies !=null){
-//            for(Cookie cookie : cookies){
-//                if(cookie.getName().equals("unic")) {
-//                    cNic = cookie.getValue();
-//                }
-//            }
-//        }
+        String moh="1002";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    moh = cookie.getValue().split("/")[4];
+                }
+            }
+        }
         String m1date1 =req.getParameter("m1date1");
         String m1date2 =req.getParameter("m1date2");
         String m2date1 =req.getParameter("m2date1");
@@ -93,7 +94,7 @@ import java.util.ArrayList;
         String m5date2 =req.getParameter("m5date2");
         String m6date1 =req.getParameter("m6date1");
         String m6date2 =req.getParameter("m6date2");
-        String moh="1002";
+
         DiseaseReportModel diseaseReportModel=new DiseaseReportModel(
                 "",
                 m1date1+"/"+m1date2,

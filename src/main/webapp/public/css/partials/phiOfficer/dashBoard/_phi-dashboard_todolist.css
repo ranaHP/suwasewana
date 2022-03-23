@@ -79,7 +79,7 @@ svg {
 }
 .on-progess-list-container .on-progess-list{
     width: 100%;
-    min-height: 300px;
+    min-height: 139px;
     padding:  0 0 10px 0;
     margin-bottom: 56px;
     max-height: 467px;
@@ -248,6 +248,7 @@ form .form-item input {
     border-radius: 3px;
     padding: 5px;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.164);
+    outline: none;
 }
 
 form .form-item textarea{
@@ -257,6 +258,7 @@ form .form-item textarea{
     border-radius: 3px;
     padding: 5px;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.164);
+    outline: none;
 }
 button {
     background-color: rgb(24, 10, 149);

@@ -10,6 +10,7 @@ import com.suwasewana.model.vaccineClinicModel;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -74,13 +75,23 @@ public class RPHIAnnouncementController extends HttpServlet {
     }
 
     private void selectmohAnnouncemnt(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        System.out.println("select");
+//        System.out.println("select");
+        String moh="1004";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    moh = cookie.getValue().split("/")[4];
+                    System.out.println("select moh= "+moh);
+                }
+            }
+        }
         RPHIAnnouncementsModel selectA= new RPHIAnnouncementsModel(
                 "",
                 "",
                 "",
                 "",
-                "1004",
+                moh,
                 "",
                 "",
                 ""

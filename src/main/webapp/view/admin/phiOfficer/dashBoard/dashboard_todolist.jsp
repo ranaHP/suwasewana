@@ -119,7 +119,10 @@
             }
         );
     }
-
+    function reset(){
+        document.getElementById("w3review").value ="";
+        document.getElementById("taskStartTime").value="";
+    }
     function AddTask(){
         let reqdata={
             title:document.getElementById("w3review").value,
@@ -129,6 +132,7 @@
             reqdata,
             function (data, status) {
                 getAllTask();
+                reset();
             }
         );
         return false;

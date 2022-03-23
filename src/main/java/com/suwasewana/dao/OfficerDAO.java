@@ -35,13 +35,13 @@ public class OfficerDAO {
                 preparedStatement.setString(1, officerLogin.getMobile());
                 preparedStatement.setString(2, officerLogin.getPassword());
                 ResultSet rs = preparedStatement.executeQuery();
-//                System.out.println(" --------------------- " + preparedStatement.toString());
+                System.out.println(" --------------------- " + preparedStatement.toString());
 
                 while (rs.next()) {
 
-//                    System.out.println(" --------------------- ");
-//                    System.out.println(rs.getString("mobile_number"));
-//                    System.out.println(" --------------------- ");
+                    System.out.println(" --------------------- ");
+                    System.out.println(rs.getString("mobile_number"));
+                    System.out.println(" --------------------- ");
                     String mobile = rs.getString("mobile_number");
                     String password = rs.getString("password");
                     String mac=rs.getString("device_mac");
@@ -86,10 +86,15 @@ public class OfficerDAO {
                         officerLogindetails.setPost(officerpost);
                         officerLogindetails.setMAC(mac);
                         officerLogindetails.setNIC(nic);
+                        System.out.println("Mobile "+ mobile);
+                        System.out.println("password "+ password);
+                        System.out.println("mac "+ mac);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && !mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
+                        System.out.println("officerLogin.getMAC() "+officerLogin.getMAC());
+                        System.out.println("mac "+mac);
                         OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password, mac ,post  );
                         officerLogindetails.setMessage("mac is wrong");
                         return officerLogindetails;

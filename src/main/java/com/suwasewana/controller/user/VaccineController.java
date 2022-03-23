@@ -126,7 +126,7 @@ public class VaccineController extends HttpServlet {
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("uDetails")) {
                     uNic = cookie.getValue().split("/")[1];
-                    UMoh= cookie.getValue().split("/")[3];
+                    UMoh= cookie.getValue().split("/")[4];
                 }
             }
         }
@@ -148,7 +148,7 @@ public class VaccineController extends HttpServlet {
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("uDetails")) {
                     uNic = cookie.getValue().split("/")[1];
-                    UTp= cookie.getValue().split("/")[2];
+                    UTp= cookie.getValue().split("/")[3];
                 }
             }
         }
