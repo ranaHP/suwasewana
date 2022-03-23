@@ -84,7 +84,7 @@
                             <div id="user-type-error" class="form-field-error"></div>
                         </div>
                         <div class="loginbtn"><input type="submit" class="login-btn" value="Login" /></div>
-                        <div id="user-form-error" class=" form-response-error t-center pt-5" style=" font-size: .6em;">
+                        <div id="user-form-error" class=" form-response-error t-center pt-5" style=" font-size: .9em;float: left">
                             user mobile or password invalid! please try again.
                         </div>
                     </form>
