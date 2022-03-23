@@ -146,7 +146,7 @@ public class OfficerLoginModel {
 
         this.mobile=mob;
         this.password=hashing.getHashValue();
-        System.out.println("Officer login hash " + this.password);
+//        System.out.println("Officer login hash " + this.password);
         this.MAC=mac;
         this.post = post;
     }

@@ -49,7 +49,7 @@ public class OfficerLoginController extends HttpServlet {
         OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac ,post);
 
 //        res.getWriter().println("Mobile "+officerLoginModel.getMobile());
-//        res.getWriter().println("Pass "+officerLoginModel.getPassword());
+//        res.getWriter ().println("Pass "+officerLoginModel.getPassword());
 //        res.getWriter().println("mac "+officerLoginModel.getMAC());
         OfficerLoginModel officerLoginresponse = officerDAO.CheckLoginValidation(officerLoginModel,post);
         System.out.println("ControllerMobile new"+officerLoginresponse.getMobile());

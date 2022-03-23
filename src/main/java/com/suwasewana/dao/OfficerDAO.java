@@ -32,7 +32,6 @@ public class OfficerDAO {
             try (PreparedStatement preparedStatement = connection.prepareStatement(Check_PHI)) {
                 preparedStatement.setString(1, officerLogin.getMobile());
                 preparedStatement.setString(2, officerLogin.getPassword());
-                preparedStatement.setString(3, officerLogin.getMAC());
                 ResultSet rs = preparedStatement.executeQuery();
                 while (rs.next()) {
                     String mobile = rs.getString("mobile_number");
@@ -48,16 +47,16 @@ public class OfficerDAO {
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac==null  ) {
                         System.out.println("null mach with correct us ps in phi");
                         String updateMAC=officerLogin.getMAC();
-                        try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC_IN_PHI)){
-                            UpdateStatement.setString(1,updateMAC);
-                            UpdateStatement.setString(2,mobile);
-                            UpdateStatement.setString(3,password);
-                            System.out.println("update work"+UpdateStatement);
-                            UpdateStatement.executeUpdate();
-                        }
-                        catch (SQLException throwables) {
-                            printSQLException(throwables);
-                        }
+//                        try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC_IN_PHI)){
+//                            UpdateStatement.setString(1,updateMAC);
+//                            UpdateStatement.setString(2,mobile);
+//                            UpdateStatement.setString(3,password);
+//                            System.out.println("update work"+UpdateStatement);
+//                            UpdateStatement.executeUpdate();
+//                        }
+//                        catch (SQLException throwables) {
+//                            printSQLException(throwables);
+//                        }
                         OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC , post);
                         return officerLogindetails;
                     }
