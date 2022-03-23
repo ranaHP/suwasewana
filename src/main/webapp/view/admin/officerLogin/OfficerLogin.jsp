@@ -73,6 +73,7 @@
 
                             <select name="officer_types" id="officer_types">
                                 <option value="phi">Public Health Officer</option>
+                                <option value="rphi">Regional Public Health Officer</option>
                                 <option value="co">Clinical Officer</option>
                                 <option value="to">Temporary Officer </option>
                                 <option value="admin">Admin</option>
@@ -128,21 +129,21 @@
                 const xhttp = new XMLHttpRequest();
                 console.log(url)
                 xhttp.onload = function () {
-                    // let result = JSON.parse(this.response);
-                    // if (result.status === "success") {
-                    //     location.replace(myUrl+"/s/PHI-dashboard");
-                    // } else if (result.status === "error") {
-                    //     document.getElementById('user-form-error').style.display = "block";
-                    //     document.getElementById('user-form-error').innerText = result.data;
-                    //     document.getElementById("user-password").value = "";
-                    //     document.getElementById("user-mobile").value = "";
-                    //     setTimeout(() => {
-                    //         document.getElementById('user-form-error').style.display = "none";
-                    //     }, 8000)
-                    // }
-                    // else{
-                    //     console.log("somthing going wrong");
-                    // }
+                    let result = JSON.parse(this.response);
+                    if (result.status === "success") {
+                        location.replace(myUrl+"/s/PHI-dashboard");
+                    } else if (result.status === "error") {
+                        document.getElementById('user-form-error').style.display = "block";
+                        document.getElementById('user-form-error').innerText = result.data;
+                        document.getElementById("user-password").value = "";
+                        document.getElementById("user-mobile").value = "";
+                        setTimeout(() => {
+                            document.getElementById('user-form-error').style.display = "none";
+                        }, 8000)
+                    }
+                    else{
+                        console.log("somthing going wrong");
+                    }
                     console.log(this.response)
                 }
                 xhttp.open("GET", url, true);

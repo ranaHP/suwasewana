@@ -61,15 +61,16 @@ public class OfficerLoginController extends HttpServlet {
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-            String temp = officerLoginresponse.getFull_name() +"/"
-                    + officerLoginresponse.getNIC() + '/'
-                    + officerLoginresponse.getPost() + '/'
+            String temp = officerLoginresponse.getFull_name().split(" ")[0] +"/"
+                    + officerLoginresponse.getMAC().replaceAll("-" ,"_")  + '/'
+                    + officerLoginresponse.getPost()+ '/'
+                    + officerLoginresponse.getNIC()+ '/'
+                    + officerLoginresponse.getMohId()+ '/'
                     + officerLoginresponse.getMobile() ;
             System.out.println(temp);
-//            Cookie loginCookie = new Cookie("uDetails",temp);
-//            loginCookie.setMaxAge(300*60);
-//            res.addCookie(loginCookie);
-//            System.out.println(loginCookie.getValue());
+            Cookie loginCookie = new Cookie("sDetails",temp);
+            loginCookie.setMaxAge(300*60);
+            res.addCookie(loginCookie);
         }
 
         out.print(responseJsonString);

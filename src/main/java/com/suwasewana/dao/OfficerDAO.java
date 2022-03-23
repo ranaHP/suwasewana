@@ -47,6 +47,7 @@ public class OfficerDAO {
                     String assignCity=rs.getString("assignCity");
                     String assignMOH=rs.getString("assignMOH");
                     String full_name=rs.getString("full_name");
+                    String nic=rs.getString("nic");
 
 
 
@@ -65,12 +66,24 @@ public class OfficerDAO {
                         }
                         OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC , post);
                         officerLogindetails.setMessage("new user");
+                        officerLogindetails.setFull_name(full_name);
+                        officerLogindetails.setMohId(assignMOH);
+                        officerLogindetails.setCity(assignCity);
+                        officerLogindetails.setPost(officerpost);
+                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setNIC(nic);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
                         OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password, mac ,post  );
                         officerLogindetails.setMessage("mac is OK");
+                        officerLogindetails.setFull_name(full_name);
+                        officerLogindetails.setMohId(assignMOH);
+                        officerLogindetails.setCity(assignCity);
+                        officerLogindetails.setPost(officerpost);
+                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setNIC(nic);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && !mac.equals(officerLogin.getMAC())) {
