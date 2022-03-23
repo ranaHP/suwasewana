@@ -65,7 +65,7 @@ class Calender {
     addCalenderTask() {
         // console.log("call add calander event")
         this.event.map(eventItem => {
-            console.log("Add calander task called ");
+            // console.log("Add calander task called ");
             if (this.current_month == eventItem.month && this.current_year == eventItem.year) {
                 let day = document.getElementById("date" + eventItem.date);
                 day.setAttribute("onclick", 'popup.showCalenderTaskPopup(' + JSON.stringify([eventItem]) + ')');

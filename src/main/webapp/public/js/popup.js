@@ -84,17 +84,17 @@ class SuwasewanaPopup{
         this.container.style.display = "block";
     }
     showCalenderTaskPopup(event) {
-        console.log("showCalenderTaskPopup call in popup.js")
+        // console.log("showCalenderTaskPopup call in popup.js")
         this.createCalenderTask(event);
         this.container.style.display = "block";
     }
     createCalenderTask(event){
-        console.log("createCalenderTask")
+        // console.log("createCalenderTask")
         let eventsContaier = document.createElement('div');
         event[0].events.map(eventitem => {
-            console.log(eventitem)
+            // console.log(eventitem)
             let eventDiv = document.createElement('div');
-            eventDiv.innerHTML = "<h5>Title : </h5> "+ eventitem.title + "<br><hr>"   ;
+            eventDiv.innerHTML = "<li style='color: rgba(0, 0, 0, 0.774); margin: 0 10px; margin-bottom: 10px;font-size: 1em;'> "+ eventitem.title + "</li>"   ;
             eventsContaier.appendChild(eventDiv);
             // popupMessage.classList.add('popup-message');
         });
@@ -1240,7 +1240,8 @@ class SuwasewanaPopup{
                 <div class="row" >
                 
                     <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                    width: 69px;height: 24px;border-radius: 2px;font-size: 1em;
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711db!important;margin-top: 10px;width: 69px;height: 24px;border-radius: 2px;font-size: 1em;" 
                         onclick="popup.hidePopup()"> Close</button>
                     </div>
                 </div>`;
@@ -1313,22 +1314,19 @@ class SuwasewanaPopup{
         if(data.user === "empty"){
             eventDiv.innerHTML = `
             <div class="popup-desc">  SUWASEWANA.LK</div>
-           
-            
             <div class="popup-message-container"> 
-                <h3 style="margin-top:-5px;margin-bottom: 20px;">${data.title}</h3>
-                <p style=" color: rgba(0, 0, 0, 0.473);">complain type : ${data.ctype}</p>
-                <span style=" color: rgba(0, 0, 0, 0.473)">Posted date : ${data.pdate} </span>
+                <h3 style="margin-top:-5px;margin-bottom: 20px;color: #27ae60">${data.title}</h3>
+                <p style="color: rgba(0,0,0,0.72);font-size: 15px">complain type : ${data.ctype}</p>
+                <span style="color: rgba(0, 0, 0, 0.72);font-size: 15px">Posted date : ${data.pdate} </span>
             </div>
-            
             <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
-                <span style="font-size: 13px;">
+                <span style="font-size: 13px; margin-top: -21px; color: #524a4a;">
                 ${data.message}
                 </span>
                 </div>
                 <div class="row" >
                     <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        <button class="submitBtn " style="border-radius:2px;font-size: 14px; margin: auto;margin-bottom: 20px;background-color: #e74c3c!important;margin-top: 10px;width: 97px;height: 24px" 
                         onclick="popup.hidePopup()"> Close</button>
                     </div>
                 </div>`;
@@ -1339,13 +1337,13 @@ class SuwasewanaPopup{
            
             
             <div class="popup-message-container"> 
-                <h3 style="margin-top:-5px; margin-bottom: 20px;">${data.title}</h3>
-                <p style=" color: rgba(0, 0, 0, 0.473);">complain type : ${data.ctype}</p>
-                <span style=" color: rgba(0, 0, 0, 0.473)">Posted date : ${data.pdate} </span>
+                <h3 style="margin-top:-5px; margin-bottom: 20px; color: #27ae60">${data.title}</h3>
+                <p style="color: rgba(0,0,0,0.72);font-size: 15px">complain type : ${data.ctype}</p>
+                <span style="color: rgba(0, 0, 0, 0.72);font-size: 15px">Posted date : ${data.pdate} </span>
             </div>
             
             <div class="popup-message-container" style="; width:80%; margin:-5px auto 0 auto"> 
-                <span style="font-size: 13px;">
+                <span style="font-size: 13px; margin-top: -21px;color: #524a4a;">
                 ${data.message}
                 </span>
                 </div>
@@ -1358,7 +1356,7 @@ class SuwasewanaPopup{
                 </div>
                 <div class="row" >
                     <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                         <button class="submitBtn " style="border-radius:2px;font-size: 14px; margin: auto;margin-bottom: 20px;background-color: #e74c3c!important;margin-top: 10px;width: 97px;height: 24px" 
                         onclick="popup.hidePopup()"> Close</button>
                     </div>
                 </div>`;
