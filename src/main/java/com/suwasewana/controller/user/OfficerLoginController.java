@@ -66,15 +66,22 @@ public class OfficerLoginController extends HttpServlet {
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 //            res.getWriter().println("Response unsuecc");
 
+        } else if (
+                !officerLoginresponse.getMobile().equals("") && !officerLoginresponse.getPassword().equals("")
+                 && officerLoginresponse.getMessage().equals("mac is wrong") ) {
+            ResponseType suwasewanaRespose = new ResponseType("error", "your mac is not match");
+            responseJsonString = this.gson.toJson(suwasewanaRespose);
+//            res.getWriter().println("Response unsuecc");
+
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 //            res.getWriter().println("Response suecc");
-//            Cookie loginCookie = new Cookie("cnic","12");
-//            //setting cookie to expiry in 30 mins
-//            loginCookie.setMaxAge(300*60);
-//            res.addCookie(loginCookie);
-//            System.out.println(loginCookie.getValue());
+            Cookie loginCookie = new Cookie("cnic","12");
+            //setting cookie to expiry in 30 mins
+            loginCookie.setMaxAge(300*60);
+            res.addCookie(loginCookie);
+            System.out.println(loginCookie.getValue());
         }
 
         out.print(responseJsonString);

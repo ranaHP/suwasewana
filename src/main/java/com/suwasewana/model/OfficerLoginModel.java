@@ -18,6 +18,7 @@ public class OfficerLoginModel {
     protected String DP ;
     protected String mohId ;
     protected String suspended_time;
+    protected String message;
 
 
     public String getMobile() {
@@ -151,5 +152,11 @@ public class OfficerLoginModel {
         this.post = post;
     }
 
+    public String getMessage() {
+        return message;
+    }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }
