@@ -52,9 +52,9 @@
                                         'user-mobile-error'
                                     ); hideFormError();"
                             />
-                            <input type="text" autofocus maxlength="10"
+                            <input type="text"  maxlength="10"
                                    required autocomplete="off"
-                                   name="user-mobile" id="admin-code"
+                                   name="admin-code" id="admin-code"
                                    style="display: none"
                             />
                             <div id="user-mobile-error" class="form-field-error"></div>
@@ -140,12 +140,11 @@
             var s_value = document.getElementById('officer_types').value;
             if(s_value == 'admin'){
                 if (
-                    validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
+                    // validation.mobileValidation(document.getElementById('admin-code').value, 'user-mobile-error') &&
                     validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
                 ) {
-
                     let url = myUrl+"/officer-login-controller?user_mobile=" +
-                        document.getElementById("user-mobile").value+ "&user_password=" +
+                        document.getElementById("admin-code").value+ "&user_password=" +
                         document.getElementById("user-password").value + "&Post=" +
                         document.getElementById('officer_types').value;
                     const xhttp = new XMLHttpRequest();
@@ -188,12 +187,11 @@
                     xhttp.open("GET", url, true);
                     xhttp.send();
                 }
-             }else{
+            }else{
                 if (
                     validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
                     validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
                 ) {
-
                     let url = myUrl+"/officer-login-controller?user_mobile=" +
                         document.getElementById("user-mobile").value+ "&user_password=" +
                         document.getElementById("user-password").value + "&Post=" +
