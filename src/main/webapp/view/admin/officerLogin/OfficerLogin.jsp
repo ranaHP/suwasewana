@@ -125,13 +125,33 @@
                 validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
                 validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
             ) {
-                let url = myUrl+"/officer-login-controller?user_mobile=" + document.getElementById("user-mobile").value+ "&user_password=" + document.getElementById("user-password").value + "&Post=" +document.getElementById('officer_types').value;
+                let url = myUrl+"/officer-login-controller?user_mobile=" +
+                    document.getElementById("user-mobile").value+ "&user_password=" +
+                    document.getElementById("user-password").value + "&Post=" +
+                    document.getElementById('officer_types').value;
                 const xhttp = new XMLHttpRequest();
                 console.log(url)
                 xhttp.onload = function () {
+
                     let result = JSON.parse(this.response);
                     if (result.status === "success") {
-                        location.replace(myUrl+"/s/PHI-dashboard");
+                        switch (document.getElementById('officer_types').value){
+                            case  "phi":
+                                location.replace( myUrl +"/s/PHI-dashboard");
+                                break;
+                            case  "rphi":
+                                location.replace( myUrl +"/s/PHI-dashboard");
+                                break;
+                            case  "co":
+                                location.replace( myUrl +"/s/clinic-dashboard");
+                                break;
+                            case  "to":
+                                location.replace( myUrl +"/s/PHI-dashboard");
+                                break;
+                            case  "admin":
+                                location.replace( myUrl +"/s/admin-dashboard");
+                                break;
+                        }
                     } else if (result.status === "error") {
                         document.getElementById('user-form-error').style.display = "block";
                         document.getElementById('user-form-error').innerText = result.data;
