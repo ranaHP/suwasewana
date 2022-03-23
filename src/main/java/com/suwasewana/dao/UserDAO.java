@@ -862,12 +862,12 @@ public class UserDAO {
     }
 
 
-    public ArrayList<UserViewClinicsModel> UserViewclinic(String unic, UserViewClinicsModel viewAnnouncement) {
+    public ArrayList<UserViewClinicsModel> UserViewclinic(String uNic, UserViewClinicsModel viewAnnouncement) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_ANNOUNCEMENTS)){
 //            System.out.println("came to dao");
             preparedStatement.setString(2,viewAnnouncement.getMOH());
-            preparedStatement.setString(1,unic);
+            preparedStatement.setString(1,uNic);
             ResultSet rs = preparedStatement.executeQuery();
 ////            System.out.println(rs.toString());
             ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();
@@ -915,7 +915,7 @@ public class UserDAO {
         return null;
     }
 
-    public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics ,String nic) {
+    public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_REGISTERED_CLINICS)){
 //            System.out.println("came to dao");
