@@ -67,6 +67,7 @@ public class UserHomeController extends HttpServlet {
 //                if(cookie.getName().equals("unic")) uNic = cookie.getValue();
 //            }
 //        }
+
 //        if(uNic == null) res.sendRedirect("login.html");
 ////        res.getWriter().println(uNic);
 //        System.out.println(uNic);
@@ -76,10 +77,22 @@ public class UserHomeController extends HttpServlet {
     private void userregister(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
         System.out.println("data come to controller");
+
+        String UNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    UNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+
+
         String ncs_id = req.getParameter("clinic_id");
         UserViewRegisteredclinicsModel registerclinic = new UserViewRegisteredclinicsModel (
 
-                "199910910035",
+                "",
                 "",
                 "",
                 "",
@@ -100,13 +113,34 @@ public class UserHomeController extends HttpServlet {
     private void  userHomeViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        res.getWriter().println("announcement view");
         System.out.println("data come to controller");
-        String Unic="199910910035";
+//        String Unic="199910910035";
+
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+
+        String MOH = "";
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    MOH = cookie.getValue().split("/")[4];
+                }
+            }
+        }
+
+
         UserHomeViewClinicModel viewhomeclinic = new UserHomeViewClinicModel(
                 "",
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),
-                "1004",
+                "",
                 req.getParameter("datetime"),
                 "",
                 "",
@@ -117,7 +151,7 @@ public class UserHomeController extends HttpServlet {
                 req.getParameter("description"),
                 ""
         );
-        ArrayList<UserHomeViewClinicModel> result= userDAO.UserHomeViewclinic(Unic,viewhomeclinic);
+        ArrayList<UserHomeViewClinicModel> result= userDAO.UserHomeViewclinic(uNic,viewhomeclinic);
         res.getWriter().println(gson.toJson(result));
     }
 
