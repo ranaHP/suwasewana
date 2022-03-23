@@ -255,6 +255,7 @@
         );
     }
     function search(){
+
         let reqData =
             {
                 sdate: document.getElementById("sDate").value,
@@ -264,7 +265,9 @@
         $.post(myUrl+"/create-clinic-controller/searchFromDate",
             reqData,
             function(data,status){
-
+                    console.log(data)
+                clinicListArray=JSON.parse(data)
+                destroy(clinicListArray,today)
             }
         );
         return false;

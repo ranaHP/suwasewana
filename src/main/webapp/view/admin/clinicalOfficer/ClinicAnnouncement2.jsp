@@ -229,7 +229,7 @@ function announcement(imagearray){
             clinicID:document.getElementById("clinicID").value,
             image:imagearray[0]
           };
-  $.post("/test_war_exploded/clinicAnnouncementController/createA",
+  $.post(myUrl+"/clinicAnnouncementController/createA",
           reqData,
           function(data,status){
             if(data.includes("sucsess")){
@@ -267,7 +267,7 @@ function updateclinics(){
             description:document.getElementById("description").value,
         };
     console.log(reqData)
-    $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+    $.post(myUrl+"/create-clinic-controller/updateclinic",
         reqData,
         function (data,status){
             // alert("wrong")
@@ -286,7 +286,7 @@ function view(){
             clinicID: document.getElementById("clinicID").value,
           };
   console.log(reqData);
-  $.post("/test_war_exploded/create-clinic-controller/select",
+  $.post(myUrl+"/create-clinic-controller/select",
           reqData,
           function(data,status){
             console.log(data)
@@ -303,7 +303,7 @@ function msg(){
             clinicID: document.getElementById("clinicID").value,
           };
   console.log(reqData);
-  $.post("/test_war_exploded/create-clinic-controller/select",
+  $.post(myUrl+"/create-clinic-controller/select",
           reqData,
           function(data,status){
             clinicList=JSON.parse(data)
@@ -388,7 +388,7 @@ function sendmsg(Nlist,msg) {
 
 function check(){
   let mohDetails=[];
-  $.post("/test_war_exploded/create-clinic-controller/view",
+  $.post(myUrl+"/create-clinic-controller/view",
           function (data, status) {
             console.log(data);
             let rs= JSON.parse(data);

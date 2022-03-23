@@ -297,7 +297,7 @@
     }
 
     function addAllDistrictList(){
-        $.post("/test_war_exploded/admin-controller/districtsAll",
+        $.post(myUrl+"/admin-controller/districtsAll",
             function (data, status) {
                 let PDetails=[];
                 // console.log(data);
@@ -326,7 +326,7 @@
                 };
                 console.log("a")
                 console.log(reqData)
-                $.post("/test_war_exploded/admin-controller/districtsSelect",
+                $.post(myUrl+"/admin-controller/districtsSelect",
                     reqData,
                     function (data, status) {
                         let PDetails=[];
@@ -357,7 +357,7 @@
         };
         console.log("d")
         console.log(reqData)
-        $.post("/test_war_exploded/admin-controller/districtsSelect",
+        $.post(myUrl+"/admin-controller/districtsSelect",
             reqData,
             function (data, status) {
                 let PDetails=[];
@@ -381,7 +381,7 @@
             PName:Pname
         };
         // console.log(reqData)
-        $.post("/test_war_exploded/admin-controller/provinceIdSelect",
+        $.post(myUrl+"/admin-controller/provinceIdSelect",
             reqData,
             function (data, status) {
                 let PDetails=[];
@@ -403,7 +403,7 @@
     let validation = new FormInputValidation();
     function checkP(){
         let PDetails=[];
-        $.post("/test_war_exploded/admin-controller/provinceAll",
+        $.post(myUrl+"/admin-controller/provinceAll",
             function (data, status) {
                 console.log(data);
                 let rs= JSON.parse(data);
@@ -442,7 +442,7 @@
             province_id:provinceID
         }
         console.log(reqData)
-        $.post("/test_war_exploded/admin-controller/AddProvince",
+        $.post(myUrl+"/admin-controller/AddProvince",
         reqData,
             function (data,status){
                console.log(data)
@@ -457,7 +457,7 @@
             district_id:district_id
         }
         console.log(reqData)
-        $.post("/test_war_exploded/admin-controller/AddDistrict",
+        $.post(myUrl+"/admin-controller/AddDistrict",
         reqData,
             function (data){
                 console.log(data)
@@ -469,7 +469,7 @@
         let reqData={
             PName:province,
         }
-        $.post("/test_war_exploded/admin-controller/provinceIdSelect",
+        $.post(myUrl+"/admin-controller/provinceIdSelect",
             reqData,
             function (data){
                 let name=JSON.parse(data)
@@ -483,7 +483,7 @@
     function takeallPID(data){
         let id=data;
         let PDetails=[];
-        $.post("/test_war_exploded/admin-controller/provinceAll",
+        $.post(myUrl+"/admin-controller/provinceAll",
             function (data, status) {
                 console.log(data);
                 let rs= JSON.parse(data);
@@ -502,7 +502,7 @@
         let reqData={
             DName:district,
         }
-        $.post("/test_war_exploded/admin-controller/districtsIdSelect",
+        $.post(myUrl+"/admin-controller/districtsIdSelect",
             reqData,
             function (data){
              let name=JSON.parse(data)
@@ -516,7 +516,7 @@
     function takeallDID(data){
         let id=data
         let DDetails=[];
-        $.post("/test_war_exploded/admin-controller/districtsAll",
+        $.post(myUrl+"/admin-controller/districtsAll",
             function (data, status) {
                 console.log(data);
                 let rs= JSON.parse(data);

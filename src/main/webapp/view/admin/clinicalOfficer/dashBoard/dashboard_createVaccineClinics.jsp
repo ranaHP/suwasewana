@@ -117,6 +117,8 @@
                             <button>Create Clinic</button>
 
                         </div>
+
+
                     </form>
                 </div>
             </div>
@@ -141,10 +143,13 @@
 </div>
 </div>
 <script defer>
+
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let validation = new FormInputValidation();
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 
     feather.replace()
+
     function checkMOHid(){
         var MTypeObj = document.getElementById('MArea');
         var datalist = document.getElementById(MTypeObj.getAttribute("list"));
@@ -202,7 +207,7 @@
             LAgelimit: document.getElementById("LAge-limit").value,
             UAgelimit: document.getElementById("UAge-limit").value,
         };
-         $.post("/test_war_exploded/create-clinic-controller/vaccineCLinic",
+         $.post(myUrl+"/create-clinic-controller/vaccineCLinic",
              reqData,
              function(data,status){
                  if(data.includes("sucsess")){
@@ -226,11 +231,13 @@
 </script>
 
 <script defer>
+
+
     let r;
     LoadVaccine();
     function LoadVaccine(){
         // alert("hi");
-        $.post("/test_war_exploded/admin-register-controller/All_vaccine_details/",
+        $.post(myUrl+"/admin-register-controller/All_vaccine_details/",
 
             function (data, status) {
                 r= JSON.parse(data);
@@ -244,7 +251,7 @@
     }
 
     let mohDetails=[];
-    $.post("/test_war_exploded/user-complain-controller/moh",
+    $.post(myUrl+"/user-complain-controller/moh",
         function (data, status) {
             // console.log(data);
             let rs= JSON.parse(data);

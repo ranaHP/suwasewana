@@ -2,6 +2,7 @@ package com.suwasewana.controller.clinicalOfficer;
 
 import com.google.gson.Gson;
 import com.suwasewana.dao.DiseaseDAO;
+import com.suwasewana.dao.DiseaselistDAO;
 import com.suwasewana.dao.createClinicDAO;
 import com.suwasewana.model.*;
 
@@ -19,12 +20,14 @@ import java.util.ArrayList;
     public class DiseaseController extends HttpServlet {
         createClinicDAO createClinicDAO;
         DiseaseDAO diseaseDAO;
+        DiseaselistDAO diseaselistDAO;
         private Gson gson = new Gson();
 
 
     public void init() {
             createClinicDAO = new createClinicDAO();
             diseaseDAO=new DiseaseDAO();
+            diseaselistDAO = new DiseaselistDAO();
         }
         public void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
              doGet(req, res);
@@ -42,6 +45,9 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     Getmaxdiseasecount(req, res);
                     break;
+                case "disease":
+                    disease_list(req,res);
+                    break;    
 
 
                 default:
@@ -51,6 +57,12 @@ import java.util.ArrayList;
         } catch (Exception error) {
             throw new ServletException(error);
         }
+    }
+
+    private void disease_list(HttpServletRequest req, HttpServletResponse res) throws IOException {
+      System.out.println("came");
+        ArrayList<UserDiseaseModel> result = diseaselistDAO.diseaseLists();
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void searchFromDate(HttpServletRequest req, HttpServletResponse res) {

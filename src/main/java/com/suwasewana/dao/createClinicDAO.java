@@ -18,6 +18,7 @@ public class createClinicDAO {
   private static final String UPDATE_CLINICS =  "UPDATE `normal_clinic_session` SET `title` = ?, `description` = ?,  `max_sheet` = ?,`target_people` = ? WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String RESHEDULE_CLINICS="UPDATE `normal_clinic_session` SET `date` = ? , `time` = ? , `duration` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String disease_clinic_count="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease ";
+    private static final String disease_clinic_count_fromDate="SELECT COUNT(ncs_id), disease FROM `normal_clinic_session` WHERE (date BETWEEN ? AND ? ) AND `normal_clinic_session`.`clinical_officer` = ? GROUP BY disease";
   private static final String SELECT_events="SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`date` = ?";
   private static final String NormalC_registeredNList="SELECT * FROM `clinic_registered_patient` vc  left join `user` v on v.uNic=vc.u_nic WHERE vc.ncs_id=?  ";
 
@@ -761,6 +762,48 @@ public class createClinicDAO {
         }
         return null;
     }
+
+    public ArrayList<CreateClinicModel> ViewFromdate(String start, String end, String Cnic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(disease_clinic_count_fromDate)){
+            System.out.println("came to dao");
+            preparedStatement.setString(1,start);
+            preparedStatement.setString(2,end);
+            preparedStatement.setString(3,Cnic);
+            ResultSet rs = preparedStatement.executeQuery();
+//            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> ViewFromdates = new ArrayList<CreateClinicModel>();
+            while (rs.next()){
+                String clinicID =rs.getString("COUNT(ncs_id)");
+                String disease = rs.getString("disease");
+                CreateClinicModel temp = new CreateClinicModel(
+                        clinicID,
+                        "",
+                        "",
+                        "",
+                        "",
+                        disease,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+//                }
+                ViewFromdates.add(temp);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return ViewFromdates;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
 }
 
 

@@ -47,19 +47,18 @@
                                     <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" value="Covid awareness clinic" />
                                 </div>
                                 <div class="inputs">
-                                    <%--@declare id="alldarea"--%><label> Disease</label>
-<%--                                    <input type="text" required autocomplete="off" name=" disease" id="disease" value="Covid 19" />--%>
-                                    <input autocomplete="off" class="SelectColordiv" id="disease" type="text" style="outline: none;" list="Alldarea" name="Alldarea"
-                                           onclick="document.getElementById('disease').value='';"
+                                    <label >Disease</label> <br>
+                                    <input autocomplete="off" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea"
+                                           onclick="document.getElementById('DArea').value='';"
                                            onblur="validation.SearchSelect(
-                                    document.getElementById('disease').value,
-                                    'LdArea'
+                                    document.getElementById('DArea').value,
+                                    'LDArea'
                                 );"
                                     >
-                                    <datalist id="Alldarea">
+                                    <datalist id="AllDArea">
                                     </datalist>
                                     <br>
-                                    <span class="error" id="LdArea" style="margin-left: 5px" ></span>
+                                    <span class="error" id="LDArea" style="margin-left: 5px" ></span>
                                 </div>
                                 <div class="inputs">
                                     <label> Location</label>
@@ -149,6 +148,7 @@
 
 <script src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 <script defer>
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let validation = new FormInputValidation();
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     function Checkvalidation(){
@@ -165,7 +165,7 @@
     function checkclinicregistration(data) {
         let reqData =
             {
-                disease:data.target.elements.disease.value,
+                disease:disease(),
                 title:document.getElementById("clinic-title").value,
                 location:data.target.elements.location.value,
                 MOH:checkMOHid(),
@@ -178,7 +178,8 @@
                 description: data.target.elements.description.value,
             };
         console.log(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/create",
+        console.log("dataaaa")
+        $.post(myUrl+"/create-clinic-controller/create",
             reqData,
             function(data,status){
                 if(data.includes("sucsess")){
@@ -209,9 +210,20 @@
             return  0;
         }
     }
+    function disease(){
+        var MTypeObj = document.getElementById('DArea');
+        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(MTypeObj.value)){
+
+            return (datalist.options.namedItem(MTypeObj.value).id);
+        }
+        else {
+            return  0;
+        }
+    }
 
     let mohDetails=[];
-    $.post("/test_war_exploded/user-complain-controller/moh",
+    $.post(myUrl+"/user-complain-controller/moh",
         function (data, status) {
             // console.log(data);
             let rs= JSON.parse(data);
@@ -223,6 +235,23 @@
             rs.map((element,index) => {
                 // console.log("moh"+element.MName)
                 MNames.innerHTML+= '<option  id="'+element.MId+'"  name="'+element.MName+'" value="' + element.MName +  '" option="' + element.MName +  '" ></option>'
+            })
+        }
+    );
+
+    let dDetails=[];
+    $.post(myUrl+"/disease-controller/disease",
+        function (data, status) {
+            console.log(data);
+            let rs= JSON.parse(data);
+            this.dDetails=rs;
+            // console.log(data);
+
+            let DNames=document.getElementById("AllDArea");
+            DNames.innerHTML="";
+            rs.map((element,index) => {
+                // console.log("moh"+element.MName)
+                DNames.innerHTML+= '<option  id="'+element.name+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
             })
         }
     );
@@ -273,23 +302,6 @@
     //     return false;
     // }
 
-    let dDetails=[];
-    $.post("/test_war_exploded/user-disease-controller/disease",
-        function (data, status) {
-            console.log(data);
-            console.log("hi")
-            let rs= JSON.parse(data);
-            this.dDetails=rs;
-            // console.log(data);
-
-            let disease=document.getElementById("Alldarea");
-            disease.innerHTML="";
-            rs.map((element,index) => {
-                // console.log("moh"+element.MName)
-                disease.innerHTML+= '<option  id="'+element.name+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
-            })
-        }
-    );
 
 </script>
 

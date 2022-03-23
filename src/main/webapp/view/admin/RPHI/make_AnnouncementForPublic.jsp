@@ -87,6 +87,7 @@
     </div>
 </div>
 <script defer>
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var loadFile = function(event) {
         var image = document.getElementById('images');
@@ -147,7 +148,7 @@
             // moh:checkid(),
             expire_date:document.getElementById("expire_date").value
         };
-        $.post("/test_war_exploded/createMoh_Announcements/createMA",
+        $.post(myUrl+"/createMoh_Announcements/createMA",
            reqData,
             function (data, status) {
             console.log(data)

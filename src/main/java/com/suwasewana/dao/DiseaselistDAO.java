@@ -18,13 +18,14 @@ public class DiseaselistDAO {
         DB db = new DB();
         connection = db.getConnection();
     }
-    private static final String diseaselist="SELECT  count(u.UNic),name,date FROM suwasewana_db.user_register_disease urd left join suwasewana_db.user u on urd.UNic= u.uNic where (u.uMoh=?) AND (urd.name=?) AND (date BETWEEN ? AND ?) ";
-    public ArrayList<UserDiseaseModel> diseaseList() {
+    private static final String diseaselist="SELECT * FROM suwasewana_db.diseasess";
+    public ArrayList<UserDiseaseModel> diseaseLists() {
+        System.out.println("camee");
         try (PreparedStatement preparedStatement = connection.prepareStatement(diseaselist)) {
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<UserDiseaseModel> diseaseList = new ArrayList<UserDiseaseModel>();
             while (rs.next()) {
-                String name = rs.getString("aTitle");
+                String name = rs.getString("name");
                 UserDiseaseModel temp = new UserDiseaseModel(
                         name,
                         ""

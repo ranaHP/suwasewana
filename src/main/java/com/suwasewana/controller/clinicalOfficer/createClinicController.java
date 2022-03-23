@@ -137,8 +137,13 @@ import java.util.ArrayList;
         res.getWriter().println(gson.toJson(result));
         }
 
-    private void searchFromDate(HttpServletRequest req, HttpServletResponse res) {
-    }
+    private void searchFromDate(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        String start=req.getParameter("sdate");
+        String end = req.getParameter("edate");
+        String Cnic = "12";
+        ArrayList<CreateClinicModel> result= createClinicDAO.ViewFromdate(start,end,Cnic);
+        res.getWriter().println(gson.toJson(result));
+        }
 
     private void numberslist(HttpServletRequest req, HttpServletResponse res) throws IOException {
         CreateClinicModel numberslist= new CreateClinicModel(
