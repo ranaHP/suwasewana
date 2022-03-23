@@ -154,11 +154,26 @@
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
     let complainlist=[];
+    getAllComplintypes()
+    function getAllComplintypes() {
+        $.post(myUrl+"/phi-complain-controller1/complain_for_moh",
+            {},
+            function (data, status) {
+                let ComplainList = JSON.parse(data);
+                console.log("came")
+                ComplainList.map((element) => {
+                   console.log(element.complainModel.CType)
+                })
+            }
+        );
+
+    }
     getAllComplain();
     function getAllComplain() {
         let complainCardList = [];
         let typedatalist=[]
-        $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
+        $.post(myUrl+"/phi-complain-controller1/ViewCom" +
+            "plainForPHI",
             {},
             function (data, status) {
                 let complainList = JSON.parse(data);
@@ -169,6 +184,8 @@
                 let pendin=0;
                 let done=0;
                 let progress=0;
+                console.log("complain")
+                console.log(complainList)
                 complainList.map((element) => {
                     // console.log("status " +element.complainModel.Status);
 
@@ -201,7 +218,68 @@
         );
 
     }
+    function getAllComplinMOH() {
+        let all=0
+        let Animal_issue=0;
+        let Environment_issues=0;
+        let Food_issues=0;
+        let Land_issues=0;
+        let Noise_issue=0;
+        let other=0;
+        $.post(myUrl+"/phi-complain-controller1/complain_for_moh",
+            {},
+            function (data, status) {
+                let ComplainList = JSON.parse(data);
+                ComplainList.map((element) => {
+                    if(element.complainModel.CType=="100"){
+                        Animal_issue++;
+                    }
+                    if(element.complainModel.CType=="101"){
+                        Environment_issues++;
+                    }
+                    if(element.complainModel.CType=="102"){
+                        Food_issues++;
+                    }
+                    if(element.complainModel.CType=="103"){
+                        Land_issues++;
+                    }
+                    if(element.complainModel.CType=="104"){
+                        Noise_issue++;
+                    }
+                    if(element.complainModel.CType=="105"){
+                        other++;
+                    }
 
+                })
+                all=Animal_issue+Environment_issues+Food_issues+Land_issues+Noise_issue;
+
+                let pAnimalissue=Animal_issue/all*100
+                let pEnvironmentissue=Environment_issues/all*100
+                let pFoodissue=Food_issues/all*100
+                let pLandissue=Land_issues/all*100
+                let pNoiseissue=Noise_issue/all*100
+                let pother=other/all*100
+                document.getElementById("one").innerText=pAnimalissue
+                document.getElementById("two").innerText=pEnvironmentissue
+                document.getElementById("three").innerText=pFoodissue
+                document.getElementById("four").innerText=pLandissue
+                document.getElementById("five").innerText=pNoiseissue
+                document.getElementById("six").innerText=pother
+
+
+
+                complain_distribution_chart(Animal_issue,Environment_issues,Food_issues,Land_issues,Noise_issue,other);
+
+
+
+
+
+
+
+            }
+        );
+
+    }
 
     getComplaintprecentage();
     function getComplaintprecentage() {
@@ -255,11 +333,11 @@
                 // console.log("preMonthComplain : "+preMonthComplain)
                 // console.log("pending : "+pending)
                 let complainprecentage=((thisMonthCompalin-preMonthComplain)/preMonthComplain)*100;
-                let ComPre=Math.abs(Math.round(complainprecentage));
+                let ComPre=complainprecentage;
 
 
                 document.getElementById("new").innerText=pending;
-                document.getElementById("precentage").innerText=ComPre+"%";
+                // document.getElementById("precentage").innerText=ComPre+"%";
                 console.log(ComPre)
                 if(complainprecentage<0){
                     document.getElementById("complain-arrow-down").style.display="block";

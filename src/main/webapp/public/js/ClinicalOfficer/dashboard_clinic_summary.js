@@ -3,6 +3,7 @@ let Url = (window.location.protocol + "//" + window.location.hostname + ":" + wi
 class clinicList {
     clinicListArray = [
         {
+            Avail_seats:"",
             clinicID:" ",
             disease:" ",
             title:" ",
@@ -38,8 +39,8 @@ class clinicList {
                     <div class="card-left">
                         <p class="h5">${item.title}</p>
                         <div class="card-date">${item.date}</div>
-                        <div class="amount"></div>
-                        <div class="nop">No of patients</div>
+                        <div class="amount">${item.Avail_seats}</div>
+                        <div class="nop">Available seats</div>
                         <button class="reschdulebtn" onclick="select(${item.clinicID})">Reschdule</button>
                     </div>
                     <div class="card-right">

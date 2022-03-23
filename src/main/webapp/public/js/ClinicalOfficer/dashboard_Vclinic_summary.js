@@ -6,6 +6,7 @@ class clinicListv {
             tittle:" ",
             start_date_time:" ",
             duration:" ",
+            limit_sheats:" ",
             description:" ",
             max_patient:" ",
             target_moh:" ",
@@ -38,8 +39,8 @@ class clinicListv {
                     <div class="card-left">
                         <p class="h5">${item.tittle}</p>
                         <div class="card-date">${item.start_date_time.split(" ")[0]}</div>
-                        <div class="amount"></div>
-                        <div class="nop">No of patients</div>
+                        <div class="amount" id="amount">${item.limit_sheats}</div>
+                        <div class="nop">Available seats</div>
                         <button class="reschdulebtn" onclick="selectReV(${item.vcs_id})">Reschdule</button>
                     </div>
                     <div class="card-right">

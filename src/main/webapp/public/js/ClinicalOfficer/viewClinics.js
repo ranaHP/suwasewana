@@ -3,6 +3,7 @@ let Url = (window.location.protocol + "//" + window.location.hostname + ":" + wi
 class clinicList {
     clinicListArray = [
         {
+            Avail_seats:"",
             clinicID:" ",
             disease:" ",
             title:" ",
@@ -28,6 +29,9 @@ class clinicList {
         if(!data) return;
         this.clinicListArray = data;
         console.log(data);
+        let a=data.maxpatient
+        let b=data.Avail_seats
+        let c=a-b
         this.clinicListArray.map((item) => {
             this.container.innerHTML += `
                <div class="live-card">
@@ -46,7 +50,7 @@ class clinicList {
                     <div class="down-box">
                         <div class="current-participant-count">
                             <div class="current-participant-img"><object data="${Url}/public/images/icons/users.svg" width="15" height="15"> </object></div>
-                            <div class="count-participants">120, 221</div>
+                            <div class="count-participants">${item.Avail_seats}</div>
                         </div>
                         <div class="buttons">
 

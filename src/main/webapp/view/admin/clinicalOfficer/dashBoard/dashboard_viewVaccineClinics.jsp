@@ -133,7 +133,7 @@
             {
                 clinicID: id,
             };
-        $.post(myUrl+"/create-clinic-controller/",
+        $.post(myUrl+"/create-clinic-controller/VclinicRegisterNumList",
             reqData,
 
             function(data,status){
@@ -378,6 +378,7 @@
 
         return false;
     }
+
     //vaccine clinic reschedule msg sending
     function resheduleMsg(vaccine_name,User_Tp_slot,date){
         User_Tp_slot.map(element=>{
