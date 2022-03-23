@@ -318,13 +318,13 @@
                                 street_no:street_no,
                                     address_line1:address_line1
                 });
-                    console.log("User details "+
-                        uMobile+" "+
-                        uname+" "+
-                        uNic+" "+
-                        street_no+" "+
-                        address_line1
-                    )
+                    // console.log("User details "+
+                    //     uMobile+" "+
+                    //     uname+" "+
+                    //     uNic+" "+
+                    //     street_no+" "+
+                    //     address_line1
+                    // )
             }
         });
 
