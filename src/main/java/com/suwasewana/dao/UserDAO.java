@@ -984,10 +984,12 @@ public class UserDAO {
         }
     }
 
-    public ArrayList<UserVIewClinicAnnouncementModel> UserviewrclinicAnnouncemet(UserVIewClinicAnnouncementModel clinicannouncement) {
+    public ArrayList<UserVIewClinicAnnouncementModel> UserviewrclinicAnnouncemet(String Moh_id,UserVIewClinicAnnouncementModel clinicannouncement) {
 
+//        System.out.println("clinicannouncemnt");
+//        System.out.println(clinicannouncement.getMoh_id());
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_CLINIC_ANNOUNCEMENT)){
-            preparedStatement.setString(1,clinicannouncement.getMoh_id());
+            preparedStatement.setString(1,Moh_id);
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<UserVIewClinicAnnouncementModel> ViewVAnnouncements = new ArrayList<UserVIewClinicAnnouncementModel>();
             while (rs.next()){
