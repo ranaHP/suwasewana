@@ -166,12 +166,14 @@ datalist {
 /* complain container    */
 .complain_container{
     /* background-color: #4B7BEC; */
-    height: 470px;
+    /*height: 470px;*/
+    height: 398px;
     margin-top: 30px;
     overflow-y: scroll;
 }
 ::-webkit-scrollbar {
-    width: 5px;
+    /*width: 5px;*/
+    width: 0px;
 }
 
 /* Track */

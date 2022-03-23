@@ -43,7 +43,7 @@
 
                       </div>
                       <div class="row1_col2">
-                          <input class="SelectCType" id="ComplainType" type="text" style="outline: none;" list="AllComplainType" name="AllMArea" placeholder="Search by Tytle"
+                          <input class="SelectCType" id="ComplainType" type="text" style="outline: none;" list="AllComplainType" name="AllMArea" placeholder="Search by Type"
                                  onclick="document.getElementById('ComplainType').value=''"
                           />
                           <datalist id="AllComplainType">
@@ -125,7 +125,7 @@
           </div>
           <div class="C_container_right">
               <div class="C_container_right_body">
-                  <div class="C_container_right_title"><p>Weekly Progress</p> </div>
+                  <div class="C_container_right_title"><p>Monthly Progress</p> </div>
                   <div class="C_container_right_card_container">
                       <div class="C_container_right_card">
                           <div class="C_container_right_card_row1">
@@ -189,23 +189,89 @@
     let complainlist=[];
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     getAllComplain();
-    console.log("url "+myUrl+"/phi-complain-controller1/ViewComplainForPHI")
+    // console.log("url "+myUrl+"/phi-complain-controller1/ViewComplainForPHI")
     function getAllComplain() {
         let complainCardList = [];
         let typedatalist=[]
+        var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = (new Date(y, m, 1));
+        var lastDay = (new Date(y, m + 1, 0));
+
+        let date1=y+"-"+m+"-"+firstDay.getDate();
+        let date2=y+"-"+m+"-"+lastDay.getDate();
+        let reqData={
+            date1:date1,
+            date2:date2
+        }
         $.post(myUrl+"/phi-complain-controller1/ViewComplainForPHI",
-            {},
+            reqData,
             function (data, status) {
                 let complainList = JSON.parse(data);
                 complainlist=complainList;
 
+                // fill pending done in progress count
+                // let pendin=0;
+                // let done=0;
+                // let progress=0;
+                // complainList.map((element) => {
+                //     // console.log("status " +element.complainModel.Status);
+                //
+                //     if(element.complainModel.Status=="Pending"){
+                //         pendin++;
+                //     }
+                //     else if(element.complainModel.Status=="Done"){
+                //         done++;
+                //     }
+                //     else if(element.complainModel.Status=="In Progress"){
+                //         progress++;
+                //     }
+                //     else {
+                //         console.log("Incorrect complain model status check ur database")
+                //     }
+                //
+                // })
+                // document.getElementById("Pending").innerText=pendin;
+                // document.getElementById("done").innerText=done;
+                // document.getElementById("Progress").innerText=progress;
+
+
+                complain.setDataForPHI(complainList);
+                getAllComplainCountForSideBar();
+
+
+            }
+        );
+
+    }
+    getAllComplainCountForSideBar();
+    function getAllComplainCountForSideBar() {
+        console.log("getAllComplainCountForSideBar called")
+        let complainCardList = [];
+        let typedatalist=[]
+        var date = new Date(), y = date.getFullYear(), m = date.getMonth();
+        var firstDay = (new Date(y, m, 1));
+        var lastDay = (new Date(y, m + 1, 0));
+
+        let date1=y+"-"+(m+1)+"-"+firstDay.getDate();
+        let date2=y+"-"+(m+1)+"-"+lastDay.getDate();
+        let reqData={
+            date1:date1,
+            date2:date2
+        }
+        $.post(myUrl+"/phi-complain-controller1/ComplainForPHIForSideBar",
+            reqData,
+            function (data, status) {
+                let complainList = JSON.parse(data);
+                complainlist=complainList;
+                // console.log("comming list"+ complainlist);
+                // console.log("comming data"+ data);
 
                 // fill pending done in progress count
                 let pendin=0;
                 let done=0;
                 let progress=0;
                 complainList.map((element) => {
-                    // console.log("status " +element.complainModel.Status);
+                    console.log("status " +element.complainModel.Status);
 
                     if(element.complainModel.Status=="Pending"){
                         pendin++;
@@ -252,13 +318,13 @@
                                 street_no:street_no,
                                     address_line1:address_line1
                 });
-                    console.log("User details "+
-                        uMobile+" "+
-                        uname+" "+
-                        uNic+" "+
-                        street_no+" "+
-                        address_line1
-                    )
+                    // console.log("User details "+
+                    //     uMobile+" "+
+                    //     uname+" "+
+                    //     uNic+" "+
+                    //     street_no+" "+
+                    //     address_line1
+                    // )
             }
         });
 
@@ -290,8 +356,8 @@
     }
     function UpdateResponse(cid,massage){
         let message=document.getElementById("myresponse").value;
-            console.log("complain id "+cid)
-            console.log("message "+message)
+            // console.log("complain id "+cid)
+            // console.log("message "+message)
         let reqData={
                 cid:cid,
             message:message
@@ -310,7 +376,7 @@
     }
 
     function SetAsDone(complainId){
-        console.log("complain id "+complainId);
+        // console.log("complain id "+complainId);
         let reqData={
             complainId:complainId
         }

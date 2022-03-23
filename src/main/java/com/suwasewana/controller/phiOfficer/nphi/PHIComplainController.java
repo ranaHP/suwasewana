@@ -66,6 +66,9 @@ public class PHIComplainController extends HttpServlet {
                 case "complain_for_moh":
                     ComplainForMOH(req, res);
                     break;
+                case "ComplainForPHIForSideBar":
+                    ComplainForPHIForSideBar(req, res);
+                    break;
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -160,6 +163,8 @@ public class PHIComplainController extends HttpServlet {
                 }
             }
         }
+        String date1=req.getParameter("date1");
+        String date2=req.getParameter("date2");
         ComplainModel complainModeldetail = new ComplainModel(
                 "",
                 "",
@@ -178,9 +183,43 @@ public class PHIComplainController extends HttpServlet {
 
         );
         String nic="199910910064";
-        ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHI(nic);
+        ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHI(nic,date1,date2);
         res.getWriter().println(gson.toJson(result));
     }
+        private void ComplainForPHIForSideBar(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+            String uNic = "";
+            Cookie[] cookies = req.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("unic")) {
+                        uNic = cookie.getValue();
+                    }
+                }
+            }
+            String date1=req.getParameter("date1");
+            String date2=req.getParameter("date2");
+            ComplainModel complainModeldetail = new ComplainModel(
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+
+            );
+            String nic="199910910064";
+            ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHIForSideBar(nic,date1,date2);
+            res.getWriter().println(gson.toJson(result));
+        }
 
         private void ComplainForMOH(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 

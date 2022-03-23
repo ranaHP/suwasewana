@@ -1240,7 +1240,8 @@ class SuwasewanaPopup{
                 <div class="row" >
                 
                     <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                    width: 69px;height: 24px;border-radius: 2px;font-size: 1em;
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711db!important;margin-top: 10px;width: 69px;height: 24px;border-radius: 2px;font-size: 1em;" 
                         onclick="popup.hidePopup()"> Close</button>
                     </div>
                 </div>`;
