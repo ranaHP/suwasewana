@@ -29,6 +29,7 @@ class view_disease_details{
 
                 this.container.innerHTML += `
 
+
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
                         Diseas : ${item.name}
                         <button class="submitBtn" onclick="RegisterForDisease('`+item.name +`')"> Register as Patient </button>
@@ -159,31 +160,8 @@ class view_disease_details{
                                     Less common symptoms:
                                 </div>
                                 <div class="symptopms-list">
-                                
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[0]}
-<!--                                        sore throat-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[1]}
-<!--                                        headache-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[2]}
-<!--                                        aches and pains-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[3]}
-<!--                                        diarrhoea-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[4]}
-<!--                                        a rash on skin-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Less[5]}
-<!--                                        red or irritated eyes-->
-                                    </div>
+                                ${createlesscommonSymptomsCard(JSON.parse(item.description).Symptoms.Less)}
+
                                 </div>
                             </div>
 
@@ -191,18 +169,7 @@ class view_disease_details{
                                 Serious symptoms:
                             </div>
                             <div class="symptopms-list">
-                                <div class="s-item">
-                                ${JSON.parse(item.description).Symptoms.Serious[0]}
-<!--                                    difficulty breathing or shortness of breath-->
-                                </div>
-                                <div class="s-item">
-                                ${JSON.parse(item.description).Symptoms.Serious[1]}
-<!--                                    loss of speech or mobility, or confusion-->
-                                </div>
-                                <div class="s-item">
-                                ${JSON.parse(item.description).Symptoms.Serious[2]}
-<!--                                    chest pain-->
-                                </div>
+                               ${createseriouscommonSymptomsCard(JSON.parse(item.description).Symptoms.Serious)}
                             </div>
                             <div class="banner1">
                                 <img src="<c:url value="/public/images/diseases/syntoms.png"/>" width="100%" />
@@ -413,6 +380,34 @@ function createSpreadCard(data){
 }
 
 function createmostcommonSymptomsCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=`    <div class="s-item">
+
+                        ${item}
+                     </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+function createlesscommonSymptomsCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=`    <div class="s-item">
+
+                        ${item}
+                     </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+function createseriouscommonSymptomsCard(data){
     var temp = "";
     data.forEach( item => {
         temp +=`    <div class="s-item">
