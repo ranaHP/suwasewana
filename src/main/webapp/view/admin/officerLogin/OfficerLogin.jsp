@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css "/> "/>
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
     <title>Officer_Login</title>
+
 </head>
 <body>
     <div class="maincontainer">
@@ -26,7 +27,7 @@
                     </div>
                     <div class="title-discription">
                         <div class="login-title">
-                            Login For SUWASEWANA Admin Portal
+                             SUWASEWANA Staff Portal
                         </div>
                         <div class="login-description">
                             Feather is a collection of simply beautiful open source icons. Each icon is
@@ -60,9 +61,22 @@
                                 <i data-feather="eye-off" id="eyeOff" style="display: none" class="c-gray"> </i>
                                 <i data-feather="eye" id="eye" class="c-gray"></i>
                             </div>
-
+                            <div id="user-password-error" class="form-field-error"></div>
                         </div>
-                        <div id="user-password-error" class="form-field-error"></div>
+                        <div class="form-group">
+                            <div class="formlable"><label for="officer_types"> Officer Type</label> </div>
+
+                            <select name="officer_types" id="officer_types">
+                                <option value="phi">Public Health Officer</option>
+                                <option value="co">Clinical Officer</option>
+                                <option value="to">Temporary Officer </option>
+                                <option value="admin">Admin</option>
+                            </select>
+
+
+
+                            <div id="user-type-error" class="form-field-error"></div>
+                        </div>
                         <div class="loginbtn"><input type="submit" class="login-btn" value="Login" /></div>
                         <div id="user-form-error" class=" form-response-error t-center pt-5" style=" font-size: .6em;">
                             user mobile or password invalid! please try again.
@@ -105,13 +119,13 @@
                 validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
                 validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
             ) {
-                let url = myUrl+"/officer-login-controller?user-mobile=" + document.getElementById("user-mobile").value+ "&user-password=" + document.getElementById("user-password").value;
+                let url = myUrl+"/officer-login-controller?user_mobile=" + document.getElementById("user-mobile").value+ "&user_password=" + document.getElementById("user-password").value + "&Post=" +document.getElementById('officer_types').value;
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function () {
                     let result = JSON.parse(this.response);
                     // result=this.response;
                     console.log(url)
-                    console.log(result);
+                    console.log(this.response);
                     if (result.status === "success") {
                     //     location.replace("https://www.w3schools.com");
                     } else if (result.status === "error") {

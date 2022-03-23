@@ -43,7 +43,7 @@ public class Router extends HttpServlet {
                     rd.forward(request,response);
                     break;
                 case "login_officer":
-                    rd = request.getRequestDispatcher("/view/admin/OfficerLogin/OfficerLogin.jsp");
+                    rd = request.getRequestDispatcher("/view/admin/officerLogin/OfficerLogin.jsp");
                     rd.forward(request,response);
                     break;
                 case "appointment":

@@ -16,6 +16,7 @@ public class OfficerDAO {
     private static final String UPDATE_MAC = "UPDATE `officer_table` SET `mac`=? WHERE `mobile` = ? and `password` = ?";
     private static final String UPDATE_MAC_IN_PHI = "UPDATE `phi` SET `MAC`=? WHERE `Mobile` = ? and `Password` = ?";
     private static final String CHECK_pOST_WITH_VALIDATION = "SELECT * FROM `phi` WHERE `Mobile` = ? and `Password` = ? and `Post`=?";
+
     private static final String Check_Admin = "SELECT * FROM `admin` WHERE `Mobile` = ? and `Password` = ? ";
     Connection connection;
 
@@ -25,7 +26,7 @@ public class OfficerDAO {
     }
 
     public OfficerLoginModel CheckLoginValidation(OfficerLoginModel officerLogin , String post) {
-        if(post.equals("PHI")){
+        if(post.equals("phi")){
             try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_pOST_WITH_VALIDATION)) {
                 preparedStatement.setString(1, officerLogin.getMobile());
                 preparedStatement.setString(2, officerLogin.getPassword());
@@ -64,22 +65,22 @@ public class OfficerDAO {
                         catch (SQLException throwables) {
                             printSQLException(throwables);
                         }
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC , post);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac ,post );
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","" , post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","" , post);
         }
-        else if(post.equals("RPHI")){
+        else if(post.equals("rphi")){
             System.out.println("inside RPHI if");
             try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_pOST_WITH_VALIDATION)) {
                 preparedStatement.setString(1, officerLogin.getMobile());
@@ -122,20 +123,20 @@ public class OfficerDAO {
                         catch (SQLException throwables) {
                             printSQLException(throwables);
                         }
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC,post);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac,post);
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","" ,post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","", post);
         }
         else if(post.equals("COfficer")){
             System.out.println("inside clinic if");
@@ -165,20 +166,20 @@ public class OfficerDAO {
                         catch (SQLException throwables) {
                             printSQLException(throwables);
                         }
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC ,post);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac ,post);
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","" ,post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","",post);
         }
         else if(post.equals("Admin")){
             System.out.println("inside Admin if");
@@ -203,15 +204,15 @@ public class OfficerDAO {
 
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac,post);
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","",post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","",post);
         }
         else if(post.equals("COfficer")){
             System.out.println("inside clinic if");
@@ -256,24 +257,24 @@ public class OfficerDAO {
                         catch (SQLException throwables) {
                             printSQLException(throwables);
                         }
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC,post);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac,post);
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","",post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","",post);
         }
         else{
             System.out.println("inside else");
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","",post);
         }
 
     }

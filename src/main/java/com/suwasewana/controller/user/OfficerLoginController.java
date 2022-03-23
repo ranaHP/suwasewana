@@ -31,20 +31,22 @@ public class OfficerLoginController extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
         checkUserLogin(req,res);
 
     }
 
     private void checkUserLogin(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String mobile = req.getParameter("user-mobile");
-        String password = req.getParameter("user-password");
+        String mobile = req.getParameter("user_mobile");
+        String password = req.getParameter("user_password");
         String post = req.getParameter("Post");
         String mac="";
-//        System.out.println("Mobile "+mobile);
-//        System.out.println("Pass "+password);
-//        System.out.println("Post "+post);
+        System.out.println("Mobile "+mobile);
+        System.out.println("Pass "+password);
+        System.out.println("Post "+post);
         mac=GetMaC();
-        OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac);
+        System.out.println("mac address "+mac);
+        OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac ,post);
 
 //        res.getWriter().println("Mobile "+officerLoginModel.getMobile());
 //        res.getWriter().println("Pass "+officerLoginModel.getPassword());
