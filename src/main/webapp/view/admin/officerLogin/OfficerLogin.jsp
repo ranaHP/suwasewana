@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/Officer_login/Officer_Login.css "/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css "/> "/>
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
+    <script src="<c:url value="/public/js/officerLogin.js"/>"></script>
+    <script>
+        let loginCheck = new OfficerLogin();
+        loginCheck.init()
+    </script>
     <title>Officer_Login</title>
 
 </head>
@@ -121,22 +126,23 @@
             ) {
                 let url = myUrl+"/officer-login-controller?user_mobile=" + document.getElementById("user-mobile").value+ "&user_password=" + document.getElementById("user-password").value + "&Post=" +document.getElementById('officer_types').value;
                 const xhttp = new XMLHttpRequest();
+                console.log(url)
                 xhttp.onload = function () {
-                    let result = JSON.parse(this.response);
-                    if (result.status === "success") {
-                        location.replace("https://www.w3schools.com");
-                    } else if (result.status === "error") {
-                        document.getElementById('user-form-error').style.display = "block";
-                        document.getElementById('user-form-error').innerText = result.data;
-                        document.getElementById("user-password").value = "";
-                        document.getElementById("user-mobile").value = "";
-                        setTimeout(() => {
-                            document.getElementById('user-form-error').style.display = "none";
-                        }, 8000)
-                    }
-                    else{
-                        console.log("somthing going wrong");
-                    }
+                    // let result = JSON.parse(this.response);
+                    // if (result.status === "success") {
+                    //     location.replace(myUrl+"/s/PHI-dashboard");
+                    // } else if (result.status === "error") {
+                    //     document.getElementById('user-form-error').style.display = "block";
+                    //     document.getElementById('user-form-error').innerText = result.data;
+                    //     document.getElementById("user-password").value = "";
+                    //     document.getElementById("user-mobile").value = "";
+                    //     setTimeout(() => {
+                    //         document.getElementById('user-form-error').style.display = "none";
+                    //     }, 8000)
+                    // }
+                    // else{
+                    //     console.log("somthing going wrong");
+                    // }
                     console.log(this.response)
                 }
                 xhttp.open("GET", url, true);

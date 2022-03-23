@@ -33,13 +33,13 @@ public class OfficerDAO {
                 preparedStatement.setString(1, officerLogin.getMobile());
                 preparedStatement.setString(2, officerLogin.getPassword());
                 ResultSet rs = preparedStatement.executeQuery();
-                System.out.println(" --------------------- " + preparedStatement.toString());
+//                System.out.println(" --------------------- " + preparedStatement.toString());
 
                 while (rs.next()) {
 
-                    System.out.println(" --------------------- ");
-                    System.out.println(rs.getString("mobile_number"));
-                    System.out.println(" --------------------- ");
+//                    System.out.println(" --------------------- ");
+//                    System.out.println(rs.getString("mobile_number"));
+//                    System.out.println(" --------------------- ");
                     String mobile = rs.getString("mobile_number");
                     String password = rs.getString("password");
                     String mac=rs.getString("device_mac");

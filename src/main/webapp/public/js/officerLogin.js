@@ -1,8 +1,11 @@
 class OfficerLogin{
-    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    myUrlmain = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     init(){
-        if(this.getCookie("uDetails") != ""){
 
+        var temp = this.getCookie("uDetails");
+        console.log(temp)
+        if(temp != ""){
+            console.log(temp);
         }
     }
     getCookie(cname) {
