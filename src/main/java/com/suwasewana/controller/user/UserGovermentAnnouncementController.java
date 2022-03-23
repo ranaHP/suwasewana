@@ -7,6 +7,7 @@ import com.suwasewana.model.UserGovermentAnnouncementModel;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,18 +53,42 @@ public class UserGovermentAnnouncementController extends HttpServlet {
     }
 
     private void userGovermentAnnouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {
-//        System.out.println("data come to goverment controller");
-        String Unic = "199910910035";
-        String district_id="123";
+
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+
+
+        String district_id = "";
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    district_id= cookie.getValue().split("/")[6];
+                }
+            }
+        }
+
+
+        System.out.println("data come to goverment controller");
+        System.out.println(uNic);
+
+//        String district_id="123";
         UserGovermentAnnouncementModel govermentAnnouncement = new UserGovermentAnnouncementModel(
 
                 "",
                 "",
                 "",
                 "",
-                ""
+                "",
+                 uNic
         );
-        ArrayList<UserGovermentAnnouncementModel> result= userDAO.UserGovermentannouncement(Unic,district_id,govermentAnnouncement);
+        ArrayList<UserGovermentAnnouncementModel> result= userDAO.UserGovermentannouncement(district_id,govermentAnnouncement);
         res.getWriter().println(gson.toJson(result));
 
     }
