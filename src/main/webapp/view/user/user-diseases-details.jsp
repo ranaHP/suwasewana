@@ -660,6 +660,7 @@
 <script defer>
 
     diseasedetails();
+    // card();
     function diseasedetails(){
         let disease = new view_disease_details("dashboard-container");
 
@@ -692,11 +693,38 @@
                  // console.log(diseasearray[0].description)
                 console.log("over")
 
+                let dataa = diseasearrayy.Spread.item;
+                // const card = document.getElementById('treatments-list');
+            // for(let i=0;i<dataa.length;i++){
+            //     console.log("ssss")
+            //     // card[dataa[i]]
+            //     console.log(dataa[i])
+            // }
+
+
+
+                // function card(dataa){
+                //
+                //
+                //
+                // }
+
+
+
 
             disease.setData(diseasearray)
             }
 
+
+
         )
+
+        // function card(data,status){
+        //     diseasearray =JSON.parse(data)
+        //     console.log("dddddd")
+        //     console.log(diseasearray)
+        //
+        // }
     }
 
 </script>

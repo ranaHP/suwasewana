@@ -127,23 +127,7 @@ class view_disease_details{
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="prevention-list">
-                                    <div class="s-item">
-<!--                                        Droplets or aerosols-->
-                                    ${JSON.parse(item.description).Spread.item[0]}
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Spread.item[1]}
-<!--                                        Airborne transmission-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Spread.item[2]}
-<!--                                        Surface transmission-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Spread.item[3]}
-<!--                                        Fecal-oral-->
-                                    </div>
-
+                                  ${createSpreadCard(JSON.parse(item.description).Spread.item)}
                                 </div>
                             </div>
                             <div class="banner5">
@@ -168,29 +152,14 @@ class view_disease_details{
                                     Most common symptoms:
                                 </div>
                                 <div class="symptopms-list">
-                                    <div class="s-item">
-<!--                                        Fever-->
-                                    ${JSON.parse(item.description).Symptoms.Most[0]}
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Most[1]}
-<!--                                        cough-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Most[2]}
-<!--                                        tiredness-->
-                                    </div>
-                                    <div class="s-item">
-                                    ${JSON.parse(item.description).Symptoms.Most[3]}
-<!--                                        loss of taste or smell-->
-                                    </div>
-
+                                ${createmostcommonSymptomsCard(JSON.parse(item.description).Symptoms.Most)}
                                 </div>
 
                                 <div class="d-s-s-titel">
                                     Less common symptoms:
                                 </div>
                                 <div class="symptopms-list">
+                                
                                     <div class="s-item">
                                     ${JSON.parse(item.description).Symptoms.Less[0]}
 <!--                                        sore throat-->
@@ -252,7 +221,7 @@ class view_disease_details{
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
-                                <div class="prevention-list">
+                                <div class="prevention-list" id="prevention-list">
                                     <div class="p-item">
                                     ${JSON.parse(item.description).Prevention.item[0]}
 <!--                                        Wear a mask properly-->
@@ -314,38 +283,12 @@ class view_disease_details{
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
-                                <div class="treatments-list">
-                                    <div class="t-item">
+                                <div class="treatments-list" id="treatments-list">
+                                    <div class="t-item" id="t-item">
                                     ${JSON.parse(item.description).Treatment.SelfCare.item[0]}
 <!--                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.-->
                                     </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[1]}
-<!--                                        Cooperate with contact-tracing procedures to stop the spread of the virus.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[2]}
-<!--                                        If testing is not available, stay home and away from others for 14 days.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[3]}
-                                                                        
 
-                                    
-<!--                                        While you are in quarantine, do not go to work, to school or to public places. Ask someone to bring you supplies.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[4]}
-<!--                                        Keep at least a 1-metre distance from others, even from your family members.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[5]}
-<!--                                        Wear a medical mask to protect others, including if/when you need to seek medical care-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[6]}
-<!--                                        Stay in a separate room from other family members, and if not possible, wear a medical mask.-->
-                                    </div>
 
                                 </div>
                             </div>
@@ -450,4 +393,35 @@ class view_disease_details{
             }
         )
     }
+
+}
+// function card(){
+//
+// }
+
+function createSpreadCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=`<div className="s-item">
+                            ${item}
+                        </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+function createmostcommonSymptomsCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=`    <div class="s-item">
+
+                        ${item}
+                     </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
 }
