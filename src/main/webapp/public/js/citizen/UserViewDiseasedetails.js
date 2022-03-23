@@ -127,9 +127,13 @@ class view_disease_details{
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
+                                
+                                
                                 <div class="prevention-list">
                                   ${createSpreadCard(JSON.parse(item.description).Spread.item)}
                                 </div>
+                                
+                                
                             </div>
                             <div class="banner5">
                                 <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
@@ -152,25 +156,37 @@ class view_disease_details{
                                 <div class="d-s-s-titel">
                                     Most common symptoms:
                                 </div>
+                                
+                                
                                 <div class="symptopms-list">
                                 ${createmostcommonSymptomsCard(JSON.parse(item.description).Symptoms.Most)}
                                 </div>
 
+
                                 <div class="d-s-s-titel">
                                     Less common symptoms:
                                 </div>
+                                
+                                
                                 <div class="symptopms-list">
+                                
                                 ${createlesscommonSymptomsCard(JSON.parse(item.description).Symptoms.Less)}
 
                                 </div>
+                                
+                                
                             </div>
 
                             <div class="d-s-s-titel">
                                 Serious symptoms:
                             </div>
+                            
+                            
                             <div class="symptopms-list">
                                ${createseriouscommonSymptomsCard(JSON.parse(item.description).Symptoms.Serious)}
                             </div>
+                            
+                            
                             <div class="banner1">
                                 <img src="<c:url value="/public/images/diseases/syntoms.png"/>" width="100%" />
                             </div>
@@ -188,35 +204,17 @@ class view_disease_details{
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
+                                
+                                
+                                
                                 <div class="prevention-list" id="prevention-list">
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[0]}
-<!--                                        Wear a mask properly-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[1]}
-<!--                                        Make your environment safer-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[2]}
-<!--                                        Clean your hands frequently with alcohol-based hand rub or soap and water.-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[3]}
-<!--                                        Get vaccinated as soon as it’s your turn and follow local guidance on vaccination.-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[4]}
-<!--                                        Keep physical distance of at least 1 metre from others, even if they don’t appear to be sick. Avoid crowds and close contact.-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[5]}
-<!--                                        Cover your mouth and nose with a bent elbow or tissue when you cough or sneeze. Dispose of used tissues immediately and clean hands regularly.-->
-                                    </div>
-                                    <div class="p-item">
-                                    ${JSON.parse(item.description).Prevention.item[6]}
-<!--                                        If you develop symptoms or test positive for COVID-19, self-isolate until you recover.-->
-                                    </div>
+                                
+                                
+                                    ${createPreventionCard(JSON.parse(item.description).Prevention.item)}
+                                    
+                                    
+                                    
+                                    
                                     <div class="row" style="padding-top: 20px;">
                                         <div class="image-set">
                                             <img src="<c:url value="/public/images/diseases/p1.svg"/> " height="70px" class="m-auto" />
@@ -251,10 +249,9 @@ class view_disease_details{
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="treatments-list" id="treatments-list">
-                                    <div class="t-item" id="t-item">
-                                    ${JSON.parse(item.description).Treatment.SelfCare.item[0]}
-<!--                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.-->
-                                    </div>
+                                
+                                
+                                    ${createreatmentSelfCareCard(JSON.parse(item.description).Treatment.SelfCare.item)}
 
 
                                 </div>
@@ -279,14 +276,10 @@ class view_disease_details{
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="treatments-list">
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.MedicalTreatments.item[0]}
-<!--                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.-->
-                                    </div>
-                                    <div class="t-item">
-                                    ${JSON.parse(item.description).Treatment.MedicalTreatments.item[1]}
-<!--                                        Dexamethasone is a corticosteroid that can help reduce the length of time on a ventilator and save lives of patients with severe and critical illness.-->
-                                    </div>
+                                
+                                
+                                  ${createTreatmentMedicalTreatmentsCard(JSON.parse(item.description).Treatment.MedicalTreatments.item)}
+                                    
 
 
                                 </div>
@@ -420,3 +413,52 @@ function createseriouscommonSymptomsCard(data){
     console.log("temp")
     return temp
 }
+
+
+function createPreventionCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=` 
+                   <div class="p-item">
+                    ${item}
+<!--                                        Wear a mask properly-->
+                    </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+function createreatmentSelfCareCard(data){
+    var temp = "";
+    data.forEach( item => {
+        temp +=` 
+                  <div class="t-item" id="t-item">
+                                    ${item}
+<!--                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.-->
+                                    </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
+
+function createTreatmentMedicalTreatmentsCard(data){
+    var temp = "";
+    data.forEach( item => {
+
+        temp +=` 
+                   <div class="t-item">
+                                    ${item}
+<!--                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.-->
+                                    </div>`
+    })
+    console.log("temp")
+    console.log(temp)
+    console.log("temp")
+    return temp
+}
+
