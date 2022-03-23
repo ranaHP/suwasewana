@@ -17,7 +17,9 @@ public class OfficerDAO {
     private static final String UPDATE_MAC_IN_PHI = "UPDATE `phi` SET `MAC`=? WHERE `Mobile` = ? and `Password` = ?";
     private static final String CHECK_pOST_WITH_VALIDATION = "SELECT * FROM `phi` WHERE `Mobile` = ? and `Password` = ? and `Post`=?";
 
-    private static final String Check_Admin = "SELECT * FROM `admin` WHERE `Mobile` = ? and `Password` = ? ";
+    private static final String Check_PHI = "SELECT * FROM `phi` WHERE `mobile_number` = ? and `Password` =  ? ";
+    private static final String Check_Admin  = "SELECT * FROM `phi` WHERE `mobile_number` = ? and `Password` =  ? and device_mac = ?";
+
     Connection connection;
 
     public OfficerDAO(){
@@ -27,32 +29,23 @@ public class OfficerDAO {
 
     public OfficerLoginModel CheckLoginValidation(OfficerLoginModel officerLogin , String post) {
         if(post.equals("phi")){
-            try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_pOST_WITH_VALIDATION)) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement(Check_PHI)) {
                 preparedStatement.setString(1, officerLogin.getMobile());
                 preparedStatement.setString(2, officerLogin.getPassword());
-                preparedStatement.setString(3, post);
+                preparedStatement.setString(3, officerLogin.getMAC());
                 ResultSet rs = preparedStatement.executeQuery();
-
-
-//                System.out.println("rs -DAO "+rs+"/");
                 while (rs.next()) {
-                    String mobile = rs.getString("Mobile");
-                    String password = rs.getString("Password");
-                    String mac=rs.getString("MAC");
-                    String officerpost=rs.getString("Post");
-
-                    System.out.println("mobile "+mobile+"/");
-                    System.out.println("pass "+password+"/");
-                    System.out.println("mac "+mac+"/");
-                    System.out.println("officerpost "+officerpost+"/");
-                    System.out.println("Model data");
-                    System.out.println("mobile "+officerLogin.getMobile()+"/");
-                    System.out.println("pass "+officerLogin.getPassword()+"/");
-                    System.out.println("mac "+officerLogin.getMAC()+"/");
-                    System.out.println("officerpost "+officerpost+"/");
+                    String mobile = rs.getString("mobile_number");
+                    String password = rs.getString("password");
+                    String mac=rs.getString("device_mac");
+                    String officerpost=rs.getString("phi_post");
+                    String assignCity=rs.getString("assignCity");
+                    String assignMOH=rs.getString("assignMOH");
+                    String full_name=rs.getString("full_name");
 
 
-                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac==null && (officerpost.equals(post) || officerpost.equals("")) ) {
+
+                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac==null  ) {
                         System.out.println("null mach with correct us ps in phi");
                         String updateMAC=officerLogin.getMAC();
                         try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC_IN_PHI)){
