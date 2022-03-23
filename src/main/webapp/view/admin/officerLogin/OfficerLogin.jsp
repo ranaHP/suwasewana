@@ -43,13 +43,19 @@
                     <form  onsubmit="return checkLoginValidation()" id="loginForm">
 
                         <div class="form-group">
-                            <div class="formlable"><label> Mobile Number</label></div>
+                            <div class="formlable"><label id="user_name_lable" > Mobile Number</label></div>
 
-                            <input type="text" autofocus maxlength="10" required autocomplete="off" name="user-mobile" id="user-mobile"
+                            <input type="text" autofocus maxlength="10" required autocomplete="off"
+                                   name="user-mobile" id="user-mobile"
                                    onkeyup="validation.mobileValidation(
                                         document.getElementById('user-mobile').value,
                                         'user-mobile-error'
                                     ); hideFormError();"
+                            />
+                            <input type="text"  maxlength="10"
+                                   required autocomplete="off"
+                                   name="admin-code" id="admin-code"
+                                   style="display: none"
                             />
                             <div id="user-mobile-error" class="form-field-error"></div>
                         </div>
@@ -71,7 +77,7 @@
                         <div class="form-group">
                             <div class="formlable"><label for="officer_types"> Officer Type</label> </div>
 
-                            <select name="officer_types" id="officer_types">
+                            <select name="officer_types" id="officer_types" onchange="onChangeAdmin()">
                                 <option value="phi">Public Health Officer</option>
                                 <option value="rphi">Regional Public Health Officer</option>
                                 <option value="co">Clinical Officer</option>
@@ -84,7 +90,7 @@
                             <div id="user-type-error" class="form-field-error"></div>
                         </div>
                         <div class="loginbtn"><input type="submit" class="login-btn" value="Login" /></div>
-                        <div id="user-form-error" class=" form-response-error t-center pt-5" style=" font-size: .6em;">
+                        <div id="user-form-error" class=" form-response-error t-center pt-5" style=" font-size: .9em;float: left">
                             user mobile or password invalid! please try again.
                         </div>
                     </form>
@@ -101,7 +107,18 @@
 
     <script defer>
         myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-
+        function onChangeAdmin(){
+            var s_value = document.getElementById('officer_types').value;
+            if(s_value == 'admin'){
+                document.getElementById('admin-code').style.display = 'block';
+                document.getElementById('user-mobile').style.display = 'none';
+                document.getElementById('user_name_lable').innerText = 'Admin Code';
+            }else{
+                document.getElementById('admin-code').style.display = 'none';
+                document.getElementById('user-mobile').style.display = 'block';
+                document.getElementById('user_name_lable').innerText = 'Mobile Number';
+            }
+        }
         let validation = new FormInputValidation();
         function passwordVisibility() {
             let passwordInput = document.getElementById('user-password');
@@ -120,35 +137,107 @@
         }
 
         function checkLoginValidation() {
+            var s_value = document.getElementById('officer_types').value;
+            if(s_value == 'admin'){
+                if (
+                    // validation.mobileValidation(document.getElementById('admin-code').value, 'user-mobile-error') &&
+                    validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
+                ) {
+                    let url = myUrl+"/officer-login-controller?user_mobile=" +
+                        document.getElementById("admin-code").value+ "&user_password=" +
+                        document.getElementById("user-password").value + "&Post=" +
+                        document.getElementById('officer_types').value;
+                    const xhttp = new XMLHttpRequest();
+                    console.log(url)
+                    xhttp.onload = function () {
 
-            if (
-                validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
-                validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
-            ) {
-                let url = myUrl+"/officer-login-controller?user_mobile=" + document.getElementById("user-mobile").value+ "&user_password=" + document.getElementById("user-password").value + "&Post=" +document.getElementById('officer_types').value;
-                const xhttp = new XMLHttpRequest();
-                console.log(url)
-                xhttp.onload = function () {
-                    let result = JSON.parse(this.response);
-                    if (result.status === "success") {
-                        location.replace(myUrl+"/s/PHI-dashboard");
-                    } else if (result.status === "error") {
-                        document.getElementById('user-form-error').style.display = "block";
-                        document.getElementById('user-form-error').innerText = result.data;
-                        document.getElementById("user-password").value = "";
-                        document.getElementById("user-mobile").value = "";
-                        setTimeout(() => {
-                            document.getElementById('user-form-error').style.display = "none";
-                        }, 8000)
+                        let result = JSON.parse(this.response);
+                        if (result.status === "success") {
+                            switch (document.getElementById('officer_types').value){
+                                case  "phi":
+                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                    break;
+                                case  "rphi":
+                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                    break;
+                                case  "co":
+                                    location.replace( myUrl +"/s/clinic-dashboard");
+                                    break;
+                                case  "to":
+                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                    break;
+                                case  "admin":
+                                    location.replace( myUrl +"/s/admin-dashboard");
+                                    break;
+                            }
+                        } else if (result.status === "error") {
+                            document.getElementById('user-form-error').style.display = "block";
+                            document.getElementById('user-form-error').innerText = result.data;
+                            document.getElementById("user-password").value = "";
+                            document.getElementById("user-mobile").value = "";
+                            setTimeout(() => {
+                                document.getElementById('user-form-error').style.display = "none";
+                            }, 8000)
+                        }
+                        else{
+                            console.log("somthing going wrong");
+                        }
+                        console.log(this.response)
                     }
-                    else{
-                        console.log("somthing going wrong");
-                    }
-                    console.log(this.response)
+                    xhttp.open("GET", url, true);
+                    xhttp.send();
                 }
-                xhttp.open("GET", url, true);
-                xhttp.send();
+            }else{
+                if (
+                    validation.mobileValidation(document.getElementById('user-mobile').value, 'user-mobile-error') &&
+                    validation.passwordValidation(document.getElementById('user-password').value, 'user-password-error')
+                ) {
+                    let url = myUrl+"/officer-login-controller?user_mobile=" +
+                        document.getElementById("user-mobile").value+ "&user_password=" +
+                        document.getElementById("user-password").value + "&Post=" +
+                        document.getElementById('officer_types').value;
+                    const xhttp = new XMLHttpRequest();
+                    console.log(url)
+                    xhttp.onload = function () {
+
+                        let result = JSON.parse(this.response);
+                        if (result.status === "success") {
+                            switch (document.getElementById('officer_types').value){
+                                case  "phi":
+                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                    break;
+                                case  "rphi":
+                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                    break;
+                                case  "co":
+                                    location.replace( myUrl +"/s/clinic-dashboard");
+                                    break;
+                                case  "to":
+                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                    break;
+                                case  "admin":
+                                    location.replace( myUrl +"/s/admin-dashboard");
+                                    break;
+                            }
+                        } else if (result.status === "error") {
+                            document.getElementById('user-form-error').style.display = "block";
+                            document.getElementById('user-form-error').innerText = result.data;
+                            document.getElementById("user-password").value = "";
+                            document.getElementById("user-mobile").value = "";
+                            setTimeout(() => {
+                                document.getElementById('user-form-error').style.display = "none";
+                            }, 8000)
+                        }
+                        else{
+                            console.log("somthing going wrong");
+                        }
+                        console.log(this.response)
+                    }
+                    xhttp.open("GET", url, true);
+                    xhttp.send();
+                }
             }
+
             return false;
         }
 
