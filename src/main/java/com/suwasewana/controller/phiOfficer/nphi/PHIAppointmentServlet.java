@@ -65,6 +65,14 @@ public class PHIAppointmentServlet extends HttpServlet {
     }
     private void selectAppointmentForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         String uNic = "199910910060";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    uNic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         ArrayList<AppointmentForPHIModel> result = appointmentDAO.GetAppoinment_For_PHI_Dashboard(uNic);
         res.getWriter().println(gson.toJson(result));
     }
@@ -74,7 +82,17 @@ public class PHIAppointmentServlet extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void getAppointmentForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        ArrayList<AppointmentForPHIModel> result = appointmentDAO.getAppointmentForPHI();
+        String nic="";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
+
+        ArrayList<AppointmentForPHIModel> result = appointmentDAO.getAppointmentForPHI(nic);
         res.getWriter().println(gson.toJson(result));
     }
     private void giveTimeSlotForAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {

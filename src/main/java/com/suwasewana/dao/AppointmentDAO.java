@@ -22,7 +22,7 @@ public class AppointmentDAO {
     private static final String CHECK_LOGIN_VALIDATION = "SELECT * FROM `user` WHERE `uMobile` = ? and `uPassword` = ?";
     private static final String APPOINTMENTS_TYPES = "SELECT * FROM `appointment_type` ;";
     private static final String ADD_APPOINTMENTS_TYPES = "INSERT INTO `appointment_type` (`apponitment_type_id`, `appointment_type`, `description`) VALUES (NULL, 'Grade 5 Scholarship', NULL),(NULL, 'To Discuss Complaint', NULL) , (NULL, 'Other', NULL)";
-    private static final String GET_APPOINTMENTS_FOR_PHI = "SELECT * FROM (SELECT * FROM (SELECT * FROM `user_appoinmnet` WHERE `user_appoinmnet`.`aPhi` = '980703223V')  AS phi_appointment\n" +
+    private static final String GET_APPOINTMENTS_FOR_PHI = "SELECT * FROM (SELECT * FROM (SELECT * FROM `user_appoinmnet` WHERE `user_appoinmnet`.`aPhi` = ?)  AS phi_appointment\n" +
             "LEFT JOIN `user` ON `user`.`uNic` = `phi_appointment`.`user_nic`) AS user_appointment LEFT JOIN `appointment_type`\t ON `appointment_type`.`apponitment_type_id` = `user_appointment`.`aType`";
     private static final String SELECT_APPOINTMENTS_FOR_PHI="SELECT * FROM (SELECT * FROM (SELECT * FROM `user_appoinmnet` WHERE `user_appoinmnet`.`aPhi` = ? and `user_appoinmnet`.`status` ='pending')  AS phi_appointment LEFT JOIN `user` ON `user`.`uNic` = `phi_appointment`.`user_nic`) AS user_appointment LEFT JOIN `appointment_type` ON `appointment_type`.`apponitment_type_id` = `user_appointment`.`aType`;";
     private static final String APPOINTMENTS_GIVE_TIME_SLOT = "UPDATE `user_appoinmnet` SET `phi_message` = ? , `user_appoinmnet`.`time_slot_1` = STR_TO_DATE(?, '%Y-%m-%d %T') , `user_appoinmnet`.`time_slot_2` = STR_TO_DATE(?, '%Y-%m-%d %T') , `user_appoinmnet`.`time_slot_1_end` = STR_TO_DATE(?, '%Y-%m-%d %T') ,`user_appoinmnet`.`time_slot_2_end` = STR_TO_DATE(?, '%Y-%m-%d %T'), `user_appoinmnet`.`status` = ? ,`user_appoinmnet`.`alocation` = ? WHERE `user_appoinmnet`.`app_id` = ?";
@@ -105,8 +105,9 @@ public class AppointmentDAO {
         }
         return null;
     }
-    public ArrayList<AppointmentForPHIModel> getAppointmentForPHI() {
+    public ArrayList<AppointmentForPHIModel> getAppointmentForPHI(String nic) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(GET_APPOINTMENTS_FOR_PHI)) {
+            preparedStatement.setString(1, nic);
             ResultSet rs = preparedStatement.executeQuery();
             System.out.println("preparedStatement");
             System.out.println(preparedStatement);

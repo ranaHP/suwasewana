@@ -78,15 +78,8 @@ public class UserComplainController extends HttpServlet {
 
     private void ComplainForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String uNic = "";
-        Cookie[] cookies = req.getCookies();
-        if(cookies !=null){
-            for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
-                }
-            }
-        }
+
+
         ComplainModel complainModeldetail = new ComplainModel(
                 "",
                 "",
@@ -105,6 +98,14 @@ public class UserComplainController extends HttpServlet {
 
         );
         String nic="199910910062";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
 //        ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHI(nic);
 //        res.getWriter().println(gson.toJson(result));
         res.getWriter().println("come to controller for phi");
@@ -118,6 +119,7 @@ public class UserComplainController extends HttpServlet {
         String title=req.getParameter("Title");
         String type=req.getParameter("complaintype");
         String nic=req.getParameter("nic");
+
         ArrayList<ComplainModel> result = userDAO.SearchComplainDetails(title,type,nic);
         res.getWriter().println(gson.toJson(result));
     }

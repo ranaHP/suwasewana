@@ -378,6 +378,8 @@ public class UserDAO {
 
 
             preparedStatement.setString(1, mohid);
+
+            System.out.println("Qry "+preparedStatement);
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<VaccineClinicAnnouncementsModelForUser> VaccineClinictList = new ArrayList<VaccineClinicAnnouncementsModelForUser>();
             while (rs.next()) {

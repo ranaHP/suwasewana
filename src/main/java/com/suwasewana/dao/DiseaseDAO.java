@@ -31,8 +31,9 @@ public class DiseaseDAO {
             preparedStatement.setString(1, DRM.getMohid());
             preparedStatement.setString(2, DRM.getDate1());
             preparedStatement.setString(3, DRM.getDate2());
-//            System.out.println("date 1"+DRM.getCount2().split("/")[0]);
-//            System.out.println("date 2"+DRM.getCount3().split("/")[1]);
+            System.out.println("Getmaxdiseasecount qry "+preparedStatement);
+            System.out.println("date 1"+DRM.getCount2().split("/")[0]);
+            System.out.println("date 2"+DRM.getCount3().split("/")[1]);
             String [] FirstDayArray={
                     DRM.getCount1().split("/")[0],
                     DRM.getCount2().split("/")[0],
