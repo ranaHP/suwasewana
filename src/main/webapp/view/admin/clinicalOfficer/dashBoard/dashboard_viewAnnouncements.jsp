@@ -48,7 +48,7 @@
     view();
     function view(){
         let announcementArray=[]
-        $.post("/test_war_exploded/clinicAnnouncementController/viewAnnouncements",
+        $.post(myUrl+"/clinicAnnouncementController/viewAnnouncements",
             // reqData,
             function(data,status){
                 announcementArray=JSON.parse(data)
@@ -72,7 +72,7 @@
 
     function deleteAnnouncement(clinicID){
         // console.log("deleteclinicfunction")
-        $.post("/test_war_exploded/clinicAnnouncementController/deleteA",
+        $.post(myUrl+"/clinicAnnouncementController/deleteA",
             {
                 clinicID: clinicID
             },

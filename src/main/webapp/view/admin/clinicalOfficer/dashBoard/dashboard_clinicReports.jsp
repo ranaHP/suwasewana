@@ -78,7 +78,7 @@
             <div class="report1">
                 <div class="clinic-expansion-chart">
                     <div class="chart-title">
-                        <p class="f-1">Clinic expansion on diseases</p>
+                        <p class="f-1">Normal Clinic expansion on diseases</p>
                     </div>
                     <div class="chart">
                         <canvas id="myChart" class="mychart" width="400" height="400"></canvas>
@@ -102,7 +102,7 @@
             <div class="report2">
                 <div class="clinic-registering-expansion-chart">
                     <div class="chart-title">
-                        <p class="f-1">Registering presentage for clinics</p>
+                        <p class="f-1">Vaccine clinics count according to vaccine type</p>
                     </div>
                     <div class="chart">
                         <canvas id="myChart1"class="mychart" width="400" height="400"></canvas>
@@ -127,6 +127,8 @@
 <%--</div>--%>
 
 <script>
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    console.log(myUrl)
     // select report category
     // reports=["Clinic Reports","Disease Reports"];
     // reports.map(name=>{
@@ -236,7 +238,7 @@
 
     function viewd(){
         let clinicListArray=[]
-        $.post("/test_war_exploded/create-clinic-controller/viewdisease",
+        $.post(myUrl+"/create-clinic-controller/viewdisease",
             // reqData,
             function(data,status){
                 console.log("disease")
@@ -253,19 +255,35 @@
         );
     }
     function search(){
+
         let reqData =
             {
                 sdate: document.getElementById("sDate").value,
                 edate:document.getElementById("eDate").value,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/searchFromDate",
+        $.post(myUrl+"/create-clinic-controller/searchFromDate",
             reqData,
             function(data,status){
-
+                    console.log(data)
+                clinicListArray=JSON.parse(data)
+                destroy(clinicListArray,today)
             }
         );
         return false;
+    }
+   vaccineCount()
+    function vaccineCount(){
+        let clinicListArray1=[]
+        $.post(myUrl+"/create-clinic-controller/vaccinecount",
+            // reqData,
+            function(data,status){
+                console.log("patientss")
+                console.log(data)
+                clinicListArray1=JSON.parse(data)
+                chart1(clinicListArray1,today)
+            }
+        );
     }
 
 </script>
