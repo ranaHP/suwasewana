@@ -29,6 +29,7 @@ public class createClinicDAO {
   private static final String RESHEDULE_VCLINICS="UPDATE `vaccine_clinic_session` SET `start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String ClinicCount="SELECT COUNT(ncs_id), date FROM `normal_clinic_session` GROUP BY `date`;";
   private static final String UpdateAvailSheats="UPDATE `normal_clinic_session` SET `Avail_seats` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
+  private static final String vaccinecount="SELECT COUNT(vcs_id),name FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=? GROUP BY `name` ;";
   Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -714,6 +715,46 @@ public class createClinicDAO {
 //                System.out.println(title+"--"+disease+"--"+Location);
             };
             return numberlist;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
+
+    public ArrayList<CreateClinicModel> vaccineCount(String cnic) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(vaccinecount)){
+            System.out.println("select for msg");
+            preparedStatement.setString(1, cnic);
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs.toString());
+            ArrayList<CreateClinicModel> vaccinecount = new ArrayList<CreateClinicModel>();
+            System.out.println(rs);
+            while (rs.next()){
+                String count =rs.getString("COUNT(vcs_id)");
+                String name = rs.getString("name");
+                CreateClinicModel temp = new CreateClinicModel(
+                       count,
+                        name,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+                );
+                vaccinecount.add(temp);
+//               System.out.println(numberlist);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return vaccinecount;
         } catch (SQLException throwables) {
             printSQLException(throwables);
 //            return throwables.getMessage();

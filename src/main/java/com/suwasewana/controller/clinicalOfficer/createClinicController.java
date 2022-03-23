@@ -116,6 +116,10 @@ import java.util.ArrayList;
 //                    res.getWriter().println("select-V-Clinics");
                     searchFromDate(req, res);
                     break;
+                case "vaccinecount":
+//                    res.getWriter().println("select-V-Clinics");
+                    vaccinecount(req, res);
+                    break;    
 
 
                 default:
@@ -126,6 +130,12 @@ import java.util.ArrayList;
             throw new ServletException(error);
         }
     }
+
+    private void vaccinecount(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        String Cnic="199910910064";
+        ArrayList<CreateClinicModel> result=createClinicDAO.vaccineCount(Cnic);
+        res.getWriter().println(gson.toJson(result));
+        }
 
     private void searchFromDate(HttpServletRequest req, HttpServletResponse res) {
     }

@@ -47,8 +47,19 @@
                                     <input type="text" required autocomplete="off" name="clinic-title" id="clinic-title" value="Covid awareness clinic" />
                                 </div>
                                 <div class="inputs">
-                                    <label> Disease</label>
-                                    <input type="text" required autocomplete="off" name=" disease" id="disease" value="Covid 19" />
+                                    <%--@declare id="alldarea"--%><label> Disease</label>
+<%--                                    <input type="text" required autocomplete="off" name=" disease" id="disease" value="Covid 19" />--%>
+                                    <input autocomplete="off" class="SelectColordiv" id="disease" type="text" style="outline: none;" list="Alldarea" name="Alldarea"
+                                           onclick="document.getElementById('disease').value='';"
+                                           onblur="validation.SearchSelect(
+                                    document.getElementById('disease').value,
+                                    'LdArea'
+                                );"
+                                    >
+                                    <datalist id="Alldarea">
+                                    </datalist>
+                                    <br>
+                                    <span class="error" id="LdArea" style="margin-left: 5px" ></span>
                                 </div>
                                 <div class="inputs">
                                     <label> Location</label>
@@ -261,6 +272,24 @@
     //     );
     //     return false;
     // }
+
+    let dDetails=[];
+    $.post("/test_war_exploded/user-disease-controller/disease",
+        function (data, status) {
+            console.log(data);
+            console.log("hi")
+            let rs= JSON.parse(data);
+            this.dDetails=rs;
+            // console.log(data);
+
+            let disease=document.getElementById("Alldarea");
+            disease.innerHTML="";
+            rs.map((element,index) => {
+                // console.log("moh"+element.MName)
+                disease.innerHTML+= '<option  id="'+element.name+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
+            })
+        }
+    );
 
 </script>
 

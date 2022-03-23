@@ -1,6 +1,7 @@
 package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
+import com.suwasewana.dao.DiseaselistDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.User;
 import com.suwasewana.model.UserDiseaseModel;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class UserDiseaseController extends HttpServlet {
 
     UserDAO userDAO;
+    DiseaselistDAO diseaselistDAO;
     private Gson gson = new Gson();
 
     public void init() throws ServletException {
@@ -44,9 +46,17 @@ public class UserDiseaseController extends HttpServlet {
                         UserregisterDiseasedetails(req,res);
                         break;
 
-                case "patientG":
-                    patientG(req,res);
-                    break;    
+                    case "patientG":
+                        patientG(req,res);
+                        break;
+
+                    case "patientTP":
+                        patientTP(req,res);
+                        break;
+
+                    case "disease":
+                        diseaselist(req,res);
+                        break;
 
                     default:
                         res.getWriter().println("404 Page not Found");
@@ -57,6 +67,20 @@ public class UserDiseaseController extends HttpServlet {
         }catch (Exception error){
             throw new ServletException(error);
         }
+    }
+
+    private void diseaselist(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("dta controllwe");
+        ArrayList<UserDiseaseModel> result = diseaselistDAO.diseaseList();
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void patientTP(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("dta controllwe");
+        String moh="1004";
+        String disease=req.getParameter("name");
+        ArrayList<User> result = userDAO.patientTP(moh,disease);
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void patientG(HttpServletRequest req, HttpServletResponse res) throws IOException {
