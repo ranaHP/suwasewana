@@ -88,8 +88,8 @@ class TodoList{
             let currentDate=new Date(utc)
             // console.log("##########################################")
 
-            console.log(" exp date "+expdate)
-            console.log(" task.status "+task.status)
+            // console.log(" exp date "+expdate)
+            // console.log(" task.status "+task.status)
 
             switch( task.status ){
                 case 'pending':
@@ -105,27 +105,28 @@ class TodoList{
                     item_container = document.getElementById(this.inprogess_id);
                     break;
                 default:
-                    console.log("not found status");
+                    // console.log("not found status");
             }
-            console.log("task title: "+task.title);
+            // console.log("task title: "+task.title);
             item_container.innerHTML += `
                         <div class="todo-item ${task.status} " >
                             <div class="row1">
                                  <div class="content">
-                                <div class="label">
+                                <div class="label" style="margin-bottom: 8px">
                                     Content
                                 </div>
                                 ${task.title}
                             </div>
                             <div class="todo-date-time">
-                                <div class="label">
+                                <div class="label" style="margin-bottom: 8px">
                                     Due date
                                 </div>
                                 ${(currentDate<=expdate)? `<span>${(task.expire_date).split(' ')[0]}</span> ` : `<span style="color: #e74c3c">${(task.expire_date).split(" ")[0]}</span>` }
 
                             </div>
                             <div class="todo-action">
-                                <div class="label">
+                            
+                                <div class="label" style="margin-bottom: 3px;margin-top: 6px;font-size: 1.1em;">
                                     Action
                                 </div>
 

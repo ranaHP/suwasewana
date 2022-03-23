@@ -175,7 +175,7 @@ public class TodoDAO {
 
             Date d1 = sdformat.parse(today);
 
-
+//            System.out.println("Todaye "+d1);
 
 
 
@@ -190,8 +190,8 @@ public class TodoDAO {
                 String date2=expire_date;
                 Date d2 = sdformat.parse(date2);
 
-//                System.out.println("The date 1 is: " + sdformat.format(d1));
-//                System.out.println("The date 2 is: " + sdformat.format(d2));
+                System.out.println("The date 1 is: " + sdformat.format(d1));
+                System.out.println("The date 2 is: " + sdformat.format(d2));
 
                 if(status.equals("pending")){
 
