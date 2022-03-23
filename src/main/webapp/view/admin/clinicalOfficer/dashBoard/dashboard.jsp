@@ -57,7 +57,7 @@
                 <div class="chart" id="chart2">
                     <p class="h4">Patient count </p>
                     <div class="g-chart" style="width: 100%">
-                        <canvas id="myChart2" height="30" width="30" style="margin-left: 20px"></canvas>
+                        <canvas id="myChart2" height="50" width="100" style="margin-left: 20px"></canvas>
                     </div>
                 </div>
             </div>
@@ -124,7 +124,7 @@
 
     function choose(){
         let clinicListArray=[]
-        $.post("/test_war_exploded/create-clinic-controller/viewcount",
+        $.post(myUrl+"/create-clinic-controller/viewcount",
             // reqData,
             function(data,status){
             console.log(data)
@@ -140,7 +140,7 @@
                     let reqData={
                           date:date
                     };
-                    $.post("/test_war_exploded/create-clinic-controller/clinicsEvents",
+                    $.post(myUrl+"/create-clinic-controller/clinicsEvents",
                          reqData,
                         function (data,status){
                             let EventArray =JSON.parse(data)
@@ -167,7 +167,7 @@
     //categorize clinic according to diseases
     function viewd(){
         let clinicListArray=[]
-        $.post("/test_war_exploded/create-clinic-controller/viewdisease",
+        $.post(myUrl+"/create-clinic-controller/viewdisease",
             // reqData,
             function(data,status){
                 console.log("disease")
@@ -181,7 +181,7 @@
 patient_growth()
     function patient_growth(){
         let clinicListArray1=[]
-        $.post("/test_war_exploded/user-disease-controller/patientG",
+        $.post(myUrl+"/user-disease-controller/patientG",
             // reqData,
             function(data,status){
                 console.log("patient")
@@ -194,7 +194,7 @@ patient_growth()
     let clinicList2 = new clinicList("clinic-list");
     function view(){
         let clinicListArray=[]
-        $.post("/test_war_exploded/create-clinic-controller/view",
+        $.post(myUrl+"/create-clinic-controller/view",
             // reqData,
             function(data,status){
             console.log(data)
@@ -220,7 +220,7 @@ patient_growth()
     //count the v clinics
     function viewV(){
         let clinicListArray1=[]
-        $.post("/test_war_exploded/create-clinic-controller/VaccineClinicsView",
+        $.post(myUrl+"/create-clinic-controller/VaccineClinicsView",
             // reqData,
             function(data,status){
                 clinicListArray1=JSON.parse(data)
@@ -239,7 +239,7 @@ patient_growth()
                 clinicID: id,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/select",
+        $.post(myUrl+"/create-clinic-controller/select",
             reqData,
             function(data,status){
                 // alert(data)
@@ -261,7 +261,7 @@ patient_growth()
                 clinicID: id,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+        $.post(myUrl+"/create-clinic-controller/select-V-Clinics",
             reqData,
             function(data,status){
                 // alert(data)
@@ -284,7 +284,7 @@ patient_growth()
                 clinicID: id,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+        $.post(myUrl+"/create-clinic-controller/select-V-Clinics",
             reqData,
             function (data, status) {
                 // alert(data)
@@ -328,7 +328,7 @@ patient_growth()
             };
         console.log(reqData)
         // alert(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/updatevclinic",
+        $.post(myUrl+"/create-clinic-controller/updatevclinic",
             reqData,
             function (data,status){
                 // alert("wrong")
@@ -355,7 +355,7 @@ patient_growth()
         // alert(reqDa
 
 
-        $.post("/test_war_exploded/create-clinic-controller/ResheduleVClinics",
+        $.post(myUrl+"/create-clinic-controller/ResheduleVClinics",
             reqData,
             function (data,status){
                 // alert("wrong")
@@ -426,7 +426,7 @@ patient_growth()
                 clinicID: clinicid,
             };
         console.log(reqData);
-        $.post("/test_war_exploded/create-clinic-controller/select-V-Clinics",
+        $.post(myUrl+"/create-clinic-controller/select-V-Clinics",
             reqData,
             function (data, status) {
                 clinicList = JSON.parse(data)
@@ -521,7 +521,7 @@ patient_growth()
                 duration:duration,
             };
         console.log(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/resheduleclinic",
+        $.post(myUrl+"/create-clinic-controller/resheduleclinic",
             reqData,
             function (data,status){
                 // alert("wrong")
@@ -562,7 +562,7 @@ patient_growth()
                 description:description
             };
         console.log(reqData)
-        $.post("/test_war_exploded/create-clinic-controller/updateclinic",
+        $.post(myUrl+"/create-clinic-controller/updateclinic",
             reqData,
             function (data,status){
                 // alert("wrong")

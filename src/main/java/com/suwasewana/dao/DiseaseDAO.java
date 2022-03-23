@@ -25,7 +25,6 @@ public class DiseaseDAO {
     }
 
 
-
     public DiseaseReportModel Getmaxdiseasecount(DiseaseReportModel DRM) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SelectMaxDiseaseCount)) {
 
@@ -125,7 +124,7 @@ public class DiseaseDAO {
     }
 
 
-    private void printSQLException(SQLException ex) {
+    private static void printSQLException(SQLException ex) {
         for (Throwable e : ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);

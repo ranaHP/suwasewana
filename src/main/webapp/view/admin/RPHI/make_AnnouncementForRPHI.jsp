@@ -153,7 +153,7 @@
             expire_date:document.getElementById("expire_date").value
         };
         // console.log(reqData)
-        $.post("/test_war_exploded/createRPHI_Announcements/createA",
+        $.post(myUrl+"/createRPHI_Announcements/createA",
             reqData,
             function (data, status) {
                 if(data.includes("sucsess")){
@@ -176,10 +176,11 @@
 
 </script>
 <script>
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let validation = new FormInputValidation();
     function check(){
         let mohDetails=[];
-        $.post("/test_war_exploded/user-complain-controller/moh",
+        $.post(myUrl+"/user-complain-controller/moh",
             function (data, status) {
                 // console.log(data);
                 let rs= JSON.parse(data);
