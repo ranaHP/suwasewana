@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.suwasewana.dao.createClinicDAO;
 import com.suwasewana.model.ClinicCalenderEventModel;
 import com.suwasewana.model.CreateClinicModel;
-import com.suwasewana.model.MOHModel;
 import com.suwasewana.model.vaccineClinicModel;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.annotation.Target;
 import java.text.ParseException;
 import java.util.ArrayList;
 
@@ -119,7 +117,11 @@ import java.util.ArrayList;
                 case "vaccinecount":
 //                    res.getWriter().println("select-V-Clinics");
                     vaccinecount(req, res);
-                    break;    
+                    break;
+                case "VclinicRegisterNumList":
+//                    res.getWriter().println("select-V-Clinics");
+                    VclinicRegisterNumList(req, res);
+                    break;
 
 
                 default:
@@ -130,6 +132,29 @@ import java.util.ArrayList;
             throw new ServletException(error);
         }
     }
+
+    private void VclinicRegisterNumList(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        vaccineClinicModel VclinicRegisterNumList= new vaccineClinicModel(
+
+                req.getParameter("clinicID"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "12"
+
+        );
+        ArrayList<vaccineClinicModel> result= createClinicDAO.VclinicRegisterNumList(VclinicRegisterNumList);
+        res.getWriter().println(gson.toJson(result));
+        }
 
     private void vaccinecount(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String Cnic="199910910064";

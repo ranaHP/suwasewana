@@ -7,7 +7,7 @@
     /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
     /*font-weight: 500;*/
     /*padding-bottom: 10px;*/
-    font-size: 1.2em;
+    font-size: 1em;
     color: #0606068c;
     font-family: "Segoe UI";
     /*padding: 10px 0*/
@@ -134,7 +134,7 @@ body{
     box-shadow: 1px 3px 6px rgb(0 0 0 / 15%);
     /*box-shadow:  0 3px 6px rgba(0, 0, 0, 0.1);*/
     margin-top: 10px;
-    height: 85vh;
+    /*height: 85vh;*/
     /*background-color: white;*/
     /*background-image: linear-gradient(to right top, #f0fffe, #f4ffff, #f9feff, #fdfeff, #ffffff);*/
 }
@@ -163,23 +163,46 @@ label{
     /*padding-right: 20px;*/
     align-items: center;
     margin: 10px 0;
-    overflow-x: scroll;
+    overflow:auto;
     max-width: 800px;
     cursor: grab;
     /* background-color: aqua; */
 }
+.clinic-list::-webkit-scrollbar {
+    width: 10px !important;
+    height: 10px;
+}
+
+.clinic-list::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); */
+
+}
+
+.clinic-list::-webkit-scrollbar-thumb {
+    background-color: rgba(61, 63, 62, 0.116);
+
+}
+
 .clinic-card{
     height: 150px;
-    min-width: 400px;
+    min-width: 350px;
     margin-left: 8px;
+
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /*box-shadow:  0 3px 6px rgba(0, 0, 0, 0.1);*/
     /*box-shadow: 1px 3px 6px rgb(0 0 0 / 15%);*/
     box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.151);
     /*background-color: white;*/
-    background-color: rgb(255, 255, 255);
+    /*background-color: rgb(255, 255, 255);*/
     /*cursor: pointer;*/
+
+    /*width: 70%;*/
+    /*height: 180px;*/
+    background-color: rgb(248, 248, 248);
+    box-sizing: border-box;
+    padding: 5px;
+    box-shadow: 1px 3px 6px rgb(0 0 0 / 15%)
 }
 /*::-webkit-scrollbar {*/
 /*    width: 10px;*/
@@ -204,15 +227,12 @@ label{
     font-size: 0.7em;
     color: rgb(160, 148, 148);
 }
-.amount{
-    font-size: 2em;
-}
 
 .reschdulebtn {
     display: block;
     width:fit-content;
     border: none;
-    background-color: #4f5ee2;
+    background-color: #0275d8;
     color: white;
     padding: 2.5px 6px;
     border-radius: 2px;
@@ -242,7 +262,10 @@ label{
     margin-left: 2.5vw;
 }
 
-
+.amount{
+    font-size: 1em;
+    margin-left: 3px;
+}
 
 
 
@@ -267,10 +290,13 @@ label{
 .pendingclinc{
     padding: 0 30px;
     margin-top: 20px;
+
 }
 .pctitle{
-    color: rgb(12, 0, 0);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*color: rgb(12, 0, 0);*/
+    /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+    font-size: 1em;
+    color: rgba(17, 17, 17, 0.795);
 }
 .nc-amount{
     width: 50%;
@@ -311,14 +337,14 @@ label{
     margin: 10px;
 }
 
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(128 128 128 / 30%);
-    border-radius: 1px;
-}
-::-webkit-scrollbar{
-    width:1px;
-    cursor: pointer;
-}
+/*::-webkit-scrollbar-track {*/
+/*    box-shadow: inset 0 0 5px rgb(128 128 128 / 30%);*/
+/*    border-radius: 1px;*/
+/*}*/
+/*::-webkit-scrollbar{*/
+/*    width:1px;*/
+/*    cursor: pointer;*/
+/*}*/
 
 
 
@@ -344,12 +370,13 @@ label{
     }
     .clinic-card{
         position: relative;
+        margin-bottom: 2.5px;
     }
     .card-right{
         position: absolute;
         right: 0;
         bottom: 10px;
-        width: 50%;
+        width: 40%;
     }
     .growth-calander{
         flex-direction: column;
@@ -421,7 +448,15 @@ label{
         width: 50%;
     }
     .amount{
-        font-size: 2em;
+        font-size: 1em;
+    }
+    img{
+        width: 70%;
+        height: 70%;
+        margin-top: 5px;
+    }
+    .clinic-card{
+        width: 400px;
     }
 }
 @media only screen and (max-width: 704px ){

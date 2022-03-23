@@ -109,7 +109,8 @@ input[type=time]:focus{
     width: 95%;
     /*background-color: #0D47A1;*/
     /*background-color: #006633FF;*/
-    background-color: #2e8d2e;
+    /*background-color: #2e8d2e;*/
+    background-color: #0275d8;
     color: white;
     border-radius: 3px;
     font-family: Arial;
@@ -119,7 +120,8 @@ input[type=time]:focus{
 }
 .live{
     /*background-color: #006633FF;*/
-    background-color: #2e8d2e;
+    /*background-color: #2e8d2e;*/
+    background-color: #0275d8;
     border: none;
     cursor: pointer;
     font-family: Arial;

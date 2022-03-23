@@ -31,6 +31,8 @@ public class createClinicDAO {
   private static final String ClinicCount="SELECT COUNT(ncs_id), date FROM `normal_clinic_session` GROUP BY `date`;";
   private static final String UpdateAvailSheats="UPDATE `normal_clinic_session` SET `Avail_seats` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String vaccinecount="SELECT COUNT(vcs_id),name FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=? GROUP BY `name` ;";
+  private static final String VClinicRegiserCount="SELECT * FROM `user_vaccine` vc  left join `user` v on v.uNic=vc.nic WHERE vc.clinic_id =?";
+
   Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -804,6 +806,46 @@ public class createClinicDAO {
         return null;
     }
 
+    public ArrayList<vaccineClinicModel> VclinicRegisterNumList(vaccineClinicModel vclinicRegisterNumList) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(NormalC_registeredNList)){
+            System.out.println("select for msg");
+            preparedStatement.setString(1, vclinicRegisterNumList.getVcs_id());
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs.toString());
+            ArrayList<vaccineClinicModel> vclinicRegisterNumLists = new ArrayList<vaccineClinicModel>();
+            System.out.println(rs);
+            while (rs.next()){
+                String clinicID =rs.getString("ncs_id");
+                String numbers = rs.getString("uMobile");
+                vaccineClinicModel temp = new vaccineClinicModel(
+                        clinicID,
+                        "",
+                        "",
+                        "",
+                        numbers,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+
+                );
+                vclinicRegisterNumLists.add(temp);
+//               System.out.println(numberlist);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return vclinicRegisterNumLists;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
 }
 
 

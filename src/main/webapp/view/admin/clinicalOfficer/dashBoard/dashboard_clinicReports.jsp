@@ -85,16 +85,16 @@
                     </div>
                 </div>
                 <div class="chart-summary">
-                    <div class="most">
-                        <p class="f-title">Most conducted clinic</p>
-                        <p class="f-sub">Corona</p>
-                        <p class="f-num">89</p>
-                    </div>
-                    <div class="least">
-                        <p class="f-title">Least conducted clinic</p>
-                        <p class="f-sub">Dengue</p>
-                        <p class="f-num">34</p>
-                    </div>
+<%--                    <div class="most">--%>
+<%--                        <p class="f-title">Most conducted clinic</p>--%>
+<%--                        <p class="f-sub">Corona</p>--%>
+<%--                        <p class="f-num">89</p>--%>
+<%--                    </div>--%>
+<%--                    <div class="least">--%>
+<%--                        <p class="f-title">Least conducted clinic</p>--%>
+<%--                        <p class="f-sub">Dengue</p>--%>
+<%--                        <p class="f-num">34</p>--%>
+<%--                    </div>--%>
                 </div>
 
             </div>
@@ -109,16 +109,16 @@
                     </div>
                 </div>
                 <div class="chart-summary">
-                    <div class="most">
-                        <p class="f-title">Most interacted clinic</p>
-                        <p class="f-sub">Corona</p>
-                        <p class="f-num">89</p>
-                    </div>
-                    <div class="least">
-                        <p class="f-title">Least interacted clinic</p>
-                        <p class="f-sub">Corona</p>
-                        <p class="f-num">8</p>
-                    </div>
+<%--                    <div class="most">--%>
+<%--                        <p class="f-title">Most interacted clinic</p>--%>
+<%--                        <p class="f-sub">Corona</p>--%>
+<%--                        <p class="f-num">89</p>--%>
+<%--                    </div>--%>
+<%--                    <div class="least">--%>
+<%--                        <p class="f-title">Least interacted clinic</p>--%>
+<%--                        <p class="f-sub">Corona</p>--%>
+<%--                        <p class="f-num">8</p>--%>
+<%--                    </div>--%>
                 </div>
             </div>
         </div>
@@ -232,7 +232,7 @@
     //     }
     // });
 
-    viewd()
+    // viewd()
     let today = new Date();
     // let clinicList4 = new clinicListd("diseases");
 
@@ -255,7 +255,9 @@
         );
     }
     function search(){
-
+           sdate=document.getElementById("sDate").value,
+           edate=document.getElementById("eDate").value
+        console.log(edate)
         let reqData =
             {
                 sdate: document.getElementById("sDate").value,
@@ -267,7 +269,7 @@
             function(data,status){
                     console.log(data)
                 clinicListArray=JSON.parse(data)
-                destroy(clinicListArray,today)
+                destroy(clinicListArray,sdate,edate)
             }
         );
         return false;
