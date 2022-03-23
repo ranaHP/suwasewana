@@ -127,13 +127,24 @@ class view_disease_details{
 <!--                                    According to researchers in China, these were the most common symptoms among-->
 <!--                                    people who had COVID-19:-->
                                 </div>
-                                
-                                
                                 <div class="prevention-list">
-                                  ${createSpreadCard(JSON.parse(item.description).Spread.item)}
+                                
+                                 ${createSpreadCard(JSON.parse(item.description).Spread.item)}
+                                
+<!--                                    <div class="s-item">-->
+<!--                                        Droplets or aerosols-->
+<!--                                    </div>-->
+<!--                                    <div class="s-item">-->
+<!--                                        Airborne transmission-->
+<!--                                    </div>-->
+<!--                                    <div class="s-item">-->
+<!--                                        Surface transmission-->
+<!--                                    </div>-->
+<!--                                    <div class="s-item">-->
+<!--                                        Fecal-oral-->
+<!--                                    </div>-->
+
                                 </div>
-                                
-                                
                             </div>
                             <div class="banner5">
                                 <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
@@ -302,20 +313,31 @@ class view_disease_details{
 <!--                                    people who had COVID-19:-->
                                 </div>
                                 <div class="emergency-contanat-cards">
+                                
+                                
+                         
                                     <div class="emg-card">
+                                    
                                         <div class="emd-card-title">
-                                            Response Alert
+<!--                                            Response Alert-->
+                                            ${JSON.parse(item.description).EmergencyContact.item[0].title}
                                         </div>
+                                        
+                                        
                                         <div class="emg-card-number">
-                                            1999
+<!--                                            1999-->
+                                            ${JSON.parse(item.description).EmergencyContact.item[0].CNumber}
                                         </div>
                                     </div>
                                     <div class="emg-card">
                                         <div class="emd-card-title">
-                                            Response Alert
+<!--                                            Response Alert-->
+                                             ${JSON.parse(item.description).EmergencyContact.item[0].title}
                                         </div>
                                         <div class="emg-card-number">
-                                            1999
+<!--                                            1999-->
+                                            ${JSON.parse(item.description).EmergencyContact.item[0].CNumber}
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -362,10 +384,11 @@ class view_disease_details{
 function createSpreadCard(data){
     var temp = "";
     data.forEach( item => {
-        temp +=`<div className="s-item">
-                            ${item}
-                        </div>`
+        temp +=`    <div class="s-item">
+                                    ${item}    
+                                    </div>`
     })
+
     console.log("temp")
     console.log(temp)
     console.log("temp")
@@ -462,3 +485,26 @@ function createTreatmentMedicalTreatmentsCard(data){
     return temp
 }
 
+
+
+
+
+
+
+
+// function createEmergencyContactCard(data){
+//     var temp = "";
+//     data.forEach( item => {
+//         temp +=`
+//                    <div class="emd-card-title">
+//                       ${item}
+//                    </div>
+//                    <div class="emg-card-number">
+//                        ${item}
+//                     </div>`
+//     })
+//     console.log("temp")
+//     console.log(temp)
+//     console.log("temp")
+//     return temp
+// }
