@@ -88,23 +88,24 @@ public class UserAnnouncementController extends HttpServlet {
 
     private void  UserviewrphiAnnouncemet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        String moh_id = "";
+        String target_moh = "";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("uDetails")) {
-                    moh_id  = cookie.getValue().split("/")[4];
+                    target_moh = cookie.getValue().split("/")[4];
                 }
             }
         }
 
 //        System.out.println("select");
+        System.out.println(target_moh);
         UserVIewRPHIAnnouncementModel selectA= new UserVIewRPHIAnnouncementModel(
                 "",
                 "",
                 "",
                 "",
-                "1002",
+                "",
                 "",
                 "",
                 ""
