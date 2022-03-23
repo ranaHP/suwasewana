@@ -31,6 +31,7 @@ class registeredclinicList {
         this.clinicListArray = data;
         console.log("set data");
         console.log(data);
+        this.container.innerHTML = " ";
         this.clinicListArray.map((item) => {
             this.container.innerHTML += `
 
