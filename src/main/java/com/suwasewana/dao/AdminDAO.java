@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AdminDAO {
 
-    private static final String PHI_REGISTRATION = "INSERT INTO `suwaserwana_db`.`phi_officer` (`full_name`, `NIC`, `mobile`, `device_MAC`, `Address`, `City`, `District`, `phi_post`, `login_status`, `password`, `PostalCode`, `mohId`, `DP`,`suspended_time`)  VALUES (?, ?, ?, NULL , ?, ?, ?, ?, '0', ?, ?, ?, ?,current_timestamp());";
+    private static final String PHI_REGISTRATION = "INSERT INTO `suwasewana_db`.`phi` (`full_name`, `nic`, `mobile_number`,`image`,  `district`, `Password`, `login_status`, `phi_post`, `assignCity`, `assignMOH`) VALUES (?, ?, ?,  ?, ?,?,  '1', ?, ?, ?);\n";
     private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
     private static final String MOH_REGISTRATION="INSERT INTO `suwaserwana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
 
