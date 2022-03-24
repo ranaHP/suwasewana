@@ -184,16 +184,16 @@
                     <div class="dashboard-page-sub-title">
                         Diseases Information Search
                     </div>
-                    <form class="previous-form" style="display: flex;">
+                    <form class="previous-form"   style="display: flex;" onsubmit="return searchDisease();">
 
                         <div class="form-group">
                             <label >
                                 Diseases Name
                             </label>
                             <input id="appointmentType" type="text" list="allappointmentType" name="appointmentType"
-                                   autocomplete="off" onkeyup="serach()">
+                                   autocomplete="off"      >
                             <datalist id="allappointmentType">
-                                <option value="Mahapola" option=" Mahapola"></option>
+
                             </datalist>
                         </div>
 
@@ -201,7 +201,7 @@
                             <label >
                                 &nbsp;
                             </label>
-                            <button class="submitBtn "> Search Complaint</button>
+                            <button type="submit" class="submitBtn "> Search Complaint</button>
                         </div>
                     </form>
                 </div>
@@ -597,145 +597,204 @@
 </script>
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: 'Death Cases',
-                data: [5,10,20,30,40,50,60,],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
+    // var ctx = document.getElementById('myChart').getContext('2d');
+    // var myChart = new Chart(ctx, {
+    //     type: 'line',
+    //     data: {
+    //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    //         datasets: [{
+    //             label: 'Death Cases',
+    //             data: [5,10,20,30,40,50,60,],
+    //             backgroundColor: [
+    //                 'rgba(255, 99, 132, 0.2)',
+    //
+    //             ],
+    //             borderColor: [
+    //                 'rgba(255, 99, 132, 1)',
+    //
+    //             ],
+    //             borderWidth: 1
+    //         },
+    //             {
+    //                 label: 'Active Cases',
+    //                 data: [12, 19, 32, 53, 56, 85],
+    //                 backgroundColor: [
+    //
+    //                     'rgba(153, 102, 255, 0.2)',
+    //
+    //                 ],
+    //                 borderColor: [
+    //
+    //                     'rgba(153, 102, 255, 1)',
+    //
+    //                 ],
+    //                 borderWidth: 1
+    //             },
+    //             {
+    //                 label: 'Recovered Cases',
+    //                 data: [10, 9, 23, 52, 22, 3],
+    //                 backgroundColor: [
+    //
+    //                     'rgba(54, 162, 235, 0.2)',
+    //
+    //                 ],
+    //                 borderColor: [
+    //
+    //                     'rgba(54, 162, 235, 1)',
+    //
+    //                 ],
+    //                 borderWidth: 1
+    //             }
+    //         ]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true
+    //             }
+    //         }
+    //     }
+    // });
+</script>
 
-                ],
-                borderWidth: 1
-            },
-                {
-                    label: 'Active Cases',
-                    data: [12, 19, 32, 53, 56, 85],
-                    backgroundColor: [
+<%--<script defer>--%>
 
-                        'rgba(153, 102, 255, 0.2)',
+<%--    diseasedetails();--%>
+<%--    // card();--%>
+<%--    function diseasedetails(){--%>
+<%--        let disease = new view_disease_details("dashboard-container");--%>
 
-                    ],
-                    borderColor: [
+<%--        let diseasearray=[]--%>
+<%--        let diseasearrayy = []--%>
+<%--        let diseasearrayyy=[]--%>
 
-                        'rgba(153, 102, 255, 1)',
+<%--        $.post("/test_war_exploded/user-disease-controller/view",--%>
 
-                    ],
-                    borderWidth: 1
-                },
-                {
-                    label: 'Recovered Cases',
-                    data: [10, 9, 23, 52, 22, 3],
-                    backgroundColor: [
+<%--            function (data,status){--%>
+<%--            diseasearray = JSON.parse(data)--%>
 
-                        'rgba(54, 162, 235, 0.2)',
+<%--                diseasearrayy = JSON.parse(diseasearray[0].description)--%>
+<%--                // diseasearrayy = JSON.parse(diseasearray)--%>
+<%--                //--%>
+<%--                //--%>
 
-                    ],
-                    borderColor: [
+<%--                // console.log(diseasearrayy.Symptoms.Less)--%>
+<%--                console.log("description")--%>
+<%--                console.log(diseasearrayy)--%>
+<%--                console.log(diseasearrayy.Spread.item[0])--%>
+<%--                console.log(diseasearrayy.Spread.item[1])--%>
+<%--                console.log("symptoms")--%>
 
-                        'rgba(54, 162, 235, 1)',
+<%--                // diseasearrayyy = JSON.parse(diseasearrayy.Treatment)--%>
 
-                    ],
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+<%--                console.log(diseasearrayy.Treatment.MedicalTreatments.desc)--%>
+
+
+<%--                 // console.log(diseasearray[0].description)--%>
+<%--                console.log("over")--%>
+
+<%--                let dataa = diseasearrayy.Spread.item;--%>
+<%--                // const card = document.getElementById('treatments-list');--%>
+<%--            // for(let i=0;i<dataa.length;i++){--%>
+<%--            //     console.log("ssss")--%>
+<%--            //     // card[dataa[i]]--%>
+<%--            //     console.log(dataa[i])--%>
+<%--            // }--%>
+
+
+
+<%--                // function card(dataa){--%>
+<%--                //--%>
+<%--                //--%>
+<%--                //--%>
+<%--                // }--%>
+
+
+
+
+<%--            disease.setData(diseasearray)--%>
+<%--            }--%>
+
+
+
+<%--        )--%>
+
+<%--        // function card(data,status){--%>
+<%--        //     diseasearray =JSON.parse(data)--%>
+<%--        //     console.log("dddddd")--%>
+<%--        //     console.log(diseasearray)--%>
+<%--        //--%>
+<%--        // }--%>
+<%--    }--%>
+
+<%--</script>--%>
+<script>
+    getAllDisease();
+    let typedatalist={};
+    function getAllDisease() {
+        let diseasearray = [];
+        $.post("/test_war_exploded/user-disease-controller/view",
+            {},
+            function (data, status) {
+                diseasearray = JSON.parse(data);
+                typedatalist=diseasearray;
+                document.getElementById("dashboard-container").innerHTML = " ";
+                disease.setData(diseasearray);
             }
-        }
-    });
+        );
+    }
 </script>
 
 <script defer>
-
-    diseasedetails();
-    // card();
-    function diseasedetails(){
-        let disease = new view_disease_details("dashboard-container");
-
-        let diseasearray=[]
-        let diseasearrayy = []
-        let diseasearrayyy=[]
-
+    let disease = new view_disease_details("dashboard-container");
+    ViewDises();
+    function ViewDises(){
         $.post("/test_war_exploded/user-disease-controller/view",
+            function (data, status) {
+                let rs= JSON.parse(data);
+                let PNames=document.getElementById("allappointmentType");
+                PNames.innerHTML="";
+                let i=0;
+                let id=0
+                rs.map((element) => {
+                        PNames.innerHTML+= '<option id="'+id+'" name="'+ element.name +'"  value="'+ element.name +'"   option="'+ element.name +'" ></option>'
+                        id++
+                })
 
-            function (data,status){
-            diseasearray = JSON.parse(data)
-
-                diseasearrayy = JSON.parse(diseasearray[0].description)
-                // diseasearrayy = JSON.parse(diseasearray)
-                //
-                //
-
-                // console.log(diseasearrayy.Symptoms.Less)
-                console.log("description")
-                console.log(diseasearrayy)
-                console.log(diseasearrayy.Spread.item[0])
-                console.log(diseasearrayy.Spread.item[1])
-                console.log("symptoms")
-
-                // diseasearrayyy = JSON.parse(diseasearrayy.Treatment)
-
-                console.log(diseasearrayy.Treatment.MedicalTreatments.desc)
-
-
-                 // console.log(diseasearray[0].description)
-                console.log("over")
-
-                let dataa = diseasearrayy.Spread.item;
-                // const card = document.getElementById('treatments-list');
-            // for(let i=0;i<dataa.length;i++){
-            //     console.log("ssss")
-            //     // card[dataa[i]]
-            //     console.log(dataa[i])
-            // }
-
-
-
-                // function card(dataa){
-                //
-                //
-                //
-                // }
-
-
-
-
-            disease.setData(diseasearray)
             }
-
-
-
-        )
-
-        // function card(data,status){
-        //     diseasearray =JSON.parse(data)
-        //     console.log("dddddd")
-        //     console.log(diseasearray)
-        //
-        // }
+        );
     }
 
+
+
+
+
+    function searchDisease(){
+        var CTypeObj = document.getElementById("appointmentType");
+        var datalist = document.getElementById(CTypeObj.getAttribute("list"));
+        let Diseaseid;
+
+        if(datalist.options.namedItem(CTypeObj.value)){
+            Diseaseid=(datalist.options.namedItem(CTypeObj.value).id);
+        }
+        console.log("d id= "+Diseaseid)
+        alert("fdffddfd")
+        return false;
+    }
 </script>
+
+
+
 <script deffer>
 
     function RegisterForDisease(name){
 
 
         name= name;
-        console.log("register")
-        console.log(name)
+        // console.log("register")
+        // console.log(name)
 
         let reqData =
             {
@@ -754,7 +813,7 @@
                         message: 'Successfully Registered!'
                     })
                 } else {
-                    console.log("unsuccesssss")
+                    // console.log("unsuccesssss")
                     popup.showRegisterDiseaseSuccessMessage({
                         status: 'success',
                         message: 'Registered Failed!'

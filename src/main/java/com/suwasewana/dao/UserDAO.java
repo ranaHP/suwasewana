@@ -85,8 +85,9 @@ public class UserDAO {
     private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
 
 
-    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 1";
+    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess`";
     private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?,NULL,NULL );";
+    private static final String USER_SEARCH_DISEASE_DETAILS ="SELECT * FROM diseasess where name=?;";
 
     public UserDAO() {
         DB db = new DB();
@@ -1267,5 +1268,37 @@ public class UserDAO {
         }
 
         return null;
+    }
+
+    public ArrayList<UserDiseaseModel> SearchDiseaseDetails(String title) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_SEARCH_DISEASE_DETAILS)) {
+            preparedStatement.setString(1, title);
+
+            ResultSet rs= preparedStatement.executeQuery();
+            ArrayList<UserDiseaseModel> viewdiseasedetails = new ArrayList<UserDiseaseModel>();
+            System.out.println("data dao");
+            while (rs.next()){
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                UserDiseaseModel temp = new UserDiseaseModel(
+                        name,
+                        description
+                );
+                System.out.println(temp);
+                viewdiseasedetails.add(temp);
+                System.out.println("dta get");
+            }
+
+            return viewdiseasedetails;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        return null;
+
+//        preparedStatement = connection.prepareStatement(USER_GET_Complain);
+//        preparedStatement.setString(1, nic);
+//        rs = preparedStatement.executeQuery();
+
     }
 }

@@ -17,10 +17,10 @@ class view_disease_details{
         this.container = document.getElementById(container);
     }
     setData(data) {
-        console.log(data)
+        // console.log(data)
         if(!data) return;
         this. diseasearrayy = data;
-        console.log(data);
+        // console.log(data);
         // console.log(this.diseasearrayy.name)
         data.map((item) => {
 
@@ -370,7 +370,7 @@ class view_disease_details{
 
             `
 
-                console.log("map")
+                // console.log("map")
 
             }
         )
@@ -389,9 +389,9 @@ function createSpreadCard(data){
                                     </div>`
     })
 
-    console.log("temp")
-    console.log(temp)
-    console.log("temp")
+    // console.log("temp")
+    // console.log(temp)
+    // console.log("temp")
     return temp
 }
 
@@ -403,9 +403,9 @@ function createmostcommonSymptomsCard(data){
                         ${item}
                      </div>`
     })
-    console.log("temp")
-    console.log(temp)
-    console.log("temp")
+    // console.log("temp")
+    // console.log(temp)
+    // console.log("temp")
     return temp
 }
 
@@ -417,9 +417,9 @@ function createlesscommonSymptomsCard(data){
                         ${item}
                      </div>`
     })
-    console.log("temp")
-    console.log(temp)
-    console.log("temp")
+    // console.log("temp")
+    // console.log(temp)
+    // console.log("temp")
     return temp
 }
 
@@ -431,9 +431,9 @@ function createseriouscommonSymptomsCard(data){
                         ${item}
                      </div>`
     })
-    console.log("temp")
-    console.log(temp)
-    console.log("temp")
+    // console.log("temp")
+    // console.log(temp)
+    // console.log("temp")
     return temp
 }
 
@@ -447,9 +447,9 @@ function createPreventionCard(data){
 <!--                                        Wear a mask properly-->
                     </div>`
     })
-    console.log("temp")
-    console.log(temp)
-    console.log("temp")
+    // console.log("temp")
+    // console.log(temp)
+    // console.log("temp")
     return temp
 }
 
@@ -462,9 +462,9 @@ function createreatmentSelfCareCard(data){
 <!--                                        Call your health care provider or COVID-19 hotline to find out where and when to get a test.-->
                                     </div>`
     })
-    console.log("temp")
-    console.log(temp)
-    console.log("temp")
+    // console.log("temp")
+    // console.log(temp)
+    // console.log("temp")
     return temp
 }
 
@@ -479,31 +479,31 @@ function createTreatmentMedicalTreatmentsCard(data){
 <!--                                        Optimal supportive care includes oxygen for severely ill patients and those who are at risk for severe disease and more advanced respiratory support such as ventilation for patients who are critically ill.-->
                                     </div>`
     })
-    console.log("temp")
-    console.log(temp)
-    console.log("temp")
+    // console.log("temp")
+    // console.log(temp)
+    // console.log("temp")
     return temp
 }
 
 
-function serach(){
-
-    const input = document.getElementById('appointmentType').value.toUpperCase();
-
-    const cardContainor = document.getElementById('dashboard-container');
-    const card = cardContainor.getElementsByClassName('dashboard-page-sub-title')
-
-    for(let i=0 ; i<card.length ;i++){
-        let title = card[i].querySelector('#dd-name');
-
-        if(title.innerHTML.toUpperCase().indexOf(input) > -1){
-            card[i].style.display=""
-        }else{
-            card[i].style.display="none"
-        }
-    }
-
-}
+// function serach(){
+//
+//     const input = document.getElementById('appointmentType').value.toUpperCase();
+//
+//     const cardContainor = document.getElementById('dashboard-container');
+//     const card = cardContainor.getElementsByClassName('dashboard-page-sub-title')
+//
+//     for(let i=0 ; i<card.length ;i++){
+//         let title = card[i].querySelector('#dd-name');
+//
+//         if(title.innerHTML.toUpperCase().indexOf(input) > -1){
+//             card[i].style.display=""
+//         }else{
+//             card[i].style.display="none"
+//         }
+//     }
+//
+// }
 
 
 

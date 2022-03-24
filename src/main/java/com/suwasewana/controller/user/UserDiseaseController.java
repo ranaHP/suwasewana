@@ -1,7 +1,6 @@
 package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
-import com.suwasewana.dao.DiseaselistDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.User;
 import com.suwasewana.model.UserDiseaseModel;
@@ -13,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet("/user-disease-controller/*")
@@ -51,6 +51,10 @@ public class UserDiseaseController extends HttpServlet {
 
                     case "patientTP":
                         patientTP(req,res);
+                        break;
+
+                    case "search":
+                        searchDisease(req,res);
                         break;
 
                     default:
@@ -96,6 +100,16 @@ public class UserDiseaseController extends HttpServlet {
         ArrayList<UserDiseaseModel> result = userDAO.UserViewDiseaseDetails(userdisease);
         res.getWriter().println(gson.toJson(result));
 
+    }
+
+
+    private void searchDisease(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+//        System.out.println("title"+req.getParameter("Title"));
+        System.out.println("type"+req.getParameter("complaintype"));
+        String title=req.getParameter("complaintype");
+
+        ArrayList<UserDiseaseModel> result = userDAO.SearchDiseaseDetails(title);
+        res.getWriter().println(gson.toJson(result));
     }
 
 
