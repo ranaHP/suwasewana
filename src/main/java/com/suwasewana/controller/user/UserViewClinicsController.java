@@ -97,7 +97,17 @@ public class UserViewClinicsController extends HttpServlet {
 
     private void usercancelclinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("data come to controller");
-        String Unic="199910910035";
+//        String Unic="199910910035";
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+
         UserViewClinicsModel cancelclinic = new UserViewClinicsModel(
 
                 req.getParameter("ncs_id"),
@@ -116,17 +126,26 @@ public class UserViewClinicsController extends HttpServlet {
                 ""
 
         );
-        String result= userDAO.Usercancellinic(Unic,cancelclinic);
+        String result= userDAO.Usercancellinic(uNic,cancelclinic);
         res.getWriter().println(gson.toJson(result));
     }
 
     private void userregister(HttpServletRequest req, HttpServletResponse res) throws IOException {
         //        res.getWriter().println("announcement view");
         System.out.println("data come to controller");
+        String UNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    UNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
         String ncs_id = req.getParameter("clinic_id");
         UserViewRegisteredclinicsModel registerclinic = new UserViewRegisteredclinicsModel (
 
-                "199910910035",
+                "",
                 "",
                 "",
                 "",
@@ -146,13 +165,36 @@ public class UserViewClinicsController extends HttpServlet {
     private void  userViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        res.getWriter().println("announcement view");
         System.out.println("data come to controller");
-        String Unic="199910910035";
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+
+
+        String MOH = "";
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    MOH = cookie.getValue().split("/")[4];
+                }
+            }
+        }
+
+
+
+
+//        String Unic="199910910035";
         UserViewClinicsModel viewclinic = new UserViewClinicsModel(
                 "",
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),
-                "1004",
+                "",
                 req.getParameter("datetime"),
                 "",
                 "",
@@ -163,22 +205,22 @@ public class UserViewClinicsController extends HttpServlet {
                 req.getParameter("description"),
                 ""
         );
-        ArrayList<UserViewClinicsModel> result= userDAO.UserViewclinic(Unic,viewclinic);
+        ArrayList<UserViewClinicsModel> result= userDAO.UserViewclinic(uNic,viewclinic);
         res.getWriter().println(gson.toJson(result));
     }
 
     private void userViewregisteredclinics(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
+        String UNic = "";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("uDetails")) {
-                    uNic = cookie.getValue().split("/")[1];
+                    UNic = cookie.getValue().split("/")[1];
                 }
             }
         }
         UserViewRegisteredclinicsModel userviewregisterclinics  = new UserViewRegisteredclinicsModel(
-                "199910910035",
+                "",
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),
@@ -192,8 +234,8 @@ public class UserViewClinicsController extends HttpServlet {
                 req.getParameter("description")
 
         );
-        String nic = "980936416v";
-        ArrayList<UserViewRegisteredclinicsModel> result = userDAO.userViewregisteredclinics(userviewregisterclinics,nic);
+//        String nic = "980936416v";
+        ArrayList<UserViewRegisteredclinicsModel> result = userDAO.userViewregisteredclinics(userviewregisterclinics);
         res.getWriter().println(gson.toJson(result));
     }
 
