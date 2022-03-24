@@ -97,36 +97,37 @@
             <div class="multirow" style="margin-top: 30px;">
                 <div class="milturow_left" id="mohHeadDiv">
                     <div class="form-item" >
-                        <input type="text"  id="City" value="Galla" name="City" autocomplete="off"
-                        <%--                               onclick="document.getElementById('City').value = '' "--%>
-                               onblur="validation.nameValidation(
-                                document.getElementById('City').value,
-                                'LCity'
-                            );"
-                               onkeyup="validation.nameValidation(
-                                document.getElementById('City').value,
-                                'LCity'
-                            );"
+
+                        <input id="District" class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="alldistrict" name="district" required
+                               autocomplete="off"
+                               onblur="validation.selectCheck('District','LDistrict')";
+                               onchange="validation.selectCheck('District','LDistrict');
+                               checkDistrictidAndFillCity();"
+                               onclick="document.getElementById('District').value='';
+                                                    checkDistrictidAndFillCity();"
                         >
-                        <label for="City">City</label>
-                        <span class="error" id="LCity"></span>
+                        <datalist id="alldistrict">
+
+                        </datalist>
+                        <label for="District">District</label>
+                        <div class="error" id="LDistrict" ></div>
                     </div>
+
                 </div>
                 <div class="multirow_right" >
                     <div class="form-item" >
-                        <input type="text"  id="District" value="Galla" name="District" autocomplete="off"
-                        <%--                               onclick="document.getElementById('District').value = '' "--%>
-                               onblur="validation.nameValidation(
-                                document.getElementById('District').value,
-                                'LDistrict'
-                            );"
-                               onkeyup="validation.nameValidation(
-                                document.getElementById('District').value,
-                                'LDistrict'
-                            );"
+
+                        <input id="City" class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="allCity" name="allCity" required
+                               autocomplete="off"
+                               onblur="validation.selectCheck('City','LCity')";
+                               onchange="validation.selectCheck('City','LCity');"
+                               onclick="document.getElementById('City').value='';"
                         >
-                        <label for="District">District</label>
-                        <div class="error" id="LDistrict" ></div>
+                        <datalist id="allCity">
+
+                        </datalist>
+                        <label for="City">City</label>
+                        <span class="error" id="LCity"></span>
                     </div>
                 </div>
 
@@ -134,64 +135,30 @@
             <div class="multirow">
                 <div class="milturow_left" id="PHIState">
                     <div class="form-item" style=" width: 100%;">
-                        <input type="text" id="postalcode" value="607000"  name="postalcode" autocomplete="off"
-                               onclick="document.getElementById('postalcode').value = '' "
-                               onblur="validation.nameValidation(
-                                document.getElementById('postalcode').value,
-                                'Lpostalcode'
-                            );"
-                               onkeyup="validation.nameValidation(
-                                document.getElementById('postalcode').value,
-                                'Lpostalcode'
-                            );"
+                        <label style=" width: 90%" style="margin-bottom:10px; " >MOH Area</label>
+                        <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
+                               onclick="document.getElementById('MArea').value='';"
+                               onblur="validation.selectCheck('MArea','LMArea')";
+                               onchange="validation.selectCheck('MArea','LMArea')";
                         >
-                        <label for="postalcode">Postalcode</label>
-                        <span class="error" id="Lpostalcode"></span>
+                        <datalist id="AllMArea">
+                        </datalist>
+
+                        <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                     </div>
                 </div>
                 <div class="multirow_right" id="addcityDiv">
-                    <label style=" width: 90%">MOH Area</label>
-                    <input class="SelectColordiv" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea"
-                           onclick="document.getElementById('MArea').value='';"
-                           onblur="validation.SearchSelect(
-                                    document.getElementById('MArea').value,
-                                    'LMArea'
-                                );"
-                    >
-                    <datalist id="AllMArea">
-                    </datalist>
 
-                    <span class="error" id="LMArea" style="margin-left: 5px" ></span>
                 </div>
             </div>
 
-            <div class="multirow" style="margin-top: 30px;">
-                <div class="milturow_left" >
-                    <div class="form-item" >
-                        <input type="text"  id="Address" value="this is address"  autocomplete="off"
-                               onblur="validation.nameValidation(
-                                document.getElementById('Address').value,
-                                'LAddress'
-                            );"
-                               onkeyup="validation.nameValidation(
-                                document.getElementById('Address').value,
-                                'LAddress'
-                            );"
-                        >
-                        <label for="Address">Address</label>
-                        <span class="error" id="LAddress"></span>
-                    </div>
-                </div>
-                <div class="multirow_right" >
-                </div>
 
-            </div>
 
             <div class="singal_row" style="margin-top: 20px">
                 <div class="image-upload-card-list-container">
                     <div class="image-upload-card-container">
                         <div class="image-upload-card">
-                            <img id="proof1" width="100%" />
+                            <img id="proof1" width="100%" style="margin-top: 10px"/>
                             <input type="file" accept="image/*" name="file" id="proof1input"
                                    onchange="loadFile(event , 'proof1')" style="display: none;">
 
@@ -312,6 +279,7 @@
 
 </div>
 <script defer>
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let validation = new FormInputValidation();
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     document.getElementById('file').onchange = function () {
@@ -375,7 +343,7 @@
                 };
 
             console.log(reqData)
-            $.post("/test_war_exploded/admin-register-controller/phi",
+            $.post(myUrl+ "/admin-register-controller/phi",
                 reqData,
                 function (data, status) {
                     console.log(data)
@@ -434,6 +402,69 @@
             return  0;
         }
     }
+    function checkDistrictidAndFillCity(){
+        var MTypeObj = document.getElementById('District');
+        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(MTypeObj.value)){
+
+            viewCity( (datalist.options.namedItem(MTypeObj.value).id));
+        }
+
+    }
+    function datalistId(feild){
+        var MTypeObj = document.getElementById(feild);
+        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+        if(datalist.options.namedItem(MTypeObj.value)){
+            return ( (datalist.options.namedItem(MTypeObj.value).id));
+        }
+    }
+
+    function viewCity(Did){
+        $.post(myUrl + "/user-complain-controller/city",
+            function (data, status) {
+                // console.log(data);
+                let rs= JSON.parse(data);
+                this.mohDetails=rs;
+                // console.log(data);
+
+                let MNames=document.getElementById("allCity");
+                MNames.innerHTML="";
+                rs.map((element,index) => {
+                    // console.log("moh"+element.MName)
+                    if(Did==element.district_id){
+                        MNames.innerHTML+= '<option  id="'+element.city_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
+
+                    }
+
+
+                })
+            }
+        );
+    }
+    viewDistrict()
+    function viewDistrict(){
+        $.post(myUrl + "/user-complain-controller/district",
+            function (data, status) {
+                console.log(data);
+                let rs= JSON.parse(data);
+                this.mohDetails=rs;
+                // console.log(data);
+
+                let MNames=document.getElementById("alldistrict");
+                MNames.innerHTML="";
+                rs.map((element,index) => {
+                    // console.log("moh"+element.MName)
+                    MNames.innerHTML+= '<option  id="'+element.district_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
+
+                })
+            }
+        );
+    }
+
+
+
+
+
     var loadFile = function (event, imgContainerId) {
         var image = document.getElementById(imgContainerId);
         image.src = URL.createObjectURL(event.target.files[0]);
@@ -459,10 +490,10 @@
         })
 
 
-        console.log("image neames array "+imageNames);
+        // console.log("image neames array "+imageNames);
         if(imageNames.length!=0){
             $.ajax({
-                url: '/test_war_exploded/fileuploadservlet',
+                url: myUrl+ "/fileuploadservlet",
                 type: 'post',
                 data: fd,
                 contentType: false,
@@ -478,7 +509,7 @@
             });
         }
         else {
-            console.log("no image selected")
+            // console.log("no image selected")
             registerwithoutimage();
         }
         return false;
@@ -491,11 +522,10 @@
     function checkvalidation(){
         let mohid=checkMOHid();
         if(
-            validation.nameValidation(document.getElementById('Address').value,'LAddress')&&
-            validation.SearchSelect(document.getElementById('MArea').value,'LMArea' )&&
-            validation.nameValidation(document.getElementById('postalcode').value,'Lpostalcode')&&
-            validation.nameValidation(document.getElementById('District').value,'LDistrict')&&
-            validation.nameValidation(document.getElementById('City').value,'LCity')&&
+
+            validation.selectCheck('District','LDistrict')&&
+            validation.selectCheck('City','LCity')&&
+            validation.selectCheck('MArea','LMArea')&&
             validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo')&&
             validation.nicValidation( document.getElementById('NIC'),'LNIC')&&
             validation.nameValidation( document.getElementById('fullName').value,'LfullName')&&
@@ -507,10 +537,10 @@
         }
         else {
 
-                validation.nameValidation(document.getElementById('Address').value,'LAddress');
-                validation.nameValidation(document.getElementById('postalcode').value,'Lpostalcode');
-                validation.nameValidation(document.getElementById('District').value,'LDistrict');
-                validation.nameValidation(document.getElementById('City').value,'LCity');
+
+            validation.selectCheck('District','LDistrict');
+            validation.selectCheck('City','LCity');
+            validation.selectCheck('MArea','LMArea');
                 validation.mobileValidation(document.getElementById('TpNo').value,'LTpNo');
                 validation.nicValidation( document.getElementById('NIC'),'LNIC');
                 validation.nameValidation( document.getElementById('fullName').value,'LfullName');
@@ -528,16 +558,14 @@
                 full_name: document.getElementById("fullName").value,
                 NIC: document.getElementById("NIC").value,
                 mobile: document.getElementById("TpNo").value,
-                Address:document.getElementById("Address").value,
-                city: document.getElementById("City").value,
-                District: document.getElementById("District").value,
+                city: datalistId("City"),
+                District: datalistId("District"),
                 phi_post: document.querySelector('input[name="post"]:checked').value,
-                postalCode: document.getElementById("postalcode").value,
                 MOHArea:checkMOHid(),
                 DP:imagearray[0]
             };
-        console.log("post ==== "+reqData.phi_post)
-        $.post("/test_war_exploded/admin-register-controller/phi",
+        console.log("post ==== "+reqData)
+        $.post(myUrl+ "/admin-register-controller/phi",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -564,17 +592,15 @@
                 full_name: document.getElementById("fullName").value,
                 NIC: document.getElementById("NIC").value,
                 mobile: document.getElementById("TpNo").value,
-                Address:document.getElementById("Address").value,
-                city: document.getElementById("City").value,
-                District: document.getElementById("District").value,
+                city: datalistId("City"),
+                District: datalistId("District"),
                 phi_post: document.querySelector('input[name="post"]:checked').value,
-                postalCode: document.getElementById("postalcode").value,
                 MOHArea:checkMOHid(),
-                DP:""
+                DP:" "
             };
 
-        console.log("post ==== "+reqData.phi_post)
-        $.post("/test_war_exploded/admin-register-controller/phi",
+        console.log("post ==== "+reqData)
+        $.post(myUrl+ "/admin-register-controller/phi",
             reqData,
             function (data, status) {
                 console.log(data.includes("success"))
@@ -603,10 +629,11 @@
 </script>
 
 <script defer>
+    // console.log("url = "+myUrl)
     let mohDetails=[];
-    $.post("/test_war_exploded/user-complain-controller/moh",
+    $.post(myUrl + "/user-complain-controller/moh",
         function (data, status) {
-            // console.log(data);
+            console.log(data);
             let rs= JSON.parse(data);
             this.mohDetails=rs;
             // console.log(data);
@@ -619,6 +646,8 @@
             })
         }
     );
+
+
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

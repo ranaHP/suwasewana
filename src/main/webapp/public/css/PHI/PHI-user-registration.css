@@ -377,6 +377,7 @@ label {
     border-radius: 1px;
     padding: 0 6px;
     outline: none;
+    margin-left: 0px;
 }
 
 .form-item input:focus {
@@ -387,7 +388,7 @@ label {
     position: absolute;
     cursor: text;
     z-index: 2;
-    top: 5px;
+    top: -13px;
     left: -10px;
     font-size: 12px;
     background: #fff;

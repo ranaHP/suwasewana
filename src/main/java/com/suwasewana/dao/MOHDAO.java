@@ -2,10 +2,7 @@ package com.suwasewana.dao;
 
 
 import com.suwasewana.core.DB;
-import com.suwasewana.model.ComplainModel;
-import com.suwasewana.model.ComplainTypeModel;
-import com.suwasewana.model.MOHModel;
-import com.suwasewana.model.MOHRegModel;
+import com.suwasewana.model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +13,10 @@ import java.util.ArrayList;
 public class MOHDAO {
     @SuppressWarnings("SqlResolve")
 
-    private static final String MOH_Detail="SELECT * FROM suwasewana_db.moh m left join phi p ON m.moh_head=p.nic;";
+    private static final String MOH_Detail="SELECT * FROM suwasewana_db.moh;";
+    private static final String MOH_Details="SELECT * FROM suwasewana_db.moh;";
+    private static final String District_Detail="SELECT * FROM suwasewana_db.district;";
+    private static final String City_Detail="SELECT * FROM suwasewana_db.cities;";
     Connection connection;
 
     public MOHDAO() {
@@ -25,7 +25,7 @@ public class MOHDAO {
     }
 
     public ArrayList<MOHModel> GetMOHDetails() {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_Detail)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_Details)) {
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<MOHModel> mohList = new ArrayList<MOHModel>();
             while (rs.next()) {
@@ -50,6 +50,53 @@ public class MOHDAO {
 
         return null;
     }
+    public ArrayList<DistrictModel> GetDistrictDetails() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(District_Detail)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<DistrictModel> DitrictList = new ArrayList<DistrictModel>();
+            while (rs.next()) {
+                String id = rs.getString("district_id");
+                String name = rs.getString("name");
+                DistrictModel temp = new DistrictModel(
+                        "",
+                        name,
+                        id
+                );
+//
+                DitrictList.add(temp);
+            }
+            return DitrictList;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
+    public ArrayList<CityModel> GetCityDetails() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(City_Detail)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<CityModel> DitrictList = new ArrayList<CityModel>();
+            while (rs.next()) {
+                String did = rs.getString("district_id");
+                String cid = rs.getString("city_id");
+                String name = rs.getString("name");
+                CityModel temp = new CityModel(
+                        did,
+                        name,
+                        cid
+                );
+//
+                DitrictList.add(temp);
+            }
+            return DitrictList;
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
+    }
 
 
     public ArrayList<MOHRegModel> GetallMOHDetails() {
@@ -60,10 +107,10 @@ public class MOHDAO {
             ArrayList<MOHRegModel> mohList = new ArrayList<MOHRegModel>();
             while (rs.next()) {
 
-                String name = rs.getString("name");
-                String District = rs.getString("district");
-                String Head = rs.getString("full_name");
-                String Mobile = rs.getString("mobile_number");
+                String name = rs.getString("MName");
+                String District = rs.getString("District");
+                String Head = rs.getString("MHead");
+                String Mobile = rs.getString("TpNo");
 
                 MOHRegModel temp = new MOHRegModel(
                         name,
