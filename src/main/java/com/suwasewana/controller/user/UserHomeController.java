@@ -76,7 +76,7 @@ public class UserHomeController extends HttpServlet {
 
     private void userregister(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        System.out.println("data come to controller");
+//        System.out.println("data come to controller");
 
         String UNic = "";
         Cookie[] cookies = req.getCookies();
@@ -112,7 +112,7 @@ public class UserHomeController extends HttpServlet {
 
     private void  userHomeViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        res.getWriter().println("announcement view");
-        System.out.println("data come to controller");
+//        System.out.println("data come to controller");
 //        String Unic="199910910035";
 
         String uNic = "";

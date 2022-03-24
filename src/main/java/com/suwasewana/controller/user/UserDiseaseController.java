@@ -93,9 +93,9 @@ public class UserDiseaseController extends HttpServlet {
             }
         }
 
-        System.out.println("User register disease");
-        System.out.println(uNic);
-        System.out.println("enough");
+//        System.out.println("User register disease");
+//        System.out.println(uNic);
+//        System.out.println("enough");
 
         String result = userDAO.userregisterdisease(name,uNic);
         res.getWriter().println(gson.toJson(result));

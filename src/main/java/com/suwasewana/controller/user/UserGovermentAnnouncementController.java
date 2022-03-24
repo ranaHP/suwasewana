@@ -75,8 +75,8 @@ public class UserGovermentAnnouncementController extends HttpServlet {
         }
 
 
-        System.out.println("data come to goverment controller");
-        System.out.println(uNic);
+//        System.out.println("data come to goverment controller");
+//        System.out.println(uNic);
 
 //        String district_id="123";
         UserGovermentAnnouncementModel govermentAnnouncement = new UserGovermentAnnouncementModel(
