@@ -24,7 +24,7 @@
 
   <!-- moh list  -->
   <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
-
+  <script src="<c:url value="/public/js/navbar.js"/>"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -41,12 +41,7 @@
         </div>
         <div class="navbar-container">
           <ul class="navbar">
-            <li class="nav-item"> Home </li>
-            <li class="nav-item"> Diseases </li>
-            <li class="nav-item"> Announcement </li>
-            <li class="nav-item"> Clinik </li>
-            <li class="nav-item"> Appointment </li>
-            <li class="nav-item special-nav"> Request Ambulance </li>
+            <script> let navs =  new Navbar(); navs.showHeaderNavItems("navbar"); </script>
           </ul>
         </div>
         <div class="login-register-container">

@@ -50,7 +50,8 @@
       <div class="seach_by_name" style="margin: 50px 0;">
         <form class="load">
           <div>
-            <input id="clinicID" placeholder="search by clinic ID" list="AllMArea" name="AllMArea" autocomplete="off"
+
+            <input id="clinicID" placeholder="Select the clinic ID" list="AllMArea" name="AllMArea" autocomplete="off"
                    onclick="document.getElementById('clinicID').value='';"
 <%--                   onblur="validation.SearchSelect(--%>
 <%--                                    document.getElementById('clinicID').value,--%>
@@ -62,11 +63,16 @@
             <br>
             <span class="error" id="LMArea" style="margin-left: 5px" ></span>
           </div>
-         <div style="margin-top: 15px">
-           <button type="submit" onclick="return view() ">Search the clinic</button>
-           <button type="submit" onclick="return imageUpload() ">Create announcement</button>
-           <button type="submit" onclick="return msg()" style="background-color: rgba(220,66,66,0.85)">Send the message</button>
+         <div style="margin-top: 15px;display: flex;justify-content: space-between;width: 100%;">
+           <button class="fill" type="submit" onclick="return view() ">Fill clinic data</button>
+
+             <div class="buttonsline">
+                 <button class="button" type="submit" onclick="return imageUpload() ">Create announcement</button>
+                 <button class="button"  type="submit" onclick="return msg()" style="background-color: rgba(220,66,66,0.85)">Send the message</button>
+             </div>
+
          </div>
+
         </form>
 
       </div>
@@ -85,7 +91,7 @@
               </div>
               <div class="left_row">
                 <div class="left_row_left"><span> description  </span></div>
-                <div class="left_row_right"><input type="text" placeholder="reason" autocomplete="off" name="description"
+                <div class="left_row_right"><input type="text" autocomplete="off" name="description"
                                                       id="description">  </input></div>
               </div>
 
@@ -159,15 +165,20 @@
                   <input type="file" accept="image/*" name="file" id="proof1input"
                          onchange="loadFile(event , 'proof1')" style="display: none;">
 
-                  <label for="proof1input" style="cursor: pointer;">Upload Image</label>
+                  <label for="proof1input" style="cursor: pointer;">Upload the Image</label>
                 </div>
 <%--                <div><button onclick="imageUpload()">Create announcement</button></div>--%>
 <%--                                                          <button onclick="imageUpload()">add</button>--%>
               </div>
             </div>
+
           </div>
+
+
         </div>
+
       </div>
+
 </body>
 <script defer>
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];

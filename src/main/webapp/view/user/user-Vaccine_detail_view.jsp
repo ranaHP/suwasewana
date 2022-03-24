@@ -15,7 +15,7 @@
     <link href="<c:url value="/public/css/user/_dashboard-vaccine_details.css"/>" rel="stylesheet" />
     <!-- for commen style  sheet link  -->
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/>"/>
-
+    <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <!-- for feather icon -->
     <script src="https://unpkg.com/feather-icons"></script>
 
@@ -42,12 +42,7 @@
                 </div>
                 <div class="navbar-container">
                     <ul class="navbar">
-                        <li class="nav-item"> Home </li>
-                        <li class="nav-item"> Diseases </li>
-                        <li class="nav-item"> Announcement </li>
-                        <li class="nav-item"> Clinik </li>
-                        <li class="nav-item"> Appointment </li>
-                        <li class="nav-item special-nav"> Request Ambulance </li>
+                        <script> let navs =  new Navbar(); navs.showHeaderNavItems("navbar"); </script>
                     </ul>
                 </div>
                 <div class="login-register-container">

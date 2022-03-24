@@ -55,8 +55,8 @@ class clinicList {
                         <div class="buttons">
                               
                               <div onclick="popup.showDeleteClinicAlertMessage(${item.vcs_id})" class="delete-button">Delete</div>
-                            <div class="edit-button" onclick="selectReV(${item.vcs_id})">Edit</div>
-                            <div class="delete-button" style="background-color: #1e8348">Reshedule</div>
+                            <div class="edit-button" onclick="selecteditv(${item.vcs_id})">Edit</div>
+                            <div class="delete-button" style="background-color: #1e8348" onclick="selectReV(${item.vcs_id})">Reshedule</div>
                         </div>
                     </div>
               </div>

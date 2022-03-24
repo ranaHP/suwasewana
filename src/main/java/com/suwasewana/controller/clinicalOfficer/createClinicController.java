@@ -339,19 +339,19 @@ import java.util.ArrayList;
 
     private void updatevClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
           vaccineClinicModel Updatevclinic= new vaccineClinicModel(
-                req.getParameter("clinicID"),
+                  req.getParameter("clinicID"),
                   req.getParameter("title"),
-                  req.getParameter("datetime"),
-                  req.getParameter("duration"),
-                  "",
-                  req.getParameter("maxpatient"),
-                  "",
-                  req.getParameter("Lage"),
-                  req.getParameter("Uage"),
                   "",
                   "",
                   "",
-                  req.getParameter("location"),
+                  req.getParameter("Limitsheats"),
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
+                  "",
                   req.getParameter("dose")
 
           ) ;

@@ -54,35 +54,35 @@ class clinicList {
                         <div class="properties">
                             <ul>
                                 <li>
-                                    <img src="images/icons/map-pin.svg" width="15px"/>
+                                    <object data="${Url}/public/images/icons/map-pin.svg" width="15px"> </object>
                                     Location :  ${item.location}
                                 </li>
                                            
                                 <li>
-                                    <img src="images/icons/map-pin.svg" width="15px"/>
+                                    <object data="${Url}/public/images/icons/users.svg" width="15px"> </object>
                                     Available seats :  ${item.Avail_seats}
                                 </li>
                                 <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
+                                    <object data="${Url}/public/images/icons/list.svg" width="15px"> </object>
                                     Conduct :  ${item.conduct}
                                 </li>
                                 <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
+                                     <object data="${Url}/public/images/icons/list.svg" width="15px"> </object>
                                     Max participant limit :  ${item.maxpatient}
                                 </li>
                                 <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
+                                     <object data="${Url}/public/images/icons/list.svg" width="15px"> </object>
                                     MOH Area : ${item.MOH}
                                 </li>
                                 <li>
-                                    <img src="images/icons/list.svg" width="15px"/>
+                                     <object data="${Url}/public/images/icons/list.svg" width="15px"> </object>
                                     Target participant : ${item.Target}
                                 </li>
                             </ul>
                         </div>
                         <div class="footer">
                             <div class="current-registered-count">
-                                <img src="images/icons/users.svg" width="18px"/>
+                                 <object data="${Url}/public/images/icons/users.svg" width="15px"> </object>
                                 120,22
                             </div>
                             <div class="register-btn" onclick="checkAvailbale(`+item.ncs_id+`,`+item.maxpatient+`,`+item.Avail_seats+`)">
