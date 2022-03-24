@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
 </head>
-<body onload="charts()" id="mainContent">
+<body id="mainContent">
 <c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
 <!-- suwasewana header -->
 <div class="header">
@@ -161,9 +161,78 @@
             function (data, status) {
                 let ComplainList = JSON.parse(data);
                 console.log("came")
+                console.log(ComplainList)
+                let all=0
+                let Animal_issue=0;
+                let Environment_issues=0;
+                let Food_issues=0;
+                let Land_issues=0;
+                let Noise_issue=0;
+                let other=0;
+
+                let Animal_issuep=0;
+                let Environment_issuesp=0;
+                let Food_issuesp=0;
+                let Land_issuesp=0;
+                let Noise_issuep=0;
+                let otherp=0;
+                let today = new Date();
+                // console.log("Today : "+cday)
+                let month= today.getMonth()+1;
+                let premonth=month-1;
                 ComplainList.map((element) => {
-                   console.log(element.complainModel.CType)
+                    console.log("mapp")
+
+                   console.log(element.complainModel.Posted_Date.split("-")[1])
+                    if(element.complainModel.Posted_Date.split("-")[1]==month){
+                    if(element.complainModel.CType=="100"){
+                        Animal_issue++;
+                    }
+                    if(element.complainModel.CType=="101"){
+                        Environment_issues++;
+                    }
+                    if(element.complainModel.CType=="102"){
+                        Food_issues++;
+                    }
+                    if(element.complainModel.CType=="103"){
+                        Land_issues++;
+                    }
+                    if(element.complainModel.CType=="104"){
+                        Noise_issue++;
+                    }
+                    if(element.complainModel.CType=="105"){
+                        other++;
+                    }}else if(element.complainModel.Posted_Date.split("-")[1]==premonth){
+                        if(element.complainModel.CType=="100"){
+                            Animal_issuep++;
+                        }
+                        if(element.complainModel.CType=="101"){
+                            Environment_issuesp++;
+                        }
+                        if(element.complainModel.CType=="102"){
+                            Food_issuesp++;
+                        }
+                        if(element.complainModel.CType=="103"){
+                            Land_issuesp++;
+                        }
+                        if(element.complainModel.CType=="104"){
+                            Noise_issuep++;
+                        }
+                        if(element.complainModel.CType=="105"){
+                            otherp++;
+                        }
+                    }
                 })
+                console.log("issues")
+                console.log(Noise_issuep)
+                console.log(Environment_issues)
+                chart(Animal_issue,Animal_issuep,month,premonth)
+                chart1(Environment_issues,Environment_issuesp,month,premonth)
+                chart2(Land_issues,Land_issuesp,month,premonth)
+                chart3(Noise_issue,Noise_issuep,month,premonth)
+                chart4(Food_issues,Food_issuesp,month,premonth)
+                chart5(other,otherp,month,premonth)
+
             }
         );
 
@@ -226,6 +295,7 @@
         let Land_issues=0;
         let Noise_issue=0;
         let other=0;
+
         $.post(myUrl+"/phi-complain-controller1/complain_for_moh",
             {},
             function (data, status) {

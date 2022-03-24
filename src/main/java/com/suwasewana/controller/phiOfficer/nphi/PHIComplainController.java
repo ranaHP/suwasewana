@@ -66,6 +66,9 @@ public class PHIComplainController extends HttpServlet {
                 case "complain_for_moh":
                     ComplainForMOH(req, res);
                     break;
+                case "complain_typesforMOH":
+                    complain_typesforMOH(req, res);
+                    break;
                 case "ComplainForPHIForSideBar":
                     ComplainForPHIForSideBar(req, res);
                     break;
@@ -78,6 +81,10 @@ public class PHIComplainController extends HttpServlet {
         }
 
     }
+
+        private void complain_typesforMOH(HttpServletRequest req, HttpServletResponse res) throws IOException {
+
+     }
 
 
         private void setResponse(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
