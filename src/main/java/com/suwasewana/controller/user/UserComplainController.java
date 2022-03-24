@@ -51,6 +51,12 @@ public class UserComplainController extends HttpServlet {
                 case "moh":
                     ViewMOH(req,res);
                     break;
+                case "district":
+                    ViewDistrict(req,res);
+                    break;
+                case "city":
+                    ViewCity(req,res);
+                    break;
                 case "create":
                     uerMakeComplain(req, res);
                     break;
@@ -138,8 +144,18 @@ public class UserComplainController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void ViewMOH(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-        System.out.println("Come to view moh controller");
+//        System.out.println("Come to view moh controller");
         ArrayList<MOHModel> result = mohdao.GetMOHDetails();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void ViewDistrict(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller");
+        ArrayList<DistrictModel> result = mohdao.GetDistrictDetails();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void ViewCity(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller");
+        ArrayList<CityModel> result = mohdao.GetCityDetails();
         res.getWriter().println(gson.toJson(result));
     }
 
