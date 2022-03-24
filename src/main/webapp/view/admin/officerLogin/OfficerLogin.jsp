@@ -57,7 +57,7 @@
                                    name="admin-code" id="admin-code"
                                    style="display: none"
                             />
-                            <div id="user-mobile-error" class="form-field-error"></div>
+                            <div id="user-mobile-error" c-class="form-field-error"></div>
                         </div>
                         <div class="form-group">
                             <div class="formlable"><label> Password</label> </div>

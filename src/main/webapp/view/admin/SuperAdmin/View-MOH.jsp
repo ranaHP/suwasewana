@@ -47,12 +47,12 @@
 </div>
 
 <script>
-
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     getAllMOHDetails();
     let moh_details_list={};
     function getAllMOHDetails() {
         let MOHList = [];
-        $.post("/suwasewana_war/admin-controller/mohall",
+        $.post(myUrl+"/admin-controller/mohall",
             {},
             function (data, status) {
                 data = JSON.parse(data);
