@@ -172,7 +172,7 @@ class Calender {
         let currentDate = 1;
         let nextMonthDate = 1;
         let temp = startDate - 1;
-        for (let i = 1; i <= 35; i++) {
+        for (let i = 1; i <= 42; i++) {
             // crete div for date
             let day = document.createElement('div');
             day.classList.add("date");

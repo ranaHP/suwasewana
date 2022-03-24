@@ -11,8 +11,6 @@ public class DB {
    // private String jdbcPassword = "";
 
 
-
-
     private String jdbcUsername = "root";
 //    private String jdbcPassword = "";
     private String jdbcPassword = "";

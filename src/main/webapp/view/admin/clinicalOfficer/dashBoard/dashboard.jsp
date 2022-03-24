@@ -337,6 +337,18 @@ patient_growth()
                 // alert("wrong")
                 // alert(data)
                 popup.hidePopup()
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully Edit!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic Edit Fails !',
+                        data: data
+                    });
+                }
             });
 
         return false;
@@ -364,6 +376,18 @@ patient_growth()
                 // alert("wrong")
                 // alert(data)
                 popup.hidePopup()
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully rescheduled!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic reschedule Fails !',
+                        data: data
+                    });
+                }
             });
 
         return false;
@@ -527,6 +551,18 @@ patient_growth()
         $.post(myUrl+"/create-clinic-controller/resheduleclinic",
             reqData,
             function (data,status){
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully rescheduled!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic reschedule Fails !',
+                        data: data
+                    });
+                }
                 // alert("wrong")
                 // alert(data)
             });
@@ -570,6 +606,18 @@ patient_growth()
             function (data,status){
                 // alert("wrong")
                 // alert(data)
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully Edit!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic Edit Fails !',
+                        data: data
+                    });
+                }
             });
 
         return false;

@@ -47,7 +47,7 @@ class viewAnnouncements{
 </div>
 <div class="right">
     <div class="image">
-        <img src="${this.url}images/uploadimage/${item.image}" width="80px" height="80px" />
+        <img src="${myUrl}/public/images/uploadimage/${item.image}" width="80px" height="80px" />
     </div>
     <div class="button-section">
         <div class="delete">

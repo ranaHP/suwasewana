@@ -8,6 +8,7 @@ import com.suwasewana.model.UserDiseaseModel;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,7 +70,7 @@ public class UserDiseaseController extends HttpServlet {
     }
 
     private void patientTP(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        System.out.println("dta controllwe");
+//        System.out.println("dta controllwe");
         String moh="1004";
         String disease=req.getParameter("name");
         ArrayList<User> result = userDAO.patientTP(moh,disease);
@@ -77,7 +78,7 @@ public class UserDiseaseController extends HttpServlet {
     }
 
     private void patientG(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        System.out.println("dta controllwe");
+//        System.out.println("dta controllwe");
         String moh="1004";
         ArrayList<User> result = userDAO.patientcount(moh);
         res.getWriter().println(gson.toJson(result));
@@ -85,14 +86,27 @@ public class UserDiseaseController extends HttpServlet {
 
     private void UserregisterDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String name = req.getParameter("name");
-        String UNic = "980930416v";
+//        String UNic = "980930416v";
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
 
-        String result = userDAO.userregisterdisease(name,UNic);
+//        System.out.println("User register disease");
+//        System.out.println(uNic);
+//        System.out.println("enough");
+
+        String result = userDAO.userregisterdisease(name,uNic);
         res.getWriter().println(gson.toJson(result));
     }
 
     private void UserviewDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        System.out.println("dta controllwe");
+//        System.out.println("dta controllwe");
         UserDiseaseModel userdisease = new UserDiseaseModel(
                 "",
                 ""

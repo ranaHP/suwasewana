@@ -73,7 +73,7 @@ public class UserDAO {
     Connection connection;
 
 
-    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `Unic`=? AND `district_id`=;";
+    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `uNic`=? AND `district_id`=?";
 
 
 
@@ -865,12 +865,12 @@ public class UserDAO {
     }
 
 
-    public ArrayList<UserViewClinicsModel> UserViewclinic(String unic, UserViewClinicsModel viewAnnouncement) {
+    public ArrayList<UserViewClinicsModel> UserViewclinic(String uNic, UserViewClinicsModel viewAnnouncement) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_ANNOUNCEMENTS)){
 //            System.out.println("came to dao");
             preparedStatement.setString(2,viewAnnouncement.getMOH());
-            preparedStatement.setString(1,unic);
+            preparedStatement.setString(1,uNic);
             ResultSet rs = preparedStatement.executeQuery();
 ////            System.out.println(rs.toString());
             ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();
@@ -918,7 +918,7 @@ public class UserDAO {
         return null;
     }
 
-    public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics ,String nic) {
+    public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_REGISTERED_CLINICS)){
 //            System.out.println("came to dao");
@@ -987,10 +987,12 @@ public class UserDAO {
         }
     }
 
-    public ArrayList<UserVIewClinicAnnouncementModel> UserviewrclinicAnnouncemet(UserVIewClinicAnnouncementModel clinicannouncement) {
+    public ArrayList<UserVIewClinicAnnouncementModel> UserviewrclinicAnnouncemet(String Moh_id,UserVIewClinicAnnouncementModel clinicannouncement) {
 
+//        System.out.println("clinicannouncemnt");
+//        System.out.println(clinicannouncement.getMoh_id());
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_CLINIC_ANNOUNCEMENT)){
-            preparedStatement.setString(1,clinicannouncement.getMoh_id());
+            preparedStatement.setString(1,Moh_id);
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<UserVIewClinicAnnouncementModel> ViewVAnnouncements = new ArrayList<UserVIewClinicAnnouncementModel>();
             while (rs.next()){
@@ -1112,15 +1114,17 @@ public class UserDAO {
 
     }
 
-    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String Unic,String district_id, UserGovermentAnnouncementModel govermentAnnouncement) {
+    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String district_id, UserGovermentAnnouncementModel govermentAnnouncement) {
 
-////        System.out.println("data come to goverment 2 dao");
+        System.out.println("data come to goverment 2 dao");
+        System.out.println(district_id);
+        System.out.println(govermentAnnouncement.getuNic());
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_GOVERMENT_ANNOUNCEMENT)){
-            preparedStatement.setString(1,Unic);
+            preparedStatement.setString(1,govermentAnnouncement.getuNic());
             preparedStatement.setString(2,district_id);
             ResultSet rs = preparedStatement.executeQuery();
-//            System.out.println("data come to goverment dao");
+            System.out.println("data come to goverment dao");
 
             ArrayList<UserGovermentAnnouncementModel> ViewVAnnouncements = new ArrayList<UserGovermentAnnouncementModel>();
             while (rs.next()){
@@ -1129,13 +1133,15 @@ public class UserDAO {
                 String description=rs.getString("description");
                 String banner=rs.getString("banner");
                 String expire_date =rs.getString("expire_date");
+                String uNic = rs.getString("uNic");
 
                 UserGovermentAnnouncementModel temp= new UserGovermentAnnouncementModel(
                         announcement_id,
                         title,
                         description,
                         banner,
-                        expire_date
+                        expire_date,
+                        uNic
 
                 );
                 ViewVAnnouncements.add(temp);
@@ -1143,6 +1149,7 @@ public class UserDAO {
             }
             return ViewVAnnouncements;
         } catch (SQLException throwables) {
+            System.out.println("ERror");
             throwables.printStackTrace();
         }
 

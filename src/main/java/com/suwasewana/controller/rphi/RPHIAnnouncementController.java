@@ -60,14 +60,26 @@ public class RPHIAnnouncementController extends HttpServlet {
     }
 
     private void updateAStatus(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("came to controller 1");
+        String nic="199910910064";
+        String  moh = "1003";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                    moh = cookie.getValue().split("/")[4];
+                }
+            }
+        }
         RPHIAnnouncementsModel updateAstatus = new RPHIAnnouncementsModel(
                 "",
                 "",
                 "",
                 "",
-                "1002",
+                moh,
                 "",
-                "",
+                nic,
                 ""
         );
         String result = rphiAnnouncementsDAO.updateAnnstatus(updateAstatus);
@@ -100,7 +112,17 @@ public class RPHIAnnouncementController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void selectA(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        System.out.println("select");
+        String nic="199910910064";
+        String  moh = "1003";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                    moh = cookie.getValue().split("/")[4];
+                }
+            }
+        }
         RPHIAnnouncementsModel selectA= new RPHIAnnouncementsModel(
                "",
                 "",
@@ -108,7 +130,7 @@ public class RPHIAnnouncementController extends HttpServlet {
                 "",
                 "",
                 "",
-                "",
+                nic,
                 ""
         );
         ArrayList<RPHIAnnouncementsModel> result= rphiAnnouncementsDAO.ViewA(selectA);
@@ -116,7 +138,17 @@ public class RPHIAnnouncementController extends HttpServlet {
     }
 
     private void createA(HttpServletRequest req, HttpServletResponse res) throws IOException {
-
+        String nic="199910910064";
+        String  moh = "1003";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                    moh = cookie.getValue().split("/")[4];
+                }
+            }
+        }
         System.out.println("came to controller 1");
         RPHIAnnouncementsModel RPHIAnnouncements = new RPHIAnnouncementsModel(
                 "",
@@ -125,7 +157,7 @@ public class RPHIAnnouncementController extends HttpServlet {
                 req.getParameter("image"),
                 req.getParameter("moh"),
                 "",
-                "199910910061",
+                nic,
                 req.getParameter("expire_date")
         );
         System.out.println("before");
