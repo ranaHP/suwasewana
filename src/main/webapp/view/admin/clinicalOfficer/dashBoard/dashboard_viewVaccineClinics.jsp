@@ -74,7 +74,7 @@
         }
     }
 
-    function deleteVClinics(clinicID){
+    function deleteClinics(clinicID){
         // console.log("deleteclinicfunction")
         let id=clinicID
         cancelClinicmsg(parseInt(id))

@@ -53,7 +53,7 @@ public class createClinicDAO {
             preparedStatement.setString(10,createClinic.getMOH());
             preparedStatement.setString(11,createClinic.getTarget());
             preparedStatement.setString(12,createClinic.getLocation());
-            preparedStatement.setString(13,"12");
+            preparedStatement.setString(13,createClinic.getcNic());
 
             int rs = preparedStatement.executeUpdate();
             return "sucsess";
@@ -169,7 +169,7 @@ public class createClinicDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
             System.out.println("select clinics");
             preparedStatement.setString(1, selectClinic.getClinicID());
-            preparedStatement.setString(2, "12");
+            preparedStatement.setString(2, selectClinic.getcNic());
             ResultSet rs = preparedStatement.executeQuery();
             System.out.println(rs.toString());
             ArrayList<CreateClinicModel> selectClinicList = new ArrayList<CreateClinicModel>();
@@ -256,7 +256,7 @@ public class createClinicDAO {
             preparedStatement.setString(5,vaccineclinic.getTarget_moh());
             preparedStatement.setString(6,vaccineclinic.getLower_Age());
             preparedStatement.setString(7,vaccineclinic.getUpper_Age());
-            preparedStatement.setString(8,"199910910064");
+            preparedStatement.setString(8,vaccineclinic.getClinical_officer());
             preparedStatement.setString(9,vaccineclinic.getV_id());
             preparedStatement.setString(10,vaccineclinic.getLocation());
             preparedStatement.setString(11,vaccineclinic.getDose_count());
@@ -592,7 +592,7 @@ public class createClinicDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SELECT_CLINICS)){
             System.out.println("select for msg");
             preparedStatement.setString(1, selectFormsg.getClinicID());
-            preparedStatement.setString(2, "12");
+            preparedStatement.setString(2, selectFormsg.getcNic());
             ResultSet rs = preparedStatement.executeQuery();
             System.out.println(rs.toString());
             ArrayList<CreateClinicModel> selectFormsgs = new ArrayList<CreateClinicModel>();
