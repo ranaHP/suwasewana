@@ -28,28 +28,34 @@
     </div>
     <div class="search-section">
         <div class="select">
-            <select name="" id="select" onchange="check()">
+            <select name="" id="select" onchange="getAllMOHDetailsD()">
                 <option value="1">select district</option>
             </select>
         </div>
         <div class="select">
-            <select name="" id="select1" onchange="check()">
+            <select name="" id="select1" onchange="getAllMOHDetailsM()">
                 <option value="1">select MOH</option>
             </select>
         </div>
-        <div class="search-officer">
-            <input type="text" id="search" autocomplete="off" required>
-            <label for="search">Search with name</label>
-            <div class="search-m" for="search"><i class="icon" data-feather="search"></i></div>
-        </div>
+<%--        <div class="search-officer">--%>
+<%--            <input type="text" id="search" autocomplete="off" required>--%>
+<%--            <label for="search">Search with name</label>--%>
+<%--            <div class="search-m" for="search"><i class="icon" data-feather="search"></i></div>--%>
+<%--        </div>--%>
     </div>
 
 </div>
 
 <script>
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    var body=document.getElementById("mainContent")
+    var tbl = document.createElement("table");
+    tbl.classList.add("table")
+    var tblBody = document.createElement("tbody");
     getAllMOHDetails();
     let moh_details_list={};
+    let MOHList = [];
+    let districtList=[];
     function getAllMOHDetails() {
         let MOHList = [];
         $.post(myUrl+"/admin-controller/mohall",
@@ -59,12 +65,12 @@
                 console.log("asdasd");
                 console.log(data);
                 console.log("asdasd");
-                var body=document.getElementById("mainContent")
-                var tbl = document.createElement("table");
-                tbl.classList.add("table")
-                var tblBody = document.createElement("tbody");
+                // var body=document.getElementById("mainContent")
+                // var tbl = document.createElement("table");
+                // tbl.classList.add("table")
+                // var tblBody = document.createElement("tbody");
                 tblBody.innerHTML = "";
-                headers=["MOH name","District","Head","Mobile","update"]
+                headers=["MOH name","District","Head","Mobile"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -81,40 +87,152 @@
                 <td data-label="Didtrict">` + item.District + `</td>
                 <td data-label="Head">` + item.MOHHead + `</td>
                 <td data-label="Mobile">`+item.TpNo + `</td>
-                <td class="update" data-label="update"><button>Update</button></td>
+
     </tr>
     `
                     tbl.appendChild(tblBody);
                     body.appendChild(tbl);
+                    MOHList.push(item.MName)
+                    districtList.push(item.District)
+
+                })
+                console.log(MOHList)
+                MOHList.map(name=>{
+                    console.log(name)
+                    let option= document.createElement('option')
+                    option.value=name
+                    option.innerText=name
+                    document.getElementById('select1').appendChild(option)
+                })
+
+                districtList.map(name=>{
+                    console.log(name)
+                    let option= document.createElement('option')
+                    option.value=name
+                    option.innerText=name
+                    document.getElementById('select').appendChild(option)
+                })
+            }
+        );
+    }
+
+    function getAllMOHDetailsM() {
+        let MOHList = [];
+        $.post(myUrl+"/admin-controller/mohall",
+            {},
+            function (data, status) {
+                data = JSON.parse(data);
+                tblBody.innerHTML = "";
+                var select = document.getElementById("select")
+                var select1 = document.getElementById("select1")
+                var value = select.options[select.selectedIndex].value;
+                var value1 = select1.options[select1.selectedIndex].value;
+                headers=["MOH name","District","Head","Mobile"]
+                var row = document.createElement("tr");
+                headers.map((item=>{
+                    row.classList.add("thead")
+                    var cell = document.createElement("th");
+                    var cellText = document.createTextNode(item);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    tblBody.appendChild(row);
+                }))
+                data.map((item)=>{
+                    console.log(value1)
+                    console.log("fff")
+                    console.log(item.MName)
+                    if(value1==item.MName) {
+                        tblBody.innerHTML += `
+    <tr>
+                <td data-label="MOHName">` + item.MName + `</td>
+                <td data-label="Didtrict">` + item.District + `</td>
+                <td data-label="Head">` + item.MOHHead + `</td>
+                <td data-label="Mobile">` + item.TpNo + `</td>
+
+    </tr>
+    `
+                        tbl.appendChild(tblBody);
+                        body.appendChild(tbl);
+                    }
                 })
 
             }
         );
     }
 
-</script>
+    function getAllMOHDetailsD() {
+        let MOHList = [];
+        $.post(myUrl+"/admin-controller/mohall",
+            {},
+            function (data, status) {
+                data = JSON.parse(data);
+                tblBody.innerHTML = "";
+                var select = document.getElementById("select")
+                var select1 = document.getElementById("select1")
+                var value = select.options[select.selectedIndex].value;
+                var value1 = select1.options[select1.selectedIndex].value;
+                headers=["MOH name","District","Head","Mobile"]
+                var row = document.createElement("tr");
+                headers.map((item=>{
+                    row.classList.add("thead")
+                    var cell = document.createElement("th");
+                    var cellText = document.createTextNode(item);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    tblBody.appendChild(row);
+                }))
+                data.map((item)=>{
+                    console.log(value1)
+                    console.log("fff")
+                    console.log(item.MName)
+                    if(value==item.District) {
+                        tblBody.innerHTML += `
+    <tr>
+                <td data-label="MOHName">` + item.MName + `</td>
+                <td data-label="Didtrict">` + item.District + `</td>
+                <td data-label="Head">` + item.MOHHead + `</td>
+                <td data-label="Mobile">` + item.TpNo + `</td>
+
+    </tr>
+    `
+                        tbl.appendChild(tblBody);
+                        body.appendChild(tbl);
+                    }
+                })
+
+            }
+        );
+    }
+
+    view()
+function view(){
+    MOHList.map(name=>{
+        console.log("h")
+        console.log(name)
+    })
+}
 
 
 
 
-<script>
+
     districts=["Galle","Matara","Colombo","Hambanthota","Nuwara","Kegalle","Nuwara Eliya","Jaffna"];
-    districts.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select').appendChild(option)
-    })
+    // MOHList.map(name=>{
+    //     console.log(name)
+    //     let option= document.createElement('option')
+    //     option.value=name
+    //     option.innerText=name
+    //     document.getElementById('select').appendChild(option)
+    // })
 
-    areas=["ahangama","Eluketiya","Habaraduwa","Unawatuna","Galle","Hikkaduwa"];
-    areas.map(name=>{
-        let option= document.createElement('option')
-        option.value=name
-        option.innerText=name
-        document.getElementById('select1').appendChild(option)
-    })
+    // areas=["ahangama","Eluketiya","Habaraduwa","Unawatuna","Galle","Hikkaduwa"];
+    // areas.map(name=>{
+    //     let option= document.createElement('option')
+    //     option.value=name
+    //     option.innerText=name
+    //     document.getElementById('select1').appendChild(option)
+    // })
 </script>
-
 <script>
     feather.replace(({width:"10px",height:"10px"}))
 </script>
