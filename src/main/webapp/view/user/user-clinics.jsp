@@ -145,28 +145,12 @@
                         </div>
                     </div>
                     <div class="dash-tab">
-                        <div class="dash-icon" onclick="Edit()">
-                            <img src="<c:url value="/public/images/icons/edit.svg"/>" width="20px" />
-                        </div>
-                        <div class="dash-title">
-                            Edite Profile
-                        </div>
-                    </div>
-                    <div class="dash-tab">
                         <div class="dash-icon" onclick="vaccine()">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
                         </div>
 
                         <div class="dash-title">
                             vaccine
-                        </div>
-                    </div>
-                    <div class="dash-tab">
-                        <div class="dash-icon">
-                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
-                        </div>
-                        <div class="dash-title">
-                            Support
                         </div>
                     </div>
 
