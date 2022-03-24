@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_PHI.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script defer src="<c:url value="/public/js/Admin/view_PHI.js"></c:url> "></script>
+<%--    <script defer src="<c:url value="/public/js/Admin/view_PHI.js"></c:url> "></script>--%>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
@@ -28,12 +28,12 @@
     </div>
     <div class="search-section">
         <div class="select"  id="select_district">
-            <select name="" id="select" onchange="check()">
+            <select name="" id="select" onchange="checkD()">
                 <option value="1">select district</option>
             </select>
         </div>
         <div class="select">
-            <select name="" id="select1" onchange="check()">
+            <select name="" id="select1" onchange="checkM()">
                 <option value="1">select area</option>
             </select>
         </div>
@@ -46,6 +46,83 @@
 </div>
 <script>
     feather.replace(({width:"10px",height:"10px"}))
+
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    var body=document.getElementById("mainContent")
+    var tbl = document.createElement("table");
+    tbl.classList.add("table")
+    var tblBody = document.createElement("tbody");
+    getAllMOHDetails();
+    let moh_details_list={};
+    let MOHList = [];
+    let districtList=[];
+    function getAllMOHDetails() {
+        let MOHList = [];
+        $.post(myUrl+"/admin-controller/mohall",
+            {},
+            function (data, status) {
+                data = JSON.parse(data);
+                console.log("asdasd");
+                console.log(data);
+                console.log("asdasd");
+                // var body=document.getElementById("mainContent")
+                // var tbl = document.createElement("table");
+                // tbl.classList.add("table")
+                // var tblBody = document.createElement("tbody");
+                tblBody.innerHTML = "";
+                headers=["name","ID","District","Area","Mobile","ReNew","Block"]
+                var row = document.createElement("tr");
+                headers.map((item=>{
+                    row.classList.add("thead")
+                    var cell = document.createElement("th");
+                    var cellText = document.createTextNode(item);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    tblBody.appendChild(row);
+                }))
+                data.map((item)=>{
+                    tblBody.innerHTML+= `
+    <tr>
+                       <td data-label="Name">${item.name}</td>
+                        <td data-label="Id">${item.ID}</td>
+                        <td data-label="Didtrict">${item.District}</td>
+                        <td data-label="Area">${item.Area}</td>
+                        <td data-label="Mobile">${item.Mobile}</td>
+                        <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
+                        <td class="Block"  data-label="block" onclick="block()"><button>Block</button></td>
+
+    </tr>
+    `
+                    tbl.appendChild(tblBody);
+                    body.appendChild(tbl);
+                    MOHList.push(item.MName)
+                    districtList.push(item.District)
+
+                })
+                console.log(MOHList)
+                MOHList.map(name=>{
+                    console.log(name)
+                    let option= document.createElement('option')
+                    option.value=name
+                    option.innerText=name
+                    document.getElementById('select1').appendChild(option)
+                })
+
+                districtList.map(name=>{
+                    console.log(name)
+                    let option= document.createElement('option')
+                    option.value=name
+                    option.innerText=name
+                    document.getElementById('select').appendChild(option)
+                })
+            }
+        );
+    }
+
+    function view(){
+        alert("h")
+    }
+
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
