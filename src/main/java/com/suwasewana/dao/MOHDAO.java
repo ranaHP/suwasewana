@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class MOHDAO {
     @SuppressWarnings("SqlResolve")
 
-    private static final String MOH_Detail="SELECT * FROM suwasewana_db.moh;";
+    private static final String MOH_Detail="SELECT * FROM suwasewana_db.moh m left join phi p ON m.moh_head=p.nic left join district d ON m.district=d.district_id  ;";
     private static final String MOH_Details="SELECT * FROM suwasewana_db.moh;";
     private static final String District_Detail="SELECT * FROM suwasewana_db.district;";
     private static final String City_Detail="SELECT * FROM suwasewana_db.cities;";
@@ -107,10 +107,10 @@ public class MOHDAO {
             ArrayList<MOHRegModel> mohList = new ArrayList<MOHRegModel>();
             while (rs.next()) {
 
-                String name = rs.getString("MName");
-                String District = rs.getString("District");
-                String Head = rs.getString("MHead");
-                String Mobile = rs.getString("TpNo");
+                String name = rs.getString("name");
+                String District = rs.getString("d.name");
+                String Head = rs.getString("full_name");
+                String Mobile = rs.getString("mobile_number");
 
                 MOHRegModel temp = new MOHRegModel(
                         name,

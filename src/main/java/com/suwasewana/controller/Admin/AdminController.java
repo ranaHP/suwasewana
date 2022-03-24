@@ -50,6 +50,9 @@ public class AdminController extends HttpServlet {
                 case "mohall":
                     ViewMOHAll(req,res);
                     break;
+                case "phiall":
+                    Allphi(req,res);
+                    break;
                 case "districtsSelect":
                     ViewSelectDisctirct(req,res);
                     break;
@@ -83,6 +86,11 @@ public class AdminController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+
+    private void Allphi(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        ArrayList<PHIModel> result = phidao.getphiALL();
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void ViewDistrictAll(HttpServletRequest req, HttpServletResponse res) throws IOException {
