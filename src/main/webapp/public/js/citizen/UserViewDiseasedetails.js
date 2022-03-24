@@ -17,22 +17,28 @@ class view_disease_details{
         this.container = document.getElementById(container);
     }
     setData(data,id) {
-        let a=id;
+        let a = id;
         // console.log(data)
         if (!data) return;
         this.diseasearrayy = data;
         // console.log(data);
         // console.log(this.diseasearrayy.name)
 
-        console.log(this.diseasearrayy.d_id)
-        if (a==data.d_id) {
+        console.log(data[0].d_id)
+        let i = 0;
 
-        data.map((item) => {
+        console.log("jspid " + a)
+        // for (let i = 0; i < data.length; i++) {
+        //
+        if (a == data[0].d_id ) {
 
-                // let a = item.name
+            data.map((item) => {
+
+                    console.log("mp id" + data[i].d_id)
+                    // let a = item.name
 
 
-                this.container.innerHTML += `
+                    this.container.innerHTML += `
 
 
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
@@ -375,11 +381,12 @@ class view_disease_details{
 
             `
 
-                // console.log("map")
+                    // console.log("map")
 
-            }
-        )
-    }
+                }
+            )
+        }
+    // }
     }
 
 }
@@ -511,6 +518,21 @@ function createTreatmentMedicalTreatmentsCard(data){
 //
 // }
 
+// function searchDiseases(data,id){
+//
+//     const input = document.getElementById('appointmentType').value.toUpperCase();
+//     const cardContainor = document.getElementById('dashboard-container');
+//     const card = cardContainor.getElementsByClassName('dashboard-page-sub-title')
+//     for (let i=0; i<data.length;++i){
+//         if(id==3){
+//             card[i].style.display=""
+//         }
+//         else{
+//             card[i].style.display="none"
+//         }
+//     }
+//
+// }
 
 
 

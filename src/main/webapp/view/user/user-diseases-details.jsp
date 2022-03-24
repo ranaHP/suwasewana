@@ -715,12 +715,18 @@
 <%--    }--%>
 
 <%--</script>--%>
-<script>
-    getAllDisease();
+<script defer>
+    // getAllDisease(Diseaseid);
     // let a = id;
     let typedatalist={};
-    function getAllDisease() {
+    function getAllDisease(Diseaseid) {
+        // let id=Diseaseid;
+        // Diseaseid=Diseaseid
         let diseasearray = [];
+        // let reqData={
+        //     d_id:Diseaseid
+        // }
+        console.log("nameid"+Diseaseid)
         $.post("/test_war_exploded/user-disease-controller/view",
             {},
             function (data, status) {
@@ -730,7 +736,8 @@
                 // console.log("cccccccc")
                 typedatalist=diseasearray;
                 document.getElementById("dashboard-container").innerHTML = " ";
-                disease.setData(diseasearray);
+                disease.setData(diseasearray,Diseaseid);
+                // searchDiseases(diseasearray,Diseaseid);
             }
         );
     }
@@ -746,10 +753,10 @@
                 let PNames=document.getElementById("allappointmentType");
                 PNames.innerHTML="";
                 let i=0;
-                let id=0
+                // let id=0
                 rs.map((element) => {
-                        PNames.innerHTML+= '<option id="'+id+'" name="'+ element.name +'"  value="'+ element.name +'"   option="'+ element.name +'" ></option>'
-                        id++
+                        PNames.innerHTML+= '<option id="'+element.d_id+'" name="'+ element.name +'"  value="'+ element.name +'"   option="'+ element.name +'" ></option>'
+
 
                 })
 
@@ -769,9 +776,9 @@
         if(datalist.options.namedItem(CTypeObj.value)){
             Diseaseid=(datalist.options.namedItem(CTypeObj.value).id);
         }
-        console.log("d id= "+Diseaseid)
-        getAllDisease()
-        disease.setData(Diseaseid)
+        console.log("disease id= "+Diseaseid)
+        getAllDisease(Diseaseid)
+
         // alert("fdffddfd")
         return false;
     }
