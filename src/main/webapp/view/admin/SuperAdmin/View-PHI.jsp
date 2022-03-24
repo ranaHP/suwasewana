@@ -28,20 +28,20 @@
     </div>
     <div class="search-section">
         <div class="select"  id="select_district">
-            <select name="" id="select" onchange="checkD()">
-                <option value="1">select district</option>
+            <select name="" id="select" onchange="checkM()">
+                <option value="1">Select by post</option>
             </select>
         </div>
         <div class="select">
             <select name="" id="select1" onchange="checkM()">
-                <option value="1">select area</option>
+                <option value="1">select by MOH</option>
             </select>
         </div>
-        <div class="search-officer">
-            <input type="text" id="search" autocomplete="off" required>
-            <label for="search">Search with name</label>
-            <div class="search-m" for="search"><i class="icon" data-feather="search"></i></div>
-        </div>
+<%--        <div class="search-officer">--%>
+<%--            <input type="text" id="search" autocomplete="off" required>--%>
+<%--            <label for="search">Search with name</label>--%>
+<%--            <div class="search-m" for="search"><i class="icon" data-feather="search"></i></div>--%>
+<%--        </div>--%>
     </div>
 </div>
 <script>
@@ -58,7 +58,7 @@
     let districtList=[];
     function getAllMOHDetails() {
         let MOHList = [];
-        $.post(myUrl+"/admin-controller/mohall",
+        $.post(myUrl+"/admin-controller/phiall",
             {},
             function (data, status) {
                 data = JSON.parse(data);
@@ -70,7 +70,7 @@
                 // tbl.classList.add("table")
                 // var tblBody = document.createElement("tbody");
                 tblBody.innerHTML = "";
-                headers=["name","ID","District","Area","Mobile","ReNew","Block"]
+                headers=["name","MOH","District","POST","Mobile","ReNew","Block"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -80,26 +80,29 @@
                     row.appendChild(cell);
                     tblBody.appendChild(row);
                 }))
+                console.log(data)
                 data.map((item)=>{
                     tblBody.innerHTML+= `
     <tr>
-                       <td data-label="Name">${item.name}</td>
-                        <td data-label="Id">${item.ID}</td>
-                        <td data-label="Didtrict">${item.District}</td>
-                        <td data-label="Area">${item.Area}</td>
-                        <td data-label="Mobile">${item.Mobile}</td>
-                        <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
-                        <td class="Block"  data-label="block" onclick="block()"><button>Block</button></td>
+                  <td data-label="MOHName">` + item.full_name + `</td>
+               <td data-label="MOHName">` + item.City + `</td>
+                <td data-label="Didtrict">` + item.assignCity + `</td>
+                <td data-label="Head">` + item.phi_post + `</td>
+                <td data-label="Mobile">`+item.NIC + `</td>
+                <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
+                <td class="Block"  data-label="block" onclick="block()"><button>Block</button></td>
+
+
 
     </tr>
     `
                     tbl.appendChild(tblBody);
                     body.appendChild(tbl);
-                    MOHList.push(item.MName)
-                    districtList.push(item.District)
+                    MOHList.push(item.City)
+                    // districtList.push(item.District)
 
                 })
-                console.log(MOHList)
+                // console.log(MOHList)
                 MOHList.map(name=>{
                     console.log(name)
                     let option= document.createElement('option')
@@ -107,8 +110,9 @@
                     option.innerText=name
                     document.getElementById('select1').appendChild(option)
                 })
-
-                districtList.map(name=>{
+                //
+                let postlist=["PHI","RPHI"]
+                postlist.map(name=>{
                     console.log(name)
                     let option= document.createElement('option')
                     option.value=name
@@ -119,8 +123,58 @@
         );
     }
 
-    function view(){
-        alert("h")
+    function checkM() {
+        let MOHList = [];
+        $.post(myUrl+"/admin-controller/phiall",
+            {},
+            function (data, status) {
+                data = JSON.parse(data);
+                tblBody.innerHTML = "";
+                var select = document.getElementById("select")
+                var select1 = document.getElementById("select1")
+                var value = select.options[select.selectedIndex].value;
+                var value1 = select1.options[select1.selectedIndex].value;
+                headers=["name","MOH","District","POST","Mobile","ReNew","Block"]
+                var row = document.createElement("tr");
+                headers.map((item=>{
+                    row.classList.add("thead")
+                    var cell = document.createElement("th");
+                    var cellText = document.createTextNode(item);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    tblBody.appendChild(row);
+                }))
+                data.map((item)=>{
+                    console.log(value1)
+                    console.log("fff")
+                    console.log(item.City)
+                    if(value==item.phi_post || value1==item.City) {
+                        tblBody.innerHTML += `
+     <tr>
+                  <td data-label="MOHName">` + item.full_name + `</td>
+               <td data-label="MOHName">` + item.City + `</td>
+                <td data-label="Didtrict">` + item.assignCity + `</td>
+                <td data-label="Head">` + item.phi_post + `</td>
+                <td data-label="Mobile">`+item.NIC + `</td>
+                <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
+                <td class="Block"  data-label="block" onclick="block(`+item.NIC +`)"><button>Block</button></td>
+
+
+
+    </tr>
+    `
+                        tbl.appendChild(tblBody);
+                        body.appendChild(tbl);
+                    }
+                })
+
+            }
+        );
+    }
+
+
+    function block(data){
+        alert(data)
     }
 
 </script>

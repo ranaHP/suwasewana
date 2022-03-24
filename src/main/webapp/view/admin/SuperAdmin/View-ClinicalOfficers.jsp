@@ -25,7 +25,7 @@
     </div>
     <!-- view phi title -->
     <div class="main-title">
-        View phi
+<%--        View phi--%>
     </div>
     <div class="search-section">
         <div class="select"  id="select_district">
@@ -49,23 +49,132 @@
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     feather.replace(({width:"10px",height:"10px"}))
     // select
-    function select(){
-        console.log("came to select function")
-        // let selectClinic = new selectClinics("form");
-        let clinicalOList=[]
-        $.post(myUrl+"/create-clinic-controller/select",
-            reqData,
-            function(data,status){
-                // alert(data)
+    // let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    var body=document.getElementById("mainContent")
+    var tbl = document.createElement("table");
+    tbl.classList.add("table")
+    var tblBody = document.createElement("tbody");
+    getAllMOHDetails();
+    let moh_details_list={};
+    let MOHList = [];
+    let districtList=[];
+    function getAllMOHDetails() {
+        let MOHList = [];
+        $.post(myUrl+"/admin-controller/phiall",
+            {},
+            function (data, status) {
+                data = JSON.parse(data);
+                console.log("asdasd");
+                console.log(data);
+                console.log("asdasd");
+                // var body=document.getElementById("mainContent")
+                // var tbl = document.createElement("table");
+                // tbl.classList.add("table")
+                // var tblBody = document.createElement("tbody");
+                tblBody.innerHTML = "";
+                headers=["name","MOH","District","POST","Mobile","ReNew","Block"]
+                var row = document.createElement("tr");
+                headers.map((item=>{
+                    row.classList.add("thead")
+                    var cell = document.createElement("th");
+                    var cellText = document.createTextNode(item);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    tblBody.appendChild(row);
+                }))
                 console.log(data)
-                clinicalOList=JSON.parse(data)
-                // selectClinic.setData(clinicList);
+                data.map((item)=>{
+                    tblBody.innerHTML+= `
+    <tr>
+                  <td data-label="MOHName">` + item.full_name + `</td>
+               <td data-label="MOHName">` + item.City + `</td>
+                <td data-label="Didtrict">` + item.assignCity + `</td>
+                <td data-label="Head">` + item.phi_post + `</td>
+                <td data-label="Mobile">`+item.NIC + `</td>
+                <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
+                <td class="Block"  data-label="block" onclick="block()"><button>Block</button></td>
 
+
+
+    </tr>
+    `
+                    tbl.appendChild(tblBody);
+                    body.appendChild(tbl);
+                    MOHList.push(item.City)
+                    // districtList.push(item.District)
+
+                })
+                // console.log(MOHList)
+                MOHList.map(name=>{
+                    console.log(name)
+                    let option= document.createElement('option')
+                    option.value=name
+                    option.innerText=name
+                    document.getElementById('select1').appendChild(option)
+                })
+                //
+                let postlist=["PHI","RPHI"]
+                postlist.map(name=>{
+                    console.log(name)
+                    let option= document.createElement('option')
+                    option.value=name
+                    option.innerText=name
+                    document.getElementById('select').appendChild(option)
+                })
+            }
+        );
+    }
+
+    function checkM() {
+        let MOHList = [];
+        $.post(myUrl+"/admin-controller/phiall",
+            {},
+            function (data, status) {
+                data = JSON.parse(data);
+                tblBody.innerHTML = "";
+                var select = document.getElementById("select")
+                var select1 = document.getElementById("select1")
+                var value = select.options[select.selectedIndex].value;
+                var value1 = select1.options[select1.selectedIndex].value;
+                headers=["name","MOH","District","POST","Mobile","ReNew","Block"]
+                var row = document.createElement("tr");
+                headers.map((item=>{
+                    row.classList.add("thead")
+                    var cell = document.createElement("th");
+                    var cellText = document.createTextNode(item);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    tblBody.appendChild(row);
+                }))
+                data.map((item)=>{
+                    console.log(value1)
+                    console.log("fff")
+                    console.log(item.City)
+                    if(value==item.phi_post || value1==item.City) {
+                        tblBody.innerHTML += `
+     <tr>
+                  <td data-label="MOHName">` + item.full_name + `</td>
+               <td data-label="MOHName">` + item.City + `</td>
+                <td data-label="Didtrict">` + item.assignCity + `</td>
+                <td data-label="Head">` + item.phi_post + `</td>
+                <td data-label="Mobile">`+item.NIC + `</td>
+                <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
+                <td class="Block"  data-label="block" onclick="block(`+item.NIC +`)"><button>Block</button></td>
+
+
+
+    </tr>
+    `
+                        tbl.appendChild(tblBody);
+                        body.appendChild(tbl);
+                    }
+                })
 
             }
         );
-        return false;
     }
+
+
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
