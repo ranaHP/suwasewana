@@ -1,6 +1,6 @@
 
 body{
-    background-color: #dfe4ea59;
+    background-image: linear-gradient(to right top, #f0fffe, #f4ffff, #f9feff, #fdfeff, #ffffff);
 }
 .container{
     display: flex;

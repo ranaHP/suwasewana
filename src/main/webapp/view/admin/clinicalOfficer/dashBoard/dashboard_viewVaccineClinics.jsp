@@ -219,41 +219,66 @@
         );
         return false;
     }
+    function selecteditv(id){
+        // let selectClinic = new selectClinics("form");
+        console.log("edit v")
+        let clinicList=[]
+        let reqData =
+            {
+                clinicID: id,
+            };
+        console.log(reqData);
+        $.post(myUrl+"/create-clinic-controller/select-V-Clinics",
+            reqData,
+            function(data,status){
+                // alert(data)
+                console.log(data)
+                // alert(data)
+                clinicList=JSON.parse(data)
+                // selectClinic.setData(clinicList);
+                popup.showVaccineClinicEditMessage(data)
 
+            }
+        );
+        return false;
+    }
 
     function updatevclinics(data){
-        alert("update")
         let id=data;
-        let Lage=document.getElementById("Lage_limit").value;
-        let Uage=document.getElementById("Uage_limit").value;
-        let maxpatient = document.getElementById("max_patient").value;
-        let duration=document.getElementById("duration").value;
-        let datetime= document.getElementById("start_date_time").value;
+        // let Lage=document.getElementById("Lage_limit").value;
+        // let Uage=document.getElementById("Uage_limit").value;
+        let Limitsheats = document.getElementById("max_patient").value;
+        // let duration=document.getElementById("duration").value;
+        // let datetime= document.getElementById("start_date_time").value;
         let clinictitle=document.getElementById("tittle").value;
         let dose=document.getElementById("dose_count").value;
-        let location=document.getElementById("location").value;
+        // let location=document.getElementById("location").value;
         // console.log(a)
         // // alert("update")
         let reqData =
             {
                 clinicID:id,
-                Lage:Lage,
-                Uage:Uage,
                 title:clinictitle,
-                location:location,
-                // targetMOH:document.getElementById("target-MOH").value,
-                datetime:datetime,
-                duration:duration,
-                maxpatient:maxpatient,
+                Limitsheats:Limitsheats,
                 dose:dose,
             };
         console.log(reqData)
-        alert(reqData)
+        // alert(reqData)
         $.post(myUrl+"/create-clinic-controller/updatevclinic",
             reqData,
             function (data,status){
-                // alert("wrong")
-                alert(data)
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully Edit!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic Edit Fails !',
+                        data: data
+                    });
+                }
             });
 
         return false;
@@ -292,13 +317,25 @@
                 datetime:datetime,
             };
         console.log(datetime.split("T")[1])
-        alert(reqData)
+        // alert(reqData)
         $.post(myUrl+"/create-clinic-controller/ResheduleVClinics",
             reqData,
             function (data,status){
                 // alert("wrong")
                 // alert(data)
                 popup.hidePopup()
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully rescheduled!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic reschedule Fails !',
+                        data: data
+                    });
+                }
             });
 
         return false;

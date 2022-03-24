@@ -43,12 +43,25 @@
 }
 .image-upload-card label {
     background-color: #0275d8;
-    width: 100%;
+    width: 500px;
     text-align: center;
     color: white;
     padding: 6px;
     font-family: 'Segoe UI';
 
+}
+.button{
+    border: none;
+    padding: 8px;
+    background-color: #0275d8;
+    /*background-color: #0D47A1;*/
+    /*background-color: #006633FF;*/
+    color: white;
+    border-radius: 3px;
+    font-family: Arial;
+    font-size: .9em;
+    letter-spacing: .1em;
+    cursor: pointer;
 }
 
 
@@ -97,6 +110,9 @@ input{
     width: 90%;
     margin: auto;
 }
+body{
+    background-image: linear-gradient(to right top, #f0fffe, #f4ffff, #f9feff, #fdfeff, #ffffff);
+}
 .MR_container{
     margin-top: 20px;
     /* background-color: aquamarine; */
@@ -112,7 +128,7 @@ input{
     /* border: 1px solid black; */
     box-shadow: 3px 3px 3px #0a0a0a1c;
     border: 1px solid rgba(0, 0, 0, 0.11);
-    height: 345px;
+    /*height: 370px;*/
 }
 .basic-title{
     /* background-color: cadetblue; */
@@ -144,10 +160,11 @@ input{
 }
 .basic-right{
     /* background-color: blue; */
-    display: flex;
+    /*display: flex;*/
     flex-direction: column;
     /*align-items: flex-end;*/
     justify-content: center;
+    margin-left: 30px;
     padding-bottom: 25px;
     width: 100%;
     align-items: center;
@@ -202,7 +219,8 @@ input{
     .basic-right{
         justify-content: flex-start;
         /*width: fit-content;*/
-        padding: 25px;
+        padding: 0 25px;
+        margin-left: 0;
     }
     .row_textarea{
         width: 95% !important;
@@ -229,9 +247,27 @@ input{
     .advance_row{
         padding-left: 10px;
     }
+    .image-upload-card label{
+        width: 75%;
+    }
+    .buttonsline{
+        flex-direction: column;
+    }
+    .buttonsline button{
+        margin-bottom: 2px;
+    }
+    .seach_by_name button{
+        height: 25px;
+        font-size: .55em;
+    }
 }
 @media only screen and (max-width: 403px ){
     .upload_image{
         width: 120px;
     }
+    .seach_by_name button{
+        width: 80px;
+        text-align: center;
+    }
+
 }
