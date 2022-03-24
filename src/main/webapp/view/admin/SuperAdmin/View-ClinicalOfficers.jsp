@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_ClinicalOfficers.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="<c:url value="/public/js/Admin/view_ClinicalOfficers.js"></c:url> "></script>
 </head>
 <body id="mainContent">
@@ -37,15 +38,34 @@
                 <option value="1">select area</option>
             </select>
         </div>
-        <div class="search-officer">
-            <input type="text" id="search" autocomplete="off" required>
-            <label for="search">Search with name</label>
-            <div class="search-m" for="search"><i class="icon" data-feather="search"></i></div>
-        </div>
+<%--        <div class="search-officer">--%>
+<%--            <input type="text" id="search" autocomplete="off" required>--%>
+<%--            <label for="search">Search with name</label>--%>
+<%--            <div class="search-m" for="search"><i class="icon" data-feather="search"></i></div>--%>
+<%--        </div>--%>
     </div>
 </div>
-<script>
+<script defer>
+    let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     feather.replace(({width:"10px",height:"10px"}))
+    // select
+    function select(){
+        console.log("came to select function")
+        // let selectClinic = new selectClinics("form");
+        let clinicalOList=[]
+        $.post(myUrl+"/create-clinic-controller/select",
+            reqData,
+            function(data,status){
+                // alert(data)
+                console.log(data)
+                clinicalOList=JSON.parse(data)
+                // selectClinic.setData(clinicList);
+
+
+            }
+        );
+        return false;
+    }
 </script>
 <script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>

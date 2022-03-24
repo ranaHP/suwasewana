@@ -193,7 +193,6 @@ public class Router extends HttpServlet {
                     rd.forward(request,response);
                     break;
 
-
                 case "RPHI-Dashboard":
                     rd = request.getRequestDispatcher("/view/admin/RPHI/rphi-dashboard.jsp");
                     rd.forward(request,response);
@@ -203,8 +202,24 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPublic.jsp");
                     rd.forward(request,response);
                     break;
+                case "RPHI-viewReports":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/RPHIdashboard_view_report.jsp");
+                    rd.forward(request,response);
+                    break;
                 case "AssignTask":
                     rd = request.getRequestDispatcher("/view/admin/RPHI/assign_TasksAndManage.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "RPHI-todoList":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/RPHIdashboard_todolist.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "RPHI-appointments":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/RPHIdashboard_viewAppointments.jsp");
+                    rd.forward(request,response);
+                    break;
+                case "RPHI-complaints":
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/RPHIdashboard_viewComplaints.jsp");
                     rd.forward(request,response);
                     break;
                 case "MOHAnnouncements":

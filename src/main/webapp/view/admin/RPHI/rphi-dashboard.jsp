@@ -44,7 +44,7 @@
 </head>
 
 <body id="mainContent">
-<c:import url="/view/admin/partials/PHIOfficerSideNavbar.jsp" />
+<c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp" />
 <%--    <div class="main-container">--%>
 <div class="mypopup" id="popup" style="display: none;"></div>
 <div class="header">
