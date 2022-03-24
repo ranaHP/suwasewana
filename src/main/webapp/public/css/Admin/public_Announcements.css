@@ -34,8 +34,6 @@ body{
 .container{
     font-family: Arial, Helvetica, sans-serif;
     height: 100vh;
-
-
 }
 .sidebar-main-show{
     max-width: calc(100vw - 260px);
@@ -54,6 +52,7 @@ body{
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
+    margin-top: 30px;
 }
 .main-title{
     height: 80px;
@@ -67,6 +66,10 @@ body{
 .image-upload-card-container {
     height: fit-content ;
     width: 32%;
+}
+.up{
+    width: 90% !important;
+    text-align: left!important;
 }
 .image-upload-card{
     display: flex;
@@ -94,6 +97,7 @@ body{
     justify-content: center;
     justify-content: space-between;
     align-items: center;
+
 }
 .right{
     display: flex;
@@ -101,7 +105,7 @@ body{
     align-items: center;
 }
 .form-container{
-    width: 100%;
+    width: 500px;
     height: 350px;
     display: flex;
     flex-direction: column;
@@ -223,15 +227,14 @@ textarea{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 361px;
-    width: 90%;
-    padding: 30px 0;
+    min-height: 450px;
+    width: 80%;
+    padding: 20px 0;
     border: 2px dashed rgba(185, 185, 187, 0.9);
 }
 .announcement{
     margin-top: 0;
-
-
+    width: 100%!important;
 }
 /*.search-section{*/
 /*    display: flex;*/
@@ -255,7 +258,7 @@ textarea{
     box-sizing: border-box;
      max-width: 400px;
     height: 30px;
-    box-shadow: 1px 3px 5px rgb(0 0 0 / 16%);
+    box-shadow: 1px 3px 5px rgba(0, 0 ,0 , 0.16);
     outline: none;
     border: none;
     padding: 8px;
