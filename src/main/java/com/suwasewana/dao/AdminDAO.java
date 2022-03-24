@@ -274,17 +274,12 @@ public class AdminDAO {
 
 
             System.out.println("SQL "+preparedStatement);
-//            int rs = preparedStatement.executeUpdate();
-//            System.out.println("dao value" + rs);
+            int rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
 
             return "success";
         } catch (SQLException throwables) {
             printSQLException(throwables);
-//            System.out.println(throwables.getErrorCode());
-//            System.out.println(throwables.getSQLState());
-//            System.out.println(throwables.getMessage());
-//            System.out.println(throwables);
-            System.out.println("Error");
             return throwables.getMessage();
         }
 
