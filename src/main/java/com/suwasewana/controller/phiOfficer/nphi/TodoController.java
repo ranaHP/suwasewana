@@ -114,6 +114,14 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
     private void AddTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String nic="199910910060";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         String title=req.getParameter("title");
         String date=req.getParameter("date");
 
@@ -123,21 +131,44 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
     private void UpdateOverdueTaskList(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String nic="199910910060";
-
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         String result = todoDAO.UpdateOverdueTaskList(nic);
         res.getWriter().println(gson.toJson(result));
     }
 
     private void DeleteTask(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
         String nic="199910910060";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
+
         String id=req.getParameter("taskid");
         String result = todoDAO.DeletTask(id);
         res.getWriter().println(gson.toJson(result));
     }
     private void SetComplete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
         String nic="199910910060";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
+
         String id=req.getParameter("taskid");
         String result = todoDAO.SetComplete(id);
         res.getWriter().println(gson.toJson(result));
@@ -154,6 +185,14 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
     private void SetProgress(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         String nic="199910910060";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         String id=req.getParameter("taskid");
         String result = todoDAO.SetProgress(id);
         res.getWriter().println(gson.toJson(result));
@@ -162,49 +201,51 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
 
     private void TakeTaskList(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String uNic = "";
+    String nic="199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
                 }
             }
         }
 
-        String nic="199910910060";
+
         ArrayList<TaskModel> result = todoDAO.GetAllTask(nic);
         res.getWriter().println(gson.toJson(result));
     }
     private void TakeTaskListcount(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String uNic = "";
+        String nic="199910910060";
+
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
                 }
             }
         }
 
-        String nic="199910910060";
+
         ArrayList<TaskModel> result = todoDAO.GetAllTaskCount(nic);
         res.getWriter().println(gson.toJson(result));
     }
     private void TaskforClander(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String uNic = "";
+        String nic="199910910060";
+
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
                 }
             }
         }
 
-        String nic="199910910060";
+
         String date=req.getParameter("date");
         ArrayList<TaskModel> result = todoDAO.ViewTaskForCalander(nic,date);
         res.getWriter().println(gson.toJson(result));

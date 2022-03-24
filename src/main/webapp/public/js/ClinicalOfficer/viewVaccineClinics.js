@@ -50,13 +50,13 @@ class clinicList {
                     <div class="down-box">
                         <div class="current-participant-count">
                             <div class="current-participant-img"><object data="${Url}/public/images/icons/users.svg" width="15" height="15"> </object></div>
-                            <div class="count-participants">120, 221</div>
+                            <div class="count-participants" id="count">${item.limit_sheats}</div>
                         </div>
                         <div class="buttons">
-
-                            <div onclick="popup.showDeleteClinicAlertMessage(${item.vcs_id})" class="delete-button">Delete</div>
-                            <div class="edit-button" onclick="selectReV(${item.vcs_id})"/>Edit</div>
-
+                              
+                              <div onclick="popup.showDeleteClinicAlertMessage(${item.vcs_id})" class="delete-button">Delete</div>
+                            <div class="edit-button" onclick="selecteditv(${item.vcs_id})">Edit</div>
+                            <div class="delete-button" style="background-color: #1e8348" onclick="selectReV(${item.vcs_id})">Reshedule</div>
                         </div>
                     </div>
               </div>

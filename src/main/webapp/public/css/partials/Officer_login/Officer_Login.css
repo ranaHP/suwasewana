@@ -84,13 +84,19 @@
     margin-bottom: 10px;
     position: relative;
 }
-.form-group input{
+.form-group input , select{
     padding-left: 7px;
     width: 285px;
     height: 5vh;
     border: none;
     box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.1);
     margin-top: 8px;
+}
+
+.form-group select{
+    padding-left: 0px;
+    margin-top: 8px;
+    color: #494949;
 }
 .password-visibility-officer{
     position: absolute;
@@ -100,6 +106,7 @@
 }
 .form-field-error{
     width: 285px;
+    margin-top: 8px;
     color: #e84118;
 }
 .formlable{
@@ -123,6 +130,7 @@
     font-weight: 500;
     font-size: 0.7em;
     cursor: pointer;
+    margin-bottom: 10px ;
 }
 
 .loginfooter-discription{

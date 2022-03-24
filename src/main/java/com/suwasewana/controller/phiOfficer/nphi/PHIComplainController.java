@@ -154,12 +154,12 @@ public class PHIComplainController extends HttpServlet {
 
     private void ComplainForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String uNic = "";
+        String nic="199910910064";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
-                if(cookie.getName().equals("unic")) {
-                    uNic = cookie.getValue();
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
                 }
             }
         }
@@ -182,18 +182,18 @@ public class PHIComplainController extends HttpServlet {
                 ""
 
         );
-        String nic="199910910064";
+
         ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHI(nic,date1,date2);
         res.getWriter().println(gson.toJson(result));
     }
         private void ComplainForPHIForSideBar(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-            String uNic = "";
+            String nic="199910910064";
             Cookie[] cookies = req.getCookies();
             if(cookies !=null){
                 for(Cookie cookie : cookies){
-                    if(cookie.getName().equals("unic")) {
-                        uNic = cookie.getValue();
+                    if(cookie.getName().equals("sDetails")) {
+                        nic = cookie.getValue().split("/")[3];
                     }
                 }
             }
@@ -216,7 +216,7 @@ public class PHIComplainController extends HttpServlet {
                     ""
 
             );
-            String nic="199910910064";
+
             ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForPHIForSideBar(nic,date1,date2);
             res.getWriter().println(gson.toJson(result));
         }
@@ -225,11 +225,13 @@ public class PHIComplainController extends HttpServlet {
 
             String uNic = "";
             String  moh = "1003";
+            String nic="199910910062";
             Cookie[] cookies = req.getCookies();
             if(cookies !=null){
                 for(Cookie cookie : cookies){
-                    if(cookie.getName().equals("unic")) {
-                        uNic = cookie.getValue();
+                    if(cookie.getName().equals("sDetails")) {
+                        nic = cookie.getValue().split("/")[3];
+                        moh = cookie.getValue().split("/")[4];
                     }
                 }
             }
@@ -249,7 +251,7 @@ public class PHIComplainController extends HttpServlet {
                     "",
                     ""
             );
-            String nic="199910910062";
+
             ArrayList<CommanForCompalinAndUser> result = complainDAO.userGetComplainDetailsForMOH(moh);
             res.getWriter().println(gson.toJson(result));
         }

@@ -14,9 +14,14 @@ public class OfficerDAO {
     @SuppressWarnings("SqlResolve")
     private static final String CHECK_OFFICER_LOGIN_VALIDATION = "SELECT * FROM `officer_table` WHERE `mobile` = ? and `password` = ?";
     private static final String UPDATE_MAC = "UPDATE `officer_table` SET `mac`=? WHERE `mobile` = ? and `password` = ?";
-    private static final String UPDATE_MAC_IN_PHI = "UPDATE `phi` SET `MAC`=? WHERE `Mobile` = ? and `Password` = ?";
+    private static final String UPDATE_MAC_IN_PHI = "UPDATE `phi` SET `device_mac`=? WHERE `mobile_number` = ? and `password` = ?";
     private static final String CHECK_pOST_WITH_VALIDATION = "SELECT * FROM `phi` WHERE `Mobile` = ? and `Password` = ? and `Post`=?";
-    private static final String Check_Admin = "SELECT * FROM `admin` WHERE `Mobile` = ? and `Password` = ? ";
+
+    private static final String Check_PHI = "SELECT * FROM `phi` WHERE `mobile_number` = ? and `Password` =  ? ";
+    private static final String Check_Clinical_Officer = "SELECT * FROM `clinicalofficer` WHERE mobile_number = ? and password = ? ";
+    private static final String UPDATE_MAC_IN_Clinical_Officer = "UPDATE `clinicalofficer` SET `device_mac`=? WHERE `mobile_number` = ? and `password` = ?";
+    private static final String Check_Admin  = "SELECT * FROM `admin` WHERE user_code = ? and password = ?";
+
     Connection connection;
 
     public OfficerDAO(){
@@ -25,33 +30,30 @@ public class OfficerDAO {
     }
 
     public OfficerLoginModel CheckLoginValidation(OfficerLoginModel officerLogin , String post) {
-        if(post.equals("PHI")){
-            try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_pOST_WITH_VALIDATION)) {
+        if(post.equals("phi")){
+            try (PreparedStatement preparedStatement = connection.prepareStatement(Check_PHI)) {
                 preparedStatement.setString(1, officerLogin.getMobile());
                 preparedStatement.setString(2, officerLogin.getPassword());
-                preparedStatement.setString(3, post);
                 ResultSet rs = preparedStatement.executeQuery();
+                System.out.println(" --------------------- " + preparedStatement.toString());
 
-
-//                System.out.println("rs -DAO "+rs+"/");
                 while (rs.next()) {
-                    String mobile = rs.getString("Mobile");
-                    String password = rs.getString("Password");
-                    String mac=rs.getString("MAC");
-                    String officerpost=rs.getString("Post");
 
-                    System.out.println("mobile "+mobile+"/");
-                    System.out.println("pass "+password+"/");
-                    System.out.println("mac "+mac+"/");
-                    System.out.println("officerpost "+officerpost+"/");
-                    System.out.println("Model data");
-                    System.out.println("mobile "+officerLogin.getMobile()+"/");
-                    System.out.println("pass "+officerLogin.getPassword()+"/");
-                    System.out.println("mac "+officerLogin.getMAC()+"/");
-                    System.out.println("officerpost "+officerpost+"/");
+                    System.out.println(" --------------------- ");
+                    System.out.println(rs.getString("mobile_number"));
+                    System.out.println(" --------------------- ");
+                    String mobile = rs.getString("mobile_number");
+                    String password = rs.getString("password");
+                    String mac=rs.getString("device_mac");
+                    String officerpost=rs.getString("phi_post");
+                    String assignCity=rs.getString("assignCity");
+                    String assignMOH=rs.getString("assignMOH");
+                    String full_name=rs.getString("full_name");
+                    String nic=rs.getString("nic");
 
 
-                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac==null && (officerpost.equals(post) || officerpost.equals("")) ) {
+
+                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) &&  ( mac==null || mac.equals("") )) {
                         System.out.println("null mach with correct us ps in phi");
                         String updateMAC=officerLogin.getMAC();
                         try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC_IN_PHI)){
@@ -64,22 +66,47 @@ public class OfficerDAO {
                         catch (SQLException throwables) {
                             printSQLException(throwables);
                         }
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC , post);
+                        officerLogindetails.setMessage("new user");
+                        officerLogindetails.setFull_name(full_name);
+                        officerLogindetails.setMohId(assignMOH);
+                        officerLogindetails.setCity(assignCity);
+                        officerLogindetails.setPost(officerpost);
+                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setNIC(nic);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password, mac ,post  );
+                        officerLogindetails.setMessage("mac is OK");
+                        officerLogindetails.setFull_name(full_name);
+                        officerLogindetails.setMohId(assignMOH);
+                        officerLogindetails.setCity(assignCity);
+                        officerLogindetails.setPost(officerpost);
+                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setNIC(nic);
+                        System.out.println("Mobile "+ mobile);
+                        System.out.println("password "+ password);
+                        System.out.println("mac "+ mac);
+                        return officerLogindetails;
+                    }
+                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && !mac.equals(officerLogin.getMAC())) {
+                        System.out.println("valid mach");
+                        System.out.println("officerLogin.getMAC() "+officerLogin.getMAC());
+                        System.out.println("mac "+mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password, mac ,post  );
+                        officerLogindetails.setMessage("mac is wrong");
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","" , post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","" , post);
         }
-        else if(post.equals("RPHI")){
+        else if(post.equals("rphi")){
             System.out.println("inside RPHI if");
             try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_pOST_WITH_VALIDATION)) {
                 preparedStatement.setString(1, officerLogin.getMobile());
@@ -122,40 +149,44 @@ public class OfficerDAO {
                         catch (SQLException throwables) {
                             printSQLException(throwables);
                         }
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC,post);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac,post);
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","" ,post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","", post);
         }
-        else if(post.equals("COfficer")){
-            System.out.println("inside clinic if");
-            try (PreparedStatement preparedStatement = connection.prepareStatement(CHECK_OFFICER_LOGIN_VALIDATION)) {
+        else if(post.equals("co")){
+            try (PreparedStatement preparedStatement = connection.prepareStatement(Check_Clinical_Officer)) {
                 preparedStatement.setString(1, officerLogin.getMobile());
                 preparedStatement.setString(2, officerLogin.getPassword());
                 ResultSet rs = preparedStatement.executeQuery();
+//                System.out.println(" --------------------- " + preparedStatement.toString());
 
-
-//                System.out.println("rs -DAO "+rs+"/");
                 while (rs.next()) {
-                    String mobile = rs.getString("mobile");
+                    String mobile = rs.getString("mobile_number");
                     String password = rs.getString("password");
-                    String mac=rs.getString("mac");
-                    System.out.println("mobile "+mobile+"/");
-                    System.out.println("pass "+password+"/");
-                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac==null ) {
-                        System.out.println("null mach");
+                    String mac=rs.getString("device_mac");
+                    String officerpost= officerLogin.getPost();
+                    String assignCity=rs.getString("city");
+                    String assignMOH=rs.getString("assignMOH");
+                    String full_name=rs.getString("full_name");
+                    String nic=rs.getString("nic");
+
+
+
+                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) &&  ( mac==null || mac.equals("") )) {
+                        System.out.println("null mach with correct us ps in co");
                         String updateMAC=officerLogin.getMAC();
-                        try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC)){
+                        try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC_IN_Clinical_Officer)){
                             UpdateStatement.setString(1,updateMAC);
                             UpdateStatement.setString(2,mobile);
                             UpdateStatement.setString(3,password);
@@ -165,53 +196,102 @@ public class OfficerDAO {
                         catch (SQLException throwables) {
                             printSQLException(throwables);
                         }
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC , post);
+                        officerLogindetails.setMessage("new user");
+                        officerLogindetails.setFull_name(full_name);
+                        officerLogindetails.setMohId(assignMOH);
+                        officerLogindetails.setCity(assignCity);
+                        officerLogindetails.setPost(officerpost);
+                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setNIC(nic);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password, mac ,post  );
+                        officerLogindetails.setMessage("mac is OK");
+                        officerLogindetails.setFull_name(full_name);
+                        officerLogindetails.setMohId(assignMOH);
+                        officerLogindetails.setCity(assignCity);
+                        officerLogindetails.setPost(officerpost);
+                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setNIC(nic);
+                        return officerLogindetails;
+                    }
+                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && !mac.equals(officerLogin.getMAC())) {
+                        System.out.println("valid mach");
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password, mac ,post  );
+                        officerLogindetails.setMessage("mac is wrong");
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","" , post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","" , post);
+
         }
-        else if(post.equals("Admin")){
-            System.out.println("inside Admin if");
+        else if(post.equals("admin")){
             try (PreparedStatement preparedStatement = connection.prepareStatement(Check_Admin)) {
                 preparedStatement.setString(1, officerLogin.getMobile());
                 preparedStatement.setString(2, officerLogin.getPassword());
                 ResultSet rs = preparedStatement.executeQuery();
+                System.out.println(" --------------------- " + preparedStatement.toString());
 
-                System.out.println("1mobile "+officerLogin.getMobile()+"/");
-                System.out.println("1pass "+officerLogin.getPassword()+"/");
-                System.out.println("1mac "+officerLogin.getMAC()+"/");
-//                System.out.println("rs -DAO "+rs+"/");
                 while (rs.next()) {
-                    String mobile = rs.getString("Mobile");
-                    String password = rs.getString("Password");
-                    String mac=rs.getString("MAC");
+                    String user_code = rs.getString("user_code");
+                    String password = rs.getString("password");
+                    String mac=rs.getString("device_mac");
+                    String officerpost= officerLogin.getPost();
+                    String full_name=rs.getString("full_name");
+                    String nic=rs.getString("nic");
 
-                    System.out.println("mobile "+mobile+"/");
-                    System.out.println("pass "+password+"/");
-                    System.out.println("mac "+mac+"/");
 
 
-                    if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
+                    if (user_code.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) &&  ( mac==null || mac.equals("") )) {
+                        System.out.println("null mach with correct us ps in co");
+                        String updateMAC=officerLogin.getMAC();
+                        try (PreparedStatement UpdateStatement = connection.prepareStatement(UPDATE_MAC_IN_Clinical_Officer)){
+                            UpdateStatement.setString(1,updateMAC);
+                            UpdateStatement.setString(2,user_code);
+                            UpdateStatement.setString(3,password);
+                            System.out.println("update work"+UpdateStatement);
+                            UpdateStatement.executeUpdate();
+                        }
+                        catch (SQLException throwables) {
+                            printSQLException(throwables);
+                        }
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(user_code, password,updateMAC , post);
+                        officerLogindetails.setMessage("new user");
+                        officerLogindetails.setFull_name(full_name);
+                        officerLogindetails.setPost(officerpost);
+                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setNIC(nic);
+                        return officerLogindetails;
+                    }
+                    if (user_code.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(user_code, password, mac ,post  );
+                        officerLogindetails.setMessage("mac is OK");
+                        officerLogindetails.setFull_name(full_name);
+                        officerLogindetails.setPost(officerpost);
+                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setNIC(nic);
+                        return officerLogindetails;
+                    }
+                    if (user_code.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && !mac.equals(officerLogin.getMAC())) {
+                        System.out.println("valid mach");
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(user_code, password, mac ,post  );
+                        officerLogindetails.setMessage("mac is wrong");
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","" , post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","" , post);
         }
         else if(post.equals("COfficer")){
             System.out.println("inside clinic if");
@@ -256,24 +336,24 @@ public class OfficerDAO {
                         catch (SQLException throwables) {
                             printSQLException(throwables);
                         }
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,updateMAC,post);
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC())) {
                         System.out.println("valid mach");
-                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac);
+                        OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password,mac,post);
                         return officerLogindetails;
                     }
                 }
-                return new OfficerLoginModel("","","");
+                return new OfficerLoginModel("","","",post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
             }
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","",post);
         }
         else{
             System.out.println("inside else");
-            return new OfficerLoginModel("","","");
+            return new OfficerLoginModel("","","",post);
         }
 
     }

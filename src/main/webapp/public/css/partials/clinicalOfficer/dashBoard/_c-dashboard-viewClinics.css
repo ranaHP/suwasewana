@@ -9,7 +9,8 @@ body{
     flex-direction: column;
     transition: 0.2s ease;
     margin-left: 78px;
-    background-color:#dfe4ea59;
+    /*background-color:#dfe4ea59;*/
+    background-image: linear-gradient(to right top, #f0fffe, #f4ffff, #f9feff, #fdfeff, #ffffff);
     max-width: calc(100vw - 78px);
     /*background-color: red;*/
     min-height: 100vh;
@@ -107,6 +108,7 @@ button{
     font-size: .9em;
     letter-spacing: .1em;
     cursor: pointer;
+    padding: 5px 10px
 }
 .card-containor{
     display: flex;
@@ -117,12 +119,12 @@ button{
     padding-top: 10px;
     margin: 0px;
 }
-.right .live-card-title{
-    margin: 14px 32px 15px 0px;
-    padding: 10px 5px;
-    text-align: center;
-    font-size: 1.2em;
-}
+/*.right .live-card-title{*/
+/*    margin: 14px 32px 15px 0px;*/
+/*    padding: 10px 5px;*/
+/*    text-align: center;*/
+/*    font-size: 1.2em;*/
+/*}*/
 .live-card{
     justify-content: space-around;
     align-items: center;
@@ -132,11 +134,13 @@ button{
     height: 350px;
     color: rgba(6, 6, 6, 0.45);
     font-family: Arial;
-    box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.16);
+    box-shadow: 1px 3px 6px rgb(0 0 0 / 16%);
     margin:15px;
     cursor: pointer;
+    background-color: #fff;
     transition: 0.9s;
-    background-color: white;
+    /*background-color: white;*/
+    border: 1px solid rgba(128, 128, 128, 0.2);
 }
 /* .live-card:hover{
     transform: scale(1.03);
@@ -179,13 +183,14 @@ span{
     font-family: Segoe UI;
 }
 .delete-button{
-    padding: 2px 18px;
-    /*margin: 2px 2px 7px 2px;*/
-    background-color: #EB3B5A;
-    border-radius: 2px;
+    background-color: #d9534f;
+    border-radius: 1px;
     color: white;
     cursor: pointer;
+    text-align: center;
     font-size: .9em;
+    padding: 3px;
+    margin-top: 2px;
 }
 .buttons{
     display: flex;
@@ -193,14 +198,14 @@ span{
     justify-content: space-around;
 }
 .edit-button{
-    padding: 2px 18px;
     /*margin: 2px 2px 7px 2px;*/
     background-color: #F0AD4E;
-    border-radius: 2px;
+    border-radius: 1px;
     color: white;
     cursor: pointer;
     text-align: center;
     font-size: .9em;
+    margin-top: 2px;
 }
 .current-participant-count{
     display: flex;

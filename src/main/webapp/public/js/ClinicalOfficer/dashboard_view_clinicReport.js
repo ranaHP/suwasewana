@@ -61,7 +61,7 @@ function chart1(data,today){
     console.log("a")
     console.log(data)
     var myChart = new Chart(ctx, {
-        type: 'bar',
+        type: 'pie',
         data: {
             labels: lables,
             datasets: [{
@@ -69,7 +69,11 @@ function chart1(data,today){
                 data: count,
                 backgroundColor: [
                     'rgba(255,159,64,0.62)',
-                    // 'rgba(64,255,204,0.2)'
+                    'rgba(64,255,204,0.2)',
+                    'rgba(64,255,131,0.62)',
+                    'rgba(255,0,0,0.85)',
+                    'rgba(64,160,255,0.2)',
+                    'rgba(201,64,255,0.2)'
                 ],
                 borderColor: [
                     'rgba(54, 162, 235, 1)',
@@ -95,10 +99,10 @@ function destroy(data,today){
 
 
     console.log(a)
-    chart3(clinicListArray,today)
+    chart3(clinicListArray,sdate,edate)
 }
 
-function chart3(data,today){
+function chart3(data,start,end){
     feather.replace()
     var ctx = document.getElementById('a').getContext('2d');
     let lables=[];
@@ -116,7 +120,7 @@ function chart3(data,today){
         data: {
             labels: lables,
             datasets: [{
-                label:"up to " + today.getFullYear()+" / "+ (today.getMonth()+1) +" / "+ today.getDate(),
+                label:"from " + start+ " to " +end,
                 data: count,
                 backgroundColor: [
                     'rgba(255,159,64,0.62)',

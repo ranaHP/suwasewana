@@ -743,47 +743,18 @@ class SuwasewanaPopup{
                         <label style=" width:150px">Title</label>
                         <input type="text" value="${data[0].tittle}"  id="tittle" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                    
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style=" width:150px">DateandTime</label>
-                        <input type="datetime-local"  id="start_date_time" value="${data[0].start_date_time}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style=" width:150px">Duration</label>
-                        <input type="text"  id="duration" value="${data[0].duration}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
+             
+              
                      <div style="margin-bottom: 5px;display: flex">
                         <label style=" width:150px">Limit sheats</label>   
                         <input type="text"  id="max_patient" value="${data[0].limit_sheats}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
-                     
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style=" width:150px">Available sheats</label>   
-                        <input type="text"  id="max_patient" value="${data[0].max_patient}" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
-                     
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style="width:150px">Location</label>
-                        <input type="text" value="${data[0].location}"  id="location" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
-                    
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style="width:150px">Upper age limit</label>
-                        <input type="text" value="${data[0].Lower_Age}"  id="Lage_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
-                    
-                    <div style="margin-bottom: 5px;display: flex">
-                        <label style="width:150px">Lower age limit</label>
-                        <input type="text" value="${data[0].Upper_Age}"  id="Uage_limit" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
-                    </div>
+                
                     
                     
                     <div style="margin-bottom: 5px;display: flex">
                          <label style="width:150px">Dose count</label>    
-                        <input type="text" value="${data[0].dose_count}"  id="dose_count" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                        <input type="number" value="${data[0].dose_count}"  id="dose_count" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
                     </div>
 
                 </div>
@@ -1401,6 +1372,35 @@ class SuwasewanaPopup{
                     </div>
                 </div>`;
 
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    showcliniceditsuccessMessage(data){
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">  Clinic view Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>`;
+        }else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Clinic view Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
+            </div>`;
+        }
         eventsContaier.appendChild(eventDiv);
 
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);

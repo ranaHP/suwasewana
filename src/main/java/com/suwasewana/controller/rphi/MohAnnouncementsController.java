@@ -8,6 +8,7 @@ import com.suwasewana.model.RPHIAnnouncementsModel;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,14 +47,25 @@ public class MohAnnouncementsController extends HttpServlet{
 
     private void createA(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("came to controller 1");
+        String nic="199910910064";
+        String  moh = "1003";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                    moh = cookie.getValue().split("/")[4];
+                }
+            }
+        }
         MohAnnouncementsModel MohAnnouncements = new MohAnnouncementsModel(
                 "",
                 req.getParameter("title"),
                 req.getParameter("description"),
                 req.getParameter("image"),
-                "1002",
+                moh,
                 "",
-                "199910910061",
+                nic,
                 req.getParameter("expire_date")
         );
         String result= rphiAnnouncementsDAO.createMohA(MohAnnouncements);

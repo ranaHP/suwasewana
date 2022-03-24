@@ -26,11 +26,13 @@ public class createClinicDAO {
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=?; ";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.vcs_id=?;";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
-  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `duration` = ? , `limit_sheats` = ? ,`lower_age_limit`=? ,`upper_age_limit`=?  ,`location`= ?  , `dose_count`= ? ,`start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
+  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `limit_sheats` = ? ,`dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String RESHEDULE_VCLINICS="UPDATE `vaccine_clinic_session` SET `start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String ClinicCount="SELECT COUNT(ncs_id), date FROM `normal_clinic_session` GROUP BY `date`;";
   private static final String UpdateAvailSheats="UPDATE `normal_clinic_session` SET `Avail_seats` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
   private static final String vaccinecount="SELECT COUNT(vcs_id),name FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=? GROUP BY `name` ;";
+  private static final String VClinicRegiserCount="SELECT * FROM `user_vaccine` vc  left join `user` v on v.uNic=vc.nic WHERE vc.clinic_id =?";
+
   Connection connection;
     public createClinicDAO(){
         DB db = new DB();
@@ -388,16 +390,16 @@ public class createClinicDAO {
             System.out.println("came to update");
 //            preparedStatement.setString(1,"");
             preparedStatement.setString(1,Updatevclinic.getTittle());
-            preparedStatement.setString(2,Updatevclinic.getDuration());
-            preparedStatement.setString(3,Updatevclinic.getLimit_sheats());
-            preparedStatement.setString(4,Updatevclinic.getLower_Age());
-            preparedStatement.setString(5,Updatevclinic.getUpper_Age());
+//            preparedStatement.setString(2,Updatevclinic.getDuration());
+            preparedStatement.setString(2,Updatevclinic.getLimit_sheats());
+//            preparedStatement.setString(4,Updatevclinic.getLower_Age());
+//            preparedStatement.setString(5,Updatevclinic.getUpper_Age());
 //            preparedStatement.setString(5,Updatevclinic.getV_id());
-            preparedStatement.setString(6,Updatevclinic.getLocation());
-            preparedStatement.setString(7,Updatevclinic.getDose_count());
-            preparedStatement.setString(8,Updatevclinic.getStart_date_time());
+//            preparedStatement.setString(6,Updatevclinic.getLocation());
+            preparedStatement.setString(3,Updatevclinic.getDose_count());
+//            preparedStatement.setString(8,Updatevclinic.getStart_date_time());
 //            preparedStatement.setString(6,Updatevclinic.getTarget_moh());
-            preparedStatement.setString(9,Updatevclinic.getVcs_id());
+            preparedStatement.setString(4,Updatevclinic.getVcs_id());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);
@@ -804,6 +806,46 @@ public class createClinicDAO {
         return null;
     }
 
+    public ArrayList<vaccineClinicModel> VclinicRegisterNumList(vaccineClinicModel vclinicRegisterNumList) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(NormalC_registeredNList)){
+            System.out.println("select for msg");
+            preparedStatement.setString(1, vclinicRegisterNumList.getVcs_id());
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs.toString());
+            ArrayList<vaccineClinicModel> vclinicRegisterNumLists = new ArrayList<vaccineClinicModel>();
+            System.out.println(rs);
+            while (rs.next()){
+                String clinicID =rs.getString("ncs_id");
+                String numbers = rs.getString("uMobile");
+                vaccineClinicModel temp = new vaccineClinicModel(
+                        clinicID,
+                        "",
+                        "",
+                        "",
+                        numbers,
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+
+
+                );
+                vclinicRegisterNumLists.add(temp);
+//               System.out.println(numberlist);
+//                System.out.println(title+"--"+disease+"--"+Location);
+            };
+            return vclinicRegisterNumLists;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+//            return throwables.getMessage();
+        }
+        return null;
+    }
 }
 
 

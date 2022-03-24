@@ -75,7 +75,7 @@
         <div class="c-right-container">
             <div class="noclinic">
                 <div class="ncimg">
-                    <img src="<c:url value="/public/images/Image 5.png"/>" alt="" srcset="" width="70%">
+                    <img src="<c:url value="/public/images/PHI_Dashboard/appointmnet_banner.png"/>" alt="" srcset="" width="70%">
                 </div>
                <div style="display: flex">
                    <div class="nc-amount">
@@ -225,7 +225,10 @@ patient_growth()
             function(data,status){
                 clinicListArray1=JSON.parse(data)
                 clinicList3.setData(clinicListArray1);
+                console.log("ppppppppppp")
+                console.log(clinicListArray1)
                 document.getElementById("vc-count").innerHTML=clinicListArray1.length;
+                // document.getElementById("amount").innerHTML=clinicListArray1.length;
 
             }
         );
@@ -334,6 +337,18 @@ patient_growth()
                 // alert("wrong")
                 // alert(data)
                 popup.hidePopup()
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully Edit!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic Edit Fails !',
+                        data: data
+                    });
+                }
             });
 
         return false;
@@ -361,6 +376,18 @@ patient_growth()
                 // alert("wrong")
                 // alert(data)
                 popup.hidePopup()
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully rescheduled!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic reschedule Fails !',
+                        data: data
+                    });
+                }
             });
 
         return false;
@@ -524,6 +551,18 @@ patient_growth()
         $.post(myUrl+"/create-clinic-controller/resheduleclinic",
             reqData,
             function (data,status){
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully rescheduled!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic reschedule Fails !',
+                        data: data
+                    });
+                }
                 // alert("wrong")
                 // alert(data)
             });
@@ -567,6 +606,18 @@ patient_growth()
             function (data,status){
                 // alert("wrong")
                 // alert(data)
+                if (data.includes("success")) {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'success',
+                        message: 'Clinic Successfully Edit!'
+                    });
+                } else {
+                    popup. showcliniceditsuccessMessage({
+                        status: 'fail',
+                        message: 'Clinic Edit Fails !',
+                        data: data
+                    });
+                }
             });
 
         return false;

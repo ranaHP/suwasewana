@@ -3,6 +3,8 @@
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+
 .maincontainer{
     display: flex;
     flex-direction: column;
@@ -42,7 +44,7 @@
     justify-content: center;
 }
 .login-form{
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
     width: 100% ;
     min-height: 500px;
     display: flex;
@@ -124,10 +126,10 @@
     padding-bottom: 1.1px;
     width: 70px;
     border-radius: 2px;
-    height: 20px;
+    height: 35px;
     color: aliceblue;
     font-weight: 500;
-    font-size: 0.7em;
+    font-size: 0.8em;
     cursor: pointer;
 }
 

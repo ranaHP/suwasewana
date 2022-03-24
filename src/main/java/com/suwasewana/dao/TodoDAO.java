@@ -175,7 +175,7 @@ public class TodoDAO {
 
             Date d1 = sdformat.parse(today);
 
-
+//            System.out.println("Todaye "+d1);
 
 
 
@@ -206,11 +206,6 @@ public class TodoDAO {
                         }
                     }
                 }
-
-
-
-
-
             }
 
 
