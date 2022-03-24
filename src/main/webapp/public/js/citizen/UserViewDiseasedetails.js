@@ -3,7 +3,7 @@ let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + 
 class view_disease_details{
     diseasearrayy=[
         {
-
+            d_id:"",
             name:"",
             description:""
             // EmergencyContact
@@ -16,15 +16,20 @@ class view_disease_details{
     constructor(container) {
         this.container = document.getElementById(container);
     }
-    setData(data) {
+    setData(data,id) {
+        let a=id;
         // console.log(data)
-        if(!data) return;
-        this. diseasearrayy = data;
+        if (!data) return;
+        this.diseasearrayy = data;
         // console.log(data);
         // console.log(this.diseasearrayy.name)
+
+        console.log(this.diseasearrayy.d_id)
+        if (a==data.d_id) {
+
         data.map((item) => {
 
-            let a = item.name
+                // let a = item.name
 
 
                 this.container.innerHTML += `
@@ -32,7 +37,7 @@ class view_disease_details{
 
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
                         <div class="dd-name" id="dd-name">Diseas : ${item.name}</div>
-                        <button class="submitBtn" onclick="RegisterForDisease('`+item.name +`')"> Register as Patient </button>
+                        <button class="submitBtn" onclick="RegisterForDisease('` + item.name + `')"> Register as Patient </button>
                     </div>
                     <div class="row1">
                         <div class="summary">
@@ -374,6 +379,7 @@ class view_disease_details{
 
             }
         )
+    }
     }
 
 }

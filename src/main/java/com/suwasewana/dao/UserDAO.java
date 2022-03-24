@@ -1161,16 +1161,18 @@ public class UserDAO {
         return null;
     }
 
-    public ArrayList<UserDiseaseModel> UserViewDiseaseDetails(UserDiseaseModel userdisease) {
+    public ArrayList<UserDiseaseDetailsModel> UserViewDiseaseDetails(UserDiseaseDetailsModel userdisease) {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_DISEASE_DETAILS)) {
             ResultSet rs= preparedStatement.executeQuery();
-            ArrayList<UserDiseaseModel> viewdiseasedetails = new ArrayList<UserDiseaseModel>();
+            ArrayList<UserDiseaseDetailsModel> viewdiseasedetails = new ArrayList<UserDiseaseDetailsModel>();
             System.out.println("data dao");
             while (rs.next()){
+                String d_id = rs.getString("d_id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
-                UserDiseaseModel temp = new UserDiseaseModel(
+                UserDiseaseDetailsModel temp = new UserDiseaseDetailsModel(
+                        d_id,
                         name,
                         description
                 );
@@ -1277,18 +1279,20 @@ public class UserDAO {
         return null;
     }
 
-    public ArrayList<UserDiseaseModel> SearchDiseaseDetails(String title) {
+    public ArrayList<UserDiseaseDetailsModel> SearchDiseaseDetails(String title) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_SEARCH_DISEASE_DETAILS)) {
             preparedStatement.setString(1, title);
 
             ResultSet rs= preparedStatement.executeQuery();
-            ArrayList<UserDiseaseModel> viewdiseasedetails = new ArrayList<UserDiseaseModel>();
+            ArrayList<UserDiseaseDetailsModel> viewdiseasedetails = new ArrayList<UserDiseaseDetailsModel>();
             System.out.println("data dao");
             while (rs.next()){
+                String d_id = rs.getString("d_id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
-                UserDiseaseModel temp = new UserDiseaseModel(
+                UserDiseaseDetailsModel temp = new UserDiseaseDetailsModel(
+                        d_id,
                         name,
                         description
                 );

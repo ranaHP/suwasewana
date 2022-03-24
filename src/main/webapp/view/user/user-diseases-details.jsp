@@ -717,6 +717,7 @@
 <%--</script>--%>
 <script>
     getAllDisease();
+    // let a = id;
     let typedatalist={};
     function getAllDisease() {
         let diseasearray = [];
@@ -724,6 +725,9 @@
             {},
             function (data, status) {
                 diseasearray = JSON.parse(data);
+                // console.log("kkkkk")
+                // console.log(diseasearray[a])
+                // console.log("cccccccc")
                 typedatalist=diseasearray;
                 document.getElementById("dashboard-container").innerHTML = " ";
                 disease.setData(diseasearray);
@@ -746,6 +750,7 @@
                 rs.map((element) => {
                         PNames.innerHTML+= '<option id="'+id+'" name="'+ element.name +'"  value="'+ element.name +'"   option="'+ element.name +'" ></option>'
                         id++
+
                 })
 
             }
@@ -765,14 +770,16 @@
             Diseaseid=(datalist.options.namedItem(CTypeObj.value).id);
         }
         console.log("d id= "+Diseaseid)
-        alert("fdffddfd")
+        getAllDisease()
+        disease.setData(Diseaseid)
+        // alert("fdffddfd")
         return false;
     }
 </script>
 
 
 
-<script deffer>
+<script defer>
 
     function RegisterForDisease(name){
 

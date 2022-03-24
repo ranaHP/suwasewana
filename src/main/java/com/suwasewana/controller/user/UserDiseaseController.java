@@ -3,6 +3,7 @@ package com.suwasewana.controller.user;
 import com.google.gson.Gson;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.User;
+import com.suwasewana.model.UserDiseaseDetailsModel;
 import com.suwasewana.model.UserDiseaseModel;
 
 import javax.servlet.RequestDispatcher;
@@ -107,11 +108,12 @@ public class UserDiseaseController extends HttpServlet {
 
     private void UserviewDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        System.out.println("dta controllwe");
-        UserDiseaseModel userdisease = new UserDiseaseModel(
+        UserDiseaseDetailsModel userdisease = new UserDiseaseDetailsModel(
+                "",
                 "",
                 ""
         );
-        ArrayList<UserDiseaseModel> result = userDAO.UserViewDiseaseDetails(userdisease);
+        ArrayList<UserDiseaseDetailsModel> result = userDAO.UserViewDiseaseDetails(userdisease);
         res.getWriter().println(gson.toJson(result));
 
     }
@@ -122,7 +124,7 @@ public class UserDiseaseController extends HttpServlet {
         System.out.println("type"+req.getParameter("complaintype"));
         String title=req.getParameter("complaintype");
 
-        ArrayList<UserDiseaseModel> result = userDAO.SearchDiseaseDetails(title);
+        ArrayList<UserDiseaseDetailsModel> result = userDAO.SearchDiseaseDetails(title);
         res.getWriter().println(gson.toJson(result));
     }
 
