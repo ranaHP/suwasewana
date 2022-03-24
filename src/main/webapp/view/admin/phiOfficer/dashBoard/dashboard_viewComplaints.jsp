@@ -208,7 +208,7 @@
             function (data, status) {
                 let complainList = JSON.parse(data);
                 complainlist=complainList;
-
+                console.log("comaplain data "+data)
                 // fill pending done in progress count
                 // let pendin=0;
                 // let done=0;
@@ -292,7 +292,7 @@
                 document.getElementById("Progress").innerText=progress;
 
 
-                complain.setDataForPHI(complainList);
+                // complain.setDataForPHI(complainList);
 
                 // fill compalain details
 

@@ -317,6 +317,7 @@ public class ComplainDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(Complain_types)) {
             preparedStatement.setString(1, nic);
             ResultSet rs = preparedStatement.executeQuery();
+            System.out.println("preparedStatement "+preparedStatement);
             ArrayList<CommanForCompalinAndUser> complainListForPHI = new ArrayList<CommanForCompalinAndUser>();
             while (rs.next()) {
                 String comp_id = rs.getString("comp_id");

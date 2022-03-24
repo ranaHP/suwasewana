@@ -119,7 +119,15 @@ public class UserComplainController extends HttpServlet {
         String title=req.getParameter("Title");
         String type=req.getParameter("complaintype");
         String nic=req.getParameter("nic");
-
+        nic="199910910062";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         ArrayList<ComplainModel> result = userDAO.SearchComplainDetails(title,type,nic);
         res.getWriter().println(gson.toJson(result));
     }
