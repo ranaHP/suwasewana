@@ -148,7 +148,7 @@
                         document.getElementById("user-password").value + "&Post=" +
                         document.getElementById('officer_types').value;
                     const xhttp = new XMLHttpRequest();
-                    console.log(url)
+                    // console.log(url)
                     xhttp.onload = function () {
 
                         let result = JSON.parse(this.response);

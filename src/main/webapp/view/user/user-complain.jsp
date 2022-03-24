@@ -235,7 +235,7 @@
                             <div class="row">
                                 <div class="form-group">
                                     <label for="cTitle">
-                                        complaint Title
+                                        Complaint Title
                                     </label>
                                     <input type="text" name="name" id="cTitle" autocomplete="off" autofocus
                                            onkeydown="validation.checklength(
@@ -252,7 +252,7 @@
                             <div class="row">
                                 <div class="form-group">
                                     <label for="complaintType">
-                                        complaint Type
+                                        Complaint Type
                                     </label>
                                     <input id="complaintType" type="text" list="allcomplaintType"
                                            name="complaintType" autocomplete="off"
