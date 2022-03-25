@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_PHI.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
 <%--    <script defer src="<c:url value="/public/js/Admin/view_PHI.js"></c:url> "></script>--%>
 </head>
 <body id="mainContent">
@@ -22,6 +24,7 @@
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Admin/Dashboard/View PHI</div>
     </div>
+    <div class="mypopup" id="popup" style="display: none;"></div>
     <!-- view phi title -->
     <div class="main-title">
         View phi
@@ -46,7 +49,7 @@
 </div>
 <script>
     feather.replace(({width:"10px",height:"10px"}))
-
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     var body=document.getElementById("mainContent")
     var tbl = document.createElement("table");
@@ -88,9 +91,9 @@
                <td data-label="MOHName">` + item.City + `</td>
                 <td data-label="Didtrict">` + item.assignCity + `</td>
                 <td data-label="Head">` + item.phi_post + `</td>
-                <td data-label="Mobile">`+item.NIC + `</td>
-                <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
-                <td class="Block"  data-label="block" onclick="block()"><button>Block</button></td>
+                <td data-label="Mobile">`+item.mobile + `</td>
+                <td class="update"  data-label="ReNew" onclick="popup.showRenewAlertMessage('`+item.NIC+`')"><button>Re New MAC</button></td>
+                <td class="Block"  data-label="block" onclick="popup.showBlockAlertMessage('`+item.NIC+`')"><button>Block</button></td>
 
 
 
@@ -157,7 +160,7 @@
                 <td data-label="Head">` + item.phi_post + `</td>
                 <td data-label="Mobile">`+item.NIC + `</td>
                 <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
-                <td class="Block"  data-label="block" onclick="block(`+item.NIC +`)"><button>Block</button></td>
+                <td class="Block"  data-label="block" onclick="popup.showBlockAlertMessage('`+item.NIC+`')" ><button>Block</button></td>
 
 
 
@@ -174,7 +177,56 @@
 
 
     function block(data){
-        alert(data)
+        // alert(data)
+        let reqData =
+            {
+                id: data,
+            };
+        $.post(myUrl+"/admin-controller/block",
+            reqData,
+            function (data, status) {
+                if (data.includes("success")) {
+                    popup.hidePopup()
+                    popup. showBlockSuccessMessage({
+                        status: 'success',
+                        message: 'Officer successfully blocked!'
+                    });
+
+                } else {
+                    popup. showBlockSuccessMessage({
+                        status: 'fail',
+                        message: 'Officer block failed !',
+                        data: data
+                    });
+                }
+
+            })
+    }
+
+    function renew(data){
+        // alert(data)
+        let reqData =
+            {
+                id: data,
+            };
+        $.post(myUrl+"/admin-controller/renew",
+            reqData,
+            function (data, status) {
+                if (data.includes("success")) {
+                    popup.hidePopup()
+                    popup. showRenewSuccessMessage({
+                        status: 'success',
+                        message: 'Mac renew success!'
+                    });
+
+                } else {
+                    popup. showRenewSuccessMessage({
+                        status: 'fail',
+                        message: 'Mac renew failed !',
+                        data: data
+                    });
+                }
+            })
     }
 
 </script>

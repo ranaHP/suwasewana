@@ -215,13 +215,8 @@
     <div class="first-row">
       <img src="<c:url value="/public/images/logo.png "/>"  width="45px" />
       <div class="navbar-container">
-        <ul class="navbar">
-          <li class="nav-item"> Home </li>
-          <li class="nav-item"> Diseases </li>
-          <li class="nav-item"> Announcement </li>
-          <li class="nav-item"> Clinik </li>
-          <li class="nav-item"> Appointment </li>
-          <li class="nav-item special-nav"> Request Ambulance </li>
+        <ul class="navbar navbar1">
+          <script> let navs1 =  new Navbar(); navs.showHeaderNavItems("navbar1"); </script>
         </ul>
       </div>
     </div>

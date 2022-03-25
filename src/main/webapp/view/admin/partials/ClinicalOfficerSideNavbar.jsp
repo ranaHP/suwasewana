@@ -50,23 +50,11 @@
             </ul>
         </li>
 
+
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bxs-bell-plus'></i>
-                    <span class="link_name">Create Announcements</span>
-                </a>
-                <i class='bx bxs-chevron-down arrow'></i>
-            </div>
-            <ul class="sub-menu">
-                <li><a href="/test_war_exploded/s/select-announcements">Create Normal clinic Announcement </a></li>
-<%--                <li><a href="/test_war_exploded/s/vaccine_announcements">Create Vaccine clinic Announcement </a></li>--%>
-            </ul>
-        </li>
-        <li>
-            <div class="iocn-link">
-                <a href="#">
-                    <i class='bx bxs-bell-plus'></i>
+                    <i class='bx bx-compass'></i>
                     <span class="link_name">View clinics</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
@@ -77,11 +65,23 @@
 
             </ul>
         </li>
-
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bxs-bell-plus'></i>
+                    <i class='bx bx-book-alt'></i>
+                    <span class="link_name">Create Announcements</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a href="/test_war_exploded/s/select-announcements">Create Normal clinic Announcement </a></li>
+                <%--                <li><a href="/test_war_exploded/s/vaccine_announcements">Create Vaccine clinic Announcement </a></li>--%>
+            </ul>
+        </li>
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bx-compass'></i>
                     <span class="link_name">view Announcement</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
@@ -97,7 +97,7 @@
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bxs-bell-plus'></i>
+                    <i class='bx bx-plus-medical'></i>
                     <span class="link_name">Add vaccine</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>

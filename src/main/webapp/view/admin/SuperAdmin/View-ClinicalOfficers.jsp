@@ -113,8 +113,7 @@
                     document.getElementById('select1').appendChild(option)
                 })
                 //
-                let postlist=["PHI","RPHI"]
-                postlist.map(name=>{
+                districtList.map(name=>{
                     console.log(name)
                     let option= document.createElement('option')
                     option.value=name
