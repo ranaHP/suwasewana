@@ -7,19 +7,30 @@ public class UserGovermentAnnouncementModel {
     String description ;
     String banner;
     String expire_date;
+    String uNic;
 
     public UserGovermentAnnouncementModel(
             String announcement_id,
             String title ,
             String description ,
             String banner,
-            String expire_date
+            String expire_date,
+            String uNic
     ){
         this.announcement_id = announcement_id;
         this.title  = title ;
         this.description  = description ;
         this.banner = banner;
         this.expire_date = expire_date;
+        this.uNic = uNic;
+    }
+
+    public String getuNic() {
+        return uNic;
+    }
+
+    public void setuNic(String uNic) {
+        this.uNic = uNic;
     }
 
     public String getAnnouncement_id() {

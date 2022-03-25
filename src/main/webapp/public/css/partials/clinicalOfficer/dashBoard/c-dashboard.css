@@ -359,8 +359,12 @@ label{
         margin-top: 0;
     }
 
+
 }
 @media only screen and (max-width: 987px ){
+    .ncimg{
+        display: none;
+    }
     .reschdulebtn{
         margin-bottom: -63px;
         margin-right: 275px
@@ -435,7 +439,7 @@ label{
     }
     .reschdulebtn{
         position: absolute;
-        right: 7px;
+        /*right: 7px;*/
         bottom: 6px;
     }
     .c-container-right h4{
@@ -460,9 +464,7 @@ label{
     }
 }
 @media only screen and (max-width: 704px ){
-    .ncimg{
-        display: none;
-    }
+
     .noclinic{
         height: unset;
     }
@@ -471,22 +473,27 @@ label{
         align-items: center;
         padding: 0;
     }
+   .clinic-card{
+       width: 50%;
+   }
 }
 @media only screen and (max-width: 688px ){
     .clinic-list{
-        height: 20vh;
+        overflow-y: auto;
     }
-    .upcomin-clinic{
-        height: 22vh;
+    /*.upcomin-clinic{*/
+    /*    height: 22vh;*/
+    /*}*/
+
+
+    /*#chart2{*/
+    /*    margin-top: 30px;*/
+    /*    margin-bottom: 70px;*/
+    /*}*/
+
+    .c-db-container{
+       padding: 0;
     }
-
-
-    #chart2{
-        margin-top: 30px;
-        margin-bottom: 70px;
-    }
-
-
     .c-container-right{
         margin-top: 20px;
         width: 100%;
@@ -507,10 +514,10 @@ label{
     .diseases{
         height: 100%;
     }
-    .clinic-card{
-        width: 40vw;
-        height: 15vh;
-    }
+    /*.clinic-card{*/
+    /*    width: 40vw;*/
+    /*    height: 15vh;*/
+    /*}*/
     .c-right-container{
         flex-direction: column;
     }
@@ -551,6 +558,9 @@ label{
     .nc-amount{
         font-size: 0.7em;
     }
+    .clinic-card{
+        width: 50%;
+    }
 
 
 }
@@ -560,44 +570,49 @@ label{
         width: 100%;
     }
     .clinic-list{
-        flex-direction: column;
-        height: 30vh;
-        margin-top: 10px;
+        /*flex-direction: column;*/
+        /*height: 30vh;*/
+        /*margin-top: 10px;*/
+        overflow-y: scroll;
     }
     .upcomin-clinic{
         height: 35vh;
     }
-    .growth-calander{
-        margin-top: 40px;
+    .calander{
+        display: none;
     }
-    .clinic-card{
-        width: 87%;
-        height: 14vh;
-    }
+    /*.growth-calander{*/
+    /*    margin-top: 40px;*/
+    /*}*/
+    /*.clinic-card{*/
+    /*    width: 87%;*/
+    /*    !*height: 14vh;*!*/
+    /*}*/
     .icon{
         display: none !important;
     }
     h4{text-align: center;}
     #chart2{
         margin-bottom: 0;
+        display: none;
     }
     .chart{
         /*height: 18vh !important;*/
         /* background-color: #019686; */
+        display: none;
     }
     .c-container-right{
-        margin-top:10px;
-
+        display: none;
     }
-    .c-container-right h4{
-        font-weight: 400;
-        font-size: 1.1em;
-    }
-    .card-right{
-        right: 0;
-        bottom: 25px;
-        width: 30%;
-    }
+    /*.c-container-right h4{*/
+    /*    font-weight: 400;*/
+    /*    font-size: 1.1em;*/
+    /*}*/
+    /*.card-right{*/
+    /*    right: 0;*/
+    /*    bottom: 25px;*/
+    /*    width: 30%;*/
+    /*}*/
     .amount{
         font-size: 1em;
     }

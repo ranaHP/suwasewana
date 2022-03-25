@@ -24,7 +24,7 @@
 
   <!-- moh list  -->
   <script src="<c:url value="/public/js/MOHSelectGenarator.js"/>"></script>
-
+  <script src="<c:url value="/public/js/navbar.js"/>"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
@@ -41,12 +41,7 @@
         </div>
         <div class="navbar-container">
           <ul class="navbar">
-            <li class="nav-item"> Home </li>
-            <li class="nav-item"> Diseases </li>
-            <li class="nav-item"> Announcement </li>
-            <li class="nav-item"> Clinik </li>
-            <li class="nav-item"> Appointment </li>
-            <li class="nav-item special-nav"> Request Ambulance </li>
+            <script> let navs =  new Navbar(); navs.showHeaderNavItems("navbar"); </script>
           </ul>
         </div>
         <div class="login-register-container">
@@ -85,8 +80,9 @@
         <div class="dashboard-icon-set">
 
           <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/grid.svg "/>"  width="20px" />
+            <div class="dash-icon" onclick="dashboard()">
+
+              <img src="<c:url value="/public/images/icons/grid.svg"/>" width="20px" />
               <!-- <object data="images/icons/grid.svg" width="20px" height="20px" style="color: brown;"> </object> -->
             </div>
             <div class="dash-title">
@@ -94,67 +90,52 @@
             </div>
           </div>
           <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/activity.svg "/>"  width="20px" />
+            <div class="dash-icon" onclick="Diseases()">
+              <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
             </div>
             <div class="dash-title">
               Diseases
             </div>
           </div>
-          <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/volume-2.svg "/>" width="20px" />
+          <div class="dash-tab" >
+            <div class="dash-icon" onclick="Announcement()">
+              <img src="<c:url value="/public/images/icons/volume-2.svg"/>" width="20px" />
             </div>
             <div class="dash-title">
               Announcement
             </div>
           </div>
           <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/layers.svg "/>"  width="20px" />
+            <div class="dash-icon" onclick="Clinic()">
+              <img src="<c:url value="/public/images/icons/layers.svg"/>" width="20px" />
             </div>
             <div class="dash-title">
               Clinic
             </div>
           </div>
           <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/activity.svg"/>"  width="20px" />
+            <div class="dash-icon" onclick="Complain()">
+              <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
             </div>
             <div class="dash-title">
               Complain
             </div>
           </div>
           <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/calendar.svg "/>"  width="20px" />
+            <div class="dash-icon" onclick="Appoiment()">
+              <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px" />
             </div>
             <div class="dash-title">
               Appoiment
             </div>
           </div>
           <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/edit.svg "/>"  width="20px" />
+            <div class="dash-icon" onclick="vaccine()">
+              <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
             </div>
+
             <div class="dash-title">
-              Edite Profile
-            </div>
-          </div>
-          <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/activity.svg "/>"  width="20px" />
-            </div>
-            <div class="dash-title">
-              Patient
-            </div>
-          </div>
-          <div class="dash-tab">
-            <div class="dash-icon">
-              <img src="<c:url value="/public/images/icons/activity.svg "/>"  width="20px" />
-            </div>
-            <div class="dash-title">
-              Support
+              vaccine
             </div>
           </div>
 
@@ -358,6 +339,54 @@
             }
     );
   }
+
+  function dashboard(){
+    let url=myUrl+"/s/"
+    console.log("Url "+url)
+    location.href=(myUrl + "/s/");
+  }
+
+  function Diseases(){
+    let url=myUrl+"/s/"
+    console.log("Url "+url)
+    location.href=(myUrl + "/s/"+"diseases");
+  }
+
+  function Announcement(){
+    let url=myUrl+"/s/"
+    console.log("Url "+url)
+    location.href=(myUrl + "/s/"+"announcement");
+  }
+
+  function Clinic(){
+    let url=myUrl+"/s/"
+    console.log("Url "+url)
+    location.href=(myUrl + "/s/"+"clinic");
+  }
+
+  function Complain(){
+    let url=myUrl+"/s/"
+    console.log("Url "+url)
+    location.href=(myUrl + "/s/"+"complain");
+  }
+
+  function Appoiment(){
+    let url=myUrl+"/s/"
+    console.log("Url "+url)
+    location.href=(myUrl + "/s/"+"appointment");
+  }
+  function vaccine(){
+    let url=myUrl+"/s/"
+    console.log("Url "+url)
+    location.href=(myUrl + "/s/"+"Register-for-vaccine");
+  }
+
+  function Edit(){
+    let url=myUrl+"/s/"
+    console.log("Url "+url)
+    location.href=(myUrl + "/s/");
+  }
+
 
   function loadPAge(v_id){
     window.location='http://localhost:8080/suwasewana_war/s/'+v_id+'/vaccine-details';

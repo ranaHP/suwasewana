@@ -51,6 +51,12 @@ public class UserComplainController extends HttpServlet {
                 case "moh":
                     ViewMOH(req,res);
                     break;
+                case "district":
+                    ViewDistrict(req,res);
+                    break;
+                case "city":
+                    ViewCity(req,res);
+                    break;
                 case "create":
                     uerMakeComplain(req, res);
                     break;
@@ -119,7 +125,15 @@ public class UserComplainController extends HttpServlet {
         String title=req.getParameter("Title");
         String type=req.getParameter("complaintype");
         String nic=req.getParameter("nic");
-
+        nic="199910910062";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         ArrayList<ComplainModel> result = userDAO.SearchComplainDetails(title,type,nic);
         res.getWriter().println(gson.toJson(result));
     }
@@ -130,8 +144,18 @@ public class UserComplainController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void ViewMOH(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-        System.out.println("Come to view moh controller");
+//        System.out.println("Come to view moh controller");
         ArrayList<MOHModel> result = mohdao.GetMOHDetails();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void ViewDistrict(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller");
+        ArrayList<DistrictModel> result = mohdao.GetDistrictDetails();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void ViewCity(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller");
+        ArrayList<CityModel> result = mohdao.GetCityDetails();
         res.getWriter().println(gson.toJson(result));
     }
 

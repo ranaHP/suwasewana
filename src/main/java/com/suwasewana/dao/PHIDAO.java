@@ -125,7 +125,41 @@ public class PHIDAO {
     }
 
 
+    public ArrayList<PHIModel> getphiALL() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_PHI)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs);
+            ArrayList<PHIModel>phiALLList = new ArrayList<PHIModel>();
+            while (rs.next()) {
+                PHIModel temp = new PHIModel(
+                       "",
+                        "",
+                        "",
+                        "",
+                        rs.getString("phi_post"),
+                        rs.getString("pname"),
+                        rs.getString("dname"),
+                        rs.getString("name"),
+                        "",
+                        "",
+                        "",
+                        rs.getString("mobile_number"),
+                        rs.getString("full_name"),
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        rs.getString("cname")
+                );
 
+                phiALLList.add(temp);
+            }
+            return phiALLList;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
 
-
+        return null;
+    }
 }
