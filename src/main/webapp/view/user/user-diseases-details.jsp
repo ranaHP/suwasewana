@@ -644,79 +644,72 @@
     // });
 </script>
 
-<%--<script defer>--%>
-
-<%--    diseasedetails();--%>
-<%--    // card();--%>
-<%--    function diseasedetails(){--%>
-<%--        let disease = new view_disease_details("dashboard-container");--%>
-
-<%--        let diseasearray=[]--%>
-<%--        let diseasearrayy = []--%>
-<%--        let diseasearrayyy=[]--%>
-
-<%--        $.post("/test_war_exploded/user-disease-controller/view",--%>
-
-<%--            function (data,status){--%>
-<%--            diseasearray = JSON.parse(data)--%>
-
-<%--                diseasearrayy = JSON.parse(diseasearray[0].description)--%>
-<%--                // diseasearrayy = JSON.parse(diseasearray)--%>
-<%--                //--%>
-<%--                //--%>
-
-<%--                // console.log(diseasearrayy.Symptoms.Less)--%>
-<%--                console.log("description")--%>
-<%--                console.log(diseasearrayy)--%>
-<%--                console.log(diseasearrayy.Spread.item[0])--%>
-<%--                console.log(diseasearrayy.Spread.item[1])--%>
-<%--                console.log("symptoms")--%>
-
-<%--                // diseasearrayyy = JSON.parse(diseasearrayy.Treatment)--%>
-
-<%--                console.log(diseasearrayy.Treatment.MedicalTreatments.desc)--%>
-
-
-<%--                 // console.log(diseasearray[0].description)--%>
-<%--                console.log("over")--%>
-
-<%--                let dataa = diseasearrayy.Spread.item;--%>
-<%--                // const card = document.getElementById('treatments-list');--%>
-<%--            // for(let i=0;i<dataa.length;i++){--%>
-<%--            //     console.log("ssss")--%>
-<%--            //     // card[dataa[i]]--%>
-<%--            //     console.log(dataa[i])--%>
-<%--            // }--%>
-
-
-
-<%--                // function card(dataa){--%>
-<%--                //--%>
-<%--                //--%>
-<%--                //--%>
-<%--                // }--%>
-
-
-
-
-<%--            disease.setData(diseasearray)--%>
-<%--            }--%>
-
-
-
-<%--        )--%>
-
-<%--        // function card(data,status){--%>
-<%--        //     diseasearray =JSON.parse(data)--%>
-<%--        //     console.log("dddddd")--%>
-<%--        //     console.log(diseasearray)--%>
-<%--        //--%>
-<%--        // }--%>
-<%--    }--%>
-
-<%--</script>--%>
 <script defer>
-    // getAllDisease(Diseaseid);
+
+    // diseasedetails();
+    // // card();
+    // function diseasedetails(){
+    //     let disease = new view_disease_details("dashboard-container");
+    //
+    //     let diseasearray=[]
+    //     let diseasearrayy = []
+    //     let diseasearrayyy=[]
+    //
+    //     $.post("/test_war_exploded/user-disease-controller/view",
+    //
+    //         function (data,status){
+    //         diseasearray = JSON.parse(data)
+    //
+    //             diseasearrayy = JSON.parse(diseasearray[0].description)
+    //             // diseasearrayy = JSON.parse(diseasearray)
+    //             //
+    //             //
+    //
+    //             // console.log(diseasearrayy.Symptoms.Less)
+    //             console.log("description")
+    //             console.log(diseasearrayy)
+    //             console.log(diseasearrayy.Spread.item[0])
+    //             console.log(diseasearrayy.Spread.item[1])
+    //             console.log("symptoms")
+    //
+    //             // diseasearrayyy = JSON.parse(diseasearrayy.Treatment)
+    //
+    //             console.log(diseasearrayy.Treatment.MedicalTreatments.desc)
+    //
+    //             console.log("start")
+    //              console.log(diseasearray[0])
+    //             console.log("over")
+    //
+    //             let dataa = diseasearrayy.Spread.item;
+    //             // const card = document.getElementById('treatments-list');
+    //         // for(let i=0;i<dataa.length;i++){
+    //         //     console.log("ssss")
+    //         //     // card[dataa[i]]
+    //         //     console.log(dataa[i])
+    //         // }
+    //
+    //
+    //
+    //
+    //
+    //         disease.setData(diseasearray)
+    //         }
+    //
+    //
+    //
+    //     )
+    //
+    //     // function card(data,status){
+    //     //     diseasearray =JSON.parse(data)
+    //     //     console.log("dddddd")
+    //     //     console.log(diseasearray)
+    //     //
+    //     // }
+    // }
+
+</script>
+<script defer>
+    getAllDisease();
     // let a = id;
     let typedatalist={};
     function getAllDisease(Diseaseid) {
