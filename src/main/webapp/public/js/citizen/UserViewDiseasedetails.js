@@ -24,21 +24,24 @@ class view_disease_details{
         // console.log(data);
         // console.log(this.diseasearrayy.name)
 
-        console.log(data[0].d_id)
+        // console.log(data[0].d_id)
         let i = 0;
 
         console.log("jspid " + a)
         // for (let i = 0; i < data.length; i++) {
         //
-        if (a == data[0].d_id ) {
+
 
             data.map((item) => {
 
-                    console.log("mp id" + data[i].d_id)
-                    // let a = item.name
+                if (a == data[i].d_id) {
 
 
-                    this.container.innerHTML += `
+                console.log("mp id" + data[i].d_id)
+                // let a = item.name
+
+
+                this.container.innerHTML += `
 
 
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
@@ -381,11 +384,13 @@ class view_disease_details{
 
             `
 
-                    // console.log("map")
+                // console.log("map")
+            }
+                i++;
 
                 }
             )
-        }
+        // }
     // }
     }
 
