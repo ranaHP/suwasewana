@@ -26,6 +26,7 @@ public class ProvinceDAO {
             while (rs.next()) {
                 String province_id = rs.getString("province_id");
                 String name = rs.getString("name");
+
                 ProvinceModel temp = new ProvinceModel(
                         province_id,
                         name

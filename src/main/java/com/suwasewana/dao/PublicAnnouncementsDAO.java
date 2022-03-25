@@ -24,6 +24,7 @@ public class PublicAnnouncementsDAO {
            preparedStatement.setString(3,publicAnnouncement.getBanner());
            preparedStatement.setString(4,publicAnnouncement.getExpire_date());
            int rs = preparedStatement.executeUpdate();
+           System.out.println(preparedStatement.toString());
            ResultSet rs1= preparedStatement.getGeneratedKeys();
            if (rs1.next()) {
                announcement_id = rs1.getInt(1);
