@@ -5,6 +5,7 @@ import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.User;
 import com.suwasewana.model.UserDiseaseDetailsModel;
 import com.suwasewana.model.UserDiseaseModel;
+import com.suwasewana.model.UserRegisterDiseaeseModel;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -47,6 +48,10 @@ public class UserDiseaseController extends HttpServlet {
                         UserregisterDiseasedetails(req,res);
                         break;
 
+                    case "check":
+                        UserregisterCheckDiseasedetails(req,res);
+                        break;
+
                     case "patientG":
                         patientG(req,res);
                         break;
@@ -70,6 +75,35 @@ public class UserDiseaseController extends HttpServlet {
         }
     }
 
+    private void UserregisterCheckDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException, SQLException {
+
+        String d_id = req.getParameter("d_id");
+//        String UNic = "980930416v";
+        String uNic = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    uNic = cookie.getValue().split("/")[1];
+                }
+            }
+        }
+
+        UserRegisterDiseaeseModel userdisease = new UserRegisterDiseaeseModel(
+                "",
+                "",
+                ""
+        );
+
+//        System.out.println("User register disease");
+//        System.out.println(uNic);
+//        System.out.println("enough");
+
+        ArrayList<UserRegisterDiseaeseModel> result = userDAO.usercheckregisterdisease(userdisease,d_id,uNic);
+        res.getWriter().println(gson.toJson(result));
+
+    }
+
     private void patientTP(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        System.out.println("dta controllwe");
         String moh="1004";
@@ -87,6 +121,7 @@ public class UserDiseaseController extends HttpServlet {
 
     private void UserregisterDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException {
         String name = req.getParameter("name");
+        String d_id = req.getParameter("d_id");
 //        String UNic = "980930416v";
         String uNic = "";
         Cookie[] cookies = req.getCookies();
@@ -102,7 +137,7 @@ public class UserDiseaseController extends HttpServlet {
 //        System.out.println(uNic);
 //        System.out.println("enough");
 
-        String result = userDAO.userregisterdisease(name,uNic);
+        String result = userDAO.userregisterdisease(name,uNic,d_id);
         res.getWriter().println(gson.toJson(result));
     }
 
@@ -117,6 +152,7 @@ public class UserDiseaseController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
 
     }
+
 
 
     private void searchDisease(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
