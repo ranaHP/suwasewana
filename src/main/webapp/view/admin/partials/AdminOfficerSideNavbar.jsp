@@ -94,7 +94,8 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="/test_war_exploded/s/public_announcements">Announcements</a></li>
+                <li><a class="link_name" href="/test_war_exploded/s/public_announcements">Create</a></li>
+                <li><a class="link_name" href="/test_war_exploded/s/public_announcements_list">List</a></li>
 
             </ul>
         </li>

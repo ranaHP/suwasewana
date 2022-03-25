@@ -6,18 +6,21 @@ public class PublicAnnouncementModel {
     String description;
     String banner;
     String expire_date;
+    String status;
     public PublicAnnouncementModel(
         String announcement_id,
         String title,
         String description,
         String banner,
-        String expire_date
+        String expire_date,
+        String status
     ){
         this.announcement_id=announcement_id;
         this.title=title;
         this.description=description;
         this.banner=banner;
         this.expire_date=expire_date;
+        this.status = status;
     }
 
     public String getAnnouncement_id() {

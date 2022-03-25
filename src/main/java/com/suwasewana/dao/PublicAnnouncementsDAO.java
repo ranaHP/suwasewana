@@ -1,16 +1,19 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
+import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.HealthAnnouncementTargetDistrictModel;
 import com.suwasewana.model.HealthAnnouncementTargetProvinceModel;
 import com.suwasewana.model.PublicAnnouncementModel;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class PublicAnnouncementsDAO {
   private static final String CREATEA="INSERT INTO `health_announcement` VALUES (NULL, ?, ?, ?,?,'Not-verified')";
   private static final String AddTargetP="INSERT INTO `health_announcement_target_province` VALUES (?,?)";
-  private static final String AddTargetD="INSERT INTO `health_announcement_target_districts` VALUES (?,?)";
+    private static final String AddTargetD="INSERT INTO `health_announcement_target_districts` VALUES (?,?)";
+    private static final String getAppoinments="SELECT * FROM `health_announcement`";
   Connection connection;
     public PublicAnnouncementsDAO() {
         DB db = new DB();
@@ -76,5 +79,29 @@ public class PublicAnnouncementsDAO {
                 }
             }
         }
+    }
+
+    public ArrayList<PublicAnnouncementModel> GetAllPublicAnnouncement() {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(getAppoinments)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            ArrayList<PublicAnnouncementModel> publicAnnouncementTemp = new ArrayList<PublicAnnouncementModel>();
+            while (rs.next()) {
+
+               PublicAnnouncementModel temp = new PublicAnnouncementModel(
+                       rs.getString("announcement_id"),
+                       rs.getString("title"),
+                        rs.getString("description"),
+                        rs.getString("banner"),
+                        rs.getString("expire_date"),
+                       rs.getString("Status")
+                );
+                publicAnnouncementTemp.add(temp);
+            }
+            return publicAnnouncementTemp;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+
+        return null;
     }
 }
