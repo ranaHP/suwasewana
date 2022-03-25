@@ -11,6 +11,7 @@ import com.suwasewana.model.vaccineClinicModel;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -72,6 +73,15 @@ import java.util.ArrayList;
 
     private void deleteVAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("Deleteeeeeeeeee");
+        String nic="199910910064";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         VaccineClinicAnnouncementsModel deleteVAnnouncements = new VaccineClinicAnnouncementsModel(
                 "",
                 req.getParameter("clinicID"),
@@ -82,7 +92,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                "",
+                nic,
                 "",
                 "",
                 "",
@@ -96,7 +106,16 @@ import java.util.ArrayList;
 
 
     private void viewVAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
-           VaccineClinicAnnouncementsModel viewVAnnouncements= new VaccineClinicAnnouncementsModel(
+        String nic="199910910064";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
+        VaccineClinicAnnouncementsModel viewVAnnouncements= new VaccineClinicAnnouncementsModel(
                  "",
                    "",
                    "",
@@ -106,7 +125,7 @@ import java.util.ArrayList;
                    "",
                    "",
                    "",
-                   "",
+                   nic,
                    "",
                    "",
                    "",
@@ -119,6 +138,15 @@ import java.util.ArrayList;
 
     private void createVClinicA(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //       res.getWriter().println("vaccine announcement");
+        String nic="199910910064";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         VaccineClinicAnnouncementsModel vaccineClinicAnnouncement= new VaccineClinicAnnouncementsModel(
                 req.getParameter("image"),
                 req.getParameter("CId"),
@@ -129,7 +157,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                "",
+                nic,
                 "",
                 "",
                 "",
@@ -143,7 +171,16 @@ import java.util.ArrayList;
 
     private void viewAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //      res.getWriter().println("announcement view");
-      CreateClinicAnnouncementsModel viewAnnouncement=new CreateClinicAnnouncementsModel(
+        String nic="199910910064";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
+        CreateClinicAnnouncementsModel viewAnnouncement=new CreateClinicAnnouncementsModel(
               "",
               "",
               "",
@@ -157,7 +194,7 @@ import java.util.ArrayList;
               "",
               "",
               "",
-              ""
+              nic
       );
         ArrayList<CreateClinicAnnouncementsModel> result= clinicalAnnouncementsDAO.ViewclinicAnnouncements(viewAnnouncement);
         res.getWriter().println(gson.toJson(result));
@@ -166,6 +203,15 @@ import java.util.ArrayList;
 
     private void createClinicA(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //        res.getWriter().println("announcement controller");
+        String nic="199910910064";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         System.out.println("came to controller");
         CreateClinicAnnouncementsModel createClinicAnnouncementsModel = new CreateClinicAnnouncementsModel(
                 "",
@@ -181,7 +227,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 req.getParameter("image"),
-                "12"
+                nic
         );
         String result = clinicalAnnouncementsDAO.createClinicA(createClinicAnnouncementsModel);
         res.getWriter().println(result);
@@ -190,6 +236,15 @@ import java.util.ArrayList;
 
     private void deleteAnnouncements(HttpServletRequest req,HttpServletResponse res) throws IOException {
         System.out.println("Deleteeeeeeeeee");
+        String nic="199910910064";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("sDetails")) {
+                    nic = cookie.getValue().split("/")[3];
+                }
+            }
+        }
         CreateClinicAnnouncementsModel deleteAnnouncements = new CreateClinicAnnouncementsModel(
                 "",
                 req.getParameter("clinicID"),
@@ -204,7 +259,7 @@ import java.util.ArrayList;
                 "",
                 "",
                 "",
-                ""
+                nic
         );
         System.out.println("delete");
         String result = clinicalAnnouncementsDAO.deleteAnnouncements(deleteAnnouncements);

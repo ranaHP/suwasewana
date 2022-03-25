@@ -56,7 +56,7 @@ class clinicList {
                                     <ul>
                                         <li>
                                             <span></span>
-                                            <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
+                                              <object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object>
                                             Available seats : ${item.Avail_seats}
                                         </li>
                                     

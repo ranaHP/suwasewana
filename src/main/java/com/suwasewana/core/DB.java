@@ -12,8 +12,12 @@ public class DB {
 
 
     private String jdbcUsername = "root";
+
     private String jdbcPassword = "";
 //    private String jdbcPassword = "1234@Akila";
+
+//    private String jdbcPassword = "";
+
 
 
 

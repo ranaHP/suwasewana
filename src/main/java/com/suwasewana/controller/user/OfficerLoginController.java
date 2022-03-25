@@ -60,7 +60,7 @@ public class OfficerLoginController extends HttpServlet {
 
         } else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
-            System.out.println("Loging success come to controller");
+//            System.out.println("Loging success come to controller");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
             String temp = officerLoginresponse.getFull_name().split(" ")[0] +"/"
                     + officerLoginresponse.getMAC().replaceAll("-" ,"_")  + '/'
@@ -68,7 +68,7 @@ public class OfficerLoginController extends HttpServlet {
                     + officerLoginresponse.getNIC()+ '/'
                     + officerLoginresponse.getMohId()+ '/'
                     + officerLoginresponse.getMobile() ;
-            System.out.println(temp);
+//            System.out.println(temp);
             Cookie loginCookie = new Cookie("sDetails",temp);
             loginCookie.setMaxAge(300*60);
             res.addCookie(loginCookie);

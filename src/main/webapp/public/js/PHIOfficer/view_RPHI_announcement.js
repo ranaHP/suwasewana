@@ -53,7 +53,7 @@ class View_RPHI_announcement{
        <div class="announcement">
                          <div class="left">
                 <div class="image-container">
-                    <img src="${Url}/images/upoadimage/${item.banner}" width="250px" height="150px">
+                    <img src="${Url}/public/images/uploadimage/${item.banner}" width="250px" height="150px">
                 </div>
             </div>
             <div class="right">

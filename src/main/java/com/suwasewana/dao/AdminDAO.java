@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class AdminDAO {
 
-    private static final String PHI_REGISTRATION = "INSERT INTO `suwaserwana_db`.`phi_officer` (`full_name`, `NIC`, `mobile`, `device_MAC`, `Address`, `City`, `District`, `phi_post`, `login_status`, `password`, `PostalCode`, `mohId`, `DP`,`suspended_time`)  VALUES (?, ?, ?, NULL , ?, ?, ?, ?, '0', ?, ?, ?, ?,current_timestamp());";
+    private static final String PHI_REGISTRATION = "INSERT INTO `suwasewana_db`.`phi` (`full_name`, `nic`, `mobile_number`,`image`,  `district`, `Password`, `login_status`, `phi_post`, `assignCity`, `assignMOH`) VALUES (?, ?, ?,  ?, ?,?,  '1', ?, ?, ?);\n";
     private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
     private static final String MOH_REGISTRATION="INSERT INTO `suwaserwana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
 
@@ -254,38 +254,37 @@ public class AdminDAO {
     }
 
 
-//    public String phiRegistration(PHIModel phiRegister) {
-//        System.out.println("data come to dao");
-//
-//        try (PreparedStatement preparedStatement = connection.prepareStatement(PHI_REGISTRATION)) {
-//            preparedStatement.setString(1, phiRegister.getFull_name() );
-//            preparedStatement.setString(2, phiRegister.getNIC() );
-//            preparedStatement.setString(3, phiRegister.getMobile());
-//            preparedStatement.setString(4, phiRegister.getAddress());
-//            preparedStatement.setString(5, phiRegister.getCity());
-//            preparedStatement.setString(6, phiRegister.getDistrict());
-//            preparedStatement.setString(7, phiRegister.getPhi_post());
-//            preparedStatement.setString(8, phiRegister.getPassword() );
-//            preparedStatement.setString(9, phiRegister.getPostalCode());
-//            preparedStatement.setString(10,phiRegister.getMohId());
-//            preparedStatement.setString(11, phiRegister.getDp());
-//            System.out.println("SQL "+preparedStatement);
-//            int rs = preparedStatement.executeUpdate();
-//            System.out.println("dao value" + rs);
-//
-//            return "success";
-//        } catch (SQLException throwables) {
-//            printSQLException(throwables);
-////            System.out.println(throwables.getErrorCode());
-////            System.out.println(throwables.getSQLState());
-////            System.out.println(throwables.getMessage());
-////            System.out.println(throwables);
-//            System.out.println("Error");
-//            return throwables.getMessage();
-//        }
-//
-//
-//    }
+    public String phiRegistration(PHIModel phiRegister) {
+        System.out.println("data come to dao");
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(PHI_REGISTRATION)) {
+
+            String password="Suwasewana"+phiRegister.getNIC();
+
+            preparedStatement.setString(1, phiRegister.getFull_name() );
+            preparedStatement.setString(2, phiRegister.getNIC() );
+            preparedStatement.setString(3, phiRegister.getMobile());
+            preparedStatement.setString(4, phiRegister.getImage());
+            preparedStatement.setString(5, phiRegister.getDistrict());
+            preparedStatement.setString(6, password);
+            preparedStatement.setString(7, phiRegister.getPhi_post());
+            preparedStatement.setString(8, phiRegister.getCity());
+            preparedStatement.setString(9,phiRegister.getMohId());
+
+
+
+            System.out.println("SQL "+preparedStatement);
+            int rs = preparedStatement.executeUpdate();
+            System.out.println("dao value" + rs);
+
+            return "success";
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+
+
+    }
 
     private void printSQLException(SQLException ex) {
         for (Throwable e : ex) {

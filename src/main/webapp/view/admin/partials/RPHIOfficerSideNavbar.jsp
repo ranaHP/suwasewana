@@ -20,7 +20,7 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a href="/test_war_exploded/s/PHI-dashboard">Home</a></li>
+                <li><a href="/test_war_exploded/s/RPHI-Dashboard">Home</a></li>
             </ul>
         </li>
         <li>
@@ -33,22 +33,35 @@
             </div>
             <ul class="sub-menu">
                 <%--                <li><a class="link_name" href="#">verify-patients</a></li>--%>
-                <li><a href="/test_war_exploded/s/AssignTask">Manage to do list</a></li>
+                <li><a href="/test_war_exploded/s/RPHI-todoList">Manage to do list</a></li>
             </ul>
         </li>
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-plug'></i>
-                    <span class="link_name">Register patients</span>
+                    <i class='bx bx-compass'></i>
+                    <span class="link_name">Assign tasks</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
                 <%--                <li><a class="link_name" href="#">verify-patients</a></li>--%>
-                <li><a href="/test_war_exploded/s/Register-patients">Register patients</a></li>
+                <li><a href="/test_war_exploded/s/AssignTask">Assign tasks</a></li>
             </ul>
         </li>
+<%--        <li>--%>
+<%--            <div class="iocn-link">--%>
+<%--                <a href="#">--%>
+<%--                    <i class='bx bx-plug'></i>--%>
+<%--                    <span class="link_name">Register patients</span>--%>
+<%--                </a>--%>
+<%--                <i class='bx bxs-chevron-down arrow'></i>--%>
+<%--            </div>--%>
+<%--            <ul class="sub-menu">--%>
+<%--                &lt;%&ndash;                <li><a class="link_name" href="#">verify-patients</a></li>&ndash;%&gt;--%>
+<%--                <li><a href="/test_war_exploded/s/Register-patients">Register patients</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
         <li>
         <li>
             <div class="iocn-link">
@@ -68,13 +81,13 @@
             <div class="iocn-link">
                 <a href="#">
                     <i class='bx bx-plus-medical'></i>
-                    <span class="link_name">Verify patients</span>
+                    <span class="link_name">To do list</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">verify-patients</a></li>--%>
-                <li><a href="/test_war_exploded/s/verify-patients">Verify patients</a></li>
+                <li><a href="/test_war_exploded/s/RPHI-todoList">To do list</a></li>
             </ul>
         </li>
         <li>
@@ -87,7 +100,7 @@
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">View appointments</a></li>--%>
-                <li><a href="/test_war_exploded/s/view-appointments">View appointments</a></li>
+                <li><a href="/test_war_exploded/s/RPHI-appointments">View appointments</a></li>
             </ul>
         </li>
 
@@ -133,7 +146,7 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="/test_war_exploded/s/view-complaints">View complaints</a></li>
+                <li><a href="/test_war_exploded/s/RPHI-complaints">View complaints</a></li>
             </ul>
         </li>
         <li>
@@ -142,7 +155,7 @@
                 <span class="link_name">View Complaint Reports</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a href="/test_war_exploded/s/PHI-view-report">View Complaint Reports</a></li>
+                <li><a href="/test_war_exploded/s/RPHI-viewReports">View Complaint Reports</a></li>
             </ul>
         </li>
 <%--        <li>--%>

@@ -7,7 +7,7 @@
 }
 body{
     margin-left: 78px;
-    background-color: #f3f3f359;
+    background-image: linear-gradient(to right top, #f0fffe, #f4ffff, #f9feff, #fdfeff, #ffffff);
 }
 .container{
     min-height: 100vh;
@@ -185,7 +185,7 @@ button{
         width: 80%;
     }
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 840px) {
     .announcement{
         flex-direction: column;
         height: 400px;
@@ -202,9 +202,15 @@ button{
         align-items: center;
     }
 }
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 605px) {
     .announcement{
-        height: 460px;
+        height: 450px;
+        width: 85%;
+    }
+}
+@media screen and (max-width: 425px) {
+    .announcement{
+        height: 550px;
         width: 85%;
     }
     .announce-description{
@@ -214,4 +220,11 @@ button{
     .announcement-title{
         width: 100%;
     }
+}
+@media screen and (max-width: 320px) {
+    .announcement{
+        height: 630px;
+        width: 85%;
+    }
+
 }

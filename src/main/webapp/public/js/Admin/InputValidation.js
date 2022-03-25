@@ -34,7 +34,33 @@ class FormInputValidation {
         return isValida;
 
     }
+    selectCheck(name,fieldName){
+        // console.log("select check "+ name+" "+fieldName)
+        let isValida = true;
+        if(!name){
+            console.log("name is not come")
+            isValida = false;
+        }
+        else {
+            var CTypeObj = document.getElementById(name);
+            var datalist = document.getElementById(CTypeObj.getAttribute("list"));
+            // console.log(datalist);
+            let ComplainType=(datalist.options.namedItem(CTypeObj.value));
+            // console.log("id"+datalist.options.namedItem(CTypeObj.value).id);
+            if(!ComplainType && ComplainType!=""){
+                // console.log("empty comp type" +ComplainType)
+                this.setErrorMessageForField("Required*", fieldName, 0)
+                isValida = false;
+            }
+            else {
+                // console.log(" not empty comp type" +ComplainType)
+                this.setErrorMessageForField("", fieldName, 0)
+                isValida = true;
+            }
+            return isValida;
+        }
 
+    }
     SearchSelect(val, feild) {
         let isValida = true;
         if (val == "") {

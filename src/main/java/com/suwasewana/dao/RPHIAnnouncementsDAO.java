@@ -104,7 +104,7 @@ public class RPHIAnnouncementsDAO {
          preparedStatement.setString(2,RPHIAnnouncements.getDescription());
          preparedStatement.setString(3,RPHIAnnouncements.getBanner());
          preparedStatement.setString(4,RPHIAnnouncements.getTarget_moh());
-         preparedStatement.setString(5,"199910910061");
+         preparedStatement.setString(5,RPHIAnnouncements.getPhi_officer());
          preparedStatement.setString(6,RPHIAnnouncements.getExpire_date());
 
          int rs = preparedStatement.executeUpdate();
@@ -178,8 +178,8 @@ public class RPHIAnnouncementsDAO {
             preparedStatement.setString(1,mohAnnouncements.getTitle());
             preparedStatement.setString(2,mohAnnouncements.getDescription());
             preparedStatement.setString(3,mohAnnouncements.getBanner());
-            preparedStatement.setString(4,"1002");
-            preparedStatement.setString(5,"199910910061");
+            preparedStatement.setString(4,mohAnnouncements.getTarget_moh());
+            preparedStatement.setString(5,mohAnnouncements.getPhi_officer());
             preparedStatement.setString(6,mohAnnouncements.getExpire_date());
 
             int rs = preparedStatement.executeUpdate();

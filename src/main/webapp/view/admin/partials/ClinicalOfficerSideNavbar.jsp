@@ -94,20 +94,52 @@
         </li>
 
 
-
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bxs-bar-chart-alt-2'></i>
-                    <span class="link_name">Reports</span>
+                    <i class='bx bxs-bell-plus'></i>
+                    <span class="link_name">Add vaccine</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a href="/test_war_exploded/s/viewDisease-reports"> Diseases Reports </a></li>
-                <li><a href="/test_war_exploded/s/viewClinic-reports"> Clinics Reports</a></li>
+                <%--                <li><a href="/test_war_exploded/s/view_vaccine_announcements">View Vaccine clinic Announcement </a></li>--%>
+                <li><a href="/test_war_exploded/s/Add-vaccine">Add vaccine</a></li>
+
             </ul>
         </li>
+
+
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bxs-bell-plus'></i>
+                    <span class="link_name">Vaccinated citizen</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <%--                <li><a href="/test_war_exploded/s/view_vaccine_announcements">View Vaccine clinic Announcement </a></li>--%>
+                <li><a href="/test_war_exploded/s/vaccinated-users-view">Vaccinated citizen</a></li>
+
+            </ul>
+        </li>
+
+
+
+<%--        <li>--%>
+<%--            <div class="iocn-link">--%>
+<%--                <a href="#">--%>
+<%--                    <i class='bx bxs-bar-chart-alt-2'></i>--%>
+<%--                    <span class="link_name">Reports</span>--%>
+<%--                </a>--%>
+<%--                <i class='bx bxs-chevron-down arrow'></i>--%>
+<%--            </div>--%>
+<%--            <ul class="sub-menu">--%>
+<%--                <li><a href="/test_war_exploded/s/viewDisease-reports"> Diseases Reports </a></li>--%>
+<%--                <li><a href="/test_war_exploded/s/viewClinic-reports"> Clinics Reports</a></li>--%>
+<%--            </ul>--%>
+<%--        </li>--%>
         <li>
             <div class="profile-details">
                 <div class="profile-content">

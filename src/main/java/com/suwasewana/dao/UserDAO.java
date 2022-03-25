@@ -73,7 +73,7 @@ public class UserDAO {
     Connection connection;
 
 
-    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `Unic`=? AND `district_id`=;";
+    private static final String USER_VIEW_GOVERMENT_ANNOUNCEMENT = "SELECT * FROM `health_announcement` LEFT JOIN `health_announcement_target_districts` ON health_announcement.announcement_id=health_announcement_target_districts.announcement_id LEFT JOIN `user` ON user.uDistrict=health_announcement_target_districts.district_id WHERE `uNic`=? AND `district_id`=?";
 
 
 
@@ -85,8 +85,9 @@ public class UserDAO {
     private static final String USER_VIEW_REGISTERED_CLINICS ="SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id  where u_nic= ?";;
 
 
-    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess` LIMIT 2";
+    private static final String USER_VIEW_DISEASE_DETAILS ="SELECT * FROM `diseasess`";
     private static final String USER_REGISTER_DISEASE ="INSERT INTO `user_register_disease` VALUES(?,?,NULL,NULL );";
+    private static final String USER_SEARCH_DISEASE_DETAILS ="SELECT * FROM diseasess where name=?;";
 
     public UserDAO() {
         DB db = new DB();
@@ -864,12 +865,12 @@ public class UserDAO {
     }
 
 
-    public ArrayList<UserViewClinicsModel> UserViewclinic(String unic, UserViewClinicsModel viewAnnouncement) {
+    public ArrayList<UserViewClinicsModel> UserViewclinic(String uNic, UserViewClinicsModel viewAnnouncement) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_ANNOUNCEMENTS)){
 //            System.out.println("came to dao");
             preparedStatement.setString(2,viewAnnouncement.getMOH());
-            preparedStatement.setString(1,unic);
+            preparedStatement.setString(1,uNic);
             ResultSet rs = preparedStatement.executeQuery();
 ////            System.out.println(rs.toString());
             ArrayList<UserViewClinicsModel> ViewclinicAnnouncements = new ArrayList<UserViewClinicsModel>();
@@ -917,7 +918,7 @@ public class UserDAO {
         return null;
     }
 
-    public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics ,String nic) {
+    public ArrayList<UserViewRegisteredclinicsModel> userViewregisteredclinics(UserViewRegisteredclinicsModel viewregisteredclinics) {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_REGISTERED_CLINICS)){
 //            System.out.println("came to dao");
@@ -986,10 +987,12 @@ public class UserDAO {
         }
     }
 
-    public ArrayList<UserVIewClinicAnnouncementModel> UserviewrclinicAnnouncemet(UserVIewClinicAnnouncementModel clinicannouncement) {
+    public ArrayList<UserVIewClinicAnnouncementModel> UserviewrclinicAnnouncemet(String Moh_id,UserVIewClinicAnnouncementModel clinicannouncement) {
 
+//        System.out.println("clinicannouncemnt");
+//        System.out.println(clinicannouncement.getMoh_id());
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_CLINIC_ANNOUNCEMENT)){
-            preparedStatement.setString(1,clinicannouncement.getMoh_id());
+            preparedStatement.setString(1,Moh_id);
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<UserVIewClinicAnnouncementModel> ViewVAnnouncements = new ArrayList<UserVIewClinicAnnouncementModel>();
             while (rs.next()){
@@ -1111,15 +1114,17 @@ public class UserDAO {
 
     }
 
-    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String Unic,String district_id, UserGovermentAnnouncementModel govermentAnnouncement) {
+    public ArrayList<UserGovermentAnnouncementModel> UserGovermentannouncement(String district_id, UserGovermentAnnouncementModel govermentAnnouncement) {
 
-////        System.out.println("data come to goverment 2 dao");
+        System.out.println("data come to goverment 2 dao");
+        System.out.println(district_id);
+        System.out.println(govermentAnnouncement.getuNic());
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_GOVERMENT_ANNOUNCEMENT)){
-            preparedStatement.setString(1,Unic);
+            preparedStatement.setString(1,govermentAnnouncement.getuNic());
             preparedStatement.setString(2,district_id);
             ResultSet rs = preparedStatement.executeQuery();
-//            System.out.println("data come to goverment dao");
+            System.out.println("data come to goverment dao");
 
             ArrayList<UserGovermentAnnouncementModel> ViewVAnnouncements = new ArrayList<UserGovermentAnnouncementModel>();
             while (rs.next()){
@@ -1128,13 +1133,15 @@ public class UserDAO {
                 String description=rs.getString("description");
                 String banner=rs.getString("banner");
                 String expire_date =rs.getString("expire_date");
+                String uNic = rs.getString("uNic");
 
                 UserGovermentAnnouncementModel temp= new UserGovermentAnnouncementModel(
                         announcement_id,
                         title,
                         description,
                         banner,
-                        expire_date
+                        expire_date,
+                        uNic
 
                 );
                 ViewVAnnouncements.add(temp);
@@ -1142,6 +1149,7 @@ public class UserDAO {
             }
             return ViewVAnnouncements;
         } catch (SQLException throwables) {
+            System.out.println("ERror");
             throwables.printStackTrace();
         }
 
@@ -1153,16 +1161,18 @@ public class UserDAO {
         return null;
     }
 
-    public ArrayList<UserDiseaseModel> UserViewDiseaseDetails(UserDiseaseModel userdisease) {
+    public ArrayList<UserDiseaseDetailsModel> UserViewDiseaseDetails(UserDiseaseDetailsModel userdisease) {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_DISEASE_DETAILS)) {
             ResultSet rs= preparedStatement.executeQuery();
-            ArrayList<UserDiseaseModel> viewdiseasedetails = new ArrayList<UserDiseaseModel>();
+            ArrayList<UserDiseaseDetailsModel> viewdiseasedetails = new ArrayList<UserDiseaseDetailsModel>();
             System.out.println("data dao");
             while (rs.next()){
+                String d_id = rs.getString("d_id");
                 String name = rs.getString("name");
                 String description = rs.getString("description");
-                UserDiseaseModel temp = new UserDiseaseModel(
+                UserDiseaseDetailsModel temp = new UserDiseaseDetailsModel(
+                        d_id,
                         name,
                         description
                 );
@@ -1267,5 +1277,39 @@ public class UserDAO {
         }
 
         return null;
+    }
+
+    public ArrayList<UserDiseaseDetailsModel> SearchDiseaseDetails(String title) {
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(USER_SEARCH_DISEASE_DETAILS)) {
+            preparedStatement.setString(1, title);
+
+            ResultSet rs= preparedStatement.executeQuery();
+            ArrayList<UserDiseaseDetailsModel> viewdiseasedetails = new ArrayList<UserDiseaseDetailsModel>();
+            System.out.println("data dao");
+            while (rs.next()){
+                String d_id = rs.getString("d_id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                UserDiseaseDetailsModel temp = new UserDiseaseDetailsModel(
+                        d_id,
+                        name,
+                        description
+                );
+                System.out.println(temp);
+                viewdiseasedetails.add(temp);
+                System.out.println("dta get");
+            }
+
+            return viewdiseasedetails;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        return null;
+
+//        preparedStatement = connection.prepareStatement(USER_GET_Complain);
+//        preparedStatement.setString(1, nic);
+//        rs = preparedStatement.executeQuery();
+
     }
 }

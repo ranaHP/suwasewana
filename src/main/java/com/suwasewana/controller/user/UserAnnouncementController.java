@@ -10,6 +10,7 @@ import com.suwasewana.model.UserVIewRPHIAnnouncementModel;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,27 +60,54 @@ public class UserAnnouncementController extends HttpServlet {
 
     private void UserviewclinicAnnouncemet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        System.out.println("clinic");
+//        System.out.println("clinic");
+        String moh_id = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    moh_id  = cookie.getValue().split("/")[4];
+                }
+            }
+        }
+
+//        System.out.println(moh_id);
 
         UserVIewClinicAnnouncementModel clinicannouncement= new UserVIewClinicAnnouncementModel(
                 "",
                 "",
                 "",
                 "",
-                "1004"
+                ""
         );
-        ArrayList<UserVIewClinicAnnouncementModel> result= userDAO.UserviewrclinicAnnouncemet(clinicannouncement);
+        ArrayList<UserVIewClinicAnnouncementModel> result= userDAO.UserviewrclinicAnnouncemet(moh_id,clinicannouncement);
         res.getWriter().println(gson.toJson(result));
     }
 
+
+
     private void  UserviewrphiAnnouncemet(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        System.out.println("select");
+
+        String target_moh = "";
+        Cookie[] cookies = req.getCookies();
+        if(cookies !=null){
+            for(Cookie cookie : cookies){
+                if(cookie.getName().equals("uDetails")) {
+                    target_moh = cookie.getValue().split("/")[4];
+                }
+            }
+        }
+
+
+
+//        System.out.println("select");
+//        System.out.println(target_moh);
         UserVIewRPHIAnnouncementModel selectA= new UserVIewRPHIAnnouncementModel(
                 "",
                 "",
                 "",
                 "",
-                "1002",
+                "",
                 "",
                 "",
                 ""
