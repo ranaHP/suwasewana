@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class AdminDAO {
 
     private static final String PHI_REGISTRATION = "INSERT INTO `suwasewana_db`.`phi` (`full_name`, `nic`, `mobile_number`,`image`,  `district`, `Password`, `login_status`, `phi_post`, `assignCity`, `assignMOH`) VALUES (?, ?, ?,  ?, ?,?,  '1', ?, ?, ?);\n";
-    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
+    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwasewana_db`.`clinicalofficer` (`full_name`, `nic`, `mobile_number`, `district`, `city`, `password`, `login_status`, `assignMOH`) VALUES (?,?,?,?,?,?,'1',?);";
     private static final String MOH_REGISTRATION="INSERT INTO `suwaserwana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
 
 
@@ -228,17 +228,16 @@ public class AdminDAO {
 
 
     public String ClinicalOfficerRegistration(ClinicalOfficerModel clinicalOfficerModel) {
-        System.out.println("data come to dao");
+//        System.out.println("data come to dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(Clinical_Officer_REGISTRATION)) {
             preparedStatement.setString(1, clinicalOfficerModel.getName() );
             preparedStatement.setString(2, clinicalOfficerModel.getNIC() );
             preparedStatement.setString(3, clinicalOfficerModel.getMobile() );
-            preparedStatement.setString(4, clinicalOfficerModel.getCity() );
-            preparedStatement.setString(5, clinicalOfficerModel.getDistrict() );
-            preparedStatement.setString(6, clinicalOfficerModel.getAddress() );
-            preparedStatement.setString(7, clinicalOfficerModel.getPass() );
-            preparedStatement.setString(8, clinicalOfficerModel.getMOHAREA() );
+            preparedStatement.setString(4, clinicalOfficerModel.getDistrict() );
+            preparedStatement.setString(5, clinicalOfficerModel.getCity() );
+            preparedStatement.setString(6, clinicalOfficerModel.getPass() );
+            preparedStatement.setString(7, clinicalOfficerModel.getMOHAREA() );
 
             System.out.println("qry: "+preparedStatement);
             int rs = preparedStatement.executeUpdate();
@@ -259,14 +258,14 @@ public class AdminDAO {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(PHI_REGISTRATION)) {
 
-            String password="Suwasewana"+phiRegister.getNIC();
+//            String password="Suwasewana"+phiRegister.getNIC();
 
             preparedStatement.setString(1, phiRegister.getFull_name() );
             preparedStatement.setString(2, phiRegister.getNIC() );
             preparedStatement.setString(3, phiRegister.getMobile());
             preparedStatement.setString(4, phiRegister.getImage());
             preparedStatement.setString(5, phiRegister.getDistrict());
-            preparedStatement.setString(6, password);
+            preparedStatement.setString(6, phiRegister.getPassword());
             preparedStatement.setString(7, phiRegister.getPhi_post());
             preparedStatement.setString(8, phiRegister.getCity());
             preparedStatement.setString(9,phiRegister.getMohId());

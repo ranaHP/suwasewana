@@ -98,7 +98,7 @@
                 <div class="milturow_left" id="mohHeadDiv">
                     <div class="form-item" >
 
-                        <input id="District" class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="alldistrict" name="district" required
+                        <input id="District" class="SelectColordiv" style="outline: none; " type="text" list="alldistrict" name="district" required
                                autocomplete="off"
                                onblur="validation.selectCheck('District','LDistrict')";
                                onchange="validation.selectCheck('District','LDistrict');
@@ -117,7 +117,7 @@
                 <div class="multirow_right" >
                     <div class="form-item" >
 
-                        <input id="City" class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="allCity" name="allCity" required
+                        <input id="City" class="SelectColordiv" style="outline: none; " type="text" list="allCity" name="allCity" required
                                autocomplete="off"
                                onblur="validation.selectCheck('City','LCity')";
                                onchange="validation.selectCheck('City','LCity');"

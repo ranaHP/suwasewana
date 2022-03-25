@@ -227,6 +227,7 @@ form {
     border-radius: 1px;
     padding: 0px 0px;
     outline: none;
+    margin-left: 0px;
 }
 
 .form-item input:focus {
@@ -237,7 +238,7 @@ form {
     position: absolute;
     cursor: text;
     z-index: 2;
-    top: 10px;
+    top: -12px;
     left: -8px;
     font-size: .75em!important;
     padding: 0 8px;
@@ -245,15 +246,15 @@ form {
     transition: all .3s ease
 }
 
-.form-item input:focus + label,
-.form-item input:valid + label {
-    font-size: 11px;
-    top: -12px
-}
+/*.form-item input:focus + label,*/
+/*.form-item input:valid + label {*/
+/*    font-size: 11px;*/
+/*    top: -12px*/
+/*}*/
 
-.form-item input:focus + label {
-    color: blue
-}
+/*.form-item input:focus + label {*/
+/*    color: blue*/
+/*}*/
 
 
 /* search select */

@@ -227,13 +227,13 @@ public class RegisterController extends HttpServlet {
 
     private void RegClinicalOfficer(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ClinicalOfficerModel clinicalOfficerModel=new ClinicalOfficerModel(
-                req.getParameter("CName"),
-                req.getParameter("CNIC"),
-                req.getParameter("CTpNo"),
-                req.getParameter("Ccity"),
-                req.getParameter("CDistrict"),
-                req.getParameter("CAddress"),
-                req.getParameter("CMohArea")
+                req.getParameter("full_name"),
+                req.getParameter("NIC"),
+                req.getParameter("mobile"),
+                req.getParameter("city"),
+                req.getParameter("District"),
+                req.getParameter("DP"),
+                req.getParameter("MOHArea")
         );
         String result = adminDAO.ClinicalOfficerRegistration(clinicalOfficerModel);
         res.getWriter().println(result);

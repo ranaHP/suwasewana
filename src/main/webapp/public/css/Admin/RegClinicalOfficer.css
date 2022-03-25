@@ -1,10 +1,378 @@
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    !* font-size: 16px; *!*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*label {*/
+/*    font-size: 0.7em;*/
+/*    margin-bottom: 5px;*/
+/*    font-weight: 540;*/
+/*}*/
+
+/*.MR_main_Container {*/
+/*    !* background-color: aqua; *!*/
+/*    margin-left: 78px;*/
+/*}*/
+
+/*.header {*/
+/*    padding: 10px 15px 10px 34px;*/
+/*    min-height: 40px;*/
+/*    margin-bottom: 2px;*/
+/*    box-shadow: 0 3px 3px #0a0a0a1c;*/
+/*    background-color: white;*/
+/*    font-family: Arial, Helvetica, sans-serif;*/
+/*}*/
+
+/*.header .upper-title {*/
+/*    font-weight: bold;*/
+/*    color: #060606a4;*/
+/*    font-size: 1.2em;*/
+/*    letter-spacing: .15em;*/
+/*}*/
+
+/*.header .dashboard-name {*/
+/*    font-size: .6em;*/
+/*    letter-spacing: .1em;*/
+/*    color: rgba(0, 0, 0, 0.527);*/
+/*    margin-top: 3px;*/
+/*}*/
+
+/*form {*/
+/*    margin-top: 70px;*/
+/*}*/
+/*.maindiv{*/
+
+/*}*/
+
+/*#fullName {*/
+/*    !*width: 40% !important;*!*/
+/*}*/
+
+/*.MR_container {*/
+/*    !* background-color: brown; *!*/
+/*    width: 90%;*/
+/*    margin: 50px auto 0 auto;*/
+/*}*/
+
+/*.title {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    font-size: 1.8em;*/
+/*    color: rgba(0, 0, 0, 0.67);*/
+/*    letter-spacing: 2px;*/
+
+/*}*/
+
+/*.multirow {*/
+/*    !* background-color: aquamarine; *!*/
+/*    display: flex;*/
+/*    min-height: 35px;*/
+/*    margin-top: 10px;*/
+/*    margin-bottom: 25px;*/
+/*}*/
+
+/*#row2 {*/
+/*    margin-top: 40px;*/
+/*}*/
+
+/*#Moh_headdiv {*/
+/*    width: 100%;*/
+/*    !* background-color: #0275d8; *!*/
+/*}*/
+
+/*.milturow_left, .multirow_right {*/
+/*    width: 50%;*/
+/*}*/
+
+/*.singal_row {*/
+/*    !* background-color: aqua; *!*/
+/*    margin-top: 10px;*/
+/*    min-height: 50px;*/
+/*}*/
+
+/*.singal_row input {*/
+/*    width: 90% !important;*/
+/*}*/
+
+/*#Moh_head {*/
+/*    width: 100%;*/
+/*}*/
+
+
+
+/*.map_container {*/
+/*    !* background-color: blue; *!*/
+/*    margin-top: 40px;*/
+/*}*/
+
+/*.map {*/
+/*    background-color: rgb(17, 85, 85);*/
+/*    margin-top: 10px;*/
+/*    height: 160px;*/
+/*    width: 500px*/
+/*}*/
+
+/*.submit_btn {*/
+/*    margin-top: 40px;*/
+/*}*/
+
+/*.submit {*/
+/*    background-color: #008CBA;*/
+/*    color: white;*/
+/*    transition-duration: 0.4s;*/
+/*    cursor: pointer;*/
+
+/*    border: none;*/
+/*    color: white;*/
+/*    padding: 5px 25px;*/
+/*    border-radius: 2px;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    display: inline-block;*/
+/*    font-size: 0.6em;*/
+/*    margin: 4px 2px;*/
+/*    transition-duration: 0.4s;*/
+/*    padding: 8px 25px;*/
+/*    font-size: 0.8em;*/
+
+/*}*/
+
+/*.submit:hover {*/
+/*    background-color: #146783;*/
+/*}*/
+
+/*.status {*/
+/*    display: flex;*/
+/*    margin-top: 20px;*/
+/*    font-size: 0.9em;*/
+/*}*/
+
+/*.status input {*/
+/*    margin-left: 10px;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+
+/*!* input box *!*/
+/*.form-item {*/
+/*    position: relative;*/
+/*    !* margin-bottom: 15px *!*/
+/*}*/
+
+/*.form-item input {*/
+/*    display: block;*/
+/*    width: 80%;*/
+/*    height: 30px;*/
+/*    font-size: 0.8em;*/
+/*    background: transparent;*/
+/*    !* border: solid 1px #ccc; *!*/
+/*    border: none;*/
+/*    border-bottom: solid 1px #ccc;*/
+/*    color: rgba(0, 0, 0, 0.397);*/
+/*    font-size: 0.7em;*/
+/*    transition: all .3s ease;*/
+/*    border-radius: 1px;*/
+/*    padding: 0 6px;*/
+/*    outline: none;*/
+/*    color: rgba(0, 0, 0, 0.97);*/
+/*    font-size: 0.8em;*/
+/*    margin-bottom: 2px;*/
+/*}*/
+
+/*!*.form-item input:focus {*!*/
+/*!*    border-color: blue*!*/
+/*!*}*!*/
+
+/*.form-item label {*/
+/*    position: absolute;*/
+/*    cursor: text;*/
+/*    z-index: 2;*/
+/*    top: -12px;*/
+/*    left: -10px;*/
+/*    font-size: 12px;*/
+/*    background: #fff;*/
+/*    padding: 0 10px;*/
+/*    !* color: #999; *!*/
+/*    transition: all .3s ease;*/
+/*    font-size: .89em!important;*/
+/*    color: rgba(29, 29, 29, 0.8);*/
+/*}*/
+
+/*!*.form-item input:focus + label,*!*/
+/*!*.form-item input:valid + label {*!*/
+/*!*    font-size: 11px;*!*/
+/*!*    top: -12px*!*/
+/*!*}*!*/
+
+/*!*.form-item input:focus + label {*!*/
+/*!*    color: blue*!*/
+/*!*}*!*/
+
+
+/*!* search select *!*/
+/*datalist {*/
+/*    outline: none;*/
+/*}*/
+
+/*.selected-options-container {*/
+/*    max-width: 600px;*/
+/*    padding: 10px 0;*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+
+/*}*/
+
+/*.SelectColordiv {*/
+/*    width: 80%;*/
+/*    border: none;*/
+/*    height: 30px;*/
+/*    font-size: 0.6em;*/
+/*    margin-left: 5px;*/
+/*    border-bottom: 1px solid rgba(0, 0, 0, 0.336);*/
+/*    color: rgba(0, 0, 0, 0.397);*/
+/*}*/
+
+/*#addcityDiv {*/
+/*    position: relative;*/
+/*}*/
+
+/*#addSelect {*/
+/*    font-size: 0.6em;*/
+/*    padding: 5px 12px;*/
+/*    position: absolute;*/
+/*    margin-left: 10px;*/
+/*    border: none;*/
+/*    background-color: #0275d8;*/
+/*    color: white;*/
+/*    border-radius: 3px;*/
+/*    bottom: 0;*/
+/*    cursor: pointer;*/
+/*    transition-duration: 0.4s;*/
+/*}*/
+
+/*#addSelect:hover {*/
+/*    background-color: #17456d;*/
+/*}*/
+
+/*.selected-options {*/
+
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    align-items: center;*/
+/*    width: fit-content;*/
+/*    background-color: rgb(58, 55, 233);*/
+/*    border-radius: 5px;*/
+/*    padding: 2px 5px;*/
+/*    font-size: 0.6em;*/
+/*    box-sizing: border-box;*/
+/*    color: white;*/
+/*    flex-wrap: wrap;*/
+/*    margin: 2px 3px;*/
+/*}*/
+
+/*.selected-options .close-btn {*/
+/*    cursor: pointer;*/
+/*    font-size: .6em;*/
+/*    color: white;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    margin: 5px 10px;*/
+/*}*/
+
+/*.error {*/
+/*    font-size: 0.6em;*/
+/*    color: red;*/
+/*    !* display: none; *!*/
+/*}*/
+
+/*@media only screen and (max-width: 619px ) {*/
+/*    .multirow {*/
+/*        flex-direction: column;*/
+/*    }*/
+
+/*    .milturow_left, .multirow_right, .singal_row {*/
+/*        width: 90%;*/
+/*    }*/
+
+/*    .milturow_left {*/
+/*        margin-bottom: 20px;*/
+/*    }*/
+
+/*    #row2 {*/
+/*        margin-top: 20px;*/
+/*    }*/
+
+/*    .map {*/
+/*        width: 100%;*/
+/*    }*/
+
+/*    #mohHeadDiv {*/
+/*        margin-top: 10px;*/
+/*    }*/
+
+/*    .singal_row input {*/
+/*        width: 80% !important;*/
+/*    }*/
+/*}*/
+
+/*@media only screen and (max-width: 409px ) {*/
+/*    .milturow_left, .multirow_right, .singal_row {*/
+/*        width: 100%;*/
+/*    }*/
+
+/*    .form-item input {*/
+/*        width: 95%;*/
+/*    }*/
+
+/*    .SelectColordiv {*/
+/*        width: 96%;*/
+/*    }*/
+
+/*    #SelectCity {*/
+/*        width: 75%;*/
+/*    }*/
+
+/*    #addSelect {*/
+/*        right: 0;*/
+/*    }*/
+
+/*    .singal_row input {*/
+/*        width: 95% !important;*/
+/*    }*/
+/*}*/
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     /* font-size: 16px; */
     box-sizing: border-box;
+
 }
 
+.image-upload-card-container {
+    height: fit-content ;
+    width: 32%;
+}
+.image-upload-card{
+    display: flex;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+    flex-direction: column;
+}
+.image-upload-card label {
+    background-color: #0275d8;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 6px;
+    font-family: 'Segoe UI' ;
+
+}
 label {
     font-size: 0.7em;
     margin-bottom: 5px;
@@ -14,6 +382,7 @@ label {
 .MR_main_Container {
     /* background-color: aqua; */
     margin-left: 78px;
+
 }
 
 .header {
@@ -38,32 +407,36 @@ label {
     color: rgba(0, 0, 0, 0.527);
     margin-top: 3px;
 }
-
 form {
-    margin-top: 70px;
-}
-
-#fullName {
-    width: 40% !important;
+    margin-top: 20px;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    border: 1px solid #bdbdbd;
+    padding: 30px;
+    /*background-color: red;*/
 }
 
 .MR_container {
     /* background-color: brown; */
-    width: 90%;
-    margin: 50px auto 0 auto;
+    width: 80%;
+    margin: 60px auto 0 auto;
+    /*display: flex;*/
+    font-size: 1.2em;
 }
-
 .title {
     display: flex;
     justify-content: center;
+    font-size: 1.4em;
+    color: rgba(0, 0, 0, 0.67);
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 2px;
 }
 
 .multirow {
     /* background-color: aquamarine; */
     display: flex;
     min-height: 35px;
-    margin-top: 10px;
-    margin-bottom: 25px;
+    margin-top: 20px;
 }
 
 #row2 {
@@ -72,11 +445,41 @@ form {
 
 #Moh_headdiv {
     width: 100%;
-    /* background-color: #0275d8; */
 }
 
 .milturow_left, .multirow_right {
     width: 50%;
+
+}
+.multirow_right .form-item  {
+
+    /*background-color: #006633;*/
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.multirow_right .form-item input  {
+
+    /*background-color: #006633;*/
+    float: right;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: flex-start;*/
+    /*align-items: flex-end;*/
+}
+.milturow_left{
+    /*background-color: #e84118;*/
+}
+.multirow_right .form-item label{
+    left: 8%;
+}
+.multirow_right .error {
+    color: red;
+    width: 90%;
+
+    /* display: none; */
 }
 
 .singal_row {
@@ -86,14 +489,17 @@ form {
 }
 
 .singal_row input {
-    width: 90% !important;
+    width: 100% !important;
 }
 
 #Moh_head {
     width: 100%;
 }
 
-
+#PHIState {
+    display: flex;
+    align-items: flex-end;
+}
 
 .map_container {
     /* background-color: blue; */
@@ -101,14 +507,13 @@ form {
 }
 
 .map {
-    background-color: rgb(17, 85, 85);
     margin-top: 10px;
     height: 160px;
     width: 500px
 }
 
 .submit_btn {
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .submit {
@@ -124,7 +529,7 @@ form {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.6em;
+    font-size: 0.7em;
     margin: 4px 2px;
     transition-duration: 0.4s;
 }
@@ -136,7 +541,7 @@ form {
 .status {
     display: flex;
     margin-top: 20px;
-    font-size: 0.9em;
+    font-size: 1.1em;
 }
 
 .status input {
@@ -148,24 +553,27 @@ form {
 /* input box */
 .form-item {
     position: relative;
+    /*background-color: #f3e0db;*/
+    width: 100%;
     /* margin-bottom: 15px */
 }
 
 .form-item input {
     display: block;
-    width: 80%;
+    width: 90%;
     height: 30px;
     font-size: 0.8em;
     background: transparent;
     /* border: solid 1px #ccc; */
     border: none;
     border-bottom: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.397);
+    color: rgba(0, 0, 0, 0.97);
     font-size: 0.7em;
     transition: all .3s ease;
     border-radius: 1px;
-    padding: 0 6px;
+    padding: 0px 0px;
     outline: none;
+    margin-left: 0px;
 }
 
 .form-item input:focus {
@@ -176,24 +584,23 @@ form {
     position: absolute;
     cursor: text;
     z-index: 2;
-    top: 10px;
-    left: -10px;
-    font-size: 12px;
-    background: #fff;
-    padding: 0 10px;
-    /* color: #999; */
+    top: -12px;
+    left: -8px;
+    font-size: .75em!important;
+    padding: 0 8px;
+    color: rgba(29, 29, 29, 0.8);
     transition: all .3s ease
 }
 
-.form-item input:focus + label,
-.form-item input:valid + label {
-    font-size: 11px;
-    top: -12px
-}
+/*.form-item input:focus + label,*/
+/*.form-item input:valid + label {*/
+/*    font-size: 11px;*/
+/*    top: -12px*/
+/*}*/
 
-.form-item input:focus + label {
-    color: blue
-}
+/*.form-item input:focus + label {*/
+/*    color: blue*/
+/*}*/
 
 
 /* search select */
@@ -210,7 +617,7 @@ datalist {
 }
 
 .SelectColordiv {
-    width: 80%;
+    width: 90%;
     border: none;
     height: 30px;
     font-size: 0.6em;
@@ -221,13 +628,18 @@ datalist {
 
 #addcityDiv {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
 }
 
 #addSelect {
+    background-color: #006633;
     font-size: 0.6em;
     padding: 5px 12px;
     position: absolute;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
     border: none;
     background-color: #0275d8;
     color: white;
@@ -268,7 +680,7 @@ datalist {
 }
 
 .error {
-    font-size: 0.5em;
+    font-size: 0.7em;
     color: red;
     /* display: none; */
 }
@@ -294,12 +706,16 @@ datalist {
         width: 100%;
     }
 
-    #mohHeadDiv {
+    #PHIState {
         margin-top: 10px;
     }
 
     .singal_row input {
         width: 80% !important;
+    }
+
+    form{
+        margin-top: 20px;
     }
 }
 
