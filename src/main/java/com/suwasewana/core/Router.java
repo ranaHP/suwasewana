@@ -192,7 +192,11 @@ public class Router extends HttpServlet {
                     rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Public-Announcements.jsp");
                     rd.forward(request,response);
                     break;
-
+                case "public_announcements_list":
+                    System.out.println("Hi awa ansana");
+                    rd = request.getRequestDispatcher("/view/admin/SuperAdmin/Public-Announcements-List.jsp");
+                    rd.forward(request,response);
+                    break;
                 case "RPHI-Dashboard":
                     rd = request.getRequestDispatcher("/view/admin/RPHI/rphi-dashboard.jsp");
                     rd.forward(request,response);

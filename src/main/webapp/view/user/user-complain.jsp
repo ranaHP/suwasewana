@@ -237,7 +237,7 @@
                                     <label for="cTitle">
                                         Complaint Title
                                     </label>
-                                    <input type="text" name="name" id="cTitle" autocomplete="off" autofocus
+                                    <input type="text" name="name" id="cTitle" autocomplete="off"
                                            onkeydown="validation.checklength(
                                            document.getElementById('cTitle').value,
                                            'ecTitle',10);"

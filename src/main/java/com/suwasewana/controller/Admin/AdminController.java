@@ -53,6 +53,15 @@ public class AdminController extends HttpServlet {
                 case "phiall":
                     Allphi(req,res);
                     break;
+                case "allAnnouncement":
+                    Allannouncement(req,res);
+                    break;
+                case "block":
+                    block(req,res);
+                    break;
+                case "renew":
+                    renew(req,res);
+                    break;
                 case "districtsSelect":
                     ViewSelectDisctirct(req,res);
                     break;
@@ -88,8 +97,64 @@ public class AdminController extends HttpServlet {
 
     }
 
+    private void renew(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        PHIModel renew=new PHIModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        String result = phidao.renewphi(renew);
+        res.getWriter().println(result);
+    }
+
+    private void block(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        PHIModel block=new PHIModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        String result = phidao.blockphi(block);
+        res.getWriter().println(result);
+    }
+
     private void Allphi(HttpServletRequest req, HttpServletResponse res) throws IOException {
         ArrayList<PHIModel> result = phidao.getphiALL();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void Allannouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        ArrayList<PublicAnnouncementModel> result = publicAnnouncementsDAO.GetAllPublicAnnouncement();
         res.getWriter().println(gson.toJson(result));
     }
 
@@ -144,7 +209,8 @@ public class AdminController extends HttpServlet {
                  req.getParameter("title"),
                  req.getParameter("description")  ,
                  req.getParameter("image"),
-                    req.getParameter("expire_date")
+                    req.getParameter("expire_date"),
+                    ""
             );
         int result = publicAnnouncementsDAO.PublicAnnouncement(publicAnnouncement);
         res.getWriter().println(result);
