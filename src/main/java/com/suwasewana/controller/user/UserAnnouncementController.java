@@ -70,7 +70,7 @@ public class UserAnnouncementController extends HttpServlet {
                 }
             }
         }
-
+//        System.out.println("mohid ");
 //        System.out.println(moh_id);
 
         UserVIewClinicAnnouncementModel clinicannouncement= new UserVIewClinicAnnouncementModel(
@@ -100,8 +100,8 @@ public class UserAnnouncementController extends HttpServlet {
 
 
 
-//        System.out.println("select");
-//        System.out.println(target_moh);
+        System.out.println("select");
+        System.out.println(target_moh);
         UserVIewRPHIAnnouncementModel selectA= new UserVIewRPHIAnnouncementModel(
                 "",
                 "",

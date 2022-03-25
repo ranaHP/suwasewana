@@ -582,7 +582,7 @@
                 // alert(data1)
                 announcementArray=JSON.parse(data1)
 
-                console.log("============================================")
+                console.log("clinic announcement array")
                 console.log(announcementArray)
                 console.log("============================================")
 
