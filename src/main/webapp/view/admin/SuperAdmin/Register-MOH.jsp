@@ -58,6 +58,45 @@
     </div>
 
     <form action="" onsubmit="return checkvalidation();" >
+
+      <div class="singal_row">
+
+          <div class="form-item" id="Moh_headdiv">
+            <input type="text" id="MoHhead" autocomplete="off"
+                   onblur="validation.nameValidation(
+                                document.getElementById('MoHhead').value,
+                                'LMoHhead'
+                            );"
+                   onkeyup="validation.nameValidation(
+                                document.getElementById('MoHhead').value,
+                                'LMoHhead'
+                            );"
+            >
+            <label for="MoHhead">MOH Head</label>
+            <span class="error" id="LMoHhead"></span>
+            <!-- <button>ssssssss</button> -->
+          </div>
+
+        <%--        <div class="multirow_right" id="addcityDiv">--%>
+        <%--&lt;%&ndash;          <div class="selected-options-container" id="selected-options-container">&ndash;%&gt;--%>
+
+
+        <%--&lt;%&ndash;          </div>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;          <label >Add cities for MOH</label><br>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;          <input id="SelectCity" class="SelectColordiv" type="text" style="outline: none;" list="AllCities" name="AllCities">&ndash;%&gt;--%>
+        <%--&lt;%&ndash;          <datalist id="AllCities">&ndash;%&gt;--%>
+
+        <%--&lt;%&ndash;          </datalist>&ndash;%&gt;--%>
+
+
+
+        <%--&lt;%&ndash;          <button type="button" id="addSelect" onclick="AddValue();">Add&ndash;%&gt;--%>
+        <%--&lt;%&ndash;          </button>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;          <br>&ndash;%&gt;--%>
+        <%--&lt;%&ndash;          <span class="error" id="LSelectCity"></span>&ndash;%&gt;--%>
+        <%--        </div>--%>
+      </div>
+
       <div class="multirow">
         <div class="milturow_left">
           <div class="form-item">
@@ -93,89 +132,99 @@
         </div>
       </div>
 
-      <div class="multirow">
-        <div class="milturow_left" id="mohHeadDiv">
-          <div class="form-item" id="Moh_headdiv">
-            <input type="text" id="MoHhead" autocomplete="off"
-                   onblur="validation.nameValidation(
-                                document.getElementById('MoHhead').value,
-                                'LMoHhead'
-                            );"
-                   onkeyup="validation.nameValidation(
-                                document.getElementById('MoHhead').value,
-                                'LMoHhead'
-                            );"
-            >
-            <label for="MoHhead">MOH Head</label>
-            <span class="error" id="LMoHhead"></span>
-            <!-- <button>ssssssss</button> -->
-          </div>
-        </div>
-        <div class="multirow_right" id="addcityDiv">
-          <div class="selected-options-container" id="selected-options-container">
 
-
-          </div>
-          <label >Add cities for MOH</label>
-          <input id="SelectCity" class="SelectColordiv" type="text" style="outline: none;" list="AllCities" name="AllCities">
-          <datalist id="AllCities">
-
-          </datalist>
-
-
-
-          <button type="button" id="addSelect" onclick="AddValue();">Add
-          </button>
-          <br>
-          <span class="error" id="LSelectCity"></span>
-        </div>
-      </div>
 
 
 
       <div class="multirow" id="row2">
         <div class="milturow_left">
           <div class="form-group">
-                <label for="province">
-                  Province
-                </label>
-                <br>
-                <input id="province"  class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="allprovince" name="province" required onblur="test();"
-                       autocomplete="off">
-                <datalist id="allprovince">
+            <label for="district">
+              District
+            </label>
+            <br>
+            <input id="district" class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="allDistrict" name="district"
+                   autocomplete="off"
+                   onblur="validation.selectCheck('district','LDistrict')";
+                   onchange="validation.selectCheck('district','LDistrict');
+                               checkDistrictidAndFillCity();"
+                   onclick="document.getElementById('district').value='';
+                                                    checkDistrictidAndFillCity();"
+            >
+            <datalist id="allDistrict">
 
-                </datalist>
             </datalist>
+            <br>
+
           </div>
-          <span class="error" id="LProvince"></span>
+          <span class="error" id="LDistrict"></span>
         </div>
 
         <div class="multirow_right">
-          <label for="district">
-            District
-          </label>
-          <br>
-          <input id="district" class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="alldistrict" name="district" required
-                 autocomplete="off">
-          <datalist id="alldistrict">
+          <div class="form-group">
+            <label for="city">
+              City
+            </label>
+            <br>
+            <input id="city" type="text" class="SelectColordiv" style="outline: none; padding-left: 3px" list="allCity" name="city" autocomplete="off"
+                   onblur="validation.selectCheck('city','LCity')";
+                   onchange="validation.selectCheck('city','LCity');"
+                   onclick="document.getElementById('city').value='';"
+            >
+            <datalist id="allCity">
 
-          </datalist>
-          <br>
-          <span class="error" id="LDistrict"></span>
+            </datalist>
+            <br>
+
+          </div>
+          <span class="error" id="LCity"></span>
         </div>
-      </div>
-      <div class="singal_row">
-        <label for="city">
-          City
-        </label>
-        <br>
-        <input id="city" type="text" class="SelectColordiv" style="outline: none; padding-left: 3px" list="allcity" name="city" autocomplete="off" required>
-        <datalist id="allcity">
 
-        </datalist>
-        <br>
-        <span class="error" id="LCity"></span>
+
       </div>
+<%--      <div class="multirow" id="row2">--%>
+<%--        <div class="milturow_left">--%>
+<%--          <div class="form-group">--%>
+<%--            <label for="city">--%>
+<%--              City--%>
+<%--            </label>--%>
+<%--            <br>--%>
+<%--            <input id="city" type="text" class="SelectColordiv" style="outline: none; padding-left: 3px" list="allcity" name="city" autocomplete="off" required>--%>
+<%--            <datalist id="allcity">--%>
+
+<%--            </datalist>--%>
+<%--            <br>--%>
+
+<%--          </div>--%>
+<%--          <span class="error" id="LCity"></span>--%>
+<%--        </div>--%>
+
+<%--        <div class="multirow_right">--%>
+<%--          <label for="district">--%>
+<%--            District--%>
+<%--          </label>--%>
+<%--          <br>--%>
+<%--          <input id="district" class="SelectColordiv" style="outline: none; padding-left: 3px" type="text" list="alldistrict" name="district" required--%>
+<%--                 autocomplete="off">--%>
+<%--          <datalist id="alldistrict">--%>
+
+<%--          </datalist>--%>
+<%--          <br>--%>
+<%--          <span class="error" id="LDistrict"></span>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--      <div class="singal_row">--%>
+<%--        <label for="city">--%>
+<%--          City--%>
+<%--        </label>--%>
+<%--        <br>--%>
+<%--        <input id="city" type="text" class="SelectColordiv" style="outline: none; padding-left: 3px" list="allcity" name="city" autocomplete="off" required>--%>
+<%--        <datalist id="allcity">--%>
+
+<%--        </datalist>--%>
+<%--        <br>--%>
+<%--        <span class="error" id="LCity"></span>--%>
+<%--      </div>--%>
 
 
       <div class="map_container">
@@ -199,7 +248,65 @@
 
 
 <script>
+  myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
+  function checkDistrictidAndFillCity(){
+    var MTypeObj = document.getElementById('district');
+    var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+    if(datalist.options.namedItem(MTypeObj.value)){
+
+      viewCity( (datalist.options.namedItem(MTypeObj.value).id));
+    }
+
+  }
+  function datalistId(feild){
+    var MTypeObj = document.getElementById(feild);
+    var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+    if(datalist.options.namedItem(MTypeObj.value)){
+      return ( (datalist.options.namedItem(MTypeObj.value).id));
+    }
+  }
+  viewDistrict()
+  function viewDistrict(){
+    $.post(myUrl + "/user-complain-controller/district",
+            function (data, status) {
+              console.log(data);
+              let rs= JSON.parse(data);
+              this.mohDetails=rs;
+              // console.log(data);
+
+              let MNames=document.getElementById("allDistrict");
+              MNames.innerHTML="";
+              rs.map((element,index) => {
+                // console.log("moh"+element.MName)
+                MNames.innerHTML+= '<option  id="'+element.district_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
+
+              })
+            }
+    );
+  }
+  function viewCity(Did){
+    $.post(myUrl + "/user-complain-controller/city",
+            function (data, status) {
+              // console.log(data);
+              let rs= JSON.parse(data);
+              this.mohDetails=rs;
+              // console.log(data);
+
+              let MNames=document.getElementById("allCity");
+              MNames.innerHTML="";
+              rs.map((element,index) => {
+                // console.log("moh"+element.MName)
+                if(Did==element.district_id){
+                  MNames.innerHTML+= '<option  id="'+element.city_id+'"  name="'+element.name+'" value="' + element.name +  '" option="' + element.name +  '" ></option>'
+
+                }
+
+
+              })
+            }
+    );
+  }
 </script>
 
 
@@ -275,72 +382,82 @@
 <script>
   selectedOptionList = [];
 
-  function AddValue() {
-    const Value = document.getElementById('SelectCity').value;
-    // console.log("work" + Value);
-    if (!Value) return;
-    if (selectedOptionList.findIndex(item => Value == item) == -1) {
-      selectedOptionList.push(Value);
-      const Text = document.querySelector('option[value="' + Value + '"]').label;
-      const option = document.createElement("option");
-      option.value = "";
-      option.text = "";
-      // document.getElementById('selected-options-container').appendChild(option);
-      // console.log("value ==> "+Value);
-      document.getElementById("selected-options-container").innerHTML += `<div class="selected-options">`+Value+`<div class="close-btn" onclick="deleteSelectedItem('`+ Value +`');">X</div></div>`
+  // function AddValue() {
+  //   const Value = document.getElementById('SelectCity').value;
+  //   // console.log("work" + Value);
+  //   if (!Value) return;
+  //   if (selectedOptionList.findIndex(item => Value == item) == -1) {
+  //     selectedOptionList.push(Value);
+  //     const Text = document.querySelector('option[value="' + Value + '"]').label;
+  //     const option = document.createElement("option");
+  //     option.value = "";
+  //     option.text = "";
+  //     // document.getElementById('selected-options-container').appendChild(option);
+  //     // console.log("value ==> "+Value);
+  //     document.getElementById("selected-options-container").innerHTML += `<div class="selected-options">`+Value+`<div class="close-btn" onclick="deleteSelectedItem('`+ Value +`');">X</div></div>`
+  //
+  //   }
+  //   // console.log("selectedOptionList "+selectedOptionList);
+  //   document.getElementById('SelectCity').value = "";
+  //
+  // }
+  //
+  // function SearchSelect(feild) {
+  //   if (selectedOptionList.length == 0) {
+  //     document.getElementById(feild).innerHTML = "*required";
+  //   } else {
+  //     document.getElementById(feild).innerHTML = "";
+  //   }
+  // }
+  // function  deleteSelectedItem(value) {
+  //   // console.log("del Value "+value)
+  //   let index = selectedOptionList.findIndex(item => value == item);
+  //   // console.log("index "+index);
+  //   let temp = selectedOptionList.filter(item => item != value);
+  //   // console.log("temp "+temp);
+  //   selectedOptionList = temp;
+  //
+  //   // console.log("selectedOptionList "+selectedOptionList)
+  //   document.getElementById("selected-options-container").innerHTML = "";
+  //   for (let i = 0; i < selectedOptionList.length; i++) {
+  //     document.getElementById("selected-options-container").innerHTML += `<div class="selected-options">`+selectedOptionList[i]+`<div class="close-btn" onclick="deleteSelectedItem('`+ selectedOptionList[i] +`');">X</div></div>`
+  //   }
+  // }
+  //
+  //
+  // var wage = document.getElementById("SelectCity");
+  // wage.addEventListener("keydown", function (e) {
+  //   if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
+  //     validate(e);
+  //   }
+  // });
 
-    }
-    // console.log("selectedOptionList "+selectedOptionList);
-    document.getElementById('SelectCity').value = "";
 
-  }
-
-  function SearchSelect(feild) {
-    if (selectedOptionList.length == 0) {
-      document.getElementById(feild).innerHTML = "*required";
-    } else {
-      document.getElementById(feild).innerHTML = "";
-    }
-  }
-  function  deleteSelectedItem(value) {
-    // console.log("del Value "+value)
-    let index = selectedOptionList.findIndex(item => value == item);
-    // console.log("index "+index);
-    let temp = selectedOptionList.filter(item => item != value);
-    // console.log("temp "+temp);
-    selectedOptionList = temp;
-
-    // console.log("selectedOptionList "+selectedOptionList)
-    document.getElementById("selected-options-container").innerHTML = "";
-    for (let i = 0; i < selectedOptionList.length; i++) {
-      document.getElementById("selected-options-container").innerHTML += `<div class="selected-options">`+selectedOptionList[i]+`<div class="close-btn" onclick="deleteSelectedItem('`+ selectedOptionList[i] +`');">X</div></div>`
-    }
-  }
-
-
-  var wage = document.getElementById("SelectCity");
-  wage.addEventListener("keydown", function (e) {
-    if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
-      validate(e);
-    }
-  });
-
-
-  function validate(e) {
-    AddValue(document.getElementById('allcity').value,
-            document.getElementById('allcity').text);
-  }
+  // function validate(e) {
+  //   AddValue(document.getElementById('allcity').value,
+  //           document.getElementById('allcity').text);
+  // }
 
 
   function checkvalidation(){
-    if(validation.mobileValidation(document.getElementById('TpNo').value, 'LTpNo')&&
+
+
+    if(
+            validation.selectCheck('district','LDistrict')&&
+            validation.selectCheck('city','LCity')&&
+            validation.mobileValidation(document.getElementById('TpNo').value, 'LTpNo')&&
             validation.nameValidation(document.getElementById('MoHName').value,'LMoHName' )&&
             validation.nameValidation(document.getElementById('MoHhead').value,'LMoHhead' )){
-      console.log("correct log");
+
       RegisterMOH();
     }
     else{
-      console.log("incorrect log");
+      // console.log("incorrect log");
+      validation.selectCheck('district','LDistrict')
+      validation.selectCheck('city','LCity')
+      validation.mobileValidation(document.getElementById('TpNo').value, 'LTpNo')
+      validation.nameValidation(document.getElementById('MoHName').value,'LMoHName' )
+      validation.nameValidation(document.getElementById('MoHhead').value,'LMoHhead' )
     }
 
     return false;
@@ -352,15 +469,13 @@
               uname: document.getElementById('MoHName').value,
               Mobiel: document.getElementById('TpNo').value,
               MOHHead:document.getElementById('MoHhead').value,
-              allcities:JSON.stringify(selectedOptionList),
-              province: document.getElementById('province').value,
-              district: document.getElementById('district').value,
-              city: document.getElementById('city').value,
+              district: datalistId("district"),
+              city: datalistId("city"),
               x: "",
               y:""
             };
 
-    $.post("/suwasewana_war/admin-register-controller/moh",
+    $.post(myUrl +"/admin-register-controller/moh",
             reqData,
             function (data, status) {
               if (data.includes("success") ) {
@@ -382,7 +497,8 @@
   }
 </script>
 <script defer>
-  let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity", "AllCities");
+  //we dont take province then dont uncomment this
+  // let locationgenarator = new LocationSelectGenarate("allprovince", "alldistrict", "allcity", "AllCities");
   let validation = new FormInputValidation();
   let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
 </script>

@@ -9,6 +9,8 @@ label {
     font-size: 0.7em;
     margin-bottom: 5px;
     font-weight: 540;
+    color: rgba(29, 29, 29, 0.8);
+    font-size: .75em!important;
 }
 
 .MR_main_Container {
@@ -58,7 +60,8 @@ form {
     /* background-color: aquamarine; */
     display: flex;
     min-height: 35px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
+    margin-top: 34px
 }
 
 #row2 {
@@ -152,6 +155,7 @@ form {
 
 .submit_btn {
     margin-top: 10px;
+    margin-bottom: 100px;
 }
 
 .submit {
@@ -196,36 +200,40 @@ form {
     font-size: 0.7em;
     transition: all .3s ease;
     border-radius: 1px;
-    padding: 0 6px;
+    padding: 0 0px;
     outline: none;
+    color: rgba(0, 0, 0, 0.97);
+    font-size: 0.8em;
 }
 
-.form-item input:focus {
-    border-color: blue
-}
+/*.form-item input:focus {*/
+/*    border-color: blue*/
+/*}*/
 
 .form-item label {
     position: absolute;
     cursor: text;
     z-index: 2;
-    top: 10px;
+    top: -12px;
     left: -10px;
     font-size: 12px;
     background: #fff;
     padding: 0 10px;
     /* color: #999; */
-    transition: all .3s ease
+    transition: all .3s ease;
+    font-size: .75em!important;
+    color: rgba(29, 29, 29, 0.8);
 }
 
-.form-item input:focus + label,
-.form-item input:valid + label {
-    font-size: 11px;
-    top: -12px
-}
+/*.form-item input:focus + label,*/
+/*.form-item input:valid + label {*/
+/*    font-size: 11px;*/
+/*    top: -12px*/
+/*}*/
 
-.form-item input:focus + label {
-    color: blue
-}
+/*.form-item input:focus + label {*/
+/*    color: blue*/
+/*}*/
 
 
 /* search select */
@@ -249,6 +257,8 @@ datalist {
     margin-left: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.336);
     color: rgba(0, 0, 0, 0.397);
+    color: rgba(0, 0, 0, 0.97);
+    font-size: 0.8em;
 }
 
 #addcityDiv {
@@ -281,8 +291,9 @@ datalist {
     width: fit-content;
     background-color: rgb(58, 55, 233);
     border-radius: 5px;
-    padding: 2px 5px;
+    padding: 4px 11px;
     font-size: 0.6em;
+    letter-spacing: 0.5px;
     box-sizing: border-box;
     color: white;
     flex-wrap: wrap;
@@ -300,7 +311,7 @@ datalist {
 }
 
 .error {
-    font-size: 0.5em;
+    font-size: 0.55em;
     color: red;
     /* display: none; */
 }
