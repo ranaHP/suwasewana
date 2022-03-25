@@ -1,9 +1,9 @@
 package com.suwasewana.controller.user;
 
 import com.google.gson.Gson;
-import com.suwasewana.dao.DiseaselistDAO;
 import com.suwasewana.dao.UserDAO;
 import com.suwasewana.model.User;
+import com.suwasewana.model.UserDiseaseDetailsModel;
 import com.suwasewana.model.UserDiseaseModel;
 
 import javax.servlet.RequestDispatcher;
@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @WebServlet("/user-disease-controller/*")
@@ -52,6 +53,10 @@ public class UserDiseaseController extends HttpServlet {
 
                     case "patientTP":
                         patientTP(req,res);
+                        break;
+
+                    case "search":
+                        searchDisease(req,res);
                         break;
 
                     default:
@@ -103,13 +108,24 @@ public class UserDiseaseController extends HttpServlet {
 
     private void UserviewDiseasedetails(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        System.out.println("dta controllwe");
-        UserDiseaseModel userdisease = new UserDiseaseModel(
+        UserDiseaseDetailsModel userdisease = new UserDiseaseDetailsModel(
+                "",
                 "",
                 ""
         );
-        ArrayList<UserDiseaseModel> result = userDAO.UserViewDiseaseDetails(userdisease);
+        ArrayList<UserDiseaseDetailsModel> result = userDAO.UserViewDiseaseDetails(userdisease);
         res.getWriter().println(gson.toJson(result));
 
+    }
+
+
+    private void searchDisease(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, SQLException {
+//        System.out.println("title"+req.getParameter("Title"));
+        System.out.println("type"+req.getParameter("complaintype"));
+        String title=req.getParameter("complaintype");
+
+        ArrayList<UserDiseaseDetailsModel> result = userDAO.SearchDiseaseDetails(title);
+        res.getWriter().println(gson.toJson(result));
     }
 
 
