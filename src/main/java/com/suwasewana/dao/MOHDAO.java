@@ -13,10 +13,11 @@ import java.util.ArrayList;
 public class MOHDAO {
     @SuppressWarnings("SqlResolve")
 
-    private static final String MOH_Detail="SELECT * FROM suwasewana_db.moh m left join phi p ON m.moh_head=p.nic left join district d ON m.district=d.district_id  ;";
+    private static final String MOH_Detail="SELECT * FROM suwasewana_db.moh m left join district d ON m.district=d.district_id  ;";
     private static final String MOH_Details="SELECT * FROM suwasewana_db.moh;";
     private static final String District_Detail="SELECT * FROM suwasewana_db.district;";
     private static final String City_Detail="SELECT * FROM suwasewana_db.cities;";
+    private static final String C_officers="SELECT * FROM suwasewana_db.clinicalofficer m left join district d ON m.district=d.district_id left join moh n ON m.assignMOH=n.moh_id;";
     Connection connection;
 
     public MOHDAO() {
@@ -109,7 +110,7 @@ public class MOHDAO {
 
                 String name = rs.getString("name");
                 String District = rs.getString("d.name");
-                String Head = rs.getString("full_name");
+                String Head = rs.getString("moh_head");
                 String Mobile = rs.getString("mobile_number");
 
                 MOHRegModel temp = new MOHRegModel(
@@ -156,7 +157,29 @@ public class MOHDAO {
     }
 
 
+    public ArrayList<ClinicalOfficerModel> C_all_view(ClinicalOfficerModel clinicalOfficerModel) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(C_officers)) {
+            ResultSet rs = preparedStatement.executeQuery();
+            System.out.println(rs);
+            ArrayList<ClinicalOfficerModel>C_officers = new ArrayList<ClinicalOfficerModel>();
+            while (rs.next()) {
+                ClinicalOfficerModel temp = new ClinicalOfficerModel(
+                        rs.getString("full_name"),
+                        rs.getString("nic"),
+                        rs.getString("mobile_number"),
+                        "",
+                        rs.getString("d.name"),
+                        "",
+                        rs.getString("n.name")
+                );
 
+                C_officers.add(temp);
+            }
+            return C_officers;
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
 
-
+        return null;
+    }
 }

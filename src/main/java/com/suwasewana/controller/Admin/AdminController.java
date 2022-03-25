@@ -53,6 +53,9 @@ public class AdminController extends HttpServlet {
                 case "phiall":
                     Allphi(req,res);
                     break;
+                case "C_all":
+                    C_all(req,res);
+                    break;
                 case "allAnnouncement":
                     Allannouncement(req,res);
                     break;
@@ -95,6 +98,21 @@ public class AdminController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+
+    private void C_all(HttpServletRequest req, HttpServletResponse res) throws IOException {
+
+        ClinicalOfficerModel clinicalOfficerModel=new ClinicalOfficerModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        ArrayList<ClinicalOfficerModel> result = mohdao.C_all_view(clinicalOfficerModel);
+        res.getWriter().println(gson.toJson(result));
     }
 
     private void renew(HttpServletRequest req, HttpServletResponse res) throws IOException {
