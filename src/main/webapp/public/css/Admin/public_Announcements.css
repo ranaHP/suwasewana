@@ -176,7 +176,7 @@ textarea{
     /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.096); */
 }
 .img-publish-button{
-    width: 100%;
+    width: 80%;
     height: 80px;
     display: flex;
     flex-direction: column;

@@ -33,8 +33,8 @@
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Admin/Dashboard/Make announcements</div>
     </div>
-    <h1 style="text-align: center ; margin: 20px 0; color: #4b4b4b"> Public Announcements Form  </h1>
-    <span style="text-align: center ; margin: -10px 0; color: #4b4b4b;"> Suwasewana public announcement portal  </span>
+<%--    <h1 style="text-align: center ; margin: 20px 0; color: #4b4b4b"> Public Announcements Form  </h1>--%>
+<%--    <span style="text-align: center ; margin: -10px 0; color: #4b4b4b;"> Suwasewana public announcement portal  </span>--%>
 
 
 
@@ -59,22 +59,63 @@
                         <label for="description" >Description</label>
                         <textarea id="description" name="content" rows="10" cols="30" row="5" onkeyup="card()"></textarea>
                     </div>
-                    <div class="img-publish-button">
-                        <div class="image-upload-card">
-                            <img id="proof1" width="100%" />
-                            <input type="file" accept="image/*" name="file" id="proof1input"
-                                   onchange="loadFile(event , 'proof1')" style="display: none;">
 
-                            <label for="proof1input" class="upload" style="cursor: pointer;">Upload Image</label>
+
+                    <div id="search-section" style="width: 100%">
+                      <div style="display: flex; align-items: center; ">
+                          <label for="switch">                          </label>
+
+                          All island &nbsp;&nbsp; <input type="checkbox" id="switch" onclick="change()">
+                      </div>
+
+                        <div style="display: flex ;margin-bottom: 10px;flex-direction: column" id="province_selected" >
+                            <div class="selected-options-container" id="selected-options-container">
+                            </div>
+                            <div style="display: flex;flex-direction: row">
+                                <input class="a" autocomplete="off" placeholder="Select Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required
+                                       onclick="document.getElementById('PArea').value='';"
+                                       onblur="validation.SearchSelect(
+                                    document.getElementById('PArea').value,
+                                    'LPArea'
+                                );"
+                                >
+                                <datalist id="AllPArea">
+                                    <option label="All" value="All" id=All1></option>
+                                </datalist>
+                                <br>
+                                <button class="publish-button1" onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>
+                            </div>
+                            <span class="error" id="LPArea" style="margin-left: 5px" ></span>
                         </div>
-
-                        <button class="publish-button" onclick="return imageUpload()">Publish</button>
+                        <div style="display: flex;flex-direction: column" id="district_selected">
+                            <div class="selected-options-container" id="selected-options-container1">
+                            </div>
+                            <div style="display: flex;flex-direction: row">
+                                <input class="a" autocomplete="off" placeholder="Select Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required
+                                       onclick="document.getElementById('DArea').value='';"
+                                       onblur="validation.SearchSelect(
+                                    document.getElementById('DArea').value,
+                                    'LDArea'
+                                );"
+                                >
+                                <datalist id="AllDArea">
+                                    <option label="All" value="All" id=All></option>
+                                </datalist>
+                                <br>
+                                <button class="publish-button1" onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>
+                            </div>
+                            <span class="error" id="LDArea" style="margin-left: 5px" ></span>
+                        </div>
                     </div>
+
                 </form>
 
             </div>
             <!-- image upload and publish button section -->
         </div>
+
+
+
         <div class="right">
             <div class="live-card-container" >
                 <p> Live Announcement  Preview  </p>
@@ -83,8 +124,19 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
+<%--    <div class="img-publish-button" style="margin-top: 30px;>--%>
+<%--        <div class="image-upload-card">--%>
+<%--            <img id="proof1" width="100%" />--%>
+<%--            <input type="file" accept="image/*" name="file" id="proof1input"--%>
+<%--                   onchange="loadFile(event , 'proof1')" style="display: none;">--%>
+
+<%--            <label for="proof1input" class="upload" style="cursor: pointer;">Upload Image</label>--%>
+<%--        </div>--%>
+
+<%--        <button class="publish-button" onclick="return imageUpload()">Publish</button>--%>
+<%--    </div>--%>
     <div class="make-announcement-container">
 
         <div style="width: 100%;height: 500px;">
@@ -159,53 +211,16 @@
         let i;
         console.log("change")
         if(!decider.checked){
-<%--            q.innerHTML=`--%>
-<%--              <div class="selected-options-container" id="selected-options-container">--%>
-<%--            </div>--%>
-
-
-<%--&lt;%&ndash;        select province&ndash;%&gt;--%>
-<%--    <div class="down">--%>
-<%--        <input autocomplete="off" placeholder="Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required--%>
-<%--               onclick="document.getElementById('PArea').value='';"--%>
-<%--               onblur="validation.SearchSelect(--%>
-<%--                                    document.getElementById('PArea').value,--%>
-<%--                                    'LPArea'--%>
-<%--                                );"--%>
-<%--        >--%>
-<%--        <datalist id="AllPArea">--%>
-<%--            <option label="All" value="All" id=All1></option>--%>
-<%--        </datalist>--%>
-<%--        <br>--%>
-<%--       <button onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>--%>
-<%--        <span class="error" id="LPArea" style="margin-left: 5px" ></span>--%>
-<%--    </div>--%>
-<%--&lt;%&ndash;      select district&ndash;%&gt;--%>
-<%--        <div class="selected-options-container" id="selected-options-container1">--%>
-<%--        </div>--%>
-<%--    <div class="down">--%>
-
-<%--        &lt;%&ndash;        <label >Province</label> <br>&ndash;%&gt;--%>
-<%--        <input autocomplete="off" placeholder="Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required--%>
-<%--               onclick="document.getElementById('DArea').value='';"--%>
-<%--               onblur="validation.SearchSelect(--%>
-<%--                                    document.getElementById('DArea').value,--%>
-<%--                                    'LDArea'--%>
-<%--                                );"--%>
-<%--        >--%>
-<%--        <datalist id="AllDArea">--%>
-<%--            <option label="All" value="All" id=All></option>--%>
-<%--        </datalist>--%>
-<%--        <br>--%>
-<%--            <button onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>--%>
-<%--        <span class="error" id="LDArea" style="margin-left: 5px" ></span>--%>
-<%--    </div>--%>
-<%--            `--%>
+            document.getElementById('district_selected').style.display = "block";
+            document.getElementById('province_selected').style.display = "block";
         } else {
             // alert('unchecked');
             // q.innerHTML=""
+
             selectedOptionList.push("all")
             selectedOptionList1.push("all")
+            document.getElementById('district_selected').style.display = "none";
+            document.getElementById('province_selected').style.display = "none";
         }
     }
 
