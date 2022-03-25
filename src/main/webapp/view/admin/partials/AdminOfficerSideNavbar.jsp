@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%--</head>--%>
 <%--<body>--%>
-<div class="sidebar close">
+<div class="sidebar close" style="z-index: 800">
     <div class="close-btn">
         x
     </div>
@@ -31,7 +31,7 @@
                 <span class="link_name">Dashboard</span>
             </a>
             <ul class="sub-menu blank">
-                <li><a href="/suwasewana_war/s/admin-dashboard">Home</a></li>
+                <li><a href="/test_war_exploded/s/admin-dashboard">Home</a></li>
             </ul>
         </li>
         <li>
@@ -44,8 +44,8 @@
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">List</a></li>--%>
-                <li><a href="/suwasewana_war/s/register_PHI">Register PHI/RPHI</a></li>
-                <li><a href="/suwasewana_war/s/view_PHI">List PHI/RPHI</a></li>
+                <li><a href="/test_war_exploded/s/register_PHI">Register PHI/RPHI</a></li>
+                <li><a href="/test_war_exploded/s/view_PHI">List PHI/RPHI</a></li>
             </ul>
         </li>
         <li>
@@ -58,8 +58,8 @@
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">List</a></li>--%>
-                <li><a href="/suwasewana_war/s/register_C-officer">Register Clinical officers</a></li>
-                <li><a href="/suwasewana_war/s/view_ClinicalOfficers">List Clinical officers</a></li>
+                <li><a href="/test_war_exploded/s/register_C-officer">Register Clinical officers</a></li>
+                <li><a href="/test_war_exploded/s/view_ClinicalOfficers">List Clinical officers</a></li>
             </ul>
         </li>
         <li>
@@ -72,8 +72,8 @@
             </div>
             <ul class="sub-menu">
 <%--                <li><a class="link_name" href="#">List</a></li>--%>
-                <li><a href="/suwasewana_war/s/register_MOH">Register MOH</a></li>
-                <li><a href="/suwasewana_war/s/view_MOH">List MOH Areas</a></li>
+                <li><a href="/test_war_exploded/s/register_MOH">Register MOH</a></li>
+                <li><a href="/test_war_exploded/s/view_MOH">List MOH Areas</a></li>
             </ul>
         </li>
         <li>
@@ -94,8 +94,8 @@
                 <i class='bx bxs-chevron-down arrow'></i>
             </div>
             <ul class="sub-menu">
-                <li><a class="link_name" href="#">Announcements</a></li>
-                <li><a href="/test_war_exploded/s/public_announcements">For public</a></li>
+                <li><a class="link_name" href="/test_war_exploded/s/public_announcements">Announcements</a></li>
+
             </ul>
         </li>
         <li>

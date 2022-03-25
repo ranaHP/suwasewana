@@ -92,9 +92,9 @@ public class VaccineController extends HttpServlet {
         String regNo=req.getParameter("regNo");
         String availableDose=req.getParameter("availableDose");
         String clinicid=req.getParameter("clinicid");
-        System.out.println("data in controller");
-        System.out.println("regNo : "+regNo);
-        System.out.println("availableDose : "+availableDose);
+//        System.out.println("data in controller");
+//        System.out.println("regNo : "+regNo);
+//        System.out.println("availableDose : "+availableDose);
 
         String result = userDAO.CancleRegisterdVaccineClinic(regNo,availableDose,clinicid);
         res.getWriter().println(result);
@@ -134,8 +134,8 @@ public class VaccineController extends HttpServlet {
         //String nic="199910910064";
         String mohid=UMoh;
         String nic=uNic;
-        System.out.println("1UNic- "+uNic);
-        System.out.println("1UMoh - "+UMoh);
+//        System.out.println("1UNic- "+uNic);
+//        System.out.println("1UMoh - "+UMoh);
         ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetVaccineClinicDetail(mohid,nic);
         res.getWriter().println(gson.toJson(result));
     }
@@ -152,8 +152,8 @@ public class VaccineController extends HttpServlet {
                 }
             }
         }
-        System.out.println("2UNic- "+uNic);
-        System.out.println("2UTp - "+UTp);
+//        System.out.println("2UNic- "+uNic);
+//        System.out.println("2UTp - "+UTp);
         //uNic ="199910910064";
                // UTp="0713805000";
         String new_next_sloat=req.getParameter("new_next_sloat");

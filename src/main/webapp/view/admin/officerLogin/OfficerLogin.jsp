@@ -57,7 +57,7 @@
                                    name="admin-code" id="admin-code"
                                    style="display: none"
                             />
-                            <div id="user-mobile-error" class="form-field-error"></div>
+                            <div id="user-mobile-error" c-class="form-field-error"></div>
                         </div>
                         <div class="form-group">
                             <div class="formlable"><label> Password</label> </div>
@@ -148,7 +148,7 @@
                         document.getElementById("user-password").value + "&Post=" +
                         document.getElementById('officer_types').value;
                     const xhttp = new XMLHttpRequest();
-                    console.log(url)
+                    // console.log(url)
                     xhttp.onload = function () {
 
                         let result = JSON.parse(this.response);

@@ -1,13 +1,13 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Suwasewana</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/public_Announcements.css"/> "/>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/announcementCard.css"/> "/>
@@ -17,6 +17,12 @@
     <script defer src="<c:url value="/public/js/Admin/public_Announcements.js"></c:url> "></script>
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 </head>
 <body id="mainContent" onload="checkP()">
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
@@ -27,70 +33,25 @@
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Admin/Dashboard/Make announcements</div>
     </div>
-    <div class="search-section" id="search-section">
-        <div class="down">
-            <label for="switch">
-                All island
-                <input type="checkbox" id="switch" onclick="change()">
-            </label>
-            <%--        <button id="btn">Submit</button>--%>
-
-        </div>
-    <div>
-        <div class="selected-options-container" id="selected-options-container">
-        </div>
+    <h1 style="text-align: center ; margin: 20px 0; color: #4b4b4b"> Public Announcements Form  </h1>
+    <span style="text-align: center ; margin: -10px 0; color: #4b4b4b;"> Suwasewana public announcement portal  </span>
 
 
-        <%--        select province--%>
-        <div class="down">
-            <input class="a" autocomplete="off" placeholder="Select Province" class="SelectColordiv" id="PArea" type="text" style="outline: none;" list="AllPArea" name="AllPArea" required
-                   onclick="document.getElementById('PArea').value='';"
-                   onblur="validation.SearchSelect(
-                                    document.getElementById('PArea').value,
-                                    'LPArea'
-                                );"
-            >
-            <datalist id="AllPArea">
-                <option label="All" value="All" id=All1></option>
-            </datalist>
-            <br>
-            <button class="publish-button1" onclick="AddValue(document.getElementById('AllPArea').value, document.getElementById('AllPArea').text);SelectDistricts()">add</button>
-            <span class="error" id="LPArea" style="margin-left: 5px" ></span>
-        </div>
-    </div>
-<%--      select district--%>
-      <div>
-          <div class="selected-options-container" id="selected-options-container1">
-          </div>
-          <div class="down">
 
-              <%--        <label >Province</label> <br>--%>
-              <input class="a" autocomplete="off" placeholder="Select Districts" class="SelectColordiv" id="DArea" type="text" style="outline: none;" list="AllDArea" name="AllDArea" required
-                     onclick="document.getElementById('DArea').value='';"
-                     onblur="validation.SearchSelect(
-                                    document.getElementById('DArea').value,
-                                    'LDArea'
-                                );"
-              >
-              <datalist id="AllDArea">
-                  <option label="All" value="All" id=All></option>
-              </datalist>
-              <br>
-              <button class="publish-button1" onclick="AddDValue1(document.getElementById('AllDArea').value, document.getElementById('AllDArea').text);">add</button>
-              <span class="error" id="LDArea" style="margin-left: 5px" ></span>
-          </div>
-      </div>
-    </div>
+    <h1 style="text-align: center ; margin: 20px 0; color: #4b4b4b"> Public Announcements Form  </h1>
+    <span style="text-align: center ; margin: -10px 0; color: #4b4b4b;"> Suwasewana public announcement portal  </span>
+
+
     <div class="make-announcement-container">
         <div class="left">
             <!-- form container -->
-            <div class="form-container">
+            <div class="form-container" style="">
                 <form action="">
                     <div class="form-item1" id="input-title">
                         <input type="text" id="title" autocomplete="off" onkeyup="card()" required>
                         <label for="title">Title</label>
                     </div>
-                    <div class="form-item1" id="inputtitle">
+                    <div class="form-item1" id="expire-date">
                         <label for="title">Expire date</label>
                         <input style="font-size: .7em" type="date" id="expire_date"></input>
                     </div>
@@ -116,14 +77,36 @@
         </div>
         <div class="right">
             <div class="live-card-container" >
+                <p> Live Announcement  Preview  </p>
                 <div class="announcement" id="announcement">
 
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="make-announcement-container">
+
+        <div style="width: 100%;height: 500px;">
+            <textarea id="my-text-area" ></textarea>
+        </div>
+        <script>
+            var easymde = new EasyMDE({
+                autoDownloadFontAwesome: true,
+                showIcons: ['strikethrough', 'code', 'table', 'redo', 'heading', 'undo', 'heading-bigger', 'heading-smaller', 'heading-1', 'heading-2', 'heading-3', 'clean-block', 'horizontal-rule'],
+                element: document.getElementById('my-text-area'),
+                initialValue: '## Toolbar \nHere you can see all the buttons available for the toolbar.'
+            });
+
+            easymde.codemirror.on("change", () => {
+                console.log(easymde.value());
+            });
+        </script>
+    </div>
+
 </div>
 <script defer>
+    myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     var loadFile = function(event) {
         var image = document.getElementById('images');
@@ -235,7 +218,7 @@
                 expire_date:document.getElementById("expire_date").value
             };
 
-            $.post("/test_war_exploded/admin-controller/PublicAnnouncement",
+            $.post(myUrl+"/admin-controller/PublicAnnouncement",
                 reqData,
                 function (data, status) {
                 // alert(data)
@@ -403,7 +386,7 @@
     let validation = new FormInputValidation();
     function checkP(){
         let PDetails=[];
-        $.post(myUrl+"/admin-controller/provinceAll",
+            $.post(myUrl+"/admin-controller/provinceAll",
             function (data, status) {
                 console.log(data);
                 let rs= JSON.parse(data);
