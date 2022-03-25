@@ -103,7 +103,7 @@ public class UserComplainController extends HttpServlet {
                 ""
 
         );
-        String nic="199910910062";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -166,7 +166,7 @@ public class UserComplainController extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void uerMakeComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
+        String uNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -175,7 +175,7 @@ public class UserComplainController extends HttpServlet {
                 }
             }
         }
-        System.out.println("User nic = "+uNic);
+//        System.out.println("User nic = "+uNic);
         ComplainModel usercomplainDetails = new ComplainModel(
                 req.getParameter("cTitle"),
                 req.getParameter("cType"),
@@ -197,7 +197,7 @@ public class UserComplainController extends HttpServlet {
     }
 
     private void userViewComplain(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
+        String uNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             System.out.println("cookies not empty");

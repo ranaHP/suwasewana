@@ -769,10 +769,10 @@
             })
         }
     );
-</script>
+
 
 <%--script for take MOH list--%>
-<script defer>
+
     let mohDetails=[];
     $.post(myUrl+"/user-complain-controller/moh",
         function (data, status) {

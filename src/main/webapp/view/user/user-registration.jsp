@@ -12,7 +12,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="<c:url value="/public/js/admin/InputValidation.js"/>"></script>
+    <script src="<c:url value="/public/js/Admin/InputValidation.js"/>"></script>
     <title> User Home Suwasewana </title>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/>"/>
 
