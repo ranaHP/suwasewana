@@ -190,28 +190,28 @@
             fd.append('ImageName' + (index + 1), item);
         })
         console.log("image neames array "+imageNames);
-        // if(imageNames.length!=0){
-        //     $.ajax({
-        //         url: myUrl+'/fileuploadservlet1',
-        //         type: 'post',
-        //         data: fd,
-        //         contentType: false,
-        //         processData: false,
-        //         success: function (response) {
-        //             if (response != 0) {
-        //                 console.log("successfully image uploadedss ---- " +imageNames )
-        //                 PublicAnnouncement(imageNames)
-        //             } else {
-        //                 console.log('file not uploaded');
-        //             }
-        //         },
-        //     });
-        // }
-        // else {
-        //     console.log("no image selected")
-        //     // registerwithoutimage();
-        // }
-        PublicAnnouncement(imageNames)
+        if(imageNames.length!=0){
+            $.ajax({
+                url: myUrl+'/fileuploadservlet1',
+                type: 'post',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response != 0) {
+                        console.log("successfully image uploadedss ---- " +imageNames )
+                        PublicAnnouncement(imageNames)
+                    } else {
+                        console.log('file not uploaded');
+                    }
+                },
+            });
+        }
+        else {
+            console.log("no image selected")
+            // registerwithoutimage();
+        }
+
         return false;
     }
 
