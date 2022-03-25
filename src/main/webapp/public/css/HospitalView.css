@@ -6,6 +6,7 @@
 .vaccine-list-container{
     /* background-color: aqua; */
     height: 100vh;
+    margin-left: 78px;
 }
 .search-row{
     /* background-color: blueviolet; */
