@@ -73,7 +73,7 @@
                 console.log(data);
                 console.log("asdasd");
                 tblBody.innerHTML = "";
-                headers=["Banner","Title","Description","Province","District","Block","Update"]
+                headers=["Id","Banner","Title","Description","Expire Time" ,"Status","Block","Update"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -87,10 +87,11 @@
                 data.map((item)=>{
                     tblBody.innerHTML+= `
     <tr>
-                  <td data-label="MOHName">` + item.banner + `</td>
-               <td data-label="MOHName">` + item.announcement_id + `</td>
+                  <td data-label="Banner"> ` + item.announcement_id + `</td>
+                  <td data-label="Banner"><img src="` + myUrl + `/public/images/uploadimage/` + item.banner + `" width="100px" /> </td>
+               <td data-label="Title">` + item.title + `</td>
                 <td data-label="Didtrict">` + item.description + `</td>
-                <td data-label="Head">` + item.expire_date`` + `</td>
+                <td data-label="Head">` + item.expire_date + `</td>
                 <td data-label="Mobile">`+item.status + `</td>
                 <td class="update"  data-label="ReNew" onclick=""><button>Re New MAC</button></td>
                 <td class="Block"  data-label="block" onclick=""><button>Block</button></td>
