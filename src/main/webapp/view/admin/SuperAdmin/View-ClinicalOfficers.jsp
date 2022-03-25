@@ -13,7 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="<c:url value="/public/js/Admin/view_ClinicalOfficers.js"></c:url> "></script>
+<%--    <script defer src="<c:url value="/public/js/Admin/view_ClinicalOfficers.js"></c:url> "></script>--%>
 </head>
 <body id="mainContent">
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
@@ -29,12 +29,12 @@
     </div>
     <div class="search-section">
         <div class="select"  id="select_district">
-            <select name="" id="select" onchange="check()">
+            <select name="" id="select" onchange="checkM()">
                 <option value="1">select district</option>
             </select>
         </div>
         <div class="select">
-            <select name="" id="select1" onchange="check()">
+            <select name="" id="select1" onchange="checkM()">
                 <option value="1">select area</option>
             </select>
         </div>
@@ -54,25 +54,21 @@
     var tbl = document.createElement("table");
     tbl.classList.add("table")
     var tblBody = document.createElement("tbody");
-    getAllMOHDetails();
+    getAllCDetails();
     let moh_details_list={};
     let MOHList = [];
     let districtList=[];
-    function getAllMOHDetails() {
+    function getAllCDetails() {
         let MOHList = [];
-        $.post(myUrl+"/admin-controller/phiall",
+        $.post(myUrl+"/admin-controller/C_all",
             {},
             function (data, status) {
                 data = JSON.parse(data);
                 console.log("asdasd");
                 console.log(data);
                 console.log("asdasd");
-                // var body=document.getElementById("mainContent")
-                // var tbl = document.createElement("table");
-                // tbl.classList.add("table")
-                // var tblBody = document.createElement("tbody");
                 tblBody.innerHTML = "";
-                headers=["name","MOH","District","POST","Mobile","ReNew","Block"]
+                headers=["name","MOH","District","Mobile","ReNew","Block"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -86,13 +82,12 @@
                 data.map((item)=>{
                     tblBody.innerHTML+= `
     <tr>
-                  <td data-label="MOHName">` + item.full_name + `</td>
-               <td data-label="MOHName">` + item.City + `</td>
-                <td data-label="Didtrict">` + item.assignCity + `</td>
-                <td data-label="Head">` + item.phi_post + `</td>
-                <td data-label="Mobile">`+item.NIC + `</td>
-                <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
-                <td class="Block"  data-label="block" onclick="block()"><button>Block</button></td>
+                  <td data-label="MOHName">` + item.Name + `</td>
+               <td data-label="MOHName">` + item.MOHAREA + `</td>
+                <td data-label="Didtrict">` + item.District + `</td>
+                <td data-label="Mobile">`+item.Mobile + `</td>
+                <td class="update"  data-label="ReNew" onclick="renew(`+item.NIC +`)"><button>Re New MAC</button></td>
+                <td class="Block"  data-label="block" onclick="block(`+item.NIC +`)"><button>Block</button></td>
 
 
 
@@ -100,8 +95,8 @@
     `
                     tbl.appendChild(tblBody);
                     body.appendChild(tbl);
-                    MOHList.push(item.City)
-                    // districtList.push(item.District)
+                    MOHList.push(item.MOHAREA)
+                    districtList.push(item.District)
 
                 })
                 // console.log(MOHList)
@@ -126,7 +121,7 @@
 
     function checkM() {
         let MOHList = [];
-        $.post(myUrl+"/admin-controller/phiall",
+        $.post(myUrl+"/admin-controller/C_all",
             {},
             function (data, status) {
                 data = JSON.parse(data);
@@ -135,7 +130,7 @@
                 var select1 = document.getElementById("select1")
                 var value = select.options[select.selectedIndex].value;
                 var value1 = select1.options[select1.selectedIndex].value;
-                headers=["name","MOH","District","POST","Mobile","ReNew","Block"]
+                headers=["MOH name","District","Head","Mobile"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -145,21 +140,20 @@
                     row.appendChild(cell);
                     tblBody.appendChild(row);
                 }))
+                console.log("m")
+                console.log(value1)
+                console.log(value)
                 data.map((item)=>{
-                    console.log(value1)
-                    console.log("fff")
-                    console.log(item.City)
-                    if(value==item.phi_post || value1==item.City) {
+                    if(value1==item.MOHAREA) {
+                        console.log(item.MOHAREA)
                         tblBody.innerHTML += `
-     <tr>
-                  <td data-label="MOHName">` + item.full_name + `</td>
-               <td data-label="MOHName">` + item.City + `</td>
-                <td data-label="Didtrict">` + item.assignCity + `</td>
-                <td data-label="Head">` + item.phi_post + `</td>
-                <td data-label="Mobile">`+item.NIC + `</td>
-                <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
+    <tr>
+                <td data-label="MOHName">` + item.Name + `</td>
+               <td data-label="MOHName">` + item.MOHAREA + `</td>
+                <td data-label="Didtrict">` + item.District + `</td>
+                <td data-label="Mobile">`+item.Mobile + `</td>
+                <td class="update"  data-label="ReNew" onclick="renew(`+item.NIC +`)"><button>Re New MAC</button></td>
                 <td class="Block"  data-label="block" onclick="block(`+item.NIC +`)"><button>Block</button></td>
-
 
 
     </tr>
