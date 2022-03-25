@@ -781,15 +781,74 @@
 
 <script defer>
 
-    function RegisterForDisease(name){
+
+    function RegisterCheckForDisease(name,d_id){
+
+        console.log("function call")
+
+        name=name;
+        d_id = d_id;
+        let reqData={
+            d_id : d_id
+        };
+        $.post("/test_war_exploded/user-disease-controller/check",
+            reqData,
+            function (data, status) {
+                console.log("function call")
+                console.log(data)
+                if (JSON.parse(data).length) {
+
+                    console.log("inside")
+
+                    // updateAvailableseats(avalabel_seats,clinic_id)
+                    popup.showRegisterDiseaseSuccessMessage({
+                        status: 'success',
+                        message: 'You Are Already Registered!'
+                    })
+                } else {
+                    // // console.log("unsuccesssss")
+                    // popup.showRegisterDiseaseSuccessMessage({
+                    //     status: 'success',
+                    //     message: 'Registered Failed!'
+                    // });
+                    console.log("outside")
+                    RegisterForDisease(name,d_id);
+
+                }
+            }
+        );
+
+        // checkdisease(name,d_id)
+
+
+    }
+
+    // function checkdisease(name,d_id){
+    //
+    //
+    //
+    //     $.post("/test_war_exploded/user-disease-controller/check",
+    //
+    //         function (data, status) {
+    //             console.log("cccccccccccc")
+    //             console.log(data)
+    //         }
+    //     );
+    //
+    // }
+
+    function RegisterForDisease(name,d_id){
 
 
         name= name;
+        d_id=d_id;
+        console.log(d_id)
         // console.log("register")
         // console.log(name)
 
         let reqData =
             {
+                d_id:d_id,
                 name: name
 
             };
