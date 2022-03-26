@@ -993,6 +993,8 @@ public class UserDAO {
 
 //        System.out.println("clinicannouncemnt");
 //        System.out.println(clinicannouncement.getMoh_id());
+//        System.out.println("dao clinic");
+//        System.out.println(Moh_id);
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_VIEW_CLINIC_ANNOUNCEMENT)) {
             preparedStatement.setString(1, Moh_id);
             ResultSet rs = preparedStatement.executeQuery();

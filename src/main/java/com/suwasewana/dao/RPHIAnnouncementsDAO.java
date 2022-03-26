@@ -193,6 +193,9 @@ public class RPHIAnnouncementsDAO {
     }
 
     public ArrayList<UserVIewRPHIAnnouncementModel> UserviewrphiAnnouncemet(UserVIewRPHIAnnouncementModel selectA) {
+        System.out.println("moh annoncement");
+        System.out.println(selectA.getTarget_moh());
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(USERVIEWMOHANNOUNCEMENT)){
             preparedStatement.setString(1,selectA.getTarget_moh() );
             ResultSet rs = preparedStatement.executeQuery();
