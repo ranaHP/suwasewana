@@ -73,7 +73,7 @@
                 // tbl.classList.add("table")
                 // var tblBody = document.createElement("tbody");
                 tblBody.innerHTML = "";
-                headers=["name","MOH","District","POST","Mobile","ReNew","Block"]
+                headers=["name","MOH","District","POST","Mobile","ReNew","Block","Remove"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -94,7 +94,7 @@
                 <td data-label="Mobile">`+item.mobile + `</td>
                 <td class="update"  data-label="ReNew" onclick="popup.showRenewAlertMessage('`+item.NIC+`')"><button>Re New MAC</button></td>
                 <td class="Block"  data-label="block" onclick="popup.showBlockAlertMessage('`+item.NIC+`')"><button>Block</button></td>
-
+                 <td class="Block"  data-label="Remove" onclick="popup.showRemoveAlertMessage('`+item.NIC+`')"><button>Remove</button></td>
 
 
     </tr>
@@ -137,7 +137,7 @@
                 var select1 = document.getElementById("select1")
                 var value = select.options[select.selectedIndex].value;
                 var value1 = select1.options[select1.selectedIndex].value;
-                headers=["name","MOH","District","POST","Mobile","ReNew","Block"]
+                headers=["name","MOH","District","POST","Mobile","ReNew","Block","Remove"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -161,7 +161,7 @@
                 <td data-label="Mobile">`+item.NIC + `</td>
                 <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
                 <td class="Block"  data-label="block" onclick="popup.showBlockAlertMessage('`+item.NIC+`')" ><button>Block</button></td>
-
+                <td class="Block"  data-label="Remove" onclick="popup.showRemoveAlertMessage('`+item.NIC+`')"><button>Remove</button></td>
 
 
     </tr>
@@ -202,7 +202,32 @@
 
             })
     }
+    function Remove(data) {
+        // alert(data)
+        let reqData =
+            {
+                id: data,
+            };
+        $.post(myUrl + "/admin-controller/removeP",
+            reqData,
+            function (data, status) {
+                if (data.includes("success")) {
+                    popup.hidePopup()
+                    popup.showRemoveSuccessMessage({
+                        status: 'success',
+                        message: 'Officer successfully Removed!'
+                    });
 
+                } else {
+                    popup.showRemoveSuccessMessage({
+                        status: 'fail',
+                        message: 'Officer block Removed !',
+                        data: data
+                    });
+                }
+            })
+
+    }
     function renew(data){
         // alert(data)
         let reqData =

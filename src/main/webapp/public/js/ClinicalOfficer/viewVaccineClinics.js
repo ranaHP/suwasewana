@@ -40,8 +40,8 @@ class clinicList {
                     <div class="clinic-details">
                         <div class="location" id="item1"><span><span class="locationimg"><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object></span> Location :</span> ${item.location}</div>
                         <div class="dose"  id="item2"><span><span><object data="${Url}/public/images/icons/user.svg" width="8" height="8"> </object></span> Dose count :</span> ${item.dose_count}</div>
-                        <div class="max-limit"  id="item3"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Max participant limit :</span>${item.max_patient}</div>
-                          <div class="max-limit"  id="item6"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Available seats :</span>${item.limit_sheats}</div>
+                        <div class="max-limit"  id="item3"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Max participant limit :</span>${item.limit_sheats}</div>
+                          <div class="max-limit"  id="item6"><span><span><object data="${Url}/public/images/icons/users.svg" width="8" height="8"> </object></span> Available seats :</span>${item.max_patient}</div>
                         <div class="moh-area"  id="moh-area"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span> MOH Area :</span>${item.target_moh}</div>
                         <div class="target-participants"  id="item5"><span><span><object data="${Url}/public/images/icons/book-open.svg" width="8" height="8"> </object></span> Duration :</span> ${item.duration}</div>
                         <div class="age"  id="4"><span><span><object data="${Url}/public/images/icons/map-pin.svg" width="8" height="8"> </object> </span>Age limit :</span>${item.Upper_Age} to ${item.Lower_Age}</div>
@@ -55,7 +55,7 @@ class clinicList {
                         <div class="buttons">
                               
                               <div onclick="popup.showDeleteClinicAlertMessage(${item.vcs_id})" class="delete-button">Delete</div>
-                            <div class="edit-button" onclick="selecteditv(${item.vcs_id})">Edit</div>
+                            <div class="edit-button" onclick="selecteditv(${item.vcs_id},${item.limit_sheats},${item.max_patient})">Edit</div>
                             <div class="delete-button" style="background-color: #1e8348" onclick="selectReV(${item.vcs_id})">Reshedule</div>
                         </div>
                     </div>

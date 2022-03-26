@@ -62,8 +62,20 @@ public class AdminController extends HttpServlet {
                 case "block":
                     block(req,res);
                     break;
+                case "blockClinicalO":
+                    blockClinicalO(req,res);
+                    break;
                 case "renew":
                     renew(req,res);
+                    break;
+                case "renewC":
+                    renewC(req,res);
+                    break;
+                case "removeP":
+                    removeP(req,res);
+                    break;
+                case "removeC":
+                    removeC(req,res);
                     break;
                 case "districtsSelect":
                     ViewSelectDisctirct(req,res);
@@ -97,6 +109,53 @@ public class AdminController extends HttpServlet {
         } catch (Exception error) {
             throw new ServletException(error);
         }
+
+    }
+
+    private void removeP(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        PHIModel removeP=new PHIModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        String result = phidao.removephi(removeP);
+        res.getWriter().println(result);
+    }
+
+    private void renewC(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        String nic= req.getParameter("id");
+        String result = mohdao.renewC(nic);
+        res.getWriter().println(result);
+
+    }
+
+    private void removeC(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        String nic= req.getParameter("id");
+        String result = mohdao.removeC(nic);
+        res.getWriter().println(result);
+
+    }
+
+    private void blockClinicalO(HttpServletRequest req, HttpServletResponse res) throws IOException {
+       String nic= req.getParameter("id");
+        String result = mohdao.blockclinical(nic);
+        res.getWriter().println(result);
 
     }
 

@@ -219,7 +219,7 @@
         );
         return false;
     }
-    function selecteditv(id){
+    function selecteditv(id,currentC,available){
         // let selectClinic = new selectClinics("form");
         console.log("edit v")
         let clinicList=[]
@@ -236,18 +236,22 @@
                 // alert(data)
                 clinicList=JSON.parse(data)
                 // selectClinic.setData(clinicList);
-                popup.showVaccineClinicEditMessage(data)
+                popup.showVaccineClinicEditMessage(data,currentC,available)
 
             }
         );
         return false;
     }
 
-    function updatevclinics(data){
+    function updatevclinics(data,available,currentC){
+        let count=document.getElementById("max_patient").value
+        let needCount=count-parseInt(currentC)
+        let increaseCount= parseInt(available) + needCount
         let id=data;
         // let Lage=document.getElementById("Lage_limit").value;
         // let Uage=document.getElementById("Uage_limit").value;
         let Limitsheats = document.getElementById("max_patient").value;
+        let max_patient=increaseCount;
         // let duration=document.getElementById("duration").value;
         // let datetime= document.getElementById("start_date_time").value;
         let clinictitle=document.getElementById("tittle").value;
@@ -260,6 +264,7 @@
                 clinicID:id,
                 title:clinictitle,
                 Limitsheats:Limitsheats,
+                max_patient:max_patient,
                 dose:dose,
             };
         console.log(reqData)

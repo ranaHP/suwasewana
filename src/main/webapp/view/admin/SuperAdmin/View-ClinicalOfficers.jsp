@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_ClinicalOfficers.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <%--    <script defer src="<c:url value="/public/js/Admin/view_ClinicalOfficers.js"></c:url> "></script>--%>
 </head>
@@ -23,6 +25,7 @@
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Admin/Dashboard/View Clinical Officers</div>
     </div>
+    <div class="mypopup" id="popup" style="display: none;"></div>
     <!-- view phi title -->
     <div class="main-title">
 <%--        View phi--%>
@@ -49,6 +52,7 @@
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     feather.replace(({width:"10px",height:"10px"}))
     // select
+    let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     // let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     var body=document.getElementById("mainContent")
     var tbl = document.createElement("table");
@@ -68,7 +72,7 @@
                 console.log(data);
                 console.log("asdasd");
                 tblBody.innerHTML = "";
-                headers=["name","MOH","District","Mobile","ReNew","Block"]
+                headers=["name","MOH","District","Mobile","ReNew","Block","Remove"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -86,8 +90,9 @@
                <td data-label="MOHName">` + item.MOHAREA + `</td>
                 <td data-label="Didtrict">` + item.District + `</td>
                 <td data-label="Mobile">`+item.Mobile + `</td>
-                <td class="update"  data-label="ReNew" onclick="renew(`+item.NIC +`)"><button>Re New MAC</button></td>
-                <td class="Block"  data-label="block" onclick="block(`+item.NIC +`)"><button>Block</button></td>
+                <td class="update"  data-label="ReNew" onclick="popup.showRenewAlertMessage('`+item.NIC+`')"><button>Re New MAC</button></td>
+                <td class="Block"  data-label="block" onclick="popup.showBlockAlertMessage('`+item.NIC+`')"><button>Block</button></td>
+                <td class="Block"  data-label="Remove" onclick="popup.showRemoveAlertMessage('`+item.NIC+`')"><button>Remove</button></td>
 
 
 
@@ -130,7 +135,7 @@
                 var select1 = document.getElementById("select1")
                 var value = select.options[select.selectedIndex].value;
                 var value1 = select1.options[select1.selectedIndex].value;
-                headers=["MOH name","District","Head","Mobile"]
+                headers=["name","MOH","District","Mobile","ReNew","Block","Remove"]
                 var row = document.createElement("tr");
                 headers.map((item=>{
                     row.classList.add("thead")
@@ -144,7 +149,7 @@
                 console.log(value1)
                 console.log(value)
                 data.map((item)=>{
-                    if(value1==item.MOHAREA) {
+                    if(value1==item.MOHAREA || value==item.District) {
                         console.log(item.MOHAREA)
                         tblBody.innerHTML += `
     <tr>
@@ -152,9 +157,9 @@
                <td data-label="MOHName">` + item.MOHAREA + `</td>
                 <td data-label="Didtrict">` + item.District + `</td>
                 <td data-label="Mobile">`+item.Mobile + `</td>
-                <td class="update"  data-label="ReNew" onclick="renew(`+item.NIC +`)"><button>Re New MAC</button></td>
-                <td class="Block"  data-label="block" onclick="block(`+item.NIC +`)"><button>Block</button></td>
-
+                <td class="update"  data-label="ReNew" onclick="popup.showRenewAlertMessage('`+item.NIC+`')"><button>Re New MAC</button></td>
+                <td class="Block"  data-label="block" onclick="popup.showBlockAlertMessage('`+item.NIC+`')"><button>Block</button></td>
+                 <td class="Block"  data-label="Remove" onclick="popup.showRemoveAlertMessage('`+item.NIC+`')"><button>Remove</button></td>
 
     </tr>
     `
@@ -165,6 +170,87 @@
 
             }
         );
+    }
+
+
+    function block(data) {
+        // alert(data)
+        let reqData =
+            {
+                id: data,
+            };
+        $.post(myUrl + "/admin-controller/blockClinicalO",
+            reqData,
+            function (data, status) {
+                if (data.includes("success")) {
+                    popup.hidePopup()
+                    popup.showBlockSuccessMessage({
+                        status: 'success',
+                        message: 'Officer successfully blocked!'
+                    });
+
+                } else {
+                    popup.showBlockSuccessMessage({
+                        status: 'fail',
+                        message: 'Officer block failed !',
+                        data: data
+                    });
+                }
+            })
+
+    }
+    function Remove(data) {
+        // alert(data)
+        let reqData =
+            {
+                id: data,
+            };
+        $.post(myUrl + "/admin-controller/removeC",
+            reqData,
+            function (data, status) {
+                if (data.includes("success")) {
+                    popup.hidePopup()
+                    popup.showRemoveSuccessMessage({
+                        status: 'success',
+                        message: 'Officer successfully Removed!'
+                    });
+
+                } else {
+                    popup.showRemoveSuccessMessage({
+                        status: 'fail',
+                        message: 'Officer block Removed !',
+                        data: data
+                    });
+                }
+            })
+
+    }
+
+        function renew(data){
+            // alert(data)
+            let reqData =
+                {
+                    id: data,
+                };
+            $.post(myUrl+"/admin-controller/renewC",
+                reqData,
+                function (data, status) {
+                    if (data.includes("success")) {
+                        popup.hidePopup()
+                        popup. showRenewSuccessMessage({
+                            status: 'success',
+                            message: 'Mac renew success!'
+                        });
+
+                    } else {
+                        popup. showRenewSuccessMessage({
+                            status: 'fail',
+                            message: 'Mac renew failed !',
+                            data: data
+                        });
+                    }
+                })
+
     }
 
 

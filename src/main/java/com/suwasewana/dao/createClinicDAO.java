@@ -22,11 +22,11 @@ public class createClinicDAO {
   private static final String SELECT_events="SELECT * FROM `normal_clinic_session` WHERE `normal_clinic_session`.`date` = ?";
   private static final String NormalC_registeredNList="SELECT * FROM `clinic_registered_patient` vc  left join `user` v on v.uNic=vc.u_nic WHERE vc.ncs_id=?  ";
 
-  private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?,NULL,NULL ,NULL );";
+  private static final String CREATE_VACCINE_CLINIC ="INSERT INTO `vaccine_clinic_session` VALUES (NULL,?, ?, ?, ? , ?, ?, ?, ?, ?, ?, ?, ?,?,1,1);";
   private static final String VIEW_VACCINE_CLINICS ="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.clinical_officer=?; ";
   private static final String SELECT_VACCINE_CLINICS="SELECT * FROM suwasewana_db.vaccine_clinic_session vc  left join suwasewana_db.vaccine v on v.v_id=vc.v_id where vc.vcs_id=?;";
   private static final String DELETE_VCLINICS ="DELETE FROM `vaccine_clinic_session` WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
-  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `limit_sheats` = ? ,`dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
+  private static final String UPDATE_VCLINICS ="UPDATE `vaccine_clinic_session` SET `tittle` = ? , `limit_sheats` = ? ,`max_patient` = ?, `dose_count`= ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String RESHEDULE_VCLINICS="UPDATE `vaccine_clinic_session` SET `start_date_time` = ? WHERE `vaccine_clinic_session`.`vcs_id` = ?;";
   private static final String ClinicCount="SELECT COUNT(ncs_id), date FROM `normal_clinic_session` GROUP BY `date`;";
   private static final String UpdateAvailSheats="UPDATE `normal_clinic_session` SET `Avail_seats` = ?  WHERE `normal_clinic_session`.`ncs_id` = ?;";
@@ -247,7 +247,7 @@ public class createClinicDAO {
     }
 
 
-    public String vaccineClinic(vaccineClinicModel vaccineclinic) {
+    public String vaccineClinic(vaccineClinicModel vaccineclinic, String timeN) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_VACCINE_CLINIC)) {
             preparedStatement.setString(1,vaccineclinic.getTittle());
             preparedStatement.setString(2,vaccineclinic.getDuration());
@@ -261,6 +261,7 @@ public class createClinicDAO {
             preparedStatement.setString(10,vaccineclinic.getLocation());
             preparedStatement.setString(11,vaccineclinic.getDose_count());
             preparedStatement.setString(12,vaccineclinic.getStart_date_time());
+            preparedStatement.setString(13,timeN);
 
 
             int rs = preparedStatement.executeUpdate();
@@ -392,14 +393,15 @@ public class createClinicDAO {
             preparedStatement.setString(1,Updatevclinic.getTittle());
 //            preparedStatement.setString(2,Updatevclinic.getDuration());
             preparedStatement.setString(2,Updatevclinic.getLimit_sheats());
+            preparedStatement.setString(3,Updatevclinic.getMax_patient());
 //            preparedStatement.setString(4,Updatevclinic.getLower_Age());
 //            preparedStatement.setString(5,Updatevclinic.getUpper_Age());
 //            preparedStatement.setString(5,Updatevclinic.getV_id());
 //            preparedStatement.setString(6,Updatevclinic.getLocation());
-            preparedStatement.setString(3,Updatevclinic.getDose_count());
+            preparedStatement.setString(4,Updatevclinic.getDose_count());
 //            preparedStatement.setString(8,Updatevclinic.getStart_date_time());
 //            preparedStatement.setString(6,Updatevclinic.getTarget_moh());
-            preparedStatement.setString(4,Updatevclinic.getVcs_id());
+            preparedStatement.setString(5,Updatevclinic.getVcs_id());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);
