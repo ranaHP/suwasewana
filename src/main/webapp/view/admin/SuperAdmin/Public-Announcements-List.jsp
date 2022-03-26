@@ -23,7 +23,12 @@
     <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/view_healt_announcement.css"/> "/>
+    <link href="<c:url value="/public/css/user/_commen.css"/>" rel="stylesheet"/>
+
     <style>
+        body{
+            min-height: 100vh;
+        }
         .view_announcement_list{
             width: 80%;
             margin: auto;
@@ -40,11 +45,60 @@
         <div class="upper-title">SUWASEWANA </div>
         <div class="dashboard-name">Admin/Dashboard/Make announcements</div>
     </div>
-    <h1 style="text-align: center ; margin: 20px 0; color: #4b4b4b"> Public Announcements List  </h1>
-    <span style="text-align: center ; margin: -10px 0; color: #4b4b4b;"> Suwasewana public announcement portal  </span>
-    <div class="filter_announcement_admin" >
-        
+
+<%--    main title --%>
+    <div style="width: 100%">
+        <h1 style="text-align: center ; margin: 20px 0; color: #4b4b4b"> Public Announcements List  </h1>
+        <div style="text-align: center ; margin:-10px 0 10px 0; color: #4b4b4b;"> Suwasewana public announcement portal  </div>
     </div>
+<%--    filter announcement--%>
+    <div class="filter_announcement_admin" >
+        <div class="row">
+            <div class="form-group" style="padding: 0;">
+                <label for="user-nic">
+                    Title
+                </label>
+                <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
+                       maxlength="13" onkeyup="appointmentObj.searchAppointment()"
+                />
+                <div id="user-nic-error" class="form-field-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="app-type">
+                    status
+                </label>
+                <input type="text" autofocus autocomplete="off" name="app-type" id="app-type"
+                       list="app_type_datalist"
+                       onclick="document.getElementById('app-type').value = ''"
+                       onkeyup="appointmentObj.searchAppointment()"/>
+                <datalist id="app_type_datalist">
+                    <option value="block" option="Block"></option>
+                    <option value="active" option="Active"></option>
+                </datalist>
+                <div id="app-type-error" class="form-field-error"></div>
+            </div>
+            <div class="form-group">
+                <label for="app-status">
+                    Date
+                </label>
+                <input type="Date" autofocus autocomplete="off" name="app-type" id="app-status"
+
+                       onkeyup="appointmentObj.searchAppointment()"
+                       onclick="document.getElementById('app-status').value = ''"
+                />
+                <div id="app-status-error" class="form-field-error"></div>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    &nbsp;
+                </label>
+                <button class="search_Btn" onclick="appointmentObj.searchAppointment()"> Search</button>
+                <div id="user-mobile-error" class="form-field-error"></div>
+            </div>
+        </div>
+    </div>
+<%--    announcemnet title--%>
     <div class="view_announcement_list" id="view_announcement_list">
 
     </div>

@@ -1,3 +1,4 @@
+
 .search-m{
     padding-left:120px;
 }
@@ -105,26 +106,21 @@ input:focus{
     top: 11px;
 }
 label{
-    position: absolute;
-    cursor: text;
-    z-index: 2;
-    top: 13px;
-    left: 10px;
-    font-size: 10px;
-    font-weight: bold;
-    background-color: #dfe4ea59;
-    /* padding: 0 10px; */
-    color: rgba(0, 0, 0, 0.719);
-    transition: all .3s ease
+    font-size: 15px!important;
+    color: rgba(52, 52, 52, 0.72);
 }
-input:focus + label,
-input:valid + label{
-    font-size: 10px;
-    top: -5px
+
+.search_Btn {
+    border: none;
+    padding: 5px;
+    width: 120px;
+    border-radius: 3px;
+    background-color: #5cb85c ;
+    color: white;
+    font-size: .8em;
+    cursor: pointer;
 }
-input:focus + label{
-    color: rgba(0, 0, 0, 0.767);
-}
+
 .update button{
     border: none;
     padding: 5px;
@@ -166,8 +162,11 @@ input:focus + label{
     margin: auto;
     /*background-color: #019686;*/
     min-height: 50px ;
-    border: 1px solid gray;
+    border: 1px solid #d5d5d5;
     box-shadow: 1px 3px 2px rgba(0, 0, 0, 0.15);
+    margin: 10px auto ;
+    padding: 10px;
+    display: flex;
 }
 @media(max-width: 875px){
     .table .thead{
