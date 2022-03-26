@@ -154,7 +154,7 @@
 .image-upload-card-container {
     height: fit-content ;
     width: 32%;
-    background-color: yellow;
+    /*background-color: yellow;*/
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.158);
 }
 .image-upload-card{

@@ -39,8 +39,8 @@ public class ImageUploadControllerForvaccin extends HttpServlet {
                 String imageName = req.getParameter("ImageName"+ (i));
                 System.out.println(imageName);
                 if(imageName != null  ){
-                    part.write("D:/java/java projects/suwasewana/src/main/webapp/public/images/vaccine/"+imageName);
-//                    System.out.println("D:/java/java projects/suwasewana/src/main/webapp/public/images/vaccine/"+imageName);
+                    part.write("D:/java/java projects/suwasewana1/src/main/webapp/public/images/vaccine/"+imageName);
+//                    System.out.println("D:/java/java projects/suwasewana1/src/main/webapp/public/images/vaccine/"+imageName);
                 }
 
             }
