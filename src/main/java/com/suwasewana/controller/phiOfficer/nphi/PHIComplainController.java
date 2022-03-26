@@ -232,7 +232,7 @@ public class PHIComplainController extends HttpServlet {
 
             String uNic = "";
             String  moh = "1003";
-            String nic="199910910062";
+            String nic="199910910064";
             Cookie[] cookies = req.getCookies();
             if(cookies !=null){
                 for(Cookie cookie : cookies){

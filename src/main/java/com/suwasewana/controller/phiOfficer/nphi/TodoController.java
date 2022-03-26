@@ -159,7 +159,7 @@ public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOExce
         res.getWriter().println(gson.toJson(result));
     }
     private void SetComplete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String nic="199910910060";
+        String nic="199910910064";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
