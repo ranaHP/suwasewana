@@ -1,6 +1,7 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
+import com.suwasewana.core.ResponseType;
 import com.suwasewana.model.AppointmentModel;
 import com.suwasewana.model.HealthAnnouncementTargetDistrictModel;
 import com.suwasewana.model.HealthAnnouncementTargetProvinceModel;
@@ -14,6 +15,7 @@ public class PublicAnnouncementsDAO {
   private static final String AddTargetP="INSERT INTO `health_announcement_target_province` VALUES (?,?)";
     private static final String AddTargetD="INSERT INTO `health_announcement_target_districts` VALUES (?,?)";
     private static final String getAppoinments="SELECT * FROM `health_announcement`";
+    private static final String block_announcement="SELECT * FROM `health_announcement`";
   Connection connection;
     public PublicAnnouncementsDAO() {
         DB db = new DB();
@@ -40,8 +42,6 @@ public class PublicAnnouncementsDAO {
 
         return announcement_id;
     }
-
-
     public String addTargetDistricts(HealthAnnouncementTargetDistrictModel district) {
      try (PreparedStatement preparedStatement=connection.prepareStatement(AddTargetD)){
          preparedStatement.setString(1,district.getAnnouncement_id());
@@ -53,7 +53,6 @@ public class PublicAnnouncementsDAO {
      }
         return null;
     }
-
     public String addTargetProvince(HealthAnnouncementTargetProvinceModel targetProvince) {
         try (PreparedStatement preparedStatement=connection.prepareStatement(AddTargetP)){
             preparedStatement.setString(2,targetProvince.getAnnouncement_id());
@@ -80,7 +79,6 @@ public class PublicAnnouncementsDAO {
             }
         }
     }
-
     public ArrayList<PublicAnnouncementModel> GetAllPublicAnnouncement() {
         try (PreparedStatement preparedStatement = connection.prepareStatement(getAppoinments)) {
             ResultSet rs = preparedStatement.executeQuery();
@@ -104,4 +102,19 @@ public class PublicAnnouncementsDAO {
 
         return null;
     }
+    public ResponseType block_announcement(AppointmentModel appointment) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(block_announcement)) {
+            preparedStatement.setString(1, appointment.getStatus());
+            int rs = preparedStatement.executeUpdate();
+            if(rs == 1){
+                return new ResponseType("success" ,"Announcement Blocked Successful");
+            }else{
+                return new ResponseType("error" ,"Announcement Blocked Unsuccessful");
+            }
+
+        } catch (SQLException throwables) {
+            return new ResponseType("error" ,throwables.getMessage());
+        }
+    }
+
 }

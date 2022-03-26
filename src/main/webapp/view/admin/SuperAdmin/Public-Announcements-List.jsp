@@ -36,7 +36,7 @@
 
     </style>
 </head>
-<body id="mainContent" onload="checkP()">
+<body id="mainContent" >
 <c:import url="/view/admin/partials/AdminOfficerSideNavbar.jsp"></c:import>
 <div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container">
@@ -59,7 +59,6 @@
                     Title
                 </label>
                 <input type="text" autofocus autocomplete="off" name="user-nic" id="user-nic"
-                       maxlength="13" onkeyup="appointmentObj.searchAppointment()"
                 />
                 <div id="user-nic-error" class="form-field-error"></div>
             </div>
@@ -70,7 +69,7 @@
                 <input type="text" autofocus autocomplete="off" name="app-type" id="app-type"
                        list="app_type_datalist"
                        onclick="document.getElementById('app-type').value = ''"
-                       onkeyup="appointmentObj.searchAppointment()"/>
+                       />
                 <datalist id="app_type_datalist">
                     <option value="block" option="Block"></option>
                     <option value="active" option="Active"></option>
@@ -82,8 +81,6 @@
                     Date
                 </label>
                 <input type="Date" autofocus autocomplete="off" name="app-type" id="app-status"
-
-                       onkeyup="appointmentObj.searchAppointment()"
                        onclick="document.getElementById('app-status').value = ''"
                 />
                 <div id="app-status-error" class="form-field-error"></div>
@@ -93,7 +90,7 @@
                 <label>
                     &nbsp;
                 </label>
-                <button class="search_Btn" onclick="appointmentObj.searchAppointment()"> Search</button>
+                <button class="search_Btn" onclick="search()"> Search</button>
                 <div id="user-mobile-error" class="form-field-error"></div>
             </div>
         </div>
@@ -106,10 +103,10 @@
 
 
 <script>
+<%--   current url --%>
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     feather.replace(({width:"10px",height:"10px"}))
-    // select
-    // let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    //Create table
     var body=document.getElementById("view_announcement_list")
     var tbl = document.createElement("table");
     tbl.classList.add("table")
@@ -118,15 +115,47 @@
     let moh_details_list={};
     let MOHList = [];
     let districtList=[];
+    let announcements = [];
     function getAllMOHDetails() {
-        let MOHList = [];
         $.post(myUrl+"/admin-controller/allAnnouncement",
             {},
             function (data, status) {
-                data = JSON.parse(data);
-                // console.log("asdasd");
-                // console.log(data);
-                // console.log("asdasd");
+                announcements = JSON.parse(data);
+                tblBody.innerHTML = "";
+                tblBody.id  = "table_body";
+                headers=["Id","Banner","Title","Description","Expire Time" ,"Status","Block","Update"]
+                var row = document.createElement("tr");
+                headers.map((item=>{
+                    row.classList.add("thead")
+                    var cell = document.createElement("th");
+                    var cellText = document.createTextNode(item);
+                    cell.appendChild(cellText);
+                    row.appendChild(cell);
+                    tblBody.appendChild(row);
+                }))
+                announcements.map((item)=>{
+                    tblBody.innerHTML+= `
+    <tr>
+                  <td data-label="Banner"> ` + item.announcement_id + `</td>
+                  <td data-label="Banner"><img src="` + myUrl + `/public/images/uploadimage/` + item.banner + `" width="100px" /> </td>
+               <td data-label="Title">` + item.title + `</td>
+                <td data-label="Didtrict">` + item.description + `</td>
+                <td data-label="Head">` + item.expire_date + `</td>
+                <td data-label="Mobile">`+item.status + `</td>
+                <td class="Block"  data-label="ReNew" onclick="announcemnt_block( '`+item.announcement_id+ `')"><button>Block</button></td>
+                <td class="Block"  data-label="block" onclick="anoouncement_update( '`+item.announcement_id+ `')"><button style=" background-color: #f6d70a"">Update</button></td> </tr>`
+                    tbl.appendChild(tblBody);
+                    body.appendChild(tbl);
+                })
+            }
+        );
+    }
+    function search(){
+        $.post(myUrl+"/admin-controller/allAnnouncement",
+            {},
+            function (data, status) {
+                announcements = JSON.parse(data);
+                tblBody = document.getElementById("table_body");
                 tblBody.innerHTML = "";
                 headers=["Id","Banner","Title","Description","Expire Time" ,"Status","Block","Update"]
                 var row = document.createElement("tr");
@@ -138,8 +167,7 @@
                     row.appendChild(cell);
                     tblBody.appendChild(row);
                 }))
-                console.log(data)
-                data.map((item)=>{
+                announcements.map((item)=>{
                     tblBody.innerHTML+= `
     <tr>
                   <td data-label="Banner"> ` + item.announcement_id + `</td>
@@ -148,14 +176,29 @@
                 <td data-label="Didtrict">` + item.description + `</td>
                 <td data-label="Head">` + item.expire_date + `</td>
                 <td data-label="Mobile">`+item.status + `</td>
-                <td class="Block"  data-label="ReNew" onclick=""><button>Block</button></td>
-                <td class="Block"  data-label="block" onclick=""><button style=" background-color: #f6d70a"">Update</button></td>
-    </tr>`
+                <td class="Block"  data-label="ReNew" onclick="announcemnt_block( '`+item.announcement_id+ `')"><button>Block</button></td>
+                <td class="Block"  data-label="block" onclick="anoouncement_update( '`+item.announcement_id+ `')"><button style=" background-color: #f6d70a"">Update</button></td> </tr>`
                     tbl.appendChild(tblBody);
                     body.appendChild(tbl);
                 })
             }
         );
+    }
+    function announcemnt_block(data){
+        $.post(myUrl+"/admin-controller/Announcement_block",
+            {},
+            function (data, status) {
+                announcements = JSON.parse(data);
+            }
+        );
+    function anoouncement_update(id){
+        $.post(myUrl+"/admin-controller/Announcement_update",
+            {},
+            function (data, status) {
+                announcements = JSON.parse(data);
+            }
+        );
+    }
     }
 
 </script>

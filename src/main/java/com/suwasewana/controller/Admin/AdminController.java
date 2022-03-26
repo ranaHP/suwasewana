@@ -79,8 +79,14 @@ public class AdminController extends HttpServlet {
                     break;
                 case "AddDistrict":
                     addTargetdistrict(req,res);
-                    break;    
-                    
+                    break;
+                case "Announcement_update":
+                    announcement_update(req,res);
+                    break;
+                case "Announcement_block":
+                    announcement_block(req,res);
+                    break;
+
                 default:
                     res.getWriter().println("404 Page not Found");
                     break;
@@ -95,6 +101,16 @@ public class AdminController extends HttpServlet {
         ArrayList<PHIModel> result = phidao.getphiALL();
         res.getWriter().println(gson.toJson(result));
     }
+
+    private void announcement_block(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        ArrayList<PHIModel> result = publicAnnouncementsDAO.block_announcement();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void announcement_update(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        ArrayList<PHIModel> result = publicAnnouncementsDAO.getphiALL();
+        res.getWriter().println(gson.toJson(result));
+    }
+
     private void Allannouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {
         ArrayList<PublicAnnouncementModel> result = publicAnnouncementsDAO.GetAllPublicAnnouncement();
         res.getWriter().println(gson.toJson(result));
