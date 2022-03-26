@@ -102,25 +102,24 @@ public class VaccineController extends HttpServlet {
 
     private void GetRegisterdVaccineClinicDetail(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String uNic = "";
+        String nic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("uDetails")) {
-                    uNic = cookie.getValue().split("/")[1];
+                    nic = cookie.getValue().split("/")[1];
                 }
             }
         }
 
 
-        String nic=uNic;
 //        String nic="199910910064";
         ArrayList<VaccineClinicAnnouncementsModelForUser> result = userDAO.GetRegisterdVaccineClinicDetail(nic);
         res.getWriter().println(gson.toJson(result));
     }
     private void ViewVaccineclinicForUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
-        String UMoh= "";
+        String uNic = "199910910060";
+        String UMoh= "1003";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -141,8 +140,8 @@ public class VaccineController extends HttpServlet {
     }
     private void updateVaccineNextSloat_Maxseet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-        String uNic = "";
-        String UTp= "";
+        String uNic = "199910910060";
+        String UTp= "0713806000";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){

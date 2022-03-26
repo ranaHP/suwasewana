@@ -425,6 +425,7 @@
                 Next_Que_no:QNo
             };
         let TpNo = getCookie("uDetails").split("/")[2]
+        TpNo='0713806000';
         let message= `Covid-19 Vaccination Program.
         Queue no:`+Que_no +`
         Time slot: `+timeWithAmPm+`
@@ -512,7 +513,7 @@
 
     LoadVaccineclinic();
     let nic = getCookie("uDetails").split("/")[1]
-    // let nic="199910910064"
+    nic="199910910060"
     let age=calculateage(nic);
     console.log("Nic - "+nic)
     function LoadVaccineclinic(){
