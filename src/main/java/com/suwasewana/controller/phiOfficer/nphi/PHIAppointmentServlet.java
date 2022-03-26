@@ -64,7 +64,7 @@ public class PHIAppointmentServlet extends HttpServlet {
         doGet(request,response);
     }
     private void selectAppointmentForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "199910910060";
+        String uNic = "199910910064";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -82,7 +82,7 @@ public class PHIAppointmentServlet extends HttpServlet {
         res.getWriter().println(gson.toJson(result));
     }
     private void getAppointmentForPHI(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String nic="";
+        String nic="199910910064";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){

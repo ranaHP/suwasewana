@@ -88,13 +88,13 @@ public class RPHIAnnouncementController extends HttpServlet {
 
     private void selectmohAnnouncemnt(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        System.out.println("select");
-        String moh="1004";
+        String moh="1003";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("sDetails")) {
                     moh = cookie.getValue().split("/")[4];
-                    System.out.println("select moh= "+moh);
+//                    System.out.println("select moh= "+moh);
                 }
             }
         }

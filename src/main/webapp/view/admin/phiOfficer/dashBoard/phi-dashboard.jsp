@@ -60,11 +60,12 @@
                         <img  src="<c:url value="/public/images/PHI_Dashboard/time-clock-circle.svg "/>" srcset="">
                     </div>
                     <div class="card-details">
-                        <h5 id="appoinment-count">200</h5>
-                        <div class="precentage">
-                            <div class="p-lable" id="appoinment-precentage"><label >2.345%</label></div>
-                            <div class="arrow" style="display: none" id="app-complain-arrow-up"><i data-feather="arrow-up" ></i></div>
-                            <div class="arrow" style="display: none" id="app-complain-arrow-down"><i data-feather="arrow-down"></i></div>
+<%--                        <h5 id="appoinment-count">200</h5>--%>
+                        <h5 id="appoinment-count" style="margin-left: 20px; margin-top: 10px"></h5>
+                        <div class="precentage" style="display: none">
+<%--                            <div class="p-lable" id="appoinment-precentage"><label >2.345%</label></div>--%>
+<%--                            <div class="arrow" style="display: none" id="app-complain-arrow-up"><i data-feather="arrow-up" ></i></div>--%>
+<%--                            <div class="arrow" style="display: none" id="app-complain-arrow-down"><i data-feather="arrow-down"></i></div>--%>
                         </div>
                     </div>
                 </div>
@@ -76,11 +77,12 @@
                         <img src="<c:url value="/public/images/PHI_Dashboard/help-question-message.svg "/>" alt="" srcset="">
                     </div>
                     <div class="card-details">
-                        <h5 id="pending-complain">200</h5>
-                        <div class="precentage">
-                            <div class="p-lable" id="complain-precentage"><label >2.345%</label></div>
-                            <div class="arrow" style="display: none" id="complain-arrow-up"><i data-feather="arrow-up" ></i></div>
-                            <div class="arrow" style="display: none" id="complain-arrow-down"><i data-feather="arrow-down"></i></div>
+<%--                        <h5 id="pending-complain">200</h5>--%>
+                        <h5 id="pending-complain" style="margin-left: 20px; margin-top: 10px"></h5>
+                        <div class="precentage" style="display: none">
+<%--                            <div class="p-lable" id="complain-precentage"><label >2.345%</label></div>--%>
+<%--                            <div class="arrow" style="display: none" id="complain-arrow-up"><i data-feather="arrow-up" ></i></div>--%>
+<%--                            <div class="arrow" style="display: none" id="complain-arrow-down"><i data-feather="arrow-down"></i></div>--%>
                         </div>
                     </div>
                 </div>
@@ -505,12 +507,12 @@
 
 
                 document.getElementById("pending-complain").innerText=pending;
-                document.getElementById("complain-precentage").innerText=ComPre+"";
+                // document.getElementById("complain-precentage").innerText=ComPre+"";
                 if(complainprecentage<0){
-                    document.getElementById("complain-arrow-down").style.display="block";
+                    // document.getElementById("complain-arrow-down").style.display="block";
                 }
                 else{
-                    document.getElementById("complain-arrow-up").style.display="block";
+                    // document.getElementById("complain-arrow-up").style.display="block";
                 }
 
             }
@@ -572,12 +574,12 @@
                 let AppPre=Math.abs(Math.round(appprecentage));
 
                 document.getElementById("appoinment-count").innerText=pending;
-                document.getElementById("appoinment-precentage").innerText=AppPre+"";
+                // document.getElementById("appoinment-precentage").innerText=AppPre+"";
                 if(appprecentage<0){
-                    document.getElementById("app-complain-arrow-down").style.display="block";
+                    // document.getElementById("app-complain-arrow-down").style.display="block";
                 }
                 else{
-                    document.getElementById("app-complain-arrow-up").style.display="block";
+                    // document.getElementById("app-complain-arrow-up").style.display="block";
                 }
 
             }
@@ -596,13 +598,23 @@
                 // console.log("AnnouncementList ")
                 AnnouncementList.map((element) => {
                     // console.log("announcement_id: "+element.expire_date);
-                    let expday = new Date(element.expire_date)
-                    let current_day=new Date();
 
-                    // console.log("today : "+current_day+" "+"exp_day : "+expday);
-                    if(current_day<=expday){
+                    let current_day=new Date();
+                    let tmonth= current_day.getMonth()+1;
+                    let tyear=current_day.getFullYear();
+
+
+
+                    let cday = new Date(element.posted_date.split(" ")[0])
+                    let cmonth= cday.getMonth()+1;
+                    let cyear=cday.getFullYear();
+
+
+
+                    if(cmonth==tmonth && tyear==cyear){
                         newannouncemt++;
                     }
+
 
                 })
                 // console.log("Announcemt count : "+newannouncemt);

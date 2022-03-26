@@ -73,7 +73,7 @@ import java.util.ArrayList;
 
 
     private void Getmaxdiseasecount(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String moh="1002";
+        String moh="1003";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
