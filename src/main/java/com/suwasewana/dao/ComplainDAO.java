@@ -314,7 +314,7 @@ public class ComplainDAO {
     }
 
     public ArrayList<CommanForCompalinAndUser> userGetComplainDetailsForPHI(String nic, String d1, String d2) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(Complain_types)) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(Complain_For_PHI)) {
             preparedStatement.setString(1, nic);
             ResultSet rs = preparedStatement.executeQuery();
             System.out.println("preparedStatement "+preparedStatement);

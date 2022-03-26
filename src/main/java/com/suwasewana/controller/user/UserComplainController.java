@@ -103,7 +103,7 @@ public class UserComplainController extends HttpServlet {
                 ""
 
         );
-        String nic="199910910061";
+        String nic="199910910064";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -125,7 +125,7 @@ public class UserComplainController extends HttpServlet {
         String title=req.getParameter("Title");
         String type=req.getParameter("complaintype");
         String nic=req.getParameter("nic");
-        nic="199910910062";
+        nic="199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
