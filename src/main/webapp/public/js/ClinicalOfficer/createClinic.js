@@ -4,7 +4,7 @@
 let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 function card()
 {
-    var name=document.getElementById("disease").value;
+    // var name=document.getElementById("disease").value;
     var title=document.getElementById("clinic-title").value;
     var time=document.getElementById("time").value;
     var date=document.getElementById("date").value;

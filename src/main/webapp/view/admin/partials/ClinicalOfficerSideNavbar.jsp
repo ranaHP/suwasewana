@@ -109,6 +109,21 @@
             </ul>
         </li>
 
+        <li>
+            <div class="iocn-link">
+                <a href="#">
+                    <i class='bx bx-plus-medical'></i>
+                    <span class="link_name">Edit vaccine types</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow'></i>
+            </div>
+            <ul class="sub-menu">
+                <%--                <li><a href="/test_war_exploded/s/view_vaccine_announcements">View Vaccine clinic Announcement </a></li>--%>
+                <li><a href="/test_war_exploded/s/editvaccineType">Edit vaccine</a></li>
+
+            </ul>
+        </li>
+
 
         <li>
             <div class="iocn-link">

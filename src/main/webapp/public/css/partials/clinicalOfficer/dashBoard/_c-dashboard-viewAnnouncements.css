@@ -7,6 +7,7 @@
 }
 body{
     margin-left: 78px;
+    max-width: calc(100vw - 78px);
     background-image: linear-gradient(to right top, #f0fffe, #f4ffff, #f9feff, #fdfeff, #ffffff);
 }
 .container{
@@ -33,6 +34,17 @@ body{
     letter-spacing: .1em;
     color: rgba(0, 0, 0, 0.527);
     margin-top: 3px;
+}
+.sidebar-main-show{
+    max-width: calc(100vw - 200px);
+    margin-left: 180px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
 }
 .search-section{
     width: 90%;
