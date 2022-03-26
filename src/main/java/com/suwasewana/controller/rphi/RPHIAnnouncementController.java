@@ -138,7 +138,8 @@ public class RPHIAnnouncementController extends HttpServlet {
     }
 
     private void createA(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        System.out.println("cameee");
+        String nic="199910910063";
         String  moh = "1003";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
@@ -155,7 +156,7 @@ public class RPHIAnnouncementController extends HttpServlet {
                 req.getParameter("title"),
                 req.getParameter("description"),
                 req.getParameter("image"),
-                req.getParameter("moh"),
+                moh,
                 "",
                 nic,
                 req.getParameter("expire_date")
