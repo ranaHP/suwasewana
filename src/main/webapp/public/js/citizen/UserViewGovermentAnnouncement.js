@@ -69,9 +69,9 @@ class View_goverment_announcement{
 
 }
 
-function search(){
+function searchgoverment(){
     let count=0
-    const input = document.getElementById('diseasesSearch').value.toUpperCase();
+    const input = document.getElementById('diseasesSearch1').value.toUpperCase();
     const cardContainor = document.getElementById('announcetment-list-card-container1');
     const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
     for(let i=0 ; i<card.length ;i++){
@@ -84,3 +84,19 @@ function search(){
         }
     }
 }
+
+function searchgovermentdate(){
+    let count=0
+    const input = document.getElementById('diseasesSearch2').value;
+    const cardContainor = document.getElementById('announcetment-list-card-container1');
+    const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
+    for(let i=0 ; i<card.length ;i++){
+        let title = card[i].querySelector('#date');
+        // alert(title)
+
+        if(title.innerHTML.indexOf(input) > -1){
+            card[i].style.display=""
+        }else{
+            card[i].style.display="none"
+        }
+    }}

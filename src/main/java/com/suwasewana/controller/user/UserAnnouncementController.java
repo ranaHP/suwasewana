@@ -107,7 +107,7 @@ public class UserAnnouncementController extends HttpServlet {
                 "",
                 "",
                 "",
-                "",
+                 target_moh,
                 "",
                 "",
                 ""

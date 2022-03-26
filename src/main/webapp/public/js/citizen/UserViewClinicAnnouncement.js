@@ -47,7 +47,7 @@ class View_clinic_announcement{
                                         Read More
                                     </div>
                                 </div>
-                                <div class="title">
+                                <div class="title" id="title">
                                     ${item.tittle}
                                 </div>
                                 <div class="suwasaewana">
@@ -71,9 +71,9 @@ class View_clinic_announcement{
 
 }
 
-function searchD(){
+function searchclinicdate(){
     let count=0
-    const input = document.getElementById('diseases').value;
+    const input = document.getElementById('diseases1').value;
     const cardContainor = document.getElementById('announcetment-list-card-container');
     const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
     for(let i=0 ; i<card.length ;i++){
@@ -86,3 +86,22 @@ function searchD(){
             card[i].style.display="none"
         }
     }}
+
+
+function searchclinic() {
+    let count = 0
+    const input = document.getElementById('diseases2').value.toUpperCase();
+    const cardContainor = document.getElementById('announcetment-list-card-container');
+    const card1 = cardContainor.getElementsByClassName('latest-announstment-cards-container')
+
+    for (let i = 0; i < card1.length; i++) {
+        let title = card1[i].querySelector('#title');
+
+        if (title.innerHTML.toUpperCase().indexOf(input) > -1) {
+            card1[i].style.display = ""
+        } else {
+            card1[i].style.display = "none"
+        }
+    }
+
+}

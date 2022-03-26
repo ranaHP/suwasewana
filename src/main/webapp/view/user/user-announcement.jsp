@@ -187,16 +187,33 @@
                     <div class="dashboard-page-sub-title">
                         Government Announcement
                     </div>
+
+
+                <div class= "main-search-container" style="width: 100%;display: flex;justify-content: space-around">
+
                     <div class="search-container">
                         <div class="form-group">
-                            <input id="diseasesSearch" type="text" list="alldiseasesSearch" name="moh"
-                                   autocomplete="off" placeholder="search by dieases" onkeyup="search()">
-                            <datalist id="alldiseasesSearch">
-                                <option value="Covid19" label="Covid19"></option>
-                            </datalist>
+                            <input id="diseasesSearch1" type="text" name="moh"
+                                   autocomplete="off" placeholder="search by title" onkeyup="searchgoverment()">
+<%--                            <datalist id="alldiseasesSearch">--%>
+<%--                                <option value="Covid19" label="Covid19"></option>--%>
+<%--                            </datalist>--%>
                         </div>
                         <button class="search-btn"> Search</button>
                     </div>
+
+                    <div class="search-container">
+                        <div class="form-group">
+                            <input id="diseasesSearch2" type="date" name="moh"
+                                   autocomplete="off" placeholder="search by date" >
+                            <%--                            <datalist id="alldiseasesSearch">--%>
+                            <%--                                <option value="Covid19" label="Covid19"></option>--%>
+                            <%--                            </datalist>--%>
+                        </div>
+                        <button class="search-btn" onclick="searchgovermentdate()" > Search</button>
+                    </div>
+                </div>
+
                     <div class="announcetment-list-card-container" id="announcetment-list-card-container1">
 <%--                        <div class="latest-announstment-cards-container">--%>
 <%--                            <div class="latest-announstment-card">--%>
@@ -282,17 +299,35 @@
                     <div class="dashboard-page-sub-title">
                         PHI Announcement
                     </div>
+
+                <div class="main-search-container" style="width: 100%;display: flex;justify-content: space-around">
                     <div class="search-container">
                         <div class="form-group">
-                            <input id="diseasesSearch2" type="text" list="alldiseasesSearch2" name="moh"
-                                   autocomplete="off" placeholder="search by date"
+                            <input id="diseasesSearch21" onkeyup="searchphi()" type="text"  name="moh"
+                                   autocomplete="off" placeholder="search by name"
                                    >
-                            <datalist id="alldiseasesSearch2">
-                                <option value="Covid19" label="Covid19"></option>
-                            </datalist>
+<%--                            <datalist id="alldiseasesSearch2">--%>
+<%--                                <option value="Covid19" label="Covid19"></option>--%>
+<%--                            </datalist>--%>
                         </div>
-                        <button class="search-btn" onclick="searchD()"> Search</button>
+                        <button class="search-btn" > Search</button>
                     </div>
+
+                    <div class="search-container">
+                        <div class="form-group">
+                            <input id="diseasesSearch22" type="date"  name="moh"
+                                   autocomplete="off" placeholder="search by date"
+                            >
+<%--                            <datalist id="alldiseasesSearch2">--%>
+<%--                                <option value="Covid19" label="Covid19"></option>--%>
+<%--                            </datalist>--%>
+                        </div>
+                        <button class="search-btn" onclick="searchphidate()"> Search</button>
+                    </div>
+
+                </div>
+
+
                     <div class="announcetment-list-card-container" id="announcetment-list-card-container2">
 
 <%--                        <div class="latest-announstment-cards-container">--%>
@@ -401,16 +436,33 @@
                     <div class="dashboard-page-sub-title">
                         Clinic Announcement
                     </div>
+
+                <div class="main-search-container" style="width: 100%;display: flex;justify-content: space-around">
                     <div class="search-container">
                         <div class="form-group">
-                            <input id="diseases" type="text" list="alldiseases" name="moh" autocomplete="off"
+                            <input id="diseases1" type="date"  name="moh" autocomplete="off"
                                    placeholder="search by date">
-                            <datalist id="alldiseases">
-                                <option value="Covid19" label="Covid19"></option>
-                            </datalist>
+<%--                            <datalist id="alldiseases">--%>
+<%--                                <option value="Covid19" label="Covid19"></option>--%>
+<%--                            </datalist>--%>
                         </div>
-                        <button class="search-btn" onclick="searchD()"> Search</button>
+                        <button class="search-btn" onclick="searchclinicdate()"> Search</button>
                     </div>
+
+                    <div class="search-container">
+                        <div class="form-group">
+                            <input id="diseases2" type="text" onkeyup="searchclinic()"  name="moh" autocomplete="off"
+                                   placeholder="search by name">
+                            <%--                            <datalist id="alldiseases">--%>
+                            <%--                                <option value="Covid19" label="Covid19"></option>--%>
+                            <%--                            </datalist>--%>
+                        </div>
+                        <button class="search-btn" > Search</button>
+                    </div>
+
+                </div>
+
+
                     <div class="announcetment-list-card-container" id="announcetment-list-card-container">
 
 <%--                        <div class="latest-announstment-cards-container">--%>
@@ -596,6 +648,12 @@
 
 
 </script>
+
+
+
+
+
+
 <script defer>
     govermentannouncemenet()
     function govermentannouncemenet(){
