@@ -98,7 +98,7 @@ public class UserViewClinicsController extends HttpServlet {
     private void usercancelclinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("data come to controller");
 //        String Unic="199910910035";
-        String uNic = "";
+        String uNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -133,7 +133,7 @@ public class UserViewClinicsController extends HttpServlet {
     private void userregister(HttpServletRequest req, HttpServletResponse res) throws IOException {
         //        res.getWriter().println("announcement view");
         System.out.println("data come to controller");
-        String UNic = "";
+        String UNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -145,7 +145,7 @@ public class UserViewClinicsController extends HttpServlet {
         String ncs_id = req.getParameter("clinic_id");
         UserViewRegisteredclinicsModel registerclinic = new UserViewRegisteredclinicsModel (
 
-                "",
+                UNic,
                 "",
                 "",
                 "",
@@ -165,7 +165,7 @@ public class UserViewClinicsController extends HttpServlet {
     private void  userViewclinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        res.getWriter().println("announcement view");
         System.out.println("data come to controller");
-        String uNic = "";
+        String uNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -176,7 +176,7 @@ public class UserViewClinicsController extends HttpServlet {
         }
 
 
-        String MOH = "";
+        String MOH = "1003";
         if(cookies !=null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("uDetails")) {
@@ -194,7 +194,7 @@ public class UserViewClinicsController extends HttpServlet {
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),
-                "",
+                MOH,
                 req.getParameter("datetime"),
                 "",
                 "",
@@ -210,7 +210,7 @@ public class UserViewClinicsController extends HttpServlet {
     }
 
     private void userViewregisteredclinics(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String UNic = "";
+        String UNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -220,7 +220,7 @@ public class UserViewClinicsController extends HttpServlet {
             }
         }
         UserViewRegisteredclinicsModel userviewregisterclinics  = new UserViewRegisteredclinicsModel(
-                "",
+                UNic,
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),

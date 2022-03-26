@@ -79,7 +79,7 @@ public class UserDiseaseController extends HttpServlet {
 
         String d_id = req.getParameter("d_id");
 //        String UNic = "980930416v";
-        String uNic = "";
+        String uNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){

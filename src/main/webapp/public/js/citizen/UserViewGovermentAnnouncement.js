@@ -40,9 +40,9 @@ class View_goverment_announcement{
                                 <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="80%" height="50%">
 
 <!--                                    <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>-->
-                                    <div class="read-more-btn">
-                                        Read More
-                                    </div>
+<!--                                    <div class="read-more-btn">-->
+<!--                                        Read More-->
+<!--                                    </div>-->
                                 </div>
                                 <div class="title" id="moh">
                                     ${item.title}
