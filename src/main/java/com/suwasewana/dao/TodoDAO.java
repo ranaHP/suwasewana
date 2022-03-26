@@ -33,7 +33,7 @@ public class TodoDAO {
     private static final String AssignTask="INSERT INTO `suwasewana_db`.`task_assign` (`Asgtask_id`, `to_phi`, `message`) VALUES ((SELECT MAX(task_id) FROM `suwasewana_db`.`task_list`), ?, ?);";
 
     private static final String Check_Add_Task="SELECT * FROM suwasewana_db.task_assign TA LEFT JOIN suwasewana_db.task_list TL ON TA.Asgtask_id=TL.task_id LEFT JOIN suwasewana_db.phi P ON P.nic=TL.phi_id WHERE P.assignMOH=? and P.phi_post='PHI' ORDER BY expire_date ASC;";
-    private static final String AssignTaskForPHI="BEGIN;INSERT INTO suwasewana_db.task_list ( title,status,expire_date,phi_id) VALUES( 'test titlezzz','pending','2021-11-30','199910910062');INSERT INTO suwasewana_db.task_assign (Asgtask_id , to_phi,message) VALUES(LAST_INSERT_ID(),'199910910060','test message for tahtzzzzzzz'); COMMIT;";
+    private static final String AssignTaskForPHI="BEGIN;INSERT INTO suwasewana_db.task_list ( title,status,expire_date,phi_id) VALUES( ?,'pending',?,?);INSERT INTO suwasewana_db.task_assign (Asgtask_id , to_phi,message) VALUES(LAST_INSERT_ID(),?,?); COMMIT;";
 
     private static final String TaskCount="SELECT COUNT(task_id), expire_date FROM `task_list` WHERE (phi_id = ?) GROUP BY `expire_date` ";
     private static final String TaskforCalander="SELECT * FROM `task_list` WHERE (phi_id = ?) & (expire_date=?)  &(status !='complete') ";
@@ -48,12 +48,13 @@ public class TodoDAO {
 
     public String AssignTask(String title,String exp_date,String note,String PId) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(AssignTaskForPHI)) {
-//            preparedStatement.setString(1, title);
-//            preparedStatement.setString(2, exp_date);
-//            preparedStatement.setString(3, PId);
-//
-//            preparedStatement.setString(4, PId);
-//            preparedStatement.setString(5, note);
+
+            preparedStatement.setString(1, title);
+            preparedStatement.setString(2, exp_date);
+            preparedStatement.setString(3, PId);
+
+            preparedStatement.setString(4, PId);
+            preparedStatement.setString(5, note);
 
             int  rs = preparedStatement.executeUpdate();
 
