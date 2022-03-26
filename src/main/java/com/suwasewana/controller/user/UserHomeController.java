@@ -78,7 +78,7 @@ public class UserHomeController extends HttpServlet {
 
 //        System.out.println("data come to controller");
 
-        String UNic = "";
+        String UNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -92,7 +92,7 @@ public class UserHomeController extends HttpServlet {
         String ncs_id = req.getParameter("clinic_id");
         UserViewRegisteredclinicsModel registerclinic = new UserViewRegisteredclinicsModel (
 
-                "",
+                UNic,
                 "",
                 "",
                 "",
@@ -115,7 +115,7 @@ public class UserHomeController extends HttpServlet {
 //        System.out.println("data come to controller");
 //        String Unic="199910910035";
 
-        String uNic = "";
+        String uNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -125,7 +125,7 @@ public class UserHomeController extends HttpServlet {
             }
         }
 
-        String MOH = "";
+        String MOH = "1003";
         if(cookies !=null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("uDetails")) {
@@ -140,7 +140,7 @@ public class UserHomeController extends HttpServlet {
                 req.getParameter("disease"),
                 req.getParameter("title"),
                 req.getParameter("location"),
-                "",
+                MOH,
                 req.getParameter("datetime"),
                 "",
                 "",
