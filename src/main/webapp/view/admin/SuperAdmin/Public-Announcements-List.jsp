@@ -142,7 +142,7 @@
                 <td data-label="Didtrict">` + item.description + `</td>
                 <td data-label="Head">` + item.expire_date + `</td>
                 <td data-label="Mobile">`+item.status + `</td>
-                <td class="Block"  data-label="ReNew" onclick="announcemnt_block( '`+item.announcement_id+ `')"><button>Block</button></td>
+                <td class="Block"  data-label="ReNew" onclick="announcemnt_block( '`+item.announcement_id+"/"+item.status+ `')"><button>` + getCorrectBtn(item.status) + `</button></td>
                 <td class="Block"  data-label="block" onclick="anoouncement_update( '`+item.announcement_id+ `')"><button style=" background-color: #f6d70a"">Update</button></td> </tr>`
                     tbl.appendChild(tblBody);
                     body.appendChild(tbl);
@@ -150,7 +150,8 @@
             }
         );
     }
-    function search(){
+
+    function refresh(){
         $.post(myUrl+"/admin-controller/allAnnouncement",
             {},
             function (data, status) {
@@ -176,7 +177,7 @@
                 <td data-label="Didtrict">` + item.description + `</td>
                 <td data-label="Head">` + item.expire_date + `</td>
                 <td data-label="Mobile">`+item.status + `</td>
-                <td class="Block"  data-label="ReNew" onclick="announcemnt_block( '`+item.announcement_id+ `')"><button>Block</button></td>
+                <td class="Block"  data-label="ReNew" onclick="announcemnt_block( '`+item.announcement_id+"/"+item.status+`')"><button>` + getCorrectBtn(item.status) + `</button></td>
                 <td class="Block"  data-label="block" onclick="anoouncement_update( '`+item.announcement_id+ `')"><button style=" background-color: #f6d70a"">Update</button></td> </tr>`
                     tbl.appendChild(tblBody);
                     body.appendChild(tbl);
@@ -184,11 +185,37 @@
             }
         );
     }
+    function search(){
+        tblBody = document.getElementById("table_body");
+        tblBody.innerHTML = "";
+        var row = document.createElement("tr");
+        announcements.map((item)=>{
+            tblBody.innerHTML+= `
+    <tr>
+                  <td data-label="Banner"> ` + item.announcement_id + `</td>
+                  <td data-label="Banner"><img src="` + myUrl + `/public/images/uploadimage/` + item.banner + `" width="100px" /> </td>
+               <td data-label="Title">` + item.title + `</td>
+                <td data-label="Didtrict">` + item.description + `</td>
+                <td data-label="Head">` + item.expire_date + `</td>
+                <td data-label="Mobile">`+item.status + `</td>
+                <td class="Block"  data-label="ReNew" onclick="announcemnt_block( '`+item.announcement_id+"/"+item.status+`')"><button>` + getCorrectBtn(item.status) + `</button></td>
+                <td class="Block"  data-label="block" onclick="anoouncement_update( '`+item.announcement_id+ `')"><button style=" background-color: #f6d70a"">Update</button></td> </tr>`
+            tbl.appendChild(tblBody);
+            body.appendChild(tbl);
+        })
+    }
+
+    function getCorrectBtn(status){
+        return (status == "block") ? "Active" : "Block";
+    }
     function announcemnt_block(data){
-        $.post(myUrl+"/admin-controller/Announcement_block",
+        console.log(data.split("/")[0] ,data.split("/")[1])
+        $.get(myUrl+"/admin-controller/Announcement_block?id="+data.split("/")[0]+"&status="+data.split("/")[1],
             {},
             function (data, status) {
-                announcements = JSON.parse(data);
+                // announcements = JSON.parse(data);
+                console.log(data);
+                refresh();
             }
         );
     function anoouncement_update(id){

@@ -1,6 +1,7 @@
 package com.suwasewana.controller.Admin;
 
 import com.google.gson.Gson;
+import com.suwasewana.core.ResponseType;
 import com.suwasewana.dao.*;
 import com.suwasewana.model.*;
 
@@ -103,12 +104,12 @@ public class AdminController extends HttpServlet {
     }
 
     private void announcement_block(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        ArrayList<PHIModel> result = publicAnnouncementsDAO.block_announcement();
+        ResponseType result = publicAnnouncementsDAO.block_announcement(req.getParameter("id"),req.getParameter("status"));
         res.getWriter().println(gson.toJson(result));
     }
     private void announcement_update(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        ArrayList<PHIModel> result = publicAnnouncementsDAO.getphiALL();
-        res.getWriter().println(gson.toJson(result));
+//        ArrayList<PHIModel> result = publicAnnouncementsDAO.getphiALL();
+//        res.getWriter().println(gson.toJson(result));
     }
 
     private void Allannouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {

@@ -15,7 +15,7 @@ public class PublicAnnouncementsDAO {
   private static final String AddTargetP="INSERT INTO `health_announcement_target_province` VALUES (?,?)";
     private static final String AddTargetD="INSERT INTO `health_announcement_target_districts` VALUES (?,?)";
     private static final String getAppoinments="SELECT * FROM `health_announcement`";
-    private static final String block_announcement="SELECT * FROM `health_announcement`";
+    private static final String block_announcement="UPDATE `health_announcement` SET `Status` = ? WHERE `health_announcement`.`announcement_id` = ?;";
   Connection connection;
     public PublicAnnouncementsDAO() {
         DB db = new DB();
@@ -102,9 +102,16 @@ public class PublicAnnouncementsDAO {
 
         return null;
     }
-    public ResponseType block_announcement(AppointmentModel appointment) {
+    public ResponseType block_announcement(String id , String status) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(block_announcement)) {
-            preparedStatement.setString(1, appointment.getStatus());
+            String temp = "";
+            if(status.equals("block") ){
+                temp = "active";
+            }else {
+                temp = "block";
+            }
+            preparedStatement.setString(1, temp);
+            preparedStatement.setString(2, id);
             int rs = preparedStatement.executeUpdate();
             if(rs == 1){
                 return new ResponseType("success" ,"Announcement Blocked Successful");
