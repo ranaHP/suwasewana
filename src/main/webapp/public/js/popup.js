@@ -1367,10 +1367,10 @@ class SuwasewanaPopup{
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
-            <div class="popup-title">   Appointment Portal </div>
+            <div class="popup-title">   Complain Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
-                <h2> Appointment rejection Form</h2>
+                <h2> Complainer details</h2>
                 <style>
                  table {
                     font-family: arial, sans-serif;
@@ -1408,7 +1408,6 @@ class SuwasewanaPopup{
                 <div class="row" >
                 
                     <div class="form-group">
-                    width: 69px;height: 24px;border-radius: 2px;font-size: 1em;
                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711db!important;margin-top: 10px;width: 69px;height: 24px;border-radius: 2px;font-size: 1em;" 
                         onclick="popup.hidePopup()"> Close</button>
                     </div>

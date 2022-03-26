@@ -228,7 +228,7 @@
 
                 <div class="dashboard-container">
                     <div class="dashboard-page-sub-title">
-                        Make a Complaints
+                        Make a Complaint
                     </div>
                     <div class="make-complaint-form">
                         <form id="New_Complain" onsubmit="return checkValidation();" method="post">
@@ -514,6 +514,16 @@
 
 
 <%--make complain--%>
+    function resetfrom(){
+        document.getElementById("cTitle").value="";
+        document.getElementById("complaintType").value="";
+        document.getElementById("uDetailsType").value="";
+        document.getElementById("phi").value="";
+        document.getElementById("MOHArea").value="";
+        document.getElementById("proof1").src=myUrl+"/public/images/logo/placeholder.png";
+        document.getElementById("proof2").src=myUrl+"/public/images/logo/placeholder.png";
+        document.getElementById("proof3").src=myUrl+"/public/images/logo/placeholder.png";
+    }
     function makeComplains(){
         // console.log("without images")
         // console.log("make complain call");
@@ -583,6 +593,7 @@
                         status: 'success',
                         message: 'Complain Successfully Added!'
                     });
+                    resetfrom();
                     getAllComplain();
                     document.getElementById('New_Complain').reset();
                 } else {
@@ -666,6 +677,7 @@
                         status: 'success',
                         message: 'Complain Successfully Added!'
                     });
+                    resetfrom();
                     getAllComplain();
                 } else {
                     // // console.log("unsuccesssss brooo")
@@ -755,7 +767,7 @@
 
 
 <%--script for take complain types--%>
-<script defer>
+<script >
     $.post(myUrl+"/user-complain-controller/",
         function (data, status) {
             let rs= JSON.parse(data);
@@ -770,9 +782,7 @@
         }
     );
 
-
 <%--script for take MOH list--%>
-
     let mohDetails=[];
     $.post(myUrl+"/user-complain-controller/moh",
         function (data, status) {
