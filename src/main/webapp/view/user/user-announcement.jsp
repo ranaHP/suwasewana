@@ -621,6 +621,9 @@
         );
     }
 
+
+
+
     clinicannouncement()
     function clinicannouncement(){
         let clinic = new View_clinic_announcement("announcetment-list-card-container");
