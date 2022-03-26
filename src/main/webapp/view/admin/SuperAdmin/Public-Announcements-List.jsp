@@ -28,6 +28,7 @@
             width: 80%;
             margin: auto;
         }
+
     </style>
 </head>
 <body id="mainContent" onload="checkP()">
@@ -42,7 +43,7 @@
     <h1 style="text-align: center ; margin: 20px 0; color: #4b4b4b"> Public Announcements List  </h1>
     <span style="text-align: center ; margin: -10px 0; color: #4b4b4b;"> Suwasewana public announcement portal  </span>
     <div class="filter_announcement_admin" >
-
+        
     </div>
     <div class="view_announcement_list" id="view_announcement_list">
 
@@ -69,9 +70,9 @@
             {},
             function (data, status) {
                 data = JSON.parse(data);
-                console.log("asdasd");
-                console.log(data);
-                console.log("asdasd");
+                // console.log("asdasd");
+                // console.log(data);
+                // console.log("asdasd");
                 tblBody.innerHTML = "";
                 headers=["Id","Banner","Title","Description","Expire Time" ,"Status","Block","Update"]
                 var row = document.createElement("tr");
@@ -93,8 +94,8 @@
                 <td data-label="Didtrict">` + item.description + `</td>
                 <td data-label="Head">` + item.expire_date + `</td>
                 <td data-label="Mobile">`+item.status + `</td>
-                <td class="update"  data-label="ReNew" onclick=""><button>Re New MAC</button></td>
-                <td class="Block"  data-label="block" onclick=""><button>Block</button></td>
+                <td class="Block"  data-label="ReNew" onclick=""><button>Block</button></td>
+                <td class="Block"  data-label="block" onclick=""><button style=" background-color: #f6d70a"">Update</button></td>
     </tr>`
                     tbl.appendChild(tblBody);
                     body.appendChild(tbl);

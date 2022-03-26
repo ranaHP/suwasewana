@@ -130,14 +130,16 @@ input:focus + label{
     padding: 5px;
     width: 80px;
     border-radius: 3px;
-    background-color: #f0ad4e;
+    /*background-color: #EB3B5A;*/
+    background-color: #d9534f;
     color: white;
     font-size: .7em;
     cursor: pointer;
 }
 .update{
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    height: 100%!important;
 }
 .Block button{
     border: none;
