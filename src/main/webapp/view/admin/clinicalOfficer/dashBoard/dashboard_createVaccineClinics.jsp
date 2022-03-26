@@ -195,6 +195,9 @@
          return false;
      }
      function vaccineClinic(){
+        let timeslot=document.getElementById("date-time").value;
+        console.log(timeslot)
+         let timeN=timeslot.split("T")[1]
         let reqData = {
             clinictitle: document.getElementById("clinic-title").value,
             Dosecount: document.getElementById("Dose-count").value,
@@ -206,6 +209,7 @@
             vaccine: checkVaccineid(),
             LAgelimit: document.getElementById("LAge-limit").value,
             UAgelimit: document.getElementById("UAge-limit").value,
+            timeN:timeN
         };
          $.post(myUrl+"/create-clinic-controller/vaccineCLinic",
              reqData,

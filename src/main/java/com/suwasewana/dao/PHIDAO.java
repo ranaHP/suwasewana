@@ -24,6 +24,7 @@ public class PHIDAO {
     private static final String renewPHI="UPDATE `phi` SET `device_mac` = '' WHERE `phi`.`nic` = ?;";
     private static final String SELECT_phi_with_city="SELECT full_name,nic,mobile_number,name,assignMOH FROM suwasewana_db.phi p LEFT JOIN suwasewana_db.cities c ON p.assignCity = c.city_id;";
     private static final String blockPHI="UPDATE `phi` SET `block` = '1' WHERE `phi`.`nic` = ?;";
+    private static final String removePHI="DELETE FROM `phi` WHERE `phi`.`nic` = ?;";
 
     Connection connection;
 
@@ -190,6 +191,24 @@ public class PHIDAO {
             System.out.println("came to update");
 //            preparedStatement.setString(1,"");
             preparedStatement.setString(1,renew.getNIC());
+
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
+
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+
+    public String removephi(PHIModel removeP) {
+        boolean rowUpdate;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(removePHI)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+            preparedStatement.setString(1,removeP.getNIC());
 
             rowUpdate = preparedStatement.executeUpdate() > 0;
             System.out.println(rowUpdate);

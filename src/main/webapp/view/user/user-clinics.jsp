@@ -137,6 +137,15 @@
                         </div>
                     </div>
                     <div class="dash-tab">
+                        <div class="dash-icon" onclick="vaccinetypesView()">
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                        </div>
+
+                        <div class="dash-title">
+                            vaccine types view
+                        </div>
+                    </div>
+                    <div class="dash-tab">
                         <div class="dash-icon" onclick="Appoiment()">
                             <img src="<c:url value="/public/images/icons/calendar.svg"/>" width="20px" />
                         </div>
@@ -736,6 +745,12 @@
         let url=myUrl+"/s/"
         console.log("Url "+url)
         location.href=(myUrl + "/s/");
+    }
+
+    function vaccinetypesView(){
+        let url=myUrl+"/s/"
+        console.log("Url "+url)
+        location.href=(myUrl + "/s/"+"ViewVaccinesForUser");
     }
 
 </script>

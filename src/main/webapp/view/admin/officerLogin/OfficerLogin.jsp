@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <div class="formlable"><label id="user_name_lable" > Mobile Number</label></div>
 
-                            <input type="text" autofocus maxlength="10" required autocomplete="off"
+                            <input type="text" maxlength="10" required autocomplete="off"
                                    name="user-mobile" id="user-mobile"
                                    onkeyup="validation.mobileValidation(
                                         document.getElementById('user-mobile').value,

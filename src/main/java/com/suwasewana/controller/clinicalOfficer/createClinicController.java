@@ -443,7 +443,7 @@ import java.util.ArrayList;
                   req.getParameter("title"),
                   "",
                   "",
-                  "",
+                  req.getParameter("max_patient"),
                   req.getParameter("Limitsheats"),
                   "",
                   "",
@@ -568,6 +568,8 @@ import java.util.ArrayList;
                 }
             }
         }
+
+        String timeN=req.getParameter("timeN");
             vaccineClinicModel vaccineclinic= new vaccineClinicModel(
                 "",
                 req.getParameter("clinictitle"),
@@ -586,7 +588,7 @@ import java.util.ArrayList;
 
         );
 
-        String result = createClinicDAO.vaccineClinic(vaccineclinic);
+        String result = createClinicDAO.vaccineClinic(vaccineclinic,timeN);
         res.getWriter().println(result);
 
     }

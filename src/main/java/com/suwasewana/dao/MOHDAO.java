@@ -18,6 +18,10 @@ public class MOHDAO {
     private static final String District_Detail="SELECT * FROM suwasewana_db.district;";
     private static final String City_Detail="SELECT * FROM suwasewana_db.cities;";
     private static final String C_officers="SELECT * FROM suwasewana_db.clinicalofficer m left join district d ON m.district=d.district_id left join moh n ON m.assignMOH=n.moh_id;";
+    private static final String blockClinical="UPDATE `clinicalofficer` SET `block` = '1' WHERE `clinicalofficer`.`nic` = ?;";
+    private static final String renewC="UPDATE `clinicalofficer` SET `device_mac` = '' WHERE `clinicalofficer`.`nic` = ?;";
+    private static final String RemoveC="DELETE FROM `clinicalofficer` WHERE `clinicalofficer`.`nic` = ?;";
+
     Connection connection;
 
     public MOHDAO() {
@@ -182,4 +186,59 @@ public class MOHDAO {
 
         return null;
     }
+
+    public String blockclinical(String nic) {
+        boolean rowUpdate;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(blockClinical)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+            preparedStatement.setString(1,nic);
+
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
+
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+
+    public String renewC(String nic) {
+        boolean rowUpdate;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(renewC)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+            preparedStatement.setString(1,nic);
+
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
+
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+
+    public String removeC(String nic) {
+        boolean rowUpdate;
+        try (PreparedStatement preparedStatement = connection.prepareStatement(RemoveC)) {
+            System.out.println("came to update");
+//            preparedStatement.setString(1,"");
+            preparedStatement.setString(1,nic);
+
+            rowUpdate = preparedStatement.executeUpdate() > 0;
+            System.out.println(rowUpdate);
+            return "success";
+
+
+        } catch (SQLException throwables) {
+            printSQLException(throwables);
+            return throwables.getMessage();
+        }
+    }
+
 }
