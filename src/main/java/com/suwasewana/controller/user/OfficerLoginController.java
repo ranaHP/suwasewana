@@ -65,7 +65,7 @@ public class OfficerLoginController extends HttpServlet {
 
 
 
-        if ((officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("")) ) {
+        if ((officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") ) ) {
             System.out.println("invalid mobile number password");
             ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
@@ -93,9 +93,9 @@ public class OfficerLoginController extends HttpServlet {
                     + officerLoginresponse.getMohId()+ '/'
                     + officerLoginresponse.getMobile() ;
 //            System.out.println(temp);
-            Cookie loginCookie = new Cookie("sDetails",temp);
-            loginCookie.setMaxAge(300*60);
-            res.addCookie(loginCookie);
+//            Cookie loginCookie = new Cookie("sDetails",temp);
+//            loginCookie.setMaxAge(300*60);
+//            res.addCookie(loginCookie);
         }
         System.out.println("##################################################");
         out.print(responseJsonString);
