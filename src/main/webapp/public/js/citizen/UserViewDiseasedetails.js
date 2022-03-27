@@ -59,7 +59,7 @@ class view_disease_details{
                                          Deaths: ${JSON.parse(item.description).name}
                                     </li>
                                     <li>
-                                        <img src="<c:url value="/public/images/icons/users.svg"/>" width="15px" />
+                                        <img src="${myUrl}/public/images/uploadimage/disease.png" width="80px" height="80px" />
                                         <div> 503,090 </div>
                                         Recovered:
                                     </li>

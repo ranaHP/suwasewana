@@ -60,7 +60,7 @@ public class OfficerLoginController extends HttpServlet {
         System.out.println("getMAC "+officerLoginresponse.getMAC());
 
         String responseJsonString = "";
-        if ((officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals(""))&& !officerLoginresponse.getMessage().equals("new user") ) {
+        if ((officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("")) ) {
             ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
         } else if (officerLoginresponse.getMessage().equals("mac is wrong")) {
