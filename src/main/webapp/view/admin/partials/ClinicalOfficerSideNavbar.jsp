@@ -112,7 +112,7 @@
         <li>
             <div class="iocn-link">
                 <a href="#">
-                    <i class='bx bx-plus-medical'></i>
+                    <i class='bx bx-plug'></i>
                     <span class="link_name">Edit vaccine types</span>
                 </a>
                 <i class='bx bxs-chevron-down arrow'></i>

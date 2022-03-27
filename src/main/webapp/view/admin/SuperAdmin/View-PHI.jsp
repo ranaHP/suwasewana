@@ -160,7 +160,7 @@
                 <td data-label="Head">` + item.phi_post + `</td>
                 <td data-label="Mobile">`+item.NIC + `</td>
                 <td class="update"  data-label="ReNew" onclick="renew()"><button>Re New MAC</button></td>
-                <td class="Block"  data-label="block" onclick="popup.showBlockAlertMessage('`+item.NIC+`')" ><button>Block</button></td>
+                <td class="Block" id="block"  data-label="block" onclick="popup.showBlockAlertMessage('`+item.NIC+`')" ><button>Block</button></td>
                 <td class="Block"  data-label="Remove" onclick="popup.showRemoveAlertMessage('`+item.NIC+`')"><button>Remove</button></td>
 
 
