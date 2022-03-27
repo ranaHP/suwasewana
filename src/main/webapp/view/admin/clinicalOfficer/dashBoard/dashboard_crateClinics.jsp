@@ -304,6 +304,7 @@
 
 
 </script>
+<script defer src="<c:url value="/public/js/common/side-navbar.js"/>"></script>
 
 </body>
 </html>

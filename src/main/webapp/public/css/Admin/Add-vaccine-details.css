@@ -83,7 +83,17 @@ input{
     width: 80%;
 }
 
-
+.sidebar-main-show{
+    max-width: calc(100vw - 180px);
+    margin-left: 180px;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
+.sidebar-main-show .content{
+    background-color:  white;
+    transition: 0.2s ease;
+    /*transition-delay: 0.1s;*/
+}
 
 
 

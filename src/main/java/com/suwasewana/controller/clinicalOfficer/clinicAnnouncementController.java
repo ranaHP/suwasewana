@@ -73,7 +73,7 @@ import java.util.ArrayList;
 
     private void deleteVAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("Deleteeeeeeeeee");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -106,7 +106,7 @@ import java.util.ArrayList;
 
 
     private void viewVAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -138,7 +138,7 @@ import java.util.ArrayList;
 
     private void createVClinicA(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //       res.getWriter().println("vaccine announcement");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -171,7 +171,7 @@ import java.util.ArrayList;
 
     private void viewAnnouncements(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //      res.getWriter().println("announcement view");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -203,7 +203,7 @@ import java.util.ArrayList;
 
     private void createClinicA(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 //        res.getWriter().println("announcement controller");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -236,7 +236,7 @@ import java.util.ArrayList;
 
     private void deleteAnnouncements(HttpServletRequest req,HttpServletResponse res) throws IOException {
         System.out.println("Deleteeeeeeeeee");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){

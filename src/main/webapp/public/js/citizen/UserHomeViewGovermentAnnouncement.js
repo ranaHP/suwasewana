@@ -1,4 +1,4 @@
-// let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
 // let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class View_goverment_announcement{
@@ -37,10 +37,10 @@ class View_goverment_announcement{
                     <div class="latest-announstment-cards-container">
                         <div class="latest-announstment-card">
                             <div class="image-container">
-                                <img src="images//announcetment_banner.png" width="100%"/>
-                                <div class="read-more-btn">
-                                    Read More
-                                </div>
+                                <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="100%" height="50%">
+<!--                                <div class="read-more-btn">-->
+<!--                                    Read More-->
+<!--                                </div>-->
                             </div>
                             <div class="header">
                                 ${item.title}

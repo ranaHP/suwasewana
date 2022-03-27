@@ -203,7 +203,7 @@ public class Router extends HttpServlet {
                     break;
 
                 case "MakAnnouncementsForPHI":
-                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPublic.jsp");
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForRPHI.jsp");
                     rd.forward(request,response);
                     break;
                 case "RPHI-viewReports":
@@ -227,7 +227,7 @@ public class Router extends HttpServlet {
                     rd.forward(request,response);
                     break;
                 case "MOHAnnouncements":
-                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForRPHI.jsp");
+                    rd = request.getRequestDispatcher("/view/admin/RPHI/make_AnnouncementForPublic.jsp");
                     rd.forward(request,response);
                     break;
 

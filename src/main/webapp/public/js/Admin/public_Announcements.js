@@ -26,7 +26,7 @@ function card()
                                   <div class="description" id="description">
                                      ${description}
                                    </div>
-                                
+
                             </div>
                         </div>
     `

@@ -61,7 +61,7 @@ public class UserAnnouncementController extends HttpServlet {
     private void UserviewclinicAnnouncemet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
 //        System.out.println("clinic");
-        String moh_id = "";
+        String moh_id = "1003";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -88,7 +88,7 @@ public class UserAnnouncementController extends HttpServlet {
 
     private void  UserviewrphiAnnouncemet(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        String target_moh = "";
+        String target_moh = "1003";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){

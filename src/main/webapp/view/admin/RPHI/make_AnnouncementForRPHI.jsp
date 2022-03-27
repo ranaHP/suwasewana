@@ -20,7 +20,7 @@
     <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
     <script src="<c:url value="/public/js/popup.js"/>"></script>
 </head>
-<body id="mainContent" onload="check()">
+<body id="mainContent">
 <c:import url="/view/admin/partials/RPHIOfficerSideNavbar.jsp"></c:import>
 <div class="mypopup" id="popup" style="display: none;"></div>
 <div class="container">
@@ -33,17 +33,17 @@
         <div class="down">
 
 <%--        <label >MOH Area</label> <br>--%>
-        <input autocomplete="off" class="a" class="SelectColordiv" placeholder="select the MOH" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea" required
-               onclick="document.getElementById('MArea').value='';"
-               onblur="validation.SearchSelect(
-                                    document.getElementById('MArea').value,
-                                    'LMArea'
-                                );"
-        >
-        <datalist id="AllMArea">
-        </datalist>
-        <br>
-        <span class="error" id="LMArea" style="margin-left: 5px" ></span>
+<%--        <input autocomplete="off" class="a" class="SelectColordiv" placeholder="select the MOH" id="MArea" type="text" style="outline: none;" list="AllMArea" name="AllMArea" required--%>
+<%--               onclick="document.getElementById('MArea').value='';"--%>
+<%--               onblur="validation.SearchSelect(--%>
+<%--                                    document.getElementById('MArea').value,--%>
+<%--                                    'LMArea'--%>
+<%--                                );"--%>
+<%--        >--%>
+<%--        <datalist id="AllMArea">--%>
+<%--        </datalist>--%>
+<%--        <br>--%>
+<%--        <span class="error" id="LMArea" style="margin-left: 5px" ></span>--%>
         </div>
     </div>
     <div class="make-announcement-container">
@@ -149,7 +149,7 @@
             title:document.getElementById("title").value,
             description:document.getElementById("description").value,
             image:imagearray[0],
-            moh:checkid(),
+            // moh:checkid(),
             expire_date:document.getElementById("expire_date").value
         };
         // console.log(reqData)
@@ -197,18 +197,18 @@
         );
     }
 
-    function checkid(){
-        // alert("check")
-        var MTypeObj = document.getElementById('MArea');
-        var datalist = document.getElementById(MTypeObj.getAttribute("list"));
-        if(datalist.options.namedItem(MTypeObj.value)){
-            alert(datalist.options.namedItem(MTypeObj.value).id)
-            return (datalist.options.namedItem(MTypeObj.value).id);
-        }
-        else {
-            return  0;
-        }
-    }
+    // function checkid(){
+    //     // alert("check")
+    //     var MTypeObj = document.getElementById('MArea');
+    //     var datalist = document.getElementById(MTypeObj.getAttribute("list"));
+    //     if(datalist.options.namedItem(MTypeObj.value)){
+    //         alert(datalist.options.namedItem(MTypeObj.value).id)
+    //         return (datalist.options.namedItem(MTypeObj.value).id);
+    //     }
+    //     else {
+    //         return  0;
+    //     }
+    // }
 
 </script>
 

@@ -54,7 +54,7 @@ public class UserGovermentAnnouncementController extends HttpServlet {
 
     private void userGovermentAnnouncement(HttpServletRequest req, HttpServletResponse res) throws IOException {
 
-        String uNic = "";
+        String uNic = "199910910060";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -65,7 +65,7 @@ public class UserGovermentAnnouncementController extends HttpServlet {
         }
 
 
-        String district_id = "";
+        String district_id = "123";
         if(cookies !=null){
             for(Cookie cookie : cookies){
                 if(cookie.getName().equals("uDetails")) {
