@@ -1434,6 +1434,35 @@ class SuwasewanaPopup{
             <div class="popup-title">Update Password</div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    
+                    <div class="form-group" style="width: unset ; padding: 0 30px;display:flex; align-items: center; justify-content: center; padding-bottom: 20px">
+                        
+                        <input id="pass1" type="text" style="margin-left: 20px; padding: 0 30px; outline: none"  />
+                        <input id="pass2" type="text" style="margin-left: 20px; padding: 0 30px; outline: none"  />
+                        <span id="error" style="font-size: 1em; color:#c01c1c;margin-top: 14px; display: none">Please make sure your passwords match</span>
+                    </div>
+                    
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group" style="width: unset;display: flex; justify-content: space-between">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="CheckPasswords('`+u+`','`+p+`'); "> Update</button>
+                    </div>
+                </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+    ValidateOTP() {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
                 <h2> Update Task</h2>
                 <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
                     
