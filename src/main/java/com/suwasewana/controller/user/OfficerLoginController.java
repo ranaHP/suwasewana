@@ -92,7 +92,7 @@ public class OfficerLoginController extends HttpServlet {
                     + officerLoginresponse.getNIC()+ '/'
                     + officerLoginresponse.getMohId()+ '/'
                     + officerLoginresponse.getMobile() ;
-//            System.out.println(temp);
+//            System.out.println(temp);   for demostration purpus
 //            Cookie loginCookie = new Cookie("sDetails",temp);
 //            loginCookie.setMaxAge(300*60);
 //            res.addCookie(loginCookie);
