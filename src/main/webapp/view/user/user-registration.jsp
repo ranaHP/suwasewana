@@ -215,15 +215,17 @@
 
                         </div>
                     </div>
-                    <div class="form-sub-title">
-                        <label> Current Location (optinal) </label>
-                        <hr width="100%" class="m-auto hr">
-                    </div>
-                    <div class="row map-container">
-                        <div id="map"></div>
-                        <button onclick="getLocation()" class="get-current-location">Get Current Location</button>
-                        <p id="demo"></p>
-                    </div>
+                   <div style="display: none">
+                       <div class="form-sub-title">
+                           <label> Current Location (optinal) </label>
+                           <hr width="100%" class="m-auto hr">
+                       </div>
+                       <div class="row map-container">
+                           <div id="map"></div>
+                           <button onclick="getLocation()" class="get-current-location">Get Current Location</button>
+                           <p id="demo"></p>
+                       </div>
+                   </div>
                     <div class="form-sub-title">
                         <label> Password </label>
                         <hr width="100%" class="m-auto hr">
