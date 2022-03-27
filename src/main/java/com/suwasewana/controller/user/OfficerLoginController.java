@@ -54,15 +54,16 @@ public class OfficerLoginController extends HttpServlet {
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
 
-        System.out.println("########officerLoginresponse.getPostalCode() "+officerLoginresponse.getPostalCode());
+
+        System.out.println("mobile "+officerLoginresponse.getMobile());
+        System.out.println("password "+officerLoginresponse.getPassword());
+        System.out.println("getMAC "+officerLoginresponse.getMAC());
 
         String responseJsonString = "";
-        if (officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("") ) {
+        if ((officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals(""))&& !officerLoginresponse.getMessage().equals("new user") ) {
             ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-        } else if (
-                !officerLoginresponse.getMobile().equals("") && !officerLoginresponse.getPassword().equals("")
-                 && officerLoginresponse.getMessage().equals("mac is wrong") ) {
+        } else if (officerLoginresponse.getMessage().equals("mac is wrong")) {
             ResponseType suwasewanaRespose = new ResponseType("error", "your mac is not match");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 

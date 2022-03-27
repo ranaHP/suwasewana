@@ -414,18 +414,13 @@
                         location: ""
                     };
                 console.log(reqData)
+
+                var num = Math.floor(Math.random() * 90000) + 10000;
+
+
                 $.post("/test_war_exploded/user-register-controller",
                     reqData,
                     function (data, status) {
-                        // console.log(data === 1);
-                        // console.log(data === 0);
-                        // console.log(data === "1");
-                        // console.log(data === "0");
-                        // console.log(data);
-                        // console.log(data.trim());
-                        // console.log(data.toString());
-                        // console.log(data.toString() == "1");
-                        // console.log(typeof data);
                         console.log(data.includes("success"))
                         if (data.includes("success") ) {
                             popup.showRegistrationSuccessMessage({ status : 'success' , message: 'Successfully Citizen Registered'});
