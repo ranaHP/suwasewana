@@ -367,8 +367,8 @@ public class AdminController extends HttpServlet {
 //        System.out.println("Come to view moh controller all");
         String mobile=req.getParameter("uname");
 
-//        String result = officerDAO.blockUser(mobile);
-//        res.getWriter().println(gson.toJson(result));
+        String result = officerDAO.blockUser(mobile);
+        res.getWriter().println(gson.toJson(result));
 //        comment for push
     }
 

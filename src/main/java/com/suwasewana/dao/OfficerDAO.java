@@ -19,6 +19,7 @@ public class OfficerDAO {
     private static final String CHECK_pOST_WITH_VALIDATION = "SELECT * FROM `phi` WHERE `Mobile` = ? and `Password` = ? and `Post`=?";
 
     private static final String UpdateNewtoOld = "Update `phi` set `Password`=?,block='0'   WHERE `mobile_number` = ? and `Password` =  ? ";
+    private static final String BlockPhiuser = "UPDATE `suwasewana_db`.`phi` SET `block` = '1' WHERE  (`mobile_number` = ?);";
 
     private static final String Check_PHI = "SELECT * FROM `phi` WHERE `mobile_number` = ? and `Password` =  ? ";
     private static final String Check_Clinical_Officer = "SELECT * FROM `clinicalofficer` WHERE mobile_number = ? and password = ? ";
@@ -41,6 +42,17 @@ public class OfficerDAO {
             UpdateStatement.setString(3,hashingold.getHashValue());
             UpdateStatement.setString(1,hashingnew.getHashValue());
                             System.out.println("update work for new user "+UpdateStatement);
+            UpdateStatement.executeUpdate();
+            return "success";
+        }
+        catch (SQLException throwables) {
+            printSQLException(throwables);
+        }
+        return "success";
+    }
+    public String blockUser(String u){
+        try (PreparedStatement UpdateStatement = connection.prepareStatement(BlockPhiuser)){
+            UpdateStatement.setString(1,u);
             UpdateStatement.executeUpdate();
             return "success";
         }

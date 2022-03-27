@@ -196,7 +196,7 @@
                             <label >
                                 &nbsp;
                             </label>
-                            <button type="submit" class="submitBtn "> Search Complaint</button>
+                            <button type="submit" class="submitBtn "> Search Disease</button>
                         </div>
                     </form>
                 </div>
