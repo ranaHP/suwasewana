@@ -53,7 +53,6 @@
                                     ); hideFormError();"
                             />
                             <input type="text"  maxlength="10"
-                                   required autocomplete="off"
                                    name="admin-code" id="admin-code"
                                    style="display: none"
                             />
@@ -77,7 +76,7 @@
                         <div class="form-group">
                             <div class="formlable"><label for="officer_types"> Officer Type</label> </div>
 
-                            <select name="officer_types" id="officer_types" onchange="onChangeAdmin()">
+                            <select name="officer_types" id="officer_types" onchange="onChangeAdmin()">z
                                 <option value="phi">Public Health Officer</option>
                                 <option value="rphi">Regional Public Health Officer</option>
                                 <option value="co">Clinical Officer</option>
