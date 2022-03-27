@@ -622,6 +622,7 @@
 
                     });
                     updateAvailableseats(clinic_id,Avail_seats)
+                    cancel()
                 } else {
                     console.log("unsuccesssss")
                     popup.showUserClinicRegisterSuccessMessage({

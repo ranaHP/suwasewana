@@ -613,8 +613,9 @@
                         message: 'Successfully Registerd!',
 
                     });
-                    viewregisteredclinic();
+
                       updateAvailableseats(avalabel_seats,clinic_id)
+                    cancel();
                 } else {
                     console.log("unsuccesssss ")
                     popup.showUserClinicRegisterSuccessMessage({
