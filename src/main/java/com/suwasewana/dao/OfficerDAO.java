@@ -78,6 +78,7 @@ public class OfficerDAO {
 
     public OfficerLoginModel CheckLoginValidation(OfficerLoginModel officerLogin , String post) {
         if(post.equals("phi")){
+            System.out.println("This is a PHI");
             try (PreparedStatement preparedStatement = connection.prepareStatement(Check_PHI)) {
                 SuwasewanaHashing hashing = new SuwasewanaHashing(officerLogin.getPassword());
 
@@ -102,14 +103,17 @@ public class OfficerDAO {
                     String block=rs.getString("block");
 
 
-//                    System.out.println("mobile " + mobile+" - " +officerLogin.getMobile());
-//                    System.out.println("password "+password +" - "+officerLogin.getPassword());
+                    System.out.println("mobile " + mobile+" - " +officerLogin.getMobile());
+                    System.out.println("password "+password +" - "+officerLogin.getPassword());
                     if (mobile.equals(officerLogin.getMobile())){
                         System.out.println("valid mobile no");
                     }
                     if(password.equals(officerLogin.getPassword())){
                         System.out.println("VAlid password ");
                     }
+
+
+
 
 
 
@@ -132,9 +136,10 @@ public class OfficerDAO {
                         officerLogindetails.setMohId(assignMOH);
                         officerLogindetails.setCity(assignCity);
                         officerLogindetails.setPost(officerpost);
-                        officerLogindetails.setMAC(mac);
+                        officerLogindetails.setMAC(updateMAC);
                         officerLogindetails.setNIC(nic);
                         officerLogindetails.setPostalCode(block);
+                        officerLogindetails.setCity("");
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && mac.equals(officerLogin.getMAC()) ) {
@@ -154,14 +159,14 @@ public class OfficerDAO {
                         return officerLogindetails;
                     }
                     if (mobile.equals(officerLogin.getMobile()) && password.equals(officerLogin.getPassword()) && !mac.equals(officerLogin.getMAC())) {
-//                        System.out.println("valid mach");
-//                        System.out.println("officerLogin.getMAC() "+officerLogin.getMAC());
-//                        System.out.println("mac "+mac);
+                        System.out.println("mac is wrong");
+                        System.out.println("officerLogin.getMAC() "+officerLogin.getMAC());
+                        System.out.println("mac "+mac);
                         OfficerLoginModel officerLogindetails = new OfficerLoginModel(mobile, password, mac ,post  );
-                        officerLogindetails.setMessage("mac is wrong");
                         return officerLogindetails;
                     }
                 }
+//                System.out.println("Invalid Us Ps");
                 return new OfficerLoginModel("","","" , post);
             } catch (SQLException throwables) {
                 printSQLException(throwables);
