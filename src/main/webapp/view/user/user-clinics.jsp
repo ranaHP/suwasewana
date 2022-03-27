@@ -615,7 +615,8 @@
                     });
 
                       updateAvailableseats(avalabel_seats,clinic_id)
-                    cancel();
+                    viewregisteredclinic();
+
                 } else {
                     console.log("unsuccesssss ")
                     popup.showUserClinicRegisterSuccessMessage({
@@ -650,6 +651,7 @@
                    //
                    // });
                    // view()
+
                } else {
                    console.log("unsuccesssss ")
                    // popup.showUserClinicRegisterSuccessMessage({
