@@ -37,7 +37,7 @@ class view_disease_details{
 
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
                         <div class="dd-name" id="dd-name">Diseas : ${item.name}</div>
-                        <button class="submitBtn" onclick="RegisterForDisease('` + item.name + `')"> Register as Patient </button>
+                        <button class="submitBtn" onclick="RegisterCheckForDisease('` + item.name + `','`+item.d_id+`')"> Register as Patient </button>
                     </div>
                     <div class="row1">
                         <div class="summary">
@@ -396,7 +396,7 @@ class view_disease_details{
 
                  <div class="dashboard-page-sub-title d-title" id="disease_name">
                         <div class="dd-name" id="dd-name">Diseas : ${item.name}</div>
-                        <button class="submitBtn" onclick="RegisterForDisease('` + item.name + `')"> Register as Patient </button>
+                        <button class="submitBtn" onclick="RegisterCheckForDisease('` + item.name + `','`+item.d_id+`')"> Register as Patient </button>
                     </div>
                     <div class="row1">
                         <div class="summary">

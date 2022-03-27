@@ -40,6 +40,12 @@ public class OfficerLoginController extends HttpServlet {
         String mobile = req.getParameter("user_mobile");
         String password = req.getParameter("user_password");
         String post = req.getParameter("Post");
+
+        System.out.println("mobile "+mobile);
+        System.out.println("password "+password);
+        System.out.println("post "+post);
+
+
         String mac="";
         mac=GetMaC();
         OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac ,post);
@@ -48,17 +54,25 @@ public class OfficerLoginController extends HttpServlet {
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
 
+
+        System.out.println("mobile "+officerLoginresponse.getMobile());
+        System.out.println("password "+officerLoginresponse.getPassword());
+        System.out.println("getMAC "+officerLoginresponse.getMAC());
+
         String responseJsonString = "";
-        if (officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("") ) {
+        if ((officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals(""))&& !officerLoginresponse.getMessage().equals("new user") ) {
             ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-        } else if (
-                !officerLoginresponse.getMobile().equals("") && !officerLoginresponse.getPassword().equals("")
-                 && officerLoginresponse.getMessage().equals("mac is wrong") ) {
+        } else if (officerLoginresponse.getMessage().equals("mac is wrong")) {
             ResponseType suwasewanaRespose = new ResponseType("error", "your mac is not match");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 
-        } else {
+        }
+        else if(officerLoginresponse.getPostalCode().equals("1")){
+            ResponseType suwasewanaRespose = new ResponseType("error", "your Account is temporary Block");
+            responseJsonString = this.gson.toJson(suwasewanaRespose);
+        }
+        else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
 //            System.out.println("Loging success come to controller");
             responseJsonString = this.gson.toJson(suwasewanaRespose);

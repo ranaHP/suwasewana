@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="dash-tab">
-                        <div class="dash-icon" onclick="Complain()">
+                        <div class="dash-icon" onclick="Complainss()">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
                         </div>
                         <div class="dash-title">
@@ -145,6 +145,15 @@
 
                         <div class="dash-title">
                             vaccine
+                        </div>
+                    </div>
+                    <div class="dash-tab">
+                        <div class="dash-icon" onclick="vaccinetypesView()">
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                        </div>
+
+                        <div class="dash-title">
+                            vaccine types view
                         </div>
                     </div>
 
@@ -246,13 +255,8 @@
         <div class="first-row">
             <img src="<c:url value="/public/images/logo.png "/>"  width="45px" />
             <div class="navbar-container">
-                <ul class="navbar">
-                    <li class="nav-item"> Home </li>
-                    <li class="nav-item"> Diseases </li>
-                    <li class="nav-item"> Announcement </li>
-                    <li class="nav-item"> Clinik </li>
-                    <li class="nav-item"> Appointment </li>
-                    <li class="nav-item special-nav"> Request Ambulance </li>
+                <ul class="navbar navbar1">
+                    <script> let navs1 =  new Navbar(); navs.showHeaderNavItems("navbar1"); </script>
                 </ul>
             </div>
         </div>
@@ -421,6 +425,7 @@
                 Next_Que_no:QNo
             };
         let TpNo = getCookie("uDetails").split("/")[2]
+        TpNo='0713806000';
         let message= `Covid-19 Vaccination Program.
         Queue no:`+Que_no +`
         Time slot: `+timeWithAmPm+`
@@ -508,7 +513,7 @@
 
     LoadVaccineclinic();
     let nic = getCookie("uDetails").split("/")[1]
-    // let nic="199910910064"
+    nic="199910910060"
     let age=calculateage(nic);
     console.log("Nic - "+nic)
     function LoadVaccineclinic(){
@@ -824,7 +829,7 @@
         location.href=(myUrl + "/s/"+"clinic");
     }
 
-    function Complain(){
+    function Complainss(){
         let url=myUrl+"/s/"
         console.log("Url "+url)
         location.href=(myUrl + "/s/"+"complain");
@@ -839,6 +844,11 @@
         let url=myUrl+"/s/"
         console.log("Url "+url)
         location.href=(myUrl + "/s/"+"Register-for-vaccine");
+    }
+    function vaccinetypesView(){
+        let url=myUrl+"/s/"
+        console.log("Url "+url)
+        location.href=(myUrl + "/s/"+"ViewVaccinesForUser");
     }
 
     function Edit(){

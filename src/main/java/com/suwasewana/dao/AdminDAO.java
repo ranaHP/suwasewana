@@ -1,6 +1,7 @@
 package com.suwasewana.dao;
 
 import com.suwasewana.core.DB;
+import com.suwasewana.core.SuwasewanaHashing;
 import com.suwasewana.model.*;
 
 import java.sql.Connection;
@@ -11,9 +12,9 @@ import java.util.ArrayList;
 
 public class AdminDAO {
 
-    private static final String PHI_REGISTRATION = "INSERT INTO `suwasewana_db`.`phi` (`full_name`, `nic`, `mobile_number`,`image`,  `district`, `Password`, `login_status`, `phi_post`, `assignCity`, `assignMOH`) VALUES (?, ?, ?,  ?, ?,?,  '1', ?, ?, ?);\n";
-    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwaserwana_db`.`clinical_officer`  VALUES (NULL, ?, ?, NULL, ?, ?, ?, ?, ?,'0',current_timestamp(),?);";
-    private static final String MOH_REGISTRATION="INSERT INTO `suwaserwana_db`.`moh` (`MName`, `TpNo`, `MHead`, `Province`, `District`, `City`, `x`, `y`,`Allcities`) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
+    private static final String PHI_REGISTRATION = "INSERT INTO `suwasewana_db`.`phi` (`full_name`, `nic`, `mobile_number`,`image`,  `district`, `Password`, `login_status`, `phi_post`, `assignCity`, `assignMOH`,`block`,`device_mac`) VALUES (?, ?, ?,  ?, ?,?,  '1', ?, ?, ?,'-1','');";
+    private static final String Clinical_Officer_REGISTRATION="INSERT INTO `suwasewana_db`.`clinicalofficer` (`full_name`, `nic`, `mobile_number`, `district`, `city`, `password`, `login_status`, `assignMOH`) VALUES (?,?,?,?,?,?,'1',?);";
+    private static final String MOH_REGISTRATION="INSERT INTO `suwasewana_db`.`moh` (`name`, `mobile_number`, `moh_head`, `district`, `city`, `location`) VALUES (?,?,?,?,?,?);";
 
 
     private static final String AddVaccine="INSERT INTO `suwasewana_db`.`vaccine` (`name`, `country`, `recomonded_for`, `date`, `image`, `status`, `dose`, `comon_side_effects`, `how_it_work`, `how_well_it_work`, `view_status`) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
@@ -201,18 +202,15 @@ public class AdminDAO {
 
     }
     public String mohRegistration(MOHRegModel mohRegModel) {
-        System.out.println("data come to dao");
-
+//        System.out.println("data come to dao");
+        String location=mohRegModel.getX()+":"+mohRegModel.getY();
         try (PreparedStatement preparedStatement = connection.prepareStatement(MOH_REGISTRATION)) {
             preparedStatement.setString(1, mohRegModel.getMName() );
             preparedStatement.setString(2, mohRegModel.getTpNo() );
             preparedStatement.setString(3, mohRegModel.getMOHHead() );
-            preparedStatement.setString(4, mohRegModel.getProvince() );
-            preparedStatement.setString(5, mohRegModel.getDistrict() );
-            preparedStatement.setString(6, mohRegModel.getCity() );
-            preparedStatement.setString(7, mohRegModel.getX() );
-            preparedStatement.setString(8, mohRegModel.getY() );
-            preparedStatement.setString(9, mohRegModel.getCities() );
+            preparedStatement.setString(4, mohRegModel.getDistrict() );
+            preparedStatement.setString(5, mohRegModel.getCity() );
+            preparedStatement.setString(6, location );
             System.out.println("qry: "+preparedStatement);
             int rs = preparedStatement.executeUpdate();
             return "success";
@@ -228,17 +226,16 @@ public class AdminDAO {
 
 
     public String ClinicalOfficerRegistration(ClinicalOfficerModel clinicalOfficerModel) {
-        System.out.println("data come to dao");
+//        System.out.println("data come to dao");
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(Clinical_Officer_REGISTRATION)) {
             preparedStatement.setString(1, clinicalOfficerModel.getName() );
             preparedStatement.setString(2, clinicalOfficerModel.getNIC() );
             preparedStatement.setString(3, clinicalOfficerModel.getMobile() );
-            preparedStatement.setString(4, clinicalOfficerModel.getCity() );
-            preparedStatement.setString(5, clinicalOfficerModel.getDistrict() );
-            preparedStatement.setString(6, clinicalOfficerModel.getAddress() );
-            preparedStatement.setString(7, clinicalOfficerModel.getPass() );
-            preparedStatement.setString(8, clinicalOfficerModel.getMOHAREA() );
+            preparedStatement.setString(4, clinicalOfficerModel.getDistrict() );
+            preparedStatement.setString(5, clinicalOfficerModel.getCity() );
+            preparedStatement.setString(6, clinicalOfficerModel.getPass() );
+            preparedStatement.setString(7, clinicalOfficerModel.getMOHAREA() );
 
             System.out.println("qry: "+preparedStatement);
             int rs = preparedStatement.executeUpdate();
@@ -260,7 +257,10 @@ public class AdminDAO {
         try (PreparedStatement preparedStatement = connection.prepareStatement(PHI_REGISTRATION)) {
 
             String password="Suwasewana"+phiRegister.getNIC();
-
+            SuwasewanaHashing hashing = new SuwasewanaHashing(password);
+            System.out.println("new password is "+password);
+            password= hashing.getHashValue();
+            System.out.println("hash password is "+password);
             preparedStatement.setString(1, phiRegister.getFull_name() );
             preparedStatement.setString(2, phiRegister.getNIC() );
             preparedStatement.setString(3, phiRegister.getMobile());
@@ -282,7 +282,6 @@ public class AdminDAO {
             printSQLException(throwables);
             return throwables.getMessage();
         }
-
 
     }
 

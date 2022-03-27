@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.suwasewana.core.SuwasewanaHashing;
 
 @WebServlet("/admin-controller/*")
 public class AdminController extends HttpServlet {
@@ -23,9 +24,11 @@ public class AdminController extends HttpServlet {
     DistictDAO distictDAO;
     ProvinceDAO provinceDAO;
     PublicAnnouncementsDAO publicAnnouncementsDAO;
+    OfficerDAO officerDAO;
     private Gson gson = new Gson();
 
     public void init() {
+        officerDAO= new OfficerDAO();
         complainDAO = new ComplainDAO();
         mohdao=new MOHDAO();
         phidao=new PHIDAO();
@@ -51,11 +54,38 @@ public class AdminController extends HttpServlet {
                 case "mohall":
                     ViewMOHAll(req,res);
                     break;
+                case "newUser":
+                    newUser(req,res);
+                    break;
+                case "updateToOld":
+                    updateToOld(req,res);
+                    break;
                 case "phiall":
                     Allphi(req,res);
                     break;
+                case "C_all":
+                    C_all(req,res);
+                    break;
                 case "allAnnouncement":
                     Allannouncement(req,res);
+                    break;
+                case "block":
+                    block(req,res);
+                    break;
+                case "blockClinicalO":
+                    blockClinicalO(req,res);
+                    break;
+                case "renew":
+                    renew(req,res);
+                    break;
+                case "renewC":
+                    renewC(req,res);
+                    break;
+                case "removeP":
+                    removeP(req,res);
+                    break;
+                case "removeC":
+                    removeC(req,res);
                     break;
                 case "districtsSelect":
                     ViewSelectDisctirct(req,res);
@@ -96,6 +126,120 @@ public class AdminController extends HttpServlet {
             throw new ServletException(error);
         }
 
+    }
+
+    private void removeP(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        PHIModel removeP=new PHIModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        String result = phidao.removephi(removeP);
+        res.getWriter().println(result);
+    }
+
+    private void renewC(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        String nic= req.getParameter("id");
+        String result = mohdao.renewC(nic);
+        res.getWriter().println(result);
+
+    }
+
+    private void removeC(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        String nic= req.getParameter("id");
+        String result = mohdao.removeC(nic);
+        res.getWriter().println(result);
+
+    }
+
+    private void blockClinicalO(HttpServletRequest req, HttpServletResponse res) throws IOException {
+       String nic= req.getParameter("id");
+        String result = mohdao.blockclinical(nic);
+        res.getWriter().println(result);
+
+    }
+
+    private void C_all(HttpServletRequest req, HttpServletResponse res) throws IOException {
+
+        ClinicalOfficerModel clinicalOfficerModel=new ClinicalOfficerModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        ArrayList<ClinicalOfficerModel> result = mohdao.C_all_view(clinicalOfficerModel);
+        res.getWriter().println(gson.toJson(result));
+    }
+
+    private void renew(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        PHIModel renew=new PHIModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        String result = phidao.renewphi(renew);
+        res.getWriter().println(result);
+    }
+
+    private void block(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        PHIModel block=new PHIModel(
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                req.getParameter("id"),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+        );
+        String result = phidao.blockphi(block);
+        res.getWriter().println(result);
     }
 
     private void Allphi(HttpServletRequest req, HttpServletResponse res) throws IOException {
@@ -198,6 +342,22 @@ public class AdminController extends HttpServlet {
     private void ViewMOHAll(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
         System.out.println("Come to view moh controller all");
         ArrayList<MOHRegModel> result = mohdao.GetallMOHDetails();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void newUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller all");
+
+        SuwasewanaHashing hashing = new SuwasewanaHashing(req.getParameter("password"));
+        String result = officerDAO.CheckNewOrOld(req.getParameter("mobile"),hashing.getHashValue());
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void updateToOld(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller all");
+        String u=req.getParameter("uname");
+        String op=req.getParameter("oldpassword");
+        String np=req.getParameter("newpassword");
+        SuwasewanaHashing hashing = new SuwasewanaHashing(req.getParameter("password"));
+        String result = officerDAO.updateToOld(u,op,np);
         res.getWriter().println(gson.toJson(result));
     }
 

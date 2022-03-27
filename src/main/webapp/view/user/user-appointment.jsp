@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <div class="dash-tab">
-                        <div class="dash-icon" onclick="Complain()">
+                        <div class="dash-icon" onclick="Complainss()">
                             <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
                         </div>
                         <div class="dash-title">
@@ -148,6 +148,15 @@
 
                         <div class="dash-title">
                             vaccine
+                        </div>
+                    </div>
+                    <div class="dash-tab">
+                        <div class="dash-icon" onclick="vaccinetypesView()">
+                            <img src="<c:url value="/public/images/icons/activity.svg"/>" width="20px" />
+                        </div>
+
+                        <div class="dash-title">
+                            vaccine types view
                         </div>
                     </div>
 
@@ -488,7 +497,7 @@
         location.href=(myUrl + "/s/"+"clinic");
     }
 
-    function Complain(){
+    function Complainss(){
         let url=myUrl+"/s/"
         console.log("Url "+url)
         location.href=(myUrl + "/s/"+"complain");
@@ -509,6 +518,12 @@
         let url=myUrl+"/s/"
         console.log("Url "+url)
         location.href=(myUrl + "/s/");
+    }
+
+    function vaccinetypesView(){
+        let url=myUrl+"/s/"
+        console.log("Url "+url)
+        location.href=(myUrl + "/s/"+"ViewVaccinesForUser");
     }
 
 </script>

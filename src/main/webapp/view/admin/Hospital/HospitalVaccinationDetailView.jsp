@@ -7,14 +7,23 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href="<c:url value="/public/css/HospitalView.css"/>" rel="stylesheet" />
+    <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <title>Title</title>
 </head>
-<body>
-<div class="vaccine-list-container">
+<body id="mainContent">
+<c:import url="/view/admin/partials/ClinicalOfficerSideNavbar.jsp"/>
+<div class="header">
+    <div class="upper-title">SUWASEWANA </div>
+    <div class="dashboard-name">Clinical officer/Dashboard/Clinic List</div>
+</div>
+<div class="vaccine-list-container" >
     <hr>
     <div class="search-row">
 
@@ -212,6 +221,6 @@
 
 
 </script>
-
+<script defer src="<c:url value="/public/js/common/side-navbar.js"/>" ></script>
 </body>
 </html>

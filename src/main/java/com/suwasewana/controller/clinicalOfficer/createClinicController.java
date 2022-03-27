@@ -135,7 +135,7 @@ import java.util.ArrayList;
     }
 
     private void VclinicRegisterNumList(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -167,8 +167,8 @@ import java.util.ArrayList;
         }
 
     private void vaccinecount(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String Cnic="199910910064";
-        String nic="199910910064";
+        String Cnic="199910910061";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -185,7 +185,7 @@ import java.util.ArrayList;
         String start=req.getParameter("sdate");
         String end = req.getParameter("edate");
         String Cnic = "12";
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -199,7 +199,7 @@ import java.util.ArrayList;
         }
 
     private void numberslist(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -231,7 +231,7 @@ import java.util.ArrayList;
         }
 
     private void ResheduleVClinics(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -264,7 +264,7 @@ import java.util.ArrayList;
 
     private void resheduleclinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.getWriter().println("update");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -298,7 +298,7 @@ import java.util.ArrayList;
 
     private void selectFormsg(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("message");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -331,7 +331,7 @@ import java.util.ArrayList;
     }
 
     private void updateAvailSheats(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -361,7 +361,7 @@ import java.util.ArrayList;
         }
 
     private void clinicsEvents(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -391,7 +391,7 @@ import java.util.ArrayList;
         }
 
     private void viewcount(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -429,7 +429,7 @@ import java.util.ArrayList;
         }
 
     private void updatevClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -443,7 +443,7 @@ import java.util.ArrayList;
                   req.getParameter("title"),
                   "",
                   "",
-                  "",
+                  req.getParameter("max_patient"),
                   req.getParameter("Limitsheats"),
                   "",
                   "",
@@ -462,7 +462,7 @@ import java.util.ArrayList;
 
     private void VaccineClinicsdelete(HttpServletRequest req, HttpServletResponse res) throws IOException {
         System.out.println("Deleteeeeeeeeee");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -496,7 +496,7 @@ import java.util.ArrayList;
 
     private void VaccineClinicsSelect(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //            res.getWriter().println("came");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -528,7 +528,7 @@ import java.util.ArrayList;
 
     private void VaccineClinicsView(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //            res.getWriter().println("vaccine");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -559,7 +559,7 @@ import java.util.ArrayList;
 
     private void vaccineClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
             res.getWriter().println("vaccine");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -568,6 +568,8 @@ import java.util.ArrayList;
                 }
             }
         }
+
+        String timeN=req.getParameter("timeN");
             vaccineClinicModel vaccineclinic= new vaccineClinicModel(
                 "",
                 req.getParameter("clinictitle"),
@@ -586,14 +588,14 @@ import java.util.ArrayList;
 
         );
 
-        String result = createClinicDAO.vaccineClinic(vaccineclinic);
+        String result = createClinicDAO.vaccineClinic(vaccineclinic,timeN);
         res.getWriter().println(result);
 
     }
 
     private void updateClinic(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.getWriter().println("update");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -635,7 +637,7 @@ import java.util.ArrayList;
 //                }
 //            }
 //        }
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -665,7 +667,7 @@ import java.util.ArrayList;
         res.getWriter().println(result);
     }
     private void viewClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -694,7 +696,7 @@ import java.util.ArrayList;
         res.getWriter().println(gson.toJson(result));
     }
     private void viewdisease(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException, ParseException {
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -726,7 +728,7 @@ import java.util.ArrayList;
 
     private void selectClinic(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
             System.out.println("selettttttttttttttttt");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -759,7 +761,7 @@ import java.util.ArrayList;
     }
     private void deleteClinic(HttpServletRequest req,HttpServletResponse res) throws IOException {
           System.out.println("Deleteeeeeeeeee");
-        String nic="199910910064";
+        String nic="199910910061";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){

@@ -74,31 +74,31 @@
                         </div>
                     </div>
                     <div class="taskAssignRow">
-                        <button class="button2" type="submit">Send</button>
+                        <button class="button2" type="submit">Assign</button>
                     </div>
                 </form>
 
             </div>
             <hr style="margin-top: 50px; border: none; border-top: 0.1px solid rgba(255, 0, 0, 0.219);">
-            <div class="filter" style="width: 300px; margin-top: 30px">
+            <div class="filter" style=" margin-top: 30px; display: flex">
                 <div class="date1" >
                     From
 <%--                    <input type="date" id="date1" style="margin-left: 10px;" onchange="chechDate1_with_Date2();"><br>--%>
                     <input type="date" id="date1" style="margin-left: 10px;" ><br>
                     <span id="date1error" style="font-size: 12px; color: rgba(255, 0, 0, 0.781);"></span>
                 </div>
-                <div class="date2" style="margin-top: 10px;">
+                <div class="date2" style="margin-left: 27px">
                     To
 <%--                    <input type="date" id="date2" style="margin-left: 30px;margin-left: 10px;" onchange="chechDate2_with_Date1();" ><br>--%>
-                    <input type="date" id="date2" style="margin-left: 30px;margin-left: 10px;"  ><br>
+                    <input type="date" id="date2" style="margin-left: 10px;width: 134px"  ><br>
 
                 </div>
             </div>
-            <div class="taskAssignRowCol" style="height: fit-content">
+            <div class="taskAssignRowCol" style="height: fit-content;margin-top: 20px">
 
                 PHI
 
-                <input style="margin-left: 20px" class="sSelectPHI" id="sphi" type="text" list="sallphi" name="sallphi" autocomplete="off"
+                <input style="margin-left: 25px" class="sSelectPHI" id="sphi" type="text" list="sallphi" name="sallphi" autocomplete="off"
                        onclick="document.getElementById('sphi').value=''";
                 >
                 <datalist id="sallphi">
@@ -164,8 +164,8 @@
             // console.log("note "+note);
             // console.log("PId "+PId);
 
-            popup.ConformAssign();
-
+            // popup.ConformAssign();
+            conformAndDoneTask();
             // console.log("correct");
         }
         else {
@@ -196,6 +196,9 @@
         var datalist = document.getElementById(phiObj.getAttribute("list"));
         if(datalist.options.namedItem(phiObj.value)){
             PId=(datalist.options.namedItem(phiObj.value).id);
+
+
+
         }
         let reqData={
             title:title,

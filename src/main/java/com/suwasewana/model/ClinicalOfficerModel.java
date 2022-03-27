@@ -9,22 +9,23 @@ public class ClinicalOfficerModel {
     protected String Mobile;
     protected String City;
     protected String District;
-    protected String Address;
+    protected String image;
     protected String MOHAREA;
     protected String Pass;
     //
     public ClinicalOfficerModel
-    (String Name,String NIC,String Mobile,String City,String District,String Address ,String MOHAREA){
+    (String Name,String NIC,String Mobile,String City,String District,String image ,String MOHAREA){
         super();
 
-        SuwasewanaHashing hashing = new SuwasewanaHashing("abc");
+        String password="Suwasewana"+NIC;
+        SuwasewanaHashing hashing = new SuwasewanaHashing(password);
 
         this.Name=Name;
         this.NIC=NIC;
         this.Mobile=Mobile;
         this.City=City;
         this.District=District;
-        this.Address=Address;
+        this.image=image;
         this.MOHAREA=MOHAREA;
         this.Pass=hashing.getHashValue();
 
@@ -70,12 +71,12 @@ public class ClinicalOfficerModel {
         District = district;
     }
 
-    public String getAddress() {
-        return Address;
+    public String getimage() {
+        return image;
     }
 
-    public void setAddress(String address) {
-        Address = address;
+    public void setimage(String address) {
+        image = address;
     }
 
     public String getMOHAREA() {

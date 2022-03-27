@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css "/> "/>
     <script src="<c:url value="/public/js/inputValidation.js"/>"></script>
     <script src="<c:url value="/public/js/officerLogin.js"/>"></script>
+    <%--    for popup style--%>
+    <link href="<c:url value="/public/css/popup/popup.css"/>" rel="stylesheet"/>
+    <link href="<c:url value="/public/css/popup/Appintmentpopup.css"/>" rel="stylesheet"/>
+    <%--    for popup script--%>
+    <script src="<c:url value="/public/js/popup.js"/>"></script>
     <script>
         let loginCheck = new OfficerLogin();
         loginCheck.init()
@@ -17,6 +22,7 @@
 
 </head>
 <body>
+<div class="mypopup" id="popup" style="display: none;"></div>
     <div class="maincontainer">
         <div class="body-content">
             <div class="body-left">
@@ -45,7 +51,7 @@
                         <div class="form-group">
                             <div class="formlable"><label id="user_name_lable" > Mobile Number</label></div>
 
-                            <input type="text" autofocus maxlength="10" required autocomplete="off"
+                            <input type="text" maxlength="10" required autocomplete="off"
                                    name="user-mobile" id="user-mobile"
                                    onkeyup="validation.mobileValidation(
                                         document.getElementById('user-mobile').value,
@@ -53,7 +59,6 @@
                                     ); hideFormError();"
                             />
                             <input type="text"  maxlength="10"
-
                                    name="admin-code" id="admin-code"
                                    style="display: none"
                             />
@@ -77,7 +82,7 @@
                         <div class="form-group">
                             <div class="formlable"><label for="officer_types"> Officer Type</label> </div>
 
-                            <select name="officer_types" id="officer_types" onchange="onChangeAdmin()">
+                            <select name="officer_types" id="officer_types" onchange="onChangeAdmin()">z
                                 <option value="phi">Public Health Officer</option>
                                 <option value="rphi">Regional Public Health Officer</option>
                                 <option value="co">Clinical Officer</option>
@@ -107,6 +112,7 @@
 
     <script defer>
         myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+        let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
         function onChangeAdmin(){
             var s_value = document.getElementById('officer_types').value;
             if(s_value == 'admin'){
@@ -153,6 +159,10 @@
 
                         let result = JSON.parse(this.response);
                         if (result.status === "success") {
+
+
+
+
                             switch (document.getElementById('officer_types').value){
                                 case  "phi":
                                     location.replace( myUrl +"/s/PHI-dashboard");
@@ -197,28 +207,49 @@
                         document.getElementById("user-password").value + "&Post=" +
                         document.getElementById('officer_types').value;
                     const xhttp = new XMLHttpRequest();
+
                     console.log(url)
                     xhttp.onload = function () {
 
                         let result = JSON.parse(this.response);
                         if (result.status === "success") {
-                            switch (document.getElementById('officer_types').value){
-                                case  "phi":
-                                    location.replace( myUrl +"/s/PHI-dashboard");
-                                    break;
-                                case  "rphi":
-                                    location.replace( myUrl +"/s/PHI-dashboard");
-                                    break;
-                                case  "co":
-                                    location.replace( myUrl +"/s/clinic-dashboard");
-                                    break;
-                                case  "to":
-                                    location.replace( myUrl +"/s/PHI-dashboard");
-                                    break;
-                                case  "admin":
-                                    location.replace( myUrl +"/s/admin-dashboard");
-                                    break;
-                            }
+                            console.log("successfully login")
+                            let reqData =
+                                {
+                                    mobile:document.getElementById("user-mobile").value,
+                                    password: document.getElementById("user-password").value
+                                };
+                                $.post(myUrl+ "/admin-controller/newUser",
+                                    reqData,
+                                    function (data, status) {
+
+                                        if (data.includes("success")) {
+                                            console.log("new user ")
+                                            popup.ValidateNewPassword( document.getElementById("user-mobile").value,document.getElementById("user-password").value);
+                                        } else {
+                                            console.log("old user ")
+                                            switch (document.getElementById('officer_types').value){
+                                                case  "phi":
+                                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                                    break;
+                                                case  "rphi":
+                                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                                    break;
+                                                case  "co":
+                                                    location.replace( myUrl +"/s/clinic-dashboard");
+                                                    break;
+                                                case  "to":
+                                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                                    break;
+                                                case  "admin":
+                                                    location.replace( myUrl +"/s/admin-dashboard");
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                );
+
+
                         } else if (result.status === "error") {
                             document.getElementById('user-form-error').style.display = "block";
                             document.getElementById('user-form-error').innerText = result.data;
@@ -239,6 +270,52 @@
             }
 
             return false;
+        }
+        function CheckPasswords(u,p){
+            pass1=document.getElementById("pass1").value
+            pass2=document.getElementById("pass2").value
+            if(document.getElementById("pass1").value==document.getElementById("pass2").value){
+                popup.hidePopup();
+                let reqdata={
+                    uname:u,
+                    oldpassword:p,
+                    newpassword:pass1,
+
+                }
+                $.post(myUrl+"/admin-controller/updateToOld",
+                    reqdata,
+                    function (data, status) {
+                        console.log("Update new password ")
+                        // switch (document.getElementById('officer_types').value){
+                        //     case  "phi":
+                        //         location.replace( myUrl +"/s/PHI-dashboard");
+                        //         break;
+                        //     case  "rphi":
+                        //         location.replace( myUrl +"/s/PHI-dashboard");
+                        //         break;
+                        //     case  "co":
+                        //         location.replace( myUrl +"/s/clinic-dashboard");
+                        //         break;
+                        //     case  "to":
+                        //         location.replace( myUrl +"/s/PHI-dashboard");
+                        //         break;
+                        //     case  "admin":
+                        //         location.replace( myUrl +"/s/admin-dashboard");
+                        //         break;
+                        // }
+
+                    }
+                );
+            }
+            else{
+                document.getElementById("error").style.display = "block";
+                document.getElementById("pass1").value=""
+                document.getElementById("pass2").value=""
+            }
+
+            let reqdata={
+                newTask:document.getElementById("pass1").value
+            }
         }
 
     </script>

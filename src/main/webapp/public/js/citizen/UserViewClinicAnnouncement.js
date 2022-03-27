@@ -36,18 +36,18 @@ class View_clinic_announcement{
 
                 this.container.innerHTML += `
 
-                              <div class="latest-announstment-cards-container">
+                              <div class="latest-announstment-cards-container" style="font-family: Segoe UI">
                             <div class="latest-announstment-card">
                                 <div class="image-container">
                                 
-                                <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="80%" height="50%">
+                                <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="100%" height="50%">
 
 <!--                                    <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>-->
-                                    <div class="read-more-btn">
-                                        Read More
-                                    </div>
+<!--                                    <div class="read-more-btn">-->
+<!--                                        Read More-->
+<!--                                    </div>-->
                                 </div>
-                                <div class="title">
+                                <div class="title" id="title" style="padding-left: 10px">
                                     ${item.tittle}
                                 </div>
                                 <div class="suwasaewana">
@@ -71,9 +71,9 @@ class View_clinic_announcement{
 
 }
 
-function searchD(){
+function searchclinicdate(){
     let count=0
-    const input = document.getElementById('diseases').value;
+    const input = document.getElementById('diseases1').value;
     const cardContainor = document.getElementById('announcetment-list-card-container');
     const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
     for(let i=0 ; i<card.length ;i++){
@@ -86,3 +86,22 @@ function searchD(){
             card[i].style.display="none"
         }
     }}
+
+
+function searchclinic() {
+    let count = 0
+    const input = document.getElementById('diseases2').value.toUpperCase();
+    const cardContainor = document.getElementById('announcetment-list-card-container');
+    const card1 = cardContainor.getElementsByClassName('latest-announstment-cards-container')
+
+    for (let i = 0; i < card1.length; i++) {
+        let title = card1[i].querySelector('#title');
+
+        if (title.innerHTML.toUpperCase().indexOf(input) > -1) {
+            card1[i].style.display = ""
+        } else {
+            card1[i].style.display = "none"
+        }
+    }
+
+}

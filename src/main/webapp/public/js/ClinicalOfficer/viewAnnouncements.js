@@ -32,7 +32,7 @@ class viewAnnouncements{
             this.container.innerHTML += `
               <div class="announcement">
                       <div class="left">
-    <div class="announcement-title" id="title">${item.title} <span>For</span> ${item.Target} </div>
+    <div class="announcement-title" id="title">${item.title} clinic ${item.Target} </div>
     <div class="announce-description">${item.description}
     </div>
 

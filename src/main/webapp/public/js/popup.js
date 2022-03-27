@@ -728,7 +728,8 @@ class SuwasewanaPopup{
         }
     }
 
-    showVaccineClinicEditMessage(data) {
+    showVaccineClinicEditMessage(data,currentC,available) {
+        console.log(count)
         data=JSON.parse(data)
         // console.log(data)
         let eventsContaier = document.createElement('div');
@@ -760,7 +761,7 @@ class SuwasewanaPopup{
                 </div>
                  <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
                 <div class="row" >
-                   <button onclick="updatevclinics('`+ data[0].vcs_id+`');popup.hidePopup()">update</button>
+                   <button onclick="updatevclinics('`+ data[0].vcs_id+`','`+available+`','`+ currentC+`');popup.hidePopup()">update</button>
                 </div>
             </div>`;
         eventsContaier.appendChild(eventDiv);
@@ -964,6 +965,91 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    showBlockSuccessMessage(data){
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">  Admin Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>`;
+        }else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Admin Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+    showRemoveSuccessMessage(data){
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">  Admin Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>`;
+        }else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Admin Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    showRenewSuccessMessage(data){
+        let eventsContaier = document.createElement('div');
+        // console.log(data.name);
+        let eventDiv = document.createElement('div');
+        if(data.status === "success"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">  Admin Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+            </div>`;
+        }else if(data.status === "fail"){
+            eventDiv.innerHTML = `
+            <div class="popup-title">Admin Portal </div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container"> 
+                ${data.message}!
+                <div class="error-message"> Reason :  ${data.data}</div>
+            </div>`;
+        }
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
     AlertMessage(data) {
         // alert(data)
         let clinicID = data;
@@ -1032,6 +1118,116 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    showBlockAlertMessage(data) {
+        // alert(data)
+        let clinicID = data;
+        data = {data: "Are you sure you want to block the PHI officer"}
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">View clinic Portal </div>
+
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;">
+                ${data.data}!
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+                    <div class="form-group">
+                        
+                    </div>
+
+                </div>
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px"
+                        onclick="block('${clinicID}')"> Yes block</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px"
+                        onclick="popup.hidePopup()"> Cancel</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
+    showRemoveAlertMessage(data) {
+        // alert(data)
+        let clinicID = data;
+        data = {data: "Are you sure you want to Remove the officer"}
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">View clinic Portal </div>
+
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;">
+                ${data.data}!
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+                    <div class="form-group">
+                        
+                    </div>
+
+                </div>
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row" >
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px"
+                        onclick="Remove('${clinicID}')"> Yes Remove</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px"
+                        onclick="popup.hidePopup()"> Cancel</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+    showRenewAlertMessage(data) {
+        // alert(data)
+        let clinicID = data;
+        data = {data: "Are you sure you want to Renew the MAC"}
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">View clinic Portal </div>
+
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+            <div class="popup-message-container " style="color: #d9534f!important;">
+                ${data.data}!
+                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
+                    <div class="form-group">
+                        
+                    </div>
+
+                </div>
+                 <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
+                <div class="row">
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px"
+                        onclick="renew('${clinicID}')"> Yes Renew</button>
+                    </div>
+                    <div class="form-group">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px"
+                        onclick="popup.hidePopup()"> Cancel</button>
+                    </div>
+                </div>
+            </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+
     showCreateClinicSuccessMessage(data){
         let eventsContaier = document.createElement('div');
         // console.log(data.name);
@@ -1231,16 +1427,76 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
     }
+    ValidateNewPassword(u,p) {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+            <div class="popup-title">Update Password</div>
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    
+                    <div class="form-group" style="width: unset ; padding: 0 30px;display:flex; align-items: center; justify-content: center; padding-bottom: 20px">
+                        
+                        <input id="pass1" type="text" style="margin-left: 20px; padding: 0 30px; outline: none"  />
+                        <input id="pass2" type="text" style="margin-left: 20px; padding: 0 30px; outline: none"  />
+                        <span id="error" style="font-size: 1em; color:#c01c1c;margin-top: 14px; display: none">Please make sure your passwords match</span>
+                    </div>
+                    
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group" style="width: unset;display: flex; justify-content: space-between">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="CheckPasswords('`+u+`','`+p+`'); "> Update</button>
+                    </div>
+                </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
+    ValidateOTP() {
+        let eventsContaier = document.createElement('div');
+        let eventDiv = document.createElement('div');
+        eventDiv.innerHTML = `
+           
+            <div class="popup-desc">  SUWASEWANA.LK</div>
+                <h2> Update Task</h2>
+                <div class="row" style="display:flex;flex-direction: column;padding-top: 10px" >
+                    
+                    <div class="form-group" style="width: unset ; padding: 0 30px;display:flex; align-items: center; justify-content: center; padding-bottom: 20px">
+                        
+                        <input id="pass1" type="text" style="margin-left: 20px; padding: 0 30px; outline: none"  />
+                        <input id="pass2" type="text" style="margin-left: 20px; padding: 0 30px; outline: none"  />
+                        <span id="error" style="font-size: 1em; color:#c01c1c;margin-top: 14px; display: none">Please make sure your passwords match</span>
+                    </div>
+                    
+                </div>
+                <div class="row" >
+                
+                    <div class="form-group" style="width: unset;display: flex; justify-content: space-between">
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
+                        onclick="CheckPasswords('`+u+`','`+p+`'); "> Update</button>
+                    </div>
+                </div>`;
+        eventsContaier.appendChild(eventDiv);
+
+        document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
+        document.getElementById("popupMessageContainer").appendChild(eventsContaier);
+        this.showPopup()
+    }
 
 
     viewComplainer(data) {
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
-            <div class="popup-title">   Appointment Portal </div>
+            <div class="popup-title">   Complain Portal </div>
            
             <div class="popup-desc">  SUWASEWANA.LK</div>
-                <h2> Appointment rejection Form</h2>
+                <h2> Complainer details</h2>
                 <style>
                  table {
                     font-family: arial, sans-serif;
@@ -1278,7 +1534,6 @@ class SuwasewanaPopup{
                 <div class="row" >
                 
                     <div class="form-group">
-                    width: 69px;height: 24px;border-radius: 2px;font-size: 1em;
                         <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711db!important;margin-top: 10px;width: 69px;height: 24px;border-radius: 2px;font-size: 1em;" 
                         onclick="popup.hidePopup()"> Close</button>
                     </div>

@@ -1,6 +1,6 @@
-let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+// let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
-let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+// let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class View_RPHI_announcement{
     announcementArray=[
         {
@@ -34,18 +34,18 @@ class View_RPHI_announcement{
             if(current_day<=expday) {
                 this.container.innerHTML += `
 
-                              <div class="latest-announstment-cards-container">
+                              <div class="latest-announstment-cards-container" style="font-family: Segoe UI">
                             <div class="latest-announstment-card">
                                 <div class="image-container">
                                 
-                                <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="80%" height="50%">
+                                <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="100%" height="50%">
 
 <!--                                    <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>-->
-                                    <div class="read-more-btn">
-                                        Read More
-                                    </div>
+<!--                                    <div class="read-more-btn">-->
+<!--                                        Read More-->
+<!--                                    </div>-->
                                 </div>
-                                <div class="title">
+                                <div class="title" id="title" style="padding-left: 10px">
                                     ${item.title}
                                 </div>
                                 <div class="suwasaewana">
@@ -69,9 +69,9 @@ class View_RPHI_announcement{
 
 }
 
-function searchD(){
+function searchphidate(){
     let count=0
-    const input = document.getElementById('diseasesSearch2').value;
+    const input = document.getElementById('diseasesSearch22').value;
     const cardContainor = document.getElementById('announcetment-list-card-container2');
     const card = cardContainor.getElementsByClassName('latest-announstment-cards-container')
     for(let i=0 ; i<card.length ;i++){
@@ -84,3 +84,22 @@ function searchD(){
             card[i].style.display="none"
         }
     }}
+
+
+function searchphi() {
+    let count = 0
+    const input = document.getElementById('diseasesSearch21').value.toUpperCase();
+    const cardContainor = document.getElementById('announcetment-list-card-container2');
+    const card1 = cardContainor.getElementsByClassName('latest-announstment-cards-container')
+
+    for (let i = 0; i < card1.length; i++) {
+        let title = card1[i].querySelector('#title');
+
+        if (title.innerHTML.toUpperCase().indexOf(input) > -1) {
+            card1[i].style.display = ""
+        } else {
+            card1[i].style.display = "none"
+        }
+    }
+
+}

@@ -1,5 +1,7 @@
 package com.suwasewana.model;
 
+import com.suwasewana.core.SuwasewanaHashing;
+
 public class PHIModel {
 
     protected String mohId;
@@ -46,9 +48,11 @@ public class PHIModel {
                     String assignCity
             ) {
         super();
+        String Hashpassword="Suwasewana"+NIC;
+        SuwasewanaHashing hashing = new SuwasewanaHashing(Hashpassword);
         this.mohId=mohId;
         this.zip_code=zip_code;
-        this.password=password;
+        this.password=hashing.getHashValue();;
         this.login_status=login_status;
         this.phi_post=phi_post;
         this.province=province;

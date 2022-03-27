@@ -89,7 +89,7 @@
 
             </div>
         </div>
-        <div class="completed-list-container">
+        <div class="completed-list-container" style="margin-top: 66px;">
             <div class="title">
                 Completed Task
             </div>

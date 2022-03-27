@@ -37,7 +37,9 @@
   }
 
 .main-header li a{
-    text-decoration: none;
+    text-decoration: none!important;
+    font-size: 1.1em;
+    color: gray;
 }
 .main-header li:hover {
     text-decoration: underline;

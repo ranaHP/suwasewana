@@ -12,7 +12,7 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="<c:url value="/public/js/admin/InputValidation.js"/>"></script>
+    <script src="<c:url value="/public/js/Admin/InputValidation.js"/>"></script>
     <title> User Home Suwasewana </title>
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/>"/>
 
@@ -414,18 +414,13 @@
                         location: ""
                     };
                 console.log(reqData)
+
+                var num = Math.floor(Math.random() * 90000) + 10000;
+
+
                 $.post("/test_war_exploded/user-register-controller",
                     reqData,
                     function (data, status) {
-                        // console.log(data === 1);
-                        // console.log(data === 0);
-                        // console.log(data === "1");
-                        // console.log(data === "0");
-                        // console.log(data);
-                        // console.log(data.trim());
-                        // console.log(data.toString());
-                        // console.log(data.toString() == "1");
-                        // console.log(typeof data);
                         console.log(data.includes("success"))
                         if (data.includes("success") ) {
                             popup.showRegistrationSuccessMessage({ status : 'success' , message: 'Successfully Citizen Registered'});
