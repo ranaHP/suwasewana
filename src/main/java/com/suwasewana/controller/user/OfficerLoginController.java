@@ -40,6 +40,12 @@ public class OfficerLoginController extends HttpServlet {
         String mobile = req.getParameter("user_mobile");
         String password = req.getParameter("user_password");
         String post = req.getParameter("Post");
+
+        System.out.println("mobile "+mobile);
+        System.out.println("password "+password);
+        System.out.println("post "+post);
+
+
         String mac="";
         mac=GetMaC();
         OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac ,post);
@@ -47,6 +53,8 @@ public class OfficerLoginController extends HttpServlet {
         PrintWriter out = res.getWriter();
         res.setContentType("application/json");
         res.setCharacterEncoding("UTF-8");
+
+        System.out.println("########officerLoginresponse.getPostalCode() "+officerLoginresponse.getPostalCode());
 
         String responseJsonString = "";
         if (officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("") ) {
@@ -58,7 +66,12 @@ public class OfficerLoginController extends HttpServlet {
             ResponseType suwasewanaRespose = new ResponseType("error", "your mac is not match");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 
-        } else {
+        }
+        else if(officerLoginresponse.getPostalCode().equals("1")){
+            ResponseType suwasewanaRespose = new ResponseType("error", "your Account is temporary Block");
+            responseJsonString = this.gson.toJson(suwasewanaRespose);
+        }
+        else {
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
 //            System.out.println("Loging success come to controller");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
