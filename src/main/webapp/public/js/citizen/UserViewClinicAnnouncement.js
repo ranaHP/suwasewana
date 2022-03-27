@@ -1,4 +1,4 @@
-let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+// let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
 // let Url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 class View_clinic_announcement{
@@ -36,7 +36,7 @@ class View_clinic_announcement{
 
                 this.container.innerHTML += `
 
-                              <div class="latest-announstment-cards-container">
+                              <div class="latest-announstment-cards-container" style="font-family: Segoe UI">
                             <div class="latest-announstment-card">
                                 <div class="image-container">
                                 
@@ -47,7 +47,7 @@ class View_clinic_announcement{
 <!--                                        Read More-->
 <!--                                    </div>-->
                                 </div>
-                                <div class="title" id="title">
+                                <div class="title" id="title" style="padding-left: 10px">
                                     ${item.tittle}
                                 </div>
                                 <div class="suwasaewana">
