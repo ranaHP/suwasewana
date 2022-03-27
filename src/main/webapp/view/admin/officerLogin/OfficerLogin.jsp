@@ -53,7 +53,7 @@
                                     ); hideFormError();"
                             />
                             <input type="text"  maxlength="10"
-                                   required autocomplete="off"
+
                                    name="admin-code" id="admin-code"
                                    style="display: none"
                             />
