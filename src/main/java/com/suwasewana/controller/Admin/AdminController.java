@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import com.suwasewana.core.SuwasewanaHashing;
 
 @WebServlet("/admin-controller/*")
 public class AdminController extends HttpServlet {
@@ -23,9 +24,11 @@ public class AdminController extends HttpServlet {
     DistictDAO distictDAO;
     ProvinceDAO provinceDAO;
     PublicAnnouncementsDAO publicAnnouncementsDAO;
+    OfficerDAO officerDAO;
     private Gson gson = new Gson();
 
     public void init() {
+        officerDAO= new OfficerDAO();
         complainDAO = new ComplainDAO();
         mohdao=new MOHDAO();
         phidao=new PHIDAO();
@@ -50,6 +53,12 @@ public class AdminController extends HttpServlet {
 
                 case "mohall":
                     ViewMOHAll(req,res);
+                    break;
+                case "newUser":
+                    newUser(req,res);
+                    break;
+                case "updateToOld":
+                    updateToOld(req,res);
                     break;
                 case "phiall":
                     Allphi(req,res);
@@ -333,6 +342,22 @@ public class AdminController extends HttpServlet {
     private void ViewMOHAll(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
         System.out.println("Come to view moh controller all");
         ArrayList<MOHRegModel> result = mohdao.GetallMOHDetails();
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void newUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller all");
+
+        SuwasewanaHashing hashing = new SuwasewanaHashing(req.getParameter("password"));
+        String result = officerDAO.CheckNewOrOld(req.getParameter("mobile"),hashing.getHashValue());
+        res.getWriter().println(gson.toJson(result));
+    }
+    private void updateToOld(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller all");
+        String u=req.getParameter("uname");
+        String op=req.getParameter("oldpassword");
+        String np=req.getParameter("newpassword");
+        SuwasewanaHashing hashing = new SuwasewanaHashing(req.getParameter("password"));
+        String result = officerDAO.updateToOld(u,op,np);
         res.getWriter().println(gson.toJson(result));
     }
 
