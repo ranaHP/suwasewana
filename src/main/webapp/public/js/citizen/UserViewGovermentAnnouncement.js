@@ -33,18 +33,18 @@ class View_goverment_announcement{
             if(current_day<=expday) {
                 this.container.innerHTML += `
 
-                      <div class="latest-announstment-cards-container">
+                      <div class="latest-announstment-cards-container" style="font-family: Segoe UI">
                             <div class="latest-announstment-card">
                                 <div class="image-container">
                                 
-                                <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="100%" height="50%">
+                                <img src="${myUrl}/public/images/uploadimage/${item.banner}" width="100%" height="60%">
 
 <!--                                    <img src="<c:url value="/public/images/announcetment_banner.png"/>" width="100%"/>-->
 <!--                                    <div class="read-more-btn">-->
 <!--                                        Read More-->
 <!--                                    </div>-->
                                 </div>
-                                <div class="title" id="moh">
+                                <div class="title" id="moh" style="padding-left: 10px">
                                     ${item.title}
                                 </div>
                                 <div class="suwasaewana">
