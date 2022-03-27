@@ -287,7 +287,8 @@
             $.post(myUrl+ "/admin-controller/blockUser",
                 reqData,
                 function (data, status) {
-
+                    document.getElementById('user-form-error').style.display = "block";
+                    document.getElementById('user-form-error').innerText = "You're Temporarily blocked";
                 });
         }
         function CheckPasswords(u,p){
