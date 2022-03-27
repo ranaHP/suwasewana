@@ -552,7 +552,7 @@ class SuwasewanaPopup{
 
     showDeleteAlertMessage(data) {
         let appointmentId = data;
-        data = {data: "if you want to delete this Appointment. Please type 'Delete' in the below input details."}
+        data = {data: "if you want to delete this Appointment. Please check in the below checkbox."}
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
         eventDiv.innerHTML = `
@@ -561,18 +561,24 @@ class SuwasewanaPopup{
             <div class="popup-desc">  SUWASEWANA.LK</div>
             <div class="popup-message-container " style="color: #d9534f!important;"> 
                 ${data.data}!
-                <div class="row" style="padding-top: 20px;padding-bottom: 10px">
-                    <div class="form-group">
-                        <input type="text"  id="delete_input" name="delete_input" placeholder="Delete" required style=" width: 200px; margin: auto;border: 1px solid rgba(0,0,0,0.92);">
+                <div class="row" style="">
+                    <div class="form-group" style="display: flex;width: 100%;flex-direction: row!important;align-items: center">
+                   
+                        
+                    <label for="delete_input"  style="display: flex;align-items: center;justify-content: center;font-size: .8em!important;">
+                        <input type="checkbox" onchange="popup.deleteBtnStatus()"  id="delete_input" name="delete_input" 
+                         style="width: 20px;height: 20px;margin: 0;padding: 0;border: 1px solid rgba(0,0,0,0.92);"> &nbsp; &nbsp; &nbsp;Are you sure
+                    </label>
                     </div>
                    
                 </div>  
                  <div class="error-message" id="deleteAuthErrorMessage" style="display: none" > Your Input is not matched with "Delete" ! </div>
                 <div class="row" >
                     <div class="form-group">
-                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c11711!important;margin-top: 10px" 
-                        onclick="deleteCheckInputVsUserInput('${appointmentId}')"> Delete Appointment</button>
+                        <button class="submitBtn " style="margin: auto;margin-bottom: 20px;background-color: #c1c1c1!important;margin-top: 10px" 
+                        onclick="deleteCheckInputVsUserInput('${appointmentId}')" disabled  id="deleteAppointmnetBtn"> Delete Appointment</button>
                     </div>
+                     
                 </div>
             </div>`;
         eventsContaier.appendChild(eventDiv);
@@ -580,6 +586,7 @@ class SuwasewanaPopup{
         document.getElementById("popupMessageContainer").replaceChildren(eventsContaier);
         document.getElementById("popupMessageContainer").appendChild(eventsContaier);
         this.showPopup()
+
     }
 
     requestAnotherTimeSlot(data) {
@@ -613,7 +620,7 @@ class SuwasewanaPopup{
                     <div class="form-group">
                      
                         <button class="submitBtn " id="myBtn"  style="margin: auto;margin-bottom: 20px;background-color: #c1c1c1!important;margin-top: 10px" 
-                        onclick="requestAnotherTime({ app_id: '` + data.app_id +`', round: '` + data.round +`' })" disabled> Delete Appointment</button>
+                        onclick="requestAnotherTime({ app_id: '` + data.app_id +`', round: '` + data.round +`' })" disabled> Request Anthoer Appointment</button>
                     </div>
                 </div>
             </div>`;
@@ -632,6 +639,18 @@ class SuwasewanaPopup{
         }else{
             document.getElementById("myBtn").disabled = true;
             document.getElementById("myBtn").style.backgroundColor = "#c1c1c1";
+        }
+
+    }
+
+    deleteBtnStatus(){
+        console.log(document.getElementById("delete_input").checked)
+        if(document.getElementById("delete_input").checked){
+            document.getElementById("deleteAppointmnetBtn").disabled = false;
+            document.getElementById("deleteAppointmnetBtn").style.backgroundColor = "#c11711";
+        }else{
+            document.getElementById("deleteAppointmnetBtn").disabled = true;
+            document.getElementById("deleteAppointmnetBtn").style.backgroundColor = "#c1c1c1";
         }
 
     }

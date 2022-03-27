@@ -18,7 +18,7 @@ class Appointment {
     ];
 
     container;
-    url = "http://localhost:8093/test_war_exploded/public/";
+    url = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
 
     constructor(container) {
         // this.AppointmentArray = JSON.parse(data);
@@ -37,6 +37,8 @@ class Appointment {
     showCardData(data) {
         if (!data) return;
         this.container.innerHTML = " ";
+        console.log("data");
+        console.log(data);
         // console.log({ app_id: item.app_id , round:  item.round })
         data.map((item) => {
             console.log({ app_id: item.app_id , round:  item.round })
@@ -54,19 +56,19 @@ class Appointment {
                                     <div class="properties">    
                                         <ul>
                                             <li>
-                                                <img src="${this.url}images/icons/map-pin.svg" width="22px" />
+                                                <img src="${this.url}/public/images/icons/map-pin.svg" width="22px" />
                                                 Location : ${item.location === "" ? "Pending..." : item.alocation}
                                             </li>
                                             <li>
-                                                <img src="${this.url}images/icons/list.svg" width="22px" />
+                                                <img src="${this.url}/public/images/icons/list.svg" width="22px" />
                                                 Time Slot 1 :  ${item.time_slot_1 === "" ? "Pending..." : item.time_slot_1 + " - " + item.time_slot_1_end.split(" ")[1]}
                                             </li>
                                             <li>
-                                                <img src="${this.url}images/icons/list.svg" width="22px" />
+                                                <img src="${this.url}/public/images/icons/list.svg" width="22px" />
                                                 Time Slot 2 :  ${item.time_slot_2 === "" ? "Pending..." : item.time_slot_2 + " - " + item.time_slot_2_end.split(" ")[1]}
                                             </li>
                                             <li>
-                                                <img src="${this.url}images/icons/list.svg" width="22px" />
+                                                <img src="${this.url}/public/images/icons/list.svg" width="22px" />
                                                 Special Notice:  ${item.phi_message === "" ? "Pending..." : item.phi_message}
                                             </li>
                                           
@@ -74,8 +76,8 @@ class Appointment {
                                     </div>
                                     <div class="footer">
                                         <div class="current-registered-count">
-                                            <img src="${this.url}images/icons/user.svg" width="25px" />
-                                            Mr  ${item.aPhi}
+                                            <img src="${this.url}/public/images/icons/user.svg" width="25px" />
+                                            Mr  ${item.PhiName}
                                         </div>
                                         <div class="pending-btn">
                                             status : <span> ${item.status}</span>
