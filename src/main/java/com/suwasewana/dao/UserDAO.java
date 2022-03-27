@@ -21,7 +21,7 @@ public class UserDAO {
             "(`app_id`, `aTitle`, `aType`, `aReason`, `status`, `user_nic`, `posted_date_time`, `phi_message`, `aPhi`, `time_slot_1`, `time_slot_2`, `round`, `alocation`, `time_slot_2_end`, `time_slot_1_end`) "
             + "VALUES (NULL, ?, ?, ?, ?, ?, current_timestamp(), ?, ?,  current_timestamp(),  current_timestamp(), ? , ? ,  current_timestamp(),  current_timestamp());";
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
-    private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `user_appoinmnet` WHERE `user_appoinmnet`.`appointmentId` = ?";
+    private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `user_appoinmnet` WHERE `user_appoinmnet`.`app_id` = ?";
 
 
     private static final String USER_GET_Complain = "SELECT * FROM suwasewana_db.user_complaint left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic WHERE user=?;";
