@@ -41,13 +41,15 @@ public class OfficerLoginController extends HttpServlet {
         String password = req.getParameter("user_password");
         String post = req.getParameter("Post");
 
-        System.out.println("mobile "+mobile);
-        System.out.println("password "+password);
-        System.out.println("post "+post);
 
 
         String mac="";
         mac=GetMaC();
+        System.out.println("@post "+post);
+        System.out.println("@password "+password);
+        System.out.println("@mobile "+mobile);
+
+
         OfficerLoginModel officerLoginModel=new OfficerLoginModel(mobile,password,mac ,post);
         OfficerLoginModel officerLoginresponse = officerDAO.CheckLoginValidation(officerLoginModel,post);
         PrintWriter out = res.getWriter();
@@ -55,26 +57,34 @@ public class OfficerLoginController extends HttpServlet {
         res.setCharacterEncoding("UTF-8");
 
 
-        System.out.println("mobile "+officerLoginresponse.getMobile());
-        System.out.println("password "+officerLoginresponse.getPassword());
-        System.out.println("getMAC "+officerLoginresponse.getMAC());
+        System.out.println("#mobile "+officerLoginresponse.getMobile());
+        System.out.println("#password "+officerLoginresponse.getPassword());
+        System.out.println("#getMAC "+officerLoginresponse.getMAC());
 
         String responseJsonString = "";
-        if ((officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals(""))&& !officerLoginresponse.getMessage().equals("new user") ) {
+
+
+
+        if ((officerLoginresponse.getMobile().equals("") || officerLoginresponse.getPassword().equals("") || officerLoginresponse.getMAC().equals("")) ) {
+            System.out.println("invalid mobile number password");
             ResponseType suwasewanaRespose = new ResponseType("error", "invalid mobile number password");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
-        } else if (officerLoginresponse.getMessage().equals("mac is wrong")) {
+        }
+        else if (officerLoginresponse.getMessage().equals("mac is wrong")) {
+            System.out.println("mac is wrong");
             ResponseType suwasewanaRespose = new ResponseType("error", "your mac is not match");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
 
         }
         else if(officerLoginresponse.getPostalCode().equals("1")){
+            System.out.println("your Account is temporary Block");
             ResponseType suwasewanaRespose = new ResponseType("error", "your Account is temporary Block");
             responseJsonString = this.gson.toJson(suwasewanaRespose);
         }
         else {
+            System.out.println("Loging success come to controller");
             ResponseType suwasewanaRespose = new ResponseType("success", "success");
-//            System.out.println("Loging success come to controller");
+
             responseJsonString = this.gson.toJson(suwasewanaRespose);
             String temp = officerLoginresponse.getFull_name().split(" ")[0] +"/"
                     + officerLoginresponse.getMAC().replaceAll("-" ,"_")  + '/'
@@ -87,7 +97,7 @@ public class OfficerLoginController extends HttpServlet {
             loginCookie.setMaxAge(300*60);
             res.addCookie(loginCookie);
         }
-
+        System.out.println("##################################################");
         out.print(responseJsonString);
         out.flush();
     }

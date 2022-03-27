@@ -60,6 +60,9 @@ public class AdminController extends HttpServlet {
                 case "updateToOld":
                     updateToOld(req,res);
                     break;
+                case "blockUser":
+                    blockUser(req,res);
+                    break;
                 case "phiall":
                     Allphi(req,res);
                     break;
@@ -359,6 +362,14 @@ public class AdminController extends HttpServlet {
         SuwasewanaHashing hashing = new SuwasewanaHashing(req.getParameter("password"));
         String result = officerDAO.updateToOld(u,op,np);
         res.getWriter().println(gson.toJson(result));
+    }
+    private void blockUser(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+//        System.out.println("Come to view moh controller all");
+        String mobile=req.getParameter("uname");
+
+//        String result = officerDAO.blockUser(mobile);
+//        res.getWriter().println(gson.toJson(result));
+//        comment for push
     }
 
 

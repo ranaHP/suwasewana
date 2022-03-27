@@ -141,7 +141,7 @@
         function hideFormError() {
             document.getElementById('user-form-error').style.display = "none";
         }
-
+        var i=0;
         function checkLoginValidation() {
             var s_value = document.getElementById('officer_types').value;
             if(s_value == 'admin'){
@@ -233,14 +233,12 @@
                                                     location.replace( myUrl +"/s/PHI-dashboard");
                                                     break;
                                                 case  "rphi":
-                                                    location.replace( myUrl +"/s/PHI-dashboard");
+                                                    location.replace( myUrl +"/s/RPHI-dashboard");
                                                     break;
                                                 case  "co":
                                                     location.replace( myUrl +"/s/clinic-dashboard");
                                                     break;
-                                                case  "to":
-                                                    location.replace( myUrl +"/s/PHI-dashboard");
-                                                    break;
+
                                                 case  "admin":
                                                     location.replace( myUrl +"/s/admin-dashboard");
                                                     break;
@@ -251,18 +249,27 @@
 
 
                         } else if (result.status === "error") {
+                            i++;
                             document.getElementById('user-form-error').style.display = "block";
                             document.getElementById('user-form-error').innerText = result.data;
-                            document.getElementById("user-password").value = "";
-                            document.getElementById("user-mobile").value = "";
-                            setTimeout(() => {
-                                document.getElementById('user-form-error').style.display = "none";
-                            }, 8000)
+                            // document.getElementById("user-password").value = "";
+                            // document.getElementById("user-mobile").value = "";
+                            // setTimeout(() => {
+                            //     document.getElementById('user-form-error').style.display = "none";
+                            // }, 8000)
+
+                            if(i==3){
+
+                                Blockuser();
+                            }
                         }
                         else{
+                            i++;
+
                             console.log("somthing going wrong");
                         }
-                        console.log(this.response)
+                        console.log("reesponse "+this.response)
+                        console.log("i "+i)
                     }
                     xhttp.open("GET", url, true);
                     xhttp.send();
@@ -270,6 +277,18 @@
             }
 
             return false;
+        }
+        function Blockuser(){
+            let reqData =
+                {
+                    mobile:document.getElementById("user-mobile").value
+
+                };
+            $.post(myUrl+ "/admin-controller/blockUser",
+                reqData,
+                function (data, status) {
+
+                });
         }
         function CheckPasswords(u,p){
             pass1=document.getElementById("pass1").value
