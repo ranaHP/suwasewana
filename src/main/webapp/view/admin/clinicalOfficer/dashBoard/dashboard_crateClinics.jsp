@@ -151,6 +151,7 @@
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
     let validation = new FormInputValidation();
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
+    //checking selecting the moh
     function Checkvalidation(){
         let MOH=checkMOHid()
         if(MOH!=0){
@@ -198,7 +199,7 @@
         );
         return false;
     }
-
+    //obtaining moh id
     function checkMOHid(){
         var MTypeObj = document.getElementById('MArea');
         var datalist = document.getElementById(MTypeObj.getAttribute("list"));

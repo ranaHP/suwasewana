@@ -125,7 +125,7 @@
     <div class="chart-map">
         <div class="Chart-side">
             <div class="chart-container" style="padding: 25px">
-                <label  class="topic">Rapidly spreading disease - week</label>
+                <label  class="topic">Rapidly spreading disease</label>
                 <div class="D-chart-container">
                     <div class="d-chart-header">
                         <div class="d-chart-header-parts">

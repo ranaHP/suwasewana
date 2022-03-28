@@ -123,8 +123,8 @@
             </div>
         </div>
         <div class="latest-announstment-container">
-            <img src="<c:url value="/public/images/icons/arrow-left-circle.svg "/>" class="latest-announstment-arrow"
-                 width="25px"/>
+<%--            <img src="<c:url value="/public/images/icons/arrow-left-circle.svg "/>" class="latest-announstment-arrow"--%>
+<%--                 width="25px"/>--%>
             <div class="announcetment-list-card-container" id="announcetment-list-card-container">
                 <%--                <div class="latest-announstment-cards-container">--%>
                 <%--                    <div class="latest-announstment-card">--%>
@@ -327,8 +327,8 @@
                 <%--                    </div>--%>
                 <%--                </div>--%>
             </div>
-            <img src="<c:url value="/public/images/icons/arrow-right-circle.svg"/>" width="25px"
-                 class="latest-announstment-arrow"/>
+<%--            <img src="<c:url value="/public/images/icons/arrow-right-circle.svg"/>" width="25px"--%>
+<%--                 class="latest-announstment-arrow"/>--%>
         </div>
     </section>
 

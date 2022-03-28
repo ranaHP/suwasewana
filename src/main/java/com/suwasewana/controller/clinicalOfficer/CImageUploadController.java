@@ -42,8 +42,8 @@ public class CImageUploadController extends HttpServlet {
                 String imageName = req.getParameter("ImageName"+ (i));
                 System.out.println(imageName);
                 if(imageName != null  ){
-                    part.write("G:/suwasewana 2022/src/main/webapp/public/images/uploadimage/"+imageName);
-                    System.out.println("C:/Users/Chathuranga/IdeaProjects/suwasewana8/src/main/webapp/public/images/uploadimage/"+imageName);
+                    part.write("D:/suwasewana/src/main/webapp/public/images/uploadimage/"+imageName);
+                    System.out.println("D:/suwasewana/src/main/webapp/public/images/uploadimage/"+imageName);
                 }
 
             }

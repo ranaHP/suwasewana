@@ -41,8 +41,8 @@ class view_disease_details{
                     </div>
                     <div class="row1">
                         <div class="summary">
-                            <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).banner}" width="10%" >
-                            <div class="summary-desc">
+                            <img src="${myUrl}/public/images/uploadimage/diseases1.png" width="100%" height="100%" style="width: 100%!important;"/>
+                            <div class="summary-desc"style="display: none">
                                 <ul>
                                     <li>Coronavirus disease (COVID-19) is an
                                         infectious disease caused by a
@@ -151,7 +151,7 @@ class view_disease_details{
 
                                 </div>
                             </div>
-                            <div class="banner5">
+                            <div class="banner5" style="display:none;">
                                 <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Spread.banner}" width="300px" class="m-auto" >
                             </div>
                         </div>
@@ -203,7 +203,7 @@ class view_disease_details{
                             </div>
                             
                             
-                            <div class="banner1">
+                            <div class="banner1" style="display:none;">
                                 <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Symptoms.Banner}" width="100%" >
                             </div>
                         </div>
@@ -231,19 +231,10 @@ class view_disease_details{
                                     
                                     
                                     
-                                    <div class="row" style="padding-top: 20px;">
-                                        <div class="image-set">
-                                            <img src="<c:url value="/public/images/diseases/p1.svg"/> " height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p2.svg"/> " height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p5.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p4.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p6.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p7.svg"/>" height="70px" class="m-auto" />
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
-                            <div class="banner2">
+                            <div class="banner2" style="display:none;">
                                 <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Prevention.banner}" width="300px" class="m-auto" >
                             </div>
                         </div>
@@ -272,7 +263,7 @@ class view_disease_details{
 
                                 </div>
                             </div>
-                            <div class="banner6">
+                            <div class="banner6" style="display:none;">
                                <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Treatment.SelfCare.banner}" width="300px" class="m-auto" >
                             </div>
                         </div>
@@ -300,7 +291,7 @@ class view_disease_details{
 
                                 </div>
                             </div>
-                            <div class="banner8">
+                            <div class="banner8" style="display:none;">
                                 <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Treatment.MedicalTreatments.banner}" width="300px" class="m-auto" >
                             </div>
                         </div>
@@ -400,14 +391,14 @@ class view_disease_details{
                     </div>
                     <div class="row1">
                         <div class="summary">
-                            <img src="<c:url value="/public/images/diseases/covidBanner.jpg"/>" alt="" srcset="" width="100%" />
-                            <div class="summary-desc">
+                            <img src="${myUrl}/public/images/uploadimage/diseases1.png" width="100%" height="100%" style="width: 100%!important;"/>
+                            <div class="summary-desc" style="display: none">
                                 <ul>
                                     <li>Coronavirus disease (COVID-19) is an
                                         infectious disease caused by a
                                         newly discovered coronavirus.</li>
                                     <li>
-                                        <img src="<c:url value="/public/images/icons/trending-up.svg"/>" width="15px" />
+                                        <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).banner}" width="15px" >
 
                                         <div>535,529</div>
                                         Coronavirus Cases:
@@ -418,7 +409,7 @@ class view_disease_details{
                                          Deaths: ${JSON.parse(item.description).name}
                                     </li>
                                     <li>
-                                        <img src="<c:url value="/public/images/icons/users.svg"/>" width="15px" />
+                                        <img src="${myUrl}/public/images/uploadimage/disease.png" width="80px" height="80px" />
                                         <div> 503,090 </div>
                                         Recovered:
                                     </li>
@@ -510,8 +501,8 @@ class view_disease_details{
 
                                 </div>
                             </div>
-                            <div class="banner5">
-                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
+                            <div class="banner5" style="display: none">
+                                <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Spread.banner}" width="300px" class="m-auto" >
                             </div>
                         </div>
                     </div>
@@ -562,8 +553,8 @@ class view_disease_details{
                             </div>
                             
                             
-                            <div class="banner1">
-                                <img src="<c:url value="/public/images/diseases/syntoms.png"/>" width="100%" />
+                            <div class="banner1" style="display:none;">
+                                <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Symptoms.Banner}" width="100%" >
                             </div>
                         </div>
                     </div>
@@ -590,20 +581,11 @@ class view_disease_details{
                                     
                                     
                                     
-                                    <div class="row" style="padding-top: 20px;">
-                                        <div class="image-set">
-                                            <img src="<c:url value="/public/images/diseases/p1.svg"/> " height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p2.svg"/> " height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p5.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p4.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p6.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p7.svg"/>" height="70px" class="m-auto" />
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
-                            <div class="banner2">
-                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
+                            <div class="banner2" style="display: none"
+                                <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Prevention.banner}" width="300px" class="m-auto" >
                             </div>
                         </div>
                     </div>
@@ -631,8 +613,8 @@ class view_disease_details{
 
                                 </div>
                             </div>
-                            <div class="banner6">
-                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
+                            <div class="banner6" style="display: none">
+                               <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Treatment.SelfCare.banner}" width="300px" class="m-auto" >
                             </div>
                         </div>
                         <div class="d-s-s-titel">
@@ -660,7 +642,7 @@ class view_disease_details{
                                 </div>
                             </div>
                             <div class="banner8">
-                                <img src="<c:url value="/public/images/diseases/4.jpg"/> " height="300px" class="m-auto" />
+                                <img src="${myUrl}/public/images/uploadimage/${JSON.parse(item.description).Treatment.MedicalTreatments.banner}" width="300px" class="m-auto" >
                             </div>
                         </div>
                     </div>
@@ -709,27 +691,27 @@ class view_disease_details{
 
                         </div>
                     </div>
-                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">
-                        <div class="d-s-title">
-                            Current Status of Covid 19
-                        </div>
-                        <div class="row">
-                            <div class="chart-contanat-container">
+<!--                    <div class="row1" style="padding-top: 30px;display: flex;flex-direction: column;">-->
+<!--                        <div class="d-s-title">-->
+<!--                            Current Status of Covid 19-->
+<!--                        </div>-->
+<!--                        <div class="row">-->
+<!--                            <div class="chart-contanat-container">-->
 
-                                <div class="desc">
-                                    According to researchers in China, these were the most common symptoms among
-                                    people who had COVID-19:
-                                </div>
-                                <div class="chart-contanat-cards">
-                                    <div class="chart-card">
-                                        <canvas  id="myChart" width="100" height="30"></canvas>
-                                    </div>
+<!--                                <div class="desc">-->
+<!--                                    According to researchers in China, these were the most common symptoms among-->
+<!--                                    people who had COVID-19:-->
+<!--                                </div>-->
+<!--                                <div class="chart-contanat-cards">-->
+<!--                                    <div class="chart-card">-->
+<!--                                        <canvas  id="myChart" width="100" height="30"></canvas>-->
+<!--                                    </div>-->
 
-                                </div>
-                            </div>
-                        </div>
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                    </div>
+<!--                    </div>-->
 
 
             `

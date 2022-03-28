@@ -27,11 +27,17 @@ class view_home_disease_details{
             this. diseasearrayy.map((item) => {
 
                     this.container.innerHTML += `
-
+                        
+                        <style>
+                        element.style {
+                        width: 250px;
+                        height: 200px;
+}
+                       </style>
                     <div class="diseases-card-container">
                     <div class="diseases-card">
                         <div class="left-container">
-                            <img src="${myUrl}/public/images/uploadimage/diseases1.png" width="80px" height="80px" />
+                            <img style="width: 200px;height: 150px" src="${myUrl}/public/images/uploadimage/diseases1.png" width="100%" height="80px" />
                         </div>
                         <div class="right-container">
                            

@@ -91,7 +91,7 @@ public class UserAppointmentController extends HttpServlet {
 
     }
     private void uerMakeAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
+        String uNic = "199910910064";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -122,7 +122,7 @@ public class UserAppointmentController extends HttpServlet {
     }
 
     private void userViewAppointment(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
+        String uNic = "199910910064";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
@@ -154,7 +154,7 @@ public class UserAppointmentController extends HttpServlet {
     }
 
     private void userViewAppointmentType(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        String uNic = "";
+        String uNic = "199910910064";
         Cookie[] cookies = req.getCookies();
         if(cookies !=null){
             for(Cookie cookie : cookies){
