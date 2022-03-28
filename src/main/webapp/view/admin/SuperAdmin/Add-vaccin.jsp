@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="/public/css/partials/commen/side-navbar.css"/> "/>
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
+    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
     <%--    <script defer src="<c:url value="/public/js/Admin/view_MOH.js"></c:url> "></script>--%>
     <link rel="stylesheet" href="<c:url value="/public/css/Admin/Add-vaccine-details.css"/> "/>
 
@@ -45,20 +45,57 @@
                             <div class="basic_left">
                                 <div class="left_row">
                                     <div class="left_row_left"><span>Name of the vaccine  </span></div>
-                                    <div class="left_row_right"><input type="text" required  id="Name"></div>
+                                    <div class="left_row_right"><input type="text" required  id="Name"
+                                                                       onblur="validation.nameValidation(
+                                                                           document.getElementById('Name').value,'LName');"
+                                                                       onkeyup="validation.nameValidation(
+                                                                           document.getElementById('Name').value,'LName');"
+                                                                       style="margin-bottom: 2px;"
+                                    >
+                                        <span id="LName" style="font-size: 0.75em;color: #e33737;"></span>
+                                    </div>
 
                                 </div>
                                 <div class="left_row">
                                     <div class="left_row_left"><span> Country  </span></div>
-                                    <div class="left_row_right"><input type="text" required id="country"></div>
+                                    <div class="left_row_right"><input type="text"  id="country"
+                                                                       onblur="validation.nameValidation(
+                                                                           document.getElementById('country').value,'Lcountry');"
+                                                                       onkeyup="validation.nameValidation(
+                                                                           document.getElementById('country').value,'Lcountry');"
+                                                                       style="margin-bottom: 2px;">
+                                        <span id="Lcountry" style="font-size: 0.75em;color: #e33737;"></span>
+                                    </div>
+
+
                                 </div>
                                 <div class="left_row">
+
                                     <div class="left_row_left"><span>Recommended for    </span></div>
-                                    <div class="left_row_right"><input type="text" id="recomanded_for" required></div>
+                                    <div class="left_row_right"><input type="text" id="recomanded_for"
+                                                                       onblur="validation.nameValidation(
+                                                                           document.getElementById('recomanded_for').value,'Lrecomanded_for');"
+                                                                       onkeyup="validation.nameValidation(
+                                                                           document.getElementById('recomanded_for').value,'Lrecomanded_for');"
+                                                                       style="margin-bottom: 2px;"
+                                    >
+                                        <span id="Lrecomanded_for" style="font-size: 0.75em;color: #e33737;"></span>
+                                    </div>
+
                                 </div>
                                 <div class="left_row">
                                     <div class="left_row_left"><span>Date of issue</span></div>
-                                    <div class="left_row_right"><input type="text" id="date" required></div>
+                                    <div class="left_row_right"><input type="text" id="date"
+                                                                       onblur="validation.nameValidation(
+                                                                           document.getElementById('date').value,'Ldate');"
+                                                                       onkeyup="validation.nameValidation(
+                                                                           document.getElementById('date').value,'Ldate');"
+                                                                       style="margin-bottom: 2px;"
+                                    >
+                                        <span id="Ldate" style="font-size: 0.75em;color: #e33737;"></span>
+                                    </div>
+                                    <br>
+
                                 </div>
                             </div>
                             <div class="basic-right">
@@ -115,6 +152,7 @@
 <script defer>
     let popup = new SuwasewanaPopup("popup", "Calender Events", "suwasewana message", "", "calenderEvent");
     let myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
+    let validation = new FormInputValidation();
 </script>
 <script>
     function clearData(){

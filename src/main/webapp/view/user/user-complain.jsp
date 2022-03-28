@@ -410,7 +410,7 @@
 
 <script>
     myUrl = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[0];
-
+    // for validate inputs
     function checkValidation(){
 
         var phiObj = document.getElementById("phi");
@@ -522,7 +522,7 @@
     }
 
 
-<%--make complain--%>
+    // reset inputs
     function resetfrom(){
         document.getElementById("cTitle").value="";
         document.getElementById("complaintType").value="";
@@ -533,13 +533,8 @@
         document.getElementById("proof2").src=myUrl+"/public/images/logo/placeholder.png";
         document.getElementById("proof3").src=myUrl+"/public/images/logo/placeholder.png";
     }
+    <%--make complain--%>
     function makeComplains(){
-        // console.log("without images")
-        // console.log("make complain call");
-        // alert()
-        // let url1 = (imageNames[0]==null ? " ":imageNames[0] );
-        // let url2 = (imageNames[1]==null ? " ":imageNames[1] );
-        // let url3 = (imageNames[2]==null ? " ":imageNames[2] );
 
         let url1 = " ";
         let url2 = " ";
@@ -591,7 +586,6 @@
                 img3:url3,
                 MOH:MOHId
             };
-        // console.log("phi id "+reqData.cPhi)
         $.post(myUrl+"/user-complain-controller/create",
             reqData,
             function (data, status) {
@@ -617,6 +611,7 @@
         );
         return false;
     }
+    // MAke complain without image
     function makeComplainwithimg(imageNames) {
         // console.log("make complain call");
 
@@ -673,15 +668,12 @@
                 img3:url3,
                 MOH:MOHId
             };
-        // console.log("reqData MOH id- "+reqData.MOH);
 
 
         $.post(myUrl+"/user-complain-controller/create",
             reqData,
             function (data, status) {
-                // console.log(data.includes("success"))
                 if (data.includes("success")) {
-                    // console.log("successsss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'success',
                         message: 'Complain Successfully Added!'
@@ -689,7 +681,6 @@
                     resetfrom();
                     getAllComplain();
                 } else {
-                    // // console.log("unsuccesssss brooo")
                     popup.showAppointmentSuccessMessage({
                         status: 'fail',
                         message: 'Complain Send Fail !',
@@ -753,6 +744,7 @@
 
 
 <script>
+    // View images in complains
     function viewImg(url){
         console.log("Image can be view "+url)
         popup.viewImg(url)
@@ -818,12 +810,10 @@
     }
 
 
-<%--script for take PHI list--%>
-//     let mid=0;
-//     ViewPHI(mid);
 
 
 
+    // view phis in data list
     function ViewPHI(mid){
         $.post(myUrl+"/user-complain-controller/phi",
             function (data, status) {
@@ -845,7 +835,7 @@
             }
         );
     }
-
+    // side bar links
     function dashboard(){
         let url=myUrl+"/s/"
         console.log("Url "+url)
