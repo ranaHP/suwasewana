@@ -590,16 +590,16 @@ class view_disease_details{
                                     
                                     
                                     
-                                    <div class="row" style="padding-top: 20px;">
-                                        <div class="image-set">
-                                            <img src="<c:url value="/public/images/diseases/p1.svg"/> " height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p2.svg"/> " height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p5.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p4.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p6.svg"/>" height="70px" class="m-auto" />
-                                            <img src="<c:url value="/public/images/diseases/p7.svg"/>" height="70px" class="m-auto" />
-                                        </div>
-                                    </div>
+<!--                                    <div class="row" style="padding-top: 20px;">-->
+<!--                                        <div class="image-set">-->
+<!--                                            <img src="<c:url value="/public/images/diseases/p1.svg"/> " height="70px" class="m-auto" />-->
+<!--                                            <img src="<c:url value="/public/images/diseases/p2.svg"/> " height="70px" class="m-auto" />-->
+<!--                                            <img src="<c:url value="/public/images/diseases/p5.svg"/>" height="70px" class="m-auto" />-->
+<!--                                            <img src="<c:url value="/public/images/diseases/p4.svg"/>" height="70px" class="m-auto" />-->
+<!--                                            <img src="<c:url value="/public/images/diseases/p6.svg"/>" height="70px" class="m-auto" />-->
+<!--                                            <img src="<c:url value="/public/images/diseases/p7.svg"/>" height="70px" class="m-auto" />-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                             <div class="banner2">

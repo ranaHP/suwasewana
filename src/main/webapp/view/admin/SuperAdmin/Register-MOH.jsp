@@ -227,7 +227,7 @@
 <%--      </div>--%>
 
 
-      <div class="map_container">
+      <div class="map_container" style="display: none">
         <label >Select MOH Area</label>
         <br>
         <div class="map">
