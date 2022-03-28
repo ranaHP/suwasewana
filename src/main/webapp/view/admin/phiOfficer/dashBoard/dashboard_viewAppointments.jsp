@@ -80,13 +80,7 @@
                         <div id="app-status-error" class="form-field-error"></div>
                     </div>
 
-                    <div class="form-group">
-                        <label>
-                            &nbsp;
-                        </label>
-                        <button class="search_Btn" onclick="appointmentObj.searchAppointment()"> Search</button>
-                        <div id="user-mobile-error" class="form-field-error"></div>
-                    </div>
+<%--                   s--%>
                 </div>
             </div>
             <div class="admin-title">

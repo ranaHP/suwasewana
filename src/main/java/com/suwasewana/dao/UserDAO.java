@@ -21,7 +21,7 @@ public class UserDAO {
             "(`app_id`, `aTitle`, `aType`, `aReason`, `status`, `user_nic`, `posted_date_time`, `phi_message`, `aPhi`, `time_slot_1`, `time_slot_2`, `round`, `alocation`, `time_slot_2_end`, `time_slot_1_end`) "
             + "VALUES (NULL, ?, ?, ?, ?, ?, current_timestamp(), ?, ?,  current_timestamp(),  current_timestamp(), ? , ? ,  current_timestamp(),  current_timestamp());";
     private static final String USER_GET_APPOINTMENT_TYPE_NAME = "SELECT * FROM `appointment_type`";
-    private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `appointment` WHERE `appointment`.`appointmentId` = ?";
+    private static final String USER_DELETE_APPOINTMENT = "DELETE FROM `user_appoinmnet` WHERE `user_appoinmnet`.`app_id` = ?";
 
 
     private static final String USER_GET_Complain = "SELECT * FROM suwasewana_db.user_complaint left JOIN (SELECT nic,full_name FROM suwasewana_db.phi) AS PT ON user_complaint.phi_id=PT.nic WHERE user=?;";
@@ -77,7 +77,7 @@ public class UserDAO {
 
 
     //    /fixed
-    private static final String USER_GET_APPOINTMENT = "SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?";
+    private static final String USER_GET_APPOINTMENT =  "SELECT * from (SELECT * FROM `user_appoinmnet` LEFT JOIN `appointment_type` ON `user_appoinmnet`.`aType` = `appointment_type`.`apponitment_type_id` WHERE `user_nic` = ?) as asd LEFT JOIN phi ON asd.aPhi = phi.nic";
 
     private static final String USER_VIEW_ANNOUNCEMENTS = "SELECT * FROM `normal_clinic_session` AS cs LEFT JOIN `clinic_registered_patient` AS cp ON cs.ncs_id=cp.ncs_id WHERE u_nic IS NULL OR `u_nic` !=? AND `target_moh`=?;";
 
@@ -610,7 +610,7 @@ public class UserDAO {
     public ArrayList<AppointmentModel> userGetAppointmentDetails(AppointmentModel appointmentDetails) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(USER_GET_APPOINTMENT)) {
             preparedStatement.setString(1, appointmentDetails.getUser_nic());
-//            System.out.println(appointmentDetails.getUser_nic());
+//            System.out.println(preparedStatement.toString());
             ResultSet rs = preparedStatement.executeQuery();
             ArrayList<AppointmentModel> appointmentList = new ArrayList<AppointmentModel>();
             while (rs.next()) {
@@ -646,6 +646,7 @@ public class UserDAO {
                         time_slot_2_end,
                         time_slot_1_end
                 );
+                temp.setPhiName(rs.getString("full_name"));
                 appointmentList.add(temp);
             }
             return appointmentList;
@@ -682,7 +683,7 @@ public class UserDAO {
                 PreparedStatement preparedStatement = connection.prepareStatement(USER_DELETE_APPOINTMENT)) {
             preparedStatement.setString(1, appointmentId);
             rowDeleted = preparedStatement.executeUpdate() > 0;
-//            System.out.println(preparedStatement);
+            System.out.println(preparedStatement.toString());
             return "success";
         } catch (SQLException throwables) {
             return throwables.getMessage();

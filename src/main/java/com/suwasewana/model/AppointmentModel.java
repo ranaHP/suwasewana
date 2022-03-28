@@ -16,6 +16,7 @@ public class AppointmentModel {
     String user_nic ;
     String time_slot_2_end ;
     String time_slot_1_end ;
+    String PhiName ;
 
     public AppointmentModel(
             String aTitle,
@@ -50,6 +51,14 @@ public class AppointmentModel {
          this.user_nic  = user_nic ;
          this.time_slot_2_end = time_slot_2_end;
          this.time_slot_1_end = time_slot_1_end;
+    }
+
+    public String getPhiName() {
+        return PhiName;
+    }
+
+    public void setPhiName(String phiName) {
+        PhiName = phiName;
     }
 
     public String getTime_slot_2_end() {

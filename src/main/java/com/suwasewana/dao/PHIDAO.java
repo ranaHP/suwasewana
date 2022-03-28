@@ -82,19 +82,21 @@ public class PHIDAO {
             ArrayList<PHIModel>phiList = new ArrayList<PHIModel>();
             while (rs.next()) {
                 PHIModel temp = new PHIModel(
-                        rs.getString("full_name"),
-                        rs.getString("nic"),
-                        rs.getString("mobile_number"),
-                        "",
-                        rs.getString("cname"),
-                        rs.getString("dname"),
-                        rs.getString("pname"),
+                        rs.getString("assignMOH"),
+                        rs.getString("zip_code"),
+                        rs.getString("password"),
+                        rs.getString("login_status"),
+                        rs.getString("phi_post"),
+
+                        rs.getString("login_status"),
+                        rs.getString("district"),
+                        rs.getString("city"),
+
                         rs.getString("zip_code"),
                         rs.getString("name"),
-                        "",
-                        "",
-                        "",
-                        "",
+                        rs.getString("mobile_number"),
+                        rs.getString("nic"),
+                        rs.getString("full_name"),
                         "",
                         "",
                         "",

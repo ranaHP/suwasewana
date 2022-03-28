@@ -144,10 +144,11 @@ public class UserAppointmentController extends HttpServlet {
                 "",
                 "",
                 "",
-                "980703223V",
+                uNic,
                 "",
                 ""
         );
+        System.out.println(" user nic is " + uNic);
         ArrayList<AppointmentModel> result = userDAO.userGetAppointmentDetails(userAppointmentDetails);
         res.getWriter().println(gson.toJson(result));
     }

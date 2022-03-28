@@ -119,6 +119,7 @@ class PHIAppointmnetPopup {
     giveTimeSlot(data) {
         let eventsContaier = document.createElement('div');
         let eventDiv = document.createElement('div');
+        console.log("asd")
         eventDiv.innerHTML = `
             <div class="popup-title">   Appointment Portal </div>
            

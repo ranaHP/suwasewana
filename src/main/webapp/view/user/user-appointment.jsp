@@ -210,12 +210,7 @@
                             </label>
                             <button class="submitBtn" onclick="searchAppointment()" > Search Appointment</button>
                         </div>
-                        <div class="form-group d-flex-a-i-end">
-                            <label>
-                                &nbsp;
-                            </label>
-                            <button class="submitBtn" onclick="getAllAppointment()" > Search Appointment</button>
-                        </div>
+
                     </divs>
                     <div class="row previous-appointment-list" id="previous-appointment-list">
 
@@ -329,6 +324,7 @@
             {},
             function (data, status) {
                 appointmentTypeList = JSON.parse(data);
+                // console.log(appointmentTypeList)
                 appointmentTypeList.map( aType => {
                     document.getElementById("allappointmentTypeSearch").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + "' name='"  + aType.typeName +"'>";
                     document.getElementById("allappointmentType").innerHTML += "<option option='" + aType.typeNumber + "' value='" + aType.typeName + " | " + aType.typeNumber + "' name='"  + aType.typeName +"'>";
@@ -374,8 +370,11 @@
         return false;
     }
     function deleteCheckInputVsUserInput(appointmentId){
-        let userInput = document.getElementById("delete_input").value;
-        if(userInput === "Delete"){
+        let userInput = document.getElementById("delete_input").checked;
+        console.log(userInput);
+        console.log("userInput");
+
+        if(userInput == true){
             document.getElementById("deleteAuthErrorMessage").style.display = "none";
             deleteAppointment(appointmentId);
         }else{
@@ -419,6 +418,7 @@
                 let PNames=document.getElementById("allphi");
                 PNames.innerHTML="";
                 rs.map((element) => {
+                    console.log(element)
                     PNames.innerHTML+= '<option id="'+element.NIC+'" name="'+element.full_name + ' - ' + element.City +'" value="' + element.full_name + ' - ' + element.City +'" option="' + element.full_name + ' - ' + element.City  +  '"></option>'
                 })
             }
