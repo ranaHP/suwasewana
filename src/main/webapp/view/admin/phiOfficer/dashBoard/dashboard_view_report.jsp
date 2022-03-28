@@ -287,6 +287,11 @@
         );
 
     }
+    function round(value, decimals) {
+        return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+    }
+
+    round(1.005, 2); // 1.01
     function getAllComplinMOH() {
         let all=0
         let Animal_issue=0;
@@ -324,6 +329,7 @@
                 all=Animal_issue+Environment_issues+Food_issues+Land_issues+Noise_issue;
 
                 let pAnimalissue=Animal_issue/all*100
+                round(pAnimalissue)
                 let pEnvironmentissue=Environment_issues/all*100
                 let pFoodissue=Food_issues/all*100
                 let pLandissue=Land_issues/all*100

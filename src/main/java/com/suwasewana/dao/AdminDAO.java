@@ -256,7 +256,7 @@ public class AdminDAO {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(PHI_REGISTRATION)) {
 
-            String password="Suwasewana"+phiRegister.getNIC();
+            String password="Phi"+phiRegister.getNIC();
             SuwasewanaHashing hashing = new SuwasewanaHashing(password);
             System.out.println("new password is "+password);
             password= hashing.getHashValue();

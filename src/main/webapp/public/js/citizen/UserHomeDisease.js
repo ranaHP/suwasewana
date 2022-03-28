@@ -31,35 +31,10 @@ class view_home_disease_details{
                     <div class="diseases-card-container">
                     <div class="diseases-card">
                         <div class="left-container">
-                            <img src="<c:url value="/public/images/disease-banner.png "/>" width="100%">
+                            <img src="${myUrl}/public/images/uploadimage/diseases1.png" width="80px" height="80px" />
                         </div>
                         <div class="right-container">
-                            <div class="count-container">
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Active Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Death Cases
-                                    </div>
-                                </div>
-                                <div class="count-card">
-                                    <div class="header">
-                                        102,250
-                                    </div>
-                                    <div class="desc">
-                                        Total Cases
-                                    </div>
-                                </div>
-                            </div>
+                           
                             <div class="main-title">
                                 ${item.name}
                             </div>

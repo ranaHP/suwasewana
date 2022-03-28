@@ -176,23 +176,23 @@
                         <div class="dash-tab">
 
                             <div class="dash-title">
-                                Government
+                                <a href="#dashboard-container1"  style="color: #2f3032e6; text-decoration: none">Government</a>
                             </div>
                         </div>
                         <div class="dash-tab">
 
                             <div class="dash-title">
-                                PHI
+                                <a href="#dashboard-container2"  style="color: #2f3032e6; text-decoration: none">PHI</a>
                             </div>
                         </div>
                         <div class="dash-tab">
                             <div class="dash-title">
-                                Clinics
+                                <a href="#dashboard-container3" style="color: #2f3032e6; text-decoration: none">Clinic</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="dashboard-container" style="height: 800px;overflow-y: scroll;">
+                <div class="dashboard-container" id="dashboard-container1" style="height: 800px;overflow-y: scroll;">
                     <div class="dashboard-page-sub-title">
                         Government Announcement
                     </div>
@@ -304,7 +304,7 @@
                     </div>
                 </div>
 
-                <div class="dashboard-container" style="height: 800px;overflow-y: scroll;">
+                <div class="dashboard-container" id="dashboard-container2" style="height: 800px;overflow-y: scroll;">
                     <div class="dashboard-page-sub-title">
                         PHI Announcement
                     </div>
@@ -441,7 +441,7 @@
 <%--                        </div>--%>
                     </div>
                 </div>
-                <div class="dashboard-container" style="height: 800px;overflow-y: scroll;">
+                <div class="dashboard-container" id="dashboard-container3" style="height: 800px;overflow-y: scroll;">
                     <div class="dashboard-page-sub-title">
                         Clinic Announcement
                     </div>

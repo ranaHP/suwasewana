@@ -251,14 +251,14 @@
                 function (data, status) {
                 // alert(data)
                     if(data){
-                        popup.showCreateClinicSuccessMessage({
+                        popup.showCreateAnnouncementSuccessMessage({
                             status: 'success',
                             message: 'Successfully Created!'
                         })
                         AddProvince(data)
                         AddDistricts(data)
                     } else{
-                        popup.showCreateClinicSuccessMessage({
+                        popup.showCreateAnnouncementSuccessMessage({
                             status: 'fail',
                             message: 'Failed to create !',
                             data: data

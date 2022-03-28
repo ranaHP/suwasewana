@@ -154,12 +154,12 @@
             console.log(data)
                 if(data.includes("sucsess")){
                     // updateclinics()
-                    popup.showCreateClinicSuccessMessage({
+                    popup.showCreateAnnouncementSuccessMessage({
                         status: 'success',
                         message: 'Successfully Created!'
                     })
                 } else{
-                    popup.showCreateClinicSuccessMessage({
+                    popup.showCreateAnnouncementSuccessMessage({
                         status: 'fail',
                         message: 'Failed to create !',
                         data: data
