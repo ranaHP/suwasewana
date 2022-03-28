@@ -459,6 +459,7 @@
             }
         );
     }
+    // send message when they register
     // function sendmsg() {
     //     numbers.map(i => {
     //             var xhttp = new XMLHttpRequest();
@@ -474,6 +475,8 @@
     //     )
     // }
 
+
+    // To take cookies from browser
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -529,6 +532,8 @@
                     let expdate=new Date(element.date);
                     let currentDate=new Date();
                     console.log("Que no = "+element.Que_no)
+
+                   // For check comming data
                     /*console.log("age = "+age)
                     console.log("element.Upper_Age = "+element.Upper_Age)
                     console.log("element.Lower_Age = "+element.Lower_Age)
@@ -611,7 +616,7 @@
         );
     }
 
-
+    // To take available dose count
     async function Takedosecount(regno) {
         let availableDose = 0;
         await $.post(myUrl + "/Vaccine-controller/GetRegisterdVaccineClinicDetail/",
@@ -647,6 +652,8 @@
         return clinicid;
 
     }
+
+    // CAncle clinic that registered async function
     async function CancleClinic(regno){
 
         let availableDose=await Takedosecount(regno);

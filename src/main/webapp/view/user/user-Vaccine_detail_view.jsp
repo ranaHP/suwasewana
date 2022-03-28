@@ -15,6 +15,8 @@
     <link href="<c:url value="/public/css/user/_dashboard-vaccine_details.css"/>" rel="stylesheet" />
     <!-- for commen style  sheet link  -->
     <link rel="stylesheet" href="<c:url value="/public/css/commenStyles.css"/>"/>
+    <script src="<c:url value="/public/js/Admin/InputValidation.js "/>"></script>
+
     <script src="<c:url value="/public/js/navbar.js"/>"></script>
     <!-- for feather icon -->
     <script src="https://unpkg.com/feather-icons"></script>
@@ -301,7 +303,7 @@
     vaccineId = (window.location.protocol + "//" + window.location.hostname + ":" + window.location.port + window.location.pathname).split("/s/")[1].split("/")[0];
     console.log(vaccineId);
 
-
+    // load all vaccines
     $.post(myUrl+"/admin-register-controller/All_vaccine_details/",
 
         function (data, status) {
